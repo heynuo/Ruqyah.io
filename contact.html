@@ -79,68 +79,7 @@
 <body class="bg-bg-canvas font-body-article text-body-article text-on-surface antialiased selection:bg-primary-container selection:text-on-primary min-h-screen flex flex-col transition-colors duration-200">
   <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-on-primary focus:rounded-md focus:shadow-lg focus:outline-none">Skip to main content</a>
 
-  <!-- TOP NAVIGATION BAR -->
-  <header class="fixed top-0 left-0 right-0 z-50 h-14 bg-surface/95 backdrop-blur-md border-b border-border-subtle" role="banner">
-    <div class="max-w-7xl mx-auto h-14 px-gutter flex items-center justify-between gap-space-md">
-      
-      <!-- Brand & Navigation Links -->
-      <div class="flex items-center gap-space-lg flex-shrink-0">
-        <a class="flex items-center gap-space-xs group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" href="index.html">
-          <span class="text-primary font-heading-subsection text-heading-subsection font-bold tracking-tight">Ruqyah</span>
-          <span class="text-outline-variant font-light mx-1 select-none">|</span>
-          <span class="font-caption-meta text-caption-meta text-secondary font-semibold uppercase tracking-widest text-[0.7rem]">SCHOLASTIC ARCHIVE</span>
-        </a>
-        <nav aria-label="Main navigation" class="hidden lg:flex items-center gap-space-xs">
-          <a class="px-3 py-1.5 rounded font-ui-interactive text-caption-meta text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="index.html">Home</a>
-          <a class="px-3 py-1.5 rounded font-ui-interactive text-caption-meta text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="index.html#learn-lane">Learn</a>
-          <a class="px-3 py-1.5 rounded font-ui-interactive text-caption-meta text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors flex items-center gap-1.5" href="quran.html">
-            <span>Qur'an</span>
-            <span class="text-[0.625rem] font-code-mono font-medium bg-surface-container text-secondary px-1.5 py-0.5 rounded">114</span>
-          </a>
-          <a class="px-3 py-1.5 rounded font-ui-interactive text-caption-meta text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors flex items-center gap-1.5" href="quran-verses.html">
-            <span>108 Verses</span>
-            <span class="text-[0.625rem] font-code-mono font-medium bg-tertiary-fixed text-on-tertiary-fixed-variant px-1.5 py-0.5 rounded font-semibold">CORPUS</span>
-          </a>
-          <a class="px-3 py-1.5 rounded font-ui-interactive text-caption-meta text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="index.html#articles-section">Articles</a>
-          <a class="px-3 py-1.5 rounded font-ui-interactive text-caption-meta text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="about.html">About</a>
-          <a aria-current="page" class="px-3 py-1.5 transition-colors bg-surface-container-high text-primary font-bold rounded" href="contact.html">Contact</a>
-        </nav>
-      </div>
-
-      <!-- Controls & Quick Actions -->
-      <div class="flex items-center gap-space-sm">
-        <button id="navSearchTrigger" aria-label="Open search dialog" class="hidden sm:flex items-center justify-between w-52 h-8 px-2.5 bg-surface-container hover:bg-surface-container-high border border-border-subtle rounded text-on-surface-variant transition-colors group focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer" type="button">
-          <div class="flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-[16px] text-secondary">search</span>
-            <span class="font-caption-meta text-caption-meta text-[0.8125rem]">Search or Jump</span>
-          </div>
-          <kbd class="font-code-mono text-[0.6875rem] px-1 py-0.5 bg-surface border border-outline-variant text-secondary rounded shadow-sm">⌘K</kbd>
-        </button>
-
-        <!-- Color Theme Controls -->
-        <div aria-label="Color theme controls" class="flex items-center bg-surface-container border border-border-subtle rounded p-0.5" role="group">
-          <button id="themeLightBtn" aria-label="Light theme" class="w-7 h-7 flex items-center justify-center rounded text-on-surface bg-surface shadow-sm cursor-pointer transition-all" type="button">
-            <span class="material-symbols-outlined text-[16px]">light_mode</span>
-          </button>
-          <button id="themeSepiaBtn" aria-label="Sepia reading theme" class="w-7 h-7 flex items-center justify-center rounded text-secondary hover:text-on-surface cursor-pointer transition-all" type="button">
-            <span class="material-symbols-outlined text-[16px]">menu_book</span>
-          </button>
-          <button id="themeDarkBtn" aria-label="Dark archival theme" class="w-7 h-7 flex items-center justify-center rounded text-secondary hover:text-on-surface cursor-pointer transition-all" type="button">
-            <span class="material-symbols-outlined text-[16px]">dark_mode</span>
-          </button>
-        </div>
-
-        <a aria-label="Saved verses repository" class="h-8 px-2 flex items-center gap-1.5 text-on-surface-variant hover:text-on-surface rounded hover:bg-surface-container transition-colors focus:outline-none focus:ring-2 focus:ring-primary" href="quran.html#saved-verses" title="Saved verses and bookmarks">
-          <span class="material-symbols-outlined text-[18px] text-primary">bookmark</span>
-          <span id="savedBookmarksCount" class="font-code-mono text-[0.75rem] font-medium text-secondary">0</span>
-        </a>
-
-        <a href="about.html" aria-label="About author Zahiruddin" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0 ml-1 text-on-primary hover:opacity-90 transition-opacity" title="About Zahiruddin">
-          <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
-        </a>
-      </div>
-    </div>
-  </header>
+  <!-- Header & Navigation injected by js/shared-layout.js -->
 
   <!-- MAIN EDITORIAL CONTENT -->
   <main id="main-content" class="w-full pt-14 bg-bg-canvas flex-1">
@@ -629,83 +568,7 @@
     </div>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="w-full bg-surface border-t border-border-subtle mt-auto" role="contentinfo">
-    <div class="max-w-7xl mx-auto px-gutter py-space-2xl">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-space-xl">
-        
-        <!-- Brand Column -->
-        <div class="md:col-span-5 flex flex-col justify-between pr-space-md">
-          <div class="space-y-space-sm">
-            <div class="flex items-center gap-space-xs">
-              <span class="text-primary font-heading-subsection text-subheading-card font-bold tracking-tight">Ruqyah</span>
-              <span class="text-outline-variant select-none">|</span>
-              <span class="font-caption-meta text-caption-meta text-secondary font-semibold uppercase tracking-widest text-[0.7rem]">SCHOLASTIC ARCHIVE &amp; SYSTEMS LABORATORY</span>
-            </div>
-            <p class="font-body-article text-caption-meta text-secondary leading-relaxed max-w-md">
-              Dedicated to rigorous systems engineering and contemplative Islamic theological hermeneutics. High-precision textual concordances, reproducible research, and non-occluded audio study engines built for enduring stamina.
-            </p>
-          </div>
-          <div class="mt-space-md pt-space-sm">
-            <div class="inline-flex items-center gap-2 px-2.5 py-1 bg-surface-container border border-border-subtle rounded font-caption-meta text-[0.75rem] text-secondary">
-              <span class="w-2 h-2 rounded-full bg-success inline-block"></span>
-              <span>Zero Telemetry • No Third-Party Trackers • Local Storage Only</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Links Columns -->
-        <div class="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-gutter">
-          <div class="flex flex-col gap-space-xs">
-            <h2 class="font-caption-meta text-caption-meta font-bold uppercase tracking-wider text-on-surface">Concordance</h2>
-            <ul class="space-y-space-xs font-caption-meta text-caption-meta">
-              <li class="h-6 flex items-center"><a class="text-on-surface-variant hover:text-primary transition-colors" href="quran.html">Quran Recitation Engine</a></li>
-              <li class="h-6 flex items-center"><a class="text-on-surface-variant hover:text-primary transition-colors" href="quran-verses.html">108 Verses Concordance</a></li>
-              <li class="h-6 flex items-center"><a class="text-on-surface-variant hover:text-primary transition-colors" href="about.html">Hadith &amp; Sanad Methodology</a></li>
-              <li class="h-6 flex items-center"><a class="text-on-surface-variant hover:text-primary transition-colors" href="about.html">Theology &amp; Tafsir</a></li>
-            </ul>
-          </div>
-
-          <div class="flex flex-col gap-space-xs">
-            <h2 class="font-caption-meta text-caption-meta font-bold uppercase tracking-wider text-on-surface">Archive &amp; Labor</h2>
-            <ul class="space-y-space-xs font-caption-meta text-caption-meta">
-              <li class="h-6 flex items-center"><a class="text-on-surface-variant hover:text-primary transition-colors" href="index.html#articles-section">Technical Articles</a></li>
-              <li class="h-6 flex items-center"><a class="text-on-surface-variant hover:text-primary transition-colors" href="index.html#learn-lane">Systems Curricula</a></li>
-              <li class="h-6 flex items-center"><a class="text-on-surface-variant hover:text-primary transition-colors" href="about.html">Scholastic Manifesto</a></li>
-              <li class="h-6 flex items-center"><a class="text-on-surface-variant hover:text-primary transition-colors" href="quran.html#saved-verses">Saved Citations</a></li>
-            </ul>
-          </div>
-
-          <div class="flex flex-col gap-space-xs">
-            <h2 class="font-caption-meta text-caption-meta font-bold uppercase tracking-wider text-on-surface">Protocol</h2>
-            <ul class="space-y-space-xs font-caption-meta text-caption-meta">
-              <li class="h-6 flex items-center"><a class="text-on-surface-variant hover:text-primary transition-colors" href="contact.html">Contact &amp; Feedback</a></li>
-              <li class="h-6 flex items-center"><a class="text-on-surface-variant hover:text-primary transition-colors" href="privacy.html">Privacy Policy</a></li>
-              <li class="h-6 flex items-center"><a class="text-on-surface-variant hover:text-primary transition-colors" href="rss.xml">RSS Feed</a></li>
-              <li class="h-6 flex items-center"><a class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1" href="https://github.com/heynuo/Ruqyah.io" rel="noopener noreferrer" target="_blank"><span>GitHub Source</span><span class="material-symbols-outlined text-[14px]">open_in_new</span></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Footer Bottom Bar -->
-      <div class="pt-space-md border-t border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-space-sm font-caption-meta text-caption-meta text-secondary text-[0.8125rem]">
-        <div class="flex items-center gap-space-xs">
-          <span>© 2026 Ruqyah Scholastic Archive. Typeset in Inter &amp; Amiri.</span>
-        </div>
-        <div class="flex items-center gap-space-md">
-          <button id="footerShortcutsBtn" type="button" class="inline-flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors cursor-pointer">
-            <span class="material-symbols-outlined text-[16px]">keyboard</span>
-            <span>Shortcuts (?)</span>
-          </button>
-          <span class="flex items-center gap-1.5 text-on-surface-variant">
-            <span class="material-symbols-outlined text-[16px] text-success">verified</span>
-            <span>Built to WCAG 2.2 AA; <a class="underline underline-offset-4 decoration-border-strong hover:text-primary focus:outline-none focus:ring-1 focus:ring-primary" href="contact.html">report an issue</a></span>
-          </span>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <!-- Footer injected by js/shared-layout.js -->
 
   <!-- SEARCH MODAL & COMMAND PALETTE -->
   <div id="searchModal" class="hidden fixed inset-0 z-[90] bg-on-surface/40 backdrop-blur-sm flex items-start justify-center pt-20 px-4" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle" aria-hidden="true">
@@ -818,50 +681,7 @@
       const quickCopyText = document.getElementById('quickCopyText');
       const copyEmailIcon = document.getElementById('copyEmailIcon');
 
-      // 1. Theme Switcher Integration (Light, Sepia, Dark)
-      const themeLightBtn = document.getElementById('themeLightBtn');
-      const themeSepiaBtn = document.getElementById('themeSepiaBtn');
-      const themeDarkBtn = document.getElementById('themeDarkBtn');
-
-      function updateThemeButtons(theme) {
-        [themeLightBtn, themeSepiaBtn, themeDarkBtn].forEach(btn => {
-          if (!btn) return;
-          btn.classList.remove('bg-surface', 'shadow-sm', 'text-on-surface');
-          btn.classList.add('text-secondary');
-        });
-
-        if (theme === 'dark' && themeDarkBtn) {
-          themeDarkBtn.classList.add('bg-surface', 'shadow-sm', 'text-on-surface');
-          themeDarkBtn.classList.remove('text-secondary');
-        } else if (theme === 'sepia' && themeSepiaBtn) {
-          themeSepiaBtn.classList.add('bg-surface', 'shadow-sm', 'text-on-surface');
-          themeSepiaBtn.classList.remove('text-secondary');
-        } else if (themeLightBtn) {
-          themeLightBtn.classList.add('bg-surface', 'shadow-sm', 'text-on-surface');
-          themeLightBtn.classList.remove('text-secondary');
-        }
-      }
-
-      function applyTheme(theme) {
-        document.documentElement.setAttribute('data-theme', theme);
-        document.documentElement.classList.remove('dark', 'sepia');
-        if (theme === 'dark') {
-          document.documentElement.classList.add('dark');
-        } else if (theme === 'sepia') {
-          document.documentElement.classList.add('sepia');
-        }
-        try { localStorage.setItem('heynuo-theme', theme); } catch (e) {}
-        updateThemeButtons(theme);
-      }
-
-      if (themeLightBtn) themeLightBtn.addEventListener('click', () => applyTheme('light'));
-      if (themeSepiaBtn) themeSepiaBtn.addEventListener('click', () => applyTheme('sepia'));
-      if (themeDarkBtn) themeDarkBtn.addEventListener('click', () => applyTheme('dark'));
-
-      const initialTheme = document.documentElement.getAttribute('data-theme') || 'light';
-      updateThemeButtons(initialTheme);
-
-      // 2. Draft Persistence via LocalStorage
+      // 1. Draft Persistence via LocalStorage
       function loadDraft() {
         try {
           const raw = localStorage.getItem(STORAGE_KEY);
@@ -1084,101 +904,7 @@
         });
       });
 
-      // 8. Search Modal Controls
-      const searchTrigger = document.getElementById('navSearchTrigger');
-      const searchModal = document.getElementById('searchModal');
-      const searchInput = document.getElementById('searchModalInput');
-
-      function openSearchModal() {
-        if (!searchModal) return;
-        searchModal.classList.remove('hidden');
-        searchModal.setAttribute('aria-hidden', 'false');
-        if (searchInput) {
-          searchInput.focus();
-          searchInput.select();
-        }
-      }
-
-      function closeSearchModal() {
-        if (!searchModal) return;
-        searchModal.classList.add('hidden');
-        searchModal.setAttribute('aria-hidden', 'true');
-      }
-
-      if (searchTrigger) searchTrigger.addEventListener('click', openSearchModal);
-
-      // 9. Shortcuts Modal Controls
-      const footerShortcutsBtn = document.getElementById('footerShortcutsBtn');
-      const shortcutsModal = document.getElementById('shortcutsModal');
-      const closeShortcutsBtn = document.getElementById('closeShortcutsBtn');
-
-      function openShortcutsModal() {
-        if (!shortcutsModal) return;
-        shortcutsModal.classList.remove('hidden');
-        shortcutsModal.setAttribute('aria-hidden', 'false');
-      }
-
-      function closeShortcutsModal() {
-        if (!shortcutsModal) return;
-        shortcutsModal.classList.add('hidden');
-        shortcutsModal.setAttribute('aria-hidden', 'true');
-      }
-
-      if (footerShortcutsBtn) footerShortcutsBtn.addEventListener('click', openShortcutsModal);
-      if (closeShortcutsBtn) closeShortcutsBtn.addEventListener('click', closeShortcutsModal);
-
-      // Global Keydown Handler (Search, Shortcuts, Esc)
-      document.addEventListener('keydown', (e) => {
-        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-          e.preventDefault();
-          openSearchModal();
-          return;
-        }
-
-        if (e.key === 'Escape') {
-          closeSearchModal();
-          closeShortcutsModal();
-          return;
-        }
-
-        const isInput = ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName);
-        if (!isInput) {
-          if (e.key === '/') {
-            e.preventDefault();
-            openSearchModal();
-          } else if (e.key === '?') {
-            e.preventDefault();
-            openShortcutsModal();
-          } else if (e.key.toLowerCase() === 't') {
-            const current = document.documentElement.getAttribute('data-theme') || 'light';
-            const next = current === 'light' ? 'sepia' : (current === 'sepia' ? 'dark' : 'light');
-            applyTheme(next);
-          }
-        }
-      });
-
-      // Close modals on clicking overlay backdrop
-      if (searchModal) {
-        searchModal.addEventListener('click', (e) => {
-          if (e.target === searchModal) closeSearchModal();
-        });
-      }
-      if (shortcutsModal) {
-        shortcutsModal.addEventListener('click', (e) => {
-          if (e.target === shortcutsModal) closeShortcutsModal();
-        });
-      }
-
-      // 10. Saved Verses Count Hydration
-      try {
-        const saved = JSON.parse(localStorage.getItem('heynuo_saved_verses') || '[]');
-        const countEl = document.getElementById('savedBookmarksCount');
-        if (countEl && Array.isArray(saved)) {
-          countEl.textContent = saved.length;
-        }
-      } catch (e) {}
-
-      // Hydrate state
+      // 8. Hydrate state
       loadDraft();
     })();
   </script>

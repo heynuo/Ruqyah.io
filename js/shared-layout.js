@@ -260,9 +260,17 @@
   window.setTheme = setTheme;
 
   // ── Execute ─────────────────────────────────────────────────────────
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', injectLayout);
-  } else {
-    injectLayout();
+  var layoutInjected = false;
+  function safeInjectLayout() {
+    if (layoutInjected) return;
+    if (document.body) {
+      layoutInjected = true;
+      injectLayout();
+    }
+  }
+
+  safeInjectLayout();
+  if (!layoutInjected) {
+    document.addEventListener('DOMContentLoaded', safeInjectLayout);
   }
 })();
