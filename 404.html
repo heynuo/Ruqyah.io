@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="shell-type" content="web_standard">
+  <meta name="theme-color" content="#0F766E">
+  <meta name="color-scheme" content="light dark">
+  <!-- Build stamp for service-worker cache busting. Maintained by tools/stamp-build.ps1. -->
+  <meta name="heynuo-build" content="2026-10-17-0713">
+
+  <!-- Theme Pre-Hydration: Prevents Flash of Unstyled Content (FOUC) -->
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('heynuo-theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = savedTheme || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else if (theme === 'sepia') {
+          document.documentElement.classList.add('sepia');
+        }
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+  <meta name="robots" content="noindex, follow">
+  <title>Page Not Found — Ruqyah</title>
+  <meta name="description" content="The page you were looking for could not be found. Jump back to the Ruqyah homepage, Quran library, or latest tutorials.">
+  <meta property="og:description" content="The page you were looking for could not be found. Jump back to the homepage, Quran library, or latest tutorials.">
+  <meta property="og:url" content="https://heynuo.github.io/404.html">
+  <meta property="og:site_name" content="Ruqyah">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://heynuo.github.io/assets/banners/hero-banner.jpg">
+  <meta property="og:title" content="Page Not Found — Ruqyah">
+  <meta property="og:image" content="https://heynuo.github.io/assets/banners/hero-banner.jpg">
+  <meta property="og:image:width" content="1376">
+  <meta property="og:image:height" content="768">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="Ruqyah — Scholastic Archive &amp; Systems Laboratory">
+  <meta name="twitter:image:alt" content="Ruqyah — Scholastic Archive &amp; Systems Laboratory">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20rx='20'%20fill='%230F766E'/%3E%3Cpath%20d='M25%2025h50v50H25z'%20fill='none'%20stroke='%239cf2e8'%20stroke-width='4'/%3E%3Ccircle%20cx='50'%20cy='50'%20r='14'%20fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="manifest" href="manifest.json">
+  <link rel="alternate" type="application/rss+xml" title="Ruqyah RSS Feed" href="https://heynuo.github.io/rss.xml">
+  <link rel="sitemap" type="application/xml" href="sitemap.xml">
+
+  <!-- Typography Preconnect & Font Inclusions (Unified) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+  <!-- Shared Design System Tokens (Light / Dark / Sepia) -->
+  <link rel="stylesheet" href="css/shared-layout.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/tailwind-config.js"></script>
+
+  <!-- Page-specific: 404 error hero styles -->
+  <style>
+    .error-container { text-align: center; padding: 70px 0 90px; }
+    .error-illustration {
+      width: 130px; height: 130px; margin: 0 auto 20px; display: block;
+      animation: float 3s ease-in-out infinite;
+      filter: drop-shadow(0 10px 20px rgba(15, 118, 110, 0.2));
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    .error-container h1 {
+      font-size: 72px; margin-bottom: 12px;
+      background: linear-gradient(to right, rgb(var(--color-primary)), rgb(var(--color-tertiary)));
+      -webkit-background-clip: text; background-clip: text; color: transparent; line-height: 1;
+    }
+    .error-container > p { font-size: 18px; margin-bottom: 28px; color: rgb(var(--color-on-surface-variant)); }
+    .error-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+    .error-quick-jumps { margin-top: 2rem; }
+    .error-quick-title { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: rgb(var(--color-on-surface-variant)); margin-bottom: 0.75rem; }
+    .error-links-grid { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .error-quick-card {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      padding: 14px 18px; border-radius: 10px; border: 1px solid rgb(var(--color-border-subtle));
+      background: rgb(var(--color-surface)); text-decoration: none;
+      color: rgb(var(--color-on-surface)); font-size: 0.8rem; font-weight: 500;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .error-quick-card:hover { border-color: rgb(var(--color-primary)); box-shadow: 0 2px 8px rgba(var(--color-primary), 0.12); }
+    .error-quick-card span { font-size: 1.5rem; }
+    /* Btn styles for pages not loading heynuo.css */
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 8px;
+      font-size: 0.875rem; font-weight: 600; text-decoration: none; cursor: pointer;
+      border: none; transition: opacity 0.15s, box-shadow 0.15s;
+    }
+    .btn-primary { background: rgb(var(--color-primary)); color: rgb(var(--color-on-primary)); }
+    .btn-primary:hover { opacity: 0.9; }
+    .btn-secondary {
+      background: rgb(var(--color-surface)); color: rgb(var(--color-on-surface));
+      border: 1px solid rgb(var(--color-border-subtle));
+    }
+    .btn-secondary:hover { background: rgb(var(--color-surface-container-low)); }
+    .btn-icon { width: 16px; height: 16px; }
+    /* Reading progress bar */
+    .reading-progress {
+      position: fixed; top: 0; left: 0; height: 2px; width: 0; z-index: 9999;
+      background: rgb(var(--color-primary)); transition: width 0.1s linear;
+    }
+  </style>
+</head>
+<body class="bg-bg-canvas font-body-article text-on-surface antialiased min-h-screen flex flex-col pb-32 transition-colors duration-200">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-on-primary focus:rounded-md focus:shadow-lg focus:outline-none">Skip to main content</a>
+
+  <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
+  <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 flex flex-col flex-1">
+    <main id="main-content" class="flex-1 pt-14 error-container">
+      <div class="pt-6">
+        <img src="assets/icons/astronaut.png" alt="Lost in space" class="error-illustration" width="130" height="130" decoding="async" loading="lazy">
+      </div>
+      <h1>404</h1>
+      <p>Oops! The page you're looking for doesn't exist or has moved.</p>
+      <div class="error-actions">
+        <a href="index.html" class="btn btn-primary"><img src="assets/icons/rocket.png" alt="" class="btn-icon" width="16" height="16" decoding="async" loading="lazy"> Go Home</a>
+        <button type="button" class="btn btn-secondary" onclick="window.CommandPalette ? window.CommandPalette.open() : location.href='index.html'"><img src="assets/icons/search.png" alt="" class="btn-icon" width="16" height="16" decoding="async" loading="lazy"> Search Articles</button>
+        <a href="contact.html" class="btn btn-secondary"><img src="assets/icons/email.png" alt="" class="btn-icon" width="16" height="16" decoding="async" loading="lazy"> Contact Me</a>
+      </div>
+
+      <div class="error-quick-jumps">
+        <div class="error-quick-title">⚡ Explore Popular Resources:</div>
+        <div class="error-links-grid">
+          <a href="quran.html" class="error-quick-card">
+            <span>📖</span>
+            <div>Qur'an Reciter</div>
+          </a>
+          <a href="quran-verses.html" class="error-quick-card">
+            <span>📜</span>
+            <div>108 Master Verses</div>
+          </a>
+          <a href="about.html" class="error-quick-card">
+            <span>✨</span>
+            <div>About Ruqyah</div>
+          </a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <!-- Keyboard Shortcuts Modal & Command Palette (WCAG 2.1.4 compliant) -->
+  <div id="searchModal" class="hidden fixed inset-0 z-[90] bg-on-surface/40 backdrop-blur-sm flex items-start justify-center pt-20 px-4" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle" aria-hidden="true">
+    <div class="w-full max-w-xl bg-surface rounded-xl border border-border-strong/30 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div class="flex items-center px-4 border-b border-border-subtle bg-bg-canvas/50">
+        <svg class="w-4 h-4 stroke-current text-primary mr-3" fill="none" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M20 20L16 16"></path></svg>
+        <input id="searchModalInput" type="text" placeholder="Search documentation, articles, surahs..." class="w-full py-3.5 bg-transparent border-0 focus:outline-none focus:ring-0 text-on-surface text-sm font-ui-interactive" autocomplete="off" spellcheck="false">
+        <kbd class="px-2 py-0.5 rounded text-[10px] font-code-mono bg-surface border border-border-subtle text-on-surface-variant">Esc</kbd>
+      </div>
+
+      <div id="searchResultsList" class="p-3 max-h-96 overflow-y-auto space-y-1">
+        <div id="searchModalTitle" class="px-2 py-1 text-[10px] font-code-mono uppercase tracking-wider text-on-surface-variant font-semibold">Suggested Entries</div>
+        <a href="quran-verses.html" class="search-result-item flex items-center justify-between p-2 rounded hover:bg-surface-container transition-colors">
+          <div class="flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded bg-surface-container flex items-center justify-center text-primary text-xs font-code-mono">01</span>
+            <span class="text-xs font-medium text-on-surface">108 Master Verses Concordance</span>
+          </div>
+          <span class="text-[10px] font-code-mono text-on-surface-variant">Corpus</span>
+        </a>
+        <a href="quran.html" class="search-result-item flex items-center justify-between p-2 rounded hover:bg-surface-container transition-colors">
+          <div class="flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded bg-surface-container flex items-center justify-center text-primary text-xs font-code-mono">03</span>
+            <span class="text-xs font-medium text-on-surface">Qur’an Recitation Engine (114 Surahs)</span>
+          </div>
+          <span class="text-[10px] font-code-mono text-on-surface-variant">Audio Engine</span>
+        </a>
+        <a href="about.html" class="search-result-item flex items-center justify-between p-2 rounded hover:bg-surface-container transition-colors">
+          <div class="flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded bg-surface-container flex items-center justify-center text-primary text-xs font-code-mono">03</span>
+            <span class="text-xs font-medium text-on-surface">About Zahiruddin &amp; Ruqyah Editorial Mission</span>
+          </div>
+          <span class="text-[10px] font-code-mono text-on-surface-variant">Editorial</span>
+        </a>
+      </div>
+
+      <div class="px-4 py-2 border-t border-border-subtle bg-bg-canvas/50 flex items-center justify-between text-[11px] font-code-mono text-on-surface-variant">
+        <span>Type to filter • Press Esc to close</span>
+        <span>⌘K / Ctrl+K</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Keyboard Shortcuts Modal (WCAG 2.1.4 compliant) -->
+  <div id="shortcutsModal" class="hidden fixed inset-0 z-[95] bg-on-surface/40 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="shortcutsTitle" aria-hidden="true">
+    <div class="w-full max-w-lg bg-surface rounded-xl border border-border-strong/30 shadow-2xl p-6 relative">
+      <div class="flex items-center justify-between pb-4 mb-4 border-b border-border-subtle">
+        <div class="flex items-center gap-2.5">
+          <div class="w-7 h-7 rounded bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">⌨</div>
+          <h3 id="shortcutsTitle" class="font-subheading-card text-base font-bold text-on-surface">Keyboard Shortcuts</h3>
+        </div>
+        <button id="closeShortcutsBtn" aria-label="Close shortcuts modal" class="w-7 h-7 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors cursor-pointer" type="button">
+          ✕
+        </button>
+      </div>
+
+      <!-- Single-key shortcut toggle for accessibility -->
+      <div class="p-3 mb-4 rounded-lg bg-surface-container-low border border-primary/20 flex items-center justify-between text-xs">
+        <div>
+          <span class="font-semibold text-on-surface block">Single-Key Shortcuts</span>
+          <span class="text-on-surface-variant text-[11px]">Enable letters like T, H, A, C without Ctrl</span>
+        </div>
+        <label class="relative inline-flex items-center cursor-pointer">
+          <input type="checkbox" id="toggleSingleShortcuts" class="sr-only peer" checked>
+          <div class="w-9 h-5 bg-surface-container rounded-full peer peer-checked:bg-primary peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all"></div>
+        </label>
+      </div>
+
+      <div class="space-y-3 max-h-72 overflow-y-auto text-xs font-ui-interactive">
+        <div class="space-y-1.5">
+          <div class="text-[10px] font-code-mono uppercase tracking-wider text-on-surface-variant font-semibold">General Navigation</div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Search &amp; Command Palette</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">Ctrl + K</kbd>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Toggle Light / Sepia / Dark Theme</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">T</kbd>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Open Shortcuts Help</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">?</kbd>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Close Dialogs &amp; Overlays</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">Esc</kbd>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 pt-2">
+          <div class="text-[10px] font-code-mono uppercase tracking-wider text-on-surface-variant font-semibold">Audio &amp; Quran Player</div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Play / Pause Audio</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">Space</kbd>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Previous / Next Ayah</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">← / →</kbd>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Minimize / Restore Audio Bar</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">V</kbd>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="buttons.js" defer></script>
+  <script src="js/script.js" defer></script>
+  <!-- Shared Layout: Header, Footer, Theme Switcher -->
+  <script src="js/shared-layout.js"></script>
+</body>
+</html>

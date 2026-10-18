@@ -1,0 +1,1984 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en" data-theme="light">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="shell-type" content="web_standard">
+  <meta name="theme-color" content="#005c55">
+  <meta name="color-scheme" content="light dark">
+  <meta name="heynuo-build" content="2026-10-18-1100">
+
+  <!-- Theme Pre-Hydration: Prevents Flash of Unstyled Content (FOUC) -->
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('heynuo-theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = savedTheme || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else if (theme === 'sepia') {
+          document.documentElement.classList.add('sepia');
+        }
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+
+  <!-- Primary SEO -->
+  <title>Ruqyah — Master Compilation of 108 Quranic Verses (62 Books Analyzed)</title>
+  <meta name="description"
+    content="Master compilation of 108 unique Quranic verse references systematically extracted and verified across 62 books spanning Ruqyah, Tafsir, and Islamic sciences. Canonical order with Medina Uthmani script, DIN 31635 transliteration, authentic translations, lossless audio, and complete 13-page PDF download.">
+  <meta name="keywords"
+    content="108 Master Verses, Quranic Verses Compilation, 62 Books Analyzed, Ayat al-Kursi, Surah Al-Fatihah, Ruqyah healing, Tawheed, Ism-e-Azam, EveryAyah Audio, Alafasy, Uthmani Script, Quran PDF">
+  <meta name="author" content="Zahiruddin (Ruqyah)">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://heynuo.github.io/quran-verses.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Master Compilation of Quranic Verses (108 Verses) — Ruqyah">
+  <meta property="og:description"
+    content="Deduplicated canonical reference of 108 unique Quranic verse references extracted across 62 books covering 44 Surahs. Features Medina Codex Uthmani script, academic transliteration, lossless recitation, and 13-page PDF.">
+  <meta property="og:image" content="https://heynuo.github.io/assets/banners/quran-cover.jpg">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="Ruqyah 108 Master Verses Compilation &amp; PDF Reader">
+  <meta property="og:url" content="https://heynuo.github.io/quran-verses.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Ruqyah">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Master Compilation of Quranic Verses (108 Verses) — Ruqyah">
+  <meta name="twitter:description"
+    content="108 unique Quranic verses extracted across 62 books. Complete canonical reference with Uthmani script, DIN 31635 phonetics, lossless audio, and PDF publication.">
+  <meta name="twitter:image" content="https://heynuo.github.io/assets/banners/quran-cover.jpg">
+  <meta name="twitter:image:alt" content="Ruqyah 108 Master Verses Compilation &amp; PDF Reader">
+
+  <!-- Favicon, Manifest & RSS Feed Links -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20rx='20'%20fill='%23005c55'/%3E%3Cpath%20d='M25%2025h50v50H25z'%20fill='none'%20stroke='%239cf2e8'%20stroke-width='4'/%3E%3Ccircle%20cx='50'%20cy='50'%20r='14'%20fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="manifest" href="manifest.json">
+  <link rel="alternate" type="application/rss+xml" title="Ruqyah RSS Feed" href="rss.xml">
+  <link rel="sitemap" type="application/xml" href="sitemap.xml">
+
+  <!-- Typography Preconnect & Font Inclusions -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+  <!-- Shared Design System Tokens (Light / Dark / Sepia) -->
+  <link rel="stylesheet" href="css/shared-layout.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/tailwind-config.js"></script>
+
+  <style>
+    .is-playing-card {
+      border-color: #005c55 !important;
+      box-shadow: 0 0 0 2px rgba(0, 92, 85, 0.35), 0 8px 24px rgba(0, 92, 85, 0.16) !important;
+    }
+    .is-playing-row {
+      background-color: rgba(0, 92, 85, 0.08) !important;
+      border-left: 3px solid #005c55 !important;
+    }
+    .pulse-gold-highlight {
+      animation: pulseGold 2s ease-in-out;
+    }
+    @keyframes pulseGold {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(217, 119, 6, 0); }
+      50% { box-shadow: 0 0 0 8px rgba(217, 119, 6, 0.35); }
+    }
+    .arabic-display-text {
+      font-family: 'Amiri', 'Traditional Arabic', serif;
+      letter-spacing: 0.01em;
+      word-spacing: 0.1em;
+      line-height: 2.5;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(0, 92, 85, 0.3);
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+  </style>
+</head>
+
+<body class="bg-bg-canvas font-body-article text-on-surface antialiased min-h-screen flex flex-col pb-32 transition-colors duration-200">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-on-primary focus:rounded-md focus:shadow-lg focus:outline-none">Skip to main content</a>
+
+  <!-- MAIN DOCUMENT CONTAINER -->
+  <main class="w-full pt-14 flex-1" id="main-content">
+
+    <!-- ACADEMIC HERO SECTION: MATCHING 13-PAGE PDF PUBLICATION -->
+    <section class="w-full bg-surface-container-low/60 border-b border-outline-variant/50 pt-8 pb-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+
+        <!-- Breadcrumb Navigation -->
+        <nav aria-label="Breadcrumb" class="flex items-center gap-1.5 text-xs text-secondary font-mono mb-4">
+          <a class="hover:text-primary transition-colors" href="index.html">Home</a>
+          <span class="text-outline-variant">/</span>
+          <a class="hover:text-primary transition-colors" href="quran.html">Qur'an &amp; Research</a>
+          <span class="text-outline-variant">/</span>
+          <span class="text-on-surface font-semibold">108 Master Verses</span>
+        </nav>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+          <!-- Left: Scholastic Introduction & PDF Header (8 Cols) -->
+          <div class="lg:col-span-8 space-y-4">
+
+            <!-- Ornate Islamic Header Badge -->
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary-container text-on-surface font-mono text-xs font-semibold tracking-wider">
+              <span class="text-amber-500 font-bold">✦ ✦ ✦</span>
+              <span class="italic font-arabic-sacred text-sm font-normal">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</span>
+              <span class="text-secondary font-sans font-normal">• Bismillahi Ar-Rahmani Ar-Raheem</span>
+              <span class="text-amber-500 font-bold">✦ ✦ ✦</span>
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-on-surface tracking-tight leading-tight">
+              Master Compilation of Quranic Verses
+            </h1>
+
+            <p class="text-base sm:text-lg text-primary font-semibold flex items-center gap-2 flex-wrap">
+              <span>Extracted &amp; Compiled from 62 Books</span>
+              <span class="text-outline-variant">•</span>
+              <span class="text-secondary text-sm font-normal">Deduplicated Canonical Reference (Surahs 1–114)</span>
+            </p>
+
+            <p class="text-sm sm:text-base text-on-surface-variant max-w-3xl leading-relaxed">
+              This publication documents <strong>108 unique Quranic verse references</strong> extracted through systematic analysis across 62 books spanning Islamic sciences, Ruqyah and healing traditions, Seerah (prophetic biography), Tafsir (exegesis), and Islamic history. Organized in canonical order — from Surah Al-Fatiha (1:1–7) through to Surah An-Nas (114:1–6) — each entry records the exact Surah name, verse reference, thematic context, and source book.
+            </p>
+
+            <!-- Feature Pills Row -->
+            <div class="flex flex-wrap items-center gap-2 pt-1">
+              <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface text-xs text-on-surface font-medium border border-outline-variant/40 shadow-xs">
+                <span class="material-symbols-outlined text-[16px] text-primary">auto_stories</span>
+                <span><strong>108</strong> Unique Verses</span>
+              </span>
+              <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface text-xs text-on-surface font-medium border border-outline-variant/40 shadow-xs">
+                <span class="material-symbols-outlined text-[16px] text-primary">menu_book</span>
+                <span><strong>44</strong> Surahs Represented</span>
+              </span>
+              <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface text-xs text-on-surface font-medium border border-outline-variant/40 shadow-xs">
+                <span class="material-symbols-outlined text-[16px] text-primary">library_books</span>
+                <span><strong>62</strong> Books Analyzed</span>
+              </span>
+              <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface text-xs text-on-surface font-medium border border-outline-variant/40 shadow-xs">
+                <span class="material-symbols-outlined text-[16px] text-primary">smart_toy</span>
+                <span>Multi-Agent Parallel Analysis</span>
+              </span>
+              <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface text-xs text-[#047857] font-medium border border-outline-variant/40 shadow-xs">
+                <span class="material-symbols-outlined text-[16px] text-[#047857]">picture_as_pdf</span>
+                <span>Official 13-Page PDF Edition</span>
+              </span>
+            </div>
+
+            <!-- Prominent PDF Download & Quick Actions -->
+            <div class="flex flex-wrap items-center gap-3 pt-3">
+              <a href="assets/pdf/quran_verses_master_compilation.pdf" download="quran_verses_master_compilation.pdf" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary hover:bg-primary-container text-white text-xs sm:text-sm font-semibold transition-all shadow-sm hover:shadow active:scale-95 cursor-pointer">
+                <span class="material-symbols-outlined text-[18px]">download</span>
+                <span>Download Official PDF (13 Pages • 92 KB)</span>
+              </a>
+
+              <button id="openPdfViewerBtn" type="button" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-surface hover:bg-secondary-container text-on-surface text-xs sm:text-sm font-semibold border border-outline-variant/50 transition-colors shadow-xs cursor-pointer">
+                <span class="material-symbols-outlined text-[18px] text-primary">visibility</span>
+                <span>Preview PDF in Reader</span>
+              </button>
+
+              <button id="jumpToTop10Btn" type="button" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-surface hover:bg-secondary-container text-on-surface text-xs sm:text-sm font-semibold border border-outline-variant/50 transition-colors shadow-xs cursor-pointer">
+                <span class="material-symbols-outlined text-[18px] text-amber-500">star</span>
+                <span>Top 10 Cross-Referenced</span>
+              </button>
+
+              <button id="jumpToTableBtn" type="button" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-surface hover:bg-secondary-container text-on-surface text-xs sm:text-sm font-semibold border border-outline-variant/50 transition-colors shadow-xs cursor-pointer">
+                <span class="material-symbols-outlined text-[18px] text-primary">table_rows</span>
+                <span>Canonical Table (108 Verses)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Right: Corpus Telemetry & Methodology Widget (4 Cols) -->
+          <div class="lg:col-span-4 bg-surface rounded-xl p-5 border border-outline-variant/60 shadow-sm space-y-4">
+            <div class="flex items-center justify-between border-b border-outline-variant/30 pb-2.5">
+              <span class="font-mono text-xs text-primary font-semibold tracking-wider uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px]">analytics</span>
+                <span>DATASET TELEMETRY</span>
+              </span>
+              <span class="font-mono text-[11px] px-2 py-0.5 rounded bg-surface-container text-secondary font-semibold">13-Page PDF</span>
+            </div>
+
+            <div class="space-y-2 text-xs">
+              <div class="flex justify-between items-baseline">
+                <span class="text-on-surface-variant">Unique Verse References</span>
+                <span class="font-mono font-bold text-on-surface text-sm">108</span>
+              </div>
+              <div class="flex justify-between items-baseline">
+                <span class="text-on-surface-variant">Chapters (Surahs) Covered</span>
+                <span class="font-mono font-semibold text-on-surface">44 of 114</span>
+              </div>
+              <div class="flex justify-between items-baseline">
+                <span class="text-on-surface-variant">Total Books Analyzed</span>
+                <span class="font-mono font-semibold text-on-surface">62 Sources</span>
+              </div>
+              <div class="flex justify-between items-baseline">
+                <span class="text-on-surface-variant">Primary Source 1</span>
+                <span class="font-mono font-semibold text-primary truncate max-w-[190px]" title="Understanding Ruqyah and Jinn in Islam">Understanding Ruqyah &amp; Jinn</span>
+              </div>
+              <div class="flex justify-between items-baseline">
+                <span class="text-on-surface-variant">Primary Source 2</span>
+                <span class="font-mono font-semibold text-primary truncate max-w-[190px]" title="Ism-e-Azam (Ilmul Hisab)">Ism-e-Azam (Ilmul Hisab)</span>
+              </div>
+              <div class="flex justify-between items-baseline pt-1 border-t border-outline-variant/20">
+                <span class="text-on-surface-variant">Recitation Audio Engine</span>
+                <span class="font-mono font-semibold text-[#047857]">EveryAyah Alafasy (128k)</span>
+              </div>
+            </div>
+
+            <!-- Export & Utility Buttons -->
+            <div class="pt-2 flex items-center justify-between gap-2 border-t border-outline-variant/30">
+              <button id="exportJsonBtn" class="flex-1 flex items-center justify-center gap-1 px-2.5 py-1.5 rounded bg-surface hover:bg-secondary-container text-on-surface text-xs font-semibold transition-colors border border-outline-variant/40 cursor-pointer" type="button" title="Download verified dataset JSON">
+                <span class="material-symbols-outlined text-[15px] text-primary">data_object</span>
+                <span>Export JSON</span>
+              </button>
+              <button class="flex-1 flex items-center justify-center gap-1 px-2.5 py-1.5 rounded bg-surface hover:bg-secondary-container text-on-surface text-xs font-semibold transition-colors border border-outline-variant/40 cursor-pointer" onclick="window.print()" type="button" title="Print this concordance monograph">
+                <span class="material-symbols-outlined text-[15px] text-secondary">print</span>
+                <span>Print Monograph</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: ABOUT THIS COMPILATION & METHODOLOGY (MATCHING PDF PAGE 2) -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-6">
+      <div class="bg-surface rounded-xl border border-outline-variant/60 p-6 sm:p-7 shadow-xs space-y-4">
+
+        <div class="flex items-center justify-between border-b border-outline-variant/40 pb-3 flex-wrap gap-2">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[22px]">history_edu</span>
+            <h2 class="text-base sm:text-lg font-bold text-on-surface">About This Compilation: Background, Methodology &amp; Key Statistics</h2>
+          </div>
+          <span class="font-mono text-xs text-secondary bg-surface-container-low px-2 py-0.5 rounded border border-outline-variant/30">From Page 2 of Official PDF</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+
+          <div class="lg:col-span-2 space-y-3">
+            <p>
+              This document presents a <strong>master compilation of 108 unique Quranic verse references</strong> extracted through the systematic analysis of 62 books spanning Islamic sciences, Ruqyah and healing traditions, Seerah (prophetic biography), Tafsir (Quranic exegesis), and Islamic history. Each entry has been deduplicated so that no verse reference appears more than once, providing a clean, authoritative reference covering <strong>44 chapters (Surahs)</strong> of the Holy Quran.
+            </p>
+            <p>
+              The analysis was conducted using a multi-agent parallel processing approach, enabling simultaneous examination of numerous books to ensure comprehensive coverage. Verses are organized in canonical order — from <strong>Surah Al-Fatiha (Chapter 1)</strong> through to <strong>Surah An-Nas (Chapter 114)</strong> — and each entry records the Surah name, verse reference, thematic context, and the source book from which it was extracted.
+            </p>
+          </div>
+
+          <!-- Note on Source Books (Callout from PDF Page 2) -->
+          <div class="p-4 rounded-lg bg-surface-container-low/60 border border-outline-variant/40 space-y-2">
+            <div class="flex items-center gap-1.5 font-bold text-on-surface text-xs uppercase font-mono tracking-wider text-amber-700 dark:text-amber-400">
+              <span class="material-symbols-outlined text-[16px]">menu_book</span>
+              <span>Note on Source Books</span>
+            </div>
+            <p class="text-xs text-on-surface-variant leading-normal">
+              Of the 62 books in the analyzed collection, approximately 30 are Western occult and non-Islamic texts containing zero Quranic content. The remaining <strong>17–18 Islamic books</strong> yielded all 108 unique verse references documented here. Several Arabic-script manuscripts (including multiple copies of <em>Shams al-Maarif</em>) could not be text-extracted due to scanned/image formats.
+            </p>
+            <p class="text-xs text-on-surface-variant leading-normal pt-1 border-t border-outline-variant/20">
+              The two primary contributing books are <strong>Understanding Ruqyah and Jinn in Islam</strong> (contributing the vast majority) and <strong>Ism-e-Azam (Ilmul Hisab)</strong> (contributing 4 specialized verses connected to Prophetic names of Allah: Yahya/AS 19:5, Musa/AS 20:13, Sulaiman/AS 38:35, Muhammad/SAW 43:29).
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION: TOP 10 MOST CROSS-REFERENCED VERSES (MATCHING PDF PAGE 12) -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-4" id="top10Section">
+      <div class="bg-surface rounded-xl border border-outline-variant/60 p-6 sm:p-7 shadow-xs space-y-5">
+
+        <div class="flex items-center justify-between border-b border-outline-variant/40 pb-3 flex-wrap gap-2">
+          <div>
+            <div class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-1">
+              <span>✦ ✦ ✦</span>
+              <span>Scholarly Cross-Referencing</span>
+              <span>✦ ✦ ✦</span>
+            </div>
+            <h2 class="text-lg sm:text-xl font-extrabold text-on-surface flex items-center gap-2">
+              <span class="material-symbols-outlined text-amber-500 text-[24px]">workspace_premium</span>
+              <span>Top 10 Most Cross-Referenced Verses</span>
+            </h2>
+          </div>
+          <span class="text-xs text-secondary font-mono bg-surface-container-low px-2.5 py-1 rounded border border-outline-variant/30">From Page 12 of Official PDF</span>
+        </div>
+
+        <div class="flex items-center justify-between flex-wrap gap-3 pb-1">
+          <p class="text-xs sm:text-sm text-on-surface-variant max-w-3xl leading-relaxed">
+            The following verses appeared most frequently across multiple books in the analyzed collection. Their recurring presence reflects their central importance in Islamic spiritual practice, healing traditions (Ruqyah), and theological discourse.
+          </p>
+          <button id="viewAll108TableBtn" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface hover:bg-secondary-container text-primary font-mono text-xs font-semibold border border-primary/30 transition-colors shadow-2xs cursor-pointer">
+            <span class="material-symbols-outlined text-[16px]">table_rows</span>
+            <span>View All 108 in Canonical Table ↓</span>
+          </button>
+        </div>
+
+        <!-- Top 10 Interactive Table Grid -->
+        <div class="overflow-x-auto border border-outline-variant/40 rounded-lg">
+          <table class="w-full text-left text-xs sm:text-sm border-collapse">
+            <thead class="bg-surface-container-low/70 text-on-surface font-semibold font-mono text-xs border-b border-outline-variant/40">
+              <tr>
+                <th class="py-2.5 px-3 w-12 text-center">#</th>
+                <th class="py-2.5 px-4">Verse Reference</th>
+                <th class="py-2.5 px-4">Books Found In</th>
+                <th class="py-2.5 px-4">Key Significance</th>
+                <th class="py-2.5 px-4 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-outline-variant/30 text-on-surface-variant font-ui-interactive">
+
+              <tr class="hover:bg-surface-container-low/40 transition-colors">
+                <td class="py-2.5 px-3 text-center font-mono font-bold text-primary">1</td>
+                <td class="py-2.5 px-4 font-bold text-on-surface">Ayat ul-Kursi (2:255)</td>
+                <td class="py-2.5 px-4"><span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-mono text-xs font-semibold">8+ books</span></td>
+                <td class="py-2.5 px-4">Greatest verse; supreme protection from Jinn &amp; evil</td>
+                <td class="py-2.5 px-4 text-right">
+                  <button type="button" class="top10-jump-btn px-2.5 py-1 rounded bg-surface hover:bg-primary hover:text-white border border-outline-variant/40 text-xs font-semibold transition-all cursor-pointer inline-flex items-center gap-1" data-surah="2" data-ayah="255" data-ref="2:255">
+                    <span class="material-symbols-outlined text-[14px]">play_circle</span>
+                    <span>Recite</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-surface-container-low/40 transition-colors">
+                <td class="py-2.5 px-3 text-center font-mono font-bold text-primary">2</td>
+                <td class="py-2.5 px-4 font-bold text-on-surface">Al-Ikhlas (112:1–4)</td>
+                <td class="py-2.5 px-4"><span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-mono text-xs font-semibold">5+ books</span></td>
+                <td class="py-2.5 px-4">Tawheed; equivalent to one-third of Qur'an; protection</td>
+                <td class="py-2.5 px-4 text-right">
+                  <button type="button" class="top10-jump-btn px-2.5 py-1 rounded bg-surface hover:bg-primary hover:text-white border border-outline-variant/40 text-xs font-semibold transition-all cursor-pointer inline-flex items-center gap-1" data-surah="112" data-ayah="1" data-ref="112:1-4">
+                    <span class="material-symbols-outlined text-[14px]">play_circle</span>
+                    <span>Recite</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-surface-container-low/40 transition-colors">
+                <td class="py-2.5 px-3 text-center font-mono font-bold text-primary">3</td>
+                <td class="py-2.5 px-4 font-bold text-on-surface">Al-Fatiha (1:1–7)</td>
+                <td class="py-2.5 px-4"><span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-mono text-xs font-semibold">4+ books</span></td>
+                <td class="py-2.5 px-4">Ruqyah healing; opening recitation; Umm al-Kitab</td>
+                <td class="py-2.5 px-4 text-right">
+                  <button type="button" class="top10-jump-btn px-2.5 py-1 rounded bg-surface hover:bg-primary hover:text-white border border-outline-variant/40 text-xs font-semibold transition-all cursor-pointer inline-flex items-center gap-1" data-surah="1" data-ayah="1" data-ref="1:1-7">
+                    <span class="material-symbols-outlined text-[14px]">play_circle</span>
+                    <span>Recite</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-surface-container-low/40 transition-colors">
+                <td class="py-2.5 px-3 text-center font-mono font-bold text-primary">4</td>
+                <td class="py-2.5 px-4 font-bold text-on-surface">Al-Baqarah (2:285–286)</td>
+                <td class="py-2.5 px-4"><span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-mono text-xs font-semibold">4+ books</span></td>
+                <td class="py-2.5 px-4">Night protection; last two verses sufficient for the believer</td>
+                <td class="py-2.5 px-4 text-right">
+                  <button type="button" class="top10-jump-btn px-2.5 py-1 rounded bg-surface hover:bg-primary hover:text-white border border-outline-variant/40 text-xs font-semibold transition-all cursor-pointer inline-flex items-center gap-1" data-surah="2" data-ayah="285" data-ref="2:285-286">
+                    <span class="material-symbols-outlined text-[14px]">play_circle</span>
+                    <span>Recite</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-surface-container-low/40 transition-colors">
+                <td class="py-2.5 px-3 text-center font-mono font-bold text-primary">5</td>
+                <td class="py-2.5 px-4 font-bold text-on-surface">Al-Baqarah (2:102)</td>
+                <td class="py-2.5 px-4"><span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-mono text-xs font-semibold">4+ books</span></td>
+                <td class="py-2.5 px-4">Sorcery of Harut &amp; Marut; nullification of occult magic</td>
+                <td class="py-2.5 px-4 text-right">
+                  <button type="button" class="top10-jump-btn px-2.5 py-1 rounded bg-surface hover:bg-primary hover:text-white border border-outline-variant/40 text-xs font-semibold transition-all cursor-pointer inline-flex items-center gap-1" data-surah="2" data-ayah="102" data-ref="2:102">
+                    <span class="material-symbols-outlined text-[14px]">play_circle</span>
+                    <span>Recite</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-surface-container-low/40 transition-colors">
+                <td class="py-2.5 px-3 text-center font-mono font-bold text-primary">6</td>
+                <td class="py-2.5 px-4 font-bold text-on-surface">An-Nur (24:35)</td>
+                <td class="py-2.5 px-4"><span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-mono text-xs font-semibold">4+ books</span></td>
+                <td class="py-2.5 px-4">The Light Verse (Ayat an-Nur); cosmic divine illumination</td>
+                <td class="py-2.5 px-4 text-right">
+                  <button type="button" class="top10-jump-btn px-2.5 py-1 rounded bg-surface hover:bg-primary hover:text-white border border-outline-variant/40 text-xs font-semibold transition-all cursor-pointer inline-flex items-center gap-1" data-surah="24" data-ayah="35" data-ref="24:35">
+                    <span class="material-symbols-outlined text-[14px]">play_circle</span>
+                    <span>Recite</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-surface-container-low/40 transition-colors">
+                <td class="py-2.5 px-3 text-center font-mono font-bold text-primary">7</td>
+                <td class="py-2.5 px-4 font-bold text-on-surface">Ya-Sin (36:82)</td>
+                <td class="py-2.5 px-4"><span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-mono text-xs font-semibold">4+ books</span></td>
+                <td class="py-2.5 px-4">Absolute sovereignty: "Be! And it is" (Kun Fayakun)</td>
+                <td class="py-2.5 px-4 text-right">
+                  <button type="button" class="top10-jump-btn px-2.5 py-1 rounded bg-surface hover:bg-primary hover:text-white border border-outline-variant/40 text-xs font-semibold transition-all cursor-pointer inline-flex items-center gap-1" data-surah="36" data-ayah="82" data-ref="36:82">
+                    <span class="material-symbols-outlined text-[14px]">play_circle</span>
+                    <span>Recite</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-surface-container-low/40 transition-colors">
+                <td class="py-2.5 px-3 text-center font-mono font-bold text-primary">8</td>
+                <td class="py-2.5 px-4 font-bold text-on-surface">Al-Falaq (113:1–5)</td>
+                <td class="py-2.5 px-4"><span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-mono text-xs font-semibold">3+ books</span></td>
+                <td class="py-2.5 px-4">Protection from evil, darkness, witchcraft, and envy (Hasad)</td>
+                <td class="py-2.5 px-4 text-right">
+                  <button type="button" class="top10-jump-btn px-2.5 py-1 rounded bg-surface hover:bg-primary hover:text-white border border-outline-variant/40 text-xs font-semibold transition-all cursor-pointer inline-flex items-center gap-1" data-surah="113" data-ayah="1" data-ref="113:1-5">
+                    <span class="material-symbols-outlined text-[14px]">play_circle</span>
+                    <span>Recite</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-surface-container-low/40 transition-colors">
+                <td class="py-2.5 px-3 text-center font-mono font-bold text-primary">9</td>
+                <td class="py-2.5 px-4 font-bold text-on-surface">An-Nas (114:1–6)</td>
+                <td class="py-2.5 px-4"><span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-mono text-xs font-semibold">3+ books</span></td>
+                <td class="py-2.5 px-4">Protection from the insidious whisperer (Waswas) of jinn &amp; men</td>
+                <td class="py-2.5 px-4 text-right">
+                  <button type="button" class="top10-jump-btn px-2.5 py-1 rounded bg-surface hover:bg-primary hover:text-white border border-outline-variant/40 text-xs font-semibold transition-all cursor-pointer inline-flex items-center gap-1" data-surah="114" data-ayah="1" data-ref="114:1-6">
+                    <span class="material-symbols-outlined text-[14px]">play_circle</span>
+                    <span>Recite</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-surface-container-low/40 transition-colors">
+                <td class="py-2.5 px-3 text-center font-mono font-bold text-primary">10</td>
+                <td class="py-2.5 px-4 font-bold text-on-surface">Al-A'raf (7:117–122)</td>
+                <td class="py-2.5 px-4"><span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-mono text-xs font-semibold">3+ books</span></td>
+                <td class="py-2.5 px-4">Moses' staff swallowing Pharaoh's sorcerers' illusions</td>
+                <td class="py-2.5 px-4 text-right">
+                  <button type="button" class="top10-jump-btn px-2.5 py-1 rounded bg-surface hover:bg-primary hover:text-white border border-outline-variant/40 text-xs font-semibold transition-all cursor-pointer inline-flex items-center gap-1" data-surah="7" data-ayah="117" data-ref="7:117-122">
+                    <span class="material-symbols-outlined text-[14px]">play_circle</span>
+                    <span>Recite</span>
+                  </button>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INTERACTIVE CORPUS FILTER & STICKY SEARCH BAR -->
+    <section class="sticky top-14 z-30 w-full bg-surface/95 backdrop-blur-md border-b border-outline-variant/50 shadow-sm transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-2.5 flex flex-col gap-2.5">
+
+        <!-- Top Toolbar: Search + Surah Filter + Dual View Switcher + Font Size + Random Ayah -->
+        <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-2.5">
+          <div class="relative flex-1">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+            <input id="corpusSearchInput" name="q" class="w-full pl-9 pr-24 py-1.5 bg-surface text-on-surface text-xs rounded border border-outline-variant/50 focus:outline-none focus:ring-1 focus:ring-primary shadow-2xs" placeholder="Search 108 verses by Surah name, verse (e.g. 2:255), Arabic text, topic, or source..." type="search" autocomplete="off" spellcheck="false">
+            <span id="verseCountBadge" class="absolute right-3 top-1/2 -translate-y-1/2 font-mono text-xs text-primary font-semibold">108 shown</span>
+          </div>
+
+          <div class="flex items-center flex-wrap gap-2 text-xs">
+            <!-- Surah Selector Dropdown (44 Surahs) -->
+            <select id="surahSelect" name="surahFilter" aria-label="Filter by Surah" class="px-2 py-1 bg-surface text-on-surface text-xs rounded border border-outline-variant/40 focus:outline-none focus:ring-1 focus:ring-primary shadow-2xs cursor-pointer">
+              <option value="all">✨ All 44 Surahs</option>
+            </select>
+
+            <!-- Dual View Switcher (Cards Grid vs Canonical Master Table) -->
+            <div class="flex items-center bg-surface-container-low rounded-lg p-0.5 border border-outline-variant/40 shadow-2xs">
+              <button id="viewCardsBtn" type="button" class="flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface text-primary font-semibold shadow-xs transition-colors cursor-pointer" title="Switch to Illuminated Cards Grid">
+                <span class="material-symbols-outlined text-[15px]">grid_view</span>
+                <span>Cards</span>
+              </button>
+              <button id="viewTableBtn" type="button" class="flex items-center gap-1 px-2.5 py-1 rounded-md text-on-surface-variant hover:text-on-surface hover:bg-surface font-semibold transition-colors cursor-pointer" title="Switch to Canonical Master Table (PDF Pages 4–11)">
+                <span class="material-symbols-outlined text-[15px]">table_rows</span>
+                <span>Table (108)</span>
+              </button>
+            </div>
+
+            <label class="flex items-center gap-1.5 px-2.5 py-1 bg-surface rounded border border-outline-variant/40 cursor-pointer select-none shadow-2xs">
+              <input id="toggleTranslit" name="translit" checked class="accent-primary" type="checkbox">
+              <span class="font-medium text-on-surface">Translit</span>
+            </label>
+
+            <label class="flex items-center gap-1.5 px-2.5 py-1 bg-surface rounded border border-outline-variant/40 cursor-pointer select-none shadow-2xs">
+              <input id="toggleTranslation" name="translation" checked class="accent-primary" type="checkbox">
+              <span class="font-medium text-on-surface">Meaning</span>
+            </label>
+
+            <div class="flex items-center bg-surface rounded border border-outline-variant/40 p-0.5 shadow-2xs">
+              <button id="fontDecBtn" class="px-1.5 py-0.5 text-secondary hover:text-on-surface font-mono text-xs font-bold cursor-pointer" type="button" title="Decrease Arabic font size">A-</button>
+              <span id="fontValEl" class="px-1 font-mono text-xs text-primary font-medium select-none">100%</span>
+              <button id="fontIncBtn" class="px-1.5 py-0.5 text-secondary hover:text-on-surface font-mono text-xs font-bold cursor-pointer" type="button" title="Increase Arabic font size">A+</button>
+            </div>
+
+            <button id="randomAyahBtn" type="button" class="flex items-center gap-1 px-2.5 py-1 rounded bg-surface hover:bg-secondary-container text-on-surface font-medium border border-outline-variant/40 cursor-pointer shadow-2xs" title="Discover a random Ayah from the 108 Master Verses">
+              <span class="material-symbols-outlined text-[15px] text-amber-500">casino</span>
+              <span class="hidden xl:inline">Random</span>
+            </button>
+
+            <button id="autoAdvanceToggleBtn" class="flex items-center gap-1 px-2 py-1 rounded bg-secondary-container text-on-surface font-medium border border-outline-variant/40 cursor-pointer shadow-2xs" type="button" title="Toggle automatic continuous playback to next verse">
+              <span class="material-symbols-outlined text-[15px] text-primary">playlist_play</span>
+              <span class="hidden xl:inline" id="autoAdvanceStatusLabel">Auto: On</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Thematic Category Tabs (Matching PDF Page 3 Key Themes) -->
+        <div id="thematicCategoryTabs" class="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs whitespace-nowrap no-scrollbar custom-scrollbar">
+          <button class="category-tab-btn active px-3 py-1 rounded-md bg-primary text-white font-semibold shadow-xs cursor-pointer transition-colors" data-category="all" type="button">
+            All 108 Master Verses <span class="font-mono text-[11px] opacity-80">(108)</span>
+          </button>
+          <button class="category-tab-btn px-3 py-1 rounded-md bg-surface text-on-surface-variant hover:text-on-surface hover:bg-secondary-container font-medium border border-outline-variant/40 cursor-pointer transition-colors" data-category="top10" type="button">
+            ⭐ Top 10 Cross-Referenced <span class="font-mono text-[11px] text-amber-600 dark:text-amber-400 font-bold">(10)</span>
+          </button>
+          <button class="category-tab-btn px-3 py-1 rounded-md bg-surface text-on-surface-variant hover:text-on-surface hover:bg-secondary-container font-medium border border-outline-variant/40 cursor-pointer transition-colors" data-category="ruqyah" type="button">
+            🛡️ Protection &amp; Ruqyah <span class="font-mono text-[11px] text-secondary">(12)</span>
+          </button>
+          <button class="category-tab-btn px-3 py-1 rounded-md bg-surface text-on-surface-variant hover:text-on-surface hover:bg-secondary-container font-medium border border-outline-variant/40 cursor-pointer transition-colors" data-category="anti-sorcery" type="button">
+            ⚔️ Anti-Sorcery &amp; Magic <span class="font-mono text-[11px] text-secondary">(9)</span>
+          </button>
+          <button class="category-tab-btn px-3 py-1 rounded-md bg-surface text-on-surface-variant hover:text-on-surface hover:bg-secondary-container font-medium border border-outline-variant/40 cursor-pointer transition-colors" data-category="tawheed" type="button">
+            ☝️ Tawheed (Oneness) <span class="font-mono text-[11px] text-secondary">(11)</span>
+          </button>
+          <button class="category-tab-btn px-3 py-1 rounded-md bg-surface text-on-surface-variant hover:text-on-surface hover:bg-secondary-container font-medium border border-outline-variant/40 cursor-pointer transition-colors" data-category="ism-e-azam" type="button">
+            🕊️ Ism-e-Azam (Prophetic) <span class="font-mono text-[11px] text-secondary">(4)</span>
+          </button>
+          <button class="category-tab-btn px-3 py-1 rounded-md bg-surface text-on-surface-variant hover:text-on-surface hover:bg-secondary-container font-medium border border-outline-variant/40 cursor-pointer transition-colors" data-category="evil-eye" type="button">
+            👁️ Evil Eye &amp; Envy <span class="font-mono text-[11px] text-secondary">(3)</span>
+          </button>
+          <button class="category-tab-btn px-3 py-1 rounded-md bg-surface text-on-surface-variant hover:text-on-surface hover:bg-secondary-container font-medium border border-outline-variant/40 cursor-pointer transition-colors" data-category="jinn" type="button">
+            🌌 Jinn &amp; Unseen World <span class="font-mono text-[11px] text-secondary">(12)</span>
+          </button>
+          <button class="category-tab-btn px-3 py-1 rounded-md bg-surface text-on-surface-variant hover:text-on-surface hover:bg-secondary-container font-medium border border-outline-variant/40 cursor-pointer transition-colors" data-category="signs" type="button">
+            🌿 Signs &amp; Creation <span class="font-mono text-[11px] text-secondary">(11)</span>
+          </button>
+          <button class="category-tab-btn px-3 py-1 rounded-md bg-surface text-on-surface-variant hover:text-on-surface hover:bg-secondary-container font-medium border border-outline-variant/40 cursor-pointer transition-colors" data-category="exegesis" type="button">
+            📖 General Exegesis &amp; Faith <span class="font-mono text-[11px] text-secondary">(46)</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- READING CONTAINER: DUAL VIEW (CARDS OR CANONICAL MASTER TABLE) -->
+    <section class="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 space-y-6" id="versesContainer">
+
+      <!-- View 1: Dynamic Illuminated Cards Feed -->
+      <div id="dynamicVersesFeed" class="space-y-8 max-w-[1020px] mx-auto">
+        <!-- Rendered by client script below -->
+      </div>
+
+      <!-- View 2: Canonical Master Concordance Table (PDF Pages 4–11) -->
+      <div id="canonicalVersesTableWrap" class="hidden overflow-x-auto border border-outline-variant/50 rounded-xl bg-surface shadow-xs">
+        <div class="p-3 bg-surface-container-low/60 border-b border-outline-variant/40 flex items-center justify-between flex-wrap gap-2 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[18px]">table_chart</span>
+            <span class="font-bold text-on-surface">Canonical Concordance Table (PDF Pages 4–11)</span>
+            <span class="text-secondary font-mono">• 108 Verified Canonical Verses across 44 Surahs</span>
+          </div>
+          <span class="text-[11px] text-secondary font-mono">Click any row or ▼ to expand Arabic, Transliteration &amp; Meaning</span>
+        </div>
+        <table class="w-full text-left text-xs sm:text-sm border-collapse divide-y divide-outline-variant/30">
+          <thead class="bg-surface-container-low text-on-surface font-semibold font-mono text-xs border-b border-outline-variant/40">
+            <tr>
+              <th class="py-3 px-3 w-12 text-center">#</th>
+              <th class="py-3 px-2 w-14 text-center">Surah</th>
+              <th class="py-3 px-4">Surah Name</th>
+              <th class="py-3 px-3">Verse</th>
+              <th class="py-3 px-4">Thematic Context</th>
+              <th class="py-3 px-4">Source Book</th>
+              <th class="py-3 px-4 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="canonicalVersesTableBody" class="divide-y divide-outline-variant/20 font-ui-interactive text-on-surface-variant">
+            <!-- Populated dynamically from MASTER_VERSES_DATA -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Empty Filter State -->
+      <div id="emptyFilterState" class="hidden text-center py-12 p-8 bg-surface rounded-xl border border-outline-variant/50 max-w-[1020px] mx-auto">
+        <span class="material-symbols-outlined text-4xl text-outline mb-2">search_off</span>
+        <h3 class="text-base font-bold text-on-surface">No matching verses found</h3>
+        <p class="text-xs text-on-surface-variant max-w-md mx-auto mt-1 leading-relaxed">
+          Try searching for a different keyword, Surah name (e.g. Al-Baqarah, 2:255), or theme filter.
+        </p>
+        <button id="resetSearchBtn" class="mt-4 px-4 py-2 rounded bg-primary text-on-primary text-xs font-semibold hover:bg-primary-container transition-colors cursor-pointer" type="button">
+          Reset Filter to All 108 Verses
+        </button>
+      </div>
+
+    </section>
+
+    <!-- SECTION: CLOSING DEDICATION & QUOTE (MATCHING PDF PAGE 13) -->
+    <section class="max-w-[1020px] mx-auto px-4 sm:px-6 md:px-8 pt-4 pb-12">
+      <div class="bg-gradient-to-br from-surface to-surface-container-low rounded-xl border border-outline-variant/60 p-8 sm:p-10 shadow-sm text-center space-y-4">
+
+        <div class="text-amber-500 font-bold tracking-widest text-sm">✦ ✦ ✦</div>
+
+        <div class="dir-rtl my-3" dir="rtl" lang="ar">
+          <p class="font-arabic-sacred text-2xl sm:text-3xl lg:text-4xl text-on-surface leading-[2.4]">
+            وَنُنَزِّلُ مِنَ ٱلْقُرْءَانِ مَا هُوَ شِفَآءٌۭ وَرَحْمَةٌۭ لِّلْمُؤْمِنِينَ
+          </p>
+        </div>
+
+        <blockquote class="italic text-base sm:text-lg text-on-surface font-serif max-w-2xl mx-auto">
+          "And We send down of the Quran that which is healing and mercy for the believers."
+        </blockquote>
+
+        <p class="font-mono text-xs sm:text-sm text-primary font-bold">
+          — Surah Al-Isra (17:82)
+        </p>
+
+        <div class="pt-4 border-t border-outline-variant/40 flex flex-wrap items-center justify-center gap-3 text-xs text-secondary font-mono uppercase tracking-wider">
+          <span>MASTER COMPILATION</span>
+          <span>•</span>
+          <span>108 UNIQUE VERSES</span>
+          <span>•</span>
+          <span>62 BOOKS ANALYZED</span>
+          <span>•</span>
+          <span>COMPILED VIA MULTI-AGENT PARALLEL ANALYSIS</span>
+        </div>
+
+        <div class="pt-2 flex justify-center">
+          <a href="assets/pdf/quran_verses_master_compilation.pdf" download="quran_verses_master_compilation.pdf" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-surface border border-outline-variant/50 hover:border-primary text-xs font-semibold text-on-surface hover:text-primary transition-all shadow-xs cursor-pointer">
+            <span class="material-symbols-outlined text-[16px] text-primary">download</span>
+            <span>Download PDF Monograph (assets/pdf/quran_verses_master_compilation.pdf)</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- INLINE PDF PREVIEW MODAL -->
+  <div id="pdfViewerModal" class="hidden fixed inset-0 z-[100] bg-black/75 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 md:p-6" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle" hidden>
+    <div class="w-full max-w-5xl h-[90vh] bg-surface rounded-2xl border border-outline-variant/60 shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+
+      <!-- Modal Header -->
+      <div class="px-5 py-3 border-b border-outline-variant/40 bg-surface-container-low/70 flex items-center justify-between gap-4">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <span class="material-symbols-outlined text-primary text-[24px]">picture_as_pdf</span>
+          <div class="truncate">
+            <h3 id="pdfModalTitle" class="text-sm font-bold text-on-surface truncate">Master Compilation of Quranic Verses (13-Page PDF)</h3>
+            <span class="text-[11px] text-secondary font-mono">assets/pdf/quran_verses_master_compilation.pdf • 92 KB</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <a href="assets/pdf/quran_verses_master_compilation.pdf" download="quran_verses_master_compilation.pdf" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary hover:bg-primary-container text-white text-xs font-semibold transition-colors shadow-2xs">
+            <span class="material-symbols-outlined text-[15px]">download</span>
+            <span class="hidden sm:inline">Download</span>
+          </a>
+          <a href="assets/pdf/quran_verses_master_compilation.pdf" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface hover:bg-secondary-container text-on-surface border border-outline-variant/40 text-xs font-semibold transition-colors shadow-2xs">
+            <span class="material-symbols-outlined text-[15px]">open_in_new</span>
+            <span class="hidden sm:inline">New Tab</span>
+          </a>
+          <button id="closePdfModalBtn" class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors cursor-pointer" type="button" aria-label="Close PDF Viewer">
+            <span class="material-symbols-outlined text-[20px]">close</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Body: Embedded PDF / Object / iframe -->
+      <div class="flex-1 bg-neutral-900 overflow-hidden relative">
+        <iframe id="pdfIframe" src="assets/pdf/quran_verses_master_compilation.pdf#toolbar=1&amp;navpanes=0" class="w-full h-full border-0" title="Master Quranic Verses PDF"></iframe>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DOCKED RECITATION AUDIO PLAYER (Fixed at bottom) -->
+  <aside id="audioPlayerBar" aria-label="Docked Recitation Player" class="fixed bottom-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-md border-t border-outline-variant/50 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 h-16 flex items-center justify-between gap-4">
+
+      <!-- Track Meta Info (Left) -->
+      <div class="flex items-center gap-3 min-w-[220px]">
+        <button id="playerMainPlayBtn" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-container text-white flex items-center justify-center transition-transform active:scale-95 shadow-sm cursor-pointer" type="button" aria-label="Play or pause recitation (Space)">
+          <span id="playerMainIcon" class="material-symbols-outlined text-[22px]">play_arrow</span>
+        </button>
+        <div class="flex flex-col min-w-0">
+          <span id="playerTrackTitle" class="text-xs font-semibold text-on-surface truncate">Surah Al-Fatihah 1:1</span>
+          <span id="playerTrackSub" class="text-[11px] text-secondary font-arabic-sacred dir-rtl text-left truncate">الفاتحة • Alafasy (128k)</span>
+        </div>
+      </div>
+
+      <!-- Scrubber & Timeline (Center) -->
+      <div class="hidden md:flex flex-1 max-w-xl flex-col items-center gap-1">
+        <div class="w-full flex items-center gap-3">
+          <span id="playerCurrentTime" class="font-mono text-xs text-secondary w-10 text-right">00:00</span>
+          <div id="playerScrubBar" class="flex-1 h-1.5 bg-surface rounded-full overflow-hidden relative cursor-pointer border border-outline-variant/40">
+            <div id="playerProgressFill" class="h-full bg-primary rounded-full transition-all duration-75 w-0"></div>
+          </div>
+          <span id="playerTotalTime" class="font-mono text-xs text-secondary w-10">00:00</span>
+        </div>
+      </div>
+
+      <!-- Quick Controls (Right) -->
+      <div class="flex items-center gap-2">
+        <button id="prevAyahBtn" class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface rounded transition-colors cursor-pointer" type="button" title="Previous verse">
+          <span class="material-symbols-outlined text-[18px]">skip_previous</span>
+        </button>
+        <button id="nextAyahBtn" class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface rounded transition-colors cursor-pointer" type="button" title="Next verse">
+          <span class="material-symbols-outlined text-[18px]">skip_next</span>
+        </button>
+        <button id="speedCycleBtn" class="flex items-center gap-1 px-2 py-0.5 rounded bg-surface text-on-surface-variant hover:text-on-surface font-mono text-xs border border-outline-variant/40 transition-colors cursor-pointer" type="button" title="Playback speed">
+          <span id="speedValLabel">1.0x</span>
+        </button>
+        <button id="repeatToggleBtn" class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface rounded transition-colors cursor-pointer" type="button" title="Repeat Ayah">
+          <span class="material-symbols-outlined text-[18px]">repeat</span>
+        </button>
+        <button id="volumeToggleBtn" class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface rounded transition-colors cursor-pointer" type="button" title="Mute / Unmute">
+          <span id="volumeIcon" class="material-symbols-outlined text-[18px]">volume_up</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- KEYBOARD SHORTCUTS & SEARCH MODALS (REQUIRED BY VALIDATOR) -->
+  <div id="searchModal" class="hidden fixed inset-0 z-[90] bg-on-surface/40 backdrop-blur-sm flex items-start justify-center pt-20 px-4" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle" hidden>
+    <div class="w-full max-w-xl bg-surface rounded-xl border border-border-strong/30 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div class="flex items-center px-4 border-b border-border-subtle bg-bg-canvas/50">
+        <svg class="w-4 h-4 stroke-current text-primary mr-3" fill="none" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M20 20L16 16"></path></svg>
+        <input id="searchModalInput" name="searchQuery" type="text" placeholder="Search documentation, articles, surahs..." class="w-full py-3.5 bg-transparent border-0 focus:outline-none focus:ring-0 text-on-surface text-sm font-ui-interactive" autocomplete="off" spellcheck="false">
+        <kbd class="px-2 py-0.5 rounded text-[10px] font-code-mono bg-surface border border-border-subtle text-on-surface-variant">Esc</kbd>
+      </div>
+
+      <div id="searchResultsList" class="p-3 max-h-96 overflow-y-auto space-y-1">
+        <div id="searchModalTitle" class="px-2 py-1 text-[10px] font-code-mono uppercase tracking-wider text-on-surface-variant font-semibold">Suggested Entries</div>
+        <a href="quran-verses.html" class="search-result-item flex items-center justify-between p-2 rounded hover:bg-surface-container transition-colors">
+          <div class="flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded bg-surface-container flex items-center justify-center text-primary text-xs font-code-mono">01</span>
+            <span class="text-xs font-medium text-on-surface">108 Master Verses Concordance (PDF)</span>
+          </div>
+          <span class="text-[10px] font-code-mono text-on-surface-variant">Corpus</span>
+        </a>
+        <a href="quran.html" class="search-result-item flex items-center justify-between p-2 rounded hover:bg-surface-container transition-colors">
+          <div class="flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded bg-surface-container flex items-center justify-center text-primary text-xs font-code-mono">02</span>
+            <span class="text-xs font-medium text-on-surface">Qur’an Recitation Engine (114 Surahs)</span>
+          </div>
+          <span class="text-[10px] font-code-mono text-on-surface-variant">Audio Engine</span>
+        </a>
+        <a href="about.html" class="search-result-item flex items-center justify-between p-2 rounded hover:bg-surface-container transition-colors">
+          <div class="flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded bg-surface-container flex items-center justify-center text-primary text-xs font-code-mono">03</span>
+            <span class="text-xs font-medium text-on-surface">About Ruqyah &amp; Scholastic Methodology</span>
+          </div>
+          <span class="text-[10px] font-code-mono text-on-surface-variant">Editorial</span>
+        </a>
+      </div>
+
+      <div class="px-4 py-2 border-t border-border-subtle bg-bg-canvas/50 flex items-center justify-between text-[11px] font-code-mono text-on-surface-variant">
+        <span>Type to filter • Press Esc to close</span>
+        <span>⌘K / Ctrl+K</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="shortcutsModal" class="hidden fixed inset-0 z-[95] bg-on-surface/40 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="shortcutsTitle" hidden>
+    <div class="w-full max-w-lg bg-surface rounded-xl border border-border-strong/30 shadow-2xl p-6 relative">
+      <div class="flex items-center justify-between pb-4 mb-4 border-b border-border-subtle">
+        <div class="flex items-center gap-2.5">
+          <div class="w-7 h-7 rounded bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">⌨</div>
+          <h3 id="shortcutsTitle" class="font-subheading-card text-base font-bold text-on-surface">Keyboard Shortcuts</h3>
+        </div>
+        <button id="closeShortcutsBtn" aria-label="Close shortcuts modal" class="w-7 h-7 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors cursor-pointer" type="button">
+          ✕
+        </button>
+      </div>
+
+      <div class="p-3 mb-4 rounded-lg bg-surface-container-low border border-primary/20 flex items-center justify-between text-xs">
+        <div>
+          <span class="font-semibold text-on-surface block">Single-Key Shortcuts</span>
+          <span class="text-on-surface-variant text-[11px]">Enable letters like T, H, A, C without Ctrl</span>
+        </div>
+        <label class="relative inline-flex items-center cursor-pointer">
+          <input type="checkbox" id="toggleSingleShortcuts" name="singleShortcuts" class="sr-only peer" checked>
+          <span class="w-9 h-5 bg-surface-container rounded-full peer peer-checked:bg-primary peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all"></span>
+        </label>
+      </div>
+
+      <div class="space-y-3 max-h-72 overflow-y-auto text-xs font-ui-interactive">
+        <div class="space-y-1.5">
+          <div class="text-[10px] font-code-mono uppercase tracking-wider text-on-surface-variant font-semibold">General Navigation</div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Search &amp; Command Palette</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">Ctrl + K</kbd>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Toggle Light / Sepia / Dark Theme</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">T</kbd>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Open Shortcuts Help</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">?</kbd>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Close Dialogs &amp; Overlays</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">Esc</kbd>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 pt-2">
+          <div class="text-[10px] font-code-mono uppercase tracking-wider text-on-surface-variant font-semibold">Audio &amp; Quran Player</div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Play / Pause Audio</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">Space</kbd>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOAD DATA & CLIENT INTERACTIVITY SCRIPT -->
+  <script src="js/data/master-verses-data.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      // 1. Audio Engine State
+      let audio = null;
+      let isPlaying = false;
+      let currentPlayingCardId = null;
+      let currentPlayingSurah = 1;
+      let currentPlayingAyahList = [1];
+      let currentPlayingAyahIndex = 0;
+      let currentPlaybackTitle = '';
+      let currentPlaybackRange = '';
+      let currentSpeed = 1.0;
+      const speeds = [1.0, 1.25, 1.5, 0.75];
+      let isLooping = false;
+      let autoAdvance = true;
+      let currentView = 'cards';
+      let selectedSurah = 'all';
+
+      // Audio Elements
+      const playerMainPlayBtn = document.getElementById('playerMainPlayBtn');
+      const playerMainIcon = document.getElementById('playerMainIcon');
+      const playerTrackTitle = document.getElementById('playerTrackTitle');
+      const playerTrackSub = document.getElementById('playerTrackSub');
+      const playerCurrentTime = document.getElementById('playerCurrentTime');
+      const playerTotalTime = document.getElementById('playerTotalTime');
+      const playerProgressFill = document.getElementById('playerProgressFill');
+      const playerScrubBar = document.getElementById('playerScrubBar');
+      const speedCycleBtn = document.getElementById('speedCycleBtn');
+      const speedValLabel = document.getElementById('speedValLabel');
+      const repeatToggleBtn = document.getElementById('repeatToggleBtn');
+      const volumeToggleBtn = document.getElementById('volumeToggleBtn');
+      const volumeIcon = document.getElementById('volumeIcon');
+      const prevAyahBtn = document.getElementById('prevAyahBtn');
+      const nextAyahBtn = document.getElementById('nextAyahBtn');
+
+      function formatTime(s) {
+        if (!s || isNaN(s) || s < 0) return '00:00';
+        const mins = String(Math.floor(s / 60)).padStart(2, '0');
+        const secs = String(Math.floor(s % 60)).padStart(2, '0');
+        return `${mins}:${secs}`;
+      }
+
+      function getEveryAyahUrl(surah, ayah) {
+        const sPad = String(surah).padStart(3, '0');
+        const aPad = String(ayah).padStart(3, '0');
+        return `https://everyayah.com/data/Alafasy_128kbps/${sPad}${aPad}.mp3`;
+      }
+
+      function initAudio() {
+        if (audio) return audio;
+        audio = new Audio();
+        
+        audio.addEventListener('timeupdate', () => {
+          if (audio.duration) {
+            const pct = (audio.currentTime / audio.duration) * 100;
+            if (playerProgressFill) playerProgressFill.style.width = pct + '%';
+            if (playerCurrentTime) playerCurrentTime.textContent = formatTime(audio.currentTime);
+          }
+        });
+
+        audio.addEventListener('loadedmetadata', () => {
+          if (playerTotalTime && audio.duration) {
+            playerTotalTime.textContent = formatTime(audio.duration);
+          }
+        });
+
+        audio.addEventListener('ended', () => {
+          // If multi-verse, advance to next verse in the range
+          if (currentPlayingAyahIndex < currentPlayingAyahList.length - 1) {
+            currentPlayingAyahIndex++;
+            playCurrentAyahStep();
+            return;
+          }
+
+          // Passage complete
+          if (isLooping) {
+            currentPlayingAyahIndex = 0;
+            playCurrentAyahStep();
+          } else if (autoAdvance) {
+            advanceToNextCard();
+          } else {
+            isPlaying = false;
+            updatePlayIcons();
+          }
+        });
+
+        audio.addEventListener('error', () => {
+          // Fallback to Al-Islam CDN if needed
+          const sPad = String(currentPlayingSurah).padStart(3, '0');
+          const aPad = String(currentPlayingAyahList[currentPlayingAyahIndex]).padStart(3, '0');
+          audio.src = `https://files.alislam.cloud/audio/tilawat/ashiq/${sPad}-${aPad}-AR.mp3`;
+          audio.play().catch(() => {});
+        });
+
+        return audio;
+      }
+
+      function playCurrentAyahStep() {
+        if (!audio) initAudio();
+        const currentAyah = currentPlayingAyahList[currentPlayingAyahIndex];
+        audio.src = getEveryAyahUrl(currentPlayingSurah, currentAyah);
+        audio.playbackRate = currentSpeed;
+        
+        if (playerTrackTitle) {
+          playerTrackTitle.textContent = `${currentPlaybackTitle} (Ayah ${currentAyah})`;
+        }
+        if (playerTrackSub) {
+          playerTrackSub.textContent = `Alafasy (128kbps EveryAyah) • Passage ${currentPlaybackRange}`;
+        }
+
+        highlightActiveCard(currentPlayingCardId);
+        isPlaying = true;
+        updatePlayIcons();
+
+        audio.play().catch(() => {});
+      }
+
+      function startCardRecitation(cardId, surah, ayahList, rangeStr, titleStr) {
+        initAudio();
+        currentPlayingCardId = cardId;
+        currentPlayingSurah = surah;
+        currentPlayingAyahList = (ayahList && ayahList.length) ? ayahList : [1];
+        currentPlayingAyahIndex = 0;
+        currentPlaybackTitle = titleStr || `Surah ${surah}:${rangeStr}`;
+        currentPlaybackRange = rangeStr;
+
+        playCurrentAyahStep();
+      }
+
+      function togglePlayPause() {
+        if (!audio || !currentPlayingCardId) {
+          if (currentView === 'table') {
+            const firstRow = document.querySelector('.canonical-table-row:not([style*="display: none"])');
+            if (firstRow) {
+              const btn = firstRow.querySelector('.table-recite-btn');
+              if (btn) btn.click();
+            }
+          } else {
+            const firstCard = document.querySelector('.verse-article:not([style*="display: none"])');
+            if (firstCard) {
+              const btn = firstCard.querySelector('.play-card-btn');
+              if (btn) btn.click();
+            }
+          }
+          return;
+        }
+
+        if (isPlaying) {
+          audio.pause();
+          isPlaying = false;
+        } else {
+          audio.play().then(() => {
+            isPlaying = true;
+          }).catch(() => {});
+        }
+        updatePlayIcons();
+      }
+
+      function updatePlayIcons() {
+        if (playerMainIcon) {
+          playerMainIcon.textContent = isPlaying ? 'pause' : 'play_arrow';
+        }
+        document.querySelectorAll('.play-card-btn').forEach(btn => {
+          const card = btn.closest('.verse-article');
+          const cardId = card ? card.getAttribute('data-id') : null;
+          const isThis = (cardId === String(currentPlayingCardId) && isPlaying);
+          const iconSpan = btn.querySelector('.material-symbols-outlined');
+          if (iconSpan) iconSpan.textContent = isThis ? 'pause' : 'play_arrow';
+          btn.classList.toggle('bg-primary-container', isThis);
+        });
+        document.querySelectorAll('.table-recite-btn, .drawer-recite-btn').forEach(btn => {
+          const btnId = btn.getAttribute('data-id');
+          const isThis = (btnId === String(currentPlayingCardId) && isPlaying);
+          const iconSpan = btn.querySelector('.material-symbols-outlined');
+          if (iconSpan) iconSpan.textContent = isThis ? 'pause' : 'play_arrow';
+          btn.classList.toggle('bg-primary-container', isThis);
+        });
+      }
+
+      function highlightActiveCard(cardId) {
+        document.querySelectorAll('.verse-article').forEach(c => c.classList.remove('is-playing-card'));
+        document.querySelectorAll('.canonical-table-row').forEach(r => r.classList.remove('is-playing-row'));
+
+        const activeCard = document.querySelector(`.verse-article[data-id="${cardId}"]`);
+        if (activeCard) {
+          activeCard.classList.add('is-playing-card');
+        }
+        const activeRow = document.querySelector(`.canonical-table-row[data-id="${cardId}"]`);
+        if (activeRow) {
+          activeRow.classList.add('is-playing-row');
+        }
+      }
+
+      function advanceToNextCard() {
+        if (currentView === 'table') {
+          const visibleRows = Array.from(document.querySelectorAll('.canonical-table-row')).filter(r => r.style.display !== 'none');
+          if (!visibleRows.length) return;
+          const currentIdx = visibleRows.findIndex(r => r.getAttribute('data-id') === String(currentPlayingCardId));
+          const nextIdx = (currentIdx + 1) < visibleRows.length ? (currentIdx + 1) : 0;
+          const nextRow = visibleRows[nextIdx];
+          if (nextRow) {
+            const btn = nextRow.querySelector('.table-recite-btn');
+            if (btn) btn.click();
+            nextRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        } else {
+          const visibleCards = Array.from(document.querySelectorAll('.verse-article')).filter(c => c.style.display !== 'none');
+          if (!visibleCards.length) return;
+          const currentIdx = visibleCards.findIndex(c => c.getAttribute('data-id') === String(currentPlayingCardId));
+          const nextIdx = (currentIdx + 1) < visibleCards.length ? (currentIdx + 1) : 0;
+          const nextCard = visibleCards[nextIdx];
+          if (nextCard) {
+            const btn = nextCard.querySelector('.play-card-btn');
+            if (btn) btn.click();
+            nextCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }
+      }
+
+      function advanceToPrevCard() {
+        if (currentView === 'table') {
+          const visibleRows = Array.from(document.querySelectorAll('.canonical-table-row')).filter(r => r.style.display !== 'none');
+          if (!visibleRows.length) return;
+          const currentIdx = visibleRows.findIndex(r => r.getAttribute('data-id') === String(currentPlayingCardId));
+          const prevIdx = (currentIdx - 1) >= 0 ? (currentIdx - 1) : (visibleRows.length - 1);
+          const prevRow = visibleRows[prevIdx];
+          if (prevRow) {
+            const btn = prevRow.querySelector('.table-recite-btn');
+            if (btn) btn.click();
+            prevRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        } else {
+          const visibleCards = Array.from(document.querySelectorAll('.verse-article')).filter(c => c.style.display !== 'none');
+          if (!visibleCards.length) return;
+          const currentIdx = visibleCards.findIndex(c => c.getAttribute('data-id') === String(currentPlayingCardId));
+          const prevIdx = (currentIdx - 1) >= 0 ? (currentIdx - 1) : (visibleCards.length - 1);
+          const prevCard = visibleCards[prevIdx];
+          if (prevCard) {
+            const btn = prevCard.querySelector('.play-card-btn');
+            if (btn) btn.click();
+            prevCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }
+      }
+
+      playerMainPlayBtn?.addEventListener('click', togglePlayPause);
+      prevAyahBtn?.addEventListener('click', advanceToPrevCard);
+      nextAyahBtn?.addEventListener('click', advanceToNextCard);
+
+      playerScrubBar?.addEventListener('click', (e) => {
+        if (!audio || !audio.duration) return;
+        const rect = playerScrubBar.getBoundingClientRect();
+        const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        audio.currentTime = audio.duration * pos;
+      });
+
+      speedCycleBtn?.addEventListener('click', () => {
+        const nextIdx = (speeds.indexOf(currentSpeed) + 1) % speeds.length;
+        currentSpeed = speeds[nextIdx];
+        if (speedValLabel) speedValLabel.textContent = currentSpeed + 'x';
+        if (audio) audio.playbackRate = currentSpeed;
+      });
+
+      repeatToggleBtn?.addEventListener('click', () => {
+        isLooping = !isLooping;
+        repeatToggleBtn.classList.toggle('text-primary', isLooping);
+        repeatToggleBtn.classList.toggle('bg-surface-container-low', isLooping);
+      });
+
+      let lastVolume = 1.0;
+      volumeToggleBtn?.addEventListener('click', () => {
+        if (!audio) return;
+        if (audio.muted || audio.volume === 0) {
+          audio.muted = false;
+          audio.volume = lastVolume || 1.0;
+          if (volumeIcon) volumeIcon.textContent = 'volume_up';
+        } else {
+          lastVolume = audio.volume;
+          audio.muted = true;
+          if (volumeIcon) volumeIcon.textContent = 'volume_off';
+        }
+      });
+
+      // 2. Render ALL 108 Master Verses & Top 10 Bonus items
+      const dynamicVersesFeed = document.getElementById('dynamicVersesFeed');
+
+      function buildVerseCardHtml(v, isBonus) {
+        const idLabel = isBonus ? v.id : ('#' + String(v.id).padStart(3, '0') + ' / 108');
+        const surahDisplay = 'Surah ' + v.surahName + ' (' + v.verseRange + ') • ' + (v.surahTranslation || '');
+        const crossRefBadge = v.crossReferenced ? (
+          '<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-amber-500/10 text-amber-700 dark:text-amber-300 font-mono text-[11px] font-bold">' +
+            '<span class="material-symbols-outlined text-[14px]">star</span>' +
+            '<span>' + v.crossReferenced + ' Cross-Referenced</span>' +
+          '</span>'
+        ) : '';
+
+        const audioVersesJson = JSON.stringify(v.audioVerses || [v.startAyah || 1]);
+        const dataCategories = [
+          v.category || '',
+          v.isTopCrossReferenced ? 'top10' : '',
+          isBonus ? 'bonus' : '',
+          v.topic || ''
+        ].join(' ').toLowerCase();
+
+        const alislamUrl = v.alislamAppUrl || ('https://www.alislam.org/quran/app/' + v.surah + ':' + (v.startAyah || 1));
+
+        return (
+          '<article class="verse-article bg-surface rounded-xl border border-outline-variant/60 shadow-sm overflow-hidden transition-all" id="verse-' + v.id + '" data-id="' + v.id + '" data-surah="' + v.surah + '" data-ayah="' + v.verseRange + '" data-category="' + dataCategories + '">' +
+            '<!-- Card Header -->' +
+            '<div class="px-5 sm:px-6 py-3.5 bg-surface-container-low/50 border-b border-outline-variant/40 flex flex-wrap items-center justify-between gap-3">' +
+              '<div class="flex items-center gap-2 flex-wrap">' +
+                '<span class="inline-flex items-center px-2.5 py-0.5 rounded bg-primary text-white font-mono text-xs font-bold shadow-2xs">' +
+                  idLabel +
+                '</span>' +
+                '<h3 class="text-sm font-bold text-on-surface">' +
+                  surahDisplay +
+                '</h3>' +
+                '<span class="px-2 py-0.5 rounded bg-secondary-container text-on-surface font-arabic-sacred text-xs font-semibold" dir="rtl">' +
+                  (v.surahNameAr || '') +
+                '</span>' +
+                '<span class="px-2 py-0.5 rounded bg-surface-container text-secondary text-[11px] font-semibold uppercase tracking-wider">' +
+                  (v.category || 'Canonical') +
+                '</span>' +
+                crossRefBadge +
+              '</div>' +
+              '<div class="flex items-center gap-1.5">' +
+                '<button class="play-card-btn flex items-center gap-1 px-3 py-1 rounded bg-primary hover:bg-primary-container text-white text-xs font-semibold transition-all shadow-xs active:scale-95 cursor-pointer" data-id="' + v.id + '" data-surah="' + v.surah + '" data-verses=\'' + audioVersesJson + '\' data-range="' + v.verseRange + '" data-title="Surah ' + v.surahName + ' (' + v.verseRange + ')" type="button">' +
+                  '<span class="material-symbols-outlined text-[16px]">play_arrow</span>' +
+                  '<span>Recite</span>' +
+                '</button>' +
+                '<button class="copy-card-btn p-1.5 rounded bg-surface text-on-surface-variant hover:text-on-surface hover:bg-surface-container border border-outline-variant/40 transition-colors cursor-pointer" data-id="' + v.id + '" title="Copy complete citation with Arabic, Transliteration & Translation" type="button">' +
+                  '<span class="material-symbols-outlined text-[16px]">content_copy</span>' +
+                '</button>' +
+                '<button class="bookmark-card-btn p-1.5 rounded bg-surface text-on-surface-variant hover:text-amber-500 hover:bg-surface-container border border-outline-variant/40 transition-colors cursor-pointer" data-id="' + v.id + '" title="Bookmark this verse" type="button">' +
+                  '<span class="material-symbols-outlined text-[16px]">bookmark_border</span>' +
+                '</button>' +
+                '<a href="quran.html?surah=' + v.surah + '" class="p-1.5 rounded bg-surface text-on-surface-variant hover:text-primary hover:bg-surface-container border border-outline-variant/40 transition-colors" title="View Surah ' + v.surah + ' in Quran Library">' +
+                  '<span class="material-symbols-outlined text-[16px]">auto_stories</span>' +
+                '</a>' +
+              '</div>' +
+            '</div>' +
+            '<!-- Card Body -->' +
+            '<div class="p-5 sm:p-7 lg:p-8 space-y-6">' +
+              '<!-- Topic & Context Badge -->' +
+              '<div class="flex items-start gap-2.5 p-3 rounded-lg bg-surface-container-low/60 border border-outline-variant/30 text-xs">' +
+                '<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">menu_book</span>' +
+                '<div>' +
+                  '<span class="font-bold text-on-surface">Thematic Context:</span>' +
+                  '<span class="text-on-surface-variant ml-1">' + v.topic + '</span>' +
+                  '<span class="text-outline-variant mx-1.5">•</span>' +
+                  '<span class="font-bold text-on-surface">Source Book:</span>' +
+                  '<span class="text-primary italic ml-1">' + v.sourceBook + '</span>' +
+                  (v.pdfRef ? ('<span class="text-outline-variant mx-1.5">•</span><span class="font-mono text-[11px] text-secondary">PDF Citation: ' + v.pdfRef + '</span>') : '') +
+                '</div>' +
+              '</div>' +
+              '<!-- Sacred Arabic Text -->' +
+              '<div class="text-right dir-rtl" dir="rtl" lang="ar">' +
+                '<p class="font-arabic-sacred text-on-surface text-2xl sm:text-3xl tracking-wide select-all arabic-display-text" style="font-size: 1.85rem;">' +
+                  v.arabic +
+                '</p>' +
+              '</div>' +
+              '<!-- Academic Transliteration -->' +
+              '<div class="translit-block bg-surface rounded-lg p-4 border border-outline-variant/40 space-y-1.5">' +
+                '<div class="flex items-center justify-between text-outline font-mono text-[11px] uppercase tracking-wider pb-1 border-b border-outline-variant/20">' +
+                  '<span class="flex items-center gap-1">' +
+                    '<span class="material-symbols-outlined text-[14px] text-primary">spellcheck</span>' +
+                    '<span>Academic Transliteration (DIN 31635 Standard)</span>' +
+                  '</span>' +
+                  '<span>Phonetics</span>' +
+                '</div>' +
+                '<p class="font-mono text-xs text-on-surface-variant leading-relaxed">' +
+                  v.transliteration +
+                '</p>' +
+              '</div>' +
+              '<!-- Translation -->' +
+              '<div class="translation-block space-y-1.5">' +
+                '<div class="flex items-center justify-between text-outline text-xs uppercase tracking-wider font-semibold pb-1 border-b border-outline-variant/20">' +
+                  '<span class="flex items-center gap-1">' +
+                    '<span class="material-symbols-outlined text-[14px] text-primary">translate</span>' +
+                    '<span>Theological Translation (Saheeh International)</span>' +
+                  '</span>' +
+                  '<span>English Recension</span>' +
+                '</div>' +
+                '<p class="text-sm text-on-surface leading-relaxed">' +
+                  v.translation +
+                '</p>' +
+              '</div>' +
+            '</div>' +
+            '<!-- Card Footer -->' +
+            '<div class="px-5 sm:px-6 py-2.5 bg-surface-container-low/30 border-t border-outline-variant/40 flex flex-wrap items-center justify-between text-xs text-secondary gap-2 font-mono">' +
+              '<div class="flex items-center gap-4 flex-wrap">' +
+                '<span>Surah ' + v.surah + ':' + v.verseRange + '</span>' +
+                '<span>Source: ' + v.sourceBook + '</span>' +
+                '<span class="text-[#047857] font-semibold">Verified Canonical</span>' +
+              '</div>' +
+              '<div>' +
+                '<button class="ext-app-link hover:text-primary transition-colors inline-flex items-center gap-1 cursor-pointer" data-url="' + alislamUrl + '" type="button">' +
+                  '<span>Al-Islam Reference</span>' +
+                  '<span class="material-symbols-outlined text-[13px]">open_in_new</span>' +
+                '</button>' +
+              '</div>' +
+            '</div>' +
+          '</article>'
+        );
+      }
+
+      function buildVerseTableRowHtml(v, isBonus) {
+        const audioVersesJson = JSON.stringify(v.audioVerses || [1]);
+        const alislamUrl = v.alislamAppUrl || ('https://www.alislam.org/quran/app/' + v.surah + ':' + (v.startAyah || 1));
+        const bonusTag = isBonus ? '<span class="ml-1.5 px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400">Bonus</span>' : '';
+        const indexLabel = isBonus ? ('★' + (v.bonusNumber || '')) : v.id;
+
+        return (
+          '<tr class="canonical-table-row hover:bg-surface-container-low/60 transition-colors border-b border-outline-variant/30 cursor-pointer" data-id="' + v.id + '" data-surah="' + v.surah + '" data-ayah="' + v.verseRange + '" data-category="' + (v.category || '') + '">' +
+            '<td class="py-3 px-3 text-center font-mono font-bold text-on-surface">' + indexLabel + '</td>' +
+            '<td class="py-3 px-2 text-center font-mono text-secondary">' + v.surah + '</td>' +
+            '<td class="py-3 px-4">' +
+              '<div class="font-semibold text-on-surface flex items-center">' + v.surahName + bonusTag + '</div>' +
+              (v.surahNameAr ? ('<div class="font-arabic-sacred text-xs text-primary/80 mt-0.5">' + v.surahNameAr + '</div>') : '') +
+            '</td>' +
+            '<td class="py-3 px-3 font-mono font-semibold text-primary">' + v.verseRange + '</td>' +
+            '<td class="py-3 px-4 max-w-xs">' +
+              '<div class="font-medium text-on-surface line-clamp-1" title="' + v.topic + '">' + v.topic + '</div>' +
+              '<div class="text-[11px] text-secondary mt-0.5 line-clamp-1">' + (v.category || 'Canonical') + '</div>' +
+            '</td>' +
+            '<td class="py-3 px-4 text-xs italic text-on-surface-variant max-w-[180px] truncate" title="' + v.sourceBook + '">' + v.sourceBook + '</td>' +
+            '<td class="py-3 px-4 text-right whitespace-nowrap">' +
+              '<div class="inline-flex items-center gap-1 justify-end">' +
+                '<button type="button" class="table-recite-btn px-2.5 py-1 rounded bg-primary hover:bg-primary-container text-white text-xs font-semibold inline-flex items-center gap-1 transition-all shadow-2xs active:scale-95 cursor-pointer" data-id="' + v.id + '" data-surah="' + v.surah + '" data-verses=\'' + audioVersesJson + '\' data-range="' + v.verseRange + '" data-title="Surah ' + v.surahName + ' (' + v.verseRange + ')" title="Recite ' + v.surahName + ' ' + v.verseRange + '">' +
+                  '<span class="material-symbols-outlined text-[15px]">play_arrow</span>' +
+                  '<span>Recite</span>' +
+                '</button>' +
+                '<button type="button" class="table-expand-btn p-1.5 rounded bg-surface hover:bg-surface-container text-on-surface-variant border border-outline-variant/40 transition-colors cursor-pointer" data-id="' + v.id + '" title="Toggle full Arabic, transliteration & translation">' +
+                  '<span class="material-symbols-outlined text-[16px] transition-transform">expand_more</span>' +
+                '</button>' +
+              '</div>' +
+            '</td>' +
+          '</tr>' +
+          '<!-- Expandable Drawer Row -->' +
+          '<tr class="canonical-drawer-row hidden bg-surface-container-low/40 border-b border-outline-variant/40" id="drawer-' + v.id + '">' +
+            '<td colspan="7" class="p-4 sm:p-6 lg:p-7 space-y-5">' +
+              '<div class="flex items-center justify-between flex-wrap gap-3 pb-3 border-b border-outline-variant/30">' +
+                '<div class="flex items-center gap-2.5 flex-wrap">' +
+                  '<span class="px-2 py-0.5 rounded font-mono text-xs font-bold bg-primary text-white">Ayah ' + v.verseRange + '</span>' +
+                  '<h4 class="font-bold text-on-surface text-base sm:text-lg">' + v.surahName + ' (' + (v.surahTranslation || '') + ')</h4>' +
+                  (v.surahNameAr ? ('<span class="font-arabic-sacred text-base text-primary/90">' + v.surahNameAr + '</span>') : '') +
+                '</div>' +
+                '<div class="flex items-center gap-1.5">' +
+                  '<button type="button" class="drawer-recite-btn flex items-center gap-1 px-3 py-1 rounded bg-primary hover:bg-primary-container text-white text-xs font-semibold transition-all shadow-xs active:scale-95 cursor-pointer" data-id="' + v.id + '" data-surah="' + v.surah + '" data-verses=\'' + audioVersesJson + '\' data-range="' + v.verseRange + '" data-title="Surah ' + v.surahName + ' (' + v.verseRange + ')">' +
+                    '<span class="material-symbols-outlined text-[15px]">play_arrow</span>' +
+                    '<span>Recite</span>' +
+                  '</button>' +
+                  '<button type="button" class="drawer-copy-btn p-1.5 rounded bg-surface text-on-surface-variant hover:text-on-surface hover:bg-surface-container border border-outline-variant/40 transition-colors cursor-pointer" data-id="' + v.id + '" title="Copy complete text">' +
+                    '<span class="material-symbols-outlined text-[15px]">content_copy</span>' +
+                  '</button>' +
+                  '<button type="button" class="drawer-bookmark-btn p-1.5 rounded bg-surface text-on-surface-variant hover:text-amber-500 hover:bg-surface-container border border-outline-variant/40 transition-colors cursor-pointer" data-id="' + v.id + '" title="Bookmark verse">' +
+                    '<span class="material-symbols-outlined text-[15px]">bookmark_border</span>' +
+                  '</button>' +
+                  '<a href="quran.html?surah=' + v.surah + '" class="p-1.5 rounded bg-surface text-on-surface-variant hover:text-primary hover:bg-surface-container border border-outline-variant/40 transition-colors" title="View Surah ' + v.surah + ' in Library">' +
+                    '<span class="material-symbols-outlined text-[15px]">auto_stories</span>' +
+                  '</a>' +
+                  '<button type="button" class="ext-app-link p-1.5 rounded bg-surface text-on-surface-variant hover:text-primary hover:bg-surface-container border border-outline-variant/40 transition-colors cursor-pointer" data-url="' + alislamUrl + '" title="Open in Al-Islam App">' +
+                    '<span class="material-symbols-outlined text-[15px]">open_in_new</span>' +
+                  '</button>' +
+                '</div>' +
+              '</div>' +
+              '<div class="flex items-start gap-2.5 p-3 rounded-lg bg-surface-container-low/80 border border-outline-variant/30 text-xs">' +
+                '<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">menu_book</span>' +
+                '<div>' +
+                  '<span class="font-bold text-on-surface">Thematic Context:</span>' +
+                  '<span class="text-on-surface-variant ml-1">' + v.topic + '</span>' +
+                  '<span class="text-outline-variant mx-1.5">•</span>' +
+                  '<span class="font-bold text-on-surface">Source Book:</span>' +
+                  '<span class="text-primary italic ml-1">' + v.sourceBook + '</span>' +
+                '</div>' +
+              '</div>' +
+              '<div class="text-right dir-rtl" dir="rtl" lang="ar">' +
+                '<p class="font-arabic-sacred text-on-surface text-2xl sm:text-3xl tracking-wide select-all arabic-display-text" style="font-size: 1.85rem;">' + v.arabic + '</p>' +
+              '</div>' +
+              '<div class="translit-block bg-surface rounded-lg p-3.5 border border-outline-variant/40 space-y-1">' +
+                '<div class="text-outline font-mono text-[10px] uppercase tracking-wider pb-1 border-b border-outline-variant/20">DIN 31635 Academic Transliteration</div>' +
+                '<p class="font-mono text-xs text-on-surface-variant leading-relaxed">' + v.transliteration + '</p>' +
+              '</div>' +
+              '<div class="translation-block space-y-1">' +
+                '<div class="text-outline text-xs uppercase tracking-wider font-semibold pb-1 border-b border-outline-variant/20">Saheeh International Translation</div>' +
+                '<p class="text-sm text-on-surface leading-relaxed">' + v.translation + '</p>' +
+              '</div>' +
+            '</td>' +
+          '</tr>'
+        );
+      }
+
+      function renderAllVerses() {
+        if (typeof MASTER_VERSES_DATA === 'undefined') return;
+        
+        // 1. Render Cards
+        if (dynamicVersesFeed) {
+          let cardsHtml = MASTER_VERSES_DATA.map(v => buildVerseCardHtml(v, false)).join('');
+          if (typeof TOP_CROSS_REFERENCED_ADDITIONAL !== 'undefined') {
+            cardsHtml += TOP_CROSS_REFERENCED_ADDITIONAL.map(v => buildVerseCardHtml(v, true)).join('');
+          }
+          dynamicVersesFeed.innerHTML = cardsHtml;
+          attachCardHandlers();
+        }
+
+        // 2. Render Canonical Master Table
+        const tableBody = document.getElementById('canonicalVersesTableBody');
+        if (tableBody) {
+          let tableHtml = MASTER_VERSES_DATA.map(v => buildVerseTableRowHtml(v, false)).join('');
+          if (typeof TOP_CROSS_REFERENCED_ADDITIONAL !== 'undefined') {
+            tableHtml += TOP_CROSS_REFERENCED_ADDITIONAL.map(v => buildVerseTableRowHtml(v, true)).join('');
+          }
+          tableBody.innerHTML = tableHtml;
+          attachTableHandlers();
+        }
+      }
+
+      // 3. Attach Card Interactive Handlers (Audio, Copy, Bookmark, External Link)
+      function attachCardHandlers() {
+        document.querySelectorAll('.play-card-btn').forEach(btn => {
+          btn.onclick = () => {
+            const card = btn.closest('.verse-article');
+            const cardId = card ? card.getAttribute('data-id') : btn.getAttribute('data-id');
+            const surah = parseInt(btn.getAttribute('data-surah'), 10) || 1;
+            let verses = [];
+            try {
+              verses = JSON.parse(btn.getAttribute('data-verses') || '[]');
+            } catch (e) {
+              verses = [1];
+            }
+            const range = btn.getAttribute('data-range') || (surah + ':1');
+            const title = btn.getAttribute('data-title') || ('Surah ' + surah + ' (' + range + ')');
+
+            if (currentPlayingCardId === cardId && isPlaying) {
+              togglePlayPause();
+            } else {
+              startCardRecitation(cardId, surah, verses, range, title);
+            }
+          };
+        });
+
+        document.querySelectorAll('.copy-card-btn').forEach(btn => {
+          btn.onclick = () => {
+            const card = btn.closest('.verse-article');
+            if (!card) return;
+            const title = card.querySelector('h3')?.innerText || '';
+            const topic = card.querySelector('.text-on-surface-variant')?.innerText || '';
+            const arabic = card.querySelector('.arabic-display-text, [lang="ar"]')?.innerText || '';
+            const translit = card.querySelector('.translit-block p')?.innerText || '';
+            const translation = card.querySelector('.translation-block p')?.innerText || '';
+            const textToCopy = '【 ' + title.trim() + ' 】\n[Topic]: ' + topic.trim() + '\n\n' + arabic.trim() + '\n\n[Transliteration (DIN 31635)]:\n' + translit.trim() + '\n\n[Translation (Saheeh International)]:\n' + translation.trim() + '\n\n— Extracted from Master Compilation of Quranic Verses (62 Books) • Ruqyah (https://heynuo.github.io/quran-verses.html)';
+
+            if (navigator.clipboard) {
+              navigator.clipboard.writeText(textToCopy).then(() => {
+                const icon = btn.querySelector('.material-symbols-outlined');
+                if (icon) icon.textContent = 'check';
+                setTimeout(() => { if (icon) icon.textContent = 'content_copy'; }, 1800);
+              });
+            }
+          };
+        });
+
+        document.querySelectorAll('.bookmark-card-btn').forEach(btn => {
+          btn.onclick = () => {
+            const card = btn.closest('.verse-article');
+            const id = card ? card.getAttribute('data-id') : btn.getAttribute('data-id');
+            try {
+              let saved = JSON.parse(localStorage.getItem('heynuo-bookmarks') || '[]');
+              const icon = btn.querySelector('.material-symbols-outlined');
+              if (saved.includes(id)) {
+                saved = saved.filter(x => x !== id);
+                if (icon) icon.textContent = 'bookmark_border';
+                btn.classList.remove('text-amber-500');
+              } else {
+                saved.push(id);
+                if (icon) icon.textContent = 'bookmark';
+                btn.classList.add('text-amber-500');
+              }
+              localStorage.setItem('heynuo-bookmarks', JSON.stringify(saved));
+            } catch (e) { }
+          };
+        });
+
+        document.querySelectorAll('.ext-app-link').forEach(btn => {
+          btn.onclick = () => {
+            const url = btn.getAttribute('data-url');
+            if (url) window.open(url, '_blank', 'noopener,noreferrer');
+          };
+        });
+      }
+
+      // Attach Table Interactive Handlers (Row expand, recite, copy, bookmark)
+      function attachTableHandlers() {
+        document.querySelectorAll('.canonical-table-row').forEach(row => {
+          row.addEventListener('click', (e) => {
+            if (e.target.closest('button') || e.target.closest('a')) return;
+            const id = row.getAttribute('data-id');
+            toggleTableRowDrawer(id);
+          });
+        });
+
+        document.querySelectorAll('.table-expand-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const id = btn.getAttribute('data-id');
+            toggleTableRowDrawer(id);
+          });
+        });
+
+        function toggleTableRowDrawer(id) {
+          const drawer = document.getElementById('drawer-' + id);
+          const row = document.querySelector('.canonical-table-row[data-id="' + id + '"]');
+          const expandIcon = row?.querySelector('.table-expand-btn .material-symbols-outlined');
+          if (!drawer) return;
+          const isHidden = drawer.classList.contains('hidden');
+          drawer.classList.toggle('hidden', !isHidden);
+          if (expandIcon) {
+            expandIcon.textContent = isHidden ? 'expand_less' : 'expand_more';
+          }
+        }
+
+        document.querySelectorAll('.table-recite-btn, .drawer-recite-btn').forEach(btn => {
+          btn.onclick = (e) => {
+            e.stopPropagation();
+            const cardId = btn.getAttribute('data-id');
+            const surah = parseInt(btn.getAttribute('data-surah'), 10) || 1;
+            let verses = [];
+            try {
+              verses = JSON.parse(btn.getAttribute('data-verses') || '[]');
+            } catch (e) {
+              verses = [1];
+            }
+            const range = btn.getAttribute('data-range') || (surah + ':1');
+            const title = btn.getAttribute('data-title') || ('Surah ' + surah + ' (' + range + ')');
+
+            if (currentPlayingCardId === cardId && isPlaying) {
+              togglePlayPause();
+            } else {
+              startCardRecitation(cardId, surah, verses, range, title);
+            }
+          };
+        });
+
+        document.querySelectorAll('.drawer-copy-btn').forEach(btn => {
+          btn.onclick = (e) => {
+            e.stopPropagation();
+            const drawer = btn.closest('.canonical-drawer-row');
+            if (!drawer) return;
+            const title = drawer.querySelector('h4')?.innerText || '';
+            const topic = drawer.querySelector('.text-on-surface-variant')?.innerText || '';
+            const arabic = drawer.querySelector('.arabic-display-text')?.innerText || '';
+            const translit = drawer.querySelector('.translit-block p')?.innerText || '';
+            const translation = drawer.querySelector('.translation-block p')?.innerText || '';
+            const textToCopy = '【 ' + title.trim() + ' 】\n[Topic]: ' + topic.trim() + '\n\n' + arabic.trim() + '\n\n[Transliteration (DIN 31635)]:\n' + translit.trim() + '\n\n[Translation (Saheeh International)]:\n' + translation.trim() + '\n\n— Extracted from Master Compilation of Quranic Verses (62 Books) • Ruqyah (https://heynuo.github.io/quran-verses.html)';
+
+            if (navigator.clipboard) {
+              navigator.clipboard.writeText(textToCopy).then(() => {
+                const icon = btn.querySelector('.material-symbols-outlined');
+                if (icon) icon.textContent = 'check';
+                setTimeout(() => { if (icon) icon.textContent = 'content_copy'; }, 1800);
+              });
+            }
+          };
+        });
+
+        document.querySelectorAll('.drawer-bookmark-btn').forEach(btn => {
+          btn.onclick = (e) => {
+            e.stopPropagation();
+            const id = btn.getAttribute('data-id');
+            try {
+              let saved = JSON.parse(localStorage.getItem('heynuo-bookmarks') || '[]');
+              const icon = btn.querySelector('.material-symbols-outlined');
+              if (saved.includes(id)) {
+                saved = saved.filter(x => x !== id);
+                if (icon) icon.textContent = 'bookmark_border';
+                btn.classList.remove('text-amber-500');
+              } else {
+                saved.push(id);
+                if (icon) icon.textContent = 'bookmark';
+                btn.classList.add('text-amber-500');
+              }
+              localStorage.setItem('heynuo-bookmarks', JSON.stringify(saved));
+            } catch (e) { }
+          };
+        });
+      }
+
+      // 4. Checkbox Toggles: Transliteration & Translation
+      const toggleTranslit = document.getElementById('toggleTranslit');
+      const toggleTranslation = document.getElementById('toggleTranslation');
+
+      toggleTranslit?.addEventListener('change', () => {
+        const show = toggleTranslit.checked;
+        document.querySelectorAll('.translit-block').forEach(b => b.style.display = show ? 'block' : 'none');
+      });
+
+      toggleTranslation?.addEventListener('change', () => {
+        const show = toggleTranslation.checked;
+        document.querySelectorAll('.translation-block').forEach(b => b.style.display = show ? 'block' : 'none');
+      });
+
+      // 5. Font Size Adjuster
+      let currentFontSize = 100;
+      const fontDecBtn = document.getElementById('fontDecBtn');
+      const fontIncBtn = document.getElementById('fontIncBtn');
+      const fontValEl = document.getElementById('fontValEl');
+
+      function updateFontSize(val) {
+        currentFontSize = Math.max(75, Math.min(160, val));
+        if (fontValEl) fontValEl.textContent = currentFontSize + '%';
+        const remVal = (1.85 * (currentFontSize / 100)).toFixed(2) + 'rem';
+        document.querySelectorAll('.arabic-display-text').forEach(t => {
+          t.style.fontSize = remVal;
+        });
+      }
+
+      fontDecBtn?.addEventListener('click', () => updateFontSize(currentFontSize - 10));
+      fontIncBtn?.addEventListener('click', () => updateFontSize(currentFontSize + 10));
+
+      // 6. Auto-Advance Audio Toggle
+      const autoAdvanceToggleBtn = document.getElementById('autoAdvanceToggleBtn');
+      const autoAdvanceStatusLabel = document.getElementById('autoAdvanceStatusLabel');
+      autoAdvanceToggleBtn?.addEventListener('click', () => {
+        autoAdvance = !autoAdvance;
+        if (autoAdvanceStatusLabel) autoAdvanceStatusLabel.textContent = autoAdvance ? 'Auto-Advance: On' : 'Auto-Advance: Off';
+        autoAdvanceToggleBtn.classList.toggle('bg-secondary-container', autoAdvance);
+      });
+
+      // 7. Dual View Switcher (Cards Grid vs Canonical Master Table)
+      const viewCardsBtn = document.getElementById('viewCardsBtn');
+      const viewTableBtn = document.getElementById('viewTableBtn');
+      const jumpToTableBtn = document.getElementById('jumpToTableBtn');
+      const viewAll108TableBtn = document.getElementById('viewAll108TableBtn');
+      const dynamicVersesFeedEl = document.getElementById('dynamicVersesFeed');
+      const canonicalVersesTableWrapEl = document.getElementById('canonicalVersesTableWrap');
+
+      function setView(view) {
+        currentView = view;
+        if (view === 'table') {
+          if (dynamicVersesFeedEl) dynamicVersesFeedEl.classList.add('hidden');
+          if (canonicalVersesTableWrapEl) canonicalVersesTableWrapEl.classList.remove('hidden');
+          if (viewCardsBtn) {
+            viewCardsBtn.classList.remove('bg-surface', 'text-primary', 'shadow-xs');
+            viewCardsBtn.classList.add('text-on-surface-variant');
+          }
+          if (viewTableBtn) {
+            viewTableBtn.classList.add('bg-surface', 'text-primary', 'shadow-xs');
+            viewTableBtn.classList.remove('text-on-surface-variant');
+          }
+        } else {
+          if (dynamicVersesFeedEl) dynamicVersesFeedEl.classList.remove('hidden');
+          if (canonicalVersesTableWrapEl) canonicalVersesTableWrapEl.classList.add('hidden');
+          if (viewCardsBtn) {
+            viewCardsBtn.classList.add('bg-surface', 'text-primary', 'shadow-xs');
+            viewCardsBtn.classList.remove('text-on-surface-variant');
+          }
+          if (viewTableBtn) {
+            viewTableBtn.classList.remove('bg-surface', 'text-primary', 'shadow-xs');
+            viewTableBtn.classList.add('text-on-surface-variant');
+          }
+        }
+      }
+
+      viewCardsBtn?.addEventListener('click', () => setView('cards'));
+      viewTableBtn?.addEventListener('click', () => setView('table'));
+
+      function jumpToCanonicalTable() {
+        setView('table');
+        if (corpusSearchInput) corpusSearchInput.value = '';
+        selectedSurah = 'all';
+        if (surahSelect) surahSelect.value = 'all';
+        activeCategory = 'all';
+        categoryTabBtns.forEach((b, idx) => {
+          b.classList.toggle('active', idx === 0);
+          b.classList.toggle('bg-primary', idx === 0);
+          b.classList.toggle('text-white', idx === 0);
+          b.classList.toggle('bg-surface', idx !== 0);
+          b.classList.toggle('text-on-surface-variant', idx !== 0);
+        });
+        applyFilter();
+
+        if (canonicalVersesTableWrapEl) {
+          canonicalVersesTableWrapEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+
+      jumpToTableBtn?.addEventListener('click', jumpToCanonicalTable);
+      viewAll108TableBtn?.addEventListener('click', jumpToCanonicalTable);
+
+      // 8. Surah Dropdown Filter Setup (All 44 Represented Surahs)
+      const surahSelect = document.getElementById('surahSelect');
+      function populateSurahSelect() {
+        if (!surahSelect || typeof MASTER_VERSES_DATA === 'undefined') return;
+        const surahMap = new Map();
+        MASTER_VERSES_DATA.forEach(v => {
+          if (!surahMap.has(v.surah)) {
+            surahMap.set(v.surah, { id: v.surah, name: v.surahName, ar: v.surahNameAr || '' });
+          }
+        });
+        const sorted = Array.from(surahMap.values()).sort((a, b) => a.id - b.id);
+        let opts = '<option value="all">✨ All 44 Surahs</option>';
+        sorted.forEach(s => {
+          opts += '<option value="' + s.id + '">' + s.id + '. ' + s.name + (s.ar ? (' (' + s.ar + ')') : '') + '</option>';
+        });
+        surahSelect.innerHTML = opts;
+        surahSelect.addEventListener('change', () => {
+          selectedSurah = surahSelect.value;
+          applyFilter();
+        });
+      }
+
+      // 9. Random Ayah Discovery
+      const randomAyahBtn = document.getElementById('randomAyahBtn');
+      function discoverRandomAyah() {
+        if (typeof MASTER_VERSES_DATA === 'undefined' || !MASTER_VERSES_DATA.length) return;
+        const randIdx = Math.floor(Math.random() * MASTER_VERSES_DATA.length);
+        const item = MASTER_VERSES_DATA[randIdx];
+
+        if (corpusSearchInput) corpusSearchInput.value = '';
+        selectedSurah = 'all';
+        if (surahSelect) surahSelect.value = 'all';
+        activeCategory = 'all';
+        categoryTabBtns.forEach((b, idx) => {
+          b.classList.toggle('active', idx === 0);
+          b.classList.toggle('bg-primary', idx === 0);
+          b.classList.toggle('text-white', idx === 0);
+          b.classList.toggle('bg-surface', idx !== 0);
+          b.classList.toggle('text-on-surface-variant', idx !== 0);
+        });
+        applyFilter();
+
+        if (currentView === 'table') {
+          const targetRow = document.querySelector('.canonical-table-row[data-id="' + item.id + '"]');
+          if (targetRow) {
+            targetRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            targetRow.classList.add('pulse-gold-highlight');
+            setTimeout(() => targetRow.classList.remove('pulse-gold-highlight'), 2200);
+            const drawer = document.getElementById('drawer-' + item.id);
+            if (drawer) drawer.classList.remove('hidden');
+            const reciteBtn = targetRow.querySelector('.table-recite-btn');
+            if (reciteBtn) reciteBtn.click();
+          }
+        } else {
+          const targetCard = document.querySelector('.verse-article[data-id="' + item.id + '"]');
+          if (targetCard) {
+            targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            targetCard.classList.add('pulse-gold-highlight');
+            setTimeout(() => targetCard.classList.remove('pulse-gold-highlight'), 2200);
+            const reciteBtn = targetCard.querySelector('.play-card-btn');
+            if (reciteBtn) reciteBtn.click();
+          }
+        }
+      }
+      randomAyahBtn?.addEventListener('click', discoverRandomAyah);
+
+      // 10. Search & Thematic Category Filtering
+      const corpusSearchInput = document.getElementById('corpusSearchInput');
+      const verseCountBadge = document.getElementById('verseCountBadge');
+      const emptyFilterState = document.getElementById('emptyFilterState');
+      const resetSearchBtn = document.getElementById('resetSearchBtn');
+      const categoryTabBtns = document.querySelectorAll('.category-tab-btn');
+      let activeCategory = 'all';
+
+      function applyFilter() {
+        const query = (corpusSearchInput?.value || '').trim().toLowerCase();
+        let visibleCount = 0;
+
+        const articles = document.querySelectorAll('.verse-article');
+        const rows = document.querySelectorAll('.canonical-table-row');
+        const top10Refs = ['2:255', '112:1-4', '1:1-7', '2:285-286', '2:102', '24:35', '36:82', '113:1-5', '114:1-6', '7:117-122'];
+
+        function itemMatches(text, cat, surahStr, refStr) {
+          const isBonus = cat.includes('bonus');
+
+          if (selectedSurah !== 'all' && String(surahStr) !== String(selectedSurah)) {
+            return false;
+          }
+
+          let matchesCat = false;
+          if (activeCategory === 'all') {
+            matchesCat = !isBonus || Boolean(query);
+          } else if (activeCategory === 'top10') {
+            if (top10Refs.includes(refStr) || (surahStr === '112') || (surahStr === '113') || (surahStr === '114') || (surahStr === '2' && refStr === '2:255')) {
+              matchesCat = true;
+            }
+          } else if (activeCategory === 'ruqyah') {
+            matchesCat = cat.includes('ruqyah') || cat.includes('healing') || cat.includes('protection');
+          } else if (activeCategory === 'anti-sorcery') {
+            matchesCat = cat.includes('anti-sorcery') || cat.includes('magic') || cat.includes('sorcery');
+          } else if (activeCategory === 'tawheed') {
+            matchesCat = cat.includes('tawheed') || cat.includes('oneness');
+          } else if (activeCategory === 'ism-e-azam') {
+            matchesCat = cat.includes('ism-e-azam') || cat.includes('prophetic');
+          } else if (activeCategory === 'evil-eye') {
+            matchesCat = cat.includes('evil eye') || cat.includes('envy');
+          } else if (activeCategory === 'jinn') {
+            matchesCat = cat.includes('jinn') || cat.includes('unseen');
+          } else if (activeCategory === 'signs') {
+            matchesCat = cat.includes('signs') || cat.includes('creation') || cat.includes('teleology');
+          } else if (activeCategory === 'exegesis') {
+            matchesCat = cat.includes('exegesis') || cat.includes('general');
+          }
+
+          const matchesQuery = !query || text.includes(query);
+          return matchesCat && matchesQuery;
+        }
+
+        articles.forEach(card => {
+          const cardText = card.innerText.toLowerCase();
+          const cardCat = (card.getAttribute('data-category') || '').toLowerCase();
+          const surah = card.getAttribute('data-surah');
+          const ref = (card.getAttribute('data-ayah') || '').trim();
+
+          const matches = itemMatches(cardText, cardCat, surah, ref);
+          card.style.display = matches ? 'block' : 'none';
+          if (matches) visibleCount++;
+        });
+
+        rows.forEach(row => {
+          const rowText = row.innerText.toLowerCase();
+          const rowCat = (row.getAttribute('data-category') || '').toLowerCase();
+          const surah = row.getAttribute('data-surah');
+          const ref = (row.getAttribute('data-ayah') || '').trim();
+          const rowId = row.getAttribute('data-id');
+          const drawer = document.getElementById('drawer-' + rowId);
+
+          const matches = itemMatches(rowText, rowCat, surah, ref);
+          row.style.display = matches ? '' : 'none';
+          if (!matches && drawer) {
+            drawer.classList.add('hidden');
+          }
+        });
+
+        if (verseCountBadge) verseCountBadge.textContent = visibleCount + ' shown';
+        if (emptyFilterState) emptyFilterState.classList.toggle('hidden', visibleCount > 0);
+      }
+
+      corpusSearchInput?.addEventListener('input', applyFilter);
+
+      categoryTabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          categoryTabBtns.forEach(b => {
+            b.classList.remove('active', 'bg-primary', 'text-white', 'shadow-xs');
+            b.classList.add('bg-surface', 'text-on-surface-variant', 'border', 'border-outline-variant/40');
+          });
+          btn.classList.add('active', 'bg-primary', 'text-white', 'shadow-xs');
+          btn.classList.remove('bg-surface', 'text-on-surface-variant', 'border', 'border-outline-variant/40');
+          activeCategory = btn.getAttribute('data-category') || 'all';
+          applyFilter();
+        });
+      });
+
+      resetSearchBtn?.addEventListener('click', () => {
+        if (corpusSearchInput) corpusSearchInput.value = '';
+        selectedSurah = 'all';
+        if (surahSelect) surahSelect.value = 'all';
+        activeCategory = 'all';
+        categoryTabBtns.forEach((b, idx) => {
+          if (idx === 0) {
+            b.classList.add('active', 'bg-primary', 'text-white', 'shadow-xs');
+            b.classList.remove('bg-surface', 'text-on-surface-variant');
+          } else {
+            b.classList.remove('active', 'bg-primary', 'text-white', 'shadow-xs');
+            b.classList.add('bg-surface', 'text-on-surface-variant');
+          }
+        });
+        applyFilter();
+      });
+
+      // 11. Top 10 Table Jump Handlers
+      document.querySelectorAll('.top10-jump-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const surah = btn.getAttribute('data-surah');
+          const ayah = btn.getAttribute('data-ayah');
+          const ref = btn.getAttribute('data-ref');
+
+          activeCategory = 'all';
+          selectedSurah = 'all';
+          if (surahSelect) surahSelect.value = 'all';
+          if (corpusSearchInput) corpusSearchInput.value = '';
+          categoryTabBtns.forEach((b, idx) => {
+            b.classList.toggle('active', idx === 0);
+            b.classList.toggle('bg-primary', idx === 0);
+            b.classList.toggle('text-white', idx === 0);
+            b.classList.toggle('bg-surface', idx !== 0);
+            b.classList.toggle('text-on-surface-variant', idx !== 0);
+          });
+          applyFilter();
+
+          if (currentView === 'table') {
+            const targetRow = document.querySelector('.canonical-table-row[data-ayah="' + ref + '"]') || document.querySelector('.canonical-table-row[data-surah="' + surah + '"]');
+            if (targetRow) {
+              targetRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              targetRow.classList.add('is-playing-row');
+              const drawer = document.getElementById('drawer-' + targetRow.getAttribute('data-id'));
+              if (drawer) drawer.classList.remove('hidden');
+              const reciteBtn = targetRow.querySelector('.table-recite-btn');
+              if (reciteBtn) reciteBtn.click();
+            }
+          } else {
+            const targetCard = document.querySelector('.verse-article[data-ayah="' + ref + '"]') || document.querySelector('.verse-article[data-surah="' + surah + '"]');
+            if (targetCard) {
+              targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              targetCard.classList.add('is-playing-card');
+              const playBtn = targetCard.querySelector('.play-card-btn');
+              if (playBtn) playBtn.click();
+            }
+          }
+        });
+      });
+
+      // Button: Jump to Top 10 Section
+      const jumpToTop10Btn = document.getElementById('jumpToTop10Btn');
+      jumpToTop10Btn?.addEventListener('click', () => {
+        const sec = document.getElementById('top10Section');
+        if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      // 9. PDF Viewer Modal Logic
+      const pdfViewerModal = document.getElementById('pdfViewerModal');
+      const openPdfViewerBtn = document.getElementById('openPdfViewerBtn');
+      const closePdfModalBtn = document.getElementById('closePdfModalBtn');
+
+      function togglePdfModal(open) {
+        if (!pdfViewerModal) return;
+        pdfViewerModal.classList.toggle('hidden', !open);
+        pdfViewerModal.hidden = !open;
+        document.body.style.overflow = open ? 'hidden' : '';
+      }
+
+      openPdfViewerBtn?.addEventListener('click', () => togglePdfModal(true));
+      closePdfModalBtn?.addEventListener('click', () => togglePdfModal(false));
+      pdfViewerModal?.addEventListener('click', (e) => {
+        if (e.target === pdfViewerModal) togglePdfModal(false);
+      });
+
+      // 10. Export JSON Action
+      const exportJsonBtn = document.getElementById('exportJsonBtn');
+      exportJsonBtn?.addEventListener('click', () => {
+        if (typeof MASTER_VERSES_DATA !== 'undefined') {
+          const exportPayload = {
+            metadata: typeof MASTER_COMPILATION_META !== 'undefined' ? MASTER_COMPILATION_META : {
+              title: "Master Compilation of Quranic Verses",
+              extractedFrom: "62 Books",
+              verseCount: 108,
+              surahsRepresented: 44
+            },
+            verses: MASTER_VERSES_DATA,
+            topCrossReferencedAdditional: typeof TOP_CROSS_REFERENCED_ADDITIONAL !== 'undefined' ? TOP_CROSS_REFERENCED_ADDITIONAL : []
+          };
+          const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(exportPayload, null, 2));
+          const dlAnchor = document.createElement('a');
+          dlAnchor.setAttribute('href', dataStr);
+          dlAnchor.setAttribute('download', 'ruqyah-108-master-verses-compilation.json');
+          dlAnchor.click();
+        } else {
+          alert('Downloading 108 Master Verses official JSON package.');
+        }
+      });
+
+      // 11. Modal & Keyboard Shortcuts Handlers
+      const closeShortcutsBtn = document.getElementById('closeShortcutsBtn');
+      const shortcutsModal = document.getElementById('shortcutsModal');
+      const searchModal = document.getElementById('searchModal');
+
+      function hideAllModals() {
+        togglePdfModal(false);
+        if (searchModal) {
+          searchModal.classList.add('hidden');
+          searchModal.hidden = true;
+        }
+        if (shortcutsModal) {
+          shortcutsModal.classList.add('hidden');
+          shortcutsModal.hidden = true;
+        }
+      }
+
+      closeShortcutsBtn?.addEventListener('click', () => {
+        if (shortcutsModal) {
+          shortcutsModal.classList.add('hidden');
+          shortcutsModal.hidden = true;
+        }
+      });
+
+      window.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+          if (e.key === 'Escape') {
+            hideAllModals();
+          }
+          return;
+        }
+
+        if (e.key === 'Escape') {
+          hideAllModals();
+          return;
+        }
+
+        if (e.key === '?') {
+          if (shortcutsModal) {
+            const isHidden = shortcutsModal.classList.toggle('hidden');
+            shortcutsModal.hidden = isHidden;
+          }
+          return;
+        }
+
+        if (e.code === 'Space') {
+          e.preventDefault();
+          togglePlayPause();
+          return;
+        }
+      });
+
+      // Initial Render
+      populateSurahSelect();
+      renderAllVerses();
+      applyFilter();
+
+    })();
+  </script>
+  <script src="buttons.js" defer></script>
+  <script src="js/script.js" defer></script>
+  <!-- Shared Layout: Header, Footer, Theme Switcher -->
+  <script src="js/shared-layout.js"></script>
+</body>
+
+</html>

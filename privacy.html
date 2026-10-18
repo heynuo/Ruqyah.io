@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="shell-type" content="web_standard">
+  <meta name="theme-color" content="#0F766E">
+  <meta name="color-scheme" content="light dark">
+  <!-- Build stamp for service-worker cache busting. Maintained by tools/stamp-build.ps1. -->
+  <meta name="heynuo-build" content="2026-10-17-0713">
+
+  <!-- Theme Pre-Hydration: Prevents Flash of Unstyled Content (FOUC) -->
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('heynuo-theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = savedTheme || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else if (theme === 'sepia') {
+          document.documentElement.classList.add('sepia');
+        }
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+  <meta name="robots" content="index, follow">
+
+  <!-- Primary SEO -->
+  <title>Privacy Policy, Storage Transparency &amp; Sources | Ruqyah</title>
+  <meta name="description"
+    content="Ruqyah is 100% tracker-free. Learn about our local storage usage, external audio CDNs, authentic Quranic sources, and academic citations.">
+  <meta name="keywords"
+    content="Ruqyah privacy, zero trackers, local storage disclosure, Quran sources, academic citations, MIT license, tracker-free website">
+  <meta name="author" content="Zahiruddin (Ruqyah)">
+  <link rel="canonical" href="https://heynuo.github.io/privacy.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Privacy Policy, Storage Transparency &amp; Sources | Ruqyah">
+  <meta property="og:description"
+    content="Ruqyah is 100% tracker-free. Read our privacy commitment, browser storage disclosures, and scholarly citations.">
+  <meta property="og:image" content="https://heynuo.github.io/assets/banners/hero-banner.jpg">
+  <meta property="og:image:width" content="1376">
+  <meta property="og:image:height" content="768">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="Ruqyah — Scholastic Archive &amp; Systems Laboratory">
+  <meta name="twitter:image:alt" content="Ruqyah — Scholastic Archive &amp; Systems Laboratory">
+  <meta property="og:url" content="https://heynuo.github.io/privacy.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ruqyah">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Privacy Policy, Storage Transparency &amp; Sources | Ruqyah">
+  <meta name="twitter:description"
+    content="Ruqyah is 100% tracker-free. Read our privacy commitment, browser storage disclosures, and scholarly citations.">
+  <meta name="twitter:image" content="https://heynuo.github.io/assets/banners/og-banner.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20rx='20'%20fill='%230F766E'/%3E%3Cpath%20d='M25%2025h50v50H25z'%20fill='none'%20stroke='%239cf2e8'%20stroke-width='4'/%3E%3Ccircle%20cx='50'%20cy='50'%20r='14'%20fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="manifest" href="manifest.json">
+  <link rel="alternate" type="application/rss+xml" title="Ruqyah RSS Feed" href="https://heynuo.github.io/rss.xml">
+  <link rel="sitemap" type="application/xml" href="sitemap.xml">
+
+  <!-- Typography Preconnect & Font Inclusions (Unified) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+  <!-- Shared Design System Tokens (Light / Dark / Sepia) -->
+  <link rel="stylesheet" href="css/shared-layout.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/tailwind-config.js"></script>
+</head>
+
+<body class="bg-bg-canvas font-body-article text-on-surface antialiased min-h-screen flex flex-col pb-32 transition-colors duration-200">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-on-primary focus:rounded-md focus:shadow-lg focus:outline-none">Skip to main content</a>
+
+  <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
+  <!-- Header & Navigation injected by js/shared-layout.js -->
+
+  <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 flex flex-col flex-1">
+    <main id="main-content" class="flex-1 pt-14 article-enhanced">
+      <div class="breadcrumb">
+        <a href="index.html">🏠 Home</a> / <span>Privacy, Storage &amp; Sources</span>
+      </div>
+
+      <article>
+        <div class="article-header">
+          <h1>Privacy Policy, Storage Transparency &amp; Sources</h1>
+          <div class="article-meta">
+            <span>📅 September 28, 2026</span>
+            <span>🛡️ Transparency</span>
+            <span>⏱ 4 min read</span>
+          </div>
+        </div>
+
+        <div class="prose">
+          <div class="info-card info-card--tight">
+            <strong>✨ The Core Guarantee:</strong> Ruqyah is an educational, non-commercial digital knowledge hub. There are <strong>no trackers, no analytics scripts, no advertising networks, and no selling or sharing of user information</strong>.
+          </div>
+
+          <h2>1. Zero Third-Party Trackers Commitment</h2>
+          <p>
+            Unlike modern commercial websites that run background trackers and behavioral advertising scripts, Ruqyah runs pure static HTML, CSS, and lightweight Vanilla JavaScript. We do not use Google Analytics, Facebook Pixels, marketing cookies, or fingerprinting scripts. Your reading habits, article views, and listening sessions remain private to your device. Please note that external CDN asset providers (Google Fonts, EveryAyah audio mirrors, and GitHub Pages) receive standard client HTTP request headers (such as IP address) during asset delivery as part of basic internet transmission.
+          </p>
+
+          <h2>2. Browser Local Storage Disclosures</h2>
+          <p>
+            To offer convenient client-side features without creating server-side accounts or cookies, this website utilizes your browser's native <code>localStorage</code> API. Everything is stored strictly inside your local browser and never transmitted to our servers:
+          </p>
+
+          <div class="verses-table-wrapper">
+            <table class="verses-table verses-table--compact">
+              <thead>
+                <tr>
+                  <th>Key</th>
+                  <th>Purpose</th>
+                  <th>Data Type</th>
+                  <th>Duration</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>heynuo-theme</code></td>
+                  <td>Remembers your chosen color theme (light or dark mode)</td>
+                  <td>String (<code>'dark'</code> / <code>'light'</code>)</td>
+                  <td>Persistent</td>
+                </tr>
+                <tr>
+                  <td><code>heynuo-bookmarks</code></td>
+                  <td>Saves your favorited tutorial and research articles</td>
+                  <td>JSON Array of URLs &amp; titles</td>
+                  <td>Persistent</td>
+                </tr>
+                <tr>
+                  <td><code>heynuo_contact_draft</code></td>
+                  <td>Prevents message loss if your browser reloads while drafting an inquiry</td>
+                  <td>JSON Object (name, email, draft text)</td>
+                  <td>Until submitted/cleared</td>
+                </tr>
+                <tr>
+                  <td><code>qp_track_index</code>, <code>qp_volume</code>, <code>qp_favorites</code></td>
+                  <td>Saves Quran Audio Player state (current Surah, volume, playlist)</td>
+                  <td>Numbers &amp; Arrays</td>
+                  <td>Persistent</td>
+                </tr>
+                <tr>
+                  <td><code>heynuo_shortcuts_enabled</code></td>
+                  <td>Stores whether single-key keyboard shortcuts are enabled (WCAG 2.1.4)</td>
+                  <td>Boolean</td>
+                  <td>Persistent</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>3. External Audio Hosts &amp; Network CDNs</h2>
+          <p>
+            To deliver high-fidelity Quran recitations and fluid typography with instant performance, this static site streams assets from carefully selected educational and public platforms:
+          </p>
+          <ul>
+            <li><strong>EveryAyah CDN (<code>everyayah.com</code>):</strong> Provides audio streams (Sheikh Mishary Rashid Alafasy) ensuring audio never fails silently.</li>
+            <li><strong>MP3Quran (<code>mp3quran.net</code>) &amp; QuranicAudio:</strong> Serves full continuous Surah recitations for the complete 114 Surahs player.</li>
+            <li><strong>Google Fonts (<code>fonts.googleapis.com</code>, <code>fonts.gstatic.com</code>):</strong> Serves modern web typography (Plus Jakarta Sans, Inter, Amiri) using preconnected non-blocking hints.</li>
+            <li><strong>GitHub Pages:</strong> Hosts the static repository files directly from GitHub's global content delivery network.</li>
+          </ul>
+
+          <h2>4. Scholarly Sources &amp; Theological Methodology</h2>
+          <p>
+            Quranic passages and Hadith citations presented on this website are compiled strictly from authentic, recognized Islamic reference works:
+          </p>
+          <ul>
+            <li><strong>Quranic Text &amp; Calligraphy:</strong> Standard Madinah Uthmani script adhering to the verified printing standards of the King Fahd Glorious Quran Printing Complex in Al-Madinah Al-Munawwarah.</li>
+            <li><strong>English Translations:</strong> Primarily based on the Sahih International translation, renowned for fidelity and clarity.</li>
+            <li><strong>Hadith Collections:</strong> Citations reference classical verified Hadith canons, prominently <em>Sahih al-Bukhari</em>, <em>Sahih Muslim</em>, <em>Sunan Abi Dawud</em>, and <em>Jami` at-Tirmidhi</em>.</li>
+            <li><strong>Classical Exegesis:</strong> Interpretations and context are informed by classical Tafsir scholars, including Ibn Kathir, Al-Baghawi, and Al-Qurtubi.</li>
+          </ul>
+
+          <h2>5. License &amp; Non-Commercial Use</h2>
+          <p>
+            The software, design system, and code architecture of this website are released under the open-source <a href="LICENSE">MIT License</a>. Original educational articles and technical guides are &copy; 2026 Ruqyah. Quranic Arabic text follows King Fahd Glorious Quran Printing Complex standards. English translations are primarily from Saheeh International (used for non-commercial educational study). Recitation audio recordings remain the property of their respective reciters and producers (hosted via EveryAyah and MP3Quran mirrors).
+          </p>
+
+          <div class="doc-end-actions">
+            <a href="index.html" class="btn btn-secondary">← Back to Homepage</a>
+            <a href="contact.html" class="btn btn-primary">Have Questions? Contact Me →</a>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- Footer injected by js/shared-layout.js -->
+  </div>
+
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <!-- Keyboard Shortcuts Modal & Command Palette (WCAG 2.1.4 compliant) -->
+  <div id="searchModal" class="hidden fixed inset-0 z-[90] bg-on-surface/40 backdrop-blur-sm flex items-start justify-center pt-20 px-4" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle" aria-hidden="true">
+    <div class="w-full max-w-xl bg-surface rounded-xl border border-border-strong/30 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div class="flex items-center px-4 border-b border-border-subtle bg-bg-canvas/50">
+        <svg class="w-4 h-4 stroke-current text-primary mr-3" fill="none" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M20 20L16 16"></path></svg>
+        <input id="searchModalInput" type="text" placeholder="Search documentation, articles, surahs..." class="w-full py-3.5 bg-transparent border-0 focus:outline-none focus:ring-0 text-on-surface text-sm font-ui-interactive" autocomplete="off" spellcheck="false">
+        <kbd class="px-2 py-0.5 rounded text-[10px] font-code-mono bg-surface border border-border-subtle text-on-surface-variant">Esc</kbd>
+      </div>
+
+      <div id="searchResultsList" class="p-3 max-h-96 overflow-y-auto space-y-1">
+        <div id="searchModalTitle" class="px-2 py-1 text-[10px] font-code-mono uppercase tracking-wider text-on-surface-variant font-semibold">Suggested Entries</div>
+        <a href="quran-verses.html" class="search-result-item flex items-center justify-between p-2 rounded hover:bg-surface-container transition-colors">
+          <div class="flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded bg-surface-container flex items-center justify-center text-primary text-xs font-code-mono">01</span>
+            <span class="text-xs font-medium text-on-surface">108 Master Verses Concordance</span>
+          </div>
+          <span class="text-[10px] font-code-mono text-on-surface-variant">Corpus</span>
+        </a>
+        <a href="quran.html" class="search-result-item flex items-center justify-between p-2 rounded hover:bg-surface-container transition-colors">
+          <div class="flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded bg-surface-container flex items-center justify-center text-primary text-xs font-code-mono">03</span>
+            <span class="text-xs font-medium text-on-surface">Qur’an Recitation Engine (114 Surahs)</span>
+          </div>
+          <span class="text-[10px] font-code-mono text-on-surface-variant">Audio Engine</span>
+        </a>
+        <a href="about.html" class="search-result-item flex items-center justify-between p-2 rounded hover:bg-surface-container transition-colors">
+          <div class="flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded bg-surface-container flex items-center justify-center text-primary text-xs font-code-mono">03</span>
+            <span class="text-xs font-medium text-on-surface">About Zahiruddin &amp; Ruqyah Editorial Mission</span>
+          </div>
+          <span class="text-[10px] font-code-mono text-on-surface-variant">Editorial</span>
+        </a>
+      </div>
+
+      <div class="px-4 py-2 border-t border-border-subtle bg-bg-canvas/50 flex items-center justify-between text-[11px] font-code-mono text-on-surface-variant">
+        <span>Type to filter • Press Esc to close</span>
+        <span>⌘K / Ctrl+K</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Keyboard Shortcuts Modal (WCAG 2.1.4 compliant) -->
+  <div id="shortcutsModal" class="hidden fixed inset-0 z-[95] bg-on-surface/40 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="shortcutsTitle" aria-hidden="true">
+    <div class="w-full max-w-lg bg-surface rounded-xl border border-border-strong/30 shadow-2xl p-6 relative">
+      <div class="flex items-center justify-between pb-4 mb-4 border-b border-border-subtle">
+        <div class="flex items-center gap-2.5">
+          <div class="w-7 h-7 rounded bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">⌨</div>
+          <h3 id="shortcutsTitle" class="font-subheading-card text-base font-bold text-on-surface">Keyboard Shortcuts</h3>
+        </div>
+        <button id="closeShortcutsBtn" aria-label="Close shortcuts modal" class="w-7 h-7 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors cursor-pointer" type="button">
+          ✕
+        </button>
+      </div>
+
+      <!-- Single-key shortcut toggle for accessibility -->
+      <div class="p-3 mb-4 rounded-lg bg-surface-container-low border border-primary/20 flex items-center justify-between text-xs">
+        <div>
+          <span class="font-semibold text-on-surface block">Single-Key Shortcuts</span>
+          <span class="text-on-surface-variant text-[11px]">Enable letters like T, H, A, C without Ctrl</span>
+        </div>
+        <label class="relative inline-flex items-center cursor-pointer">
+          <input type="checkbox" id="toggleSingleShortcuts" class="sr-only peer" checked>
+          <div class="w-9 h-5 bg-surface-container rounded-full peer peer-checked:bg-primary peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all"></div>
+        </label>
+      </div>
+
+      <div class="space-y-3 max-h-72 overflow-y-auto text-xs font-ui-interactive">
+        <div class="space-y-1.5">
+          <div class="text-[10px] font-code-mono uppercase tracking-wider text-on-surface-variant font-semibold">General Navigation</div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Search &amp; Command Palette</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">Ctrl + K</kbd>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Toggle Light / Sepia / Dark Theme</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">T</kbd>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Open Shortcuts Help</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">?</kbd>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Close Dialogs &amp; Overlays</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">Esc</kbd>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 pt-2">
+          <div class="text-[10px] font-code-mono uppercase tracking-wider text-on-surface-variant font-semibold">Audio &amp; Quran Player</div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Play / Pause Audio</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">Space</kbd>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Previous / Next Ayah</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">← / →</kbd>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Minimize / Restore Audio Bar</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">V</kbd>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="buttons.js" defer></script>
+  <script src="js/script.js" defer></script>
+  <!-- Shared Layout: Header, Footer, Theme Switcher -->
+  <script src="js/shared-layout.js"></script>
+</body>
+
+</html>

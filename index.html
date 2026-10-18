@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en" data-theme="light">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="shell-type" content="web_standard">
+  <meta name="theme-color" content="#0F766E">
+  <meta name="color-scheme" content="light dark">
+  <meta name="heynuo-build" content="2026-10-17-0713">
+
+  <!-- Theme Pre-Hydration: Prevents Flash of Unstyled Content (FOUC) -->
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('heynuo-theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = savedTheme || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else if (theme === 'sepia') {
+          document.documentElement.classList.add('sepia');
+        }
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+
+  <!-- Primary SEO -->
+  <title>Ruqyah — Scholastic Archive &amp; Systems Laboratory</title>
+  <meta name="description"
+    content="Clear tutorials in distributed systems, classical scholarship, and verified Qur'anic tools engineered for quiet reflection. Zero trackers, zero client telemetry, and built for permanent offline reading.">
+  <meta name="keywords"
+    content="Ruqyah, Distributed Systems, Java OOP, JVM Internals, Spring Boot Architecture, Qur'an Recitation, 108 Master Verses, Zero Trackers">
+  <meta name="author" content="Zahiruddin (Ruqyah)">
+  <meta name="robots" content="index, follow">
+  <meta name="google-site-verification" content="20jAEe9y_iie23-LX0l0yjH4KSEUyTmoF-9H5tOpkxA">
+  <link rel="canonical" href="https://heynuo.github.io/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ruqyah — Scholastic Archive &amp; Systems Laboratory">
+  <meta property="og:description"
+    content="Clear tutorials in distributed systems, disciplined scholarship, and verified Qur'anic tools engineered for quiet reflection. Zero trackers, zero client telemetry, and built for permanent offline reading.">
+  <meta property="og:image" content="https://heynuo.github.io/assets/banners/og-banner.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="Ruqyah — Scholastic Archive &amp; Systems Laboratory">
+  <meta property="og:url" content="https://heynuo.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ruqyah">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ruqyah — Scholastic Archive &amp; Systems Laboratory">
+  <meta name="twitter:description"
+    content="Clear tutorials in distributed systems, disciplined scholarship, and verified Qur'anic tools engineered for quiet reflection.">
+  <meta name="twitter:image" content="https://heynuo.github.io/assets/banners/og-banner.jpg">
+  <meta name="twitter:image:alt" content="Ruqyah — Scholastic Archive &amp; Systems Laboratory">
+
+  <!-- Favicon, Manifest & RSS Feed Links -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20rx='20'%20fill='%230F766E'/%3E%3Cpath%20d='M25%2025h50v50H25z'%20fill='none'%20stroke='%239cf2e8'%20stroke-width='4'/%3E%3Ccircle%20cx='50'%20cy='50'%20r='14'%20fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="manifest" href="manifest.json">
+  <link rel="alternate" type="application/rss+xml" title="Ruqyah RSS Feed" href="rss.xml">
+  <link rel="sitemap" type="application/xml" href="sitemap.xml">
+
+  <!-- Typography Preconnect & Font Inclusions -->
+<!-- Sacred Medallion Keyframe Animations -->
+  <style id="sacred-medallion-styles">
+    @keyframes orbitClockwise {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes orbitCounter {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+    .sacred-orbit-cw {
+      animation: orbitClockwise 50s linear infinite;
+      transform-origin: 60px 60px;
+    }
+    .sacred-orbit-ccw {
+      animation: orbitCounter 60s linear infinite;
+      transform-origin: 60px 60px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sacred-orbit-cw, .sacred-orbit-ccw {
+        animation: none !important;
+      }
+    }
+  </style>
+
+  <!-- Structured Metadata -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://heynuo.github.io/#website",
+          "url": "https://heynuo.github.io/",
+          "name": "Ruqyah",
+          "description": "Scholastic Archive & Systems Laboratory",
+          "inLanguage": "en",
+          "publisher": {
+            "@type": "Person",
+            "name": "Zahiruddin"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://heynuo.github.io/#webpage",
+          "url": "https://heynuo.github.io/",
+          "name": "Ruqyah — Scholastic Archive & Systems Laboratory",
+          "isPartOf": {
+            "@id": "https://heynuo.github.io/#website"
+          },
+          "about": [
+            "Distributed Systems",
+            "Java Architecture",
+            "Holy Qur'an",
+            "108 Master Verses"
+          ],
+          "inLanguage": "en"
+        }
+      ]
+    }
+  </script>
+
+  <script src="js/shell.js" defer></script>
+  <!-- Typography Preconnect & Font Inclusions (Unified) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+  <!-- Shared Design System Tokens (Light / Dark / Sepia) -->
+  <link rel="stylesheet" href="css/shared-layout.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/tailwind-config.js"></script>
+</head>
+
+<body class="bg-bg-canvas font-body-article text-on-surface antialiased min-h-screen flex flex-col pb-32 transition-colors duration-200">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-on-primary focus:rounded-md focus:shadow-lg focus:outline-none">Skip to main content</a>
+
+  <!-- TOP NAVIGATION BAR (Standard Canonical Component) -->
+
+  <!-- MAIN EDITORIAL CONTENT -->
+  <main class="w-full pt-14 flex-1">
+
+    <!-- 'CURRENTLY STUDYING & BUILDING' (NOW STRIP) -->
+    <section class="w-full border-b border-border-subtle bg-surface-container-low/60 py-2.5 px-4 sm:px-6 md:px-8">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3 text-xs font-code-mono">
+        <div class="flex items-center gap-2 text-on-surface-variant min-w-0">
+          <span class="inline-flex items-center gap-1.5 text-primary font-semibold shrink-0">
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            <span>CURRENTLY EXAMINING:</span>
+          </span>
+          <span class="truncate text-on-surface font-medium">Zero-allocation Netty byte buffers &amp; Classical Tafsir of Surah Al-Kahf</span>
+        </div>
+        <div class="flex items-center gap-3 text-[11px] text-on-surface-variant shrink-0">
+          <span class="hidden md:inline">Research Lab Log #42</span>
+          <span class="hidden md:inline">•</span>
+          <a class="text-primary hover:underline font-semibold" href="#articles-section">Read latest findings →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. EDITORIAL HERO SECTION WITH ILLUMINATED SACRED MEDALLION SPECIMEN TILE -->
+    <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 pt-8 md:pt-12 pb-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        
+        <!-- Left: Academic Mission & CTAs (6 Cols) -->
+        <div class="lg:col-span-6 flex flex-col justify-between items-start">
+          <div>
+            <!-- Editorial Folio Label -->
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-sm border border-primary/25 bg-surface-container-low text-primary mb-4 shadow-xs">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              <span class="font-code-mono text-[11px] font-semibold tracking-wider uppercase">VOL. III • SCHOLASTIC ARCHIVE &amp; SYSTEMS LABORATORY • EST. 2024</span>
+            </div>
+
+            <!-- Bold Academic Headline -->
+            <h1 class="font-title-page text-3xl sm:text-4xl md:text-5xl font-extrabold text-on-surface tracking-tight leading-[1.12] mb-4 text-balance">
+              Notes on Code and the Qur’an.
+            </h1>
+
+            <!-- Eloquent Description -->
+            <p class="font-body-lead text-sm sm:text-base text-on-surface-variant mb-6 text-balance leading-relaxed max-w-xl">
+              Clear tutorials in distributed systems, disciplined classical scholarship, and verified Qur’anic tools engineered for quiet reflection. Zero trackers, zero client telemetry, and built with standard web technologies for permanent offline reading.
+            </p>
+
+            <!-- Primary CTAs -->
+            <div class="flex flex-wrap items-center gap-3 mb-6 w-full sm:w-auto">
+              <a class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded bg-primary text-on-primary font-ui-interactive text-sm font-semibold hover:bg-primary-container transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" href="#learn-lane">
+                <span>Start Learning Systems</span>
+                <svg class="w-4 h-4 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+              <a class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded border border-border-strong/40 bg-surface text-on-surface font-ui-interactive text-sm font-semibold hover:bg-surface-container-low transition-all shadow-xs focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" href="#quran-lane">
+                <svg class="w-4 h-4 stroke-current text-primary" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                <span>Open Qur’an Corpus</span>
+              </a>
+            </div>
+
+            <!-- Calibrated Trust Badges -->
+            <div class="inline-flex flex-wrap items-center gap-3 text-xs font-code-mono text-on-surface-variant pb-4">
+              <span class="inline-flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-success"></span>100% Free &amp; Open Archive</span>
+              <span>•</span>
+              <span class="inline-flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span>Zero Third-Party Telemetry</span>
+              <span>•</span>
+              <span class="inline-flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-border-strong"></span>Offline Cache Ready</span>
+            </div>
+          </div>
+
+          <!-- Subtle Guided Entry Points Pill Row -->
+          <div class="pt-3 border-t border-border-subtle w-full flex flex-wrap items-center gap-2 text-xs font-code-mono">
+            <span class="text-on-surface-variant font-medium">Guided entry points:</span>
+            <a class="px-2 py-0.5 rounded bg-surface border border-border-subtle hover:border-primary text-on-surface hover:text-primary transition-colors" href="#article-oop">Java OOP Guide</a>
+            <span class="text-border-strong/60">•</span>
+            <a class="px-2 py-0.5 rounded bg-surface border border-border-subtle hover:border-primary text-on-surface hover:text-primary transition-colors" href="#flagship-verse">Ayat al-Kursi Specimen</a>
+            <span class="text-border-strong/60">•</span>
+            <a class="px-2 py-0.5 rounded bg-surface border border-border-subtle hover:border-primary text-on-surface hover:text-primary transition-colors" href="#article-spring">Spring Architecture</a>
+            <span class="text-border-strong/60">•</span>
+            <a class="px-2 py-0.5 rounded bg-surface border border-border-subtle hover:border-primary text-on-surface hover:text-primary transition-colors" href="#article-vanilla">Vanilla Web</a>
+            <span class="text-border-strong/60">•</span>
+            <a class="px-2 py-0.5 rounded bg-surface border border-border-subtle hover:border-primary text-on-surface hover:text-primary transition-colors" href="quran-verses.html">108 Verses</a>
+          </div>
+        </div>
+
+        <!-- Right: Dual Specimen Tile (Names of Allah • Sacred Medallion Showcase) (6 Cols) -->
+        <div class="lg:col-span-6 rounded-2xl border border-border-strong/30 bg-surface p-6 sm:p-7 shadow-xs relative overflow-hidden flex flex-col justify-between">
+          <div>
+            <!-- Top Metadata Row -->
+            <div class="flex items-center justify-between pb-3 mb-2 flex-wrap gap-2">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                <span class="font-code-mono text-xs font-bold uppercase tracking-wider text-primary">NAMES OF ALLAH • 1 OF 99</span>
+              </div>
+              <span class="font-code-mono text-xs text-on-surface-variant bg-surface-container-low px-2.5 py-0.5 rounded border border-border-subtle">Ism al-Jalālah • The Supreme Name</span>
+            </div>
+
+            <!-- Main Title: Allāh Jalla Jalāluh -->
+            <div class="flex items-baseline gap-2.5 mb-5">
+              <h2 class="font-heading-section text-2xl sm:text-3xl font-extrabold text-on-surface tracking-tight">Allāh</h2>
+              <span class="font-heading-subsection text-lg sm:text-xl text-tertiary italic font-medium">Jalla Jalāluh</span>
+            </div>
+
+            <!-- Two-column: Left Medallion, Right Scripture Quote Box -->
+            <div class="flex flex-col xl:flex-row gap-5 items-center mb-6">
+              
+              <!-- Left Side: Illuminated Sacred Calligraphic Medallion -->
+              <div class="flex-shrink-0 flex items-center justify-center">
+                <div class="relative flex-shrink-0 flex items-center justify-center w-36 h-36">
+                  <div class="sacred-medallion-container relative flex items-center justify-center w-full h-full">
+                    <svg class="absolute inset-0 w-full h-full" fill="none" viewBox="0 0 120 120">
+                      <defs>
+                        <linearGradient id="goldEmeraldGlow2" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stop-color="#0F766E" stop-opacity="0.15"></stop>
+                          <stop offset="50%" stop-color="#F5C26B" stop-opacity="0.24"></stop>
+                          <stop offset="100%" stop-color="#0F766E" stop-opacity="0.12"></stop>
+                        </linearGradient>
+                        <radialGradient id="coreParchment2" cx="50%" cy="50%" r="50%">
+                          <stop offset="0%" stop-color="#FFFFFF"></stop>
+                          <stop offset="65%" stop-color="#E8F7F3"></stop>
+                          <stop offset="100%" stop-color="#D7E6E2"></stop>
+                        </radialGradient>
+                        <linearGradient id="gildedBorder2" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stop-color="#0F766E"></stop>
+                          <stop offset="50%" stop-color="#F5C26B"></stop>
+                          <stop offset="100%" stop-color="#0F766E"></stop>
+                        </linearGradient>
+                      </defs>
+                      <circle cx="60" cy="60" r="57" fill="url(#goldEmeraldGlow2)"></circle>
+                      <g class="sacred-orbit-cw">
+                        <circle cx="60" cy="60" r="56" stroke="#0F766E" stroke-width="0.8" stroke-dasharray="2 3" class="sacred-shimmer-cw text-primary/60"></circle>
+                        <circle cx="60" cy="60" r="53" stroke="#F5C26B" stroke-width="0.6" stroke-dasharray="1 4" class="sacred-shimmer-ccw"></circle>
+                        <g stroke="#0F766E" stroke-opacity="0.35" stroke-width="0.7">
+                          <line x1="60" y1="3" x2="60" y2="7"></line>
+                          <line x1="60" y1="113" x2="60" y2="117"></line>
+                          <line x1="3" y1="60" x2="7" y2="60"></line>
+                          <line x1="113" y1="60" x2="117" y2="60"></line>
+                          <line x1="20" y1="20" x2="23" y2="23"></line>
+                          <line x1="97" y1="97" x2="100" y2="100"></line>
+                          <line x1="20" y1="100" x2="23" y2="97"></line>
+                          <line x1="97" y1="23" x2="100" y2="20"></line>
+                        </g>
+                      </g>
+                      <g class="sacred-orbit-cw" stroke="#0F766E" stroke-width="1.1" stroke-opacity="0.7">
+                        <rect x="23" y="23" width="74" height="74" rx="3" transform="rotate(0 60 60)"></rect>
+                        <rect x="23" y="23" width="74" height="74" rx="3" transform="rotate(45 60 60)"></rect>
+                      </g>
+                      <g class="sacred-orbit-ccw" stroke="#F5C26B" stroke-width="0.9" stroke-opacity="0.75">
+                        <rect x="26" y="26" width="68" height="68" rx="2.5" transform="rotate(22.5 60 60)"></rect>
+                        <rect x="26" y="26" width="68" height="68" rx="2.5" transform="rotate(67.5 60 60)"></rect>
+                      </g>
+                      <g fill="#F5C26B">
+                        <circle cx="60" cy="7" r="1.8"></circle>
+                        <circle cx="60" cy="113" r="1.8"></circle>
+                        <circle cx="7" cy="60" r="1.8"></circle>
+                        <circle cx="113" cy="60" r="1.8"></circle>
+                        <circle cx="22.5" cy="22.5" r="1.8"></circle>
+                        <circle cx="97.5" cy="97.5" r="1.8"></circle>
+                        <circle cx="22.5" cy="97.5" r="1.8"></circle>
+                        <circle cx="97.5" cy="22.5" r="1.8"></circle>
+                      </g>
+                      <circle cx="60" cy="60" r="42" fill="url(#coreParchment2)" stroke="url(#gildedBorder2)" stroke-width="1.5"></circle>
+                      <circle cx="60" cy="60" r="39" stroke="#0F766E" stroke-width="0.75" stroke-dasharray="2 2" class="sacred-shimmer-cw"></circle>
+                      <circle cx="60" cy="60" r="36.5" stroke="#F5C26B" stroke-width="0.5" stroke-opacity="0.8"></circle>
+                    </svg>
+                    <div class="relative z-10 text-center select-all sacred-calligraphy-glow flex flex-col items-center justify-center">
+                      <span class="font-arabic-sacred text-4xl font-bold text-primary block leading-none pt-1.5 drop-shadow-sm" dir="rtl" lang="ar">اللَّه</span>
+                      <span class="font-arabic-sacred text-xs font-semibold text-tertiary block leading-tight mt-0.5 tracking-wide" dir="rtl" lang="ar">جَلَّ جَلَالُهُ</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Side: Warm Parchment Quote Box with Ar-Rahman 55:27 -->
+              <div class="flex-1 w-full p-5 sm:p-6 rounded-xl border border-tertiary/20 bg-theme-sepia-surface/50 shadow-xs flex flex-col items-center text-center relative">
+                <div class="text-tertiary text-xs mb-2">❖</div>
+                <!-- Arabic Ayah -->
+                <p class="font-arabic-sacred text-xl sm:text-2xl text-on-surface font-semibold arabic-text leading-[2.15] mb-2" dir="rtl" lang="ar">
+                  وَيَبْقَىٰ وَجْهُ رَبِّكَ ذُو ٱلْجَلَٰلِ وَٱلْإِكْرَامِ
+                </p>
+                <!-- English Translation -->
+                <p class="font-body-article text-xs sm:text-sm text-on-surface-variant italic leading-relaxed mb-4">
+                  “And there remains the Face of your Lord, Owner of Majesty and Honor.”
+                </p>
+                <!-- Pill Citation Tag -->
+                <div class="inline-flex items-center px-3 py-1 rounded-full border border-tertiary/20 bg-tertiary-fixed/30 text-tertiary font-code-mono text-[11px] font-semibold tracking-wider">
+                  AR-RAḤMĀN • 55:27
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Reflection Copy -->
+            <div class="mb-6">
+              <p class="font-body-lead text-sm sm:text-base text-on-surface italic leading-relaxed">
+                Every crown in the world is borrowed.<br>
+                This Name owns the throne.
+              </p>
+            </div>
+          </div>
+
+          <!-- Bottom Action Row -->
+          <div class="pt-4 border-t border-border-subtle flex items-center justify-between text-xs font-code-mono flex-wrap gap-2">
+            <span class="text-on-surface-variant tracking-wider uppercase font-medium flex items-center gap-1.5">
+              <span class="text-tertiary">❖</span> SIXTEEN POINTS OF LIGHT
+            </span>
+            <a class="font-ui-interactive font-bold text-primary hover:text-primary-container tracking-wider uppercase inline-flex items-center gap-1 transition-transform group-hover:translate-x-0.5" href="#flagship-verse">
+              TAP TO REFLECT →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. TWO BALANCED PREMIUM DISCOVERY PANELS (Restored & Symmetrical) -->
+    <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 py-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <!-- Panel 1: Track 01 — Systems & Software Engineering (RESTORED) -->
+        <div class="rounded-xl border border-border-strong/30 bg-surface p-6 sm:p-7 shadow-xs flex flex-col justify-between hover:border-primary/50 transition-all group" id="learn-lane">
+          <div>
+            <div class="flex items-center justify-between pb-4 mb-4 border-b border-border-subtle">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded bg-surface-container-low text-primary flex items-center justify-center border border-primary/20">
+                  <svg class="w-5 h-5 stroke-current" fill="none" stroke-width="1.8" viewBox="0 0 24 24">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                  </svg>
+                </div>
+                <div>
+                  <span class="font-code-mono text-[11px] uppercase tracking-wider text-primary font-semibold block">Track 01 — Engineering</span>
+                  <h2 class="font-subheading-card text-base sm:text-lg font-bold text-on-surface">Systems &amp; Software Engineering</h2>
+                </div>
+              </div>
+              <span class="font-code-mono text-xs font-semibold text-primary bg-surface-container-low px-2 py-0.5 rounded border border-primary/20">Production Blueprints</span>
+            </div>
+
+            <p class="font-body-article text-xs sm:text-sm text-on-surface-variant mb-5 leading-relaxed">
+              Disciplined architectures, high-throughput JVM memory management, and durable zero-dependency web standards engineered for long-term production resilience.
+            </p>
+
+            <!-- Guide List -->
+            <div class="space-y-2.5">
+              <!-- Item 1 -->
+              <a class="flex items-center justify-between p-3 rounded border border-border-subtle bg-bg-canvas/50 hover:bg-surface-container-low hover:border-primary/30 transition-all" href="#article-spring">
+                <div class="flex items-center gap-3 min-w-0">
+                  <span class="font-code-mono text-xs font-bold text-primary">01</span>
+                  <div class="truncate">
+                    <span class="font-ui-interactive text-xs sm:text-sm font-semibold text-on-surface block truncate">Spring Boot Production Architecture</span>
+                    <span class="font-code-mono text-[10px] text-on-surface-variant">Zero-downtime microservices, thread pool sizing, runtime metrics</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 pl-3 flex-shrink-0">
+                  <span class="font-code-mono text-[10px] text-primary bg-surface-container-low px-1.5 py-0.5 rounded border border-primary/20 font-medium">Spring 3</span>
+                  <svg class="w-4 h-4 stroke-current text-primary" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </div>
+              </a>
+
+              <!-- Item 2 -->
+              <a class="flex items-center justify-between p-3 rounded border border-border-subtle bg-bg-canvas/50 hover:bg-surface-container-low hover:border-primary/30 transition-all" href="#article-oop">
+                <div class="flex items-center gap-3 min-w-0">
+                  <span class="font-code-mono text-xs font-bold text-primary">02</span>
+                  <div class="truncate">
+                    <span class="font-ui-interactive text-xs sm:text-sm font-semibold text-on-surface block truncate">Java OOP &amp; JVM Memory Models</span>
+                    <span class="font-code-mono text-[10px] text-on-surface-variant">Polymorphism, cache-line alignment, and immutable records</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 pl-3 flex-shrink-0">
+                  <span class="font-code-mono text-[10px] text-on-surface-variant bg-surface px-1.5 py-0.5 rounded border border-border-subtle">Java 21</span>
+                  <svg class="w-4 h-4 stroke-current text-primary" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </div>
+              </a>
+
+              <!-- Item 3 -->
+              <a class="flex items-center justify-between p-3 rounded border border-border-subtle bg-bg-canvas/50 hover:bg-surface-container-low hover:border-primary/30 transition-all" href="#article-vanilla">
+                <div class="flex items-center gap-3 min-w-0">
+                  <span class="font-code-mono text-xs font-bold text-primary">03</span>
+                  <div class="truncate">
+                    <span class="font-ui-interactive text-xs sm:text-sm font-semibold text-on-surface block truncate">Vanilla Web Development Architecture</span>
+                    <span class="font-code-mono text-[10px] text-on-surface-variant">Web components, container queries, and native service workers</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 pl-3 flex-shrink-0">
+                  <span class="font-code-mono text-[10px] text-on-surface-variant bg-surface px-1.5 py-0.5 rounded border border-border-subtle">Vanilla JS</span>
+                  <svg class="w-4 h-4 stroke-current text-primary" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="pt-5 mt-5 border-t border-border-subtle flex items-center justify-between text-xs">
+            <span class="font-code-mono text-on-surface-variant">JDK 21 LTS • Netty NIO • Zero Build</span>
+            <a class="font-ui-interactive font-semibold text-primary hover:text-primary-container inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform" href="#articles-section">
+              <span>Browse Engineering Publications</span>
+              <svg class="w-3.5 h-3.5 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Panel 2: Track 02 — Scripture & Islamic Research -->
+        <div class="rounded-xl border border-border-strong/30 bg-surface p-6 sm:p-7 shadow-xs flex flex-col justify-between hover:border-primary/50 transition-all group" id="quran-lane">
+          <div>
+            <div class="flex items-center justify-between pb-4 mb-4 border-b border-border-subtle">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded bg-surface-container-low text-primary flex items-center justify-center border border-primary/20">
+                  <svg class="w-5 h-5 stroke-current" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                </div>
+                <div>
+                  <span class="font-code-mono text-[11px] uppercase tracking-wider text-primary font-semibold block">Track 02 — Scripture</span>
+                  <h2 class="font-subheading-card text-base sm:text-lg font-bold text-on-surface">Scripture &amp; Islamic Research</h2>
+                </div>
+              </div>
+              <span class="font-code-mono text-xs font-semibold text-primary bg-surface-container-low px-2 py-0.5 rounded border border-primary/20">Verified Canon</span>
+            </div>
+
+            <p class="font-body-article text-xs sm:text-sm text-on-surface-variant mb-5 leading-relaxed">
+              Curated corpora, authentic Qur'anic recitations, and historical textual inquiry. Preserved in authentic Uthmani script with verified Hadith citations and cross-indexed chains of narration.
+            </p>
+
+            <!-- Guide List -->
+            <div class="space-y-2.5">
+              <!-- Item 1 -->
+              <a class="flex items-center justify-between p-3 rounded border border-border-subtle bg-bg-canvas/50 hover:bg-surface-container-low hover:border-primary/30 transition-all" href="quran.html">
+                <div class="flex items-center gap-3 min-w-0">
+                  <span class="font-code-mono text-xs font-bold text-primary">01</span>
+                  <div class="truncate">
+                    <span class="font-ui-interactive text-xs sm:text-sm font-semibold text-on-surface block truncate">Qur’an Recitation Engine</span>
+                    <span class="font-code-mono text-[10px] text-on-surface-variant">114 Surahs, lossless audio streams, verse-by-verse sync</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 pl-3 flex-shrink-0">
+                  <span class="font-code-mono text-[10px] text-primary bg-surface-container-low px-1.5 py-0.5 rounded border border-primary/20 font-medium">114 Surahs</span>
+                  <svg class="w-4 h-4 stroke-current text-primary" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </div>
+              </a>
+
+              <!-- Item 2 -->
+              <a class="flex items-center justify-between p-3 rounded border border-border-subtle bg-bg-canvas/50 hover:bg-surface-container-low hover:border-primary/30 transition-all" href="quran-verses.html">
+                <div class="flex items-center gap-3 min-w-0">
+                  <span class="font-code-mono text-xs font-bold text-primary">02</span>
+                  <div class="truncate">
+                    <span class="font-ui-interactive text-xs sm:text-sm font-semibold text-on-surface block truncate">108 Master Verses Dataset</span>
+                    <span class="font-code-mono text-[10px] text-on-surface-variant">Scholarly concordance with roots, transliteration &amp; tafsir</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 pl-3 flex-shrink-0">
+                  <span class="font-code-mono text-[10px] text-on-surface-variant bg-surface px-1.5 py-0.5 rounded border border-border-subtle">Corpus</span>
+                  <svg class="w-4 h-4 stroke-current text-primary" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </div>
+              </a>
+
+              <!-- Item 3 -->
+              <a class="flex items-center justify-between p-3 rounded border border-border-subtle bg-bg-canvas/50 hover:bg-surface-container-low hover:border-primary/30 transition-all" href="about.html">
+                <div class="flex items-center gap-3 min-w-0">
+                  <span class="font-code-mono text-xs font-bold text-primary">03</span>
+                  <div class="truncate">
+                    <span class="font-ui-interactive text-xs sm:text-sm font-semibold text-on-surface block truncate">Scholastic Sanad &amp; Hermeneutics</span>
+                    <span class="font-code-mono text-[10px] text-on-surface-variant">Mustalah al-Hadith, narrator chains &amp; classical methodology</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 pl-3 flex-shrink-0">
+                  <span class="font-code-mono text-[10px] text-on-surface-variant bg-surface px-1.5 py-0.5 rounded border border-border-subtle">Methodology</span>
+                  <svg class="w-4 h-4 stroke-current text-primary" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="pt-5 mt-5 border-t border-border-subtle flex items-center justify-between text-xs">
+            <span class="font-code-mono text-on-surface-variant">Hafs 'an 'Asim • Sahih Sanad</span>
+            <a class="font-ui-interactive font-semibold text-primary hover:text-primary-container inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform" href="quran.html">
+              <span>Explore Complete Corpus</span>
+              <svg class="w-3.5 h-3.5 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. SIGNATURE SPECIMEN CARD: AYAT AL-KURSI (THE THRONE VERSE) -->
+    <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 py-8" id="flagship-verse">
+      <div class="rounded-xl border border-border-strong/30 bg-surface shadow-xs p-6 sm:p-8 relative overflow-hidden">
+        
+        <!-- Header Info Bar with Action Toolbar -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 mb-6 border-b border-border-subtle">
+          <div>
+            <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+              <span class="px-2.5 py-0.5 rounded-sm bg-tertiary-fixed text-on-tertiary-fixed font-code-mono text-[10px] uppercase font-bold tracking-wider">FLAGSHIP SPECIMEN • AUTHENTICATED CANON</span>
+            </div>
+            <h2 class="font-heading-subsection text-xl sm:text-2xl font-bold text-on-surface tracking-tight">
+              Ayat al-Kursi (The Throne Verse)
+            </h2>
+          </div>
+
+          <!-- Action Toolbar -->
+          <div class="flex items-center gap-2 flex-wrap">
+            <button id="flagship-play-btn" aria-label="Play Recitation by Mishary Rashid Alafasy" class="min-h-[44px] inline-flex items-center gap-2 px-4 py-2 rounded bg-primary text-on-primary hover:bg-primary-container text-xs font-code-mono font-medium transition-colors shadow-xs cursor-pointer" type="button">
+              <svg id="flagship-play-icon" class="w-4 h-4 fill-current" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              <span id="flagship-play-label">Play (Alafasy)</span>
+            </button>
+            <button id="copy-verse-btn" aria-label="Copy verse and citation" class="min-h-[44px] inline-flex items-center gap-1.5 px-3 py-2 rounded border border-border-subtle bg-surface hover:bg-surface-container-low text-xs font-code-mono text-on-surface transition-colors cursor-pointer" title="Copy Verse &amp; Citation" type="button">
+              <svg class="w-4 h-4 stroke-current text-on-surface-variant" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><rect height="13" rx="2" ry="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span id="copy-verse-label">Copy</span>
+            </button>
+            <button id="bookmark-verse-btn" aria-label="Bookmark this Ayah" class="min-h-[44px] min-w-[44px] px-3 py-2 rounded border border-border-subtle bg-surface hover:bg-surface-container-low text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center cursor-pointer" title="Bookmark Ayah" type="button">
+              <svg class="w-4 h-4 stroke-current" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+            </button>
+            <button id="auto-adv-btn" aria-label="Toggle Auto-advance recitation" class="min-h-[44px] inline-flex items-center gap-1.5 px-3 py-2 rounded border border-border-subtle bg-surface hover:bg-surface-container-low text-xs font-code-mono text-on-surface-variant hover:text-primary transition-colors cursor-pointer" title="Toggle auto-advance recitation" type="button">
+              <svg class="w-4 h-4 stroke-current text-primary" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" x2="19" y1="5" y2="19"></line></svg>
+              <span id="auto-adv-label">Auto-Next: On</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Authentic Sacred Arabic Display (Hafs 'an 'Asim) -->
+        <div class="py-6 px-4 sm:px-8 bg-bg-canvas rounded-lg border border-border-subtle mb-6 text-center">
+          <div class="font-code-mono text-[11px] text-on-surface-variant tracking-widest uppercase mb-3 text-center">
+            SURAH AL-BAQARAH [2:255] • HAFS 'AN 'ASIM • MEDINAN
+          </div>
+          <p class="font-arabic-sacred text-2xl sm:text-3xl md:text-4xl text-on-surface leading-[2.15] select-all arabic-text py-2" dir="rtl" lang="ar">
+            ٱللَّهُ لَآ إِلَٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ ۚ لَا تَأْخُذُهُۥ سِنَةٌۭ وَلَا نَوْمٌۭ ۚ لَّهُۥ مَا فِى ٱلسَّمَٰوَٰتِ وَمَا فِى ٱلْأَرْضِ ۗ مَن ذَا ٱلَّذِى يَشْفَعُ عِندَهُۥٓ إِلَّا بِإِذْنِهِۦ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَىْءٍۢ مِّنْ عِلْمِهِۦٓ إِلَّا بِمَا شَآءَ ۚ وَسِعَ كُرْسِيُّهُ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضَ ۖ وَلَا يَـُٔودُهُۥ حِفْظُهُمَا ۚ وَهُوَ ٱلْعَلِىُّ ٱلْعَظِيمُ
+          </p>
+          <!-- Ornamental Aya End Mark -->
+          <div class="mt-4 flex items-center justify-center gap-3">
+            <span class="h-px w-12 bg-border-strong/30"></span>
+            <span class="font-arabic-sacred text-primary text-sm font-bold"> ٢٥٥</span>
+            <span class="h-px w-12 bg-border-strong/30"></span>
+          </div>
+        </div>
+
+        <!-- Scholarly Layers: Transliteration & English Translation -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm leading-relaxed mb-6">
+          <!-- Transliteration Layer -->
+          <div class="p-4 rounded-lg bg-surface border border-border-subtle">
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-code-mono text-xs font-semibold uppercase tracking-wider text-primary">Latin Transliteration</span>
+              <span class="font-code-mono text-[11px] text-on-surface-variant">DIN 31635 Phonetic</span>
+            </div>
+            <p class="font-body-article text-xs sm:text-sm text-on-surface-variant italic leading-relaxed">
+              Allāhu lā ilāha illā huw, al-Ḥayyu al-Qayyūm. Lā ta’khudhuhū sinatu-w-wa-lā nawm. Lahū mā fis-samāwāti wa-mā fil-arḍ. Man dhal-ladhī yashfa‘u ‘indahū illā bi-’idhnihi. Ya‘lamu mā bayna aydīhim wa-mā khalfahum, wa-lā yuḥīṭūna bi-shay’im-min ‘ilmihī illā bimā shā’. Wasi‘a kursiyyuhus-samāwāti wal-arḍ, wa-lā ya’ūduhū ḥifẓuhumā, wa-huwal-‘Aliyyul-‘Aẓīm.
+            </p>
+          </div>
+
+          <!-- English Translation Layer -->
+          <div class="p-4 rounded-lg bg-surface border border-border-subtle">
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-code-mono text-xs font-semibold uppercase tracking-wider text-primary">English Translation</span>
+              <span class="font-code-mono text-[11px] text-on-surface-variant">Saheeh International</span>
+            </div>
+            <p class="font-body-article text-xs sm:text-sm text-on-surface leading-relaxed">
+              “Allah! There is no deity except Him, the Ever-Living, the Sustainer of [all] existence. Neither drowsiness overtakes Him nor sleep. To Him belongs whatever is in the heavens and whatever is on the earth. Who is it that could intercede with Him except by His permission? He knows what is [presently] before them and what will be after them, and they encompass not a thing of His knowledge except for what He wills. His Kursī extends over the heavens and the earth, and their preservation tires Him not. And He is the Most High, the Most Great.”
+            </p>
+          </div>
+        </div>
+
+        <!-- Academic Sanad Verification Strip & Full Guide Link -->
+        <div class="pt-4 border-t border-border-subtle flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs font-code-mono">
+          <div class="flex items-center gap-2 text-on-surface-variant flex-wrap">
+            <svg class="w-4 h-4 stroke-current text-success flex-shrink-0" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <span class="font-medium text-on-surface">Verified Isnad</span>
+            <span>•</span>
+            <span>Sahih Muslim #810</span>
+            <span>•</span>
+            <span>Narrated by Abu Hurairah (ra)</span>
+            <span>•</span>
+            <span class="text-primary font-medium">Authenticity Grade: Sahih Mutawatir</span>
+          </div>
+          <a class="font-ui-interactive font-semibold text-primary hover:text-primary-container inline-flex items-center gap-1 group" href="quran-verses.html">
+            <span>Explore 108 Master Verses</span>
+            <svg class="w-3.5 h-3.5 stroke-current group-hover:translate-x-0.5 transition-transform" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. AYAH OF THE DAY & PERSISTENT LOCAL 'CONTINUE WHERE YOU LEFT OFF' -->
+    <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 py-4" id="ayah-of-day">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        
+        <!-- Left: Ayah of the Day Study Card (8 Cols) -->
+        <div class="lg:col-span-8 rounded-xl border border-border-strong/30 bg-surface p-6 shadow-xs flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-3 mb-3 border-b border-border-subtle">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                <span class="font-code-mono text-xs font-bold uppercase tracking-wider text-primary">Ayah of the Day</span>
+                <span class="text-border-strong/60">•</span>
+                <span class="font-code-mono text-xs text-on-surface-variant" id="ayahSeedDay">Deterministic Seed</span>
+              </div>
+              <span class="font-code-mono text-xs text-on-surface-variant">Ta-Ha 20:114</span>
+            </div>
+
+            <div class="py-3 text-right" dir="rtl" lang="ar">
+              <p class="font-arabic-sacred text-2xl sm:text-3xl text-on-surface leading-loose arabic-text">
+                فَتَعَٰلَى ٱللَّهُ ٱلْمَلِكُ ٱلْحَقُّ ۗ وَلَا تَعْجَلْ بِٱلْقُرْءَانِ مِن قَبْلِ أَن يُقْضَىٰٓ إِلَيْكَ وَحْيُهُۥ ۖ وَقُل رَّبِّ زِدْنِى عِلْمًۭا
+              </p>
+            </div>
+
+            <p class="font-body-article text-xs sm:text-sm text-on-surface-variant leading-relaxed mt-2">
+              “So high [above all] is Allah, the Sovereign, the Truth. And do not hasten with [recitation of] the Qur'an before its revelation is completed to you, and say: <strong class="text-on-surface font-semibold">‘My Lord, increase me in knowledge.’</strong>”
+            </p>
+          </div>
+
+          <div class="pt-4 mt-4 border-t border-border-subtle flex items-center justify-between text-xs font-code-mono flex-wrap gap-2">
+            <span class="text-on-surface-variant">Theme: Epistemology &amp; Intellectual Humility</span>
+            <div class="flex items-center gap-3">
+              <button id="playAyahOfDayBtn" class="inline-flex items-center gap-1 text-primary hover:underline font-semibold cursor-pointer" type="button">
+                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <span>Play Recitation</span>
+              </button>
+              <button id="tafsirAyahOfDayBtn" class="inline-flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors cursor-pointer" type="button">
+                <span>Read Tafsir Ibn Kathir</span>
+                <svg class="w-3.5 h-3.5 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Continue Where You Left Off (Local Persistent Session) (4 Cols) -->
+        <div class="lg:col-span-4 rounded-xl border border-border-strong/30 bg-surface p-6 shadow-xs flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-3 mb-3 border-b border-border-subtle">
+              <span class="font-code-mono text-xs font-bold uppercase tracking-wider text-primary">Continuing Study</span>
+              <span class="font-code-mono text-[10px] text-success flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-success"></span> Local Storage Cached
+              </span>
+            </div>
+
+            <h3 class="font-subheading-card text-sm font-bold text-on-surface mb-2">Resume Active Session</h3>
+            <p class="font-body-article text-xs text-on-surface-variant mb-4 leading-relaxed">
+              Reading position preserved locally on this client. No registration or tracking accounts required.
+            </p>
+
+            <div class="p-3.5 rounded border border-border-subtle bg-bg-canvas mb-4">
+              <div class="flex items-center justify-between text-xs font-code-mono text-on-surface-variant mb-1.5">
+                <span class="font-semibold text-on-surface" id="resume-title">Surah Al-Kahf (18:1–10)</span>
+                <span id="resume-progress-label">Section 1/4</span>
+              </div>
+              <div class="w-full h-1.5 rounded-full bg-surface-container overflow-hidden mt-1.5">
+                <div class="h-full bg-primary rounded-full" id="resume-progress-bar" style="width: 25%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <button id="resume-btn" class="min-h-[44px] w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded bg-primary text-on-primary text-xs font-ui-interactive font-semibold hover:bg-primary-container transition-colors shadow-xs cursor-pointer" type="button">
+              <span>Resume Surah Al-Kahf</span>
+              <svg class="w-3.5 h-3.5 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            </button>
+            <div class="text-center pt-1">
+              <a class="font-code-mono text-xs text-on-surface-variant hover:text-primary transition-colors" href="quran-verses.html">
+                Open Saved Bookmarks &amp; Notes →
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. ALL 4 ARTICLES IN FULL DISPLAY (Publications Grid Synchronized) -->
+    <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 py-10" id="articles-section">
+      <div class="flex items-end justify-between mb-8 pb-3 border-b border-border-subtle">
+        <div>
+          <span class="font-code-mono text-[11px] uppercase tracking-wider text-primary font-semibold block mb-1">Publications</span>
+          <h2 class="font-heading-section text-2xl sm:text-3xl font-bold text-on-surface tracking-tight">
+            Latest Notes &amp; Technical Essays
+          </h2>
+        </div>
+        <div class="flex items-center gap-2 text-xs font-code-mono text-on-surface-variant">
+          <span class="font-semibold text-primary">All 4 Articles Displayed</span>
+          <span>•</span>
+          <span>Refereed Archive</span>
+        </div>
+      </div>
+
+      <!-- 4-Card Responsive Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="articlesGrid">
+        
+        <!-- Article 1: Spring Boot Production Architecture -->
+        <article class="article-card flex flex-col justify-between rounded-xl border border-border-strong/30 bg-surface shadow-xs overflow-hidden hover:border-primary/50 transition-all group" id="article-spring" data-category="spring-boot java architecture jvm">
+          <div>
+            <!-- Custom Architectural Diagram Header -->
+            <div class="h-36 w-full bg-surface-container relative overflow-hidden flex items-center justify-center border-b border-border-subtle">
+              <svg class="w-full h-full text-primary/40 p-4" fill="none" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+                <rect height="45" rx="3" stroke="currentColor" stroke-width="1.5" width="70" x="20" y="30"></rect>
+                <text fill="currentColor" font-family="monospace" font-size="11" x="32" y="58">Gateway</text>
+                <rect height="45" rx="3" stroke="currentColor" stroke-width="1.5" width="70" x="120" y="30"></rect>
+                <text fill="currentColor" font-family="monospace" font-size="11" x="132" y="58">Dispatch</text>
+                <rect fill="#E8F7F3" height="45" rx="3" stroke="#0F766E" stroke-width="1.5" width="170" x="70" y="105"></rect>
+                <text fill="#0F766E" font-family="monospace" font-size="11" font-weight="bold" x="100" y="132">JVM Thread Pool</text>
+                <line stroke="currentColor" stroke-dasharray="2 2" stroke-width="1.2" x1="55" x2="110" y1="75" y2="105"></line>
+                <line stroke="currentColor" stroke-width="1.2" x1="155" x2="155" y1="75" y2="105"></line>
+              </svg>
+              <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-surface/90 border border-border-subtle text-on-surface font-code-mono text-[10px] uppercase font-bold tracking-wider">
+                Architecture
+              </span>
+            </div>
+
+            <div class="p-4 sm:p-5">
+              <div class="flex items-center gap-2 font-code-mono text-[11px] text-on-surface-variant mb-2">
+                <time datetime="2026-09-28">28 Sep 2026</time>
+                <span>•</span>
+                <span>14 min read</span>
+              </div>
+              <h3 class="font-subheading-card text-sm sm:text-base font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-2 mb-2">
+                <a href="#article-spring">Spring Boot Production Architecture</a>
+              </h3>
+              <p class="font-body-article text-xs text-on-surface-variant line-clamp-3 mb-4 leading-relaxed">
+                A comprehensive blueprint for zero-downtime microservices, thread pool dimensioning, dynamic configuration topologies, and JVM runtime metrics.
+              </p>
+              <div class="flex flex-wrap gap-1.5 mb-2">
+                <span class="px-2 py-0.5 rounded bg-surface-container-low text-primary font-code-mono text-[10px] border border-primary/20">Spring 3</span>
+                <span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-mono text-[10px]">Java 21</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-4 sm:px-5 pb-5 pt-0">
+            <a class="inline-flex items-center gap-1 font-ui-interactive text-xs font-semibold text-primary group-hover:translate-x-0.5 transition-transform" href="#article-spring">
+              <span>Read Note</span>
+              <svg class="w-3.5 h-3.5 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Article 2: Java Object-Oriented Programming & JVM Memory -->
+        <article class="article-card flex flex-col justify-between rounded-xl border border-border-strong/30 bg-surface shadow-xs overflow-hidden hover:border-primary/50 transition-all group" id="article-oop" data-category="java jvm oop">
+          <div>
+            <!-- Custom Memory Lattice Diagram -->
+            <div class="h-36 w-full bg-surface-container relative overflow-hidden flex items-center justify-center border-b border-border-subtle">
+              <svg class="w-full h-full text-primary/40 p-4" fill="none" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="160" cy="40" r="22" stroke="currentColor" stroke-width="1.5"></circle>
+                <text fill="currentColor" font-family="monospace" font-size="10" x="146" y="44">Base</text>
+                <circle cx="90" cy="120" r="20" stroke="currentColor" stroke-width="1.5"></circle>
+                <text fill="currentColor" font-family="monospace" font-size="10" x="76" y="124">SubA</text>
+                <circle cx="230" cy="120" fill="#E8F7F3" r="20" stroke="#0F766E" stroke-width="1.5"></circle>
+                <text fill="#0F766E" font-family="monospace" font-size="10" font-weight="bold" x="212" y="124">Record</text>
+                <line stroke="currentColor" stroke-width="1.2" x1="145" x2="105" y1="58" y2="102"></line>
+                <line stroke="currentColor" stroke-dasharray="2 2" stroke-width="1.2" x1="175" x2="215" y1="58" y2="102"></line>
+              </svg>
+              <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-surface/90 border border-border-subtle text-on-surface font-code-mono text-[10px] uppercase font-bold tracking-wider">
+                Core Java
+              </span>
+            </div>
+
+            <div class="p-4 sm:p-5">
+              <div class="flex items-center gap-2 font-code-mono text-[11px] text-on-surface-variant mb-2">
+                <time datetime="2026-09-15">15 Sep 2026</time>
+                <span>•</span>
+                <span>12 min read</span>
+              </div>
+              <h3 class="font-subheading-card text-sm sm:text-base font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-2 mb-2">
+                <a href="#article-oop">Java OOP &amp; JVM Memory Models</a>
+              </h3>
+              <p class="font-body-article text-xs text-on-surface-variant line-clamp-3 mb-4 leading-relaxed">
+                Demystifying polymorphism, dynamic dispatch, cache-line alignment on 64-bit architectures, and modern functional integration with immutable records.
+              </p>
+              <div class="flex flex-wrap gap-1.5 mb-2">
+                <span class="px-2 py-0.5 rounded bg-surface-container-low text-primary font-code-mono text-[10px] border border-primary/20">Memory</span>
+                <span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-mono text-[10px]">OOP</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-4 sm:px-5 pb-5 pt-0">
+            <a class="inline-flex items-center gap-1 font-ui-interactive text-xs font-semibold text-primary group-hover:translate-x-0.5 transition-transform" href="#article-oop">
+              <span>Read Note</span>
+              <svg class="w-3.5 h-3.5 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Article 3: Holy Qur’an Recitation Library (Replaced Jinn Theology) -->
+        <article class="article-card flex flex-col justify-between rounded-xl border border-border-strong/30 bg-surface shadow-xs overflow-hidden hover:border-primary/50 transition-all group" id="article-quran" data-category="quran surah audio scripture">
+          <div>
+            <!-- Custom Sacred Octagram Diagram -->
+            <div class="h-36 w-full bg-surface-container relative overflow-hidden flex items-center justify-center border-b border-border-subtle">
+              <svg class="w-full h-full text-primary/40 p-4" fill="none" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="160" cy="90" r="46" stroke="currentColor" stroke-width="1.5"></circle>
+                <circle cx="160" cy="90" r="32" stroke="currentColor" stroke-dasharray="3 3" stroke-width="1.2"></circle>
+                <polygon points="160,52 172,78 200,78 178,94 186,120 160,104 134,120 142,94 120,78 148,78" fill="#0F766E" fill-opacity="0.15" stroke="#0F766E" stroke-width="1.2"></polygon>
+              </svg>
+              <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-surface/90 border border-border-subtle text-on-surface font-code-mono text-[10px] uppercase font-bold tracking-wider">
+                Qur'an
+              </span>
+            </div>
+
+            <div class="p-4 sm:p-5">
+              <div class="flex items-center gap-2 font-code-mono text-[11px] text-on-surface-variant mb-2">
+                <time datetime="2026-09-17">17 Sep 2026</time>
+                <span>•</span>
+                <span>Reference</span>
+              </div>
+              <h3 class="font-subheading-card text-sm sm:text-base font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-2 mb-2">
+                <a href="quran.html">Holy Qur’an Library: 114 Surahs &amp; Recitations</a>
+              </h3>
+              <p class="font-body-article text-xs text-on-surface-variant line-clamp-3 mb-4 leading-relaxed">
+                Complete 114 Surahs audio streaming with top Qaris, authentic King Fahd Madinah Mushaf, Tajweed editions, and English translation PDFs.
+              </p>
+              <div class="flex flex-wrap gap-1.5 mb-2">
+                <span class="px-2 py-0.5 rounded bg-surface-container-low text-primary font-code-mono text-[10px] border border-primary/20">114 Surahs</span>
+                <span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-mono text-[10px]">Audio</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-4 sm:px-5 pb-5 pt-0">
+            <a class="inline-flex items-center gap-1 font-ui-interactive text-xs font-semibold text-primary group-hover:translate-x-0.5 transition-transform" href="quran.html">
+              <span>Listen &amp; Read</span>
+              <svg class="w-3.5 h-3.5 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Article 4: Vanilla Web Development Architecture -->
+        <article class="article-card flex flex-col justify-between rounded-xl border border-border-strong/30 bg-surface shadow-xs overflow-hidden hover:border-primary/50 transition-all group" id="article-vanilla" data-category="web vanilla-js pwa">
+          <div>
+            <!-- Vanilla DOM Diagram -->
+            <div class="h-36 w-full bg-surface-container relative overflow-hidden flex items-center justify-center border-b border-border-subtle">
+              <svg class="w-full h-full text-primary/40 p-4" fill="none" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+                <rect height="120" rx="4" stroke="currentColor" stroke-width="1.5" width="260" x="30" y="30"></rect>
+                <rect fill="#E8F7F3" height="30" rx="2" stroke="#0F766E" stroke-width="1.2" width="220" x="50" y="50"></rect>
+                <text fill="#0F766E" font-family="monospace" font-size="10" font-weight="bold" x="70" y="70">&lt;custom-element&gt; (Zero-Build)</text>
+                <line stroke="currentColor" stroke-dasharray="3 3" stroke-width="1" x1="50" x2="270" y1="105" y2="105"></line>
+                <text fill="currentColor" font-family="monospace" font-size="10" x="50" y="130">ShadowDOM • MutationObserver</text>
+              </svg>
+              <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-surface/90 border border-border-subtle text-on-surface font-code-mono text-[10px] uppercase font-bold tracking-wider">
+                Web Standards
+              </span>
+            </div>
+
+            <div class="p-4 sm:p-5">
+              <div class="flex items-center gap-2 font-code-mono text-[11px] text-on-surface-variant mb-2">
+                <time datetime="2026-08-20">20 Aug 2026</time>
+                <span>•</span>
+                <span>9 min read</span>
+              </div>
+              <h3 class="font-subheading-card text-sm sm:text-base font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-2 mb-2">
+                <a href="#article-vanilla">Vanilla Web Development Architecture</a>
+              </h3>
+              <p class="font-body-article text-xs text-on-surface-variant line-clamp-3 mb-4 leading-relaxed">
+                Building durable, zero-dependency web applications using Web Components, modern CSS container queries, and native service worker cache hierarchies.
+              </p>
+              <div class="flex flex-wrap gap-1.5 mb-2">
+                <span class="px-2 py-0.5 rounded bg-surface-container-low text-primary font-code-mono text-[10px] border border-primary/20">Vanilla JS</span>
+                <span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-mono text-[10px]">PWA Cache</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="px-4 sm:px-5 pb-5 pt-0">
+            <a class="inline-flex items-center gap-1 font-ui-interactive text-xs font-semibold text-primary group-hover:translate-x-0.5 transition-transform" href="#article-vanilla">
+              <span>Read Note</span>
+              <svg class="w-3.5 h-3.5 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 7. SEARCHABLE KNOWLEDGE LIBRARY & FAST TOPIC FILTERS -->
+    <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 py-4" id="library-filters">
+      <div class="p-5 rounded-xl border border-border-strong/30 bg-surface shadow-xs">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-3">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 stroke-current text-primary" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h7"></path></svg>
+            <span class="font-ui-interactive text-xs font-bold uppercase tracking-wider text-on-surface">Knowledge Index &amp; Topic Filters</span>
+          </div>
+          <span class="font-code-mono text-[11px] text-on-surface-variant">Instant in-browser index • Zero network queries</span>
+        </div>
+
+        <!-- Filter Chips Row -->
+        <div class="flex flex-wrap items-center gap-2 text-xs font-code-mono" id="filterChipsRow">
+          <button class="topic-chip active px-2.5 py-1 rounded bg-primary text-on-primary font-medium transition-colors cursor-pointer" data-tag="all" type="button">#all (4)</button>
+          <button class="topic-chip px-2.5 py-1 rounded bg-bg-canvas hover:bg-surface-container border border-border-subtle text-on-surface transition-colors cursor-pointer" data-tag="java" type="button">#java</button>
+          <button class="topic-chip px-2.5 py-1 rounded bg-bg-canvas hover:bg-surface-container border border-border-subtle text-on-surface transition-colors cursor-pointer" data-tag="spring-boot" type="button">#spring-boot</button>
+          <button class="topic-chip px-2.5 py-1 rounded bg-bg-canvas hover:bg-surface-container border border-border-subtle text-on-surface transition-colors cursor-pointer" data-tag="jvm" type="button">#jvm</button>
+          <button class="topic-chip px-2.5 py-1 rounded bg-bg-canvas hover:bg-surface-container border border-border-subtle text-on-surface transition-colors cursor-pointer" data-tag="quran" type="button">#quran</button>
+          <button class="topic-chip px-2.5 py-1 rounded bg-bg-canvas hover:bg-surface-container border border-border-subtle text-on-surface transition-colors cursor-pointer" data-tag="surah" type="button">#surah</button>
+          <button class="topic-chip px-2.5 py-1 rounded bg-bg-canvas hover:bg-surface-container border border-border-subtle text-on-surface transition-colors cursor-pointer" data-tag="audio" type="button">#audio</button>
+          <button class="topic-chip px-2.5 py-1 rounded bg-bg-canvas hover:bg-surface-container border border-border-subtle text-on-surface transition-colors cursor-pointer" data-tag="web" type="button">#web</button>
+        </div>
+
+        <p id="filterEmptyState" class="hidden mt-4 pt-4 border-t border-border-subtle font-body-article text-xs text-on-surface-variant" role="status">
+          No publications carry this topic yet.
+          <button id="filterResetBtn" type="button" class="text-primary font-semibold hover:underline cursor-pointer">Show all publications</button>
+        </p>
+      </div>
+    </section>
+
+    <!-- 8. FOUR-PILLAR TRUST & CRAFT STRIP -->
+    <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 py-4">
+      <div class="p-6 rounded-xl border border-border-strong/30 bg-surface-container-low shadow-xs">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Pillar 1 -->
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded bg-surface border border-primary/20 text-primary flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 stroke-current" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <div>
+              <span class="font-ui-interactive text-xs font-bold text-on-surface block">Zero Trackers &amp; Cookies</span>
+              <span class="font-code-mono text-[10px] text-on-surface-variant block mt-0.5">Strict non-commercial privacy</span>
+            </div>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded bg-surface border border-primary/20 text-primary flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 stroke-current" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <div>
+              <span class="font-ui-interactive text-xs font-bold text-on-surface block">Offline Cache Ready</span>
+              <span class="font-code-mono text-[10px] text-on-surface-variant block mt-0.5">Service worker precache active</span>
+            </div>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded bg-surface border border-primary/20 text-primary flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 stroke-current" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            </div>
+            <div>
+              <span class="font-ui-interactive text-xs font-bold text-on-surface block">Open Source on GitHub</span>
+              <span class="font-code-mono text-[10px] text-on-surface-variant block mt-0.5">Public verifiable repositories</span>
+            </div>
+          </div>
+
+          <!-- Pillar 4 -->
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded bg-surface border border-primary/20 text-primary flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 stroke-current" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a10 10 0 0 1 0 20z" fill="currentColor"></path></svg>
+            </div>
+            <div>
+              <span class="font-ui-interactive text-xs font-bold text-on-surface block">WCAG 2.2 AA Contrast</span>
+              <span class="font-code-mono text-[10px] text-on-surface-variant block mt-0.5">Strict 4.5:1 / 3:1 verified text</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. METHODOLOGY & SOURCES COLOPHON -->
+    <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 py-4">
+      <div class="rounded-xl border border-border-strong/30 bg-surface p-6 shadow-xs">
+        <div class="flex items-center gap-2 mb-3 pb-2 border-b border-border-subtle">
+          <svg class="w-4 h-4 stroke-current text-primary" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          <span class="font-ui-interactive text-xs font-bold uppercase tracking-wider text-on-surface">Methodology &amp; Textual Sources Colophon</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs leading-relaxed text-on-surface-variant">
+          <div>
+            <h3 class="font-bold text-on-surface mb-1 font-ui-interactive">Qur’anic Text</h3>
+            <p>Derived strictly from the King Fahd Complex for the Printing of the Holy Qur’an and Tanzil Project verified Uthmani script (Hafs 'an 'Asim recitation).</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface mb-1 font-ui-interactive">Translation &amp; Tafsir</h3>
+            <p>English renderings by Saheeh International. Tafsir citations sourced from Ibn Kathir, Al-Tabari, and Al-Qurtubi with referenced volume numbers.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface mb-1 font-ui-interactive">Hadith &amp; Isnad Verification</h3>
+            <p>Cross-referenced against canonical Kutub al-Sittah editions with verified isnad classifications according to classical Muhaddithin consensus.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. CREATOR NOTE & RSS SYNDICATE BLOCK -->
+    <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 py-6" id="author-section">
+      <div class="rounded-xl border border-border-strong/30 bg-surface p-6 sm:p-8 shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="max-w-2xl">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-9 h-9 rounded bg-primary text-on-primary flex items-center justify-center font-code-mono text-sm font-bold shadow-xs">
+              Z
+            </div>
+            <div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="font-ui-interactive font-bold text-sm text-on-surface">Zahiruddin</span>
+                <span class="text-border-strong text-xs">•</span>
+                <span class="font-code-mono text-xs text-primary font-medium">Systems Engineer &amp; Student of Knowledge</span>
+              </div>
+              <span class="font-code-mono text-[11px] text-on-surface-variant block">Ruqyah Scholarly Archive &amp; Systems Lab</span>
+            </div>
+          </div>
+          <p class="font-body-article text-xs sm:text-sm text-on-surface-variant leading-relaxed mt-3">
+            Ruqyah is maintained by Zahiruddin. An independent, non-commercial digital archive and research lab built for deep scholarship, rigorous software engineering, and quiet contemplation. Engineered without algorithmic feeds, tracking scripts, or ad networks.
+          </p>
+          <div class="mt-3">
+            <a class="font-ui-interactive text-xs font-semibold text-primary hover:text-primary-container inline-flex items-center gap-1 group" href="about.html">
+              <span>Read the editorial mission and citation methodology</span>
+              <svg class="w-3.5 h-3.5 stroke-current group-hover:translate-x-0.5 transition-transform" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- RSS Subscribe Box -->
+        <div class="flex-shrink-0 w-full md:w-auto flex flex-col items-start md:items-end p-4 rounded-lg bg-surface-container border border-border-subtle">
+          <span class="font-code-mono text-[11px] text-on-surface-variant mb-2 font-medium">Syndication • Pure XML / Atom</span>
+          <a class="w-full md:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded bg-surface hover:bg-surface-container-low border border-border-strong/40 text-on-surface transition-all font-ui-interactive text-xs font-semibold shadow-xs" href="rss.xml">
+            <svg class="w-4 h-4 stroke-current text-tertiary" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+            <span>Subscribe via RSS Feed</span>
+          </a>
+          <span class="font-code-mono text-[10px] text-on-surface-variant mt-2">Zero email harvesting • Feed reader compliant</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 11. PERSISTENT BOTTOM AUDIO RECITER BAR (Valid Inline SVGs, Non-intrusive) -->
+  <aside aria-label="Qur'an Recitation Audio Player" class="fixed bottom-0 left-0 right-0 z-50 bg-surface/96 backdrop-blur-md border-t border-border-subtle shadow-[0_-2px_12px_rgba(15,23,42,0.06)] px-4 sm:px-6 py-2.5 transition-all" id="audio-player-bar">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+      
+      <!-- Track Meta (Left) -->
+      <div class="flex items-center justify-between w-full md:w-auto gap-3">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded bg-surface-container-low text-primary flex items-center justify-center flex-shrink-0 border border-primary/20 shadow-xs">
+            <!-- Audio Icon -->
+            <svg class="w-4 h-4 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+          </div>
+          <div class="flex flex-col min-w-0">
+            <div class="flex items-center gap-1.5 truncate">
+              <span class="font-code-mono text-xs font-bold text-on-surface tracking-tight truncate" id="player-verse-title">Al-Baqarah 2:255</span>
+              <span class="px-1.5 py-0.2 rounded bg-surface-container-low text-primary font-code-mono text-[10px] font-semibold border border-primary/20" id="player-verse-badge">Ayat al-Kursi</span>
+            </div>
+            <div class="flex items-center gap-1.5 font-code-mono text-[10px] text-on-surface-variant mt-0.5">
+              <svg class="w-3 h-3 stroke-current text-primary" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" x2="12" y1="19" y2="23"></line><line x1="8" x2="16" y1="23" y2="23"></line></svg>
+              <span class="truncate" id="player-reciter-name">Mishary Alafasy</span>
+              <span class="text-border-strong/60">•</span>
+              <span class="text-primary font-medium">128kbps EveryAyah</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Repeat Button -->
+        <div class="flex items-center gap-1">
+          <button id="player-repeat-btn" aria-label="Repeat Ayah" class="w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer" title="Repeat Current Ayah" type="button">
+            <svg class="w-3.5 h-3.5 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Controls & Scrubber (Center) -->
+      <div class="flex flex-col items-center w-full md:w-5/12 max-w-xl gap-1">
+        <div class="flex items-center gap-3 w-full justify-center">
+          <button id="player-prev-btn" aria-label="Previous Ayah" class="w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer" title="Previous Ayah" type="button">
+            <svg class="w-4 h-4 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" x2="5" y1="19" y2="5"></line></svg>
+          </button>
+          <button id="player-main-play-btn" aria-label="Play recitation" class="w-9 h-9 rounded-full bg-primary hover:bg-primary-container text-on-primary flex items-center justify-center transition-all shadow-xs focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1 cursor-pointer" title="Play / Pause (Space)" type="button">
+            <svg class="w-4 h-4 fill-current ml-0.5" id="player-play-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          </button>
+          <button id="player-next-btn" aria-label="Next Ayah" class="w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer" title="Next Ayah" type="button">
+            <svg class="w-4 h-4 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" x2="19" y1="5" y2="19"></line></svg>
+          </button>
+        </div>
+        <div class="flex items-center gap-2 w-full">
+          <span class="font-code-mono text-[10px] text-on-surface-variant w-8 text-right" id="player-time-curr">00:00</span>
+          <div class="flex-1 relative flex items-center py-1 cursor-pointer" id="player-scrub-bar">
+            <div class="w-full h-1 rounded-full bg-surface-container overflow-hidden">
+              <div class="h-full bg-primary rounded-full" id="player-progress" style="width: 0%;"></div>
+            </div>
+            <div class="absolute w-2.5 h-2.5 rounded-full bg-primary -ml-1 border-2 border-surface shadow-xs" id="player-thumb" style="left: 0%;"></div>
+          </div>
+          <span class="font-code-mono text-[10px] text-on-surface-variant w-8" id="player-time-total">00:00</span>
+        </div>
+      </div>
+
+      <!-- Quick Audio Utilities (Right) -->
+      <div class="hidden lg:flex items-center gap-3">
+        <div class="flex items-center gap-1.5">
+          <!-- Speed Toggle -->
+          <button id="speed-toggle-btn" aria-label="Playback Speed" class="px-2 py-1 rounded bg-surface border border-border-subtle hover:bg-surface-container font-code-mono text-xs font-semibold text-primary transition-colors cursor-pointer" title="Playback Speed" type="button">
+            1.0x
+          </button>
+          <!-- Reciter Dropdown Selector -->
+          <button id="reciter-info-btn" aria-label="Select Reciter" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface hover:bg-surface-container border border-border-subtle text-on-surface font-code-mono text-xs transition-colors cursor-pointer" type="button">
+            <span>Alafasy</span>
+            <svg class="w-3 h-3 stroke-current text-on-surface-variant" fill="none" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <!-- Tafsir Trigger -->
+          <button id="tafsir-kursi-btn" aria-label="Tafsir Drawer" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface hover:bg-surface-container border border-border-subtle text-on-surface font-code-mono text-xs transition-colors cursor-pointer" title="Toggle Tafsir" type="button">
+            <span>Tafsir</span>
+          </button>
+        </div>
+
+        <!-- Volume Control Slider & Minimize -->
+        <div class="flex items-center gap-2 pl-2 border-l border-border-subtle">
+          <button id="audio-mute-btn" aria-label="Mute Audio" class="w-7 h-7 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer" type="button">
+            <svg class="w-4 h-4 stroke-current" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+          </button>
+          <div class="w-14 h-1.5 rounded-full bg-surface-container cursor-pointer overflow-hidden" id="volume-track">
+            <div class="h-full bg-primary rounded-full" id="volume-bar" style="width: 80%;"></div>
+          </div>
+          <button id="minimize-player-btn" aria-label="Minimize Player" class="w-7 h-7 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer" title="Minimize / Expand Player" type="button">
+            <svg class="w-4 h-4 stroke-current" fill="none" id="minimize-icon" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 12. EDITORIAL FOOTER (Standard Canonical Component) -->
+
+  <!-- Keyboard Shortcuts Modal & Command Palette (WCAG 2.1.4 compliant) -->
+  <div id="searchModal" class="hidden fixed inset-0 z-[90] bg-on-surface/40 backdrop-blur-sm flex items-start justify-center pt-20 px-4" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle" aria-hidden="true">
+    <div class="w-full max-w-xl bg-surface rounded-xl border border-border-strong/30 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div class="flex items-center px-4 border-b border-border-subtle bg-bg-canvas/50">
+        <svg class="w-4 h-4 stroke-current text-primary mr-3" fill="none" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M20 20L16 16"></path></svg>
+        <input id="searchModalInput" type="text" placeholder="Search documentation, articles, surahs..." class="w-full py-3.5 bg-transparent border-0 focus:outline-none focus:ring-0 text-on-surface text-sm font-ui-interactive" autocomplete="off" spellcheck="false">
+        <kbd class="px-2 py-0.5 rounded text-[10px] font-code-mono bg-surface border border-border-subtle text-on-surface-variant">Esc</kbd>
+      </div>
+
+      <div id="searchResultsList" class="p-3 max-h-96 overflow-y-auto space-y-1">
+        <div id="searchModalTitle" class="px-2 py-1 text-[10px] font-code-mono uppercase tracking-wider text-on-surface-variant font-semibold">Suggested Entries</div>
+        <a href="quran-verses.html" class="search-result-item flex items-center justify-between p-2 rounded hover:bg-surface-container transition-colors">
+          <div class="flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded bg-surface-container flex items-center justify-center text-primary text-xs font-code-mono">01</span>
+            <span class="text-xs font-medium text-on-surface">108 Master Verses Concordance</span>
+          </div>
+          <span class="text-[10px] font-code-mono text-on-surface-variant">Corpus</span>
+        </a>
+        <a href="quran.html" class="search-result-item flex items-center justify-between p-2 rounded hover:bg-surface-container transition-colors">
+          <div class="flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded bg-surface-container flex items-center justify-center text-primary text-xs font-code-mono">03</span>
+            <span class="text-xs font-medium text-on-surface">Qur’an Recitation Engine (114 Surahs)</span>
+          </div>
+          <span class="text-[10px] font-code-mono text-on-surface-variant">Audio Engine</span>
+        </a>
+        <a href="about.html" class="search-result-item flex items-center justify-between p-2 rounded hover:bg-surface-container transition-colors">
+          <div class="flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded bg-surface-container flex items-center justify-center text-primary text-xs font-code-mono">03</span>
+            <span class="text-xs font-medium text-on-surface">About Zahiruddin &amp; Ruqyah Editorial Mission</span>
+          </div>
+          <span class="text-[10px] font-code-mono text-on-surface-variant">Editorial</span>
+        </a>
+      </div>
+
+      <div class="px-4 py-2 border-t border-border-subtle bg-bg-canvas/50 flex items-center justify-between text-[11px] font-code-mono text-on-surface-variant">
+        <span>Type to filter • Press Esc to close</span>
+        <span>⌘K / Ctrl+K</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Keyboard Shortcuts Modal (WCAG 2.1.4 compliant) -->
+  <div id="shortcutsModal" class="hidden fixed inset-0 z-[95] bg-on-surface/40 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="shortcutsTitle" aria-hidden="true">
+    <div class="w-full max-w-lg bg-surface rounded-xl border border-border-strong/30 shadow-2xl p-6 relative">
+      <div class="flex items-center justify-between pb-4 mb-4 border-b border-border-subtle">
+        <div class="flex items-center gap-2.5">
+          <div class="w-7 h-7 rounded bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">⌨</div>
+          <h3 id="shortcutsTitle" class="font-subheading-card text-base font-bold text-on-surface">Keyboard Shortcuts</h3>
+        </div>
+        <button id="closeShortcutsBtn" aria-label="Close shortcuts modal" class="w-7 h-7 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors cursor-pointer" type="button">
+          ✕
+        </button>
+      </div>
+
+      <!-- Single-key shortcut toggle for accessibility -->
+      <div class="p-3 mb-4 rounded-lg bg-surface-container-low border border-primary/20 flex items-center justify-between text-xs">
+        <div>
+          <span class="font-semibold text-on-surface block">Single-Key Shortcuts</span>
+          <span class="text-on-surface-variant text-[11px]">Enable letters like T, H, A, C without Ctrl</span>
+        </div>
+        <label class="relative inline-flex items-center cursor-pointer">
+          <input type="checkbox" id="toggleSingleShortcuts" class="sr-only peer" checked>
+          <div class="w-9 h-5 bg-surface-container rounded-full peer peer-checked:bg-primary peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all"></div>
+        </label>
+      </div>
+
+      <div class="space-y-3 max-h-72 overflow-y-auto text-xs font-ui-interactive">
+        <div class="space-y-1.5">
+          <div class="text-[10px] font-code-mono uppercase tracking-wider text-on-surface-variant font-semibold">General Navigation</div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Search &amp; Command Palette</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">Ctrl + K</kbd>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Toggle Light / Sepia / Dark Theme</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">T</kbd>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Open Shortcuts Help</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">?</kbd>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Close Dialogs &amp; Overlays</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">Esc</kbd>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 pt-2">
+          <div class="text-[10px] font-code-mono uppercase tracking-wider text-on-surface-variant font-semibold">Audio &amp; Quran Player</div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Play / Pause Audio</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">Space</kbd>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Previous / Next Ayah</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">← / →</kbd>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Minimize / Restore Audio Bar</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">V</kbd>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      'use strict';
+
+      // 1. Audio Recitation Engine with Real EveryAyah Streams
+      const TRACK_KURSI = {
+        verse: '2:255',
+        title: 'Al-Baqarah 2:255',
+        badge: 'Ayat al-Kursi',
+        reciter: 'Mishary Alafasy',
+        src: 'https://everyayah.com/data/Alafasy_128kbps/002255.mp3'
+      };
+      const TRACK_TAHA = {
+        verse: '20:114',
+        title: 'Ta-Ha 20:114',
+        badge: 'Ayah of the Day',
+        reciter: 'Mishary Alafasy',
+        src: 'https://everyayah.com/data/Alafasy_128kbps/020114.mp3'
+      };
+
+      let audio = null;
+      let currentTrack = TRACK_KURSI;
+      let isPlaying = false;
+      let isRepeat = false;
+      let autoAdvance = true;
+      let playbackSpeed = 1.0;
+      const speeds = [1.0, 1.25, 1.5, 0.75];
+
+      const flagshipPlayBtn = document.getElementById('flagship-play-btn');
+      const flagshipPlayIcon = document.getElementById('flagship-play-icon');
+      const flagshipPlayLabel = document.getElementById('flagship-play-label');
+      const playerMainPlayBtn = document.getElementById('player-main-play-btn');
+      const playerPlayIcon = document.getElementById('player-play-icon');
+      const playerVerseTitle = document.getElementById('player-verse-title');
+      const playerVerseBadge = document.getElementById('player-verse-badge');
+      const playerReciterName = document.getElementById('player-reciter-name');
+      const playerTimeCurr = document.getElementById('player-time-curr');
+      const playerTimeTotal = document.getElementById('player-time-total');
+      const playerProgress = document.getElementById('player-progress');
+      const playerThumb = document.getElementById('player-thumb');
+      const playerScrubBar = document.getElementById('player-scrub-bar');
+      const speedToggleBtn = document.getElementById('speed-toggle-btn');
+      const playerRepeatBtn = document.getElementById('player-repeat-btn');
+      const playerPrevBtn = document.getElementById('player-prev-btn');
+      const playerNextBtn = document.getElementById('player-next-btn');
+      const audioMuteBtn = document.getElementById('audio-mute-btn');
+      const volumeBar = document.getElementById('volume-bar');
+      const volumeTrack = document.getElementById('volume-track');
+      const minimizePlayerBtn = document.getElementById('minimize-player-btn');
+      const minimizeIcon = document.getElementById('minimize-icon');
+      const audioPlayerBar = document.getElementById('audio-player-bar');
+      const playAyahOfDayBtn = document.getElementById('playAyahOfDayBtn');
+
+      function formatTime(seconds) {
+        if (isNaN(seconds) || seconds < 0) return '00:00';
+        const m = Math.floor(seconds / 60);
+        const s = Math.floor(seconds % 60);
+        return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+      }
+
+      function initAudio() {
+        if (!audio) {
+          audio = new Audio(currentTrack.src);
+          audio.preload = 'metadata';
+          audio.playbackRate = playbackSpeed;
+
+          audio.addEventListener('timeupdate', () => {
+            if (audio.duration) {
+              const pct = (audio.currentTime / audio.duration) * 100;
+              if (playerProgress) playerProgress.style.width = pct + '%';
+              if (playerThumb) playerThumb.style.left = pct + '%';
+              if (playerTimeCurr) playerTimeCurr.textContent = formatTime(audio.currentTime);
+            }
+          });
+
+          audio.addEventListener('loadedmetadata', () => {
+            if (playerTimeTotal && audio.duration) {
+              playerTimeTotal.textContent = formatTime(audio.duration);
+            }
+          });
+
+          audio.addEventListener('ended', () => {
+            if (isRepeat) {
+              audio.currentTime = 0;
+              audio.play();
+            } else if (autoAdvance && currentTrack === TRACK_KURSI) {
+              loadTrack(TRACK_TAHA, true);
+            } else {
+              setPlayState(false);
+            }
+          });
+        }
+      }
+
+      function setPlayState(playing) {
+        isPlaying = playing;
+        const playSvg = '<polygon points="5 3 19 12 5 21 5 3"></polygon>';
+        const pauseSvg = '<rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>';
+
+        if (playerPlayIcon) playerPlayIcon.innerHTML = isPlaying ? pauseSvg : playSvg;
+        if (flagshipPlayIcon) flagshipPlayIcon.innerHTML = isPlaying && currentTrack === TRACK_KURSI ? pauseSvg : playSvg;
+        if (flagshipPlayLabel) flagshipPlayLabel.textContent = isPlaying && currentTrack === TRACK_KURSI ? 'Pause' : 'Play (Alafasy)';
+      }
+
+      function loadTrack(track, autoPlay) {
+        currentTrack = track;
+        initAudio();
+        audio.src = track.src;
+        audio.playbackRate = playbackSpeed;
+
+        if (playerVerseTitle) playerVerseTitle.textContent = track.title;
+        if (playerVerseBadge) playerVerseBadge.textContent = track.badge;
+        if (playerReciterName) playerReciterName.textContent = track.reciter;
+
+        if (autoPlay) {
+          audio.play().then(() => setPlayState(true)).catch(() => setPlayState(false));
+        } else {
+          setPlayState(false);
+        }
+      }
+
+      function toggleAudio() {
+        initAudio();
+        if (isPlaying) {
+          audio.pause();
+          setPlayState(false);
+        } else {
+          audio.play().then(() => setPlayState(true)).catch(() => setPlayState(false));
+        }
+      }
+
+      flagshipPlayBtn?.addEventListener('click', () => {
+        if (currentTrack !== TRACK_KURSI) {
+          loadTrack(TRACK_KURSI, true);
+        } else {
+          toggleAudio();
+        }
+      });
+
+      playAyahOfDayBtn?.addEventListener('click', () => {
+        if (currentTrack !== TRACK_TAHA) {
+          loadTrack(TRACK_TAHA, true);
+        } else {
+          toggleAudio();
+        }
+      });
+
+      playerMainPlayBtn?.addEventListener('click', toggleAudio);
+
+      playerPrevBtn?.addEventListener('click', () => {
+        if (currentTrack === TRACK_TAHA) {
+          loadTrack(TRACK_KURSI, true);
+        } else if (audio) {
+          audio.currentTime = 0;
+        }
+      });
+
+      playerNextBtn?.addEventListener('click', () => {
+        if (currentTrack === TRACK_KURSI) {
+          loadTrack(TRACK_TAHA, true);
+        } else if (audio) {
+          audio.currentTime = 0;
+        }
+      });
+
+      playerScrubBar?.addEventListener('click', (e) => {
+        if (!audio || !audio.duration) return;
+        const rect = playerScrubBar.getBoundingClientRect();
+        const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        audio.currentTime = pos * audio.duration;
+      });
+
+      speedToggleBtn?.addEventListener('click', () => {
+        const nextIdx = (speeds.indexOf(playbackSpeed) + 1) % speeds.length;
+        playbackSpeed = speeds[nextIdx];
+        speedToggleBtn.textContent = playbackSpeed.toFixed(playbackSpeed % 1 === 0 ? 1 : 2) + 'x';
+        if (audio) audio.playbackRate = playbackSpeed;
+      });
+
+      playerRepeatBtn?.addEventListener('click', () => {
+        isRepeat = !isRepeat;
+        playerRepeatBtn.classList.toggle('text-primary', isRepeat);
+        playerRepeatBtn.classList.toggle('bg-surface-container-low', isRepeat);
+      });
+
+      // Volume & Mute
+      let lastVolume = 0.8;
+      audioMuteBtn?.addEventListener('click', () => {
+        if (!audio) initAudio();
+        if (audio.muted || audio.volume === 0) {
+          audio.muted = false;
+          audio.volume = lastVolume;
+          if (volumeBar) volumeBar.style.width = (lastVolume * 100) + '%';
+        } else {
+          lastVolume = audio.volume;
+          audio.muted = true;
+          if (volumeBar) volumeBar.style.width = '0%';
+        }
+      });
+
+      volumeTrack?.addEventListener('click', (e) => {
+        if (!audio) initAudio();
+        const rect = volumeTrack.getBoundingClientRect();
+        const vol = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        audio.volume = vol;
+        audio.muted = false;
+        lastVolume = vol;
+        if (volumeBar) volumeBar.style.width = (vol * 100) + '%';
+      });
+
+      // Minimize Floating Player Bar
+      function toggleMinimize() {
+        if (!audioPlayerBar) return;
+        const isMin = audioPlayerBar.classList.contains('translate-y-12');
+        audioPlayerBar.classList.toggle('translate-y-12', !isMin);
+        if (minimizeIcon) {
+          minimizeIcon.innerHTML = isMin
+            ? '<polyline points="6 9 12 15 18 9"></polyline>'
+            : '<polyline points="18 15 12 9 6 15"></polyline>';
+        }
+      }
+      minimizePlayerBtn?.addEventListener('click', toggleMinimize);
+
+      // Auto-Next Toggle
+      const autoAdvBtn = document.getElementById('auto-adv-btn');
+      const autoAdvLabel = document.getElementById('auto-adv-label');
+      autoAdvBtn?.addEventListener('click', () => {
+        autoAdvance = !autoAdvance;
+        if (autoAdvLabel) autoAdvLabel.textContent = autoAdvance ? 'Auto-Next: On' : 'Auto-Next: Off';
+        autoAdvBtn.classList.toggle('opacity-70', !autoAdvance);
+      });
+
+      // 2. Copy Verse Action
+      const copyVerseBtn = document.getElementById('copy-verse-btn');
+      const copyVerseLabel = document.getElementById('copy-verse-label');
+      copyVerseBtn?.addEventListener('click', () => {
+        const textToCopy = "اللَّهُ لَآ إِلَٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ ۚ لَا تَأْخُذُهُۥ سِنَةٌۭ وَلَا نَوْمٌۭ ۚ لَّهُۥ مَا فِى ٱلسَّمَٰوَٰتِ وَمَا فِى ٱلْأَرْضِ ۗ مَن ذَا ٱلَّذِى يَشْفَعُ عِندَهُۥٓ إِلَّا بِإِذْنِهِۦ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَىْءٍۢ مِّنْ عِلْمِهِۦٓ إِلَّا بِمَا شَآءَ ۚ وَسِعَ كُرْسِيُّهُ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضَ ۖ وَلَا يَـُٔودُهُۥ حِفْظُهُمَا ۚ وَهُوَ ٱلْعَلِىُّ ٱلْعَظِيمُ — [Surah Al-Baqarah 2:255 • Sahih Muslim #810]";
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(textToCopy).then(() => {
+            if (copyVerseLabel) copyVerseLabel.textContent = 'Copied!';
+            setTimeout(() => { if (copyVerseLabel) copyVerseLabel.textContent = 'Copy'; }, 2000);
+          });
+        }
+      });
+
+      // 3. Bookmarking Ayat al-Kursi
+      const bookmarkVerseBtn = document.getElementById('bookmark-verse-btn');
+      function updateBookmarkDisplay() {
+        try {
+          const bookmarks = JSON.parse(localStorage.getItem('heynuo-bookmarks') || '[]');
+          const isSaved = bookmarks.includes('2:255');
+          if (bookmarkVerseBtn) {
+            bookmarkVerseBtn.classList.toggle('text-primary', isSaved);
+            bookmarkVerseBtn.classList.toggle('bg-surface-container-low', isSaved);
+            bookmarkVerseBtn.innerHTML = isSaved
+              ? '<svg class="w-4 h-4 fill-current text-primary" viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>'
+              : '<svg class="w-4 h-4 stroke-current" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>';
+          }
+          const savedCount = document.getElementById('savedCount');
+          if (savedCount) savedCount.textContent = bookmarks.length;
+        } catch (e) { }
+      }
+
+      bookmarkVerseBtn?.addEventListener('click', () => {
+        try {
+          let bookmarks = JSON.parse(localStorage.getItem('heynuo-bookmarks') || '[]');
+          if (bookmarks.includes('2:255')) {
+            bookmarks = bookmarks.filter(b => b !== '2:255');
+          } else {
+            bookmarks.push('2:255');
+          }
+          localStorage.setItem('heynuo-bookmarks', JSON.stringify(bookmarks));
+          updateBookmarkDisplay();
+        } catch (e) { }
+      });
+      updateBookmarkDisplay();
+
+      // 4. Topic Filter Chips Interaction
+      const topicChips = document.querySelectorAll('.topic-chip');
+      const articleCards = document.querySelectorAll('.article-card');
+      const filterEmptyState = document.getElementById('filterEmptyState');
+      const filterResetBtn = document.getElementById('filterResetBtn');
+
+      function applyTopicFilter(tag) {
+        let visible = 0;
+        articleCards.forEach(card => {
+          const cat = card.getAttribute('data-category') || '';
+          const matches = tag === 'all' || cat.split(/\s+/).includes(tag);
+          card.style.display = matches ? 'flex' : 'none';
+          if (matches) visible += 1;
+        });
+
+        if (filterEmptyState) filterEmptyState.classList.toggle('hidden', visible > 0);
+
+        topicChips.forEach(c => {
+          const isActive = c.getAttribute('data-tag') === tag;
+          c.classList.toggle('active', isActive);
+          c.classList.toggle('bg-primary', isActive);
+          c.classList.toggle('text-on-primary', isActive);
+          c.classList.toggle('bg-bg-canvas', !isActive);
+          c.classList.toggle('text-on-surface', !isActive);
+          c.setAttribute('aria-pressed', String(isActive));
+        });
+      }
+
+      topicChips.forEach(chip => {
+        chip.addEventListener('click', () => applyTopicFilter(chip.getAttribute('data-tag')));
+      });
+
+      filterResetBtn?.addEventListener('click', () => applyTopicFilter('all'));
+
+      // 5. Tafsir Triggers
+      const tafsirKursiBtn = document.getElementById('tafsir-kursi-btn');
+      tafsirKursiBtn?.addEventListener('click', () => {
+        alert('Ayat al-Kursi Tafsir (Ibn Kathir):\nThe greatest ayah in the Book of Allah, containing ten independent divine sentences affirming Monotheism and absolute sovereignty.');
+      });
+
+      const tafsirAyahOfDayBtn = document.getElementById('tafsirAyahOfDayBtn');
+      tafsirAyahOfDayBtn?.addEventListener('click', () => {
+        alert('Tafsir Ibn Kathir [20:114]:\nAllah commanded His Prophet to not hasten in receiving the verses when Jibril came, but to wait patiently until the message is finished, then ask for increase in understanding.');
+      });
+
+      const reciterInfoBtn = document.getElementById('reciter-info-btn');
+      reciterInfoBtn?.addEventListener('click', () => {
+        alert('Reciters Available in Library:\n• Sheikh Mishary Rashid Alafasy (128kbps EveryAyah)\n• Mahmoud Khalil Al-Husary\n• Abdul Basit Abdul Samad\n• Abu Bakr Al-Shatri\n\nVisit Qur\'an Player page for full 114 Surahs catalog.');
+      });
+
+      // 6. Resume Study Session LocalStorage Handler
+      const resumeBtn = document.getElementById('resume-btn');
+      resumeBtn?.addEventListener('click', () => {
+        try {
+          localStorage.setItem('heynuo-last-session', 'Surah Al-Kahf 18:1-10');
+        } catch (e) { }
+        location.href = 'quran.html?surah=18';
+      });
+
+      // 7. Page-level transport keys (Space, V, Left, Right)
+      document.addEventListener('keydown', (e) => {
+        if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName)) return;
+        if (document.activeElement?.isContentEditable) return;
+        if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+        let singleKeyShortcuts = true;
+        try {
+          const saved = localStorage.getItem('heynuo-single-shortcuts');
+          if (saved !== null) singleKeyShortcuts = saved === 'true';
+        } catch (err) { }
+        if (!singleKeyShortcuts) return;
+
+        if (e.key === ' ') {
+          e.preventDefault();
+          toggleAudio();
+        } else if (e.key === 'v' || e.key === 'V') {
+          toggleMinimize();
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          playerPrevBtn?.click();
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          playerNextBtn?.click();
+        }
+      });
+
+      // 8. Deterministic day-of-year seed
+      const ayahSeedDay = document.getElementById('ayahSeedDay');
+      if (ayahSeedDay) {
+        const now = new Date();
+        const start = new Date(now.getFullYear(), 0, 0);
+        const diff = now - start;
+        const oneDay = 1000 * 60 * 60 * 24;
+        const dayOfYear = Math.floor(diff / oneDay);
+        ayahSeedDay.textContent = 'Deterministic Seed: Day ' + dayOfYear;
+      }
+
+    })();
+  </script>
+  <script src="buttons.js" defer></script>
+  <script src="js/script.js" defer></script>
+  <!-- Shared Layout: Header, Footer, Theme Switcher -->
+  <script src="js/shared-layout.js"></script>
+</body>
+
+</html>
