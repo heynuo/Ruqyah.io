@@ -15,7 +15,6 @@
 ## 🌐 Live Website & Mirrors
 
 - **GitHub Repository:** [https://github.com/heynuo/Ruqyah.io](https://github.com/heynuo/Ruqyah.io)
-- **Production Site:** [https://heynuo.github.io/](https://heynuo.github.io/)
 - **Quran Audio Library & PDFs:** [https://heynuo.github.io/quran.html](https://heynuo.github.io/quran.html)
 - **108 Master Verses Compilation:** [https://heynuo.github.io/quran-verses.html](https://heynuo.github.io/quran-verses.html)
 - **Privacy & Source Disclosures:** [https://heynuo.github.io/privacy.html](https://heynuo.github.io/privacy.html)
