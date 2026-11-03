@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Ruqyah Shared Layout Components
  * Source: Stitch Project #13051442395705679722
  * 
@@ -9,7 +9,7 @@
 (function () {
   'use strict';
 
-  // ── Detect Active Page ──────────────────────────────────────────────
+  // â”€â”€ Detect Active Page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const currentPath = window.location.pathname.split('/').pop() || 'index.html';
   const pageMap = {
     'index.html': 'home',
@@ -23,7 +23,7 @@
   };
   const activePage = pageMap[currentPath] || '';
 
-  // ── Build Navigation Links ──────────────────────────────────────────
+  // â”€â”€ Build Navigation Links â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function navLink(path, label, href, isMobile) {
     const isActive = activePage === path;
     const baseClass = isMobile
@@ -48,16 +48,16 @@
     { path: 'contact', label: 'Contact', href: 'contact.html' }
   ];
 
-  // ── Header HTML ─────────────────────────────────────────────────────
+  // â”€â”€ Header HTML â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function buildHeader() {
     const desktopNav = navItems.map(n => navLink(n.path, n.label, n.href, false)).join('\n');
     const mobileNav = navItems.map(n => navLink(n.path, n.label, n.href, true)).join('\n');
 
-    return `<header id="heynuo-header" class="fixed top-0 left-0 right-0 z-50 h-14 bg-surface/95 backdrop-blur-md shadow-[0_1px_8px_rgba(15,23,42,0.04)]">
+    return `<header id="heynuo-header" class="fixed top-0 left-0 right-0 z-50 h-14 bg-surface shadow-[0_1px_8px_rgba(15,23,42,0.04)]">
   <div class="max-w-7xl mx-auto h-14 px-margin-mobile md:px-margin flex items-center justify-between gap-space-md">
     <div class="flex items-center gap-space-lg">
       <a aria-label="Ruqyah Home" class="flex items-center gap-space-xs text-primary hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg py-1 px-1.5" href="index.html">
-        <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-primary-container text-on-primary-container font-code-mono text-caption-meta font-bold tracking-tight">RQ</span>
+        <span class="header-brand-mark flex items-center justify-center w-7 h-7 rounded-lg bg-primary-container text-on-primary-container font-code-mono text-caption-meta font-bold tracking-tight">RQ</span>
         <span class="font-title-page-mobile text-ui-interactive font-bold tracking-tight text-on-surface">Ruqyah</span>
         <span aria-hidden="true" class="material-symbols-outlined text-primary text-[18px] hidden sm:inline-block">history_edu</span>
       </a>
@@ -70,7 +70,7 @@
       <button id="navSearchBtn" aria-label="Search documentation and scripture (Ctrl+K)" class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-border-subtle bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container text-xs font-code-mono transition-all focus:outline-none focus:ring-1 focus:ring-primary shadow-xs cursor-pointer" type="button">
         <span class="material-symbols-outlined text-[16px] text-primary">search</span>
         <span class="hidden sm:inline font-ui-interactive text-[12px]">Search</span>
-        <kbd class="hidden md:inline-flex items-center px-1 py-0.2 text-[10px] font-code-mono bg-surface rounded text-on-surface-variant border border-border-subtle">⌘K</kbd>
+        <kbd class="hidden md:inline-flex items-center px-1 py-0.2 text-[10px] font-code-mono bg-surface rounded text-on-surface-variant border border-border-subtle">âŒ˜K</kbd>
       </button>
 
       <!-- Theme Switcher -->
@@ -86,13 +86,13 @@
         </button>
       </div>
       <!-- Mobile Menu Toggle -->
-      <button aria-label="Toggle navigation menu" class="lg:hidden w-8 h-8 flex items-center justify-center rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors cursor-pointer" id="heynuo-mobile-menu-btn" type="button">
+      <button aria-label="Open navigation menu" aria-controls="heynuo-mobile-nav" aria-expanded="false" class="lg:hidden w-8 h-8 flex items-center justify-center rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors cursor-pointer" id="heynuo-mobile-menu-btn" type="button">
         <span aria-hidden="true" class="material-symbols-outlined text-[22px]">menu</span>
       </button>
     </div>
   </div>
   <!-- Mobile Navigation Drawer -->
-  <nav id="heynuo-mobile-nav" class="lg:hidden hidden absolute top-14 left-0 right-0 bg-surface shadow-xl border-t border-b border-border-subtle px-4 py-3 z-50" aria-label="Mobile Navigation">
+  <nav id="heynuo-mobile-nav" class="lg:hidden absolute top-14 left-0 right-0 bg-surface shadow-xl border-t border-b border-border-subtle px-4 py-3 z-50" aria-label="Mobile Navigation" aria-hidden="true" inert>
     <div class="mb-3 pt-1">
       <button id="mobileNavSearchBtn" class="w-full flex items-center justify-between px-3 py-2 rounded-lg bg-surface-container-low text-on-surface-variant text-xs font-ui-interactive border border-border-subtle cursor-pointer" type="button">
         <span class="flex items-center gap-2">
@@ -109,33 +109,27 @@
 </header>`;
   }
 
-  // ── Footer HTML ─────────────────────────────────────────────────────
+  // â”€â”€ Footer HTML â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function buildFooter() {
-    return `<footer id="heynuo-footer" class="w-full bg-surface-container-lowest mt-space-3xl shadow-[0_-1px_6px_rgba(15,23,42,0.03)]">
-  <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin py-space-xl flex flex-col md:flex-row items-center justify-between gap-space-lg font-ui-interactive text-caption-meta text-on-surface-variant">
-    <div class="flex flex-col sm:flex-row items-center gap-space-sm sm:gap-space-md text-center sm:text-left">
-      <span>© 2026 Ruqyah. Built for deep scholarship &amp; systems engineering.</span>
-      <span aria-hidden="true" class="hidden sm:inline">•</span>
-      <a class="hover:text-primary transition-colors underline underline-offset-4" href="about.html">Built to WCAG 2.2 AA; report an issue</a>
-    </div>
-    <div class="flex flex-wrap items-center justify-center gap-space-md">
-      <a class="hover:text-on-surface transition-colors" href="about.html">About</a>
-      <a class="hover:text-on-surface transition-colors" href="contact.html">Contact</a>
-      <a class="hover:text-on-surface transition-colors" href="privacy.html">Privacy</a>
-      <a class="hover:text-primary transition-colors flex items-center gap-1" href="rss.xml">
-        <span aria-hidden="true" class="material-symbols-outlined text-[16px]">rss_feed</span>
-        <span>RSS</span>
-      </a>
-      <a class="hover:text-primary transition-colors flex items-center gap-1" href="https://github.com/heynuo/Ruqyah.io" target="_blank" rel="noopener noreferrer">
-        <span aria-hidden="true" class="material-symbols-outlined text-[16px]">code</span>
-        <span>GitHub</span>
-      </a>
-    </div>
-  </div>
+    return `<footer id="heynuo-footer">
+  <div class="footer-main"><div class="footer-content">
+    <nav class="footer-columns" aria-label="Footer navigation">
+      <section class="footer-column"><h2>EXPLORE</h2><a href="index.html#articles-section">Latest Articles</a><a href="index.html#systems-section">Systems Engineering</a><a href="index.html#quran-section">Qur'an Studies</a><a href="quran.html">Qur'an Reader</a><a href="quran-verses.html">Verse Archive</a></section>
+      <section class="footer-column"><h2>RESOURCES</h2><a href="about.html">About the Archive</a><a href="rss.xml">RSS Feed</a><a href="manifest.json">Install the App</a><a href="privacy.html">Privacy</a><a href="sitemap.xml">Sitemap</a></section>
+      <section class="footer-column"><h2>SUPPORT</h2><a href="contact.html">Contact</a><a href="contact.html#faq-section">Frequently Asked Questions</a><a href="contact.html#contactForm">Report an Issue</a><a href="about.html#accessibility">Accessibility</a></section>
+      <section class="footer-column footer-contact"><h2>CONTACT</h2><a href="mailto:zahiruddin44044@gmail.com">zahiruddin44044@gmail.com</a><p>Ruqyah Scholastic Archive</p><p>Independent study &amp; engineering</p></section>
+    </nav>
+    <aside class="footer-aside">
+      <section class="footer-feed"><h2>Follow the archive</h2><p>New posts are available through RSS. Follow in any feed readerâ€”no email signup or account required.</p><a class="footer-feed-link" href="rss.xml"><span class="material-symbols-outlined" aria-hidden="true">rss_feed</span><span>Follow via RSS</span><span aria-hidden="true">â†’</span></a></section>
+      <section class="footer-social"><h2>Follow &amp; connect</h2><div class="footer-social-links"><a href="https://github.com/heynuo/Ruqyah.io" target="_blank" rel="noopener noreferrer">GitHub</a><a href="rss.xml">RSS</a><a href="mailto:zahiruddin44044@gmail.com">Email</a></div></section>
+      <section class="footer-topics"><h2>Explore topics</h2><div class="footer-topic-list"><a href="index.html#systems-section">Systems</a><a href="index.html#quran-section">Qur'an</a><a href="quran.html">Reader</a><a href="quran-verses.html">Verses</a></div></section>
+    </aside>
+  </div></div>
+  <div class="footer-bottom"><div class="footer-bottom-inner"><span>&#169; <span data-footer-year></span> RUQYAH.</span><nav aria-label="Legal and contact links"><a href="privacy.html">Privacy</a><a href="contact.html">Contact</a><a href="about.html#accessibility">Accessibility</a></nav><a class="footer-back-top" href="#main-content" aria-label="Back to top"><span aria-hidden="true">&#8593;</span></a></div></div>
 </footer>`;
   }
 
-  // ── Theme Switching Logic ───────────────────────────────────────────
+  // â”€â”€ Theme Switching Logic â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function getCurrentTheme() {
     return document.documentElement.getAttribute('data-theme') || 'light';
   }
@@ -162,6 +156,7 @@
     const current = getCurrentTheme();
     document.querySelectorAll('.heynuo-theme-btn').forEach(function (btn) {
       const val = btn.getAttribute('data-theme-value');
+      btn.setAttribute('aria-pressed', String(val === current));
       if (val === current) {
         btn.classList.add('text-primary', 'bg-surface');
         btn.classList.remove('text-on-surface-variant', 'hover:text-on-surface', 'hover:bg-surface');
@@ -172,7 +167,7 @@
     });
   }
 
-  // ── Inject Components ───────────────────────────────────────────────
+  // â”€â”€ Inject Components â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function injectLayout() {
     // Remove any existing header/footer injected by page-specific code
     var existingHeader = document.getElementById('heynuo-header');
@@ -207,7 +202,7 @@
       }
     }
 
-    // ── Wire up Theme Buttons ───────────────────────────────────────
+    // â”€â”€ Wire up Theme Buttons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     document.querySelectorAll('.heynuo-theme-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
         setTheme(btn.getAttribute('data-theme-value'));
@@ -215,51 +210,61 @@
     });
     updateThemeButtons();
 
-    // ── Wire up Mobile Menu ─────────────────────────────────────────
+    var footerYear = document.querySelector('[data-footer-year]');
+    if (footerYear) footerYear.textContent = String(new Date().getFullYear());
+
+    // â”€â”€ Wire up Mobile Menu â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     var menuBtn = document.getElementById('heynuo-mobile-menu-btn');
     var mobileNav = document.getElementById('heynuo-mobile-nav');
     if (menuBtn && mobileNav) {
-      menuBtn.addEventListener('click', function () {
-        var isOpen = !mobileNav.classList.contains('hidden');
-        mobileNav.classList.toggle('hidden');
+      var setMobileNavOpen = function (isOpen) {
+        mobileNav.classList.toggle('is-open', isOpen);
+        mobileNav.setAttribute('aria-hidden', String(!isOpen));
+        mobileNav.toggleAttribute('inert', !isOpen);
+        menuBtn.setAttribute('aria-expanded', String(isOpen));
+        menuBtn.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
         var icon = menuBtn.querySelector('.material-symbols-outlined');
-        if (icon) {
-          icon.textContent = isOpen ? 'menu' : 'close';
+        if (icon) icon.textContent = isOpen ? 'close' : 'menu';
+      };
+
+      menuBtn.addEventListener('click', function () {
+        var isOpen = mobileNav.classList.contains('is-open');
+        setMobileNavOpen(!isOpen);
+      });
+
+      mobileNav.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () { setMobileNavOpen(false); });
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && mobileNav.classList.contains('is-open')) {
+          setMobileNavOpen(false);
+          menuBtn.focus();
         }
       });
-    }
 
-    // ── Wire up Command Palette Search Triggers ────────────────────
-    function triggerSearch(e) {
-      if (e) e.preventDefault();
-      if (window.CommandPalette && typeof window.CommandPalette.open === 'function') {
-        window.CommandPalette.open();
-      } else {
-        var ev = new KeyboardEvent('keydown', { key: 'k', metaKey: true, ctrlKey: true, bubbles: true });
-        document.dispatchEvent(ev);
+      document.addEventListener('click', function (event) {
+        if (mobileNav.classList.contains('is-open') &&
+            !mobileNav.contains(event.target) && !menuBtn.contains(event.target)) {
+          setMobileNavOpen(false);
+        }
+      });
+
+      var mobileSearchBtn = document.getElementById('mobileNavSearchBtn');
+      if (mobileSearchBtn) {
+        mobileSearchBtn.addEventListener('click', function () { setMobileNavOpen(false); });
       }
     }
-    var navSearchBtn = document.getElementById('navSearchBtn');
-    if (navSearchBtn) {
-      navSearchBtn.addEventListener('click', triggerSearch);
-    }
-    var mobileNavSearchBtn = document.getElementById('mobileNavSearchBtn');
-    if (mobileNavSearchBtn) {
-      mobileNavSearchBtn.addEventListener('click', function (e) {
-        if (mobileNav && !mobileNav.classList.contains('hidden')) {
-          mobileNav.classList.add('hidden');
-          var icon = menuBtn ? menuBtn.querySelector('.material-symbols-outlined') : null;
-          if (icon) icon.textContent = 'menu';
-        }
-        triggerSearch(e);
-      });
-    }
+
+    // â”€â”€ Wire up Command Palette Search Triggers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   }
 
   // Expose setTheme globally
   window.setTheme = setTheme;
+  // Expose updateThemeButtons so script.js can sync button states without re-applying theme
+  window.__heynuoUpdateThemeBtns = updateThemeButtons;
 
-  // ── Execute ─────────────────────────────────────────────────────────
+  // â”€â”€ Execute â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   var layoutInjected = false;
   function safeInjectLayout() {
     if (layoutInjected) return;
@@ -274,3 +279,4 @@
     document.addEventListener('DOMContentLoaded', safeInjectLayout);
   }
 })();
+

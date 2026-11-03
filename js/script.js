@@ -136,7 +136,7 @@ async function copyToClipboard(text) {
     try {
       await navigator.clipboard.writeText(text);
       return true;
-    } catch (_) {}
+    } catch (_) { }
   }
   try {
     const ta = document.createElement('textarea');
@@ -215,28 +215,34 @@ const Bookmarks = {
 };
 
 // ---------- Theme Management ----------
-let themeSwitchTimer = null;
+// NOTE: Theme switching is handled by js/shared-layout.js (window.setTheme).
+// This legacy applyTheme is kept only for the #theme-toggle button (old pages).
+// The theme-switching class has been removed to prevent header glitch on new tab load.
 
 function initTheme() {
+  // Defer to shared-layout.js setTheme if available (prevents double-apply glitch)
   const saved = safeStorage.get('localStorage', 'heynuo-theme');
   const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false;
-  const theme = saved === 'dark' || saved === 'light'
-    ? saved
-    : (prefersDark ? 'dark' : 'light');
-  applyTheme(theme);
+  const theme = saved || (prefersDark ? 'dark' : 'light');
+  // Only call applyTheme if shared-layout hasn't already set the theme
+  if (!document.documentElement.getAttribute('data-theme')) {
+    applyTheme(theme);
+  }
 }
 
 function applyTheme(theme) {
   const root = document.documentElement;
-  root.classList.add('theme-switching');
+  // Removed: root.classList.add('theme-switching') — was causing header flash on new tab
   root.setAttribute('data-theme', theme);
+  root.classList.remove('dark', 'sepia');
+  if (theme === 'dark') root.classList.add('dark');
+  if (theme === 'sepia') root.classList.add('sepia');
   safeStorage.set('localStorage', 'heynuo-theme', theme);
 
-  if (themeSwitchTimer !== null) clearTimeout(themeSwitchTimer);
-  themeSwitchTimer = setTimeout(() => {
-    root.classList.remove('theme-switching');
-    themeSwitchTimer = null;
-  }, 80);
+  // Sync shared-layout theme buttons if present
+  if (typeof window.__heynuoUpdateThemeBtns === 'function') {
+    window.__heynuoUpdateThemeBtns(theme);
+  }
 
   const btn = $.get('#theme-toggle');
   if (btn) {
@@ -303,8 +309,8 @@ function initMobileMenu() {
   // Close when clicking outside the menu and the toggle
   $.on(document, 'click', (e) => {
     if (navLinks.classList.contains('show') &&
-        !navLinks.contains(e.target) &&
-        !menuBtn.contains(e.target)) {
+      !navLinks.contains(e.target) &&
+      !menuBtn.contains(e.target)) {
       toggleMenu(false);
     }
   });
@@ -376,7 +382,7 @@ function initSmoothScroll() {
           targetEl.scrollIntoView({ behavior: CONFIG.smoothScrollBehavior, block: 'start' });
           history.pushState(null, null, targetId);
         }
-      } catch (_) {}
+      } catch (_) { }
     });
   });
 }
@@ -701,8 +707,8 @@ const Articles = {
       dropdown.innerHTML = `
         <div class="search-drop-header">${matches.length} article${matches.length !== 1 ? 's' : ''} matching "${escapeHTML(query)}"</div>
         ${matches.map((p, idx) => {
-          const highlightedTitle = this.highlightMatch(p.title, query);
-          return `
+        const highlightedTitle = this.highlightMatch(p.title, query);
+        return `
             <a href="${escapeHTML(p.link)}" class="search-drop-item" data-index="${idx}">
               ${dropThumbImg(p.banner)}
               <div class="search-drop-info">
@@ -714,7 +720,7 @@ const Articles = {
               </div>
             </a>
           `;
-        }).join('')}
+      }).join('')}
         <div class="search-drop-footer">
           <span>↑↓ navigate • ↵ open</span>
           <span>ESC to close</span>
@@ -1149,7 +1155,7 @@ function initContactEnhancements() {
         if (data.message && !messageInput.value) messageInput.value = data.message;
         updateCounter();
       }
-    } catch (_) {}
+    } catch (_) { }
 
     const saveDraft = () => {
       try {
@@ -1159,7 +1165,7 @@ function initContactEnhancements() {
           subject: subjectInput?.value || '',
           message: messageInput.value || ''
         }));
-      } catch (_) {}
+      } catch (_) { }
     };
 
     $.on(messageInput, 'input', () => {
@@ -1248,7 +1254,7 @@ function initContactEnhancements() {
             statusEl.innerHTML = '<span class="presence-badge-pulse"></span> Away / Resting (Replies in morning)';
           }
         }
-      } catch (_) {}
+      } catch (_) { }
     };
     updateClock();
     setInterval(updateClock, 1000);
@@ -2222,7 +2228,7 @@ const CommandPalette = {
       const history = Array.isArray(stored) ? stored.filter(item => typeof item === 'string') : [];
       const next = [query.trim(), ...history.filter(item => item.toLowerCase() !== query.trim().toLowerCase())].slice(0, 5);
       safeStorage.set('localStorage', 'heynuo-search-history', JSON.stringify(next));
-    } catch {}
+    } catch { }
   },
 
   getSearchHistory() {
@@ -3116,9 +3122,8 @@ function initFeaturedResource() {
 }
 // ---------- Service Worker & Offline PWA ----------
 function initServiceWorker() {
-  // js/shell.js registers the worker on every page, including index.html and
-  // about.html, which never load this file. The shared flag guarantees a single
-  // registration with a single cache-busting stamp.
+  // This controller is loaded on every page. The shared flag prevents duplicate
+  // registrations while the build stamp gives each release a fresh cache.
   if (!window.__heynuoSwRequested && 'serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
     window.__heynuoSwRequested = true;
     window.addEventListener('load', () => {
