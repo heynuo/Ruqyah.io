@@ -1035,34 +1035,3 @@ body:has(> #heynuo-footer) { padding-bottom: 0 !important; }
   scrollbar-width: none;
 }
 
-/* A soft, continuous glow for the label below the video gallery. */
-.allah-glow-text {
-  display: inline-block;
-  animation: allah-text-glow 2.4s ease-in-out infinite;
-  text-shadow: 0 0 0.4rem rgb(var(--color-primary) / 0.35);
-  transform-origin: center;
-}
-
-@keyframes allah-text-glow {
-  0%,
-  100% {
-    opacity: 0.9;
-    text-shadow: 0 0 0.35rem rgb(var(--color-primary) / 0.3), 0 0 0.8rem rgb(var(--color-primary) / 0.18);
-    transform: translateY(0) scale(1);
-  }
-
-  50% {
-    opacity: 1;
-    text-shadow: 0 0 0.55rem rgb(var(--color-primary) / 0.65), 0 0 1.35rem rgb(var(--color-primary) / 0.42);
-    transform: translateY(-2px) scale(1.025);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .allah-glow-text {
-    animation: none;
-    opacity: 1;
-    text-shadow: 0 0 0.45rem rgb(var(--color-primary) / 0.45);
-    transform: none;
-  }
-}
