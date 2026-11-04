@@ -14,7 +14,7 @@
 
 ## 🌐 Live Website & Canonical Resources
 
-- **Home Archive:** [https://heynuo.github.io/](https://heynuo.github.io/)
+- **Home Archive:** [https://heynuo.github.io/](https://github.com/heynuo/Ruqyah.io)
 - **108 Master Verses Concordance (Ruqyah & Protection):** [https://heynuo.github.io/quran-verses.html](https://heynuo.github.io/quran-verses.html)
 - **Qur'an Recitation Audio Engine (114 Surahs):** [https://heynuo.github.io/quran.html](https://heynuo.github.io/quran.html)
 - **Engineering Lab & Scholastic Methodology:** [https://heynuo.github.io/about.html](https://heynuo.github.io/about.html)
