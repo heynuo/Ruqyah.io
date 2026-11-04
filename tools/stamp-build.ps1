@@ -61,16 +61,23 @@ $updatedScript = $jsMarker.Replace($scriptText, "var __HEYNUO_BUILD__ = '$Stamp'
 $scriptChanged = $updatedScript -cne $scriptText
 
 # ---------------------------------------------------------------------------
-# 2. Every *.html page — the <meta name="heynuo-build"> tag. js/script.js reads
-#    it when registering the service worker so each release gets a fresh cache.
+# 2. Every *.html page — the <meta name="heynuo-build"> tag and shared
+#    stylesheet URL. js/script.js uses the stamp for service worker cache
+#    versioning; the stylesheet query string also bypasses an old cache on the
+#    first page load after a deploy, before the new worker takes control.
 # ---------------------------------------------------------------------------
 $metaMarker = [System.Text.RegularExpressions.Regex]::new(
     '(<meta name="heynuo-build" content=")[^"]*(">)'
 )
 $metaReplacement = '${1}' + $Stamp + '${2}'
+$stylesheetMarker = [System.Text.RegularExpressions.Regex]::new(
+    '(<link rel="stylesheet" href="css/shared-layout\.css)(?:\?v=[^"]*)?(">)'
+)
+$stylesheetReplacement = '${1}?v=' + $Stamp + '${2}'
 
 $htmlChanged = @()
 $htmlMissing = @()
+$stylesheetMissing = @()
 
 foreach ($file in (Get-ChildItem -LiteralPath $rootPath -Filter '*.html' -File)) {
     $html = [System.IO.File]::ReadAllText($file.FullName, [System.Text.Encoding]::UTF8)
@@ -81,6 +88,12 @@ foreach ($file in (Get-ChildItem -LiteralPath $rootPath -Filter '*.html' -File))
     }
 
     $newHtml = $metaMarker.Replace($html, $metaReplacement, 1)
+    if ($stylesheetMarker.IsMatch($newHtml)) {
+        $newHtml = $stylesheetMarker.Replace($newHtml, $stylesheetReplacement, 1)
+    } else {
+        $stylesheetMissing += $file.Name
+    }
+
     if ($newHtml -cne $html) {
         if (-not $WhatIf) {
             [System.IO.File]::WriteAllText($file.FullName, $newHtml, $utf8NoBom)
@@ -121,4 +134,9 @@ if ($htmlMissing.Count -gt 0) {
     Write-Warning 'Add the tag directly after the viewport meta so offline cache busting covers them.'
 }
 
+if ($stylesheetMissing.Count -gt 0) {
+    Write-Warning ('These pages have no shared-layout stylesheet link to version: ' + ($stylesheetMissing -join ', '))
+}
+
 Write-Host "The service worker will register as sw.js?v=$Stamp and retire the previous cache." -ForegroundColor DarkGray
+Write-Host "The shared stylesheet will load as css/shared-layout.css?v=$Stamp to avoid stale CSS on the first load." -ForegroundColor DarkGray
