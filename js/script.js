@@ -4,7 +4,7 @@ Ruqyah – Global Scripts (Production Final v3)
 
 // Build stamp injected by tools/stamp-build.ps1 before each release. Declared
 // here so the service-worker registration can reference it without a guard.
-var __HEYNUO_BUILD__ = '2026-10-17-0713';
+var __HEYNUO_BUILD__ = '2026-11-03-1354';
 
 const CONFIG = Object.freeze({
   siteUrl: 'https://heynuo.github.io',
@@ -2876,12 +2876,20 @@ function initShortcutsModal() {
 
     if (e.key === 't' || e.key === 'T') {
       e.preventDefault();
+      const THEMES = ['light', 'sepia', 'dark'];
       const current = document.documentElement.getAttribute('data-theme') || 'light';
-      const next = current === 'dark' ? 'light' : 'dark';
-      applyTheme(next);
+      const nextIdx = (THEMES.indexOf(current) + 1) % THEMES.length;
+      const next = THEMES[nextIdx];
+      if (typeof window.setTheme === 'function') {
+        window.setTheme(next);
+      } else {
+        applyTheme(next);
+      }
+      const labels = { light: 'Light Theme', sepia: 'Sepia Scholastic Theme', dark: 'Dark Theme' };
+      const icons = { light: '☀️', sepia: '📖', dark: '🌙' };
       showToast(
-        next === 'dark' ? 'Switched to Dark Mode' : 'Switched to Light Mode',
-        next === 'dark' ? '<img src="assets/icons/moon.png" width="16" height="16" alt="">' : '<img src="assets/icons/sun.png" width="16" height="16" alt="">'
+        `Switched to ${labels[next] || next}`,
+        icons[next] || '✨'
       );
       return;
     }

@@ -1,0 +1,53 @@
+{
+    "inputs": [
+        {
+            "type": "promptString",
+            "id": "stitch-api-key",
+            "description": "Enter your Stitch API Key",
+            "password": true
+        },
+        {
+            "type": "promptString",
+            "id": "icons8-token",
+            "description": "Enter your Icons8 MCP Bearer Token (token string only)",
+            "password": true
+        },
+        {
+            "type": "promptString",
+            "id": "github-token",
+            "description": "Enter your GitHub Personal Access Token",
+            "password": true
+        }
+    ],
+    "servers": {
+        "stitch": {
+            "type": "http",
+            "url": "https://stitch.googleapis.com/mcp",
+            "headers": {
+                "X-Goog-Api-Key": "${input:stitch-api-key}"
+            }
+        },
+        "icons8mcp": {
+            "type": "stdio",
+            "command": "npx",
+            "args": [
+                "-y",
+                "mcp-remote",
+                "https://mcp.icons8.com/mcp/",
+                "--header",
+                "Authorization: Bearer ${input:icons8-token}"
+            ]
+        },
+        "github": {
+            "type": "stdio",
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-github"
+            ],
+            "env": {
+                "GITHUB_PERSONAL_ACCESS_TOKEN": "${input:github-token}"
+            }
+        }
+    }
+}

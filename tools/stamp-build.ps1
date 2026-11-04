@@ -61,9 +61,8 @@ $updatedScript = $jsMarker.Replace($scriptText, "var __HEYNUO_BUILD__ = '$Stamp'
 $scriptChanged = $updatedScript -cne $scriptText
 
 # ---------------------------------------------------------------------------
-# 2. Every *.html page — the <meta name="heynuo-build"> tag. js/shell.js reads
-#    it to register the service worker, which is what gives index.html and
-#    about.html their offline cache (they never load js/script.js).
+# 2. Every *.html page — the <meta name="heynuo-build"> tag. js/script.js reads
+#    it when registering the service worker so each release gets a fresh cache.
 # ---------------------------------------------------------------------------
 $metaMarker = [System.Text.RegularExpressions.Regex]::new(
     '(<meta name="heynuo-build" content=")[^"]*(">)'

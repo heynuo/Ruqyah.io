@@ -48,6 +48,8 @@
     style.id = STYLE_ID;
     style.textContent = `
       .btn[data-btn-state="success"] {
+        position: relative;
+        isolation: isolate;
         background: #16a34a !important;
         color: #fff !important;
         transform: translateY(-1px);
@@ -78,12 +80,13 @@
         60%     { transform: translateX(-3px); }
         80%     { transform: translateX(2px);  }
       }
-      .btn[data-offline-disable][aria-disabled="true"] {
+      [data-offline-disable][aria-disabled="true"] {
         opacity: .5; cursor: not-allowed; pointer-events: none;
       }
       @media (prefers-reduced-motion: reduce) {
         .btn[data-btn-state="success"]::after,
-        .btn[data-btn-state="error"] { animation: none; }
+        .btn[data-btn-state="error"] { animation: none; transform: none; }
+        .btn[data-btn-state="success"] { transform: none; }
       }
     `;
     document.head.appendChild(style);
@@ -142,6 +145,15 @@
     );
   }
 
+  async function showTransientError(btn, eventName, detail, delay) {
+    setState(btn, 'error', detail);
+    if (eventName) {
+      btn.dispatchEvent(new CustomEvent(eventName, { detail, bubbles: true }));
+    }
+    if (delay > 0) await env.sleep(delay).catch(() => {});
+    if (btn.dataset.btnState === 'error') setState(btn, 'idle');
+  }
+
   /* =========================================================
      5. ASYNC RUNNER
      ========================================================= */
@@ -177,8 +189,7 @@
     /* --- offline --- */
     if (!env.online()) {
       if (offline === 'disable') {
-        setState(btn, 'error');
-        btn.dispatchEvent(new CustomEvent('btn:offline', { bubbles: true }));
+        await showTransientError(btn, 'btn:offline', { online: false }, errorDelay);
         return;
       }
       if (offline === 'queue') {
@@ -207,8 +218,7 @@
       await env.sleep(30);
       if (lost) {
         ch.removeEventListener('message', onMsg);
-        setState(btn, 'error');
-        btn.dispatchEvent(new CustomEvent('btn:tab-locked', { bubbles: true }));
+        await showTransientError(btn, 'btn:tab-locked', { tabLock }, errorDelay);
         return;
       }
       releaseLock = () => ch.removeEventListener('message', onMsg);
@@ -528,15 +538,35 @@
     if (document.__hnNetwork) return;
     document.__hnNetwork = true;
 
+    const priorStates = new WeakMap();
     const apply = () => {
       document.querySelectorAll('[data-offline-disable]').forEach((btn) => {
         const isOffline = !navigator.onLine;
         if (isOffline) {
+          if (!priorStates.has(btn)) {
+            priorStates.set(btn, {
+              disabled: 'disabled' in btn ? btn.disabled : undefined,
+              tabIndex: btn.getAttribute('tabindex'),
+              ariaDisabled: btn.getAttribute('aria-disabled'),
+              hadDisabledClass: btn.classList.contains('is-disabled'),
+            });
+          }
           btn.setAttribute('aria-disabled', 'true');
+          if ('disabled' in btn) btn.disabled = true;
+          else btn.setAttribute('tabindex', '-1');
         } else {
-          btn.removeAttribute('aria-disabled');
+          const prior = priorStates.get(btn);
+          if (prior) {
+            if (prior.disabled !== undefined) btn.disabled = prior.disabled;
+            if (prior.tabIndex === null) btn.removeAttribute('tabindex');
+            else btn.setAttribute('tabindex', prior.tabIndex);
+            if (prior.ariaDisabled === null) btn.removeAttribute('aria-disabled');
+            else btn.setAttribute('aria-disabled', prior.ariaDisabled);
+            btn.classList.toggle('is-disabled', prior.hadDisabledClass);
+            priorStates.delete(btn);
+          }
         }
-        btn.classList.toggle('is-disabled', isOffline);
+        if (isOffline) btn.classList.add('is-disabled');
       });
     };
     window.addEventListener('online', apply);

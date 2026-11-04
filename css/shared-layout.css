@@ -213,7 +213,53 @@ html.sepia, [data-theme="sepia"] {
   inset-inline: 0;
   width: auto;
   z-index: 50;
+  border-bottom: 1px solid rgb(var(--color-border-subtle) / 0.7);
+  box-shadow: 0 5px 20px rgba(15, 23, 42, 0.045);
+}
+
+#heynuo-header nav[aria-label="Primary Navigation"] a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding-inline: 0.65rem;
   border-bottom: 0;
+  border-radius: 0.625rem;
+  transition: color 150ms ease, background-color 150ms ease;
+}
+
+#heynuo-header nav[aria-label="Primary Navigation"] a::after {
+  position: absolute;
+  inset-inline: 0.65rem;
+  bottom: 0.2rem;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  content: "";
+  transform: scaleX(0);
+  transition: transform 160ms ease;
+}
+
+#heynuo-header nav[aria-label="Primary Navigation"] a:hover,
+#heynuo-header nav[aria-label="Primary Navigation"] a[aria-current="page"] {
+  background: rgb(var(--color-surface-container-low));
+}
+
+#heynuo-header nav[aria-label="Primary Navigation"] a:hover::after,
+#heynuo-header nav[aria-label="Primary Navigation"] a[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+#heynuo-header nav[aria-label="Primary Navigation"] a[aria-current="page"]::after {
+  transition: none;
+}
+
+#heynuo-header .header-brand-mark {
+  transition: transform 180ms ease;
+}
+
+#heynuo-header a[aria-label="Ruqyah Home"]:hover .header-brand-mark {
+  transform: rotate(-5deg) scale(1.05);
 }
 
 #heynuo-footer {
@@ -232,6 +278,118 @@ html.sepia, [data-theme="sepia"] {
   display: none;
 }
 
+/* Huanuo-inspired dark footer, adapted to the archive's links and resources. */
+#heynuo-footer {
+  margin-top: 3rem;
+  padding-bottom: 5rem;
+  background: #1e1e1e;
+  color: #f7f7f7;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+
+/* Keep the audio player's reserved space inside the dark footer instead of
+   leaving a canvas-colored strip after it at the end of the page. */
+body:has(> #heynuo-footer) { padding-bottom: 0 !important; }
+
+#heynuo-footer .footer-main { border-radius: 0 0 1.5rem 1.5rem; }
+#heynuo-footer .footer-content {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(18rem, 1fr);
+  max-width: 1560px;
+  min-height: 27rem;
+  margin: 0 auto;
+}
+#heynuo-footer .footer-columns {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem;
+  padding: 3.1rem 3rem 2.5rem;
+}
+#heynuo-footer .footer-column,
+#heynuo-footer .footer-aside section { display: flex; flex-direction: column; align-items: flex-start; }
+#heynuo-footer h2 {
+  margin: 0 0 1.25rem;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+#heynuo-footer .footer-column a,
+#heynuo-footer .footer-column p { margin: 0 0 0.58rem; color: #f1f1f1; text-decoration: none; }
+#heynuo-footer a { transition: color 160ms ease, opacity 160ms ease; }
+#heynuo-footer a:hover { color: #bcbcbc; }
+#heynuo-footer .footer-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.2rem;
+  padding: 3.1rem 3rem 2.5rem;
+  border-left: 1px solid #565656;
+}
+#heynuo-footer .footer-aside h2 { margin-bottom: 1.2rem; }
+#heynuo-footer .footer-aside p { margin: 0 0 0.8rem; }
+#heynuo-footer .footer-feed p { margin: 0 0 0.9rem; }
+#heynuo-footer .footer-feed-link {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: min(100%, 19rem);
+  min-height: 2.65rem;
+  box-sizing: border-box;
+  padding: 0.55rem 0.8rem;
+  border-radius: 0.6rem;
+  background: #fff;
+  color: #171717;
+  font-weight: 600;
+  text-decoration: none;
+}
+#heynuo-footer .footer-feed-link:hover {
+  background: #e7e7e7;
+  color: #171717;
+}
+#heynuo-footer .footer-feed-link span:last-child {
+  margin-left: auto;
+  font-size: 1.15rem;
+}
+#heynuo-footer .footer-social-links,
+#heynuo-footer .footer-topic-list { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+#heynuo-footer .footer-social-links a,
+#heynuo-footer .footer-topic-list a {
+  color: #f5f5f5; text-decoration: none;
+}
+#heynuo-footer .footer-topic-list a {
+  padding: 0.28rem 0.55rem; border: 1px solid #555; border-radius: 0.2rem;
+  font-size: 0.7rem;
+}
+#heynuo-footer .footer-bottom { border-top: 1px solid #555; background: #171717; }
+#heynuo-footer .footer-bottom-inner {
+  display: flex; align-items: center; gap: 1rem; min-height: 5.8rem;
+  max-width: 1560px; margin: 0 auto; padding: 1rem 2.5rem;
+}
+#heynuo-footer .footer-bottom-inner > span { font-size: 0.95rem; white-space: nowrap; }
+#heynuo-footer .footer-bottom nav { display: flex; flex-wrap: wrap; gap: 1rem; }
+#heynuo-footer .footer-bottom a { color: #f1f1f1; text-decoration: none; }
+#heynuo-footer .footer-back-top {
+  display: grid; width: 2rem; height: 2rem; margin-left: auto; place-items: center;
+  border-radius: 50%; background: #050505; font-size: 1.4rem;
+}
+#heynuo-footer a:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+@media (max-width: 900px) {
+  #heynuo-footer .footer-content { grid-template-columns: 1fr; }
+  #heynuo-footer .footer-columns { padding-inline: 2rem; }
+  #heynuo-footer .footer-aside { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid #565656; border-left: 0; padding: 2rem; }
+}
+@media (max-width: 600px) {
+  #heynuo-footer .footer-content { min-height: 0; }
+  #heynuo-footer .footer-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 1rem; padding: 2rem 1.25rem; }
+  #heynuo-footer .footer-aside { grid-template-columns: 1fr; gap: 1.8rem; padding: 2rem 1.25rem; }
+  #heynuo-footer .footer-bottom-inner { align-items: flex-start; flex-wrap: wrap; padding: 1.25rem; }
+  #heynuo-footer .footer-bottom nav { order: 3; width: 100%; gap: 0.8rem; }
+}
+@media (prefers-reduced-motion: reduce) { #heynuo-footer a { transition: none; } }
+
 /* ==========================================================================
    Mobile Navigation Drawer
    ========================================================================== */
@@ -240,10 +398,20 @@ html.sepia, [data-theme="sepia"] {
   border-bottom: 1px solid rgb(var(--color-border-subtle));
   box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.18);
   z-index: 60 !important;
+  opacity: 0;
+  transform: translateY(-0.5rem);
+  visibility: hidden;
+  pointer-events: none;
+  transform-origin: top center;
+  transition: opacity 180ms ease, transform 180ms ease, visibility 0s linear 180ms;
 }
 
-#heynuo-mobile-nav.hidden {
-  display: none !important;
+#heynuo-mobile-nav.is-open {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
 }
 
 #heynuo-mobile-nav a {
@@ -253,13 +421,69 @@ html.sepia, [data-theme="sepia"] {
   border-radius: 0.5rem;
   font-size: 0.95rem;
   font-weight: 500;
-  transition: all 0.15s ease;
+  transition: color 150ms ease, background-color 150ms ease, transform 150ms ease;
+}
+
+#heynuo-mobile-nav a:hover {
+  transform: translateX(2px);
 }
 
 #heynuo-mobile-nav a[aria-current="page"] {
   background-color: rgb(var(--color-surface-container-low));
   color: rgb(var(--color-primary));
   font-weight: 600;
+}
+
+.verse-feed-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+}
+
+.verse-feed-spinner {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 1rem;
+  border: 2px solid rgb(var(--color-primary) / 0.2);
+  border-top-color: rgb(var(--color-primary));
+  border-radius: 50%;
+  animation: verse-feed-spin 750ms linear infinite;
+}
+
+@keyframes verse-feed-spin {
+  to { transform: rotate(360deg); }
+}
+
+#dynamicVersesFeed .verse-article {
+  animation: verse-card-enter 180ms ease-out both;
+}
+
+@keyframes verse-card-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+[role="dialog"]:not(.hidden):not([hidden]) > .animate-in {
+  animation: dialog-enter 180ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+@keyframes dialog-enter {
+  from { opacity: 0; transform: translateY(8px) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 420ms ease, transform 420ms cubic-bezier(0.2, 0.75, 0.25, 1);
+  }
+
+  .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ==========================================================================
@@ -550,9 +774,30 @@ html.sepia, [data-theme="sepia"] {
    Article & Prose Layout (Privacy, Documentation & Scholastic Reading)
    ========================================================================== */
 .article-enhanced {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   max-width: 54rem;
   margin-inline: auto;
   padding-bottom: 3rem;
+}
+
+:focus-visible {
+  outline: 3px solid rgb(var(--color-primary));
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
 }
 
 .breadcrumb {
@@ -759,6 +1004,10 @@ html.sepia, [data-theme="sepia"] {
   border-top: 1px solid rgb(var(--color-border-subtle)) !important;
 }
 
+#restore-audio-player-btn {
+  bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
 @media (max-width: 767px) {
   #audio-player-bar {
     padding: 0.45rem 0.75rem !important;
@@ -785,4 +1034,3 @@ html.sepia, [data-theme="sepia"] {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-

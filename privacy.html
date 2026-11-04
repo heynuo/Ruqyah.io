@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#0F766E">
   <meta name="color-scheme" content="light dark">
   <!-- Build stamp for service-worker cache busting. Maintained by tools/stamp-build.ps1. -->
-  <meta name="heynuo-build" content="2026-10-17-0713">
+  <meta name="heynuo-build" content="2026-11-03-1354">
 
   <!-- Theme Pre-Hydration: Prevents Flash of Unstyled Content (FOUC) -->
   <script>
@@ -111,7 +111,7 @@
 
           <h2>1. Zero Third-Party Trackers Commitment</h2>
           <p>
-            Unlike modern commercial websites that run background trackers and behavioral advertising scripts, Ruqyah runs pure static HTML, CSS, and lightweight Vanilla JavaScript. We do not use Google Analytics, Facebook Pixels, marketing cookies, or fingerprinting scripts. Your reading habits, article views, and listening sessions remain private to your device. Please note that external CDN asset providers (Google Fonts, EveryAyah audio mirrors, and GitHub Pages) receive standard client HTTP request headers (such as IP address) during asset delivery as part of basic internet transmission.
+            Unlike commercial websites that run behavioral advertising, Ruqyah does not use analytics, advertising trackers, marketing cookies, or fingerprinting scripts. Reading activity and bookmarks are not reported to Ruqyah. Preferences and playback position are stored in your browser. When fonts, page styles, or recitations load from external providers, those providers receive standard request metadata (which may include your IP address, browser details, and the requested resource).
           </p>
 
           <h2>2. Browser Local Storage Disclosures</h2>
@@ -132,8 +132,8 @@
               <tbody>
                 <tr>
                   <td><code>heynuo-theme</code></td>
-                  <td>Remembers your chosen color theme (light or dark mode)</td>
-                  <td>String (<code>'dark'</code> / <code>'light'</code>)</td>
+                  <td>Remembers your chosen color theme</td>
+                  <td>String (<code>'light'</code>, <code>'sepia'</code>, or <code>'dark'</code>)</td>
                   <td>Persistent</td>
                 </tr>
                 <tr>
@@ -143,15 +143,39 @@
                   <td>Persistent</td>
                 </tr>
                 <tr>
+                  <td><code>heynuo_surah_bookmarks</code></td>
+                  <td>Saves bookmarked Surahs in the Quran library</td>
+                  <td>JSON Array of Surah numbers</td>
+                  <td>Persistent</td>
+                </tr>
+                <tr>
                   <td><code>heynuo_contact_draft</code></td>
                   <td>Prevents message loss if your browser reloads while drafting an inquiry</td>
                   <td>JSON Object (name, email, draft text)</td>
                   <td>Until submitted/cleared</td>
                 </tr>
                 <tr>
-                  <td><code>qp_track_index</code>, <code>qp_volume</code>, <code>qp_favorites</code></td>
-                  <td>Saves Quran Audio Player state (current Surah, volume, playlist)</td>
-                  <td>Numbers &amp; Arrays</td>
+                  <td><code>qp_*</code> (except sleep timer keys)</td>
+                  <td>Quran player position, playback preferences, reciter, and favorites</td>
+                  <td>Numbers, strings, booleans &amp; arrays</td>
+                  <td>Persistent</td>
+                </tr>
+                <tr>
+                  <td><code>mv_*</code></td>
+                  <td>108 Verses page favorites, reciter, view, display, and playback preferences</td>
+                  <td>Numbers, strings, booleans &amp; arrays</td>
+                  <td>Persistent</td>
+                </tr>
+                <tr>
+                  <td><code>heynuo-font-size</code>, <code>heynuo-reading-theme</code>, <code>heynuo-reading-font</code></td>
+                  <td>Remembers article reading comfort settings</td>
+                  <td>Numbers &amp; strings</td>
+                  <td>Persistent</td>
+                </tr>
+                <tr>
+                  <td><code>heynuo-search-history</code>, <code>activeCategory</code></td>
+                  <td>Stores recent command-palette queries and the selected article category</td>
+                  <td>JSON Array &amp; string</td>
                   <td>Persistent</td>
                 </tr>
                 <tr>
@@ -163,15 +187,17 @@
               </tbody>
             </table>
           </div>
+          <p class="text-sm text-on-surface-variant">The Quran player's sleep timer (<code>qp_sleep_end</code> and <code>qp_sleep_mode</code>) and the dismissed announcement use <code>sessionStorage</code>; those temporary values are scoped to the current browser tab session.</p>
 
           <h2>3. External Audio Hosts &amp; Network CDNs</h2>
           <p>
-            To deliver high-fidelity Quran recitations and fluid typography with instant performance, this static site streams assets from carefully selected educational and public platforms:
+            This site requests page styles, fonts, icons, and recitation audio from these third-party hosts:
           </p>
           <ul>
-            <li><strong>EveryAyah CDN (<code>everyayah.com</code>):</strong> Provides audio streams (Sheikh Mishary Rashid Alafasy) ensuring audio never fails silently.</li>
-            <li><strong>MP3Quran (<code>mp3quran.net</code>) &amp; QuranicAudio:</strong> Serves full continuous Surah recitations for the complete 114 Surahs player.</li>
+            <li><strong>EveryAyah (<code>everyayah.com</code>):</strong> Provides ayah-by-ayah recitation streams when you request playback.</li>
+            <li><strong>MP3Quran (<code>mp3quran.net</code>), QuranicAudio, and Al-Islam Cloud:</strong> Provide recitation streams for the Quran readers and players.</li>
             <li><strong>Google Fonts (<code>fonts.googleapis.com</code>, <code>fonts.gstatic.com</code>):</strong> Serves modern web typography (Plus Jakarta Sans, Inter, Amiri) using preconnected non-blocking hints.</li>
+            <li><strong>Tailwind CSS (<code>cdn.tailwindcss.com</code>):</strong> Supplies the utility stylesheet used to render the page layouts.</li>
             <li><strong>GitHub Pages:</strong> Hosts the static repository files directly from GitHub's global content delivery network.</li>
           </ul>
 

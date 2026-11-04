@@ -7,7 +7,7 @@
   <meta name="shell-type" content="web_standard">
   <meta name="theme-color" content="#0F766E">
   <meta name="color-scheme" content="light dark">
-  <meta name="heynuo-build" content="2026-10-17-0713">
+  <meta name="heynuo-build" content="2026-11-03-1354">
 
   <!-- Theme Pre-Hydration: Prevents Flash of Unstyled Content (FOUC) -->
   <script>
@@ -31,9 +31,9 @@
   <!-- Primary SEO -->
   <title>Ruqyah — Scholastic Archive &amp; Systems Laboratory</title>
   <meta name="description"
-    content="Clear tutorials in distributed systems, classical scholarship, and verified Qur'anic tools engineered for quiet reflection. Zero trackers, zero client telemetry, and built for permanent offline reading.">
+    content="An independent archive for Qur'anic reading, recitation, and a searchable collection of 108 verses, alongside engineering work and source notes. Free to use and designed for offline study.">
   <meta name="keywords"
-    content="Ruqyah, Distributed Systems, Java OOP, JVM Internals, Spring Boot Architecture, Qur'an Recitation, 108 Master Verses, Zero Trackers">
+    content="Ruqyah, Qur'an Reader, Qur'anic Recitation, 108 Quranic Verses, Source Methodology, Software Engineering, Distributed Systems, Offline Reading">
   <meta name="author" content="Zahiruddin (Ruqyah)">
   <meta name="robots" content="index, follow">
   <meta name="google-site-verification" content="20jAEe9y_iie23-LX0l0yjH4KSEUyTmoF-9H5tOpkxA">
@@ -42,7 +42,7 @@
   <!-- Open Graph -->
   <meta property="og:title" content="Ruqyah — Scholastic Archive &amp; Systems Laboratory">
   <meta property="og:description"
-    content="Clear tutorials in distributed systems, disciplined scholarship, and verified Qur'anic tools engineered for quiet reflection. Zero trackers, zero client telemetry, and built for permanent offline reading.">
+    content="An independent archive for Qur'anic reading, recitation, and a searchable collection of 108 verses, alongside engineering work and source notes. Free to use and designed for offline study.">
   <meta property="og:image" content="https://heynuo.github.io/assets/banners/og-banner.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -56,7 +56,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Ruqyah — Scholastic Archive &amp; Systems Laboratory">
   <meta name="twitter:description"
-    content="Clear tutorials in distributed systems, disciplined scholarship, and verified Qur'anic tools engineered for quiet reflection.">
+    content="Explore Qur'anic reading, recitation, a searchable 108-verse collection, and engineering work with clear source notes. Free to use and designed for offline study.">
   <meta name="twitter:image" content="https://heynuo.github.io/assets/banners/og-banner.jpg">
   <meta name="twitter:image:alt" content="Ruqyah — Scholastic Archive &amp; Systems Laboratory">
 
@@ -89,6 +89,15 @@
     @media (prefers-reduced-motion: reduce) {
       .sacred-orbit-cw, .sacred-orbit-ccw {
         animation: none !important;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto !important; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
       }
     }
   </style>
@@ -130,7 +139,6 @@
     }
   </script>
 
-  <script src="js/shell.js" defer></script>
   <!-- Typography Preconnect & Font Inclusions (Unified) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -151,7 +159,7 @@
   <!-- TOP NAVIGATION BAR (Standard Canonical Component) -->
 
   <!-- MAIN EDITORIAL CONTENT -->
-  <main class="w-full pt-14 flex-1">
+  <main class="w-full pt-14 flex-1" id="main-content" tabindex="-1">
 
     <!-- 'CURRENTLY STUDYING & BUILDING' (NOW STRIP) -->
     <section class="w-full border-b border-border-subtle bg-surface-container-low/60 py-2.5 px-4 sm:px-6 md:px-8">
@@ -164,9 +172,9 @@
           <span class="truncate text-on-surface font-medium">Zero-allocation Netty byte buffers &amp; Classical Tafsir of Surah Al-Kahf</span>
         </div>
         <div class="flex items-center gap-3 text-[11px] text-on-surface-variant shrink-0">
-          <span class="hidden md:inline">Research Lab Log #42</span>
+          <span class="hidden md:inline">A quiet, independent archive</span>
           <span class="hidden md:inline">•</span>
-          <a class="text-primary hover:underline font-semibold" href="#articles-section">Read latest findings →</a>
+          <a class="text-primary hover:underline font-semibold" href="#articles-section">Explore the library →</a>
         </div>
       </div>
     </section>
@@ -181,28 +189,31 @@
             <!-- Editorial Folio Label -->
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-sm border border-primary/25 bg-surface-container-low text-primary mb-4 shadow-xs">
               <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-              <span class="font-code-mono text-[11px] font-semibold tracking-wider uppercase">VOL. III • SCHOLASTIC ARCHIVE &amp; SYSTEMS LABORATORY • EST. 2024</span>
+              <span class="font-code-mono text-[11px] font-semibold tracking-wider uppercase">RUQYAH SHARI'YAH • QUR’ANIC HEALING • SYSTEMS ENGINEERING</span>
             </div>
 
             <!-- Bold Academic Headline -->
             <h1 class="font-title-page text-3xl sm:text-4xl md:text-5xl font-extrabold text-on-surface tracking-tight leading-[1.12] mb-4 text-balance">
-              Notes on Code and the Qur’an.
+              Scripture, Ruqyah &amp; Software Systems.
             </h1>
 
             <!-- Eloquent Description -->
             <p class="font-body-lead text-sm sm:text-base text-on-surface-variant mb-6 text-balance leading-relaxed max-w-xl">
-              Clear tutorials in distributed systems, disciplined classical scholarship, and verified Qur’anic tools engineered for quiet reflection. Zero trackers, zero client telemetry, and built with standard web technologies for permanent offline reading.
+              An authentic sanctuary for Qur’anic recitation, Ruqyah healing verses, and a 108-verse verified concordance from 62 classical sources, alongside software systems engineering notes. Free, private, and built for permanent offline study.
             </p>
 
             <!-- Primary CTAs -->
             <div class="flex flex-wrap items-center gap-3 mb-6 w-full sm:w-auto">
-              <a class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded bg-primary text-on-primary font-ui-interactive text-sm font-semibold hover:bg-primary-container transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" href="#learn-lane">
-                <span>Start Learning Systems</span>
-                <svg class="w-4 h-4 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              <a class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded bg-primary text-on-primary font-ui-interactive text-sm font-semibold hover:bg-primary-container transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" href="quran-verses.html">
+                <svg class="w-4 h-4 stroke-current" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <span>Ruqyah &amp; 108 Master Verses</span>
               </a>
-              <a class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded border border-border-strong/40 bg-surface text-on-surface font-ui-interactive text-sm font-semibold hover:bg-surface-container-low transition-all shadow-xs focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" href="#quran-lane">
-                <svg class="w-4 h-4 stroke-current text-primary" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-                <span>Open Qur’an Corpus</span>
+              <a class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded border border-border-strong/40 bg-surface text-on-surface font-ui-interactive text-sm font-semibold hover:bg-surface-container-low transition-all shadow-xs focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" href="quran.html">
+                <svg class="w-4 h-4 stroke-current text-primary" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <span>114 Surahs Recitation</span>
+              </a>
+              <a class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded border border-border-subtle bg-surface text-on-surface-variant hover:text-primary hover:bg-surface-container-low font-ui-interactive text-sm font-semibold transition-all shadow-xs" href="about.html#evidence-background">
+                <span>Engineering Lab &rarr;</span>
               </a>
             </div>
 
@@ -218,16 +229,14 @@
 
           <!-- Subtle Guided Entry Points Pill Row -->
           <div class="pt-3 border-t border-border-subtle w-full flex flex-wrap items-center gap-2 text-xs font-code-mono">
-            <span class="text-on-surface-variant font-medium">Guided entry points:</span>
-            <a class="px-2 py-0.5 rounded bg-surface border border-border-subtle hover:border-primary text-on-surface hover:text-primary transition-colors" href="#article-oop">Java OOP Guide</a>
-            <span class="text-border-strong/60">•</span>
+            <span class="text-on-surface-variant font-medium">Quick starts:</span>
             <a class="px-2 py-0.5 rounded bg-surface border border-border-subtle hover:border-primary text-on-surface hover:text-primary transition-colors" href="#flagship-verse">Ayat al-Kursi Specimen</a>
             <span class="text-border-strong/60">•</span>
-            <a class="px-2 py-0.5 rounded bg-surface border border-border-subtle hover:border-primary text-on-surface hover:text-primary transition-colors" href="#article-spring">Spring Architecture</a>
+            <a class="px-2 py-0.5 rounded bg-surface border border-border-subtle hover:border-primary text-on-surface hover:text-primary transition-colors" href="quran-verses.html">108 Verses Concordance</a>
             <span class="text-border-strong/60">•</span>
-            <a class="px-2 py-0.5 rounded bg-surface border border-border-subtle hover:border-primary text-on-surface hover:text-primary transition-colors" href="#article-vanilla">Vanilla Web</a>
-            <span class="text-border-strong/60">•</span>
-            <a class="px-2 py-0.5 rounded bg-surface border border-border-subtle hover:border-primary text-on-surface hover:text-primary transition-colors" href="quran-verses.html">108 Verses</a>
+            <a class="px-2 py-0.5 rounded bg-surface border border-primary/40 text-primary font-semibold hover:bg-surface-container-low transition-colors" href="quran-verses.html">Ruqyah &amp; Healing</a>
+            <span class="text-border-strong/60">&bull;</span>
+            <a class="px-2 py-0.5 rounded bg-surface border border-border-subtle hover:border-primary text-on-surface hover:text-primary transition-colors" href="#video-library">Video Library</a>
           </div>
         </div>
 
@@ -359,9 +368,63 @@
       </div>
     </section>
 
+    <!-- 1.5. IMPROVED SITE HIGHLIGHTS: CLARITY + TRUST + LEARNING PATHS -->
+    <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 py-2" aria-label="Site highlights">
+      <div class="rounded-2xl border border-border-strong/30 bg-gradient-to-br from-surface via-surface to-surface-container-low/80 p-5 sm:p-6 shadow-xs">
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-6">
+          <div>
+            <p class="font-code-mono text-[11px] uppercase tracking-[0.18em] text-primary font-bold mb-2">Why it works</p>
+            <h2 class="font-title-page text-2xl sm:text-3xl font-extrabold text-on-surface leading-tight">A cleaner archive for calm study.</h2>
+          </div>
+          <p class="max-w-2xl text-sm text-on-surface-variant leading-relaxed">Designed to stay quiet, readable, and useful—whether you’re following a recitation, comparing translations, or revisiting engineering notes without distraction.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+          <article class="rounded-xl border border-border-subtle bg-surface/75 p-4 hover:border-primary/40 transition-colors">
+            <div class="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M3 12h18"/></svg>
+            </div>
+            <h3 class="font-subheading-card text-base font-bold text-on-surface mb-1">Built for focus</h3>
+            <p class="text-sm leading-relaxed text-on-surface-variant">A minimal reading experience with generous spacing, strong hierarchy, and clear calls to action.</p>
+          </article>
+
+          <article class="rounded-xl border border-border-subtle bg-surface/75 p-4 hover:border-primary/40 transition-colors">
+            <div class="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 12h10M7 6h10M7 18h10"/><path d="M4 4h.01M4 20h.01"/></svg>
+            </div>
+            <h3 class="font-subheading-card text-base font-bold text-on-surface mb-1">Evidence-first</h3>
+            <p class="text-sm leading-relaxed text-on-surface-variant">Translations, referenced sources, and study notes stay transparent rather than hidden behind clutter.</p>
+          </article>
+
+          <article class="rounded-xl border border-border-subtle bg-surface/75 p-4 hover:border-primary/40 transition-colors">
+            <div class="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 3h8l5 5v13a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M16 3v6h6"/><path d="M9 13h6M9 17h6"/></svg>
+            </div>
+            <h3 class="font-subheading-card text-base font-bold text-on-surface mb-1">Offline-ready</h3>
+            <p class="text-sm leading-relaxed text-on-surface-variant">All core navigation and study content are designed to stay useful even without a live connection.</p>
+          </article>
+
+          <article class="rounded-xl border border-border-subtle bg-surface/75 p-4 hover:border-primary/40 transition-colors">
+            <div class="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7H14.5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <h3 class="font-subheading-card text-base font-bold text-on-surface mb-1">Free access</h3>
+            <p class="text-sm leading-relaxed text-on-surface-variant">No paywall, no tracking scripts, and no cluttered ad flow—just the material and the notes.</p>
+          </article>
+        </div>
+
+        <div class="mt-6 flex flex-wrap items-center gap-3 text-xs font-code-mono text-on-surface-variant">
+          <span class="rounded-full border border-border-subtle bg-surface px-3 py-1.5">114 Surahs</span>
+          <span class="rounded-full border border-border-subtle bg-surface px-3 py-1.5">108 Featured Verses</span>
+          <span class="rounded-full border border-border-subtle bg-surface px-3 py-1.5">Offline-first</span>
+          <span class="rounded-full border border-border-subtle bg-surface px-3 py-1.5">0 trackers</span>
+        </div>
+      </div>
+    </section>
+
     <!-- 2. TWO BALANCED PREMIUM DISCOVERY PANELS (Restored & Symmetrical) -->
-    <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 py-4">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 py-4 scroll-mt-20" id="systems-section">
+      <div class="grid grid-cols-1 lg:grid-cols-2 lg:items-start gap-6">
 
         <!-- Panel 1: Track 01 — Systems & Software Engineering (RESTORED) -->
         <div class="rounded-xl border border-border-strong/30 bg-surface p-6 sm:p-7 shadow-xs flex flex-col justify-between hover:border-primary/50 transition-all group" id="learn-lane">
@@ -380,66 +443,43 @@
                   <h2 class="font-subheading-card text-base sm:text-lg font-bold text-on-surface">Systems &amp; Software Engineering</h2>
                 </div>
               </div>
-              <span class="font-code-mono text-xs font-semibold text-primary bg-surface-container-low px-2 py-0.5 rounded border border-primary/20">Production Blueprints</span>
+              <span class="font-code-mono text-xs font-semibold text-primary bg-surface-container-low px-2 py-0.5 rounded border border-primary/20">Study Focus</span>
             </div>
 
             <p class="font-body-article text-xs sm:text-sm text-on-surface-variant mb-5 leading-relaxed">
               Disciplined architectures, high-throughput JVM memory management, and durable zero-dependency web standards engineered for long-term production resilience.
             </p>
 
-            <!-- Guide List -->
-            <div class="space-y-2.5">
-              <!-- Item 1 -->
-              <a class="flex items-center justify-between p-3 rounded border border-border-subtle bg-bg-canvas/50 hover:bg-surface-container-low hover:border-primary/30 transition-all" href="#article-spring">
-                <div class="flex items-center gap-3 min-w-0">
-                  <span class="font-code-mono text-xs font-bold text-primary">01</span>
-                  <div class="truncate">
-                    <span class="font-ui-interactive text-xs sm:text-sm font-semibold text-on-surface block truncate">Spring Boot Production Architecture</span>
-                    <span class="font-code-mono text-[10px] text-on-surface-variant">Zero-downtime microservices, thread pool sizing, runtime metrics</span>
-                  </div>
-                </div>
-                <div class="flex items-center gap-2 pl-3 flex-shrink-0">
-                  <span class="font-code-mono text-[10px] text-primary bg-surface-container-low px-1.5 py-0.5 rounded border border-primary/20 font-medium">Spring 3</span>
-                  <svg class="w-4 h-4 stroke-current text-primary" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </div>
-              </a>
+            <ul class="space-y-2.5">
+              <li><a class="flex items-center justify-between gap-3 p-3 rounded border border-border-subtle bg-bg-canvas/50 hover:bg-surface-container-low hover:border-primary/30 transition-all" href="about.html#systems-streaming">
+                <span class="min-w-0">
+                  <span class="font-ui-interactive text-xs sm:text-sm font-semibold text-on-surface block truncate">High-throughput streaming</span>
+                  <span class="font-code-mono text-[10px] text-on-surface-variant">Reactive systems, Netty, and Kafka</span>
+                </span>
+                <span class="font-code-mono text-[10px] text-primary bg-surface-container-low px-1.5 py-0.5 rounded border border-primary/20 font-medium shrink-0">Production</span>
+              </a></li>
+              <li><a class="flex items-center justify-between gap-3 p-3 rounded border border-border-subtle bg-bg-canvas/50 hover:bg-surface-container-low hover:border-primary/30 transition-all" href="about.html#jvm-internals">
+                <span class="min-w-0">
+                  <span class="font-ui-interactive text-xs sm:text-sm font-semibold text-on-surface block truncate">JVM internals &amp; memory</span>
+                  <span class="font-code-mono text-[10px] text-on-surface-variant">Java 21 runtime tuning and low-allocation paths</span>
+                </span>
+                <span class="font-code-mono text-[10px] text-primary bg-surface-container-low px-1.5 py-0.5 rounded border border-primary/20 font-medium shrink-0">JDK 21</span>
+              </a></li>
+              <li><a class="flex items-center justify-between gap-3 p-3 rounded border border-border-subtle bg-bg-canvas/50 hover:bg-surface-container-low hover:border-primary/30 transition-all" href="about.html#systems-open-source">
+                <span class="min-w-0">
+                  <span class="font-ui-interactive text-xs sm:text-sm font-semibold text-on-surface block truncate">Open source &amp; web standards</span>
+                  <span class="font-code-mono text-[10px] text-on-surface-variant">Java ecosystem tools and offline-first patterns</span>
+                </span>
+                <span class="font-code-mono text-[10px] text-primary bg-surface-container-low px-1.5 py-0.5 rounded border border-primary/20 font-medium shrink-0">Standards</span>
+              </a></li>
+            </ul>
 
-              <!-- Item 2 -->
-              <a class="flex items-center justify-between p-3 rounded border border-border-subtle bg-bg-canvas/50 hover:bg-surface-container-low hover:border-primary/30 transition-all" href="#article-oop">
-                <div class="flex items-center gap-3 min-w-0">
-                  <span class="font-code-mono text-xs font-bold text-primary">02</span>
-                  <div class="truncate">
-                    <span class="font-ui-interactive text-xs sm:text-sm font-semibold text-on-surface block truncate">Java OOP &amp; JVM Memory Models</span>
-                    <span class="font-code-mono text-[10px] text-on-surface-variant">Polymorphism, cache-line alignment, and immutable records</span>
-                  </div>
-                </div>
-                <div class="flex items-center gap-2 pl-3 flex-shrink-0">
-                  <span class="font-code-mono text-[10px] text-on-surface-variant bg-surface px-1.5 py-0.5 rounded border border-border-subtle">Java 21</span>
-                  <svg class="w-4 h-4 stroke-current text-primary" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </div>
-              </a>
-
-              <!-- Item 3 -->
-              <a class="flex items-center justify-between p-3 rounded border border-border-subtle bg-bg-canvas/50 hover:bg-surface-container-low hover:border-primary/30 transition-all" href="#article-vanilla">
-                <div class="flex items-center gap-3 min-w-0">
-                  <span class="font-code-mono text-xs font-bold text-primary">03</span>
-                  <div class="truncate">
-                    <span class="font-ui-interactive text-xs sm:text-sm font-semibold text-on-surface block truncate">Vanilla Web Development Architecture</span>
-                    <span class="font-code-mono text-[10px] text-on-surface-variant">Web components, container queries, and native service workers</span>
-                  </div>
-                </div>
-                <div class="flex items-center gap-2 pl-3 flex-shrink-0">
-                  <span class="font-code-mono text-[10px] text-on-surface-variant bg-surface px-1.5 py-0.5 rounded border border-border-subtle">Vanilla JS</span>
-                  <svg class="w-4 h-4 stroke-current text-primary" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </div>
-              </a>
-            </div>
           </div>
 
           <div class="pt-5 mt-5 border-t border-border-subtle flex items-center justify-between text-xs">
             <span class="font-code-mono text-on-surface-variant">JDK 21 LTS • Netty NIO • Zero Build</span>
-            <a class="font-ui-interactive font-semibold text-primary hover:text-primary-container inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform" href="#articles-section">
-              <span>Browse Engineering Publications</span>
+            <a class="font-ui-interactive font-semibold text-primary hover:text-primary-container inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform" href="about.html#evidence-background">
+              <span>View engineering profile</span>
               <svg class="w-3.5 h-3.5 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
           </div>
@@ -447,6 +487,7 @@
 
         <!-- Panel 2: Track 02 — Scripture & Islamic Research -->
         <div class="rounded-xl border border-border-strong/30 bg-surface p-6 sm:p-7 shadow-xs flex flex-col justify-between hover:border-primary/50 transition-all group" id="quran-lane">
+          <span class="block h-0 scroll-mt-16" id="quran-section" aria-hidden="true"></span>
           <div>
             <div class="flex items-center justify-between pb-4 mb-4 border-b border-border-subtle">
               <div class="flex items-center gap-3">
@@ -455,14 +496,14 @@
                 </div>
                 <div>
                   <span class="font-code-mono text-[11px] uppercase tracking-wider text-primary font-semibold block">Track 02 — Scripture</span>
-                  <h2 class="font-subheading-card text-base sm:text-lg font-bold text-on-surface">Scripture &amp; Islamic Research</h2>
+                  <h2 class="font-subheading-card text-base sm:text-lg font-bold text-on-surface">Scripture, Ruqyah &amp; Islamic Research</h2>
                 </div>
               </div>
               <span class="font-code-mono text-xs font-semibold text-primary bg-surface-container-low px-2 py-0.5 rounded border border-primary/20">Verified Canon</span>
             </div>
 
             <p class="font-body-article text-xs sm:text-sm text-on-surface-variant mb-5 leading-relaxed">
-              Curated corpora, authentic Qur'anic recitations, and historical textual inquiry. Preserved in authentic Uthmani script with verified Hadith citations and cross-indexed chains of narration.
+              Curated corpora, authentic Qur'anic recitations, Ruqyah Shari'yah healing verses, and historical textual inquiry. Preserved in authentic Uthmani script with verified Hadith citations and cross-indexed chains of narration.
             </p>
 
             <!-- Guide List -->
@@ -534,7 +575,7 @@
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 mb-6 border-b border-border-subtle">
           <div>
             <div class="flex items-center gap-2 mb-1.5 flex-wrap">
-              <span class="px-2.5 py-0.5 rounded-sm bg-tertiary-fixed text-on-tertiary-fixed font-code-mono text-[10px] uppercase font-bold tracking-wider">FLAGSHIP SPECIMEN • AUTHENTICATED CANON</span>
+              <span class="px-2.5 py-0.5 rounded-sm bg-tertiary-fixed text-on-tertiary-fixed font-code-mono text-[10px] uppercase font-bold tracking-wider">QUR’AN • AL-BAQARAH 2:255</span>
             </div>
             <h2 class="font-heading-subsection text-xl sm:text-2xl font-bold text-on-surface tracking-tight">
               Ayat al-Kursi (The Throne Verse)
@@ -554,6 +595,10 @@
             <button id="bookmark-verse-btn" aria-label="Bookmark this Ayah" class="min-h-[44px] min-w-[44px] px-3 py-2 rounded border border-border-subtle bg-surface hover:bg-surface-container-low text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center cursor-pointer" title="Bookmark Ayah" type="button">
               <svg class="w-4 h-4 stroke-current" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
             </button>
+            <a href="quran-verses.html" class="min-h-[44px] inline-flex items-center gap-1.5 px-3 py-2 rounded border border-primary/30 bg-primary/10 text-primary hover:bg-primary hover:text-on-primary text-xs font-code-mono font-medium transition-colors shadow-xs" title="Explore Ruqyah Verses">
+              <svg class="w-3.5 h-3.5 stroke-current" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              <span>Ruqyah Verses</span>
+            </a>
             <button id="auto-adv-btn" aria-label="Toggle Auto-advance recitation" class="min-h-[44px] inline-flex items-center gap-1.5 px-3 py-2 rounded border border-border-subtle bg-surface hover:bg-surface-container-low text-xs font-code-mono text-on-surface-variant hover:text-primary transition-colors cursor-pointer" title="Toggle auto-advance recitation" type="button">
               <svg class="w-4 h-4 stroke-current text-primary" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" x2="19" y1="5" y2="19"></line></svg>
               <span id="auto-adv-label">Auto-Next: On</span>
@@ -602,17 +647,15 @@
           </div>
         </div>
 
-        <!-- Academic Sanad Verification Strip & Full Guide Link -->
+        <!-- Text and translation sources -->
         <div class="pt-4 border-t border-border-subtle flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs font-code-mono">
           <div class="flex items-center gap-2 text-on-surface-variant flex-wrap">
             <svg class="w-4 h-4 stroke-current text-success flex-shrink-0" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-            <span class="font-medium text-on-surface">Verified Isnad</span>
+            <span class="font-medium text-on-surface">Qur’anic text</span>
             <span>•</span>
-            <span>Sahih Muslim #810</span>
+            <span>Tanzil Project</span>
             <span>•</span>
-            <span>Narrated by Abu Hurairah (ra)</span>
-            <span>•</span>
-            <span class="text-primary font-medium">Authenticity Grade: Sahih Mutawatir</span>
+            <span>Translation: Saheeh International</span>
           </div>
           <a class="font-ui-interactive font-semibold text-primary hover:text-primary-container inline-flex items-center gap-1 group" href="quran-verses.html">
             <span>Explore 108 Master Verses</span>
@@ -622,19 +665,17 @@
       </div>
     </section>
 
-    <!-- 5. AYAH OF THE DAY & PERSISTENT LOCAL 'CONTINUE WHERE YOU LEFT OFF' -->
+    <!-- 5. REFLECTION VERSE & SUGGESTED READING -->
     <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 py-4" id="ayah-of-day">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
         
-        <!-- Left: Ayah of the Day Study Card (8 Cols) -->
+        <!-- Left: Reflection verse (8 Cols) -->
         <div class="lg:col-span-8 rounded-xl border border-border-strong/30 bg-surface p-6 shadow-xs flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between pb-3 mb-3 border-b border-border-subtle">
               <div class="flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-primary"></span>
-                <span class="font-code-mono text-xs font-bold uppercase tracking-wider text-primary">Ayah of the Day</span>
-                <span class="text-border-strong/60">•</span>
-                <span class="font-code-mono text-xs text-on-surface-variant" id="ayahSeedDay">Deterministic Seed</span>
+                <span class="font-code-mono text-xs font-bold uppercase tracking-wider text-primary">Verse for reflection</span>
               </div>
               <span class="font-code-mono text-xs text-on-surface-variant">Ta-Ha 20:114</span>
             </div>
@@ -658,44 +699,34 @@
                 <span>Play Recitation</span>
               </button>
               <button id="tafsirAyahOfDayBtn" class="inline-flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors cursor-pointer" type="button">
-                <span>Read Tafsir Ibn Kathir</span>
+                <span>Open Tafsir summary</span>
                 <svg class="w-3.5 h-3.5 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
               </button>
             </div>
           </div>
         </div>
 
-        <!-- Right: Continue Where You Left Off (Local Persistent Session) (4 Cols) -->
+        <!-- Right: Suggested reading (4 Cols) -->
         <div class="lg:col-span-4 rounded-xl border border-border-strong/30 bg-surface p-6 shadow-xs flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between pb-3 mb-3 border-b border-border-subtle">
-              <span class="font-code-mono text-xs font-bold uppercase tracking-wider text-primary">Continuing Study</span>
-              <span class="font-code-mono text-[10px] text-success flex items-center gap-1">
-                <span class="w-1.5 h-1.5 rounded-full bg-success"></span> Local Storage Cached
-              </span>
+              <span class="font-code-mono text-xs font-bold uppercase tracking-wider text-primary">Suggested reading</span>
+              <span class="font-code-mono text-[10px] text-on-surface-variant">Start here</span>
             </div>
 
-            <h3 class="font-subheading-card text-sm font-bold text-on-surface mb-2">Resume Active Session</h3>
+            <h3 class="font-subheading-card text-sm font-bold text-on-surface mb-2">Explore Surah Al-Kahf</h3>
             <p class="font-body-article text-xs text-on-surface-variant mb-4 leading-relaxed">
-              Reading position preserved locally on this client. No registration or tracking accounts required.
+              Suggested: verses 1–10. Open the Qur’an reader, choose Al-Kahf, and follow along with recitation and translation.
             </p>
 
-            <div class="p-3.5 rounded border border-border-subtle bg-bg-canvas mb-4">
-              <div class="flex items-center justify-between text-xs font-code-mono text-on-surface-variant mb-1.5">
-                <span class="font-semibold text-on-surface" id="resume-title">Surah Al-Kahf (18:1–10)</span>
-                <span id="resume-progress-label">Section 1/4</span>
-              </div>
-              <div class="w-full h-1.5 rounded-full bg-surface-container overflow-hidden mt-1.5">
-                <div class="h-full bg-primary rounded-full" id="resume-progress-bar" style="width: 25%;"></div>
-              </div>
-            </div>
+            <div class="p-3.5 rounded border border-border-subtle bg-bg-canvas mb-4 text-xs font-code-mono text-on-surface-variant">Al-Kahf · 18:1–10</div>
           </div>
 
           <div class="space-y-2">
-            <button id="resume-btn" class="min-h-[44px] w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded bg-primary text-on-primary text-xs font-ui-interactive font-semibold hover:bg-primary-container transition-colors shadow-xs cursor-pointer" type="button">
-              <span>Resume Surah Al-Kahf</span>
+            <a class="min-h-[44px] w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded bg-primary text-on-primary text-xs font-ui-interactive font-semibold hover:bg-primary-container transition-colors shadow-xs" href="quran.html">
+              <span>Open the Surah library</span>
               <svg class="w-3.5 h-3.5 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-            </button>
+            </a>
             <div class="text-center pt-1">
               <a class="font-code-mono text-xs text-on-surface-variant hover:text-primary transition-colors" href="quran-verses.html">
                 Open Saved Bookmarks &amp; Notes →
@@ -707,120 +738,140 @@
       </div>
     </section>
 
-    <!-- 6. ALL 4 ARTICLES IN FULL DISPLAY (Publications Grid Synchronized) -->
-    <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 py-10" id="articles-section">
+    <!-- 6. VIDEO LIBRARY -->
+    <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 py-10 scroll-mt-20" id="video-library" aria-labelledby="video-library-title">
       <div class="flex items-end justify-between mb-8 pb-3 border-b border-border-subtle">
         <div>
-          <span class="font-code-mono text-[11px] uppercase tracking-wider text-primary font-semibold block mb-1">Publications</span>
+          <span class="font-code-mono text-[11px] uppercase tracking-wider text-primary font-semibold block mb-1">Media</span>
+          <h2 class="font-heading-section text-2xl sm:text-3xl font-bold text-on-surface tracking-tight" id="video-library-title">Video Library</h2>
+          <p class="font-body-article text-sm text-on-surface-variant mt-2">Play or download any video directly from this page.</p>
+        </div>
+        <span class="font-code-mono text-xs text-on-surface-variant shrink-0">5 videos</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <article class="rounded-xl border border-border-strong/30 bg-surface shadow-xs overflow-hidden">
+          <div class="aspect-video bg-black">
+            <video class="w-full h-full" controls playsinline preload="metadata" aria-labelledby="video-one-title">
+              <source src="assets/videos/video-1.mp4" type="video/mp4">
+              Your browser does not support in-page video playback. <a href="assets/videos/video-1.mp4">Download the MP4</a> instead.
+            </video>
+          </div>
+          <div class="p-4 sm:p-5 flex items-center justify-between gap-4">
+            <div>
+              <h3 class="font-subheading-card text-base font-bold text-on-surface" id="video-one-title">Video 1</h3>
+              <p class="font-code-mono text-[11px] text-on-surface-variant mt-1">MP4 video</p>
+            </div>
+            <a class="inline-flex items-center justify-center min-h-10 px-3 rounded border border-border-subtle text-primary text-sm font-semibold hover:bg-surface-container-low transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="assets/videos/video-1.mp4" download>Download</a>
+          </div>
+        </article>
+
+        <article class="rounded-xl border border-border-strong/30 bg-surface shadow-xs overflow-hidden">
+          <div class="aspect-video bg-black">
+            <video class="w-full h-full" controls playsinline preload="metadata" aria-labelledby="video-two-title">
+              <source src="assets/videos/video-2.mp4" type="video/mp4">
+              Your browser does not support in-page video playback. <a href="assets/videos/video-2.mp4">Download the MP4</a> instead.
+            </video>
+          </div>
+          <div class="p-4 sm:p-5 flex items-center justify-between gap-4">
+            <div>
+              <h3 class="font-subheading-card text-base font-bold text-on-surface" id="video-two-title">Video 2</h3>
+              <p class="font-code-mono text-[11px] text-on-surface-variant mt-1">MP4 video</p>
+            </div>
+            <a class="inline-flex items-center justify-center min-h-10 px-3 rounded border border-border-subtle text-primary text-sm font-semibold hover:bg-surface-container-low transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="assets/videos/video-2.mp4" download>Download</a>
+          </div>
+        </article>
+
+        <article class="rounded-xl border border-border-strong/30 bg-surface shadow-xs overflow-hidden">
+          <div class="aspect-video bg-black">
+            <video class="w-full h-full" controls playsinline preload="metadata" aria-labelledby="video-three-title">
+              <source src="assets/videos/video-3.mp4" type="video/mp4">
+              Your browser does not support in-page video playback. <a href="assets/videos/video-3.mp4">Download the MP4</a> instead.
+            </video>
+          </div>
+          <div class="p-4 sm:p-5 flex items-center justify-between gap-4">
+            <div>
+              <h3 class="font-subheading-card text-base font-bold text-on-surface" id="video-three-title">Video 3</h3>
+              <p class="font-code-mono text-[11px] text-on-surface-variant mt-1">[ Enhanced_video ]</p>
+            </div>
+            <a class="inline-flex items-center justify-center min-h-10 px-3 rounded border border-border-subtle text-primary text-sm font-semibold hover:bg-surface-container-low transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="assets/videos/video-3.mp4" download>Download</a>
+          </div>
+        </article>
+
+        <article class="rounded-xl border border-border-strong/30 bg-surface shadow-xs overflow-hidden">
+          <div class="aspect-video bg-black">
+            <video class="w-full h-full" controls playsinline preload="metadata" aria-labelledby="video-four-title">
+              <source src="assets/videos/video-4.mp4" type="video/mp4">
+              Your browser does not support in-page video playback. <a href="assets/videos/video-4.mp4">Download the MP4</a> instead.
+            </video>
+          </div>
+          <div class="p-4 sm:p-5 flex items-center justify-between gap-4">
+            <div>
+              <h3 class="font-subheading-card text-base font-bold text-on-surface" id="video-four-title">Video 4</h3>
+              <p class="font-code-mono text-[11px] text-on-surface-variant mt-1">MP4 video</p>
+            </div>
+            <a class="inline-flex items-center justify-center min-h-10 px-3 rounded border border-border-subtle text-primary text-sm font-semibold hover:bg-surface-container-low transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="assets/videos/video-4.mp4" download>Download</a>
+          </div>
+        </article>
+
+        <article class="rounded-xl border border-border-strong/30 bg-surface shadow-xs overflow-hidden lg:col-span-2 lg:w-1/2 lg:justify-self-center">
+          <div class="aspect-video bg-black">
+            <video class="w-full h-full" controls playsinline preload="metadata" aria-labelledby="video-five-title">
+              <source src="assets/videos/video-5.mp4" type="video/mp4">
+              Your browser does not support in-page video playback. <a href="assets/videos/video-5.mp4">Download the MP4</a> instead.
+            </video>
+          </div>
+          <div class="p-4 sm:p-5 flex items-center justify-between gap-4">
+            <div>
+              <h3 class="font-subheading-card text-base font-bold text-on-surface" id="video-five-title">Video 5</h3>
+              <p class="font-code-mono text-[11px] text-on-surface-variant mt-1">MP4 video</p>
+            </div>
+            <a class="inline-flex items-center justify-center min-h-10 px-3 rounded border border-border-subtle text-primary text-sm font-semibold hover:bg-surface-container-low transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="assets/videos/video-5.mp4" download>Download</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 7. ARCHIVE RESOURCES -->
+    <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 py-10 scroll-mt-20" id="articles-section">
+      <div class="flex items-end justify-between mb-8 pb-3 border-b border-border-subtle">
+        <div>
+          <span class="font-code-mono text-[11px] uppercase tracking-wider text-primary font-semibold block mb-1">Library</span>
           <h2 class="font-heading-section text-2xl sm:text-3xl font-bold text-on-surface tracking-tight">
-            Latest Notes &amp; Technical Essays
+            Explore the Archive
           </h2>
         </div>
         <div class="flex items-center gap-2 text-xs font-code-mono text-on-surface-variant">
-          <span class="font-semibold text-primary">All 4 Articles Displayed</span>
+          <span class="font-semibold text-primary" id="articleResultCount" aria-live="polite" aria-atomic="true">3 resources</span>
           <span>•</span>
-          <span>Refereed Archive</span>
+          <span>Reference</span>
         </div>
       </div>
 
-      <!-- 4-Card Responsive Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="articlesGrid">
-        
-        <!-- Article 1: Spring Boot Production Architecture -->
-        <article class="article-card flex flex-col justify-between rounded-xl border border-border-strong/30 bg-surface shadow-xs overflow-hidden hover:border-primary/50 transition-all group" id="article-spring" data-category="spring-boot java architecture jvm">
-          <div>
-            <!-- Custom Architectural Diagram Header -->
-            <div class="h-36 w-full bg-surface-container relative overflow-hidden flex items-center justify-center border-b border-border-subtle">
-              <svg class="w-full h-full text-primary/40 p-4" fill="none" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-                <rect height="45" rx="3" stroke="currentColor" stroke-width="1.5" width="70" x="20" y="30"></rect>
-                <text fill="currentColor" font-family="monospace" font-size="11" x="32" y="58">Gateway</text>
-                <rect height="45" rx="3" stroke="currentColor" stroke-width="1.5" width="70" x="120" y="30"></rect>
-                <text fill="currentColor" font-family="monospace" font-size="11" x="132" y="58">Dispatch</text>
-                <rect fill="#E8F7F3" height="45" rx="3" stroke="#0F766E" stroke-width="1.5" width="170" x="70" y="105"></rect>
-                <text fill="#0F766E" font-family="monospace" font-size="11" font-weight="bold" x="100" y="132">JVM Thread Pool</text>
-                <line stroke="currentColor" stroke-dasharray="2 2" stroke-width="1.2" x1="55" x2="110" y1="75" y2="105"></line>
-                <line stroke="currentColor" stroke-width="1.2" x1="155" x2="155" y1="75" y2="105"></line>
-              </svg>
-              <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-surface/90 border border-border-subtle text-on-surface font-code-mono text-[10px] uppercase font-bold tracking-wider">
-                Architecture
-              </span>
+      <section class="mb-6" id="library-filters" aria-label="Filter resources by topic">
+        <div class="p-4 sm:p-5 rounded-xl border border-border-strong/30 bg-surface shadow-xs">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 stroke-current text-primary" fill="none" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h7"></path></svg>
+              <span class="font-ui-interactive text-xs font-bold uppercase tracking-wider text-on-surface">Filter by topic</span>
             </div>
-
-            <div class="p-4 sm:p-5">
-              <div class="flex items-center gap-2 font-code-mono text-[11px] text-on-surface-variant mb-2">
-                <time datetime="2026-09-28">28 Sep 2026</time>
-                <span>•</span>
-                <span>14 min read</span>
-              </div>
-              <h3 class="font-subheading-card text-sm sm:text-base font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-2 mb-2">
-                <a href="#article-spring">Spring Boot Production Architecture</a>
-              </h3>
-              <p class="font-body-article text-xs text-on-surface-variant line-clamp-3 mb-4 leading-relaxed">
-                A comprehensive blueprint for zero-downtime microservices, thread pool dimensioning, dynamic configuration topologies, and JVM runtime metrics.
-              </p>
-              <div class="flex flex-wrap gap-1.5 mb-2">
-                <span class="px-2 py-0.5 rounded bg-surface-container-low text-primary font-code-mono text-[10px] border border-primary/20">Spring 3</span>
-                <span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-mono text-[10px]">Java 21</span>
-              </div>
-            </div>
+            <span class="font-code-mono text-[11px] text-on-surface-variant">Choose a topic to narrow the resources below.</span>
           </div>
-
-          <div class="px-4 sm:px-5 pb-5 pt-0">
-            <a class="inline-flex items-center gap-1 font-ui-interactive text-xs font-semibold text-primary group-hover:translate-x-0.5 transition-transform" href="#article-spring">
-              <span>Read Note</span>
-              <svg class="w-3.5 h-3.5 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </a>
+          <div class="flex flex-wrap items-center gap-2 text-xs font-code-mono" id="filterChipsRow" role="group" aria-label="Resource topics">
+            <button class="topic-chip active min-h-9 px-3 py-2 rounded bg-primary text-on-primary font-medium transition-colors cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" data-tag="all" type="button" aria-pressed="true">All (3)</button>
+            <button class="topic-chip min-h-9 px-3 py-2 rounded bg-bg-canvas hover:bg-surface-container border border-border-subtle text-on-surface transition-colors cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" data-tag="quran" type="button" aria-pressed="false">Qur’an (2)</button>
+            <button class="topic-chip min-h-9 px-3 py-2 rounded bg-bg-canvas hover:bg-surface-container border border-border-subtle text-on-surface transition-colors cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" data-tag="audio" type="button" aria-pressed="false">Audio (1)</button>
+            <button class="topic-chip min-h-9 px-3 py-2 rounded bg-bg-canvas hover:bg-surface-container border border-border-subtle text-on-surface transition-colors cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" data-tag="methodology" type="button" aria-pressed="false">Methodology (1)</button>
           </div>
-        </article>
-
-        <!-- Article 2: Java Object-Oriented Programming & JVM Memory -->
-        <article class="article-card flex flex-col justify-between rounded-xl border border-border-strong/30 bg-surface shadow-xs overflow-hidden hover:border-primary/50 transition-all group" id="article-oop" data-category="java jvm oop">
-          <div>
-            <!-- Custom Memory Lattice Diagram -->
-            <div class="h-36 w-full bg-surface-container relative overflow-hidden flex items-center justify-center border-b border-border-subtle">
-              <svg class="w-full h-full text-primary/40 p-4" fill="none" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="160" cy="40" r="22" stroke="currentColor" stroke-width="1.5"></circle>
-                <text fill="currentColor" font-family="monospace" font-size="10" x="146" y="44">Base</text>
-                <circle cx="90" cy="120" r="20" stroke="currentColor" stroke-width="1.5"></circle>
-                <text fill="currentColor" font-family="monospace" font-size="10" x="76" y="124">SubA</text>
-                <circle cx="230" cy="120" fill="#E8F7F3" r="20" stroke="#0F766E" stroke-width="1.5"></circle>
-                <text fill="#0F766E" font-family="monospace" font-size="10" font-weight="bold" x="212" y="124">Record</text>
-                <line stroke="currentColor" stroke-width="1.2" x1="145" x2="105" y1="58" y2="102"></line>
-                <line stroke="currentColor" stroke-dasharray="2 2" stroke-width="1.2" x1="175" x2="215" y1="58" y2="102"></line>
-              </svg>
-              <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-surface/90 border border-border-subtle text-on-surface font-code-mono text-[10px] uppercase font-bold tracking-wider">
-                Core Java
-              </span>
-            </div>
-
-            <div class="p-4 sm:p-5">
-              <div class="flex items-center gap-2 font-code-mono text-[11px] text-on-surface-variant mb-2">
-                <time datetime="2026-09-15">15 Sep 2026</time>
-                <span>•</span>
-                <span>12 min read</span>
-              </div>
-              <h3 class="font-subheading-card text-sm sm:text-base font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-2 mb-2">
-                <a href="#article-oop">Java OOP &amp; JVM Memory Models</a>
-              </h3>
-              <p class="font-body-article text-xs text-on-surface-variant line-clamp-3 mb-4 leading-relaxed">
-                Demystifying polymorphism, dynamic dispatch, cache-line alignment on 64-bit architectures, and modern functional integration with immutable records.
-              </p>
-              <div class="flex flex-wrap gap-1.5 mb-2">
-                <span class="px-2 py-0.5 rounded bg-surface-container-low text-primary font-code-mono text-[10px] border border-primary/20">Memory</span>
-                <span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-mono text-[10px]">OOP</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="px-4 sm:px-5 pb-5 pt-0">
-            <a class="inline-flex items-center gap-1 font-ui-interactive text-xs font-semibold text-primary group-hover:translate-x-0.5 transition-transform" href="#article-oop">
-              <span>Read Note</span>
-              <svg class="w-3.5 h-3.5 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </a>
-          </div>
-        </article>
-
-        <!-- Article 3: Holy Qur’an Recitation Library (Replaced Jinn Theology) -->
+          <p id="filterEmptyState" class="hidden mt-4 pt-4 border-t border-border-subtle font-body-article text-xs text-on-surface-variant" role="status">
+            No resources carry this topic yet.
+            <button id="filterResetBtn" type="button" class="text-primary font-semibold hover:underline cursor-pointer">Show all resources</button>
+          </p>
+        </div>
+      </section>
+      <!-- Resource cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="articlesGrid">
+        <!-- Article 1: Holy Qur’an Recitation Library -->
         <article class="article-card flex flex-col justify-between rounded-xl border border-border-strong/30 bg-surface shadow-xs overflow-hidden hover:border-primary/50 transition-all group" id="article-quran" data-category="quran surah audio scripture">
           <div>
             <!-- Custom Sacred Octagram Diagram -->
@@ -862,80 +913,48 @@
           </div>
         </article>
 
-        <!-- Article 4: Vanilla Web Development Architecture -->
-        <article class="article-card flex flex-col justify-between rounded-xl border border-border-strong/30 bg-surface shadow-xs overflow-hidden hover:border-primary/50 transition-all group" id="article-vanilla" data-category="web vanilla-js pwa">
+        <article class="article-card flex flex-col justify-between rounded-xl border border-border-strong/30 bg-surface shadow-xs overflow-hidden hover:border-primary/50 transition-all group" id="resource-verses" data-category="quran corpus research">
           <div>
-            <!-- Vanilla DOM Diagram -->
             <div class="h-36 w-full bg-surface-container relative overflow-hidden flex items-center justify-center border-b border-border-subtle">
-              <svg class="w-full h-full text-primary/40 p-4" fill="none" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
-                <rect height="120" rx="4" stroke="currentColor" stroke-width="1.5" width="260" x="30" y="30"></rect>
-                <rect fill="#E8F7F3" height="30" rx="2" stroke="#0F766E" stroke-width="1.2" width="220" x="50" y="50"></rect>
-                <text fill="#0F766E" font-family="monospace" font-size="10" font-weight="bold" x="70" y="70">&lt;custom-element&gt; (Zero-Build)</text>
-                <line stroke="currentColor" stroke-dasharray="3 3" stroke-width="1" x1="50" x2="270" y1="105" y2="105"></line>
-                <text fill="currentColor" font-family="monospace" font-size="10" x="50" y="130">ShadowDOM • MutationObserver</text>
-              </svg>
-              <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-surface/90 border border-border-subtle text-on-surface font-code-mono text-[10px] uppercase font-bold tracking-wider">
-                Web Standards
-              </span>
+              <svg class="w-12 h-12 stroke-current text-primary" fill="none" stroke-width="1.4" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path><path d="M8 7h8M8 11h8"></path></svg>
+              <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-surface/90 border border-border-subtle text-on-surface font-code-mono text-[10px] uppercase font-bold tracking-wider">Verse index</span>
             </div>
-
             <div class="p-4 sm:p-5">
-              <div class="flex items-center gap-2 font-code-mono text-[11px] text-on-surface-variant mb-2">
-                <time datetime="2026-08-20">20 Aug 2026</time>
-                <span>•</span>
-                <span>9 min read</span>
-              </div>
-              <h3 class="font-subheading-card text-sm sm:text-base font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-2 mb-2">
-                <a href="#article-vanilla">Vanilla Web Development Architecture</a>
-              </h3>
-              <p class="font-body-article text-xs text-on-surface-variant line-clamp-3 mb-4 leading-relaxed">
-                Building durable, zero-dependency web applications using Web Components, modern CSS container queries, and native service worker cache hierarchies.
-              </p>
+              <div class="flex items-center gap-2 font-code-mono text-[11px] text-on-surface-variant mb-2"><span>Corpus</span><span>•</span><span>108 entries</span></div>
+              <h3 class="font-subheading-card text-sm sm:text-base font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-2 mb-2"><a href="quran-verses.html">108 Master Verses</a></h3>
+              <p class="font-body-article text-xs text-on-surface-variant line-clamp-3 mb-4 leading-relaxed">Browse a searchable collection with Qur’anic text, transliteration, translations, and source references.</p>
               <div class="flex flex-wrap gap-1.5 mb-2">
-                <span class="px-2 py-0.5 rounded bg-surface-container-low text-primary font-code-mono text-[10px] border border-primary/20">Vanilla JS</span>
-                <span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-mono text-[10px]">PWA Cache</span>
+                <span class="px-2 py-0.5 rounded bg-surface-container-low text-primary font-code-mono text-[10px] border border-primary/20">Qur’an</span>
+                <span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-mono text-[10px]">Sources</span>
               </div>
             </div>
           </div>
-
           <div class="px-4 sm:px-5 pb-5 pt-0">
-            <a class="inline-flex items-center gap-1 font-ui-interactive text-xs font-semibold text-primary group-hover:translate-x-0.5 transition-transform" href="#article-vanilla">
-              <span>Read Note</span>
-              <svg class="w-3.5 h-3.5 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </a>
+            <a class="inline-flex items-center gap-1 font-ui-interactive text-xs font-semibold text-primary group-hover:translate-x-0.5 transition-transform" href="quran-verses.html"><span>Browse the verse index</span><svg class="w-3.5 h-3.5 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
           </div>
         </article>
 
-      </div>
-    </section>
-
-    <!-- 7. SEARCHABLE KNOWLEDGE LIBRARY & FAST TOPIC FILTERS -->
-    <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8 py-4" id="library-filters">
-      <div class="p-5 rounded-xl border border-border-strong/30 bg-surface shadow-xs">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-3">
-          <div class="flex items-center gap-2">
-            <svg class="w-4 h-4 stroke-current text-primary" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h7"></path></svg>
-            <span class="font-ui-interactive text-xs font-bold uppercase tracking-wider text-on-surface">Knowledge Index &amp; Topic Filters</span>
+        <article class="article-card flex flex-col justify-between rounded-xl border border-border-strong/30 bg-surface shadow-xs overflow-hidden hover:border-primary/50 transition-all group" id="resource-methodology" data-category="methodology sources systems">
+          <div>
+            <div class="h-36 w-full bg-surface-container relative overflow-hidden flex items-center justify-center border-b border-border-subtle">
+              <svg class="w-12 h-12 stroke-current text-primary" fill="none" stroke-width="1.4" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z"></path><path d="M8 7h8M8 11h8M8 15h5"></path><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path></svg>
+              <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-surface/90 border border-border-subtle text-on-surface font-code-mono text-[10px] uppercase font-bold tracking-wider">About the archive</span>
+            </div>
+            <div class="p-4 sm:p-5">
+              <div class="flex items-center gap-2 font-code-mono text-[11px] text-on-surface-variant mb-2"><span>Sources</span><span>•</span><span>Methodology</span></div>
+              <h3 class="font-subheading-card text-sm sm:text-base font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-2 mb-2"><a href="about.html#technical-colophon">How the Archive is Built &amp; Sourced</a></h3>
+              <p class="font-body-article text-xs text-on-surface-variant line-clamp-3 mb-4 leading-relaxed">Read about the technical stack and the sources used for Qur’anic text, translation, and recitation.</p>
+              <div class="flex flex-wrap gap-1.5 mb-2">
+                <span class="px-2 py-0.5 rounded bg-surface-container-low text-primary font-code-mono text-[10px] border border-primary/20">Methodology</span>
+                <span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-mono text-[10px]">Sources</span>
+              </div>
+            </div>
           </div>
-          <span class="font-code-mono text-[11px] text-on-surface-variant">Instant in-browser index • Zero network queries</span>
-        </div>
+          <div class="px-4 sm:px-5 pb-5 pt-0">
+            <a class="inline-flex items-center gap-1 font-ui-interactive text-xs font-semibold text-primary group-hover:translate-x-0.5 transition-transform" href="about.html#technical-colophon"><span>Read the methodology</span><svg class="w-3.5 h-3.5 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+          </div>
+        </article>
 
-        <!-- Filter Chips Row -->
-        <div class="flex flex-wrap items-center gap-2 text-xs font-code-mono" id="filterChipsRow">
-          <button class="topic-chip active px-2.5 py-1 rounded bg-primary text-on-primary font-medium transition-colors cursor-pointer" data-tag="all" type="button">#all (4)</button>
-          <button class="topic-chip px-2.5 py-1 rounded bg-bg-canvas hover:bg-surface-container border border-border-subtle text-on-surface transition-colors cursor-pointer" data-tag="java" type="button">#java</button>
-          <button class="topic-chip px-2.5 py-1 rounded bg-bg-canvas hover:bg-surface-container border border-border-subtle text-on-surface transition-colors cursor-pointer" data-tag="spring-boot" type="button">#spring-boot</button>
-          <button class="topic-chip px-2.5 py-1 rounded bg-bg-canvas hover:bg-surface-container border border-border-subtle text-on-surface transition-colors cursor-pointer" data-tag="jvm" type="button">#jvm</button>
-          <button class="topic-chip px-2.5 py-1 rounded bg-bg-canvas hover:bg-surface-container border border-border-subtle text-on-surface transition-colors cursor-pointer" data-tag="quran" type="button">#quran</button>
-          <button class="topic-chip px-2.5 py-1 rounded bg-bg-canvas hover:bg-surface-container border border-border-subtle text-on-surface transition-colors cursor-pointer" data-tag="surah" type="button">#surah</button>
-          <button class="topic-chip px-2.5 py-1 rounded bg-bg-canvas hover:bg-surface-container border border-border-subtle text-on-surface transition-colors cursor-pointer" data-tag="audio" type="button">#audio</button>
-          <button class="topic-chip px-2.5 py-1 rounded bg-bg-canvas hover:bg-surface-container border border-border-subtle text-on-surface transition-colors cursor-pointer" data-tag="web" type="button">#web</button>
-        </div>
-
-        <p id="filterEmptyState" class="hidden mt-4 pt-4 border-t border-border-subtle font-body-article text-xs text-on-surface-variant" role="status">
-          No publications carry this topic yet.
-          <button id="filterResetBtn" type="button" class="text-primary font-semibold hover:underline cursor-pointer">Show all publications</button>
-        </p>
       </div>
     </section>
 
@@ -1056,8 +1075,18 @@
 
   </main>
 
+  <dialog id="tafsir-dialog" aria-labelledby="tafsir-dialog-title" aria-describedby="tafsir-dialog-content" class="fixed inset-0 m-auto w-[min(36rem,calc(100%-2rem))] max-w-none border-0 bg-transparent p-0 text-on-surface backdrop:bg-slate-950/50">
+    <div class="rounded-xl border border-border-strong/30 bg-surface p-6 shadow-xl">
+      <div class="flex items-start justify-between gap-4 mb-4">
+        <h2 id="tafsir-dialog-title" class="font-heading-section text-xl font-bold text-on-surface">Tafsir note</h2>
+        <button id="tafsir-dialog-close" type="button" aria-label="Close tafsir" class="min-h-10 min-w-10 rounded border border-border-subtle text-on-surface-variant hover:bg-surface-container-low hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">×</button>
+      </div>
+      <p id="tafsir-dialog-content" class="font-body-article text-sm leading-relaxed text-on-surface-variant"></p>
+    </div>
+  </dialog>
+
   <!-- 11. PERSISTENT BOTTOM AUDIO RECITER BAR (Valid Inline SVGs, Non-intrusive) -->
-  <aside aria-label="Qur'an Recitation Audio Player" class="fixed bottom-0 left-0 right-0 z-50 bg-surface/96 backdrop-blur-md border-t border-border-subtle shadow-[0_-2px_12px_rgba(15,23,42,0.06)] px-4 sm:px-6 py-2.5 transition-all" id="audio-player-bar">
+  <aside aria-label="Qur'an Recitation Audio Player" aria-busy="false" class="fixed bottom-0 left-0 right-0 z-50 bg-surface/96 backdrop-blur-md border-t border-border-subtle shadow-[0_-2px_12px_rgba(15,23,42,0.06)] px-4 sm:px-6 py-2.5 transition-all" id="audio-player-bar">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
       
       <!-- Track Meta (Left) -->
@@ -1078,12 +1107,13 @@
               <span class="text-border-strong/60">•</span>
               <span class="text-primary font-medium">128kbps EveryAyah</span>
             </div>
+            <span class="hidden text-[10px] leading-tight text-secondary" id="player-status" role="status" aria-live="polite"></span>
           </div>
         </div>
 
         <!-- Quick Repeat Button -->
         <div class="flex items-center gap-1">
-          <button id="player-repeat-btn" aria-label="Repeat Ayah" class="w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer" title="Repeat Current Ayah" type="button">
+          <button id="player-repeat-btn" aria-label="Repeat current verse" aria-pressed="false" class="w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer" title="Repeat Current Ayah" type="button">
             <svg class="w-3.5 h-3.5 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
           </button>
         </div>
@@ -1095,7 +1125,7 @@
           <button id="player-prev-btn" aria-label="Previous Ayah" class="w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer" title="Previous Ayah" type="button">
             <svg class="w-4 h-4 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" x2="5" y1="19" y2="5"></line></svg>
           </button>
-          <button id="player-main-play-btn" aria-label="Play recitation" class="w-9 h-9 rounded-full bg-primary hover:bg-primary-container text-on-primary flex items-center justify-center transition-all shadow-xs focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1 cursor-pointer" title="Play / Pause (Space)" type="button">
+          <button id="player-main-play-btn" aria-label="Play recitation" aria-pressed="false" class="w-9 h-9 rounded-full bg-primary hover:bg-primary-container text-on-primary flex items-center justify-center transition-all shadow-xs focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1 cursor-pointer" title="Play / Pause (Space)" type="button">
             <svg class="w-4 h-4 fill-current ml-0.5" id="player-play-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
           </button>
           <button id="player-next-btn" aria-label="Next Ayah" class="w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer" title="Next Ayah" type="button">
@@ -1104,7 +1134,7 @@
         </div>
         <div class="flex items-center gap-2 w-full">
           <span class="font-code-mono text-[10px] text-on-surface-variant w-8 text-right" id="player-time-curr">00:00</span>
-          <div class="flex-1 relative flex items-center py-1 cursor-pointer" id="player-scrub-bar">
+          <div class="flex-1 relative flex items-center py-1 cursor-pointer" id="player-scrub-bar" role="slider" tabindex="0" aria-label="Recitation position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="00:00 of 00:00">
             <div class="w-full h-1 rounded-full bg-surface-container overflow-hidden">
               <div class="h-full bg-primary rounded-full" id="player-progress" style="width: 0%;"></div>
             </div>
@@ -1134,19 +1164,24 @@
 
         <!-- Volume Control Slider & Minimize -->
         <div class="flex items-center gap-2 pl-2 border-l border-border-subtle">
-          <button id="audio-mute-btn" aria-label="Mute Audio" class="w-7 h-7 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer" type="button">
+          <button id="audio-mute-btn" aria-label="Mute audio" aria-pressed="false" class="w-7 h-7 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer" type="button">
             <svg class="w-4 h-4 stroke-current" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
           </button>
-          <div class="w-14 h-1.5 rounded-full bg-surface-container cursor-pointer overflow-hidden" id="volume-track">
+          <div class="w-14 h-1.5 rounded-full bg-surface-container cursor-pointer overflow-hidden" id="volume-track" role="slider" tabindex="0" aria-label="Audio volume" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80" aria-valuetext="80 percent">
             <div class="h-full bg-primary rounded-full" id="volume-bar" style="width: 80%;"></div>
           </div>
-          <button id="minimize-player-btn" aria-label="Minimize Player" class="w-7 h-7 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer" title="Minimize / Expand Player" type="button">
+  <button id="minimize-player-btn" aria-label="Minimize Player" aria-expanded="true" class="w-7 h-7 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer" title="Minimize / Expand Player" type="button">
             <svg class="w-4 h-4 stroke-current" fill="none" id="minimize-icon" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
           </button>
         </div>
       </div>
     </div>
   </aside>
+
+  <button id="restore-audio-player-btn" class="hidden fixed bottom-3 right-4 z-50 items-center gap-2 rounded-full border border-border-subtle bg-surface px-4 py-2 text-sm font-semibold text-on-surface shadow-lg transition-colors hover:bg-surface-container" type="button" aria-controls="audio-player-bar" aria-label="Restore audio player">
+    <span class="material-symbols-outlined text-base" aria-hidden="true">keyboard_arrow_up</span>
+    <span>Show audio player</span>
+  </button>
 
   <!-- 12. EDITORIAL FOOTER (Standard Canonical Component) -->
 
@@ -1270,7 +1305,7 @@
       const TRACK_TAHA = {
         verse: '20:114',
         title: 'Ta-Ha 20:114',
-        badge: 'Ayah of the Day',
+        badge: 'Reflection verse',
         reciter: 'Mishary Alafasy',
         src: 'https://everyayah.com/data/Alafasy_128kbps/020114.mp3'
       };
@@ -1281,6 +1316,8 @@
       let isRepeat = false;
       let autoAdvance = true;
       let playbackSpeed = 1.0;
+      let playerVolume = 0.8;
+      let lastVolume = playerVolume;
       const speeds = [1.0, 1.25, 1.5, 0.75];
 
       const flagshipPlayBtn = document.getElementById('flagship-play-btn');
@@ -1304,9 +1341,11 @@
       const volumeBar = document.getElementById('volume-bar');
       const volumeTrack = document.getElementById('volume-track');
       const minimizePlayerBtn = document.getElementById('minimize-player-btn');
+      const restorePlayerBtn = document.getElementById('restore-audio-player-btn');
       const minimizeIcon = document.getElementById('minimize-icon');
       const audioPlayerBar = document.getElementById('audio-player-bar');
       const playAyahOfDayBtn = document.getElementById('playAyahOfDayBtn');
+      const playerStatus = document.getElementById('player-status');
 
       function formatTime(seconds) {
         if (isNaN(seconds) || seconds < 0) return '00:00';
@@ -1315,18 +1354,34 @@
         return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
       }
 
+      function setPlayerStatus(message, isError = false, isBusy = false) {
+        if (playerStatus) {
+          playerStatus.textContent = message;
+          playerStatus.classList.toggle('hidden', !message);
+          playerStatus.classList.toggle('text-danger', isError);
+          playerStatus.classList.toggle('text-secondary', !isError);
+        }
+        playerMainPlayBtn?.setAttribute('aria-busy', String(isBusy));
+        audioPlayerBar?.setAttribute('aria-busy', String(isBusy));
+      }
+
       function initAudio() {
         if (!audio) {
           audio = new Audio(currentTrack.src);
           audio.preload = 'metadata';
           audio.playbackRate = playbackSpeed;
+          audio.volume = playerVolume;
 
           audio.addEventListener('timeupdate', () => {
             if (audio.duration) {
-              const pct = (audio.currentTime / audio.duration) * 100;
+              const pct = Math.max(0, Math.min(100, (audio.currentTime / audio.duration) * 100));
               if (playerProgress) playerProgress.style.width = pct + '%';
               if (playerThumb) playerThumb.style.left = pct + '%';
               if (playerTimeCurr) playerTimeCurr.textContent = formatTime(audio.currentTime);
+              if (playerScrubBar) {
+                playerScrubBar.setAttribute('aria-valuenow', String(Math.round(pct)));
+                playerScrubBar.setAttribute('aria-valuetext', `${formatTime(audio.currentTime)} of ${formatTime(audio.duration)}`);
+              }
             }
           });
 
@@ -1334,17 +1389,30 @@
             if (playerTimeTotal && audio.duration) {
               playerTimeTotal.textContent = formatTime(audio.duration);
             }
+            if (playerScrubBar) playerScrubBar.setAttribute('aria-valuetext', `00:00 of ${formatTime(audio.duration)}`);
           });
 
           audio.addEventListener('ended', () => {
             if (isRepeat) {
               audio.currentTime = 0;
-              audio.play();
+              audio.play().catch(() => {
+                setPlayState(false);
+                setPlayerStatus('Audio could not be restarted. Press play to try again.', true);
+              });
             } else if (autoAdvance && currentTrack === TRACK_KURSI) {
               loadTrack(TRACK_TAHA, true);
             } else {
               setPlayState(false);
             }
+          });
+
+          audio.addEventListener('play', () => setPlayState(true));
+          audio.addEventListener('pause', () => setPlayState(false));
+          audio.addEventListener('waiting', () => setPlayerStatus('Buffering audio...', false, true));
+          audio.addEventListener('playing', () => setPlayerStatus(''));
+          audio.addEventListener('error', () => {
+            setPlayState(false);
+            setPlayerStatus('Audio is unavailable. Check your connection and try again.', true);
           });
         }
       }
@@ -1357,6 +1425,12 @@
         if (playerPlayIcon) playerPlayIcon.innerHTML = isPlaying ? pauseSvg : playSvg;
         if (flagshipPlayIcon) flagshipPlayIcon.innerHTML = isPlaying && currentTrack === TRACK_KURSI ? pauseSvg : playSvg;
         if (flagshipPlayLabel) flagshipPlayLabel.textContent = isPlaying && currentTrack === TRACK_KURSI ? 'Pause' : 'Play (Alafasy)';
+        if (playerMainPlayBtn) {
+          playerMainPlayBtn.setAttribute('aria-label', isPlaying ? 'Pause recitation' : 'Play recitation');
+          playerMainPlayBtn.setAttribute('aria-pressed', String(isPlaying));
+        }
+        flagshipPlayBtn?.setAttribute('aria-pressed', String(isPlaying && currentTrack === TRACK_KURSI));
+        playAyahOfDayBtn?.setAttribute('aria-pressed', String(isPlaying && currentTrack === TRACK_TAHA));
       }
 
       function loadTrack(track, autoPlay) {
@@ -1365,12 +1439,27 @@
         audio.src = track.src;
         audio.playbackRate = playbackSpeed;
 
+        if (playerTimeCurr) playerTimeCurr.textContent = '00:00';
+        if (playerTimeTotal) playerTimeTotal.textContent = '00:00';
+        if (playerProgress) playerProgress.style.width = '0%';
+        if (playerThumb) playerThumb.style.left = '0%';
+        if (playerScrubBar) {
+          playerScrubBar.setAttribute('aria-valuenow', '0');
+          playerScrubBar.setAttribute('aria-valuetext', '00:00 of 00:00');
+        }
+        setPlayerStatus('');
+        setPlayState(false);
+
         if (playerVerseTitle) playerVerseTitle.textContent = track.title;
         if (playerVerseBadge) playerVerseBadge.textContent = track.badge;
         if (playerReciterName) playerReciterName.textContent = track.reciter;
 
         if (autoPlay) {
-          audio.play().then(() => setPlayState(true)).catch(() => setPlayState(false));
+          setPlayerStatus('Loading audio...', false, true);
+          audio.play().then(() => setPlayState(true)).catch((error) => {
+            setPlayState(false);
+            setPlayerStatus(error?.name === 'NotAllowedError' ? 'Tap play again to start audio.' : 'Audio is unavailable. Check your connection and try again.', true);
+          });
         } else {
           setPlayState(false);
         }
@@ -1382,7 +1471,11 @@
           audio.pause();
           setPlayState(false);
         } else {
-          audio.play().then(() => setPlayState(true)).catch(() => setPlayState(false));
+          setPlayerStatus('Loading audio...', false, true);
+          audio.play().then(() => setPlayState(true)).catch((error) => {
+            setPlayState(false);
+            setPlayerStatus(error?.name === 'NotAllowedError' ? 'Tap play again to start audio.' : 'Audio is unavailable. Check your connection and try again.', true);
+          });
         }
       }
 
@@ -1420,11 +1513,29 @@
         }
       });
 
-      playerScrubBar?.addEventListener('click', (e) => {
-        if (!audio || !audio.duration) return;
+      const seekPlayer = (e) => {
+        if (!audio || !Number.isFinite(audio.duration) || audio.duration <= 0) return;
         const rect = playerScrubBar.getBoundingClientRect();
         const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
         audio.currentTime = pos * audio.duration;
+      };
+      playerScrubBar?.addEventListener('pointerdown', (e) => {
+        seekPlayer(e);
+        playerScrubBar.setPointerCapture?.(e.pointerId);
+      });
+      playerScrubBar?.addEventListener('pointermove', (e) => {
+        if (e.buttons === 1) seekPlayer(e);
+      });
+      playerScrubBar?.addEventListener('keydown', (e) => {
+        if (!audio || !Number.isFinite(audio.duration) || audio.duration <= 0) return;
+        let nextTime = audio.currentTime;
+        if (e.key === 'ArrowLeft') nextTime -= 5;
+        else if (e.key === 'ArrowRight') nextTime += 5;
+        else if (e.key === 'Home') nextTime = 0;
+        else if (e.key === 'End') nextTime = audio.duration;
+        else return;
+        e.preventDefault();
+        audio.currentTime = Math.max(0, Math.min(audio.duration, nextTime));
       });
 
       speedToggleBtn?.addEventListener('click', () => {
@@ -1436,40 +1547,83 @@
 
       playerRepeatBtn?.addEventListener('click', () => {
         isRepeat = !isRepeat;
+        playerRepeatBtn.setAttribute('aria-pressed', String(isRepeat));
+        playerRepeatBtn.setAttribute('aria-label', `Repeat current verse: ${isRepeat ? 'on' : 'off'}`);
         playerRepeatBtn.classList.toggle('text-primary', isRepeat);
         playerRepeatBtn.classList.toggle('bg-surface-container-low', isRepeat);
       });
 
       // Volume & Mute
-      let lastVolume = 0.8;
       audioMuteBtn?.addEventListener('click', () => {
         if (!audio) initAudio();
         if (audio.muted || audio.volume === 0) {
           audio.muted = false;
-          audio.volume = lastVolume;
-          if (volumeBar) volumeBar.style.width = (lastVolume * 100) + '%';
+          audio.volume = playerVolume = lastVolume;
+          if (volumeBar) volumeBar.style.width = (playerVolume * 100) + '%';
         } else {
           lastVolume = audio.volume;
           audio.muted = true;
           if (volumeBar) volumeBar.style.width = '0%';
         }
+        audioMuteBtn.setAttribute('aria-pressed', String(audio.muted || audio.volume === 0));
+        audioMuteBtn.setAttribute('aria-label', audio.muted || audio.volume === 0 ? 'Unmute audio' : 'Mute audio');
+        volumeTrack?.setAttribute('aria-valuenow', String(Math.round((audio.muted ? 0 : audio.volume) * 100)));
+        volumeTrack?.setAttribute('aria-valuetext', `${Math.round((audio.muted ? 0 : audio.volume) * 100)} percent`);
       });
 
-      volumeTrack?.addEventListener('click', (e) => {
+      const setVolumeFromPointer = (e) => {
         if (!audio) initAudio();
         const rect = volumeTrack.getBoundingClientRect();
         const vol = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-        audio.volume = vol;
+        audio.volume = playerVolume = vol;
         audio.muted = false;
         lastVolume = vol;
         if (volumeBar) volumeBar.style.width = (vol * 100) + '%';
+        audioMuteBtn?.setAttribute('aria-pressed', 'false');
+        audioMuteBtn?.setAttribute('aria-label', 'Mute audio');
+        volumeTrack.setAttribute('aria-valuenow', String(Math.round(vol * 100)));
+        volumeTrack.setAttribute('aria-valuetext', `${Math.round(vol * 100)} percent`);
+      };
+      volumeTrack?.addEventListener('pointerdown', (e) => {
+        setVolumeFromPointer(e);
+        volumeTrack.setPointerCapture?.(e.pointerId);
+      });
+      volumeTrack?.addEventListener('pointermove', (e) => {
+        if (e.buttons === 1) setVolumeFromPointer(e);
+      });
+
+      volumeTrack?.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') playerVolume -= 0.05;
+        else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') playerVolume += 0.05;
+        else if (e.key === 'Home') playerVolume = 0;
+        else if (e.key === 'End') playerVolume = 1;
+        else return;
+        e.preventDefault();
+        playerVolume = Math.max(0, Math.min(1, playerVolume));
+        if (!audio) initAudio();
+        audio.muted = false;
+        audio.volume = playerVolume;
+        if (playerVolume > 0) lastVolume = playerVolume;
+        if (volumeBar) volumeBar.style.width = (playerVolume * 100) + '%';
+        volumeTrack.setAttribute('aria-valuenow', String(Math.round(playerVolume * 100)));
+        volumeTrack.setAttribute('aria-valuetext', `${Math.round(playerVolume * 100)} percent`);
+        audioMuteBtn?.setAttribute('aria-pressed', 'false');
+        audioMuteBtn?.setAttribute('aria-label', 'Mute audio');
       });
 
       // Minimize Floating Player Bar
       function toggleMinimize() {
         if (!audioPlayerBar) return;
-        const isMin = audioPlayerBar.classList.contains('translate-y-12');
-        audioPlayerBar.classList.toggle('translate-y-12', !isMin);
+        const isMin = !audioPlayerBar.classList.contains('hidden');
+        audioPlayerBar.classList.toggle('hidden', isMin);
+        if (restorePlayerBtn) {
+          restorePlayerBtn.classList.toggle('hidden', !isMin);
+          restorePlayerBtn.classList.toggle('inline-flex', isMin);
+        }
+        if (minimizePlayerBtn) {
+          minimizePlayerBtn.setAttribute('aria-label', isMin ? 'Minimize Player' : 'Expand Player');
+          minimizePlayerBtn.setAttribute('aria-expanded', String(!isMin));
+        }
         if (minimizeIcon) {
           minimizeIcon.innerHTML = isMin
             ? '<polyline points="6 9 12 15 18 9"></polyline>'
@@ -1477,13 +1631,16 @@
         }
       }
       minimizePlayerBtn?.addEventListener('click', toggleMinimize);
+      restorePlayerBtn?.addEventListener('click', toggleMinimize);
 
       // Auto-Next Toggle
       const autoAdvBtn = document.getElementById('auto-adv-btn');
       const autoAdvLabel = document.getElementById('auto-adv-label');
+      autoAdvBtn?.setAttribute('aria-pressed', String(autoAdvance));
       autoAdvBtn?.addEventListener('click', () => {
         autoAdvance = !autoAdvance;
         if (autoAdvLabel) autoAdvLabel.textContent = autoAdvance ? 'Auto-Next: On' : 'Auto-Next: Off';
+        autoAdvBtn.setAttribute('aria-pressed', String(autoAdvance));
         autoAdvBtn.classList.toggle('opacity-70', !autoAdvance);
       });
 
@@ -1491,7 +1648,7 @@
       const copyVerseBtn = document.getElementById('copy-verse-btn');
       const copyVerseLabel = document.getElementById('copy-verse-label');
       copyVerseBtn?.addEventListener('click', () => {
-        const textToCopy = "اللَّهُ لَآ إِلَٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ ۚ لَا تَأْخُذُهُۥ سِنَةٌۭ وَلَا نَوْمٌۭ ۚ لَّهُۥ مَا فِى ٱلسَّمَٰوَٰتِ وَمَا فِى ٱلْأَرْضِ ۗ مَن ذَا ٱلَّذِى يَشْفَعُ عِندَهُۥٓ إِلَّا بِإِذْنِهِۦ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَىْءٍۢ مِّنْ عِلْمِهِۦٓ إِلَّا بِمَا شَآءَ ۚ وَسِعَ كُرْسِيُّهُ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضَ ۖ وَلَا يَـُٔودُهُۥ حِفْظُهُمَا ۚ وَهُوَ ٱلْعَلِىُّ ٱلْعَظِيمُ — [Surah Al-Baqarah 2:255 • Sahih Muslim #810]";
+        const textToCopy = "اللَّهُ لَآ إِلَٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ ۚ لَا تَأْخُذُهُۥ سِنَةٌۭ وَلَا نَوْمٌۭ ۚ لَّهُۥ مَا فِى ٱلسَّمَٰوَٰتِ وَمَا فِى ٱلْأَرْضِ ۗ مَن ذَا ٱلَّذِى يَشْفَعُ عِندَهُۥٓ إِلَّا بِإِذْنِهِۦ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَىْءٍۢ مِّنْ عِلْمِهِۦٓ إِلَّا بِمَا شَآءَ ۚ وَسِعَ كُرْسِيُّهُ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضَ ۖ وَلَا يَـُٔودُهُۥ حِفْظُهُمَا ۚ وَهُوَ ٱلْعَلِىُّ ٱلْعَظِيمُ — [Surah Al-Baqarah 2:255]";
         if (navigator.clipboard) {
           navigator.clipboard.writeText(textToCopy).then(() => {
             if (copyVerseLabel) copyVerseLabel.textContent = 'Copied!';
@@ -1537,6 +1694,7 @@
       const articleCards = document.querySelectorAll('.article-card');
       const filterEmptyState = document.getElementById('filterEmptyState');
       const filterResetBtn = document.getElementById('filterResetBtn');
+      const articleResultCount = document.getElementById('articleResultCount');
 
       function applyTopicFilter(tag) {
         let visible = 0;
@@ -1548,6 +1706,7 @@
         });
 
         if (filterEmptyState) filterEmptyState.classList.toggle('hidden', visible > 0);
+        if (articleResultCount) articleResultCount.textContent = visible + (visible === 1 ? ' resource' : ' resources');
 
         topicChips.forEach(c => {
           const isActive = c.getAttribute('data-tag') === tag;
@@ -1567,14 +1726,33 @@
       filterResetBtn?.addEventListener('click', () => applyTopicFilter('all'));
 
       // 5. Tafsir Triggers
+      const tafsirDialog = document.getElementById('tafsir-dialog');
+      const tafsirDialogTitle = document.getElementById('tafsir-dialog-title');
+      const tafsirDialogContent = document.getElementById('tafsir-dialog-content');
+      const tafsirDialogClose = document.getElementById('tafsir-dialog-close');
+      function openTafsirDialog(title, content) {
+        if (!tafsirDialog || typeof tafsirDialog.showModal !== 'function') {
+          alert(content);
+          return;
+        }
+        if (tafsirDialogTitle) tafsirDialogTitle.textContent = title;
+        if (tafsirDialogContent) tafsirDialogContent.textContent = content;
+        tafsirDialog.showModal();
+      }
+
+      tafsirDialogClose?.addEventListener('click', () => tafsirDialog?.close());
+      tafsirDialog?.addEventListener('click', (event) => {
+        if (event.target === tafsirDialog) tafsirDialog.close();
+      });
+
       const tafsirKursiBtn = document.getElementById('tafsir-kursi-btn');
       tafsirKursiBtn?.addEventListener('click', () => {
-        alert('Ayat al-Kursi Tafsir (Ibn Kathir):\nThe greatest ayah in the Book of Allah, containing ten independent divine sentences affirming Monotheism and absolute sovereignty.');
+        openTafsirDialog('Ayat al-Kursi · Al-Baqarah 2:255', 'This verse affirms Allah’s life, self-subsistence, knowledge, authority, and protection.');
       });
 
       const tafsirAyahOfDayBtn = document.getElementById('tafsirAyahOfDayBtn');
       tafsirAyahOfDayBtn?.addEventListener('click', () => {
-        alert('Tafsir Ibn Kathir [20:114]:\nAllah commanded His Prophet to not hasten in receiving the verses when Jibril came, but to wait patiently until the message is finished, then ask for increase in understanding.');
+        openTafsirDialog('Ta-Ha 20:114 · Tafsir note', 'The verse teaches patience in receiving revelation and asks the Prophet to pray: “My Lord, increase me in knowledge.”');
       });
 
       const reciterInfoBtn = document.getElementById('reciter-info-btn');
@@ -1582,20 +1760,11 @@
         alert('Reciters Available in Library:\n• Sheikh Mishary Rashid Alafasy (128kbps EveryAyah)\n• Mahmoud Khalil Al-Husary\n• Abdul Basit Abdul Samad\n• Abu Bakr Al-Shatri\n\nVisit Qur\'an Player page for full 114 Surahs catalog.');
       });
 
-      // 6. Resume Study Session LocalStorage Handler
-      const resumeBtn = document.getElementById('resume-btn');
-      resumeBtn?.addEventListener('click', () => {
-        try {
-          localStorage.setItem('heynuo-last-session', 'Surah Al-Kahf 18:1-10');
-        } catch (e) { }
-        location.href = 'quran.html?surah=18';
-      });
-
       // 7. Page-level transport keys (Space, V, Left, Right)
       document.addEventListener('keydown', (e) => {
-        if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName)) return;
-        if (document.activeElement?.isContentEditable) return;
-        if (e.ctrlKey || e.metaKey || e.altKey) return;
+        const target = e.target;
+        if (target instanceof Element && target.closest('input, textarea, select, button, a, [role="slider"], [contenteditable="true"]')) return;
+        if (e.repeat || e.ctrlKey || e.metaKey || e.altKey) return;
 
         let singleKeyShortcuts = true;
         try {
@@ -1617,17 +1786,6 @@
           playerNextBtn?.click();
         }
       });
-
-      // 8. Deterministic day-of-year seed
-      const ayahSeedDay = document.getElementById('ayahSeedDay');
-      if (ayahSeedDay) {
-        const now = new Date();
-        const start = new Date(now.getFullYear(), 0, 0);
-        const diff = now - start;
-        const oneDay = 1000 * 60 * 60 * 24;
-        const dayOfYear = Math.floor(diff / oneDay);
-        ayahSeedDay.textContent = 'Deterministic Seed: Day ' + dayOfYear;
-      }
 
     })();
   </script>

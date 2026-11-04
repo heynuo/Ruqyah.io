@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#0F766E">
   <meta name="color-scheme" content="light dark">
   <!-- Build stamp for service-worker cache busting. Maintained by tools/stamp-build.ps1. -->
-  <meta name="heynuo-build" content="2026-10-17-0713">
+  <meta name="heynuo-build" content="2026-11-03-1354">
 
   <!-- Theme Pre-Hydration: Prevents Flash of Unstyled Content (FOUC) -->
   <script>
@@ -73,7 +73,6 @@
   <script src="https://cdn.tailwindcss.com?plugins=container-queries"></script>
   <script src="js/tailwind-config.js"></script>
 
-  <script src="js/shell.js" defer></script>
 </head>
 
 <body class="bg-bg-canvas font-body-article text-body-article text-on-surface antialiased selection:bg-primary-container selection:text-on-primary min-h-screen flex flex-col transition-colors duration-200">
@@ -204,7 +203,7 @@
             </div>
 
             <!-- The Dispatch Form -->
-            <form class="space-y-space-md" id="contactForm" novalidate>
+            <form class="space-y-space-md scroll-mt-20" id="contactForm" novalidate>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
                 
                 <!-- Full Name -->
@@ -478,7 +477,7 @@
       </section>
 
       <!-- FAQ Accordion Section (WCAG 2.2 AA Keyboard Accessible) -->
-      <section class="w-full max-w-4xl mx-auto px-gutter pb-space-3xl">
+      <section class="w-full max-w-4xl mx-auto px-gutter pb-space-3xl scroll-mt-20" id="faq-section">
         <div class="text-center mb-space-xl">
           <span class="font-code-mono text-[0.75rem] font-semibold uppercase tracking-wider text-primary">Inquiry Guidance</span>
           <h2 class="font-heading-section text-heading-section text-on-surface font-bold mt-1">Frequently Addressed Inquiries</h2>

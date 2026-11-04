@@ -26,11 +26,11 @@ const PRECACHE_URLS = [
      available offline or the whole shell disappears. */
   'css/shared-layout.css',
   'buttons.js',
-  'js/shell.js',
   'js/shared-layout.js',
   'js/tailwind-config.js',
   'js/script.js',
   'assets/js/quran-player.js',
+  'js/about-audio-player.js',
   'js/quran-page.js',
   'js/master-verses.js',
   'js/data/master-verses-data.js',
@@ -127,8 +127,8 @@ self.addEventListener('fetch', (event) => {
   // Skip non-GET requests
   if (request.method !== 'GET') return;
 
-  // Stream recitations directly; do not store large audio files in the app cache.
-  if (isAudioRequest(request, url)) {
+  // Stream media directly; do not store large audio or video files in the app cache.
+  if (isAudioRequest(request, url) || request.destination === 'video' || url.pathname.toLowerCase().endsWith('.mp4')) {
     event.respondWith(fetch(request));
     return;
   }

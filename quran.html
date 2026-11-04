@@ -7,7 +7,7 @@
   <meta content="web_standard" name="shell-type">
   <meta name="theme-color" content="#005c55">
   <meta name="color-scheme" content="light dark">
-  <meta name="heynuo-build" content="2026-10-17-0713">
+  <meta name="heynuo-build" content="2026-11-03-1354">
 
   <!-- Theme Pre-Hydration: Prevents Flash of Unstyled Content (FOUC) -->
   <script>
@@ -84,13 +84,6 @@
       color: #ffffff !important;
     }
 
-    /* Tajweed mode highlight styles */
-    .tajweed-active .tajweed-ghunnah { color: #16a34a; font-weight: 600; }
-    .tajweed-active .tajweed-qalqalah { color: #0284c7; font-weight: 600; }
-    .tajweed-active .tajweed-idgham { color: #9333ea; font-weight: 600; }
-    .tajweed-active .tajweed-madd { color: #dc2626; font-weight: 600; }
-    .tajweed-active .tajweed-ikhfa { color: #d97706; font-weight: 600; }
-
     /* Font scale dynamically applied via CSS variable */
     :root {
       --reader-font-scale: 1;
@@ -112,7 +105,6 @@
       animation: toastSlideUp 0.25s ease-out forwards;
     }
   </style>
-  <script src="js/shell.js" defer></script>
   <!-- Typography Preconnect & Font Inclusions (Unified) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -167,16 +159,6 @@
 
           <!-- Fast Ergonomic Toggles -->
           <div class="flex items-center justify-end gap-space-xs overflow-x-auto py-1 shrink-0">
-            <!-- Tajweed Highlight Toggle -->
-            <button class="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant transition-colors cursor-pointer" id="toggle-tajweed" title="Toggle Tajweed Color Coding" type="button" aria-pressed="false">
-              <span class="material-symbols-outlined text-[16px] text-tertiary">palette</span>
-              <span class="font-caption-meta text-caption-meta">Tajweed</span>
-            </button>
-            <!-- Tafsir Notes Toggle -->
-            <button class="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant transition-colors cursor-pointer" id="toggle-tafsir" title="Toggle Scholarly Commentary Drawer" type="button" aria-pressed="false">
-              <span class="material-symbols-outlined text-[16px]">notes</span>
-              <span class="font-caption-meta text-caption-meta">Tafsir</span>
-            </button>
             <!-- Transliteration Toggle -->
             <button class="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant transition-colors cursor-pointer" id="toggle-transliteration" title="Toggle DIN 31635 Transliteration" type="button" aria-pressed="true">
               <span class="material-symbols-outlined text-[16px]">translate</span>
@@ -277,7 +259,7 @@
               <div class="flex flex-wrap items-center gap-space-sm">
                 <button class="flex items-center gap-space-sm px-5 py-2.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary-container transition-all shadow-sm font-ui-interactive text-ui-interactive font-medium cursor-pointer" type="button" id="hero-play-btn" data-surah="1">
                   <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-                  <span id="hero-play-label">Play Full Surah (01:15)</span>
+                  <span id="hero-play-label">Play Full Surah</span>
                 </button>
                 <button class="flex items-center gap-space-sm px-4 py-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors font-ui-interactive text-ui-interactive font-medium cursor-pointer" type="button" id="hero-read-btn" data-surah="1">
                   <span class="material-symbols-outlined text-[20px]">menu_book</span>
@@ -4132,7 +4114,7 @@
   </div>
 
   <!-- Floating Docked Recitation Player -->
-  <div id="dockedQuranPlayer" class="fixed bottom-0 left-0 right-0 z-40 bg-surface/95 dark:bg-[#111A2E]/95 backdrop-blur-md border-t border-subtle shadow-lg transition-transform duration-300 transform translate-y-0">
+  <div id="dockedQuranPlayer" aria-label="Qur'an recitation player" aria-busy="false" class="fixed bottom-0 left-0 right-0 z-40 bg-surface/95 dark:bg-[#111A2E]/95 backdrop-blur-md border-t border-subtle shadow-lg transition-transform duration-300 transform translate-y-0">
     <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-col sm:flex-row items-center justify-between gap-3">
       <!-- Track Metadata -->
       <div class="flex items-center gap-3 w-full sm:w-auto shrink-0 justify-between sm:justify-start">
@@ -4149,7 +4131,7 @@
           </div>
         </div>
 
-        <button class="sm:hidden w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant cursor-pointer" id="playerToggleBtnMobile" type="button">
+        <button class="sm:hidden w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant cursor-pointer" id="playerToggleBtnMobile" type="button" aria-controls="playerControlsMobileGroup" aria-expanded="true" aria-label="Collapse player controls">
           <span class="material-symbols-outlined text-[20px]">expand_less</span>
         </button>
       </div>
@@ -4157,36 +4139,47 @@
       <!-- Playback Controls & Progress Bar -->
       <div id="playerControlsMobileGroup" class="flex flex-col items-center gap-1 w-full max-w-xl">
         <div class="flex items-center gap-3">
+          <button class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer" id="playerBack10Btn" title="Back 10 seconds" type="button" aria-label="Back 10 seconds">
+            <span class="material-symbols-outlined text-[19px]">replay_10</span>
+          </button>
           <button class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer" id="playerPrevBtn" title="Previous Surah" type="button" aria-label="Previous Surah">
             <span class="material-symbols-outlined text-[20px]">skip_previous</span>
           </button>
-          <button class="w-10 h-10 rounded-full bg-primary text-white hover:bg-primary-container flex items-center justify-center shadow-sm transition-all cursor-pointer" id="playerPlayPauseBtn" title="Play / Pause" type="button" aria-label="Play / Pause">
+          <button class="w-10 h-10 rounded-full bg-primary text-white hover:bg-primary-container flex items-center justify-center shadow-sm transition-all cursor-pointer" id="playerPlayPauseBtn" title="Play / Pause" type="button" aria-label="Play / Pause" aria-pressed="false">
             <span class="material-symbols-outlined text-[24px]" id="playerPlayPauseIcon">play_arrow</span>
           </button>
           <button class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer" id="playerNextBtn" title="Next Surah" type="button" aria-label="Next Surah">
             <span class="material-symbols-outlined text-[20px]">skip_next</span>
           </button>
+          <button class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer" id="playerForward10Btn" title="Forward 10 seconds" type="button" aria-label="Forward 10 seconds">
+            <span class="material-symbols-outlined text-[19px]">forward_10</span>
+          </button>
         </div>
 
         <div class="flex items-center gap-2.5 w-full">
           <span class="font-code-mono text-[10px] text-on-surface-variant w-10 text-right select-none" id="playerCurrentTime">00:00</span>
-          <div class="relative flex-1 h-1.5 bg-surface-container-high rounded-full overflow-hidden cursor-pointer" id="playerProgressBarContainer">
-            <div class="h-full bg-primary rounded-full transition-all" id="playerProgressBar" style="width: 0%;"></div>
+          <div class="relative flex-1 h-2 bg-surface-container-high rounded-full overflow-hidden cursor-pointer touch-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary" id="playerProgressBarContainer" role="slider" tabindex="0" aria-label="Seek in current recording" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="00:00 of 00:00" title="Drag to seek; use left and right arrow keys for 5-second steps">
+            <div class="h-full bg-primary rounded-full transition-[width]" id="playerProgressBar" style="width: 0%;"></div>
           </div>
-          <span class="font-code-mono text-[10px] text-on-surface-variant w-10 select-none" id="playerDuration">01:15</span>
+          <span class="font-code-mono text-[10px] text-on-surface-variant w-10 select-none" id="playerDuration">00:00</span>
         </div>
+        <span id="playerStatus" class="sr-only" aria-live="polite"></span>
       </div>
 
       <!-- Right Utility Actions -->
-      <div class="hidden sm:flex items-center gap-3 shrink-0">
+      <div class="flex items-center gap-1 sm:gap-3 shrink-0">
         <button class="flex items-center gap-1 px-2 py-1 rounded bg-surface-container-low hover:bg-surface-container text-xs font-code-mono text-on-surface-variant transition-colors cursor-pointer" id="playerSpeedBtn" type="button" title="Playback speed">
           <span id="playerSpeedReadout">1.0x</span>
         </button>
-        <div class="flex items-center gap-1.5">
+        <button class="w-7 h-7 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors cursor-pointer" id="playerRepeatBtn" type="button" title="Repeat surah: off" aria-label="Repeat surah: off" aria-pressed="false">
+          <span class="material-symbols-outlined text-[18px]">repeat</span>
+        </button>
+        <div class="flex items-center gap-1.5" title="Volume boost up to 500%, with peak limiting">
           <button class="w-7 h-7 flex items-center justify-center text-on-surface-variant hover:text-on-surface cursor-pointer" id="playerMuteBtn" type="button" title="Mute audio" aria-label="Mute audio">
             <span class="material-symbols-outlined text-[18px]" id="playerVolumeIcon">volume_up</span>
           </button>
-          <input class="w-16 h-1 bg-surface-container-high rounded-lg appearance-none cursor-pointer accent-primary" id="playerVolumeSlider" max="1" min="0" step="0.05" type="range" value="1">
+          <input class="w-12 sm:w-16 h-1 bg-surface-container-high rounded-lg appearance-none cursor-pointer accent-primary" id="playerVolumeSlider" max="5" min="0" step="0.05" type="range" value="1" aria-label="Volume, up to 500 percent" aria-valuetext="100 percent" title="Volume up to 500 percent">
+          <output class="w-8 text-[10px] font-code-mono text-on-surface-variant" id="playerVolumeReadout" for="playerVolumeSlider">100%</output>
         </div>
       </div>
     </div>
@@ -4288,7 +4281,7 @@
             <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">Space</kbd>
           </div>
           <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
-            <span class="text-on-surface">Previous / Next Ayah</span>
+            <span class="text-on-surface">Seek 5 seconds</span>
             <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">← / →</kbd>
           </div>
           <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">

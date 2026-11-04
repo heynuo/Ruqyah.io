@@ -7,7 +7,7 @@
   <meta name="shell-type" content="web_standard">
   <meta name="theme-color" content="#005c55">
   <meta name="color-scheme" content="light dark">
-  <meta name="heynuo-build" content="2026-10-18-1100">
+  <meta name="heynuo-build" content="2026-11-03-1354">
 
   <!-- Theme Pre-Hydration: Prevents Flash of Unstyled Content (FOUC) -->
   <script>
@@ -486,7 +486,7 @@
     </section>
 
     <!-- INTERACTIVE CORPUS FILTER & STICKY SEARCH BAR -->
-    <section class="sticky top-14 z-30 w-full bg-surface/95 backdrop-blur-md border-b border-outline-variant/50 shadow-sm transition-colors">
+    <section class="sticky top-14 z-30 w-full bg-surface border-b border-outline-variant/50 shadow-sm transition-colors">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-2.5 flex flex-col gap-2.5">
 
         <!-- Top Toolbar: Search + Surah Filter + Dual View Switcher + Font Size + Random Ayah -->
@@ -584,8 +584,11 @@
     <section class="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 space-y-6" id="versesContainer">
 
       <!-- View 1: Dynamic Illuminated Cards Feed -->
-      <div id="dynamicVersesFeed" class="space-y-8 max-w-[1020px] mx-auto">
-        <!-- Rendered by client script below -->
+      <div id="dynamicVersesFeed" class="space-y-8 max-w-[1020px] mx-auto" aria-busy="true">
+        <p class="verse-feed-loading py-10 text-center text-sm text-on-surface-variant" role="status">
+          <span class="verse-feed-spinner" aria-hidden="true"></span>
+          <span>Preparing the 108-verse archive...</span>
+        </p>
       </div>
 
       <!-- View 2: Canonical Master Concordance Table (PDF Pages 4–11) -->
@@ -710,12 +713,12 @@
   </div>
 
   <!-- DOCKED RECITATION AUDIO PLAYER (Fixed at bottom) -->
-  <aside id="audioPlayerBar" aria-label="Docked Recitation Player" class="fixed bottom-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-md border-t border-outline-variant/50 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] transition-all">
+  <aside id="audioPlayerBar" aria-label="Docked Recitation Player" aria-busy="false" class="fixed bottom-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-md border-t border-outline-variant/50 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 h-16 flex items-center justify-between gap-4">
 
       <!-- Track Meta Info (Left) -->
       <div class="flex items-center gap-3 min-w-[220px]">
-        <button id="playerMainPlayBtn" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-container text-white flex items-center justify-center transition-transform active:scale-95 shadow-sm cursor-pointer" type="button" aria-label="Play or pause recitation (Space)">
+        <button id="playerMainPlayBtn" class="w-10 h-10 rounded-full bg-primary hover:bg-primary-container text-white flex items-center justify-center transition-transform active:scale-95 shadow-sm cursor-pointer" type="button" aria-label="Play or pause recitation (Space)" aria-pressed="false">
           <span id="playerMainIcon" class="material-symbols-outlined text-[22px]">play_arrow</span>
         </button>
         <div class="flex flex-col min-w-0">
@@ -733,6 +736,7 @@
           </div>
           <span id="playerTotalTime" class="font-mono text-xs text-secondary w-10">00:00</span>
         </div>
+        <span id="playerStatus" class="hidden text-[10px] text-secondary" role="status" aria-live="polite"></span>
       </div>
 
       <!-- Quick Controls (Right) -->
@@ -852,6 +856,9 @@
     </div>
   </div>
 
+  <!-- Shared Layout: Inject the navigation before the heavier verse data and rendering scripts. -->
+  <script src="js/shared-layout.js"></script>
+
   <!-- LOAD DATA & CLIENT INTERACTIVITY SCRIPT -->
   <script src="js/data/master-verses-data.js"></script>
   <script>
@@ -890,6 +897,19 @@
       const volumeIcon = document.getElementById('volumeIcon');
       const prevAyahBtn = document.getElementById('prevAyahBtn');
       const nextAyahBtn = document.getElementById('nextAyahBtn');
+      const playerStatus = document.getElementById('playerStatus');
+      let audioFallbackAttempted = false;
+
+      function setPlayerStatus(message, isError = false, isBusy = false) {
+        if (playerStatus) {
+          playerStatus.textContent = message;
+          playerStatus.classList.toggle('hidden', !message);
+          playerStatus.classList.toggle('text-danger', isError);
+          playerStatus.classList.toggle('text-secondary', !isError);
+        }
+        playerMainPlayBtn?.setAttribute('aria-busy', String(isBusy));
+        document.getElementById('audioPlayerBar')?.setAttribute('aria-busy', String(isBusy));
+      }
 
       function formatTime(s) {
         if (!s || isNaN(s) || s < 0) return '00:00';
@@ -922,6 +942,18 @@
           }
         });
 
+        audio.addEventListener('play', () => {
+          isPlaying = true;
+          setPlayerStatus('');
+          updatePlayIcons();
+        });
+        audio.addEventListener('pause', () => {
+          isPlaying = false;
+          updatePlayIcons();
+        });
+        audio.addEventListener('waiting', () => setPlayerStatus('Buffering audio...', false, true));
+        audio.addEventListener('playing', () => setPlayerStatus(''));
+
         audio.addEventListener('ended', () => {
           // If multi-verse, advance to next verse in the range
           if (currentPlayingAyahIndex < currentPlayingAyahList.length - 1) {
@@ -943,11 +975,24 @@
         });
 
         audio.addEventListener('error', () => {
-          // Fallback to Al-Islam CDN if needed
+          if (audioFallbackAttempted) {
+            isPlaying = false;
+            updatePlayIcons();
+            setPlayerStatus('Audio is unavailable. Try another verse or check your connection.', true);
+            return;
+          }
+
+          // Try the mirror once; repeated media errors must not reload it forever.
+          audioFallbackAttempted = true;
+          setPlayerStatus('Trying alternate audio source...', false, true);
           const sPad = String(currentPlayingSurah).padStart(3, '0');
           const aPad = String(currentPlayingAyahList[currentPlayingAyahIndex]).padStart(3, '0');
           audio.src = `https://files.alislam.cloud/audio/tilawat/ashiq/${sPad}-${aPad}-AR.mp3`;
-          audio.play().catch(() => {});
+          audio.play().catch(() => {
+            isPlaying = false;
+            updatePlayIcons();
+            setPlayerStatus('Audio is unavailable. Try another verse or check your connection.', true);
+          });
         });
 
         return audio;
@@ -956,6 +1001,7 @@
       function playCurrentAyahStep() {
         if (!audio) initAudio();
         const currentAyah = currentPlayingAyahList[currentPlayingAyahIndex];
+        audioFallbackAttempted = false;
         audio.src = getEveryAyahUrl(currentPlayingSurah, currentAyah);
         audio.playbackRate = currentSpeed;
         
@@ -967,10 +1013,17 @@
         }
 
         highlightActiveCard(currentPlayingCardId);
-        isPlaying = true;
+        isPlaying = false;
+        setPlayerStatus('Loading audio...', false, true);
         updatePlayIcons();
 
-        audio.play().catch(() => {});
+        audio.play().catch(error => {
+          if (error?.name === 'NotAllowedError') {
+            isPlaying = false;
+            updatePlayIcons();
+            setPlayerStatus('Tap play to start recitation.');
+          }
+        });
       }
 
       function startCardRecitation(cardId, surah, ayahList, rangeStr, titleStr) {
@@ -1018,12 +1071,17 @@
         if (playerMainIcon) {
           playerMainIcon.textContent = isPlaying ? 'pause' : 'play_arrow';
         }
+        if (playerMainPlayBtn) {
+          playerMainPlayBtn.setAttribute('aria-pressed', String(isPlaying));
+          playerMainPlayBtn.setAttribute('aria-label', isPlaying ? 'Pause recitation' : 'Play or pause recitation');
+        }
         document.querySelectorAll('.play-card-btn').forEach(btn => {
           const card = btn.closest('.verse-article');
           const cardId = card ? card.getAttribute('data-id') : null;
           const isThis = (cardId === String(currentPlayingCardId) && isPlaying);
           const iconSpan = btn.querySelector('.material-symbols-outlined');
           if (iconSpan) iconSpan.textContent = isThis ? 'pause' : 'play_arrow';
+          btn.setAttribute('aria-pressed', String(isThis));
           btn.classList.toggle('bg-primary-container', isThis);
         });
         document.querySelectorAll('.table-recite-btn, .drawer-recite-btn').forEach(btn => {
@@ -1031,6 +1089,7 @@
           const isThis = (btnId === String(currentPlayingCardId) && isPlaying);
           const iconSpan = btn.querySelector('.material-symbols-outlined');
           if (iconSpan) iconSpan.textContent = isThis ? 'pause' : 'play_arrow';
+          btn.setAttribute('aria-pressed', String(isThis));
           btn.classList.toggle('bg-primary-container', isThis);
         });
       }
@@ -1141,6 +1200,9 @@
 
       // 2. Render ALL 108 Master Verses & Top 10 Bonus items
       const dynamicVersesFeed = document.getElementById('dynamicVersesFeed');
+      let cardsRendered = false;
+      let cardsRendering = false;
+      let tableRendered = false;
 
       function buildVerseCardHtml(v, isBonus) {
         const idLabel = isBonus ? v.id : ('#' + String(v.id).padStart(3, '0') + ' / 108');
@@ -1349,28 +1411,57 @@
       }
 
       function renderAllVerses() {
-        if (typeof MASTER_VERSES_DATA === 'undefined') return;
-        
-        // 1. Render Cards
-        if (dynamicVersesFeed) {
-          let cardsHtml = MASTER_VERSES_DATA.map(v => buildVerseCardHtml(v, false)).join('');
-          if (typeof TOP_CROSS_REFERENCED_ADDITIONAL !== 'undefined') {
-            cardsHtml += TOP_CROSS_REFERENCED_ADDITIONAL.map(v => buildVerseCardHtml(v, true)).join('');
-          }
-          dynamicVersesFeed.innerHTML = cardsHtml;
-          attachCardHandlers();
+        if (typeof MASTER_VERSES_DATA === 'undefined' || !dynamicVersesFeed || cardsRendered || cardsRendering) return;
+        cardsRendering = true;
+
+        const verses = MASTER_VERSES_DATA.map(verse => ({ verse, isBonus: false }));
+        if (typeof TOP_CROSS_REFERENCED_ADDITIONAL !== 'undefined') {
+          TOP_CROSS_REFERENCED_ADDITIONAL.forEach(verse => verses.push({ verse, isBonus: true }));
         }
 
-        // 2. Render Canonical Master Table
-        const tableBody = document.getElementById('canonicalVersesTableBody');
-        if (tableBody) {
-          let tableHtml = MASTER_VERSES_DATA.map(v => buildVerseTableRowHtml(v, false)).join('');
-          if (typeof TOP_CROSS_REFERENCED_ADDITIONAL !== 'undefined') {
-            tableHtml += TOP_CROSS_REFERENCED_ADDITIONAL.map(v => buildVerseTableRowHtml(v, true)).join('');
+        const chunkSize = 8;
+        const scheduleFrame = typeof window.requestAnimationFrame === 'function'
+          ? callback => window.requestAnimationFrame(callback)
+          : callback => window.setTimeout(callback, 16);
+
+        function appendVerseChunk(startIndex) {
+          const endIndex = Math.min(startIndex + chunkSize, verses.length);
+          const cardsHtml = verses.slice(startIndex, endIndex)
+            .map(item => buildVerseCardHtml(item.verse, item.isBonus))
+            .join('');
+
+          if (startIndex === 0) dynamicVersesFeed.innerHTML = '';
+          dynamicVersesFeed.insertAdjacentHTML('beforeend', cardsHtml);
+
+          if (endIndex < verses.length) {
+            scheduleFrame(() => appendVerseChunk(endIndex));
+            return;
           }
-          tableBody.innerHTML = tableHtml;
-          attachTableHandlers();
+
+          cardsRendered = true;
+          cardsRendering = false;
+          dynamicVersesFeed.setAttribute('aria-busy', 'false');
+          attachCardHandlers();
+          applyFilter();
         }
+
+        // Give the shared header and page controls a chance to paint before
+        // adding the large verse feed to the document.
+        scheduleFrame(() => scheduleFrame(() => appendVerseChunk(0)));
+      }
+
+      function renderCanonicalTable() {
+        if (typeof MASTER_VERSES_DATA === 'undefined' || tableRendered) return;
+        const tableBody = document.getElementById('canonicalVersesTableBody');
+        if (!tableBody) return;
+
+        let tableHtml = MASTER_VERSES_DATA.map(v => buildVerseTableRowHtml(v, false)).join('');
+        if (typeof TOP_CROSS_REFERENCED_ADDITIONAL !== 'undefined') {
+          tableHtml += TOP_CROSS_REFERENCED_ADDITIONAL.map(v => buildVerseTableRowHtml(v, true)).join('');
+        }
+        tableBody.innerHTML = tableHtml;
+        attachTableHandlers();
+        tableRendered = true;
       }
 
       // 3. Attach Card Interactive Handlers (Audio, Copy, Bookmark, External Link)
@@ -1595,6 +1686,7 @@
       function setView(view) {
         currentView = view;
         if (view === 'table') {
+          renderCanonicalTable();
           if (dynamicVersesFeedEl) dynamicVersesFeedEl.classList.add('hidden');
           if (canonicalVersesTableWrapEl) canonicalVersesTableWrapEl.classList.remove('hidden');
           if (viewCardsBtn) {
@@ -1619,8 +1711,14 @@
         }
       }
 
-      viewCardsBtn?.addEventListener('click', () => setView('cards'));
-      viewTableBtn?.addEventListener('click', () => setView('table'));
+      viewCardsBtn?.addEventListener('click', () => {
+        setView('cards');
+        applyFilter();
+      });
+      viewTableBtn?.addEventListener('click', () => {
+        setView('table');
+        applyFilter();
+      });
 
       function jumpToCanonicalTable() {
         setView('table');
@@ -1720,11 +1818,17 @@
       let activeCategory = 'all';
 
       function applyFilter() {
+        if ((currentView === 'cards' && !cardsRendered) || (currentView === 'table' && !tableRendered)) return;
+
         const query = (corpusSearchInput?.value || '').trim().toLowerCase();
         let visibleCount = 0;
 
-        const articles = document.querySelectorAll('.verse-article');
-        const rows = document.querySelectorAll('.canonical-table-row');
+        const articles = currentView === 'cards'
+          ? dynamicVersesFeedEl.querySelectorAll('.verse-article')
+          : [];
+        const rows = currentView === 'table'
+          ? canonicalVersesTableWrapEl.querySelectorAll('.canonical-table-row')
+          : [];
         const top10Refs = ['2:255', '112:1-4', '1:1-7', '2:285-286', '2:102', '24:35', '36:82', '113:1-5', '114:1-6', '7:117-122'];
 
         function itemMatches(text, cat, surahStr, refStr) {
@@ -1941,12 +2045,15 @@
       });
 
       window.addEventListener('keydown', (e) => {
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+        const target = e.target;
+        const isInteractive = target instanceof Element && target.closest('input, textarea, select, button, a, [role="slider"], [contenteditable="true"]');
+        if (isInteractive) {
           if (e.key === 'Escape') {
             hideAllModals();
           }
           return;
         }
+        if (e.repeat || e.ctrlKey || e.metaKey || e.altKey) return;
 
         if (e.key === 'Escape') {
           hideAllModals();
@@ -1971,14 +2078,11 @@
       // Initial Render
       populateSurahSelect();
       renderAllVerses();
-      applyFilter();
 
     })();
   </script>
   <script src="buttons.js" defer></script>
   <script src="js/script.js" defer></script>
-  <!-- Shared Layout: Header, Footer, Theme Switcher -->
-  <script src="js/shared-layout.js"></script>
 </body>
 
 </html>
