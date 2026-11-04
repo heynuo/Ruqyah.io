@@ -1,12 +1,3 @@
-# Ruqyah — Scholastic Archive & Systems Laboratory
-
-[![GitHub Repository](https://img.shields.io/badge/GitHub-heynuo%2FRuqyah.io-181717?style=for-the-badge&logo=github)](https://github.com/heynuo/Ruqyah.io)
-[![Live Site](https://img.shields.io/badge/Live%20Website-heynuo.github.io-blue?style=for-the-badge&logo=github)](https://heynuo.github.io/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
-[![Vanilla JS](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](js/script.js)
-[![Shared Layout](https://img.shields.io/badge/Design%20System-Material%20Tokens-0F766E?style=for-the-badge)](css/shared-layout.css)
-[![Tracker Free](https://img.shields.io/badge/Privacy-100%25%20Tracker--Free-success?style=for-the-badge)](privacy.html)
-[![PWA Ready](https://img.shields.io/badge/PWA-Offline%20Ready-purple?style=for-the-badge)](manifest.json)
 
 > **Ruqyah** is an independent digital archive and systems laboratory for Qur’anic reading, authentic Ruqyah healing verses, and a 108-verse verified concordance from 62 classical sources, alongside high-throughput Java architecture and distributed systems notes. Free to use, private by design, and built to work offline.
 
