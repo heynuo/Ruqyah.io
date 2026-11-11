@@ -532,8 +532,6 @@ button,input{font:inherit}
     video.pause();
     video.classList.remove('is-active');
     video.preload = 'auto';
-    video.defaultPlaybackRate = 1;
-    video.playbackRate = 1;
     video.src = BACKGROUND_VIDEOS[index];
     video.dataset.clipIndex = String(index);
     video.load();
@@ -561,7 +559,7 @@ button,input{font:inherit}
         incomingVideo.classList.add('is-active');
         outgoingVideo.classList.remove('is-active');
         window.setTimeout(() => {
-          if (request !== backgroundVideoRequest || activeBackgroundVideo !== incomingVideo || audio.paused) return;
+          if (activeBackgroundVideo !== incomingVideo) return;
           outgoingVideo.pause();
           preloadNextBackgroundVideo(outgoingVideo);
         }, 1300);
@@ -582,19 +580,6 @@ button,input{font:inherit}
   function pauseBackgroundVideo(){
     backgroundVideoRequest++;
     backgroundVideos.forEach(video => video.pause());
-  }
-
-  function resetBackgroundVideo(){
-    backgroundVideoRequest++;
-    backgroundVideos.forEach(video => {
-      video.pause();
-      video.classList.remove('is-active');
-      video.removeAttribute('src');
-      delete video.dataset.clipIndex;
-      video.load();
-    });
-    activeBackgroundVideo = backgroundVideos[0];
-    backgroundVideoIndex = 0;
   }
 
   backgroundVideos.forEach(video => {
@@ -711,7 +696,6 @@ button,input{font:inherit}
   });
   replayBtn.addEventListener('click', () => {
     audio.currentTime = 0;
-    resetBackgroundVideo();
     activeRemembrance = -1;
     updateRemembrance();
     beginPlayback();
@@ -735,7 +719,7 @@ button,input{font:inherit}
   audio.addEventListener('loadedmetadata', updateProgress);
   audio.addEventListener('ended', () => {
     if (audio.loop) return;
-    resetBackgroundVideo();
+    pauseBackgroundVideo();
     playBtn.textContent = '▶';
     playBtn.setAttribute('aria-label', 'Play audio');
     activeRemembrance = -1;
