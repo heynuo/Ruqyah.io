@@ -337,7 +337,7 @@
 <body>
 <div id="stage">
 <div id="cam">
-  <video id="mediaTrack" playsinline preload="auto" style="display:none">
+  <video id="mediaTrack" playsinline preload="metadata" muted style="display:none">
     <source src="reference-preview.mp4" type="video/mp4">
     <source src="audio.mp3" type="audio/mpeg">
   </video>
@@ -1058,6 +1058,7 @@
   let startTime    = 0;
   let rafId        = null;
   let usingMediaClock = false;
+  let soundEnabled = false;
 
   function hasAudioSource() {
     return mediaTrack.readyState >= 1 && !!mediaTrack.currentSrc;
@@ -1558,7 +1559,7 @@
     const seekOff = fromStart ? (parseFloat((location.hash.match(/t=([\d.]+)/) || [])[1]) || 0) : 0;
     startTime = performance.now() - seekOff * 1000;
 
-    if (hasAudioSource()) {
+    if (soundEnabled && hasAudioSource()) {
       if (fromStart) { try { mediaTrack.currentTime = 0; } catch (e) {} }
       const p = mediaTrack.play();
       if (p && typeof p.then === 'function') {
@@ -1581,6 +1582,7 @@
     const url = URL.createObjectURL(file);
     mediaTrack.src = url;
     mediaTrack.muted = false;
+    soundEnabled = true;
     mediaTrack.load();
     mediaTrack.addEventListener('loadedmetadata', () => {
       const curElapsed = Math.min((performance.now() - startTime) / 1000, TOTAL_DUR - 0.5);
@@ -1623,6 +1625,7 @@
     if (!hasAudioSource()) { audioPicker.click(); return; }
 
     if (mediaTrack.paused) {
+      soundEnabled = true;
       mediaTrack.muted = false;
       const curElapsed = (performance.now() - startTime) / 1000;
       if (curElapsed < TOTAL_DUR) { try { mediaTrack.currentTime = curElapsed; } catch (err) {} }
@@ -1630,6 +1633,12 @@
                         .catch(() => { usingMediaClock = false; updateSoundUI(); });
     } else {
       mediaTrack.muted = !mediaTrack.muted;
+      soundEnabled = !mediaTrack.muted;
+      if (!soundEnabled) {
+        startTime = performance.now() - mediaTrack.currentTime * 1000;
+        mediaTrack.pause();
+        usingMediaClock = false;
+      }
       updateSoundUI();
     }
   });
@@ -1638,6 +1647,7 @@
     if (!hasAudioSource()) return;
     primeAudio();
     if (mediaTrack.paused) {
+      soundEnabled = true;
       const curElapsed = (performance.now() - startTime) / 1000;
       mediaTrack.muted = false;
       try { mediaTrack.currentTime = Math.min(curElapsed, TOTAL_DUR - 0.5); } catch (e) {}

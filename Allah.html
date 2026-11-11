@@ -69,9 +69,9 @@ button,input{font:inherit}
   position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:#020609;
 }
 .video-background video{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  opacity:0;filter:brightness(.42) saturate(.78);transform:scale(1.035);
-  transition:opacity 1s ease;
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;
+  opacity:0;filter:brightness(.62) saturate(.78);backface-visibility:hidden;
+  transition:opacity 1.25s ease-in-out;will-change:opacity;
 }
 .video-background video.is-active{opacity:.68}
 .video-background:after{
@@ -292,6 +292,7 @@ button,input{font:inherit}
   <div class="ambient"></div>
   <div class="video-background" aria-hidden="true">
     <video id="backgroundVideo" muted playsinline preload="none" tabindex="-1"></video>
+    <video id="backgroundVideoNext" muted playsinline preload="none" tabindex="-1"></video>
   </div>
 
   <div class="arch-scene" aria-hidden="true">
@@ -425,7 +426,10 @@ button,input{font:inherit}
 
   const stage = document.getElementById('stage');
   const audio = document.getElementById('audio');
-  const backgroundVideo = document.getElementById('backgroundVideo');
+  const backgroundVideos = [
+    document.getElementById('backgroundVideo'),
+    document.getElementById('backgroundVideoNext')
+  ];
   const BACKGROUND_VIDEOS = [
     'assets/allah-background-videos/clip-1.mp4',
     'assets/allah-background-videos/clip-2.mp4',
@@ -512,6 +516,7 @@ button,input{font:inherit}
   let activeRemembrance = -1;
   let audioContext = null, analyser = null, sourceNode = null, frequencyData = null;
   let w = 0, h = 0, dpr = 1, particles = [];
+  let activeBackgroundVideo = backgroundVideos[0];
   let backgroundVideoIndex = 0;
   let backgroundVideoRequest = 0;
 
@@ -522,24 +527,53 @@ button,input{font:inherit}
   };
   const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 
+  function prepareBackgroundVideo(video, index){
+    if (video.dataset.clipIndex === String(index) && video.currentSrc) return;
+    video.pause();
+    video.classList.remove('is-active');
+    video.preload = 'auto';
+    video.defaultPlaybackRate = 1;
+    video.playbackRate = 1;
+    video.src = BACKGROUND_VIDEOS[index];
+    video.dataset.clipIndex = String(index);
+    video.load();
+  }
+
+  function preloadNextBackgroundVideo(video){
+    const nextIndex = (backgroundVideoIndex + 1) % BACKGROUND_VIDEOS.length;
+    prepareBackgroundVideo(video, nextIndex);
+  }
+
   function loadBackgroundVideo(index){
     const request = ++backgroundVideoRequest;
-    backgroundVideo.classList.remove('is-active');
-    backgroundVideo.src = BACKGROUND_VIDEOS[index];
-    backgroundVideo.load();
-    const playRequest = backgroundVideo.play();
+    const outgoingVideo = activeBackgroundVideo;
+    const incomingVideo = backgroundVideos.find(video => video !== outgoingVideo);
+    backgroundVideoIndex = index;
+    prepareBackgroundVideo(incomingVideo, index);
+    const playRequest = incomingVideo.play();
     if (playRequest && typeof playRequest.then === 'function') {
       playRequest.then(() => {
-        if (request === backgroundVideoRequest && !audio.paused) backgroundVideo.classList.add('is-active');
+        if (request !== backgroundVideoRequest || audio.paused) {
+          incomingVideo.pause();
+          return;
+        }
+        activeBackgroundVideo = incomingVideo;
+        incomingVideo.classList.add('is-active');
+        outgoingVideo.classList.remove('is-active');
+        window.setTimeout(() => {
+          if (request !== backgroundVideoRequest || activeBackgroundVideo !== incomingVideo || audio.paused) return;
+          outgoingVideo.pause();
+          preloadNextBackgroundVideo(outgoingVideo);
+        }, 1300);
       }).catch(() => {});
     }
   }
 
   function startBackgroundVideo(){
-    if (backgroundVideo.currentSrc && !backgroundVideo.ended) {
-      const playRequest = backgroundVideo.play();
+    if (activeBackgroundVideo.currentSrc && !activeBackgroundVideo.ended) {
+      const playRequest = activeBackgroundVideo.play();
       if (playRequest && typeof playRequest.catch === 'function') playRequest.catch(() => {});
-      backgroundVideo.classList.add('is-active');
+      activeBackgroundVideo.classList.add('is-active');
       return;
     }
     loadBackgroundVideo(backgroundVideoIndex);
@@ -547,12 +581,27 @@ button,input{font:inherit}
 
   function pauseBackgroundVideo(){
     backgroundVideoRequest++;
-    backgroundVideo.pause();
+    backgroundVideos.forEach(video => video.pause());
   }
 
-  backgroundVideo.addEventListener('ended', () => {
-    backgroundVideoIndex = (backgroundVideoIndex + 1) % BACKGROUND_VIDEOS.length;
-    if (!audio.paused) loadBackgroundVideo(backgroundVideoIndex);
+  function resetBackgroundVideo(){
+    backgroundVideoRequest++;
+    backgroundVideos.forEach(video => {
+      video.pause();
+      video.classList.remove('is-active');
+      video.removeAttribute('src');
+      delete video.dataset.clipIndex;
+      video.load();
+    });
+    activeBackgroundVideo = backgroundVideos[0];
+    backgroundVideoIndex = 0;
+  }
+
+  backgroundVideos.forEach(video => {
+    video.addEventListener('ended', () => {
+      if (video !== activeBackgroundVideo || audio.paused) return;
+      loadBackgroundVideo((backgroundVideoIndex + 1) % BACKGROUND_VIDEOS.length);
+    });
   });
 
   function resizeCanvases(){
@@ -662,6 +711,7 @@ button,input{font:inherit}
   });
   replayBtn.addEventListener('click', () => {
     audio.currentTime = 0;
+    resetBackgroundVideo();
     activeRemembrance = -1;
     updateRemembrance();
     beginPlayback();
@@ -685,7 +735,7 @@ button,input{font:inherit}
   audio.addEventListener('loadedmetadata', updateProgress);
   audio.addEventListener('ended', () => {
     if (audio.loop) return;
-    pauseBackgroundVideo();
+    resetBackgroundVideo();
     playBtn.textContent = '▶';
     playBtn.setAttribute('aria-label', 'Play audio');
     activeRemembrance = -1;
