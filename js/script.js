@@ -2150,6 +2150,16 @@ const CommandPalette = {
         link: 'quran-verses.html'
       },
       {
+        id: 'pg-kufar',
+        section: 'ðŸ“„ Pages & Tools',
+        type: 'page',
+        title: 'Kufar Photo Gallery',
+        subtitle: 'A personal photo collection saved in this browser',
+        icon: '🖼️',
+        tag: 'Page',
+        link: 'kufar.html'
+      },
+      {
         id: 'pg-about',
         section: '📄 Pages & Tools',
         type: 'page',

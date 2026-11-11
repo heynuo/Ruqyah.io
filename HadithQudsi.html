@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hadith Qudsi — Al-Fatiha, Do Hisse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 100%; height: 100%;
+    background: #000;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+
+  /* ---------- 1280x720 STAGE ---------- */
+  #stage {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 1280px; height: 720px;
+    transform: translate(-50%, -50%);
+    background: #010302;
+    overflow: hidden;
+  }
+
+  #cam { position: absolute; inset: 0; transform-origin: 640px 360px; }
+  #dust { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .lens { position: absolute; inset: 0; pointer-events: none; z-index: 30;
+    background: radial-gradient(ellipse 78% 74% at 50% 50%, transparent 55%, rgba(0,0,0,0.38) 100%); }
+  .grain { position: absolute; inset: -40px; pointer-events: none; z-index: 31; opacity: 0.07; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.4 -0.2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    animation: grainShift 0.6s steps(6) infinite; }
+  @keyframes grainShift { 0%{transform:translate(0,0)} 17%{transform:translate(-18px,11px)} 33%{transform:translate(14px,-22px)} 50%{transform:translate(-9px,25px)} 67%{transform:translate(22px,6px)} 83%{transform:translate(-25px,-14px)} 100%{transform:translate(0,0)} }
+
+  .bg-base {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 85% 75% at 50% 48%, #071412 0%, #020504 55%, #000000 100%);
+    transition: opacity 0.9s ease;
+  }
+  .scene-mosque {
+    position: absolute; inset: 0; pointer-events: none;
+    transition: opacity 0.85s ease, transform 1.1s cubic-bezier(0.22, 1, 0.36, 1), filter 0.85s ease;
+  }
+  .scene-mosque.dim-blur { filter: blur(3.5px); }
+  .scene-mosque.hidden { opacity: 0; }
+  .scene-mosque.muahida-pos { opacity: 0.75; transform: translateY(155px) scale(0.92); filter: blur(0.5px); }
+  .arch-glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle 130px at 640px 540px, rgba(165, 250, 235, 0.42), rgba(50, 160, 145, 0.16) 48%, transparent 72%),
+      radial-gradient(ellipse 36% 48% at 50% 48%, rgba(28, 96, 88, 0.36), transparent 72%);
+    transition: opacity 0.8s ease;
+  }
+  .arch-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .rug-wrap {
+    position: absolute; left: 50%; bottom: -18px;
+    width: 520px; height: 175px;
+    transform: translateX(-50%);
+    transition: opacity 0.75s ease, filter 0.85s ease;
+  }
+  .rug-svg { width: 100%; height: 100%; filter: drop-shadow(0 -6px 24px rgba(0, 0, 0, 0.85)); }
+  .scene-mosque.muahida-pos .rug-wrap,
+  .scene-mosque.muahida-pos .arch-glow { opacity: 0; }
+
+  .gold-light { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 0.85s ease; }
+  .gold-light.on { opacity: 1; }
+  .gold-arabesque {
+    position: absolute; inset: 0; opacity: 0.14;
+    background:
+      radial-gradient(circle 420px at 50% 42%, transparent 58%, rgba(215, 165, 75, 0.12) 60%, transparent 62%),
+      radial-gradient(circle 310px at 50% 42%, transparent 58%, rgba(215, 165, 75, 0.1) 60%, transparent 62%);
+  }
+  .gold-orb {
+    position: absolute; inset: 0; transform-origin: 640px 52px;
+    background:
+      radial-gradient(circle 68px at 50% 52px, rgba(255, 252, 235, 0.98) 0%, rgba(255, 224, 150, 0.72) 38%, rgba(215, 155, 60, 0.22) 68%, transparent 100%),
+      radial-gradient(ellipse 38% 78% at 50% 8%, rgba(235, 180, 82, 0.34) 0%, rgba(160, 110, 35, 0.14) 52%, transparent 82%),
+      conic-gradient(from 164deg at 50% 40px, transparent 0deg, rgba(255, 222, 148, 0.13) 8deg, rgba(255, 230, 175, 0.24) 16deg, rgba(255, 222, 148, 0.12) 24deg, transparent 32deg);
+  }
+  .gold-stem {
+    position: absolute; left: 50%; top: 52px; bottom: 0;
+    width: 2px; transform: translateX(-50%);
+    background: linear-gradient(180deg, rgba(255, 245, 210, 0.55) 0%, rgba(230, 185, 95, 0.18) 65%, transparent 100%);
+    filter: blur(1px);
+  }
+
+  .bokeh { position: absolute; border-radius: 50%; pointer-events: none; opacity: 0; transition: opacity 1s ease; }
+  .bokeh.b-gold { width: 96px; height: 96px; left: 63.5%; top: 31%;
+    background: radial-gradient(circle, rgba(255, 235, 185, 0.52) 0%, rgba(230, 180, 95, 0.22) 48%, transparent 72%);
+    filter: blur(4px); animation: driftGold 7s ease-in-out infinite alternate; }
+  .bokeh.b-cyan { width: 72px; height: 72px; left: 58.5%; top: 34%;
+    background: radial-gradient(circle, rgba(160, 245, 235, 0.45) 0%, rgba(70, 185, 175, 0.18) 50%, transparent 74%);
+    filter: blur(4px); animation: driftCyan 6s ease-in-out infinite alternate; }
+  .bokeh.on { opacity: 1; }
+  @keyframes driftGold { 0% { transform: translate(0, 0) scale(0.95); } 100% { transform: translate(14px, -18px) scale(1.06); } }
+  @keyframes driftCyan { 0% { transform: translate(0, 0) scale(0.92); } 100% { transform: translate(12px, -12px) scale(1.05); } }
+
+  .final-scene { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 0.95s ease; }
+  .final-scene.on { opacity: 1; }
+  .final-orb {
+    position: absolute; inset: 0; transform-origin: 640px 260px;
+    background:
+      radial-gradient(circle 64px at 640px 260px, rgba(255, 253, 240, 1) 0%, rgba(255, 232, 172, 0.82) 38%, rgba(230, 175, 78, 0.28) 70%, transparent 100%),
+      radial-gradient(circle 340px at 640px 260px, rgba(235, 185, 88, 0.28) 0%, rgba(160, 110, 35, 0.09) 55%, transparent 78%);
+  }
+  .final-geo {
+    position: absolute; left: 640px; top: 260px; width: 680px; height: 680px;
+    transform: translate(-50%, -50%);
+    animation: slowSpin 48s linear infinite;
+  }
+  @keyframes slowSpin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+  .final-line {
+    position: absolute; left: 640px; top: 260px; bottom: 0; width: 1.5px;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, rgba(255, 250, 225, 0.95) 0%, rgba(235, 195, 115, 0.55) 55%, rgba(235, 195, 115, 0.15) 100%);
+    box-shadow: 0 0 12px rgba(255, 225, 150, 0.65);
+  }
+
+  /* ---------- v2 FX LAYERS ---------- */
+  #rays { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: screen; }
+  .fx-rings { position: absolute; inset: 0; pointer-events: none; z-index: 12; }
+  .ring-fx {
+    position: absolute; width: 60px; height: 60px; margin: -30px 0 0 -30px;
+    border-radius: 50%; border: 1.5px solid; opacity: 0; will-change: transform, opacity;
+  }
+  .flare { position: absolute; inset: 0; pointer-events: none; z-index: 13; opacity: 0; mix-blend-mode: screen; }
+  .flare .streak {
+    position: absolute; left: 0; width: 1280px; height: 2px; margin-top: -1px;
+    background: linear-gradient(90deg, rgba(255,220,150,0) 0%, rgba(255,226,165,0.55) 30%, rgba(255,250,225,1) 50%, rgba(255,226,165,0.55) 70%, rgba(255,220,150,0) 100%);
+    box-shadow: 0 0 14px 2px rgba(255, 220, 140, 0.45);
+  }
+  .flare .halo {
+    position: absolute; width: 340px; height: 340px; margin: -170px 0 0 -170px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,245,215,0.7) 0%, rgba(255,205,120,0.22) 28%, transparent 64%);
+  }
+  .leak { position: absolute; inset: 0; pointer-events: none; z-index: 14; opacity: 0; mix-blend-mode: screen; }
+  .lb { position: absolute; left: 0; width: 100%; height: 0; background: #000; z-index: 15;
+    transition: height 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
+  .lb.top { top: 0; }
+  .lb.bot { bottom: 0; }
+  .lb.on { height: 40px; }
+  .spectrum { position: absolute; left: 400px; top: 672px; width: 480px; height: 40px; z-index: 19;
+    pointer-events: none; opacity: 0; transition: opacity 0.8s ease; }
+  .spectrum.on { opacity: 0.6; }
+
+  /* ---------- SEGMENTS / TEXT ---------- */
+  #segments { position: absolute; inset: 0; pointer-events: none; }
+  .seg { position: absolute; inset: 0; opacity: 0; filter: blur(0px); transition: opacity 0.55s ease, filter 0.65s ease; }
+  .seg.active { opacity: 1; filter: blur(0px); }
+  .seg.blur-out { opacity: 0; filter: blur(12px); transition: opacity 0.55s ease, filter 0.55s ease; }
+
+  .header-group {
+    position: absolute; left: 0; width: 100%; top: 195px; text-align: center;
+    transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.65s ease, filter 0.65s ease;
+  }
+  .header-group.shifted { transform: translateY(-44px) scale(0.86); opacity: 0.85; }
+  .header-group.shifted-high { transform: translateY(-150px) scale(0.86); opacity: 0.88; }
+  .header-group.ripple { animation: waterRipple 0.75s ease; }
+  @keyframes waterRipple {
+    0% { filter: blur(0px); }
+    45% { filter: blur(3.2px); transform: translateY(-44px) scale(0.9) skewX(2deg); }
+    100% { filter: blur(0px); transform: translateY(-44px) scale(0.86) skewX(0deg); }
+  }
+
+  .pill { display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 38px; border-radius: 999px; border: 1px solid; backdrop-filter: blur(4px); }
+  .pill.cyan { color: #d8fff9; font-size: 13px; font-weight: 600; letter-spacing: 3.5px; text-transform: uppercase;
+    background: rgba(10, 34, 31, 0.55); border-color: rgba(110, 225, 208, 0.55);
+    box-shadow: 0 0 18px rgba(80, 210, 190, 0.18), inset 0 0 12px rgba(80, 210, 190, 0.12); }
+  .pill.gold { position: absolute; top: 155px; left: 50%; transform: translateX(-50%);
+    height: 40px; padding: 0 46px; color: #f5cc70; font-size: 19px; font-weight: 700; letter-spacing: 0.4px;
+    background: rgba(28, 20, 8, 0.42); border-color: rgba(235, 185, 88, 0.58);
+    box-shadow: 0 0 22px rgba(235, 185, 88, 0.16), inset 0 0 14px rgba(235, 185, 88, 0.1);
+    text-shadow: 0 0 14px rgba(245, 195, 95, 0.55); white-space: nowrap; }
+
+  .cue { margin-top: 14px; color: #f2f7f6; font-size: 27px; font-weight: 700; font-style: normal; letter-spacing: 0.3px;
+    text-shadow: 0 0 20px rgba(210, 255, 248, 0.32); }
+
+  .arabic-wrap {
+    position: absolute; left: 50%; top: 322px;
+    transform: translateX(-50%); width: 1120px; text-align: center; direction: rtl;
+  }
+  .arabic-wrap.gold-pos { top: 252px; }
+  .arabic-wrap.final-pos { top: 252px; }
+  .arabic-wrap.multiline { top: 290px; transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+
+  .arabic-line {
+    position: relative; display: inline-block;
+    font-family: 'Amiri', serif; font-size: 92px; font-weight: 700; line-height: 1.65;
+    white-space: nowrap; padding: 4px 28px;
+    clip-path: inset(-80% -25% -80% 100%);
+    opacity: 0;
+  }
+  .arabic-wrap.multiline .arabic-line { display: block; font-size: 64px; line-height: 1.48; padding: 0 20px; }
+  .arabic-wrap.final-pos .arabic-line { font-size: 62px; }
+  .arabic-line.cyan-txt {
+    color: #f2fffd;
+    text-shadow: 0 0 10px rgba(220, 255, 250, 0.92), 0 0 28px rgba(88, 228, 210, 0.75), 0 0 64px rgba(45, 185, 168, 0.48);
+  }
+  .arabic-line.gold-txt {
+    color: #de8e28;
+    text-shadow: 0 0 10px rgba(245, 168, 55, 0.65), 0 0 32px rgba(215, 128, 24, 0.52), 0 0 68px rgba(180, 98, 12, 0.38);
+  }
+
+  .kt-row { display: block; overflow: visible; }
+  .kt { display: inline-block; position: relative; white-space: nowrap; }
+  .kt .w { display: inline-block; opacity: 0; will-change: opacity, filter; }
+  .hl { color: #f7b93e; text-shadow: 0 0 18px rgba(247, 185, 62, 0.68); }
+
+  .roman {
+    position: absolute; left: 50%; top: 472px;
+    transform: translateX(-50%); width: 1120px; text-align: center;
+    color: #f0f3f2; font-size: 27px; font-weight: 700; line-height: 1.65; letter-spacing: 0.2px;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.65);
+  }
+  .roman.final-roman { top: 422px; font-size: 23.5px; }
+
+  .muahida-q {
+    position: absolute; top: 336px; left: 0; width: 100%; text-align: center;
+    color: #eef2f0; font-size: 28px; font-weight: 700;
+    transition: opacity 0.55s ease, transform 0.6s ease, filter 0.55s ease;
+  }
+  .muahida-center {
+    position: absolute; top: 186px; left: 0; width: 100%; text-align: center;
+    opacity: 0; transform: scale(0.94);
+    transition: top 0.85s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .muahida-center.show { opacity: 1; transform: scale(1); }
+  .muahida-center.dock-top { top: 112px; transform: scale(0.95); }
+  .m-title {
+    font-size: 80px; font-weight: 800; letter-spacing: 3px; color: #f9c851; line-height: 1.05;
+    text-shadow: 0 0 16px rgba(255, 205, 85, 0.75), 0 0 48px rgba(235, 165, 45, 0.48);
+  }
+  .m-sub { margin-top: 8px; color: #c7cecc; font-size: 16px; font-weight: 500; letter-spacing: 1.2px; }
+  .muahida-post {
+    position: absolute; top: 418px; left: 0; width: 100%; text-align: center;
+    color: #eef2f0; font-size: 26px; font-weight: 700;
+    transition: opacity 0.5s ease, filter 0.5s ease;
+  }
+  .fade-away { opacity: 0 !important; filter: blur(8px); }
+
+  .m-split-stage { position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s ease; }
+  .m-split-stage.show { opacity: 1; }
+  .m-ring { position: absolute; top: 275px; left: 50%; width: 210px; height: 210px; transform: translateX(-50%); z-index: 4; }
+  .m-ring svg { width: 100%; height: 100%; overflow: visible; }
+  .ring-track { fill: rgba(8, 14, 13, 0.55); stroke: rgba(255, 255, 255, 0.1); stroke-width: 3.5; }
+  .arc-left-cyan {
+    fill: none; stroke: #63f2df; stroke-width: 5.5; stroke-linecap: round;
+    filter: drop-shadow(0 0 10px rgba(99, 242, 223, 0.85));
+    stroke-dasharray: 290; stroke-dashoffset: 290;
+    transition: stroke-dashoffset 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .arc-left-cyan.drawn { stroke-dashoffset: 0; }
+  .arc-right-gold {
+    fill: none; stroke: #f6b93b; stroke-width: 5.5; stroke-linecap: round;
+    filter: drop-shadow(0 0 10px rgba(246, 185, 59, 0.85));
+    stroke-dasharray: 290; stroke-dashoffset: 290;
+    transition: stroke-dashoffset 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .arc-right-gold.drawn { stroke-dashoffset: 0; }
+  .m-ring-labels {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 26px; font-size: 14px; font-weight: 700; letter-spacing: 2px;
+  }
+  .m-lbl-b, .m-lbl-r { opacity: 0; transition: opacity 0.5s ease; }
+  .m-lbl-b { color: #d8fff9; }
+  .m-lbl-r { color: #f8ca64; }
+  .m-lbl-b.on, .m-lbl-r.on { opacity: 1; }
+  .m-col-left {
+    position: absolute; top: 333px; left: 60px; width: 440px; text-align: center;
+    color: #eef2f0; font-size: 23px; font-weight: 700; line-height: 2.05; z-index: 3;
+  }
+  .m-col-right {
+    position: absolute; top: 333px; right: 60px; width: 440px; text-align: center;
+    color: #eef2f0; font-size: 23px; font-weight: 700; line-height: 2.05; z-index: 3;
+  }
+
+  .credit {
+    position: absolute; top: 490px; left: 0; width: 100%; text-align: center;
+    color: #e6c675; font-size: 14px; font-weight: 600; letter-spacing: 3.8px;
+    opacity: 0; transition: opacity 0.8s ease;
+    text-shadow: 0 0 14px rgba(230, 198, 117, 0.45);
+  }
+  .credit.on { opacity: 1; }
+
+  .ui { position: absolute; inset: 0; pointer-events: none; z-index: 20; }
+  .tl { position: absolute; top: 34px; left: 48px; opacity: 0; transition: opacity 0.6s ease; }
+  .tl.on { opacity: 1; }
+  .tl .a { color: #e6c675; font-size: 13.5px; font-weight: 700; letter-spacing: 3px; }
+  .tl .b { color: #9ba3a0; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 15px; letter-spacing: 0.6px; margin-top: 2px; }
+  .tr { position: absolute; top: 34px; right: 48px; color: #5c6360; font-size: 14px; font-weight: 500; letter-spacing: 1px; }
+  .bl { position: absolute; bottom: 34px; left: 48px; display: flex; align-items: center; gap: 14px; opacity: 0; transition: opacity 0.6s ease; }
+  .bl.on { opacity: 1; }
+  .bl svg { width: 44px; height: 44px; }
+  .bl .ring-bg { fill: none; stroke: rgba(255, 255, 255, 0.12); stroke-width: 3.2; }
+  .bl .ring-gold { fill: none; stroke: #f3a833; stroke-width: 3.5; stroke-linecap: round; filter: drop-shadow(0 0 5px rgba(243, 168, 51, 0.75)); }
+  .bl .ring-cyan { fill: none; stroke: #4be3ce; stroke-width: 3.5; stroke-linecap: round; filter: drop-shadow(0 0 5px rgba(75, 227, 206, 0.75)); }
+  .bl .txt { font-size: 10px; letter-spacing: 2.2px; line-height: 1.75; font-weight: 600; }
+  .bl .txt .t1 { color: #6c7572; font-size: 9px; }
+  .bl .txt .t2 { color: #d8dedc; }
+  .bl .txt .t3 { color: #d8dedc; }
+
+  .controls {
+    position: absolute; bottom: 30px; right: 44px; z-index: 50;
+    display: flex; align-items: center; gap: 10px;
+    opacity: 0.38; transition: opacity 0.25s ease;
+  }
+  #stage:hover .controls,
+  .controls.needs-gesture { opacity: 0.95; }
+  .ctrl-btn {
+    background: rgba(15, 22, 20, 0.68); color: #cfd6d2;
+    border: 1px solid rgba(200, 210, 205, 0.24);
+    padding: 7px 16px; border-radius: 999px;
+    font-size: 11px; font-weight: 500; letter-spacing: 1.8px;
+    cursor: pointer; font-family: 'Poppins', sans-serif;
+    transition: color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .ctrl-btn:hover { color: #ffd97e; border-color: rgba(255, 215, 120, 0.55); }
+  .ctrl-btn.pulse { color: #ffd97e; border-color: rgba(255, 215, 120, 0.65); box-shadow: 0 0 16px rgba(255, 210, 110, 0.25); }
+
+  /* drop highlight */
+  #stage.drop-active::after {
+    content: 'DROP AUDIO FILE';
+    position: absolute; inset: 0; z-index: 999;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 4px;
+    color: #ffd97e; background: rgba(0,0,0,0.72);
+    border: 3px dashed rgba(255, 215, 120, 0.7); pointer-events: none;
+  }
+</style>
+</head>
+<body>
+<div id="stage">
+<div id="cam">
+  <video id="mediaTrack" playsinline preload="auto" style="display:none">
+    <source src="reference-preview.mp4" type="video/mp4">
+    <source src="audio.mp3" type="audio/mpeg">
+  </video>
+
+  <div class="bg-base"></div>
+  <canvas id="rays"></canvas>
+  <canvas id="dust"></canvas>
+
+  <div class="scene-mosque" id="mosque">
+    <div class="arch-glow"></div>
+    <svg class="arch-svg" viewBox="0 0 1280 720" preserveAspectRatio="none">
+      <line x1="640" y1="0" x2="640" y2="152" stroke="rgba(215, 180, 110, 0.24)" stroke-width="1.2"/>
+      <polygon points="640,152 648,160 640,168 632,160" fill="none" stroke="rgba(225, 190, 120, 0.45)" stroke-width="1.3"/>
+      <circle cx="640" cy="160" r="1.6" fill="rgba(235, 200, 130, 0.55)"/>
+      <circle id="arch-medallion" cx="640" cy="184" r="54" fill="none" stroke="rgba(225, 190, 120, 0.16)" stroke-width="1.2" opacity="0"/>
+      <path d="M 424 566 L 424 318 C 424 232 515 198 640 170 C 765 198 856 232 856 318 L 856 566"
+            fill="none" stroke="rgba(215, 180, 110, 0.28)" stroke-width="2"/>
+      <path d="M 432 566 L 432 322 C 432 240 520 206 640 178 C 760 206 848 240 848 322 L 848 566"
+            fill="none" stroke="rgba(215, 180, 110, 0.12)" stroke-width="1"/>
+      <line x1="424" y1="566" x2="856" y2="566" stroke="rgba(215, 180, 110, 0.14)" stroke-width="1"/>
+    </svg>
+
+    <div class="rug-wrap">
+      <svg class="rug-svg" viewBox="0 0 520 175">
+        <defs>
+          <linearGradient id="rugGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#6b1719"/>
+            <stop offset="55%" stop-color="#4c0e10"/>
+            <stop offset="100%" stop-color="#2b0607"/>
+          </linearGradient>
+          <linearGradient id="rugMihrab" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#7c1d20"/>
+            <stop offset="100%" stop-color="#3c0a0c"/>
+          </linearGradient>
+        </defs>
+        <polygon points="118,8 402,8 486,175 34,175" fill="url(#rugGrad)" stroke="rgba(228, 192, 128, 0.55)" stroke-width="2"/>
+        <polygon points="130,16 390,16 462,168 58,168" fill="none" stroke="rgba(235, 205, 145, 0.38)" stroke-width="1.2"/>
+        <path d="M 188 166 L 198 62 C 202 36 232 26 260 20 C 288 26 318 36 322 62 L 332 166"
+              fill="url(#rugMihrab)" stroke="rgba(238, 208, 150, 0.48)" stroke-width="1.5"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="gold-light" id="goldLight">
+    <div class="gold-arabesque"></div>
+    <div class="gold-orb"></div>
+    <div class="gold-stem"></div>
+  </div>
+
+  <div class="bokeh b-gold" id="bokehGold"></div>
+  <div class="bokeh b-cyan" id="bokehCyan"></div>
+
+  <div class="final-scene" id="finalScene">
+    <svg class="final-geo" viewBox="0 0 680 680">
+      <g stroke="rgba(230, 190, 110, 0.16)" fill="none" stroke-width="1.1">
+        <circle cx="340" cy="340" r="310"/>
+        <circle cx="340" cy="340" r="238"/>
+        <circle cx="340" cy="340" r="170"/>
+        <rect x="172" y="172" width="336" height="336"/>
+        <rect x="172" y="172" width="336" height="336" transform="rotate(45 340 340)"/>
+      </g>
+    </svg>
+    <div class="final-orb"></div>
+    <div class="final-line"></div>
+  </div>
+
+  <!-- v2 effect layers -->
+  <div class="fx-rings" id="fxRings"></div>
+  <div class="flare" id="flare">
+    <div class="streak" id="flareStreak"></div>
+    <div class="halo" id="flareHalo"></div>
+  </div>
+  <div class="leak" id="leak"></div>
+  <div class="lb top" id="lbTop"></div>
+  <div class="lb bot" id="lbBot"></div>
+
+  <div id="segments"></div>
+
+  <div class="ui">
+    <div class="tl" id="uiTL">
+      <div class="a">HADITH QUDSI</div>
+      <div class="b">Sahih Muslim 395</div>
+    </div>
+    <div class="tr">untold.w0rds</div>
+    <div class="bl" id="uiBL">
+      <svg viewBox="0 0 44 44">
+        <circle class="ring-bg" cx="22" cy="22" r="18"/>
+        <circle class="ring-gold" id="progGold" cx="22" cy="22" r="18" transform="rotate(125 22 22)" stroke-dasharray="113.1" stroke-dashoffset="113.1"/>
+        <circle class="ring-cyan" id="progCyan" cx="22" cy="22" r="18" transform="rotate(305 22 22)" stroke-dasharray="113.1" stroke-dashoffset="113.1"/>
+      </svg>
+      <div class="txt">
+        <div class="t1">AL-FATIHA · DO HISSE</div>
+        <div class="t2">ALLAH KA HISSA</div>
+        <div class="t3">BANDE KA HISSA</div>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="spectrum" class="spectrum" width="960" height="80"></canvas>
+
+</div><!-- /#cam -->
+
+  <div class="lens"></div><div class="grain"></div>
+  <svg width="0" height="0" style="position:absolute"><filter id="mb" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB"><feGaussianBlur id="mbBlur" stdDeviation="0 0"/></filter></svg>
+
+  <div class="controls needs-gesture" id="ctrlBar">
+    <button class="ctrl-btn pulse" id="soundBtn" title="Play with Audio">SOUND ON</button>
+    <button class="ctrl-btn" id="replay">REPLAY</button>
+    <button class="ctrl-btn" id="fsBtn">FULLSCREEN</button>
+  </div>
+</div>
+
+<script>
+(function proFX() {
+  'use strict';
+
+  /* =====================================================================
+     CINEMATIC CAMERA ENGINE (whole composition)
+     ===================================================================== */
+  const KT = { zoom: 1.4, intro: 0.42, step: 0.24, minStep: 0.12, fade: 0.28, out: 0.65, hold: 0.45, pull: 0.5 };
+  const shots = [];
+  let curBase = 0;
+  const camEl = document.getElementById('cam');
+  const stageEl = document.getElementById('stage');
+  let camS = 1, camTx = 0, camTy = 0;
+  const OX = 640, OY = 360;
+
+  const clamp01 = x => Math.max(0, Math.min(1, x));
+  const easeIO = x => { x = clamp01(x); return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+  const lerp = (a, b, t) => a + (b - a) * t;
+
+  function kt(html) {
+    return html.split(/<br\s*\/?>/i).map(row => {
+      const pieces = [];
+      const re = /<span class="hl">(.*?)<\/span>|([^<]+)/g;
+      let m;
+      while ((m = re.exec(row)) !== null) {
+        if (m[1] !== undefined) pieces.push({ t: m[1], hl: true });
+        else pieces.push({ t: m[2], hl: false });
+      }
+      const words = [];
+      let cur = [];
+      pieces.forEach(p => p.t.split(/(\s+)/).forEach(tok => {
+        if (!tok) return;
+        if (/^\s+$/.test(tok)) {
+          if (cur.length) { words.push(cur); cur = []; }
+        } else {
+          cur.push({ t: tok, hl: p.hl });
+        }
+      }));
+      if (cur.length) words.push(cur);
+      const ws = words.map(w =>
+        '<span class="w">' + w.map(p => p.hl ? '<span class="hl">' + p.t + '</span>' : p.t).join('') + '</span>'
+      ).join(' ');
+      return '<div class="kt-row"><span class="kt">' + ws + '</span></div>';
+    }).join('');
+  }
+
+  function resetKT(container) {
+    if (!container) return;
+    container.querySelectorAll('.w').forEach(w => {
+      w.getAnimations().forEach(a => a.cancel());
+      w.style.opacity = '0';
+    });
+  }
+
+  function runKT(container, startDelaySec, budgetSec, extra = 0, useCam = true) {
+    if (!container) return;
+    const rows = [...container.querySelectorAll('.kt-row')];
+    if (!rows.length) return;
+
+    const totalExtra = rows.reduce((a, r) => a + Math.max(0, r.querySelectorAll('.w').length - 1), 0);
+    const tight = budgetSec < 1.6;
+    const intro = tight ? 0.3 : KT.intro;
+    const out = tight ? 0.4 : KT.out;
+    const hold = tight ? 0.18 : KT.hold;
+    const rowGap = 0.2;
+    const avail = Math.max(0.2, budgetSec - out - hold - rows.length * (intro + rowGap));
+    const step = totalExtra > 0 ? Math.max(KT.minStep, Math.min(KT.step, avail / totalExtra)) : KT.step;
+
+    const abs0 = curBase + extra + startDelaySec;
+    const keys = [];
+    let off = 0;
+    rows.forEach(row => {
+      const ws = [...row.querySelectorAll('.w')];
+      ws.forEach((w, k) => {
+        w.getAnimations().forEach(a => a.cancel());
+        w.style.opacity = '0';
+        const at = k === 0 ? 0 : intro + (k - 1) * step;
+        const dur = k === 0 ? intro : Math.min(KT.fade, step * 1.35);
+        w.animate(
+          [{ opacity: 0, filter: 'blur(5px)' }, { opacity: 1, filter: 'blur(0px)' }],
+          { delay: (startDelaySec + off + at) * 1000, duration: dur * 1000, easing: 'ease-out', fill: 'both' }
+        );
+        keys.push({ t: abs0 + off + at, el: w });
+      });
+      off += intro + Math.max(0, ws.length - 1) * step + rowGap;
+    });
+
+    if (useCam && keys.length) {
+      const last = keys[keys.length - 1].t;
+      shots.push({
+        keys, t0: keys[0].t, zin: intro,
+        tOut: last + Math.min(hold, 0.45) * 0.5 + 0.12, out,
+        move: Math.min(0.32, Math.max(0.16, step * 1.2))
+      });
+    }
+  }
+
+  function localCenter(el, sr, k) {
+    const r = el.getBoundingClientRect();
+    const qx = (r.left + r.width / 2 - sr.left) / k;
+    const qy = (r.top + r.height / 2 - sr.top) / k;
+    return { x: OX + (qx - OX - camTx) / camS, y: OY + (qy - OY - camTy) / camS };
+  }
+
+  function evalShot(sh, t, sr, k) {
+    if (t < sh.t0 || t > sh.tOut + sh.out) return null;
+    let a;
+    if (t < sh.t0 + sh.zin) a = easeIO((t - sh.t0) / sh.zin);
+    else if (t <= sh.tOut) a = 1;
+    else a = 1 - easeIO((t - sh.tOut) / sh.out);
+    if (a <= 0.0001) return null;
+
+    const keys = sh.keys;
+    let prev = localCenter(keys[0].el, sr, k);
+    let fx = prev.x, fy = prev.y;
+    for (let j = 1; j < keys.length; j++) {
+      const f = easeIO((t - (keys[j].t - 0.04)) / sh.move);
+      const p = localCenter(keys[j].el, sr, k);
+      if (f > 0) { fx += f * (p.x - prev.x); fy += f * (p.y - prev.y); }
+      prev = p;
+    }
+
+    const s = 1 + (KT.zoom - 1) * a;
+    const qx = fx + KT.pull * a * (OX - fx);
+    const qy = fy + KT.pull * a * (OY - fy);
+    let tx = qx - OX - s * (fx - OX);
+    let ty = qy - OY - s * (fy - OY);
+    const mx = (s - 1) * 640, my = (s - 1) * 360;
+    tx = Math.max(-mx, Math.min(mx, tx));
+    ty = Math.max(-my, Math.min(my, ty));
+    return { a, tx, ty };
+  }
+
+  const mbEl = document.getElementById('mbBlur');
+  let pTx = 0, pTy = 0, pS = 1, pT = performance.now(), mbx = 0, mby = 0, mbOn = false;
+  function motionBlur() {
+    const now = performance.now(), dt = Math.max(0.008, (now - pT) / 1000); pT = now;
+    const vx = Math.abs(camTx - pTx) / dt, vy = Math.abs(camTy - pTy) / dt, vs = Math.abs(camS - pS) / dt;
+    pTx = camTx; pTy = camTy; pS = camS;
+    const zr = Math.min(2.2, vs * 1.8);
+    const tx = Math.min(5, vx * 0.0042 + zr), ty = Math.min(3, vy * 0.0032 + zr * 0.6);
+    mbx += (tx - mbx) * 0.4; mby += (ty - mby) * 0.4;
+    if (mbx + mby > 0.25) {
+      mbEl.setAttribute('stdDeviation', mbx.toFixed(2) + ' ' + mby.toFixed(2));
+      if (!mbOn) { camEl.style.filter = 'url(#mb)'; mbOn = true; }
+    } else if (mbOn) { camEl.style.filter = ''; mbOn = false; }
+  }
+
+  function applyCamera(t) {
+    let sumA = 0, maxA = 0, sx = 0, sy = 0;
+    if (shots.length) {
+      const sr = stageEl.getBoundingClientRect();
+      const k = sr.width / 1280 || 1;
+      shots.forEach(sh => {
+        const r = evalShot(sh, t, sr, k);
+        if (r) { sumA += r.a; maxA = Math.max(maxA, r.a); sx += r.a * r.tx; sy += r.a * r.ty; }
+      });
+    }
+    if (sumA > 0) {
+      camTx = sx / sumA; camTy = sy / sumA;
+    } else { camTx = 0; camTy = 0; }
+
+    const shotS = sumA > 0 ? 1 + (KT.zoom - 1) * maxA : 1;
+    const breath = 1 + 0.003 * (1 + Math.sin(t * 0.42));
+    const kickS = 1 + FX.kick * 0.008;
+    camS = Math.max(1.02, shotS) * breath * kickS;
+
+    const px = -FX.mx * 10, py = -FX.my * 6;
+    camEl.style.transform = `translate3d(${(camTx + px).toFixed(2)}px, ${(camTy + py).toFixed(2)}px, 0) scale(${camS.toFixed(4)})`;
+    motionBlur();
+  }
+
+  /* =======================================================================
+     TIMELINE — 62.0s
+     ======================================================================= */
+  const TOTAL_DUR = 62.0;
+
+  const timeline = [
+    { start: 0.8, end: 3.8, tone: 'cyan', pill: 'BANDA', cue: 'Jab banda kehta hai',
+      cueDelay: 0.05, cueBudget: 1.45, ar: ['الحَمدُ لِلَّهِ رَبِّ العَالَمِينَ'], arDelay: 0.95, arDur: 1.35 },
+    { start: 3.8, end: 7.8, tone: 'gold', bokeh: 'gold', pill: 'Allah farmata hai',
+      ar: ['حَمِدَنِي عَبْدِي'], arDelay: 0.45, arDur: 1.1,
+      roman: '“Mere bande ne meri <span class="hl">hamd</span> ki hai.”', romanDelay: 1.35, romanBudget: 2.35 },
+    { start: 7.8, end: 10.0, tone: 'cyan', ripple: true, pill: 'BANDA', cue: 'Banda kehta hai',
+      cueDelay: 0.04, cueBudget: 1.15, ar: ['الرَّحمَنِ الرَّحِيمِ'], arDelay: 0.55, arDur: 1.05 },
+    { start: 10.0, end: 15.8, tone: 'gold', pill: 'Allah farmata hai',
+      ar: ['مَجَّدَنِي عَبْدِي'], arDelay: 0.35, arDur: 1.1,
+      roman: '“Mere bande ne meri <span class="hl">tamjeed</span> ki,<br>meri <span class="hl">buzurgi</span> ka bayan kiya.”', romanDelay: 1.45, romanBudget: 3.9 },
+    { start: 15.8, end: 18.0, tone: 'cyan', bokeh: 'cyan', pill: 'BANDA', cue: 'Jab banda kehta hai',
+      cueDelay: 0.04, cueBudget: 1.15, ar: ['مَالِكِ يَومِ الدِّينِ'], arDelay: 0.55, arDur: 1.05 },
+    { start: 18.0, end: 21.8, tone: 'gold', pill: 'Allah farmata hai',
+      ar: ['أَثْنَى عَلَيَّ عَبْدِي'], arDelay: 0.45, arDur: 1.1,
+      roman: '“Mere bande ne meri <span class="hl">sana</span> ki”', romanDelay: 1.45, romanBudget: 2.05 },
+    { start: 21.8, end: 25.8, tone: 'cyan', pill: 'BANDA', cue: 'Jab banda kehta hai',
+      cueDelay: 0.05, cueBudget: 1.35, ar: ['إِيَّاكَ نَعبُدُ وَإِيَّاكَ نَستَعِينُ'], arDelay: 0.9, arDur: 1.75 },
+    { start: 25.8, end: 31.2, tone: 'gold', bokeh: 'gold', pill: 'Allah farmata hai',
+      ar: ['هَذَا مَا بَيْنِي وَبَيْنَ عَبْدِي'], arDelay: 0.5, arDur: 1.8,
+      roman: '“Yeh mere aur mere bande ke <span class="hl">darmiyan</span> hai.”', romanDelay: 2.35, romanBudget: 2.65 },
+    { start: 31.2, end: 33.0, tone: 'gold', pill: 'Allah farmata hai',
+      ar: ['وَلِعَبْدِي مَا سَأَلَ'], arDelay: 0.18, arDur: 1.05 },
+    { start: 33.0, end: 42.8, tone: 'muahida' },
+    { start: 42.8, end: 50.8, tone: 'cyan', multiline: true, pill: 'BANDA', cue: 'Aur phir jab banda kehta hai',
+      cueDelay: 0.05, cueBudget: 1.45,
+      ar: [
+        'اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ',
+        'صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ',
+        'غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ'
+      ],
+      arLineDelays: [1.1, 2.9, 4.9],
+      arLineDurs: [1.45, 1.55, 1.85] },
+    { start: 50.8, end: 57.6, tone: 'gold', pill: 'Allah farmata hai',
+      ar: ['هَذَا لِعَبْدِي'], arDelay: 0.5, arDur: 1.1,
+      roman: '“Yeh mere bande ke liye hai,<br>aur mere bande ke liye hai jo usne mujh se <span class="hl">maanga</span>.”', romanDelay: 1.55, romanBudget: 4.8 },
+    { start: 57.6, end: 62.0, tone: 'final',
+      ar: ['قَسَمْتُ الصَّلَاةَ بَيْنِي وَبَيْنَ عَبْدِي نِصْفَيْنِ'], arDelay: 0.25, arDur: 1.4,
+      roman: '“Maine namaz ko apne aur apne bande ke <span class="hl">darmiyan</span> do hisson mein taqseem kiya.”', romanDelay: 1.35, romanBudget: 2.7,
+      credit: 'HADITH QUDSI · SAHIH MUSLIM 395' }
+  ];
+
+  const segWrap = document.getElementById('segments');
+  timeline.forEach((s, idx) => {
+    const el = document.createElement('div');
+    el.className = 'seg';
+    el.dataset.idx = idx;
+
+    if (s.tone === 'muahida') {
+      el.innerHTML = `
+        <div class="muahida-q" id="mq">${kt('Mere aur mere bande ke <span class="hl">darmiyan</span> hai, kis ma’ani mein?')}</div>
+        <div class="muahida-center" id="mCenter">
+          <div class="m-title">MUAHIDA</div>
+          <div class="m-sub">${kt('ek ahd · a covenant')}</div>
+        </div>
+        <div class="muahida-post" id="mPost">${kt('hai mera aur mere bande')}</div>
+
+        <div class="m-split-stage" id="mSplit">
+          <div class="m-col-left" id="mLeft">${kt('Sirf meri hi <span class="hl">bandagi</span> karega<br>Mujh hi se <span class="hl">madad</span> maangega')}</div>
+          <div class="m-ring">
+            <svg viewBox="0 0 210 210">
+              <circle class="ring-track" cx="105" cy="105" r="88"/>
+              <path class="arc-left-cyan" id="arcCyan" d="M 105 17 A 88 88 0 0 0 105 193"/>
+              <path class="arc-right-gold" id="arcGold" d="M 105 17 A 88 88 0 0 1 105 193"/>
+            </svg>
+            <div class="m-ring-labels">
+              <span class="m-lbl-b" id="lblBanda">BANDA</span>
+              <span class="m-lbl-r" id="lblRabb">RABB</span>
+            </div>
+          </div>
+          <div class="m-col-right" id="mRight">${kt('Jo usne mujh se madad maangi<br>maine use <span class="hl">ata</span> kar di')}</div>
+        </div>
+      `;
+    } else {
+      const isCyan = s.tone === 'cyan';
+      const isGold = s.tone === 'gold';
+      const isFinal = s.tone === 'final';
+
+      let headerHTML = '';
+      if (isCyan) {
+        headerHTML = `
+          <div class="header-group">
+            <div class="pill cyan">${s.pill}</div>
+            <div class="cue">${kt(s.cue)}</div>
+          </div>`;
+      } else if (isGold) {
+        headerHTML = `<div class="pill gold">${kt(s.pill)}</div>`;
+      }
+
+      const arClass = isCyan ? 'cyan-txt' : 'gold-txt';
+      const wrapPos = isGold ? 'gold-pos' : (isFinal ? 'final-pos' : (s.multiline ? 'multiline' : ''));
+      const arLines = (s.ar || []).map(line => `<div class="arabic-line ${arClass}">${line}</div>`).join('');
+      const romanHTML = s.roman ? `<div class="roman ${isFinal ? 'final-roman' : ''}">${kt(s.roman)}</div>` : '';
+      const creditHTML = s.credit ? `<div class="credit">${s.credit}</div>` : '';
+
+      el.innerHTML = `${headerHTML}<div class="arabic-wrap ${wrapPos}">${arLines}</div>${romanHTML}${creditHTML}`;
+    }
+    segWrap.appendChild(el);
+  });
+
+  let activeTimers = [];
+  function clearTimers() { activeTimers.forEach(id => clearTimeout(id)); activeTimers = []; }
+  function schedule(fn, delaySec) { const id = setTimeout(fn, delaySec * 1000); activeTimers.push(id); }
+
+  function wipeArabicRightToLeft(lineEl, delaySec, durSec) {
+    lineEl.getAnimations().forEach(a => a.cancel());
+    lineEl.animate(
+      [
+        { clipPath: 'inset(-80% -25% -80% 100%)', opacity: 0.2, filter: 'blur(4px)' },
+        { clipPath: 'inset(-80% -25% -80% -25%)', opacity: 1, filter: 'blur(0px)' }
+      ],
+      { delay: delaySec * 1000, duration: durSec * 1000, easing: 'cubic-bezier(0.25, 0.9, 0.35, 1)', fill: 'forwards' }
+    );
+  }
+
+  const mosque = document.getElementById('mosque');
+  const archMedallion = document.getElementById('arch-medallion');
+  const goldLight = document.getElementById('goldLight');
+  const bokehGold = document.getElementById('bokehGold');
+  const bokehCyan = document.getElementById('bokehCyan');
+  const finalScene = document.getElementById('finalScene');
+  const uiTL = document.getElementById('uiTL');
+  const uiBL = document.getElementById('uiBL');
+  const progGold = document.getElementById('progGold');
+  const progCyan = document.getElementById('progCyan');
+
+  /* =======================================================================
+     v2 EFFECTS
+     ======================================================================= */
+  const FX = {
+    rayAmt: 0, rayTarget: 0, mix: 0, goldTarget: 0,
+    gather: 0, gatherS: 0, kick: 0,
+    bass: 0, mid: 0, high: 0, bassAvg: 0, lastBeat: -1e9,
+    mx: 0, my: 0, mxT: 0, myT: 0
+  };
+  const BP = [];
+  const archGlowEl = document.querySelector('.arch-glow');
+  const goldOrbEl = document.querySelector('.gold-orb');
+  const finalOrbEl = document.querySelector('.final-orb');
+  const ringsEl = document.getElementById('fxRings');
+  const flareEl = document.getElementById('flare');
+  const flareStreak = document.getElementById('flareStreak');
+  const flareHalo = document.getElementById('flareHalo');
+  const leakEl = document.getElementById('leak');
+  const lbTop = document.getElementById('lbTop');
+  const lbBot = document.getElementById('lbBot');
+
+  function mkSprite(r, g, b) {
+    const c = document.createElement('canvas'); c.width = c.height = 64;
+    const x = c.getContext('2d');
+    const gr = x.createRadialGradient(32, 32, 0, 32, 32, 32);
+    gr.addColorStop(0, `rgba(${r},${g},${b},1)`);
+    gr.addColorStop(0.35, `rgba(${r},${g},${b},0.35)`);
+    gr.addColorStop(1, `rgba(${r},${g},${b},0)`);
+    x.fillStyle = gr; x.fillRect(0, 0, 64, 64);
+    return c;
+  }
+
+  function emit(x, y, vx, vy, o) {
+    BP.push({ x, y, vx, vy, age: 0, life: o.life || 1.6, r: o.size || 2, g: o.g ?? -12, gold: !!o.gold });
+    if (BP.length > 800) BP.splice(0, BP.length - 800);
+  }
+
+  function burst(x, y, o = {}) {
+    const n = o.n || 24, spd = o.speed || 160, spread = o.spread ?? Math.PI * 2, base = o.angle ?? 0;
+    for (let i = 0; i < n; i++) {
+      const a = base + (Math.random() - 0.5) * spread;
+      const v = spd * (0.35 + Math.random() * 0.65);
+      emit(x + (Math.random() - 0.5) * (o.jitter || 0), y + (Math.random() - 0.5) * (o.jitter || 0),
+           Math.cos(a) * v, Math.sin(a) * v,
+           { life: (o.life || 1.6) * (0.6 + Math.random() * 0.6), size: (o.size || 2.5) * (0.5 + Math.random() * 0.8), g: o.g, gold: o.gold });
+    }
+  }
+
+  function spiral(cx, cy, r, n, gold) {
+    for (let i = 0; i < n; i++) {
+      const a = i / n * Math.PI * 2, tang = a + Math.PI / 2, sp = 70;
+      emit(cx + Math.cos(a) * r, cy + Math.sin(a) * r,
+           Math.cos(a) * sp * 0.6 + Math.cos(tang) * sp,
+           Math.sin(a) * sp * 0.6 + Math.sin(tang) * sp,
+           { life: 2.6, size: 2.4, g: -6, gold });
+    }
+  }
+
+  function fxRing(x, y, o = {}) {
+    const el = document.createElement('div');
+    el.className = 'ring-fx';
+    const c = o.gold ? '246,190,80' : '120,240,222';
+    el.style.left = x + 'px'; el.style.top = y + 'px';
+    el.style.borderColor = `rgba(${c},0.85)`;
+    el.style.boxShadow = `0 0 18px rgba(${c},0.35), inset 0 0 14px rgba(${c},0.15)`;
+    ringsEl.appendChild(el);
+    const s = (o.size || 520) / 60;
+    const a = el.animate(
+      [{ transform: 'scale(0.2)', opacity: 0.95 }, { transform: `scale(${s})`, opacity: 0 }],
+      { duration: o.dur || 1800, easing: 'cubic-bezier(0.16,0.8,0.3,1)', fill: 'forwards' }
+    );
+    a.onfinish = () => el.remove();
+  }
+
+  function fxFlare(x, y, strength = 1) {
+    flareStreak.style.top = y + 'px';
+    flareHalo.style.left = x + 'px';
+    flareHalo.style.top = y + 'px';
+    flareEl.getAnimations().forEach(a => a.cancel());
+    flareEl.animate(
+      [{ opacity: 0 }, { opacity: strength, offset: 0.18 }, { opacity: strength * 0.4, offset: 0.5 }, { opacity: 0 }],
+      { duration: 2600, easing: 'ease-out' }
+    );
+  }
+
+  function fxLeak(gold = true, delay = 0) {
+    leakEl.style.background = gold
+      ? 'linear-gradient(100deg, transparent 30%, rgba(255,170,70,0.28) 46%, rgba(255,215,140,0.34) 52%, rgba(255,150,60,0.18) 60%, transparent 74%)'
+      : 'linear-gradient(100deg, transparent 30%, rgba(90,240,220,0.22) 46%, rgba(160,255,240,0.28) 52%, rgba(60,200,190,0.14) 60%, transparent 74%)';
+    leakEl.getAnimations().forEach(a => a.cancel());
+    leakEl.animate(
+      [{ transform: 'translateX(-60%)', opacity: 0 }, { opacity: 0.9, offset: 0.35 }, { transform: 'translateX(60%)', opacity: 0 }],
+      { duration: 2200, delay: delay * 1000, easing: 'cubic-bezier(.45,0,.25,1)', fill: 'none' }
+    );
+  }
+
+  function fxForSegment(idx, s) {
+    const isMu = s.tone === 'muahida', isGold = s.tone === 'gold', isFinal = s.tone === 'final', isCy = s.tone === 'cyan';
+
+    FX.goldTarget = (isGold || isFinal) ? 1 : 0;
+    FX.rayTarget = isFinal ? 1 : isGold ? 0.85 : isMu ? 0.45 : 0.6;
+    FX.gather = isMu ? 1 : 0;
+    FX.kick = Math.max(FX.kick, 0.9);
+    lbTop.classList.toggle('on', isMu || isFinal);
+    lbBot.classList.toggle('on', isMu || isFinal);
+
+    const at = s.arDelay ?? (s.arLineDelays ? s.arLineDelays[0] : 0.4);
+
+    if (isCy) {
+      schedule(() => {
+        fxRing(640, 205, { size: 440, dur: 1500 });
+        burst(640, 205, { n: 16, speed: 110, life: 1.5, size: 2.2 });
+      }, at);
+    }
+    if (isGold) {
+      fxLeak(true, 0);
+      schedule(() => {
+        fxFlare(640, 52, 0.9);
+        fxRing(640, 52, { gold: true, size: 780, dur: 2100 });
+        burst(640, 56, { n: 36, speed: 210, life: 2.2, angle: Math.PI / 2, spread: Math.PI * 0.9, gold: true, size: 3, g: 40 });
+      }, at);
+    }
+    if (isMu) {
+      fxLeak(false, 0.3);
+      schedule(() => fxRing(640, 230, { size: 560, dur: 1800 }), 1.65);
+      schedule(() => {
+        fxRing(640, 380, { size: 640, dur: 2100 });
+        burst(640, 380, { n: 30, speed: 150, life: 2, size: 2.6 });
+        FX.gather = 0.4;
+      }, 3.7);
+      schedule(() => {
+        fxRing(640, 380, { gold: true, size: 600, dur: 1900 });
+        burst(700, 380, { n: 26, speed: 150, angle: 0, spread: Math.PI * 1.1, gold: true, life: 1.8 });
+      }, 6.45);
+    }
+    if (isFinal) {
+      fxLeak(true, 0.1);
+      schedule(() => {
+        fxFlare(640, 260, 1);
+        fxRing(640, 260, { gold: true, size: 1150, dur: 2600 });
+        burst(640, 260, { n: 70, speed: 230, life: 2.8, gold: true, size: 3.2, g: 12 });
+        spiral(640, 260, 190, 48, true);
+      }, at);
+      schedule(() => fxRing(640, 260, { size: 880, dur: 2200 }), at + 1.1);
+    }
+  }
+
+  let actx = null, analyser = null, freqData = new Uint8Array(256), freq = freqData;
+
+  function canAnalyse() {
+    if (!hasAudioSource()) return false;
+    const src = mediaTrack.currentSrc;
+    if (src.startsWith('blob:')) return true;
+    if (location.protocol === 'file:') return false;
+    try { return new URL(src).origin === location.origin; } catch (e) { return false; }
+  }
+
+  function primeAudio() {
+    try {
+      if (!actx) { const AC = window.AudioContext || window.webkitAudioContext; if (AC) actx = new AC(); }
+      if (actx && actx.state === 'suspended') actx.resume().catch(() => {});
+    } catch (e) {}
+  }
+
+  function tryAttachAnalyser() {
+    if (analyser || !actx || actx.state !== 'running' || !canAnalyse()) return;
+    try {
+      const srcNode = actx.createMediaElementSource(mediaTrack);
+      analyser = actx.createAnalyser();
+      analyser.fftSize = 512;
+      analyser.smoothingTimeConstant = 0.78;
+      srcNode.connect(analyser);
+      analyser.connect(actx.destination);
+      freqData = new Uint8Array(analyser.frequencyBinCount);
+      freq = freqData;
+    } catch (e) { analyser = null; }
+  }
+
+  function bandAvg(a, b) {
+    let s = 0;
+    for (let i = a; i <= b; i++) s += freqData[i];
+    return s / ((b - a + 1) * 255);
+  }
+
+  function onBeat(strength) {
+    FX.kick = Math.min(1, FX.kick + 0.5 * strength + 0.2);
+    const n = 2 + Math.round(strength * 3);
+    for (let i = 0; i < n; i++) {
+      burst(Math.random() * 1280, 705, { n: 1, angle: -Math.PI / 2, spread: 0.8, speed: 70 + Math.random() * 60, life: 1.8, size: 1.6, g: -4, gold: FX.mix > 0.5 });
+    }
+  }
+
+  const dCv = document.getElementById('dust'), dctx = dCv.getContext('2d');
+  const DPR = 2; dCv.width = 1280 * DPR; dCv.height = 720 * DPR;
+  const rayCv = document.getElementById('rays'), rctx = rayCv.getContext('2d');
+  rayCv.width = 1280; rayCv.height = 720;
+  const specCv = document.getElementById('spectrum'), sctx = specCv.getContext('2d');
+  const sprites = { teal: mkSprite(150, 240, 228), gold: mkSprite(255, 214, 130) };
+
+  let seed = 7;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const P = Array.from({ length: 90 }, () => ({
+    bx: rnd() * 1280, yy: rnd() * 760 - 20, d: 0.2 + rnd() * 0.8,
+    r: 2 + rnd() * 7, sp: 4 + rnd() * 12, ph: rnd() * 6.28, dr: (rnd() - 0.5) * 8, ox: 0
+  }));
+
+  function drawRays(t) {
+    rctx.clearRect(0, 0, 1280, 720);
+    const a = FX.rayAmt;
+    if (a < 0.01) return;
+    const r = Math.round(lerp(160, 255, FX.mix)), g = Math.round(lerp(245, 205, FX.mix)), b = Math.round(lerp(235, 120, FX.mix));
+    rctx.save();
+    rctx.translate(640, -90);
+    rctx.globalCompositeOperation = 'lighter';
+    const N = 13, L = 1100;
+    for (let i = 0; i < N; i++) {
+      const k = i - (N - 1) / 2;
+      const ang = Math.PI / 2 + k * 0.085 + Math.sin(t * 0.18 + i * 1.3) * 0.02;
+      const w = 0.012 + 0.006 * Math.sin(t * 0.5 + i);
+      const alpha = a * (0.25 + 0.75 * (0.5 + 0.5 * Math.sin(t * 0.7 + i * 1.9))) * (1 - Math.abs(k) / N * 0.6) * 0.06;
+      const grd = rctx.createLinearGradient(0, 0, Math.cos(ang) * L, Math.sin(ang) * L);
+      grd.addColorStop(0, `rgba(${r},${g},${b},${alpha})`);
+      grd.addColorStop(0.6, `rgba(${r},${g},${b},${alpha * 0.35})`);
+      grd.addColorStop(1, `rgba(${r},${g},${b},0)`);
+      rctx.fillStyle = grd;
+      rctx.beginPath();
+      rctx.moveTo(0, 0);
+      rctx.lineTo(Math.cos(ang - w) * L, Math.sin(ang - w) * L);
+      rctx.lineTo(Math.cos(ang + w) * L, Math.sin(ang + w) * L);
+      rctx.closePath();
+      rctx.fill();
+    }
+    rctx.restore();
+  }
+
+  function drawDustAndBursts(t, dt) {
+    dctx.setTransform(1, 0, 0, 1, 0, 0);
+    dctx.clearRect(0, 0, dCv.width, dCv.height);
+    dctx.globalCompositeOperation = 'lighter';
+    const mix = FX.mix, gm = FX.gatherS, bass = FX.bass;
+
+    for (const p of P) {
+      p.yy -= p.sp * (1 + bass * 1.5) * dt;
+      if (p.yy < -20) p.yy += 760;
+      const bx = p.bx + Math.sin(t * 0.3 + p.ph) * 14 + p.dr * Math.sin(t * 0.1 + p.ph);
+      const tgt = gm > 0.01 ? (640 - bx) * 0.3 * gm * p.d : 0;
+      p.ox += (tgt - p.ox) * Math.min(1, dt * 2.2);
+      const x = bx + p.ox - camTx * p.d * 0.12;
+      const y = p.yy;
+      const a = Math.min(1, (0.25 + 0.75 * (0.5 + 0.5 * Math.sin(t * 0.9 + p.ph))) * (0.15 + p.d * 0.45) * (1 + bass * 0.9) * (1 + gm * 0.5));
+      const R = p.r * (1 + p.d * 0.6) * DPR;
+      if (a * (1 - mix) > 0.003) { dctx.globalAlpha = a * (1 - mix); dctx.drawImage(sprites.teal, x * DPR - R, y * DPR - R, R * 2, R * 2); }
+      if (a * mix > 0.003) { dctx.globalAlpha = a * mix; dctx.drawImage(sprites.gold, x * DPR - R, y * DPR - R, R * 2, R * 2); }
+    }
+
+    for (let i = BP.length - 1; i >= 0; i--) {
+      const q = BP[i];
+      q.age += dt;
+      if (q.age > q.life) { BP.splice(i, 1); continue; }
+      const drag = Math.pow(0.6, dt);
+      q.vx *= drag;
+      q.vy = q.vy * drag + q.g * dt;
+      q.x += q.vx * dt; q.y += q.vy * dt;
+      const k = 1 - q.age / q.life;
+      const al = Math.pow(k, 1.4) * 0.9;
+      const R = q.r * (0.6 + k * 0.8) * 3 * DPR;
+      dctx.globalAlpha = al;
+      dctx.drawImage(q.gold ? sprites.gold : sprites.teal, q.x * DPR - R, q.y * DPR - R, R * 2, R * 2);
+    }
+    dctx.globalAlpha = 1;
+    dctx.globalCompositeOperation = 'source-over';
+  }
+
+  function drawSpectrum(live) {
+    if (!live) { specCv.classList.remove('on'); return; }
+    specCv.classList.add('on');
+    const SW = 960, SH = 80, N = 56, bw = SW / N;
+    sctx.clearRect(0, 0, SW, SH);
+    for (let i = 0; i < N; i++) {
+      const bin = Math.min(freqData.length - 1, Math.floor(1 + Math.pow(110, i / N)));
+      const v = freqData[bin] / 255;
+      const h = Math.max(2, v * SH * 0.46);
+      const k = Math.min(1, i / N * 0.7 + FX.mix * 0.3);
+      sctx.fillStyle = `rgba(${Math.round(lerp(120, 255, k))},${Math.round(lerp(240, 200, k))},${Math.round(lerp(222, 120, k))},${(0.35 + v * 0.6).toFixed(2)})`;
+      sctx.fillRect(i * bw + bw * 0.2, SH / 2 - h, bw * 0.6, h * 2);
+    }
+  }
+
+  /* =======================================================================
+     AUDIO / MEDIA CONTROLLER
+     ======================================================================= */
+  const mediaTrack = document.getElementById('mediaTrack');
+  const soundBtn   = document.getElementById('soundBtn');
+  const ctrlBar    = document.getElementById('ctrlBar');
+
+  const audioPicker = document.createElement('input');
+  audioPicker.type = 'file';
+  audioPicker.accept = 'audio/*,video/*';
+  audioPicker.style.display = 'none';
+  document.body.appendChild(audioPicker);
+
+  let currentIdx   = -1;
+  let startTime    = 0;
+  let rafId        = null;
+  let usingMediaClock = false;
+
+  function hasAudioSource() {
+    return mediaTrack.readyState >= 1 && !!mediaTrack.currentSrc;
+  }
+
+  function showAddAudio() {
+    soundBtn.textContent = 'ADD AUDIO FILE';
+    soundBtn.classList.add('pulse');
+    ctrlBar.classList.add('needs-gesture');
+  }
+
+  function updateSoundUI() {
+    if (!hasAudioSource()) { showAddAudio(); return; }
+    const playingWithSound = !mediaTrack.paused && !mediaTrack.muted && mediaTrack.readyState >= 2;
+    soundBtn.textContent = playingWithSound ? 'MUTE' : 'SOUND ON';
+    soundBtn.classList.toggle('pulse', !playingWithSound);
+    ctrlBar.classList.toggle('needs-gesture', !playingWithSound);
+  }
+
+  function getElapsedSeconds() {
+    if (usingMediaClock && !mediaTrack.paused && mediaTrack.readyState >= 2) {
+      return Math.min(mediaTrack.currentTime, TOTAL_DUR);
+    }
+    return Math.min((performance.now() - startTime) / 1000, TOTAL_DUR);
+  }
+
+  /* =====================================================================
+     FX ADD-ON v2 — ember bursts, chromatic-aberration pulse,
+     gold/teal ornament underline, audio waveform bars, hold-breathing glow
+     ===================================================================== */
+  (function fxAddon() {
+    /* ---------- CSS ---------- */
+    const css = document.createElement('style');
+    css.textContent = `
+      .arabic-wrap { filter: brightness(calc(1 + var(--amp,0) * 0.22))
+          drop-shadow(calc(var(--ca,0) * 3.2px) 0 0 rgba(255,70,70,0.55))
+          drop-shadow(calc(var(--ca,0) * -3.2px) 0 0 rgba(70,200,255,0.55)); }
+      #fxOverlay { position:absolute; inset:0; width:100%; height:100%; z-index:27; pointer-events:none; mix-blend-mode:screen; }
+      .fx-orn { position:absolute; left:50%; width:300px; height:14px; margin-left:-150px; pointer-events:none; opacity:0; }
+      .fx-orn i { position:absolute; top:6px; height:1.5px; width:50%; transform:scaleX(0); }
+      .fx-orn i.l { left:0;  transform-origin:100% 50%; }
+      .fx-orn i.r { right:0; transform-origin:0% 50%; }
+      .fx-orn b { position:absolute; left:50%; top:1px; width:11px; height:11px; margin-left:-5.5px; transform:rotate(45deg) scale(0);
+        border:1.5px solid; }
+      .fx-orn.gold i { background:linear-gradient(90deg,transparent,#f3c15c); } .fx-orn.gold i.r { background:linear-gradient(270deg,transparent,#f3c15c); }
+      .fx-orn.gold b { border-color:#f6c964; box-shadow:0 0 12px rgba(246,185,59,.8); }
+      .fx-orn.teal i { background:linear-gradient(90deg,transparent,#6ff3e1); } .fx-orn.teal i.r { background:linear-gradient(270deg,transparent,#6ff3e1); }
+      .fx-orn.teal b { border-color:#8ff7e8; box-shadow:0 0 12px rgba(99,242,223,.8); }
+    `;
+    document.head.appendChild(css);
+
+    /* ---------- overlay canvas (embers + waveform) ---------- */
+    const DPR = 2;
+    const cv = document.createElement('canvas');
+    cv.id = 'fxOverlay'; cv.width = 1280 * DPR; cv.height = 720 * DPR;
+    stageEl.insertBefore(cv, stageEl.querySelector('.lens'));
+    const cx = cv.getContext('2d');
+
+    /* ---------- ornaments (one per single-line segment) ---------- */
+    const orns = [];
+    timeline.forEach((s, i) => {
+      const seg = segWrap.children[i];
+      const wrap = seg && seg.querySelector('.arabic-wrap');
+      if (!wrap || s.multiline) { orns[i] = null; return; }
+      const o = document.createElement('div');
+      o.className = 'fx-orn ' + ((s.tone === 'gold' || s.tone === 'final') ? 'gold' : 'teal');
+      o.innerHTML = '<i class="l"></i><i class="r"></i><b></b>';
+      seg.appendChild(o);
+      orns[i] = { o, wrap, l: o.querySelector('.l'), r: o.querySelector('.r'), d: o.querySelector('b') };
+    });
+
+    /* ---------- helpers ---------- */
+    const eo = x => 1 - Math.pow(1 - Math.max(0, Math.min(1, x)), 3);
+    const idxAt = t => timeline.findIndex(s => t >= s.start && t < s.end);
+    const toneAt = t => { const i = idxAt(t); return i >= 0 ? timeline[i].tone : 'cyan'; };
+    const isWarm = tn => tn === 'gold' || tn === 'final' || tn === 'muahida';
+
+    /* burst points = every Arabic hit + the muahida beats */
+    const hits = [];
+    timeline.forEach((s, i) => {
+      const d = s.arLineDelays || (s.ar ? [s.arDelay || 0.4] : []);
+      const dur = s.arLineDurs || [s.arDur || 1.2];
+      d.forEach((x, k) => hits.push({
+        t: s.start + x + dur[k] * 0.55, seg: i, line: k, warm: isWarm(s.tone), n: s.tone === 'final' ? 46 : 28
+      }));
+    });
+    hits.push({ t: 34.65, x: 640, y: 228, warm: true,  n: 40, w: 160 });
+    hits.push({ t: 36.70, x: 640, y: 380, warm: false, n: 28, w: 110 });
+    hits.push({ t: 39.45, x: 640, y: 380, warm: true,  n: 28, w: 110 });
+    hits.sort((a, b) => a.t - b.t);
+
+    let seed = 11; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    let parts = [], lastT = 0;
+
+    function fire(h) {
+      let x = h.x, y = h.y, w = h.w;
+      if (h.seg !== undefined) {
+        const seg = segWrap.children[h.seg];
+        const wr = seg && seg.querySelector('.arabic-wrap');
+        if (!wr) return;
+        const lines = wr.querySelectorAll('.arabic-line');
+        const ln = lines[h.line] || lines[0];
+        x = 640;
+        y = wr.offsetTop + (ln ? ln.offsetTop + ln.offsetHeight / 2 : wr.offsetHeight / 2);
+        w = Math.min(520, (ln ? ln.offsetWidth : 500) * 0.45);
+      }
+      for (let i = 0; i < h.n; i++) {
+        const a = rnd() * Math.PI * 2, sp = 20 + rnd() * 90;
+        parts.push({
+          x: x + (rnd() - 0.5) * 2 * w, y: y + (rnd() - 0.5) * 50,
+          vx: Math.cos(a) * sp * 0.6, vy: -Math.abs(Math.sin(a)) * sp - 14,
+          r: 1.4 + rnd() * 3.6, life: 1.0 + rnd() * 1.1, age: 0, warm: h.warm
+        });
+      }
+    }
+
+    /* ---------- frame loop ---------- */
+    let prevNow = performance.now(), hitPtr = 0;
+    function loop(now) {
+      const dt = Math.min(0.05, (now - prevNow) / 1000); prevNow = now;
+      const t = getElapsedSeconds();
+
+      // replay / scrub back → reset
+      if (t < lastT - 0.3) { parts = []; hitPtr = 0; }
+      while (hitPtr < hits.length && hits[hitPtr].t <= t) {
+        if (t - hits[hitPtr].t < 0.4 && t >= lastT) fire(hits[hitPtr]);
+        hitPtr++;
+      }
+      lastT = t;
+
+      // chromatic aberration pulse (snaps on each hit, decays fast)
+      let ca = 0;
+      hits.forEach(h => { const x = t - h.t; if (x > -0.02 && x < 0.5) ca += Math.exp(-x / 0.09) * (x < 0 ? 0 : 1); });
+      stageEl.style.setProperty('--ca', Math.min(1, ca).toFixed(3));
+
+      // ornaments: draw out right after the Arabic wipe finishes
+      const si = idxAt(t);
+      orns.forEach((od, i) => {
+        if (!od) return;
+        if (i !== si) { od.o.style.opacity = '0'; return; }
+        const s = timeline[i];
+        const st = s.start + (s.arDelay || 0.4) + (s.arDur || 1.2) + 0.05;
+        const x = (t - st) / 0.7;
+        const out = (s.end - t) < 0.5 ? Math.max(0, (s.end - t) / 0.5) : 1;
+        if (x <= 0) { od.o.style.opacity = '0'; return; }
+        od.o.style.top = (od.wrap.offsetTop + od.wrap.offsetHeight + 2) + 'px';
+        od.o.style.opacity = out.toFixed(3);
+        const e = eo(x);
+        od.l.style.transform = od.r.style.transform = `scaleX(${e.toFixed(3)})`;
+        od.d.style.transform = `rotate(45deg) scale(${eo(x * 1.6).toFixed(3)})`;
+      });
+
+      // draw particles + waveform
+      cx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      cx.clearRect(0, 0, 1280, 720);
+      cx.globalCompositeOperation = 'lighter';
+      parts = parts.filter(p => (p.age += dt) < p.life);
+      parts.forEach(p => {
+        p.vy -= 14 * dt; p.vx += Math.sin(p.age * 3 + p.x) * 6 * dt;
+        p.x += p.vx * dt; p.y += p.vy * dt;
+        const k = 1 - p.age / p.life, tw = 0.6 + 0.4 * Math.sin(p.age * 18 + p.r * 9);
+        const rad = p.r * (0.6 + k) * 3.2;
+        const g = cx.createRadialGradient(p.x, p.y, 0, p.x, p.y, rad);
+        const c = p.warm ? '255,205,120' : '140,245,230';
+        g.addColorStop(0, `rgba(${c},${(0.9 * k * tw).toFixed(3)})`);
+        g.addColorStop(1, `rgba(${c},0)`);
+        cx.fillStyle = g; cx.beginPath(); cx.arc(p.x, p.y, rad, 0, 6.2832); cx.fill();
+      });
+
+      if (t > 0.8 && t < TOTAL_DUR - 0.5) {
+        const amp = parseFloat(stageEl.style.getPropertyValue('--amp')) || 0;
+        const live = analyser && !mediaTrack.paused;
+        if (live) analyser.getByteFrequencyData(freq);
+        const warm = isWarm(toneAt(t)), N = 36, bw = 3, gap = 5, base = 696;
+        const x0 = 640 - (N * (bw + gap) - gap) / 2;
+        const fade = Math.min(1, (t - 0.8) / 0.8) * Math.min(1, (TOTAL_DUR - 0.5 - t) / 0.5);
+        for (let i = 0; i < N; i++) {
+          const mid = 1 - Math.abs(i - N / 2) / (N / 2);
+          let v;
+          if (live) v = freq[2 + Math.floor(i * 0.9)] / 255;
+          else v = amp * (0.55 + 0.45 * Math.sin(t * 7 + i * 0.7) * Math.sin(t * 3.1 + i * 0.31));
+          const h = 2 + Math.max(0, v) * 24 * (0.4 + mid * 0.8);
+          cx.fillStyle = warm ? `rgba(246,196,100,${(0.55 * fade).toFixed(3)})`
+                              : `rgba(120,240,224,${(0.55 * fade).toFixed(3)})`;
+          cx.fillRect(x0 + i * (bw + gap), base - h / 2, bw, h);
+        }
+      }
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  })();
+
+  /* =====================================================================
+     WORD-BY-WORD HIGHLIGHT — exact audio timestamps in WORD_OVERRIDE
+     ===================================================================== */
+  (function fxWords() {
+    const WORD_OVERRIDE = {
+      '0-0':  [[1.85, 2.30], [2.30, 2.68], [2.68, 3.05], [3.05, 3.65]],
+      '1-0':  [[4.45, 5.10], [5.10, 5.65]],
+      '2-0':  [[8.35, 9.00], [9.00, 9.65]],
+      '3-0':  [[10.50, 11.25], [11.25, 11.85]],
+      '4-0':  [[16.45, 16.92], [16.92, 17.32], [17.32, 17.85]],
+      '5-0':  [[18.65, 19.05], [19.05, 19.48], [19.48, 19.95]],
+      '6-0':  [[23.25, 23.75], [23.75, 24.25], [24.25, 24.75], [24.75, 25.45]],
+      '7-0':  [[26.35, 27.05], [27.05, 27.45], [27.45, 28.00], [28.00, 28.55], [28.55, 29.10]],
+      '8-0':  [[31.35, 32.00], [32.00, 32.30], [32.30, 32.85]],
+      '10-0': [[44.10, 44.55], [44.55, 45.05], [45.05, 45.75]],
+      '10-1': [[46.00, 46.45], [46.45, 46.95], [46.95, 47.45], [47.45, 48.05]],
+      '10-2': [[48.15, 48.55], [48.55, 49.15], [49.15, 49.60], [49.60, 49.95], [49.95, 50.85]],
+      '11-0': [[51.65, 52.20], [52.20, 52.85]],
+      '12-0': [[57.85, 58.12], [58.12, 58.40], [58.40, 58.65], [58.65, 58.92], [58.92, 59.18], [59.18, 59.55]]
+    };
+
+    const css = document.createElement('style');
+    css.textContent = `
+      .arabic-line .wl { position:absolute; inset:0; padding:inherit; white-space:nowrap; pointer-events:none;
+        direction:rtl; text-align:center; color:transparent; text-shadow:none; }
+      .arabic-line .wl span { color:transparent; transition: color .12s ease, text-shadow .12s ease; }
+      .arabic-line .wl span.on { color:#fffdf2;
+        text-shadow:0 0 8px rgba(255,255,255,.95), 0 0 24px rgba(255,214,130,.9), 0 0 54px rgba(255,170,60,.65); }
+      .arabic-line.cyan-txt .wl span.on {
+        text-shadow:0 0 8px rgba(255,255,255,.95), 0 0 24px rgba(120,255,238,.95), 0 0 54px rgba(60,200,185,.7); }
+    `;
+    document.head.appendChild(css);
+
+    const strip = w => w.replace(/[\u064B-\u065F\u0670\u0640]/g, '');
+    const lines = [];
+
+    timeline.forEach((s, si) => {
+      const seg = segWrap.children[si];
+      if (!seg || !s.ar) return;
+      const els = seg.querySelectorAll('.arabic-line');
+      els.forEach((el, k) => {
+        const text = s.ar[k];
+        if (!text) return;
+        const words = text.split(/\s+/).filter(Boolean);
+        const ov = document.createElement('span');
+        ov.className = 'wl'; ov.setAttribute('aria-hidden', 'true');
+        const spans = words.map((w, i) => {
+          const sp = document.createElement('span');
+          sp.textContent = w;
+          ov.appendChild(sp);
+          if (i < words.length - 1) ov.appendChild(document.createTextNode(' '));
+          return sp;
+        });
+        el.appendChild(ov);
+
+        let times = WORD_OVERRIDE[si + '-' + k];
+        if (!times) {
+          const d0 = s.start + (s.arLineDelays ? s.arLineDelays[k] : (s.arDelay || 0.4));
+          const dur = s.arLineDurs ? s.arLineDurs[k] : (s.arDur || 1.2);
+          const wt = words.map(w => Math.max(1, strip(w).length));
+          const tot = wt.reduce((a, b) => a + b, 0);
+          let acc = 0;
+          times = wt.map(w => { const a = d0 + dur * acc / tot; acc += w; return [a, d0 + dur * acc / tot]; });
+        }
+        lines.push({ spans, times, seg: si });
+      });
+    });
+
+    function loop() {
+      const t = getElapsedSeconds();
+      lines.forEach(L => {
+        L.spans.forEach((sp, i) => {
+          const [a, b] = L.times[i];
+          sp.classList.toggle('on', t >= a && t < b + 0.14);
+        });
+      });
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  })();
+
+  // 8) Frame loop — everything derived from elapsed time
+  let lastMs = performance.now();
+  function ease(cur, tgt, k) { return cur + (tgt - cur) * (1 - Math.exp(-k * (1 / 60))); }
+
+  function fxFrame(ms) {
+    requestAnimationFrame(fxFrame);
+    const dt = Math.min(0.05, Math.max(0, (ms - lastMs) / 1000));
+    lastMs = ms;
+    const t = ms / 1000;
+
+    tryAttachAnalyser();
+    let live = false, bT = 0, mT = 0, hT = 0;
+    if (analyser && !mediaTrack.paused && !mediaTrack.muted) {
+      analyser.getByteFrequencyData(freqData);
+      live = true;
+      bT = bandAvg(1, 3); mT = bandAvg(4, 24); hT = bandAvg(25, 90);
+    }
+
+    FX.bass = ease(FX.bass, bT, 18);
+    FX.mid = ease(FX.mid, mT, 12);
+    FX.high = ease(FX.high, hT, 12);
+    FX.bassAvg = ease(FX.bassAvg, bT, 1.5);
+
+    // Feed --amp for fxAddon waveform & Arabic hold-breathing glow
+    const synthAmp = 0.28 + 0.22 * Math.sin(t * 4.2);
+    stageEl.style.setProperty('--amp', (live ? Math.min(1, FX.mid * 1.6 + FX.bass * 0.6) : synthAmp).toFixed(3));
+
+    if (live && bT > FX.bassAvg * 1.45 + 0.07 && ms - FX.lastBeat > 230) {
+      FX.lastBeat = ms;
+      onBeat(Math.min(1, (bT - FX.bassAvg) * 3));
+    }
+
+    FX.kick *= Math.exp(-dt * 6);
+    FX.mx = ease(FX.mx, FX.mxT, 3);
+    FX.my = ease(FX.my, FX.myT, 3);
+    FX.gatherS = ease(FX.gatherS, FX.gather, 1.5);
+    FX.rayAmt = ease(FX.rayAmt, FX.rayTarget * (0.8 + FX.bass * 0.9), 2.2);
+    FX.mix = ease(FX.mix, FX.goldTarget, 2.2);
+
+    archGlowEl.style.opacity = (0.92 + FX.bass * 0.6).toFixed(3);
+    goldOrbEl.style.transform = `scale(${(1 + FX.bass * 0.05).toFixed(4)})`;
+    finalOrbEl.style.transform = `scale(${(1 + FX.bass * 0.06).toFixed(4)})`;
+
+    drawRays(t);
+    drawDustAndBursts(t, dt);
+    drawSpectrum(live);
+  }
+
+  stageEl.addEventListener('pointermove', e => {
+    const r = stageEl.getBoundingClientRect();
+    FX.mxT = (e.clientX - r.left) / r.width - 0.5;
+    FX.myT = (e.clientY - r.top) / r.height - 0.5;
+  });
+  stageEl.addEventListener('pointerdown', primeAudio);
+  requestAnimationFrame(fxFrame);
+
+  /* =======================================================================
+     SEGMENT ACTIVATION
+     ======================================================================= */
+  function activateSegment(idx) {
+    clearTimers();
+    shots.length = 0;
+    curBase = getElapsedSeconds();
+    const nodes = [...segWrap.children];
+    nodes.forEach((n, i) => { if (i !== idx) n.classList.remove('active', 'blur-out'); });
+
+    if (idx < 0 || idx >= timeline.length) return;
+    const s = timeline[idx];
+    const el = nodes[idx];
+    el.classList.remove('blur-out');
+    el.classList.add('active');
+
+    const isCyan = s.tone === 'cyan';
+    const isGold = s.tone === 'gold';
+    const isMuahida = s.tone === 'muahida';
+    const isFinal = s.tone === 'final';
+
+    mosque.classList.toggle('hidden', isGold || isFinal);
+    mosque.classList.toggle('muahida-pos', isMuahida);
+    mosque.classList.remove('dim-blur');
+    archMedallion.setAttribute('opacity', isMuahida ? '1' : '0');
+
+    goldLight.classList.toggle('on', isGold || isFinal);
+    finalScene.classList.toggle('on', isFinal);
+    bokehGold.classList.toggle('on', s.bokeh === 'gold');
+    bokehCyan.classList.toggle('on', s.bokeh === 'cyan');
+
+    if (isMuahida) {
+      const mq = el.querySelector('#mq');
+      const mCenter = el.querySelector('#mCenter');
+      const mSub = el.querySelector('.m-sub');
+      const mPost = el.querySelector('#mPost');
+      const mSplit = el.querySelector('#mSplit');
+      const arcCyan = el.querySelector('#arcCyan');
+      const arcGold = el.querySelector('#arcGold');
+      const lblBanda = el.querySelector('#lblBanda');
+      const lblRabb = el.querySelector('#lblRabb');
+      const mLeft = el.querySelector('#mLeft');
+      const mRight = el.querySelector('#mRight');
+
+      mq.classList.remove('fade-away');
+      mPost.classList.remove('fade-away');
+      mCenter.classList.remove('show', 'dock-top');
+      mSplit.classList.remove('show');
+      arcCyan.classList.remove('drawn');
+      arcGold.classList.remove('drawn');
+      lblBanda.classList.remove('on');
+      lblRabb.classList.remove('on');
+      [mq, mSub, mPost, mLeft, mRight].forEach(resetKT);
+
+      runKT(mq, 0.05, 1.8);
+      schedule(() => { mCenter.classList.add('show'); runKT(mSub, 0.05, 1.2, 1.65, false); }, 1.65);
+      runKT(mPost, 2.25, 1.35);
+
+      schedule(() => {
+        mq.classList.add('fade-away');
+        mPost.classList.add('fade-away');
+        mCenter.classList.add('dock-top');
+        mSplit.classList.add('show');
+        lblBanda.classList.add('on');
+        arcCyan.classList.add('drawn');
+        runKT(mLeft, 0.15, 2.55, 3.7);
+      }, 3.7);
+
+      schedule(() => {
+        lblRabb.classList.add('on');
+        arcGold.classList.add('drawn');
+        runKT(mRight, 0.12, 2.65, 6.45);
+      }, 6.45);
+
+    } else {
+      const hg = el.querySelector('.header-group');
+      const cueEl = el.querySelector('.cue');
+      const goldPill = el.querySelector('.pill.gold');
+      const arWrap = el.querySelector('.arabic-wrap');
+      const arLines = [...el.querySelectorAll('.arabic-line')];
+      const romanEl = el.querySelector('.roman');
+      const creditEl = el.querySelector('.credit');
+
+      [cueEl, goldPill, romanEl].forEach(resetKT);
+
+      if (hg) {
+        hg.classList.remove('shifted', 'shifted-high', 'ripple');
+        runKT(cueEl, s.cueDelay || 0.05, s.cueBudget || 1.35);
+      }
+      if (goldPill) runKT(goldPill, 0.04, 1.0, 0, false);
+
+      if (s.multiline) {
+        arWrap.style.transform = 'translateX(-50%) translateY(0px)';
+        arLines.forEach((line, i) => { wipeArabicRightToLeft(line, s.arLineDelays[i], s.arLineDurs[i]); });
+        schedule(() => { if (hg) hg.classList.add('shifted'); mosque.classList.add('dim-blur'); }, s.arLineDelays[0]);
+        schedule(() => { arWrap.style.transform = 'translateX(-50%) translateY(-34px)'; }, s.arLineDelays[1]);
+        schedule(() => { if (hg) hg.classList.add('shifted-high'); arWrap.style.transform = 'translateX(-50%) translateY(-68px)'; }, s.arLineDelays[2]);
+      } else if (arLines.length) {
+        wipeArabicRightToLeft(arLines[0], s.arDelay || 0.4, s.arDur || 1.2);
+        if (isCyan && hg) {
+          schedule(() => {
+            hg.classList.add('shifted');
+            if (s.ripple) hg.classList.add('ripple');
+            mosque.classList.add('dim-blur');
+          }, s.arDelay || 0.4);
+        }
+      }
+
+      if (romanEl) runKT(romanEl, s.romanDelay || 1.4, s.romanBudget || 2.5);
+      if (creditEl) { creditEl.classList.remove('on'); schedule(() => creditEl.classList.add('on'), 2.8); }
+    }
+
+    fxForSegment(idx, s);
+
+    const segDur = s.end - s.start;
+    if (!isFinal && segDur > 1.8) {
+      schedule(() => el.classList.add('blur-out'), segDur - 0.52);
+    }
+  }
+
+  function updateProgressRing(elapsed) {
+    const halfCirc = 56.55;
+    const splitTime = 31.2;
+    const goldRatio = Math.max(0, Math.min(1, (elapsed - 0.8) / (splitTime - 0.8)));
+    const cyanRatio = Math.max(0, Math.min(1, (elapsed - splitTime) / (TOTAL_DUR - splitTime)));
+    progGold.style.strokeDashoffset = (113.1 - halfCirc * goldRatio).toFixed(2);
+    progCyan.style.strokeDashoffset = (113.1 - halfCirc * cyanRatio).toFixed(2);
+  }
+
+  function tick() {
+    const elapsed = getElapsedSeconds();
+    const showChrome = elapsed >= 0.8;
+    uiTL.classList.toggle('on', showChrome);
+    uiBL.classList.toggle('on', showChrome);
+    updateProgressRing(elapsed);
+    applyCamera(elapsed);
+
+    let foundIdx = -1;
+    for (let i = 0; i < timeline.length; i++) {
+      if (elapsed >= timeline[i].start && elapsed < timeline[i].end) { foundIdx = i; break; }
+    }
+
+    if (foundIdx !== currentIdx) {
+      currentIdx = foundIdx;
+      if (foundIdx === -1 && elapsed < 0.8) {
+        shots.length = 0;
+        [...segWrap.children].forEach(n => n.classList.remove('active', 'blur-out'));
+        mosque.classList.remove('hidden', 'muahida-pos', 'dim-blur');
+        goldLight.classList.remove('on');
+        finalScene.classList.remove('on');
+        FX.rayTarget = 0; FX.goldTarget = 0; FX.gather = 0;
+        lbTop.classList.remove('on'); lbBot.classList.remove('on');
+      } else {
+        activateSegment(foundIdx);
+      }
+    }
+
+    if (elapsed >= TOTAL_DUR || (usingMediaClock && mediaTrack.ended)) {
+      setTimeout(() => play(true), 1400);
+      return;
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function play(fromStart = true) {
+    cancelAnimationFrame(rafId);
+    clearTimers();
+    currentIdx = -2;
+    const seekOff = fromStart ? (parseFloat((location.hash.match(/t=([\d.]+)/) || [])[1]) || 0) : 0;
+    startTime = performance.now() - seekOff * 1000;
+
+    if (hasAudioSource()) {
+      if (fromStart) { try { mediaTrack.currentTime = 0; } catch (e) {} }
+      const p = mediaTrack.play();
+      if (p && typeof p.then === 'function') {
+        p.then(() => { usingMediaClock = true; updateSoundUI(); })
+         .catch(() => { usingMediaClock = false; updateSoundUI(); });
+      }
+    }
+    tick();
+  }
+
+  function loadAudioFile(file) {
+    if (!file) return;
+    if (!/^(audio|video)\//i.test(file.type || '')) {
+      soundBtn.textContent = 'NEED AUDIO OR VIDEO';
+      soundBtn.classList.add('pulse');
+      return;
+    }
+    primeAudio();
+    usingMediaClock = false;
+    const url = URL.createObjectURL(file);
+    mediaTrack.src = url;
+    mediaTrack.muted = false;
+    mediaTrack.load();
+    mediaTrack.addEventListener('loadedmetadata', () => {
+      const curElapsed = Math.min((performance.now() - startTime) / 1000, TOTAL_DUR - 0.5);
+      try { mediaTrack.currentTime = Math.max(0, curElapsed); } catch (err) {}
+      mediaTrack.play().then(() => {
+        usingMediaClock = true;
+        updateSoundUI();
+      }).catch(() => {
+        usingMediaClock = false;
+        updateSoundUI();
+      });
+    }, { once: true });
+  }
+
+  mediaTrack.addEventListener('error', () => {
+    if (!hasAudioSource()) showAddAudio();
+  });
+  setTimeout(() => { if (!hasAudioSource()) showAddAudio(); }, 2200);
+
+  audioPicker.addEventListener('change', (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (file) loadAudioFile(file);
+  });
+
+  let dragDepth = 0;
+  stageEl.addEventListener('dragenter', (e) => { e.preventDefault(); dragDepth++; stageEl.classList.add('drop-active'); });
+  stageEl.addEventListener('dragover', (e) => { e.preventDefault(); });
+  stageEl.addEventListener('dragleave', (e) => { e.preventDefault(); dragDepth = Math.max(0, dragDepth - 1); if (dragDepth === 0) stageEl.classList.remove('drop-active'); });
+  stageEl.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dragDepth = 0;
+    stageEl.classList.remove('drop-active');
+    const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+    if (file) loadAudioFile(file);
+  });
+
+  soundBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    primeAudio();
+    if (!hasAudioSource()) { audioPicker.click(); return; }
+
+    if (mediaTrack.paused) {
+      mediaTrack.muted = false;
+      const curElapsed = (performance.now() - startTime) / 1000;
+      if (curElapsed < TOTAL_DUR) { try { mediaTrack.currentTime = curElapsed; } catch (err) {} }
+      mediaTrack.play().then(() => { usingMediaClock = true; updateSoundUI(); })
+                        .catch(() => { usingMediaClock = false; updateSoundUI(); });
+    } else {
+      mediaTrack.muted = !mediaTrack.muted;
+      updateSoundUI();
+    }
+  });
+
+  stageEl.addEventListener('click', () => {
+    if (!hasAudioSource()) return;
+    primeAudio();
+    if (mediaTrack.paused) {
+      const curElapsed = (performance.now() - startTime) / 1000;
+      mediaTrack.muted = false;
+      try { mediaTrack.currentTime = Math.min(curElapsed, TOTAL_DUR - 0.5); } catch (e) {}
+      mediaTrack.play().then(() => { usingMediaClock = true; updateSoundUI(); }).catch(() => {});
+    }
+  }, { once: true });
+
+  document.getElementById('replay').addEventListener('click', (e) => { e.stopPropagation(); primeAudio(); play(true); });
+
+  const fsBtn = document.getElementById('fsBtn');
+  function toggleFS() { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(() => {}); }
+  fsBtn.addEventListener('click', e => { e.stopPropagation(); toggleFS(); });
+  window.addEventListener('keydown', e => { if (e.key === 'f' || e.key === 'F') toggleFS(); });
+
+  const stage = document.getElementById('stage');
+  function fitStage() {
+    const scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
+    stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
+  }
+  window.addEventListener('resize', fitStage);
+  fitStage();
+
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => {
+    play(true);
+  });
+})();
+</script>
+</body>
+</html>

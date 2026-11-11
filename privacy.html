@@ -116,7 +116,7 @@
 
           <h2>2. Browser Local Storage Disclosures</h2>
           <p>
-            To offer convenient client-side features without creating server-side accounts or cookies, this website utilizes your browser's native <code>localStorage</code> API. Everything is stored strictly inside your local browser and never transmitted to our servers:
+            To offer convenient client-side features without creating server-side accounts or cookies, this website uses your browser's native <code>localStorage</code> for preferences and <code>IndexedDB</code> for the Kufar photo gallery. This browser data stays on your device and is never transmitted to our servers:
           </p>
 
           <div class="verses-table-wrapper">
@@ -187,6 +187,7 @@
               </tbody>
             </table>
           </div>
+          <p class="text-sm text-on-surface-variant">The Kufar photo gallery stores the image files you select in this browser's IndexedDB storage. Those images stay on this device and are not uploaded to Ruqyah or published for other visitors. Clearing this site's browser data removes them.</p>
           <p class="text-sm text-on-surface-variant">The Quran player's sleep timer (<code>qp_sleep_end</code> and <code>qp_sleep_mode</code>) and the dismissed announcement use <code>sessionStorage</code>; those temporary values are scoped to the current browser tab session.</p>
 
           <h2>3. External Audio Hosts &amp; Network CDNs</h2>

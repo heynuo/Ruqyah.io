@@ -86,6 +86,36 @@
       animation: orbitCounter 60s linear infinite;
       transform-origin: 60px 60px;
     }
+    @keyframes reflectionLineReveal {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes reflectionAccentReveal {
+      to { transform: scaleY(1); }
+    }
+    .reflection-quote::before {
+      content: "";
+      position: absolute;
+      left: 0.75rem;
+      top: 0.75rem;
+      bottom: 0.75rem;
+      width: 3px;
+      border-radius: 9999px;
+      background: linear-gradient(180deg, #F5C26B, #0F766E);
+      transform: scaleY(0);
+      transform-origin: top;
+      animation: reflectionAccentReveal 700ms cubic-bezier(.2,.8,.2,1) 120ms both;
+    }
+    .reflection-quote__line {
+      display: block;
+      opacity: 0;
+      animation: reflectionLineReveal 650ms cubic-bezier(.2,.8,.2,1) both;
+    }
+    .reflection-quote__line:nth-child(2) { animation-delay: 180ms; }
+    @media (prefers-reduced-motion: reduce) {
+      .reflection-quote::before { transform: scaleY(1); animation: none; }
+      .reflection-quote__line { opacity: 1; animation: none; }
+    }
     @media (prefers-reduced-motion: reduce) {
       .sacred-orbit-cw, .sacred-orbit-ccw {
         animation: none !important;
@@ -227,6 +257,22 @@
             </div>
           </div>
 
+          <!-- Recreated video in the open space marked in the hero -->
+          <section class="w-full mb-4" aria-labelledby="recreated-video-title">
+            <div class="flex items-center justify-between gap-3 mb-2">
+              <h3 id="recreated-video-title" class="font-code-mono text-[11px] uppercase tracking-wider text-primary font-semibold">Recreated Video</h3>
+              <span class="font-code-mono text-[10px] text-on-surface-variant">MP4</span>
+            </div>
+            <div class="overflow-hidden rounded-lg border border-border-subtle bg-black shadow-xs">
+              <video class="block w-full aspect-video object-contain bg-black" controls playsinline preload="metadata"
+                aria-label="Recreated video" width="1280" height="720"
+                style="display:block;width:100%;height:auto;aspect-ratio:16 / 9;">
+                <source src="assets/videos/recreated_video_v3.mp4" type="video/mp4">
+                Your browser does not support video playback.
+              </video>
+            </div>
+          </section>
+
           <!-- Subtle Guided Entry Points Pill Row -->
           <div class="pt-3 border-t border-border-subtle w-full flex flex-wrap items-center gap-2 text-xs font-code-mono">
             <span class="text-on-surface-variant font-medium">Quick starts:</span>
@@ -346,13 +392,27 @@
               </div>
             </div>
 
-            <!-- Bottom Reflection Copy -->
-            <div class="mb-6">
-              <p class="font-body-lead text-sm sm:text-base text-on-surface italic leading-relaxed">
-                Every crown in the world is borrowed.<br>
-                This Name owns the throne.
+            <!-- Animated Reflection Copy -->
+            <blockquote class="reflection-quote relative overflow-hidden mb-5 rounded-xl border border-tertiary/20 bg-gradient-to-r from-surface-container-low/70 via-surface to-tertiary-fixed/20 px-4 py-3.5 sm:px-5 sm:py-4 shadow-xs">
+              <p class="pl-3 font-body-lead text-sm sm:text-base text-on-surface italic leading-relaxed">
+                <span class="reflection-quote__line">Every crown in the world is borrowed.</span>
+                <span class="reflection-quote__line not-italic font-semibold text-tertiary">This Name owns the throne.</span>
               </p>
-            </div>
+            </blockquote>
+
+            <!-- Featured Video -->
+            <section class="mb-6 rounded-xl border border-border-subtle bg-surface-container-low/60 p-3 sm:p-4" aria-labelledby="featured-video-title">
+              <div class="flex items-center justify-between gap-3 mb-3">
+                <h3 id="featured-video-title" class="font-code-mono text-[11px] uppercase tracking-wider text-primary font-semibold">Hadith Qudsi Video</h3>
+                <span class="font-code-mono text-[10px] text-on-surface-variant">62s · AUDIO SYNCED</span>
+              </div>
+              <div class="overflow-hidden rounded-lg border border-border-subtle bg-black shadow-xs">
+                <iframe class="block w-full aspect-video bg-black" src="HadithQudsi.html"
+                  title="Hadith Qudsi: Al-Fatiha animation with synchronized audio"
+                  width="1280" height="720" style="display:block;width:100%;height:auto;aspect-ratio:16 / 9;"
+                  loading="eager" allow="autoplay; fullscreen"></iframe>
+              </div>
+            </section>
           </div>
 
           <!-- Bottom Action Row -->
