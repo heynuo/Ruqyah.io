@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tawakkul — Ultra-Textured 3D Kinetic UI Video</title>
+  <title>Tawakkul — Ultra-Textured 3D Kinetic UI Video | Ruqyah</title>
+  <meta name="description" content="Tawakkul — An authentic 3D kinetic typographic motion story on absolute reliance upon Allah.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,400;1,700&family=Oswald:wght@700&family=Noto+Nastaliq+Urdu:wght@400;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,400;1,700&family=Oswald:wght@700&family=Noto+Nastaliq+Urdu:wght@400;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-dark: #090a0d;
@@ -43,6 +44,21 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
+    }
+
+    /* Ambient Ambilight Backlight (pulses with scene & audio) */
+    #stage-ambient {
+      position: fixed;
+      width: min(94vh, 94vw);
+      height: min(94vh, 94vw);
+      border-radius: 50%;
+      filter: blur(95px);
+      opacity: 0.45;
+      pointer-events: none;
+      z-index: 1;
+      background: radial-gradient(circle at center, rgba(59, 130, 246, 0.45), transparent 70%);
+      transition: background 0.8s ease, transform 0.2s ease, opacity 0.5s ease;
     }
 
     /* ==========================================
@@ -54,15 +70,16 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: 9999;
-      background: rgba(16, 18, 24, 0.9);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(16, 18, 24, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
       padding: 7px 14px;
       border-radius: 999px;
       display: flex;
       align-items: center;
-      gap: 9px;
-      box-shadow: 0 14px 45px rgba(0, 0, 0, 0.75);
+      gap: 8px;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8);
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
@@ -104,8 +121,32 @@
       border-color: #2dd4bf;
     }
 
+    /* Animated equalizer visualizer in controls */
+    .control-eq {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 2.5px;
+      height: 14px;
+      padding: 0 4px;
+    }
+    .control-eq .eq-bar {
+      width: 2.5px;
+      background: #60a5fa;
+      border-radius: 2px;
+      height: 25%;
+      transition: height 0.1s ease;
+    }
+    #controls.playing .control-eq .eq-bar:nth-child(1) { animation: eqBounce 0.55s infinite alternate; }
+    #controls.playing .control-eq .eq-bar:nth-child(2) { animation: eqBounce 0.75s 0.15s infinite alternate; }
+    #controls.playing .control-eq .eq-bar:nth-child(3) { animation: eqBounce 0.5s 0.3s infinite alternate; }
+    #controls.playing .control-eq .eq-bar:nth-child(4) { animation: eqBounce 0.7s 0.2s infinite alternate; }
+    @keyframes eqBounce {
+      0% { height: 20%; background: #60a5fa; }
+      100% { height: 100%; background: #93c5fd; }
+    }
+
     #scrubber {
-      width: 145px;
+      width: 140px;
       accent-color: #6989f5;
       cursor: pointer;
     }
@@ -122,7 +163,7 @@
       font-size: 11px;
       padding: 3px 8px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.07);
+      background: rgba(255, 255, 255, 0.08);
       color: #cbd5e1;
       white-space: nowrap;
     }
@@ -164,15 +205,15 @@
       #controls {
         top: 8px;
         width: calc(100vw - 16px);
-        max-width: 480px;
+        max-width: 500px;
         padding: 8px 10px;
-        gap: 6px;
+        gap: 5px;
         flex-wrap: wrap;
         justify-content: center;
         border-radius: 16px;
       }
       .btn {
-        padding: 6px 10px;
+        padding: 5px 9px;
         font-size: 11px;
       }
       #scrubber {
@@ -224,12 +265,15 @@
         gap: 4px;
       }
       .btn {
-        padding: 5px 8px;
+        padding: 4px 7px;
         font-size: 10px;
       }
       #time-display {
         font-size: 10px;
-        min-width: 60px;
+        min-width: 58px;
+      }
+      .control-eq {
+        display: none;
       }
     }
 
@@ -237,8 +281,9 @@
       position: fixed;
       inset: 0;
       z-index: 10000;
-      background: rgba(15, 23, 42, 0.88);
-      backdrop-filter: blur(12px);
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       display: none;
       align-items: center;
       justify-content: center;
@@ -258,11 +303,12 @@
       width: min(88vh, 88vw);
       height: min(88vh, 88vw);
       background: var(--bg-dark);
-      border-radius: 14px;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 30px 95px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.08);
+      box-shadow: 0 35px 105px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.1);
       perspective: 1150px;
       transition: width 0.35s ease, height 0.35s ease;
+      z-index: 2;
     }
 
     #stage-wrapper.ratio-9-16 {
@@ -275,7 +321,7 @@
       height: calc(min(92vw, calc(84vh * 16 / 9)) * 9 / 16);
     }
 
-    /* Film Grain + CRT Scanline + Vignette */
+    /* Film Grain + Scanline + Vignette */
     .texture-grain {
       position: absolute;
       inset: -15%;
@@ -294,11 +340,10 @@
       pointer-events: none;
       z-index: 701;
       background:
-        radial-gradient(circle at center, transparent 56%, rgba(0, 0, 0, 0.65) 100%),
+        radial-gradient(circle at center, transparent 55%, rgba(0, 0, 0, 0.68) 100%),
         repeating-linear-gradient(0deg, rgba(0,0,0,0.06) 0px, rgba(0,0,0,0.06) 1px, transparent 1px, transparent 3px);
     }
 
-    /* Depth of Field Tilt-Shift Edge Blur */
     .dof-edges {
       position: absolute;
       inset: 0;
@@ -352,7 +397,7 @@
     }
 
     .urdu {
-      font-family: 'Noto Nastaliq Urdu', serif;
+      font-family: 'Amiri', 'Noto Nastaliq Urdu', serif;
       direction: rtl;
     }
 
@@ -472,7 +517,9 @@
       height: 2.5px;
       background: #ea4335;
       z-index: 8;
-      box-shadow: 0 0 12px rgba(234, 67, 53, 0.8);
+      box-shadow: 0 0 14px rgba(234, 67, 53, 0.9);
+      display: flex;
+      align-items: center;
     }
 
     .gcal-red-line::before {
@@ -486,6 +533,34 @@
       background: #ea4335;
     }
 
+    .gcal-live-badge {
+      position: absolute;
+      right: 18px;
+      top: -12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(234, 67, 53, 0.22);
+      border: 1px solid rgba(234, 67, 53, 0.5);
+      font-size: 9px;
+      font-weight: 700;
+      color: #ea4335;
+      letter-spacing: 0.05em;
+    }
+    .gcal-live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ea4335;
+      animation: livePulse 1.2s infinite;
+    }
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(0.7); }
+    }
+
     .gcal-event-block {
       position: relative;
       width: 88%;
@@ -495,12 +570,13 @@
       border-radius: 16px;
       padding: 18px 24px;
       box-shadow: 0 14px 35px rgba(0,0,0,0.45);
-      transition: all 0.35s ease;
+      transition: all 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2);
     }
 
     .gcal-event-block.done {
       background: var(--cal-card-done);
       color: #b8c4e0;
+      box-shadow: 0 14px 40px rgba(105, 137, 245, 0.45);
     }
 
     .gcal-ev-title {
@@ -531,8 +607,24 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 15px;
       flex-shrink: 0;
+      transition: all 0.25s ease;
+    }
+
+    .check-svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      stroke-width: 2.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      stroke-dasharray: 24;
+      stroke-dashoffset: 24;
+      transition: stroke-dashoffset 0.35s ease;
+    }
+    .gcal-event-block.done .check-svg {
+      stroke-dashoffset: 0;
     }
 
     .gcal-ev-time {
@@ -543,7 +635,7 @@
       opacity: 0.85;
     }
 
-    /* Floating Event Details Modal (Frame 00:02) */
+    /* Floating Event Details Modal */
     .gcal-modal {
       position: absolute;
       right: 7%;
@@ -587,9 +679,10 @@
       color: #8ab4f8;
       font-weight: 600;
       font-size: 13.5px;
-      padding: 6px 12px;
+      padding: 6px 14px;
       border-radius: 999px;
-      background: rgba(138, 180, 248, 0.1);
+      background: rgba(138, 180, 248, 0.12);
+      border: 1px solid rgba(138, 180, 248, 0.3);
     }
 
     /* =====================================================
@@ -612,10 +705,10 @@
       padding: 28px;
     }
 
-    /* Top App Header Bar (Frame 00:03-00:04) */
+    /* High-tech globe icon with rotating atmospheric ring */
     .earth-app-bar {
       background: #18191c;
-      border: 1px solid rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.14);
       border-radius: 18px;
       padding: 14px 22px;
       display: flex;
@@ -635,11 +728,26 @@
     }
 
     .earth-globe-icon {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
-      background: conic-gradient(from 180deg, #2563eb, #60a5fa, #93c5fd, #1d4ed8);
-      box-shadow: inset 0 0 10px rgba(255,255,255,0.5);
+      position: relative;
+      background: radial-gradient(circle at 35% 35%, #60a5fa 0%, #2563eb 55%, #0f172a 100%);
+      box-shadow: inset -5px -5px 12px rgba(0,0,0,0.7), 0 0 18px rgba(59, 130, 246, 0.6);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .earth-globe-icon::before {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1.5px dashed rgba(191, 219, 254, 0.65);
+      animation: orbitSpin 10s linear infinite;
+    }
+    @keyframes orbitSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
     .earth-search-row {
@@ -658,9 +766,9 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
     }
 
-    /* Desktop Shortcut Grid (Frame 00:05) */
     .desktop-icons-grid {
       position: absolute;
       left: 16%;
@@ -681,6 +789,10 @@
       font-size: 11px;
       color: #e5e7eb;
       text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+      transition: transform 0.2s ease;
+    }
+    .desk-icon:hover {
+      transform: translateY(-3px);
     }
 
     .desk-icon-box {
@@ -695,15 +807,15 @@
       box-shadow: 0 8px 18px rgba(0,0,0,0.5);
     }
 
-    /* Glassmorphic Alt+Tab Overlay (Frame 00:05) */
     .alttab-overlay {
       position: absolute;
       top: 44%;
       left: 50%;
       transform: translate(-50%, -50%) translateZ(60px);
       width: 76%;
-      background: rgba(22, 24, 30, 0.82);
+      background: rgba(22, 24, 30, 0.85);
       backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border: 1.5px solid rgba(255,255,255,0.22);
       border-radius: 22px;
       padding: 20px;
@@ -712,12 +824,13 @@
       gap: 18px;
       box-shadow: 0 30px 80px rgba(0,0,0,0.85);
       z-index: 30;
+      transition: all 0.3s ease;
     }
 
     .alttab-card {
       background: #07090e;
       border-radius: 14px;
-      padding: 14px;
+      padding: 16px;
       border: 2.5px solid transparent;
       min-height: 155px;
       display: flex;
@@ -730,7 +843,13 @@
 
     .alttab-card.focused {
       border-color: #38bdf8;
-      box-shadow: 0 0 25px rgba(56, 189, 248, 0.45);
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.55);
+      transform: scale(1.02);
+    }
+
+    .alttab-card#tab-card-2.focused {
+      border-color: #ef4444;
+      box-shadow: 0 0 35px rgba(239, 68, 68, 0.65);
     }
 
     .win11-taskbar {
@@ -739,7 +858,7 @@
       left: 0;
       right: 0;
       height: 46px;
-      background: rgba(15, 17, 23, 0.88);
+      background: rgba(15, 17, 23, 0.9);
       backdrop-filter: blur(16px);
       border-top: 1px solid rgba(255,255,255,0.1);
       display: flex;
@@ -754,26 +873,52 @@
       height: 26px;
       border-radius: 6px;
       background: #3b82f6;
+      position: relative;
+    }
+    .tb-icon.active::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 25%;
+      width: 50%;
+      height: 3px;
+      border-radius: 2px;
+      background: #60a5fa;
     }
 
     /* =====================================================
        SCENE 3: SPOTIFY WORD-BY-WORD LYRICS (8.45 - 16.60s)
        ===================================================== */
     #scene-3 {
-      background: var(--spotify-bg);
+      background: radial-gradient(ellipse at 30% 20%, #0d5a9e 0%, #073b66 55%, #04233f 100%);
     }
 
     .spotify-lyrics-wrap {
-      width: 84%;
+      width: 86%;
       display: flex;
       flex-direction: column;
       gap: 18px;
+      position: relative;
+    }
+
+    .spotify-header-badge {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: rgba(255,255,255,0.7);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      margin-bottom: 4px;
     }
 
     .sp-line {
       font-size: clamp(23px, 3.8vw, 37px);
       font-weight: 800;
-      line-height: 1.22;
+      line-height: 1.25;
       letter-spacing: -0.025em;
       color: var(--spotify-dim);
       position: relative;
@@ -781,11 +926,20 @@
 
     .sp-line .lit {
       color: #ffffff;
-      text-shadow: 0 4px 20px rgba(0,0,0,0.28);
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 40px rgba(96, 165, 250, 0.65);
+      transition: color 0.15s ease, text-shadow 0.15s ease;
     }
 
     .sp-line .unlit {
       color: var(--spotify-dim);
+    }
+
+    .sp-sacred-gold {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef08a 35%, #facc15 70%, #ca8a04 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 18px rgba(250, 204, 21, 0.65));
+      font-family: 'Amiri', 'Noto Nastaliq Urdu', serif;
     }
 
     /* =====================================================
@@ -859,7 +1013,7 @@
       line-height: 1.25;
       margin-bottom: -14px;
       z-index: 5;
-      box-shadow: 0 12px 28px rgba(0,0,0,0.75);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 12px 28px rgba(0,0,0,0.75);
       position: relative;
       min-width: 155px;
     }
@@ -875,6 +1029,26 @@
       border-radius: 50%;
     }
 
+    .ig-reaction-bubble {
+      position: absolute;
+      top: -20px;
+      right: 6px;
+      background: rgba(38, 38, 38, 0.95);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 13px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      animation: reactFloat 2.4s ease-in-out infinite;
+    }
+    @keyframes reactFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
     .ig-avatar {
       width: 145px;
       height: 145px;
@@ -885,7 +1059,7 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+      box-shadow: 0 0 0 3px #000, 0 0 0 5.5px #d62976, 0 0 22px rgba(214,41,118,0.45), 0 12px 30px rgba(0,0,0,0.6) !important;
     }
 
     .ig-username {
@@ -897,6 +1071,26 @@
     .blur-word {
       display: inline-block;
       transition: filter 0.2s ease;
+    }
+
+    .glint-flash {
+      position: relative;
+      overflow: hidden;
+    }
+    .glint-flash::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(60deg, transparent 40%, rgba(255,255,255,0.6) 50%, transparent 60%);
+      transform: translateX(-100%);
+      animation: glintPass 2.8s infinite;
+    }
+    @keyframes glintPass {
+      0% { transform: translateX(-100%); }
+      40%, 100% { transform: translateX(100%); }
     }
 
     .ig-dm-row {
@@ -917,6 +1111,7 @@
       font-weight: 900;
       color: #000;
       font-size: 20px;
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.45);
     }
 
     /* =====================================================
@@ -950,6 +1145,8 @@
       overflow: hidden;
       font-family: 'Playfair Display', Georgia, serif;
       box-shadow: inset 0 0 40px rgba(139, 119, 91, 0.18);
+      text-shadow: 0 0 0.6px rgba(18,18,17,0.55);
+      transition: filter 0.3s ease, opacity 0.3s ease;
     }
 
     .np-top-banner {
@@ -1025,7 +1222,7 @@
 
     .np-photo-box {
       position: relative;
-      background: #1c1917;
+      background: radial-gradient(ellipse at 50% 36%, #8d867b 0, #3d3934 42%, #12100e 100%) !important;
       border: 1px solid #8c8273;
       overflow: hidden;
       min-height: 160px;
@@ -1034,13 +1231,54 @@
       justify-content: center;
     }
 
-    /* Halftone dot print effect on newspaper photos */
     .np-photo-box::after {
       content: "";
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(rgba(0,0,0,0.45) 1px, transparent 0);
-      background-size: 3px 3px;
+      background-image: radial-gradient(rgba(0,0,0,0.55) 1.1px, transparent 1.4px);
+      background-size: 3.5px 3.5px;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+
+    .np-royal-seal {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      border: 2px dashed #b45309;
+      background: radial-gradient(circle, #fef3c7 0%, #fde68a 100%);
+      color: #92400e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Amiri', serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.15;
+      box-shadow: 0 4px 10px rgba(180, 83, 9, 0.25);
+      transform: rotate(-12deg);
+      pointer-events: none;
+    }
+
+    .np-wax-seal {
+      position: absolute;
+      bottom: 16px;
+      right: 18px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #ef4444 0%, #b91c1c 65%, #7f1d1d 100%);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      box-shadow: 0 6px 14px rgba(185, 28, 28, 0.5), inset 0 2px 4px rgba(255,255,255,0.3);
+      transform: rotate(8deg);
       pointer-events: none;
     }
 
@@ -1056,6 +1294,21 @@
       margin-top: auto;
     }
 
+    /* Paper fibres and aged folds */
+    .np-page::before, .herald-sheet::before {
+      content: ""; position: absolute; inset: 0; z-index: 6; pointer-events: none;
+      mix-blend-mode: multiply; opacity: 0.85;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0.45  0 0 0 0 0.36  0 0 0 0 0.25  0 0 0 0.55 -0.12'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E"),
+        radial-gradient(ellipse at center, transparent 55%, rgba(110,80,40,0.35) 100%);
+    }
+    .np-page::after, .herald-sheet::after {
+      content: ""; position: absolute; inset: 0; z-index: 7; pointer-events: none;
+      background:
+        linear-gradient(90deg, transparent 49.2%, rgba(60,40,20,0.22) 50%, rgba(255,255,255,0.28) 50.5%, transparent 52%),
+        linear-gradient(0deg, transparent 49%, rgba(60,40,20,0.12) 50%, transparent 51.5%);
+    }
+
     /* =====================================================
        SCENE 6: SATELLITE TERRAIN MAP (34.85 - 37.35s)
        ===================================================== */
@@ -1067,9 +1320,31 @@
       width: 130%;
       height: 130%;
       position: relative;
-      background:
-        radial-gradient(circle at 30% 40%, #3a4f2d 0%, #24331c 45%, #1b2416 100%);
+      background: radial-gradient(circle at 30% 40%, #3a4f2d 0%, #24331c 45%, #1b2416 100%);
       overflow: hidden;
+    }
+
+    .sat-terrain::before {
+      content: ""; position: absolute; inset: 0; z-index: 0; opacity: 0.95; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011' numOctaves='6' seed='5'/%3E%3CfeColorMatrix values='0.9 0 0 0 0.05  1.3 0 0 0 0.05  0.6 0 0 0 0.0  0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23t)'/%3E%3C/svg%3E");
+    }
+
+    .sat-radar-sweep {
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      border: 1px solid rgba(234, 179, 8, 0.35);
+      top: 22%;
+      left: 14%;
+      pointer-events: none;
+      background: conic-gradient(from 0deg, transparent 75%, rgba(234, 179, 8, 0.22) 100%);
+      animation: radarSpin 4s linear infinite;
+      z-index: 1;
+    }
+    @keyframes radarSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
     .sat-fields {
@@ -1079,6 +1354,7 @@
         linear-gradient(35deg, rgba(163, 177, 138, 0.14) 2px, transparent 2px),
         linear-gradient(125deg, rgba(107, 112, 92, 0.18) 2px, transparent 2px);
       background-size: 75px 75px;
+      z-index: 1;
     }
 
     .sat-place-label {
@@ -1090,12 +1366,14 @@
       color: rgba(255,255,255,0.88);
       text-shadow: 0 3px 12px rgba(0,0,0,0.85);
       letter-spacing: -0.02em;
+      z-index: 2;
     }
 
     .sat-marker {
       position: absolute;
       display: flex;
       align-items: center;
+      z-index: 3;
     }
 
     .sat-ribbon-yellow {
@@ -1136,6 +1414,7 @@
       font-size: 20px;
       box-shadow: 0 12px 28px rgba(0,0,0,0.75);
       z-index: 2;
+      position: relative;
     }
 
     /* =====================================================
@@ -1172,6 +1451,28 @@
       color: #8ab4f8;
     }
 
+    .g-suggest-panel {
+      background: #303134;
+      border-radius: 16px;
+      padding: 6px 0;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+      color: #bdc1c6;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    .g-suggest-item {
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .g-suggest-item.active {
+      background: #3c4043;
+      color: #fff;
+    }
+
     .g-moon-grid {
       display: grid;
       grid-template-columns: 1fr 1.3fr;
@@ -1193,8 +1494,18 @@
       width: 100px;
       height: 100px;
       border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #f97316, #dc2626 55%, #7f1d1d 90%);
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 30% 28%, rgba(0,0,0,0.28) 0 5%, transparent 6%),
+        radial-gradient(circle at 62% 55%, rgba(0,0,0,0.25) 0 7%, transparent 8%),
+        radial-gradient(circle at 35% 35%, #f97316, #dc2626 55%, #7f1d1d 90%);
       box-shadow: 0 0 40px rgba(220, 38, 38, 0.75);
+      animation: moonCoronalPulse 3.5s ease-in-out infinite alternate;
+    }
+    @keyframes moonCoronalPulse {
+      0% { filter: drop-shadow(0 0 20px rgba(234, 88, 12, 0.7)); }
+      100% { filter: drop-shadow(0 0 45px rgba(239, 68, 68, 0.95)); }
     }
 
     .g-result-snippet {
@@ -1215,14 +1526,17 @@
       padding: 2px 6px;
       border-radius: 3px;
       color: #fff;
+      position: relative;
     }
 
     /* =====================================================
        SCENE 8: WOOD DESK NEWSPAPER & CANVAS FIRE (41.65 - 46.25s)
        ===================================================== */
     #scene-8 {
-      background:
-        repeating-linear-gradient(90deg, #3d2b1f 0px, #433022 14px, #352419 28px);
+      background-color: #2c1d13;
+      background-image:
+        radial-gradient(ellipse at 50% 40%, rgba(255,200,140,0.14), transparent 60%),
+        repeating-linear-gradient(90deg, rgba(0,0,0,0.35) 0 2px, transparent 2px 120px);
     }
 
     .herald-sheet {
@@ -1303,6 +1617,16 @@
       background: var(--map-green);
     }
 
+    .gmap-world::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .5;
+      background-image: linear-gradient(rgba(30,60,50,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(30,60,50,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
     .gmap-search-pill {
       position: absolute;
       top: 10%;
@@ -1315,11 +1639,20 @@
       font-size: 21px;
       font-weight: 600;
       color: #1e293b;
-      box-shadow: 0 14px 36px rgba(15, 23, 42, 0.22);
+      box-shadow: 0 14px 36px rgba(15, 23, 42, 0.22), inset 0 -2px 0 rgba(0,0,0,0.04);
       z-index: 35;
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+
+    .gmap-nav-chevron {
+      stroke-dasharray: 14 18;
+      animation: navChevronFlow 1.2s linear infinite;
+    }
+    @keyframes navChevronFlow {
+      from { stroke-dashoffset: 64; }
+      to { stroke-dashoffset: 0; }
     }
 
     .hwy-badge {
@@ -1364,6 +1697,7 @@
       transform: translate(-50%, -50%);
       box-shadow: 0 12px 30px rgba(37, 99, 235, 0.5);
       z-index: 25;
+      transition: left 0.1s linear, top 0.1s linear;
     }
 
     .road-3d-text {
@@ -1381,6 +1715,70 @@
       z-index: 20;
     }
 
+    /* Grand Celestial Finale Card (48.0s - 50.83s) */
+    .celestial-outro-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, #0a0f1d 0%, #020617 100%);
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      padding: 28px;
+      text-align: center;
+    }
+    .celestial-bismillah {
+      font-family: 'Amiri', serif;
+      font-size: 19px;
+      color: #fde047;
+      opacity: 0.9;
+      margin-bottom: 14px;
+      letter-spacing: 0.05em;
+    }
+    .celestial-ayah-arabic {
+      font-family: 'Amiri', 'Noto Nastaliq Urdu', serif;
+      font-size: clamp(23px, 4vw, 38px);
+      line-height: 1.85;
+      background: linear-gradient(135deg, #fffbeb 0%, #fef08a 35%, #facc15 70%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 25px rgba(250, 204, 21, 0.55));
+      margin-bottom: 12px;
+    }
+    .celestial-ayah-ref {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      color: #93c5fd;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .celestial-ayah-trans {
+      font-size: clamp(12px, 1.9vw, 15px);
+      color: #e2e8f0;
+      max-width: 560px;
+      line-height: 1.55;
+      font-style: italic;
+    }
+    .celestial-seal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: rgba(250, 204, 21, 0.12);
+      border: 1px solid rgba(250, 204, 21, 0.4);
+      color: #fde047;
+      font-size: 11px;
+      font-weight: 600;
+      margin-top: 16px;
+      box-shadow: 0 4px 15px rgba(250, 204, 21, 0.2);
+    }
+
     /* =====================================================
        BOTTOM SUBTITLE BAR & VOICE LEVEL METER
        ===================================================== */
@@ -1390,13 +1788,15 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: 800;
-      background: rgba(10, 12, 18, 0.86);
-      backdrop-filter: blur(12px);
+      background: rgba(10, 12, 18, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(255, 255, 255, 0.16);
       padding: 8px 18px;
       border-radius: 12px;
       text-align: center;
       max-width: 90%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
     }
 
     #sub-urdu {
@@ -1411,9 +1811,6 @@
       font-weight: 500;
     }
 
-    /* =====================================================
-       TEXTURE & DETAIL PASS
-       ===================================================== */
     .glare {
       position: absolute; inset: 0; pointer-events: none; z-index: 702;
       background:
@@ -1421,86 +1818,12 @@
         radial-gradient(ellipse at 85% 110%, rgba(255,170,90,0.10), transparent 55%);
       mix-blend-mode: screen;
     }
-
-    /* Paper: fibres, stains, aged edges, centre fold */
-    .np-page::before, .herald-sheet::before {
-      content: ""; position: absolute; inset: 0; z-index: 6; pointer-events: none;
-      mix-blend-mode: multiply; opacity: 0.85;
-      background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0.45  0 0 0 0 0.36  0 0 0 0 0.25  0 0 0 0.55 -0.12'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E"),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006' numOctaves='3' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.55  0 0 0 0 0.4  0 0 0 0 0.2  0 0 0 1.6 -0.62'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)'/%3E%3C/svg%3E"),
-        radial-gradient(ellipse at center, transparent 55%, rgba(110,80,40,0.35) 100%);
-    }
-    .np-page::after, .herald-sheet::after {
-      content: ""; position: absolute; inset: 0; z-index: 7; pointer-events: none;
-      background:
-        linear-gradient(90deg, transparent 49.2%, rgba(60,40,20,0.22) 50%, rgba(255,255,255,0.28) 50.5%, transparent 52%),
-        linear-gradient(0deg, transparent 49%, rgba(60,40,20,0.12) 50%, transparent 51.5%);
-    }
-    .np-page { text-shadow: 0 0 0.6px rgba(18,18,17,0.55); }
-    .np-photo-box {
-      background: radial-gradient(ellipse at 50% 36%, #8d867b 0, #3d3934 42%, #12100e 100%) !important;
-    }
-    .np-photo-box::after {
-      background-image: radial-gradient(rgba(0,0,0,0.55) 1.1px, transparent 1.4px);
-      background-size: 3.5px 3.5px; mix-blend-mode: multiply;
-    }
-
-    /* Wood desk under the newspaper */
-    #scene-8 {
-      background-color: #2c1d13;
-      background-image:
-        radial-gradient(ellipse at 50% 40%, rgba(255,200,140,0.12), transparent 60%),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='700' height='700'%3E%3Cfilter id='w'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.004 0.2' numOctaves='5' seed='11'/%3E%3CfeColorMatrix values='0.9 0 0 0 0.05  0.55 0 0 0 0.02  0.32 0 0 0 0.0  0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)'/%3E%3C/svg%3E"),
-        repeating-linear-gradient(90deg, rgba(0,0,0,0.35) 0 2px, transparent 2px 120px);
-    }
-
-    /* Satellite terrain: real-looking noise relief */
-    .sat-terrain::before {
-      content: ""; position: absolute; inset: 0; z-index: 0; opacity: 0.95; mix-blend-mode: overlay;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011' numOctaves='6' seed='5'/%3E%3CfeColorMatrix values='0.9 0 0 0 0.05  1.3 0 0 0 0.05  0.6 0 0 0 0.0  0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23t)'/%3E%3C/svg%3E");
-    }
-    .sat-terrain::after {
-      content: ""; position: absolute; inset: 0; pointer-events: none;
-      background: radial-gradient(ellipse at 20% 15%, rgba(255,230,170,0.18), transparent 55%);
-    }
-    .sat-fields, .sat-terrain svg, .sat-marker, .sat-place-label { z-index: 1; }
-
-    /* Blood moon with craters and limb shading */
-    .blood-moon-sphere { position: relative; overflow: hidden;
-      background:
-        radial-gradient(circle at 30% 28%, rgba(0,0,0,0.28) 0 5%, transparent 6%),
-        radial-gradient(circle at 62% 55%, rgba(0,0,0,0.25) 0 7%, transparent 8%),
-        radial-gradient(circle at 45% 75%, rgba(0,0,0,0.2) 0 4%, transparent 5%),
-        radial-gradient(circle at 35% 35%, #f97316, #dc2626 55%, #7f1d1d 90%);
-    }
-    .blood-moon-sphere::after { content: ""; position: absolute; inset: 0; border-radius: 50%;
-      mix-blend-mode: multiply; opacity: .75;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.05' numOctaves='5' seed='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.9  0 0 0 0 0.5  0 0 0 0 0.4  0 0 0 1.2 -0.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
-      box-shadow: inset -14px -10px 30px rgba(0,0,0,0.55);
-    }
-
-    /* Spotify scene: soft gradient + grain */
-    #scene-3 { background: radial-gradient(ellipse at 30% 20%, #0d5a9e 0%, #073b66 55%, #04233f 100%); }
-    .sp-line { transition: none; }
-
-    /* Instagram stories rings + glass cards */
-    .ig-avatar { box-shadow: 0 0 0 3px #000, 0 0 0 5.5px #d62976, 0 0 22px rgba(214,41,118,0.45), 0 12px 30px rgba(0,0,0,0.6) !important; }
-    .ig-bubble { box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 12px 28px rgba(0,0,0,0.75); }
-
-    /* UI surfaces: glass edge highlight */
-    .gcal-modal, .alttab-overlay, .earth-app-bar, .g-result-snippet, .g-dark-bar, .gmap-search-pill {
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.10), 0 24px 60px rgba(0,0,0,0.55);
-    }
-    .gmap-search-pill { box-shadow: 0 14px 36px rgba(15,23,42,0.22), inset 0 -2px 0 rgba(0,0,0,0.04); }
-    /* Map: faint paper-grid texture */
-    .gmap-world::after { content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
-      background-image: linear-gradient(rgba(30,60,50,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(30,60,50,0.05) 1px, transparent 1px);
-      background-size: 60px 60px; }
-    #subtitle-bar { box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08); }
   </style>
 </head>
 <body>
+  <!-- Ambient Backlight Ambilight -->
+  <div id="stage-ambient"></div>
+
   <a href="index.html" class="back-to-archive" id="backToArchiveBtn" title="Back to Ruqyah Archive" aria-label="Back to Ruqyah Archive">
     &#8592; Archive
   </a>
@@ -1513,13 +1836,23 @@
 
   <!-- Top Control Bar (Press H to hide) -->
   <div id="controls">
-    <button id="play-btn" class="btn primary">▶ Play Video</button>
-    <label class="btn" id="upload-label" for="audio-upload">🎵 Embed Audio (.mp3)</label>
-    <input id="audio-upload" type="file" accept="audio/*" style="display:none" />
-    <span id="audio-status">Synth + Foley Ready</span>
-    <input id="scrubber" type="range" min="0" max="50.45" step="0.02" value="0" />
+    <button id="play-btn" class="btn primary" aria-label="Play or pause video">▶ Play Video</button>
+    <button id="seek-back-btn" class="btn" title="Rewind 5 seconds" aria-label="Rewind 5 seconds">↺ 5s</button>
+    <button id="seek-fwd-btn" class="btn" title="Forward 5 seconds" aria-label="Forward 5 seconds">5s ↻</button>
+    <button id="mute-btn" class="btn" title="Toggle audio mute" aria-label="Mute audio">🔊</button>
+    <div class="control-eq" id="control-eq" title="Audio Recitation Equalizer" aria-hidden="true">
+      <span class="eq-bar"></span>
+      <span class="eq-bar"></span>
+      <span class="eq-bar"></span>
+      <span class="eq-bar"></span>
+    </div>
+    <input id="scrubber" type="range" min="0" max="50.83" step="0.02" value="0" aria-label="Timeline position" />
     <span id="time-display">00:00 / 00:50</span>
-    <button id="ratio-btn" class="btn">1:1 Square</button>
+    <button id="ratio-btn" class="btn" aria-label="Switch Aspect Ratio">1:1 Square</button>
+    <button id="fullscreen-btn" class="btn" title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶ Fullscreen</button>
+    <label class="btn" id="upload-label" for="audio-upload">🎵 Audio</label>
+    <input id="audio-upload" type="file" accept="audio/*" style="display:none" />
+    <span id="audio-status">MP3 Ready</span>
     <span class="hide-hint" style="font-size:11px;color:#9ca3af;">Press <b>H</b> to hide</span>
   </div>
 
@@ -1555,11 +1888,15 @@
               <div class="gcal-time-col">
                 <span>1 PM</span><span>2 PM</span><span>3 PM</span><span>4 PM</span><span>5 PM</span>
               </div>
-              <div class="gcal-red-line"></div>
+              <div class="gcal-red-line">
+                <span class="gcal-live-badge"><span class="gcal-live-dot"></span> LIVE 2:45 PM</span>
+              </div>
 
               <div class="gcal-event-block" id="cal-ev-1">
                 <div class="gcal-ev-title">
-                  <div class="gcal-check-circle" id="cal-chk-1"></div>
+                  <div class="gcal-check-circle" id="cal-chk-1">
+                    <svg class="check-svg" viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"></path></svg>
+                  </div>
                   <span id="cal-txt-1"></span>
                 </div>
                 <div class="gcal-ev-time" id="cal-time-1">2:30 – 3:30pm • Eternal Command</div>
@@ -1604,7 +1941,10 @@
           <!-- Top App Menu & Search Pill -->
           <div class="earth-app-bar">
             <div class="earth-menu-row">
-              <div class="earth-globe-icon"></div>
+              <div class="earth-globe-icon">
+                <div class="earth-orbit-ring"></div>
+                <div class="earth-grid-lines"></div>
+              </div>
               <span>File</span><span>Edit</span><span>Tampilan</span><span>Tambahkan</span><span>Alat</span><span>Bantuan</span>
             </div>
             <div class="earth-search-row">
@@ -1646,7 +1986,7 @@
 
           <!-- Windows 11 Bottom Taskbar -->
           <div class="win11-taskbar">
-            <div class="tb-icon"></div>
+            <div class="tb-icon active"></div>
             <div class="tb-icon" style="background:#f59e0b;"></div>
             <div class="tb-icon" style="background:#10b981;"></div>
             <div class="tb-icon" style="background:#ef4444;"></div>
@@ -1661,10 +2001,14 @@
     <div id="scene-3" class="scene">
       <div class="camera-rig" id="rig-3">
         <div class="spotify-lyrics-wrap">
+          <div class="spotify-header-badge">
+            <span>SPOTIFY KARAOKE • TAWAKKUL RECITATION</span>
+            <span style="color:#1db954;">● LIVE AUDIO</span>
+          </div>
           <div class="sp-line" id="sp-1"></div>
           <div class="sp-line" id="sp-2"></div>
           <div class="sp-line" id="sp-3"></div>
-          <div class="sp-line" id="sp-4" style="font-size:24px;"></div>
+          <div class="sp-line sp-sacred-gold" id="sp-4" style="font-size:26px;"></div>
         </div>
       </div>
     </div>
@@ -1682,6 +2026,7 @@
             <div class="ig-search">🔍 Search</div>
             <div class="ig-notes-row">
               <div class="ig-note-card">
+                <div class="ig-reaction-bubble">❤️ 99+</div>
                 <div class="ig-bubble">KOI TAAQAT<br/>NAHI HAI</div>
                 <div class="ig-avatar" style="background:#073b66;color:#93c5fd;font-weight:800;font-size:15px;padding:14px;text-align:center;">
                   Na Khair Ki<br/>Na Shar Ki
@@ -1690,9 +2035,10 @@
               </div>
 
               <div class="ig-note-card">
+                <div class="ig-reaction-bubble">🔥 52</div>
                 <div class="ig-bubble">
                   JAB TAK KE<br/>
-                  <span class="blur-word" id="ig-blur-1" style="color:#fde047;">IZN-E-RABB NA HO</span>
+                  <span class="blur-word glint-flash" id="ig-blur-1" style="color:#fde047;">IZN-E-RABB NA HO</span>
                 </div>
                 <div class="ig-avatar" style="background:radial-gradient(circle,#334155,#0f172a);font-size:28px;font-weight:900;">
                   إِذْنِ رَبّ
@@ -1701,9 +2047,10 @@
               </div>
 
               <div class="ig-note-card">
+                <div class="ig-reaction-bubble">💯 128</div>
                 <div class="ig-bubble">
                   ALLAH NA CHAAHE TOH<br/>
-                  <span class="blur-word" id="ig-blur-2" style="color:#f87171;">KUCH NAHI HO SAKTA</span>
+                  <span class="blur-word glint-flash" id="ig-blur-2" style="color:#f87171;">KUCH NAHI HO SAKTA</span>
                 </div>
                 <div class="ig-avatar" style="background:radial-gradient(circle,#7f1d1d,#111827);font-size:30px;font-weight:900;">
                   اللّٰہ
@@ -1731,7 +2078,8 @@
       <div class="camera-rig" id="rig-5">
         <div class="broadsheet-grid">
           <!-- PAGE 1 -->
-          <div class="np-page">
+          <div class="np-page" id="np-page-1">
+            <div class="np-royal-seal">مُحَمَّدٌ<br/>رَسُولُ اللَّهِ<br/>ﷺ</div>
             <div class="np-top-banner">
               <span class="np-top-meta">PROPHETIC EDITION</span>
               <span class="np-top-title">THE DAILY DROP</span>
@@ -1756,7 +2104,7 @@
           </div>
 
           <!-- PAGE 2 -->
-          <div class="np-page">
+          <div class="np-page" id="np-page-2">
             <div class="np-top-banner">
               <span class="np-top-meta">SPECIAL REPORT</span>
               <span class="np-top-title">THE DAILY DROP</span>
@@ -1779,7 +2127,7 @@
           </div>
 
           <!-- PAGE 3 -->
-          <div class="np-page">
+          <div class="np-page" id="np-page-3">
             <div class="np-top-banner">
               <span class="np-top-meta">VERDICT ARCHIVE</span>
               <span class="np-top-title">THE DAILY DROP</span>
@@ -1799,7 +2147,8 @@
           </div>
 
           <!-- PAGE 4 -->
-          <div class="np-page">
+          <div class="np-page" id="np-page-4">
+            <div class="np-wax-seal">حَقّ</div>
             <div class="np-top-banner">
               <span class="np-top-meta">CONCLUSION</span>
               <span class="np-top-title">THE DAILY DROP</span>
@@ -1828,6 +2177,7 @@
       <div class="camera-rig" id="rig-6">
         <div class="sat-terrain">
           <div class="sat-fields"></div>
+          <div class="sat-radar-sweep"></div>
           <svg width="100%" height="100%" viewBox="0 0 800 800" style="position:absolute;inset:0;">
             <path d="M 380 0 Q 340 280 390 460 T 260 800" fill="none" stroke="#d6d3d1" stroke-width="10" opacity="0.75"/>
             <path d="M 100 320 Q 380 390 720 260" fill="none" stroke="#a8a29e" stroke-width="6" opacity="0.6"/>
@@ -1836,11 +2186,15 @@
 
           <div class="sat-marker" style="left:16%;top:38%;">
             <div class="sat-ribbon-yellow" id="sat-rib-1">MUSABBIB-UL-ASBAAB</div>
-            <div class="sat-avatar-circle">مسبب</div>
+            <div class="sat-avatar-circle">
+              مسبب
+            </div>
           </div>
 
           <div class="sat-marker" style="left:26%;top:64%;">
-            <div class="sat-avatar-circle" style="border-color:#fff;">حق</div>
+            <div class="sat-avatar-circle" style="border-color:#fff;">
+              حق
+            </div>
             <div class="sat-ribbon-white" id="sat-rib-2">ASAL MEIN WOHI HAI</div>
           </div>
         </div>
@@ -1857,6 +2211,17 @@
             <span id="g-dark-type"></span>
             <div class="g-icons-right">
               <span>✕</span><span>🎤</span><span>📷</span><span>🔍</span>
+            </div>
+          </div>
+
+          <div class="g-suggest-panel" id="g-suggest-panel">
+            <div class="g-suggest-item active">
+              <span>🔍</span>
+              <span><b>Ikhtiyar-e-Mutlaq</b> in Islamic Theology</span>
+            </div>
+            <div class="g-suggest-item">
+              <span>🔍</span>
+              <span><b>Musabbib-ul-Asbaab</b> meaning in Urdu</span>
             </div>
           </div>
 
@@ -1892,7 +2257,7 @@
           <div class="herald-masthead">THE DAILY HERALD</div>
           <div class="herald-headline" id="herald-type"></div>
           <div class="herald-eye-photo">
-            <div style="font-family:'Inter',sans-serif;font-weight:900;font-size:22px;color:#fff;background:rgba(0,0,0,0.65);padding:8px 18px;">
+            <div style="font-family:'Inter',sans-serif;font-weight:900;font-size:22px;color:#fff;background:rgba(0,0,0,0.65);padding:8px 18px;border-radius:4px;">
               AGAR ALLAH CHAAHE TOH NIKLENGE, WARNA NAHI
             </div>
           </div>
@@ -1918,9 +2283,9 @@
             <!-- Secondary Roads -->
             <path d="M 0 320 L 900 580" stroke="#ffffff" stroke-width="18" fill="none"/>
             <path d="M 220 0 L 640 900" stroke="#ffffff" stroke-width="18" fill="none"/>
-            <!-- Main Blue Route -->
+            <!-- Main Blue Route with flow animation -->
             <path d="M 180 760 L 390 520 A 65 65 0 1 1 480 430 L 760 180" stroke="#60a5fa" stroke-width="22" stroke-linecap="round" fill="none"/>
-            <path d="M 180 760 L 390 520 A 65 65 0 1 1 480 430 L 760 180" stroke="#2563eb" stroke-width="12" stroke-linecap="round" fill="none"/>
+            <path d="M 180 760 L 390 520 A 65 65 0 1 1 480 430 L 760 180" class="gmap-nav-chevron" stroke="#2563eb" stroke-width="12" stroke-linecap="round" fill="none"/>
           </svg>
 
           <!-- Highway Shields -->
@@ -1941,6 +2306,18 @@
           <div class="gmap-avatar-pin" id="gmap-pin" style="left:30%;top:65%;">اللّٰہ</div>
         </div>
       </div>
+
+      <!-- Celestial Grand Finale Card (48.0s - 50.83s) -->
+      <div id="celestial-outro" class="celestial-outro-overlay">
+        <div class="celestial-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+        <div class="celestial-ayah-arabic urdu">حَسْبِيَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ ۖ عَلَيْهِ تَوَكَّلْتُ ۖ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ</div>
+        <div class="celestial-ayah-ref">Surah At-Tawbah • 9:129</div>
+        <div class="celestial-ayah-trans">"Sufficient for me is Allah; there is no deity except Him. In Him alone I have placed my trust, and He is the Lord of the Tremendous Throne."</div>
+        <div class="celestial-seal-badge">
+          <span>★</span>
+          <span>RUQYAH.IO SCHOLASTIC ARCHIVE</span>
+        </div>
+      </div>
     </div>
 
     <!-- Bottom Subtitle Bar -->
@@ -1953,26 +2330,29 @@
   <script>
     const audio = document.getElementById('audio-player');
     const playBtn = document.getElementById('play-btn');
+    const seekBackBtn = document.getElementById('seek-back-btn');
+    const seekFwdBtn = document.getElementById('seek-fwd-btn');
+    const muteBtn = document.getElementById('mute-btn');
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
     const audioUpload = document.getElementById('audio-upload');
     const uploadLabel = document.getElementById('upload-label');
     const audioStatus = document.getElementById('audio-status');
     const scrubber = document.getElementById('scrubber');
     const timeDisplay = document.getElementById('time-display');
     const ratioBtn = document.getElementById('ratio-btn');
-    const stageWrapper = document.getElementById('stage-wrapper');
     const controls = document.getElementById('controls');
+    const stageWrapper = document.getElementById('stage-wrapper');
     const dropBanner = document.getElementById('drop-banner');
 
-    // Exact 1:1 duration of audio_6af41204e4ea39.02321364.mp3 (50.83s)
     const BASE_DURATION = 50.83;
     let TOTAL_DURATION = 50.83;
 
     let isPlaying = false;
+    let currentTime = 0;
+    let lastSceneIdx = -1;
     let useSynthClock = false;
     let synthStart = 0;
-    let currentTime = 0;
     let lastTypedTick = 0;
-    let lastSceneIdx = -1;
 
     /* ==========================================================
        1. INDEXED-DB PERSISTENT AUDIO STORAGE
@@ -1984,10 +2364,13 @@
       return new Promise((resolve, reject) => {
         const req = indexedDB.open(DB_NAME, 1);
         req.onupgradeneeded = (e) => {
-          e.target.result.createObjectStore(STORE_NAME);
+          const db = e.target.result;
+          if (!db.objectStoreNames.contains(STORE_NAME)) {
+            db.createObjectStore(STORE_NAME);
+          }
         };
-        req.onsuccess = (e) => resolve(e.target.result);
-        req.onerror = (e) => reject(e);
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
       });
     }
 
@@ -2233,6 +2616,8 @@
       fCtx.shadowBlur = 12;
       fCtx.strokeStyle = 'rgba(255,238,160,0.98)'; fCtx.lineWidth = 2.5; fCtx.stroke();
       fCtx.restore();
+
+      // Golden & amber sparks
       for (let i = 0; i < 90; i++) {
         const a = hash(i) * Math.PI * 2;
         const life = (tt * 0.12 + hash(i + 50)) % 1;
@@ -2260,7 +2645,6 @@
       scenes.forEach((s, i) => s.classList.toggle('active', i === idx));
     }
 
-    // Exact scene cut timestamps in real audio seconds
     const CUTS = [3.35, 8.45, 16.60, 23.45, 34.85, 37.35, 41.65, 46.25];
     function applyTransition(t) {
       const d = Math.min(...CUTS.map(c => Math.abs(t - c)));
@@ -2289,7 +2673,6 @@
       scrubber.value = realT;
       timeDisplay.textContent = `${formatTime(realT)} / ${formatTime(TOTAL_DURATION)}`;
 
-      // Direct 1:1 time (scales only if a different-length audio file is loaded)
       const t = realT * (BASE_DURATION / TOTAL_DURATION);
 
       const sub = subtitles.find(s => t >= s.start && t <= s.end) || subtitles[subtitles.length - 1];
@@ -2297,6 +2680,13 @@
       document.getElementById('sub-eng').textContent = `"${sub.eng}"`;
 
       const voiceBoost = getAudioEnergy() * 0.04;
+
+      // Ensure celestial outro is hidden unless in Scene 9 outro
+      const celestialOutro = document.getElementById('celestial-outro');
+      if (celestialOutro && t < 48.0) {
+        celestialOutro.style.opacity = '0';
+        celestialOutro.style.pointerEvents = 'none';
+      }
 
       // SCENE 1: 0.00 - 3.35s ("Mere siwa kisi aur par tawakkul na karna")
       if (t < 3.35) {
@@ -2309,13 +2699,11 @@
           typeText(txt, t / 1.90) + '<span class="caret"></span>';
 
         const ev1 = document.getElementById('cal-ev-1');
-        const chk1 = document.getElementById('cal-chk-1');
         const modal = document.getElementById('cal-modal');
 
         if (t < 1.90) {
           rig.style.transform = `scale(${1.32 - p * 0.18 + voiceBoost}) translate(-2%, -9%) rotateY(-8deg) rotateX(5deg)`;
           ev1.classList.remove('done');
-          chk1.textContent = '';
           document.getElementById('cal-txt-1').style.textDecoration = 'none';
           modal.style.opacity = '0';
           modal.style.transform = 'translateZ(30px) translateY(30px) scale(0.9)';
@@ -2323,7 +2711,6 @@
           const p2 = clamp((t - 1.90) / 1.45);
           rig.style.transform = `scale(${1.18 - p2 * 0.16 + voiceBoost}) translate(0%, 0%) rotateY(${-6 + p2 * 6}deg)`;
           ev1.classList.add('done');
-          chk1.textContent = '✓';
           document.getElementById('cal-txt-1').style.textDecoration = 'line-through';
           modal.style.opacity = '1';
           modal.style.transform = 'translateZ(75px) translateY(0px) scale(1)';
@@ -2333,7 +2720,6 @@
       // SCENE 2: 3.35 - 8.45s ("Aaj hamara tawakkul... maaddi asbaab-o-wasaail par hai... Allah ko bhool gaye")
       else if (t < 8.45) {
         activateScene(1);
-        const p = clamp((t - 3.35) / 5.10);
         const rig = document.getElementById('rig-2');
 
         const sTxt = "Aaj hamara tawakkul: maaddi asbaab-o-wasaail par hai";
@@ -2348,13 +2734,15 @@
           const p1 = clamp((t - 3.35) / 3.00);
           rig.style.transform = `scale(1.62) translate(${16 - p1 * 38}%, 28%) rotateY(-8deg)`;
           altModal.style.opacity = '0';
+          card2.classList.remove('alert-shake');
         } else {
-          // 6.35s - 8.45s: Zoom out to desktop; snap focus to "ALLAH KO BHOOL GAYE!" at 6.85s
           const p2 = clamp((t - 6.35) / 2.10);
+          const isAlert = t >= 6.85;
           rig.style.transform = `scale(${1.12 - p2 * 0.12 + voiceBoost}) translate(0%, 0%) rotateX(${6 - p2 * 6}deg)`;
           altModal.style.opacity = '1';
-          card1.classList.toggle('focused', t < 6.85);
-          card2.classList.toggle('focused', t >= 6.85);
+          card1.classList.toggle('focused', !isAlert);
+          card2.classList.toggle('focused', isAlert);
+          card2.classList.toggle('alert-shake', isAlert && t < 7.5);
         }
       }
 
@@ -2392,7 +2780,6 @@
         activateScene(3);
         const rig = document.getElementById('rig-4');
 
-        // Unblur "IZN-E-RABB NA HO" right at 19.05s, and "KUCH NAHI HO SAKTA" right at 21.00s
         const blur1 = clamp(1 - (t - 19.05) / 1.15) * 8;
         const blur2 = clamp(1 - (t - 21.00) / 1.25) * 8;
         document.getElementById('ig-blur-1').style.filter = `blur(${blur1}px)`;
@@ -2402,7 +2789,6 @@
           const p1 = clamp((t - 16.60) / 4.35);
           rig.style.transform = `scale(1.15) translateX(${18 - p1 * 28}%) rotateY(${8 - p1 * 12}deg)`;
         } else {
-          // 20.95s - 23.45s: Zoom onto Note 3 ("ALLAH NA CHAAHE TOH KUCH NAHI HO SAKTA")
           const p2 = clamp((t - 20.95) / 2.50);
           rig.style.transform = `scale(${1.25 + p2 * 0.22 + voiceBoost}) translate(-24%, 4%)`;
         }
@@ -2414,28 +2800,45 @@
         const rig = document.getElementById('rig-5');
 
         document.getElementById('np-type-1').innerHTML =
-          typeText("HUZOOR ﷺ NE FARMAYA:", (t - 23.45) / 1.40) + '<span class="caret"></span>';
+          typeText("HUZOOR ﷺ NE FARMAYA", (t - 23.45) / 1.40) + '<span class="caret"></span>';
         document.getElementById('np-type-2').innerHTML =
           typeText("NAHI POHANCHA SAKTE!", (t - 28.45) / 1.35);
         document.getElementById('np-type-3').innerHTML =
           typeText("NA NUQSAAN, NA FAIDA.", (t - 31.35) / 1.40);
 
+        const p1 = document.getElementById('np-page-1');
+        const p2 = document.getElementById('np-page-2');
+        const p3 = document.getElementById('np-page-3');
+        const p4 = document.getElementById('np-page-4');
+
         if (t < 28.45) {
-          // 23.45s - 28.45s: Page 1 ("Huzoor ne farmaya: agar tamaam duniya ke insaan mil kar tumhein koi faida pohanchana chaahein")
           const p = clamp((t - 23.45) / 5.00);
           rig.style.transform = `scale(0.85) rotateX(18deg) rotateY(-14deg) rotateZ(-3deg) translate(${240 - p * 45}px, 165px)`;
+          p1.style.filter = 'none'; p1.style.opacity = '1';
+          p2.style.filter = 'blur(1.5px)'; p2.style.opacity = '0.85';
+          p3.style.filter = 'blur(2px)'; p3.style.opacity = '0.8';
+          p4.style.filter = 'blur(2px)'; p4.style.opacity = '0.8';
         } else if (t < 31.35) {
-          // 28.45s - 31.35s: Page 2 ("nahi pohancha sakte! Agar Allah ka izn nahi hai")
           const p = clamp((t - 28.45) / 2.90);
           rig.style.transform = `scale(0.85) rotateX(16deg) rotateY(12deg) rotateZ(2deg) translate(${-220 + p * 35}px, 160px)`;
+          p2.style.filter = 'none'; p2.style.opacity = '1';
+          p1.style.filter = 'blur(1.5px)'; p1.style.opacity = '0.85';
+          p3.style.filter = 'blur(2px)'; p3.style.opacity = '0.8';
+          p4.style.filter = 'blur(2px)'; p4.style.opacity = '0.8';
         } else if (t < 33.00) {
-          // 31.35s - 33.00s: Page 3 ("Na nuqsaan, na faida")
           const p = clamp((t - 31.35) / 1.65);
           rig.style.transform = `scale(0.86) rotateX(18deg) rotateY(-10deg) translate(210px, ${-160 + p * 20}px)`;
+          p3.style.filter = 'none'; p3.style.opacity = '1';
+          p1.style.filter = 'blur(2px)'; p1.style.opacity = '0.8';
+          p2.style.filter = 'blur(2px)'; p2.style.opacity = '0.8';
+          p4.style.filter = 'blur(1.5px)'; p4.style.opacity = '0.85';
         } else {
-          // 33.00s - 34.85s: Page 4 & Full 4-page pullback ("Jab tak ke Allah ka izn na ho")
           const p = clamp((t - 33.00) / 1.85);
           rig.style.transform = `scale(${0.68 - p * 0.14}) rotateX(14deg) rotateY(-6deg) translate(0px, 0px)`;
+          p1.style.filter = 'none'; p1.style.opacity = '1';
+          p2.style.filter = 'none'; p2.style.opacity = '1';
+          p3.style.filter = 'none'; p3.style.opacity = '1';
+          p4.style.filter = 'none'; p4.style.opacity = '1';
         }
       }
 
@@ -2458,15 +2861,18 @@
         const rig = document.getElementById('rig-7');
         rig.style.transform = `scale(${1.18 - p * 0.12 + voiceBoost}) rotateY(${10 - p * 14}deg) rotateX(6deg)`;
 
-        // 1st clause (37.35s - 39.60s): Blue highlight sweeps across "Ikhtiyar-e-Mutlaq hai"
         const selPct = clamp((t - 37.45) / 1.85) * 100;
         document.getElementById('g-blue-sel').style.background =
           `linear-gradient(90deg, #1a56db ${selPct}%, transparent ${selPct}%)`;
 
-        // 2nd clause (39.60s - 41.65s): Search bar types "Yeh asbaab toh zaahiri hain"
         const searchProg = t < 39.50 ? 0 : (t - 39.50) / 1.75;
         document.getElementById('g-dark-type').innerHTML =
           (searchProg > 0 ? typeText("Yeh asbaab toh zaahiri hain", searchProg) : "Ikhtiyar-e-Mutlaq") + '<span class="caret"></span>';
+
+        const suggestPanel = document.getElementById('g-suggest-panel');
+        if (suggestPanel) {
+          suggestPanel.style.opacity = t < 39.50 ? '1' : '0.15';
+        }
       }
 
       // SCENE 8: 41.65 - 46.25s ("Inke nataaij nikalte hain, agar Allah chaahe toh niklenge, warna nahi")
@@ -2480,7 +2886,6 @@
         document.getElementById('herald-type').innerHTML =
           typeText(hText, (t - 41.65) / 2.40) + '<span class="caret"></span>';
 
-        // Fire ignites at 43.15s ("agar Allah chaahe toh niklenge, warna nahi") and consumes page by 46.25s
         const burnProg = clamp((t - 43.15) / 3.05);
         renderFireBurn(burnProg);
       }
@@ -2505,6 +2910,19 @@
           const dist = Math.hypot(px - cx, py - cy);
           document.getElementById(id).style.opacity = p > thr ? clamp((dist - 7) / 9, 0.15, 1) : '0';
         });
+
+        // 48.0s - 50.83s: Grand Celestial Quranic Outro Card
+        if (celestialOutro) {
+          if (t >= 48.0) {
+            const outroProg = clamp((t - 48.0) / 1.1);
+            celestialOutro.style.opacity = String(outroProg);
+            celestialOutro.style.pointerEvents = outroProg > 0.5 ? 'auto' : 'none';
+            celestialOutro.style.transform = `scale(${0.92 + outroProg * 0.08}) translateY(${(1 - outroProg) * 16}px)`;
+          } else {
+            celestialOutro.style.opacity = '0';
+            celestialOutro.style.pointerEvents = 'none';
+          }
+        }
       }
 
       applyTransition(t);
@@ -2541,17 +2959,38 @@
           isPlaying = true;
           playBtn.textContent = '⏸ Pause';
           audioStatus.textContent = 'Playing MP3 + Foley';
+          controls.classList.add('playing');
         }).catch(() => {
           useSynthClock = true;
           synthStart = performance.now() - currentTime * 1000;
           isPlaying = true;
           playBtn.textContent = '⏸ Pause';
           audioStatus.textContent = 'Playing Foley Synth (Drop MP3)';
+          controls.classList.add('playing');
         });
       } else {
         isPlaying = false;
         audio.pause();
         playBtn.textContent = '▶ Play Video';
+        controls.classList.remove('playing');
+      }
+    });
+
+    seekBackBtn?.addEventListener('click', () => seekBy(-5));
+    seekFwdBtn?.addEventListener('click', () => seekBy(5));
+
+    muteBtn?.addEventListener('click', () => {
+      audio.muted = !audio.muted;
+      muteBtn.textContent = audio.muted ? '🔇' : '🔊';
+      muteBtn.setAttribute('aria-label', audio.muted ? 'Unmute audio' : 'Mute audio');
+    });
+
+    fullscreenBtn?.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        if (stageWrapper.requestFullscreen) stageWrapper.requestFullscreen();
+        else if (stageWrapper.webkitRequestFullscreen) stageWrapper.webkitRequestFullscreen();
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
       }
     });
 
@@ -2585,10 +3024,14 @@
     }
 
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') seekBy(2);
-      else if (e.key === 'ArrowLeft') seekBy(-2);
+      if (e.key === 'ArrowRight' || e.key === 'l' || e.key === 'L') seekBy(e.key === 'ArrowRight' ? 2 : 5);
+      else if (e.key === 'ArrowLeft' || e.key === 'j' || e.key === 'J') seekBy(e.key === 'ArrowLeft' ? -2 : -5);
       else if (e.key.toLowerCase() === 'h') {
         controls.classList.toggle('hidden');
+      } else if (e.key.toLowerCase() === 'm') {
+        muteBtn?.click();
+      } else if (e.key.toLowerCase() === 'f') {
+        fullscreenBtn?.click();
       } else if (e.code === 'Space') {
         e.preventDefault();
         playBtn.click();
@@ -2603,7 +3046,7 @@
 
     if (stageWrapper) {
       stageWrapper.addEventListener('click', (e) => {
-        if (e.target.closest('#controls, button, input, label, a')) return;
+        if (e.target.closest('#controls, button, input, label, a, .celestial-outro-overlay')) return;
         playBtn.click();
       });
     }
