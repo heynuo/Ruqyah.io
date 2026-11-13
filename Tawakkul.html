@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tawakkul — Ultra-Textured 3D Kinetic UI Video | Ruqyah</title>
-  <meta name="description" content="Tawakkul — An authentic 3D kinetic typographic motion story on absolute reliance upon Allah.">
+  <title>Tawakkul — A Cinematic Reflection | Ruqyah</title>
+  <meta name="description" content="A cinematic, bilingual reflection on tawakkul: taking the means while entrusting outcomes to Allah.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,400;1,700&family=Oswald:wght@700&family=Noto+Nastaliq+Urdu:wght@400;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -1818,6 +1818,281 @@
         radial-gradient(ellipse at 85% 110%, rgba(255,170,90,0.10), transparent 55%);
       mix-blend-mode: screen;
     }
+
+    /* Cinematic polish: scene-tinted light, soft lens drift, and a readable timeline. */
+    #stage-wrapper {
+      --scene-accent: 218, 184, 106;
+      isolation: isolate;
+      border-radius: 20px;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.72),
+                  0 0 0 1px rgba(255, 255, 255, 0.12),
+                  0 0 48px rgba(var(--scene-accent), 0.12);
+    }
+
+    #stage-ambient {
+      background: radial-gradient(circle at center, rgba(var(--scene-accent), 0.32), transparent 70%);
+    }
+
+    .cinematic-bloom,
+    .cinematic-sweep {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .cinematic-bloom {
+      z-index: 703;
+      opacity: var(--bloom-strength, 0.24);
+      mix-blend-mode: screen;
+      background:
+        radial-gradient(ellipse at 14% 22%, rgba(var(--scene-accent), 0.24), transparent 42%),
+        radial-gradient(ellipse at 86% 78%, rgba(var(--scene-accent), 0.16), transparent 45%);
+    }
+
+    body.is-playing .cinematic-bloom { animation: bloomDrift 15s ease-in-out infinite alternate; }
+
+    .cinematic-sweep {
+      z-index: 704;
+      inset: -35% auto -35% -55%;
+      width: 34%;
+      opacity: 0;
+      transform: skewX(-24deg);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.11), transparent);
+    }
+
+    body.is-playing .cinematic-sweep { animation: lightSweep 13s cubic-bezier(0.2, 0.7, 0.2, 1) infinite; }
+
+    @keyframes bloomDrift {
+      from { transform: scale(0.96) translate3d(-1%, 1%, 0); }
+      to { transform: scale(1.06) translate3d(1%, -1%, 0); }
+    }
+
+    @keyframes lightSweep {
+      0%, 58% { opacity: 0; transform: translateX(0) skewX(-24deg); }
+      63% { opacity: 0.55; }
+      78%, 100% { opacity: 0; transform: translateX(470%) skewX(-24deg); }
+    }
+
+    .scene.active {
+      animation: sceneReveal 0.68s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+    }
+
+    @keyframes sceneReveal {
+      from { filter: blur(5px); }
+      to { filter: blur(0); }
+    }
+
+    #scene-progress {
+      position: absolute;
+      z-index: 790;
+      top: 15px;
+      left: 20px;
+      right: 20px;
+      display: grid;
+      grid-template-columns: repeat(9, minmax(0, 1fr));
+      gap: 5px;
+      pointer-events: none;
+    }
+
+    .scene-progress-segment {
+      height: 3px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.22);
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.28);
+    }
+
+    .scene-progress-segment::after {
+      content: "";
+      display: block;
+      width: var(--segment-progress, 0%);
+      height: 100%;
+      border-radius: inherit;
+      background: rgb(var(--scene-accent));
+      box-shadow: 0 0 10px rgba(var(--scene-accent), 0.8);
+      transition: width 70ms linear;
+    }
+
+    #opening-title {
+      position: absolute;
+      z-index: 780;
+      top: 19%;
+      left: 50%;
+      width: min(82%, 430px);
+      padding: clamp(14px, 2.5vw, 24px) clamp(18px, 3vw, 32px);
+      border: 1px solid rgba(var(--scene-accent), 0.36);
+      border-radius: 18px;
+      color: #f8f5eb;
+      text-align: center;
+      background: linear-gradient(145deg, rgba(7, 13, 16, 0.88), rgba(13, 19, 22, 0.58));
+      box-shadow: 0 18px 52px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      pointer-events: none;
+    }
+
+    .opening-kicker,
+    .opening-footnote {
+      display: block;
+      color: #dbc78f;
+      font: 700 0.58rem/1.4 'JetBrains Mono', monospace;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    #opening-title strong {
+      display: block;
+      margin: 0.2em 0;
+      color: #fff9e8;
+      font: 700 clamp(2rem, 7vw, 3.5rem)/1.05 'Playfair Display', Georgia, serif;
+      letter-spacing: -0.035em;
+    }
+
+    .opening-footnote {
+      color: rgba(241, 238, 226, 0.78);
+      font-size: 0.55rem;
+      letter-spacing: 0.1em;
+    }
+
+    #subtitle-bar {
+      width: max-content;
+      max-width: min(92%, 880px);
+      padding: 10px 18px 12px;
+      border-color: rgba(var(--scene-accent), 0.38);
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(6, 12, 14, 0.92), rgba(14, 19, 23, 0.82));
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.48), 0 0 24px rgba(var(--scene-accent), 0.1);
+      transition: opacity 180ms ease, transform 180ms ease, border-color 350ms ease;
+    }
+
+    #subtitle-bar.captions-hidden {
+      opacity: 0;
+      transform: translate(-50%, 12px);
+      pointer-events: none;
+    }
+
+    .caption-kicker {
+      display: block;
+      margin-bottom: 2px;
+      color: rgba(226, 232, 240, 0.6);
+      font: 700 0.52rem/1.3 'JetBrains Mono', monospace;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    #sub-urdu {
+      color: #f5d989;
+      font-size: clamp(16px, 2.1vw, 21px);
+      line-height: 1.65;
+    }
+
+    #sub-eng {
+      color: #f1f5f9;
+      font-size: clamp(12px, 1.4vw, 15px);
+      line-height: 1.45;
+    }
+
+    #controls {
+      gap: 9px;
+      border-color: rgba(235, 215, 163, 0.24);
+      background: rgba(8, 13, 15, 0.9);
+      box-shadow: 0 14px 48px rgba(0, 0, 0, 0.52), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .btn {
+      min-height: 34px;
+      border-color: rgba(255, 255, 255, 0.16);
+      background: rgba(31, 39, 40, 0.92);
+      transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+    }
+
+    .btn:focus-visible,
+    #scrubber:focus-visible,
+    .back-to-archive:focus-visible {
+      outline: 2px solid #f5d989;
+      outline-offset: 3px;
+    }
+
+    .btn.primary {
+      color: #12130f;
+      border-color: #f1d588;
+      background: linear-gradient(135deg, #f4df9a, #caa95d);
+      box-shadow: 0 5px 18px rgba(202, 169, 93, 0.22);
+    }
+
+    .btn.primary:hover { background: linear-gradient(135deg, #fff0b7, #d8b868); }
+    #scrubber { accent-color: #e6c978; }
+    .control-eq .eq-bar { background: #e6c978; }
+
+    .back-to-archive {
+      color: #f3dfaa;
+      border-color: rgba(243, 223, 170, 0.32);
+      background: rgba(10, 17, 18, 0.88);
+    }
+
+    @media (max-width: 768px) {
+      .back-to-archive {
+        top: calc(10px + env(safe-area-inset-top, 0px));
+        bottom: auto;
+        left: calc(10px + env(safe-area-inset-left, 0px));
+      }
+
+      #controls {
+        top: auto;
+        bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+        width: calc(100vw - 16px);
+        max-width: 560px;
+      }
+
+      #subtitle-bar { bottom: 14px; }
+    }
+
+    /* Reassert mobile stage sizing after the desktop ratio rules above. */
+    @media (max-width: 768px) {
+      #stage-wrapper {
+        width: min(calc(100vw - 16px), calc(100vh - 200px));
+        height: min(calc(100vw - 16px), calc(100vh - 200px));
+      }
+
+      #stage-wrapper.ratio-9-16 {
+        height: min(calc(100vh - 200px), calc((100vw - 16px) * 16 / 9));
+        width: calc(min(calc(100vh - 200px), calc((100vw - 16px) * 16 / 9)) * 9 / 16);
+      }
+
+      #stage-wrapper.ratio-16-9 {
+        width: min(calc(100vw - 16px), calc((100vh - 200px) * 16 / 9));
+        height: calc(min(calc(100vw - 16px), calc((100vh - 200px) * 16 / 9)) * 9 / 16);
+      }
+
+      #scene-progress { left: 12px; right: 12px; gap: 3px; }
+      #opening-title { top: 22%; }
+      #subtitle-bar { max-width: calc(100% - 20px); padding: 8px 12px 9px; }
+    }
+
+    @media (max-height: 500px) and (max-width: 900px) {
+      #stage-wrapper,
+      #stage-wrapper.ratio-9-16,
+      #stage-wrapper.ratio-16-9 {
+        width: min(calc(100vw - 20px), calc((100vh - 210px) * 16 / 9));
+        height: calc(min(calc(100vw - 20px), calc((100vh - 210px) * 16 / 9)) * 9 / 16);
+      }
+
+      #opening-title { top: 13%; padding: 10px 16px; }
+      #opening-title strong { font-size: clamp(1.5rem, 5vh, 2.2rem); }
+      #subtitle-bar { bottom: 8px; }
+      .back-to-archive { top: 7px; bottom: auto; }
+      #controls { top: auto; bottom: 7px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .cinematic-bloom, .cinematic-sweep { animation: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -1836,10 +2111,11 @@
 
   <!-- Top Control Bar (Press H to hide) -->
   <div id="controls">
-    <button id="play-btn" class="btn primary" aria-label="Play or pause video">▶ Play Video</button>
+    <button id="play-btn" class="btn primary" aria-label="Play or pause reflection" aria-pressed="false">▶ Play</button>
     <button id="seek-back-btn" class="btn" title="Rewind 5 seconds" aria-label="Rewind 5 seconds">↺ 5s</button>
     <button id="seek-fwd-btn" class="btn" title="Forward 5 seconds" aria-label="Forward 5 seconds">5s ↻</button>
     <button id="mute-btn" class="btn" title="Toggle audio mute" aria-label="Mute audio">🔊</button>
+    <button id="captions-btn" class="btn" type="button" aria-label="Hide captions" aria-pressed="true">CC</button>
     <div class="control-eq" id="control-eq" title="Audio Recitation Equalizer" aria-hidden="true">
       <span class="eq-bar"></span>
       <span class="eq-bar"></span>
@@ -1848,9 +2124,9 @@
     </div>
     <input id="scrubber" type="range" min="0" max="50.83" step="0.02" value="0" aria-label="Timeline position" />
     <span id="time-display">00:00 / 00:50</span>
-    <button id="ratio-btn" class="btn" aria-label="Switch Aspect Ratio">1:1 Square</button>
+    <button id="ratio-btn" class="btn" aria-label="Switch aspect ratio">16:9 Wide</button>
     <button id="fullscreen-btn" class="btn" title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶ Fullscreen</button>
-    <label class="btn" id="upload-label" for="audio-upload">🎵 Audio</label>
+    <label class="btn" id="upload-label" for="audio-upload" role="button" tabindex="0">🎵 Audio</label>
     <input id="audio-upload" type="file" accept="audio/*" style="display:none" />
     <span id="audio-status">MP3 Ready</span>
     <span class="hide-hint" style="font-size:11px;color:#9ca3af;">Press <b>H</b> to hide</span>
@@ -1860,11 +2136,19 @@
   <audio id="audio-player" src="audio_6af41204e4ea39.02321364.mp3" preload="auto"></audio>
 
   <!-- Main Viewport -->
-  <div id="stage-wrapper">
+  <div id="stage-wrapper" class="ratio-16-9" role="region" aria-label="Tawakkul animated reflection">
     <div class="texture-grain"></div>
     <div class="texture-vignette"></div>
     <div class="glare"></div>
     <div class="dof-edges"></div>
+    <div class="cinematic-bloom" aria-hidden="true"></div>
+    <div class="cinematic-sweep" aria-hidden="true"></div>
+    <div id="scene-progress" aria-hidden="true"></div>
+    <div id="opening-title" aria-hidden="true">
+      <span class="opening-kicker">Ruqyah • Visual reflection</span>
+      <strong>Tawakkul</strong>
+      <span class="opening-footnote">Trust Allah • Take the means • Entrust the outcome</span>
+    </div>
 
     <!-- =====================================================
          SCENE 1: GOOGLE CALENDAR DARK UI & MODAL (0.00 - 3.35s)
@@ -1877,19 +2161,19 @@
             <div class="gcal-logo"><div class="gcal-badge-3">3</div> Calendar</div>
             <div class="gcal-pill">Today</div>
             <span>‹ ›</span>
-            <span style="font-weight:600;">October 3, 2026</span>
+            <span style="font-weight:600;">Tawakkul Reflection</span>
           </div>
           <div class="gcal-body">
             <div class="gcal-sidebar">
               <div class="gcal-create-btn">＋ Create ▾</div>
-              <div style="font-size:12px;color:#9aa0a6;">October 2026</div>
+              <div style="font-size:12px;color:#9aa0a6;">Reflection view</div>
             </div>
             <div class="gcal-grid">
               <div class="gcal-time-col">
                 <span>1 PM</span><span>2 PM</span><span>3 PM</span><span>4 PM</span><span>5 PM</span>
               </div>
               <div class="gcal-red-line">
-                <span class="gcal-live-badge"><span class="gcal-live-dot"></span> LIVE 2:45 PM</span>
+                <span class="gcal-live-badge"><span class="gcal-live-dot"></span> NOW - REFLECTION</span>
               </div>
 
               <div class="gcal-event-block" id="cal-ev-1">
@@ -1899,13 +2183,13 @@
                   </div>
                   <span id="cal-txt-1"></span>
                 </div>
-                <div class="gcal-ev-time" id="cal-time-1">2:30 – 3:30pm • Eternal Command</div>
+                <div class="gcal-ev-time" id="cal-time-1">2:30 – 3:30pm • Daily Reflection</div>
               </div>
 
               <div class="gcal-ev-block-2">
                 <div class="gcal-ev-title">
                   <div class="gcal-check-circle"></div>
-                  <span>Tawakkul Ala Allah Alone</span>
+                  <span>Use the means • Trust Allah with the outcome</span>
                 </div>
                 <div class="gcal-ev-time">5:30 – 6:30pm</div>
               </div>
@@ -1917,13 +2201,13 @@
                 </div>
                 <div class="gcal-modal-row" style="font-size:20px;font-weight:700;">
                   <span style="width:14px;height:14px;background:#6989f5;border-radius:4px;"></span>
-                  <span>TAWAKKUL DECREE</span>
+                  <span>A REFLECTION ON TAWAKKUL</span>
                 </div>
                 <div class="gcal-modal-row">🔥 Today • 3:30 – 4:30pm</div>
-                <div class="gcal-modal-row urdu" style="color:#fde047;">میرے سوا کسی اور پر توکل نہ کرنا</div>
-                <div class="gcal-modal-row">🔒 Private • Absolute Reliance</div>
+                <div class="gcal-modal-row urdu" style="color:#fde047;">التوكل على الله وحده</div>
+                <div class="gcal-modal-row">Use the means • Entrust the outcome to Allah</div>
                 <div class="gcal-modal-footer">
-                  <div class="gcal-mark-btn">Mark completed</div>
+                  <div class="gcal-mark-btn">Keep in view</div>
                 </div>
               </div>
             </div>
@@ -2081,9 +2365,9 @@
           <div class="np-page" id="np-page-1">
             <div class="np-royal-seal">مُحَمَّدٌ<br/>رَسُولُ اللَّهِ<br/>ﷺ</div>
             <div class="np-top-banner">
-              <span class="np-top-meta">PROPHETIC EDITION</span>
-              <span class="np-top-title">THE DAILY DROP</span>
-              <span class="np-top-meta">PAGE 01</span>
+              <span class="np-top-meta">HADITH • IBN ABBAS (RA)</span>
+              <span class="np-top-title">THE TRUST REPORT</span>
+              <span class="np-top-meta">TIRMIDHI 2516</span>
             </div>
             <div class="np-page-content">
               <div class="np-photo-box">
@@ -2092,12 +2376,12 @@
                 </div>
               </div>
               <div style="display:flex;flex-direction:column;gap:8px;">
-                <span class="np-red-tag">LIVE UPDATE</span>
-                <div class="np-big-head" id="np-type-1">HUZOOR ﷺ NE FARMAYA</div>
-                <div class="np-deck">Agar tamaam duniya ke insaan mil kar tumhein koi faida pohanchana chaahein—</div>
+                <span class="np-red-tag">A PROPHETIC TEACHING</span>
+                <div class="np-big-head" id="np-type-1">THE PROPHET ﷺ TAUGHT</div>
+                <div class="np-deck">If all creation gathered to benefit you—</div>
                 <div class="np-cols-2">
-                  <p>Even if all mankind gathered together to bring you a single benefit, they could never bring it unless Allah has written it for you.</p>
-                  <p>Every worldly cause stands powerless until the Creator grants permission for its effect to manifest.</p>
+                  <p>—you would receive only what Allah had already decreed for you.</p>
+                  <p>We take the available means, while knowing that their outcomes are not independent of Allah.</p>
                 </div>
               </div>
             </div>
@@ -2107,17 +2391,17 @@
           <div class="np-page" id="np-page-2">
             <div class="np-top-banner">
               <span class="np-top-meta">SPECIAL REPORT</span>
-              <span class="np-top-title">THE DAILY DROP</span>
+              <span class="np-top-title">THE TRUST REPORT</span>
               <span class="np-top-meta">PAGE 02</span>
             </div>
             <div class="np-page-content">
               <div style="display:flex;flex-direction:column;gap:8px;">
                 <span class="np-red-tag">MATCH REPORT</span>
                 <div class="np-big-head" id="np-type-2">NAHI POHANCHA SAKTE!</div>
-                <div class="np-deck">Agar Allah ka izn nahi hai — human power alone cannot alter destiny.</div>
+                <div class="np-deck">Benefit cannot reach you beyond what Allah has decreed.</div>
                 <div class="np-cols-2">
-                  <p>All material resources, alliances, and calculations are bound by the decree of the Almighty.</p>
-                  <p>Place your reliance exclusively upon the One who holds sovereignty over every atom.</p>
+                  <p>People and resources may help, but none controls the outcome independently.</p>
+                  <p>Take the means; place your trust in Allah.</p>
                 </div>
               </div>
               <div class="np-photo-box" style="background:#292524;">
@@ -2130,7 +2414,7 @@
           <div class="np-page" id="np-page-3">
             <div class="np-top-banner">
               <span class="np-top-meta">VERDICT ARCHIVE</span>
-              <span class="np-top-title">THE DAILY DROP</span>
+              <span class="np-top-title">THE TRUST REPORT</span>
               <span class="np-top-meta">PAGE 03</span>
             </div>
             <div class="np-page-content">
@@ -2140,8 +2424,8 @@
               <div style="display:flex;flex-direction:column;gap:8px;">
                 <span class="np-red-tag">ETERNAL LAW</span>
                 <div class="np-big-head" id="np-type-3">NA NUQSAAN, NA FAIDA.</div>
-                <div class="np-deck">Neither harm nor benefit can touch a believer outside His Will.</div>
-                <div class="np-red-quote">"No soul can harm or benefit you without Allah's permission."</div>
+                <div class="np-deck">The narration continues: harm, too, is bounded by Allah's decree.</div>
+                <div class="np-red-quote">They could harm you only with what Allah had already decreed for you.</div>
               </div>
             </div>
           </div>
@@ -2151,15 +2435,15 @@
             <div class="np-wax-seal">حَقّ</div>
             <div class="np-top-banner">
               <span class="np-top-meta">CONCLUSION</span>
-              <span class="np-top-title">THE DAILY DROP</span>
+              <span class="np-top-title">THE TRUST REPORT</span>
               <span class="np-top-meta">PAGE 04</span>
             </div>
             <div class="np-page-content">
               <div style="display:flex;flex-direction:column;gap:8px;">
                 <span class="np-red-tag">FINAL DECREE</span>
                 <div class="np-big-head">JAB TAK ALLAH KA IZN NA HO</div>
-                <div class="np-deck">Unshakeable certainty frees the heart from fear of creation.</div>
-                <div class="np-red-quote">"Wait solely for the permission of your Lord."</div>
+                <div class="np-deck">The teaching closes with trust in Allah's decree.</div>
+                <div class="np-red-quote">The pens are lifted; the pages are dry.</div>
               </div>
               <div class="np-photo-box" style="background:#18181b;">
                 <div style="color:#f8fafc;font-size:22px;font-weight:900;">تَوَكُّل</div>
@@ -2236,7 +2520,7 @@
               Jiske haath mein <span class="g-highlight-span" id="g-blue-sel">Ikhtiyar-e-Mutlaq hai</span>
             </div>
             <div style="font-size:16px;color:#bdc1c6;">
-              Yeh asbaab toh zaahiri hain — outward causes possess zero independent power.
+              Means can be used; their outcomes are not independent of Allah's will.
             </div>
           </div>
         </div>
@@ -2251,14 +2535,14 @@
         <div class="herald-sheet">
           <div class="herald-top">
             <span>VOL. CLXIII • NO. 56,312</span>
-            <span>WEDNESDAY, NOVEMBER 11, 2026</span>
-            <span>PRICE TWO PENCE</span>
+            <span>REFLECTION • TAWAKKUL</span>
+            <span>FIELD NOTES • 01</span>
           </div>
-          <div class="herald-masthead">THE DAILY HERALD</div>
+          <div class="herald-masthead">THE TRUST REPORT</div>
           <div class="herald-headline" id="herald-type"></div>
           <div class="herald-eye-photo">
             <div style="font-family:'Inter',sans-serif;font-weight:900;font-size:22px;color:#fff;background:rgba(0,0,0,0.65);padding:8px 18px;border-radius:4px;">
-              AGAR ALLAH CHAAHE TOH NIKLENGE, WARNA NAHI
+              USE THE MEANS. TRUST ALLAH WITH THE OUTCOME.
             </div>
           </div>
           <canvas id="fire-canvas" width="600" height="500"></canvas>
@@ -2311,8 +2595,8 @@
       <div id="celestial-outro" class="celestial-outro-overlay">
         <div class="celestial-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
         <div class="celestial-ayah-arabic urdu">حَسْبِيَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ ۖ عَلَيْهِ تَوَكَّلْتُ ۖ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ</div>
-        <div class="celestial-ayah-ref">Surah At-Tawbah • 9:129</div>
-        <div class="celestial-ayah-trans">"Sufficient for me is Allah; there is no deity except Him. In Him alone I have placed my trust, and He is the Lord of the Tremendous Throne."</div>
+        <div class="celestial-ayah-ref">At-Tawbah 9:129 • Saheeh International</div>
+        <div class="celestial-ayah-trans">"Sufficient for me is Allah; there is no deity except Him. On Him I have relied, and He is the Lord of the Great Throne."</div>
         <div class="celestial-seal-badge">
           <span>★</span>
           <span>RUQYAH.IO SCHOLASTIC ARCHIVE</span>
@@ -2321,9 +2605,10 @@
     </div>
 
     <!-- Bottom Subtitle Bar -->
-    <div id="subtitle-bar">
-      <div id="sub-urdu" class="urdu">میرے سوا کسی اور پر توکل نہ کرنا</div>
-      <div id="sub-eng">"Place your trust in none other than Me."</div>
+    <div id="subtitle-bar" role="region" aria-label="Urdu narration and English translation">
+      <span class="caption-kicker">Urdu narration • English translation</span>
+      <div id="sub-urdu" class="urdu" lang="ur">صرف اللہ ہی پر توکل رکھیں</div>
+      <div id="sub-eng">A reflection: trust Allah alone.</div>
     </div>
   </div>
 
@@ -2343,6 +2628,11 @@
     const controls = document.getElementById('controls');
     const stageWrapper = document.getElementById('stage-wrapper');
     const dropBanner = document.getElementById('drop-banner');
+    const subtitleBar = document.getElementById('subtitle-bar');
+    const captionsBtn = document.getElementById('captions-btn');
+    const openingTitle = document.getElementById('opening-title');
+    const stageAmbient = document.getElementById('stage-ambient');
+    const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
 
     const BASE_DURATION = 50.83;
     let TOTAL_DURATION = 50.83;
@@ -2353,6 +2643,7 @@
     let useSynthClock = false;
     let synthStart = 0;
     let lastTypedTick = 0;
+    let animationFrameId = null;
 
     /* ==========================================================
        1. INDEXED-DB PERSISTENT AUDIO STORAGE
@@ -2418,8 +2709,16 @@
       initWebAudio();
       audio.play().then(() => {
         useSynthClock = false;
-        isPlaying = true;
-        playBtn.textContent = '⏸ Pause';
+        setPlaybackState(true);
+        controls.classList.add('playing');
+        startAnimationLoop();
+      }).catch(() => {
+        useSynthClock = true;
+        synthStart = performance.now();
+        setPlaybackState(true);
+        audioStatus.textContent = 'Audio ready • tap Play if playback is blocked';
+        controls.classList.add('playing');
+        startAnimationLoop();
       });
     }
 
@@ -2436,6 +2735,12 @@
     });
 
     audioUpload.addEventListener('change', (e) => attachAudioFile(e.target.files[0]));
+    uploadLabel?.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        audioUpload.click();
+      }
+    });
 
     window.addEventListener('dragover', (e) => {
       e.preventDefault();
@@ -2532,21 +2837,21 @@
        3. TRUE REAL-TIME SUBTITLES (0.00s - 50.83s)
        ========================================================== */
     const subtitles = [
-      { start: 0.00, end: 3.35, urdu: "میرے سوا کسی اور پر توکل نہ کرنا", eng: "Place your trust in none other than Me." },
-      { start: 3.35, end: 6.80, urdu: "آج ہمارا توکل جو ہے وہ مادی اسباب و وسائل پر ہے", eng: "Today our reliance is placed upon material means and resources—" },
-      { start: 6.80, end: 8.45, urdu: "اللّٰہ کو بھول گئے!", eng: "—we have forgotten Allah!" },
-      { start: 8.45, end: 11.00, urdu: "اللّٰہ تعالیٰ مسبب الاسباب ہے", eng: "Allah the Almighty is the Causer of all causes." },
-      { start: 11.00, end: 16.60, urdu: "ہمارا جو ایمان ہے وہ تو یہ ہے کہ لا حول ولا قوۃ الا باللّٰہ", eng: "Our faith is: There is no power and no strength except through Allah." },
-      { start: 16.60, end: 20.95, urdu: "کوئی طاقت نہیں ہے نہ خیر کی نہ شر کی جب تک کہ اذنِ رب نہ ہو", eng: "There is no power for good or harm unless there is permission from the Lord." },
-      { start: 20.95, end: 23.45, urdu: "اللّٰہ نہ چاہے تو کچھ نہیں ہو سکتا", eng: "If Allah does not will it, nothing can happen." },
-      { start: 23.45, end: 28.45, urdu: "حضور ﷺ نے فرمایا: اگر تمام دنیا کے انسان مل کر تمہیں کوئی فائدہ پہنچانا چاہیں", eng: "The Prophet ﷺ said: If all mankind gathered together to bring you a benefit—" },
-      { start: 28.45, end: 31.35, urdu: "نہیں پہنچا سکتے! اگر اللّٰہ کا اذن نہیں ہے", eng: "—they could never bring it, if Allah has not permitted it." },
-      { start: 31.35, end: 34.85, urdu: "نہ نقصان نہ فائدہ — جب تک کہ اللّٰہ کا اذن نہ ہو", eng: "Neither harm nor benefit — until there is permission from Allah." },
-      { start: 34.85, end: 37.35, urdu: "گویا کہ مسبب الاسباب ہے اصل میں", eng: "Thus, He alone is truly the Causer of all causes." },
-      { start: 37.35, end: 39.60, urdu: "جس کے ہاتھ میں اختیارِ مطلق ہے", eng: "In whose hand rests Absolute Authority." },
-      { start: 39.60, end: 41.65, urdu: "یہ اسباب تو ظاہری ہیں", eng: "These worldly means are merely outward appearances." },
-      { start: 41.65, end: 46.25, urdu: "ان کے نتائج نکلتے ہیں اگر اللّٰہ چاہے تو نکلیں گے ورنہ نہیں", eng: "Their results manifest only if Allah wills them to; otherwise, never." },
-      { start: 46.25, end: 50.83, urdu: "حَسْبِيَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ ۖ عَلَيْهِ تَوَكَّلْتُ", eng: "Sufficient for me is Allah; in Him alone I place my trust." }
+      { start: 0.00, end: 3.35, urdu: "صرف اللہ ہی پر توکل رکھیں", eng: "A reflection: trust Allah alone." },
+      { start: 3.35, end: 6.80, urdu: "آج ہمارا توکل جو ہے وہ مادی اسباب و وسائل پر ہے", eng: "Today, we place our reliance on material means and resources—" },
+      { start: 6.80, end: 8.45, urdu: "اللّٰہ کو بھول گئے!", eng: "—and have forgotten Allah." },
+      { start: 8.45, end: 11.00, urdu: "اللّٰہ تعالیٰ مسبب الاسباب ہے", eng: "Allah is the One who brings every cause to fruition." },
+      { start: 11.00, end: 16.60, urdu: "ہمارا جو ایمان ہے وہ تو یہ ہے کہ لا حول ولا قوۃ الا باللّٰہ", eng: "Our faith is: there is no power or strength except through Allah." },
+      { start: 16.60, end: 20.95, urdu: "کوئی طاقت نہیں ہے نہ خیر کی نہ شر کی جب تک کہ اذنِ رب نہ ہو", eng: "No power for good or harm acts except by the Lord's permission." },
+      { start: 20.95, end: 23.45, urdu: "اللّٰہ نہ چاہے تو کچھ نہیں ہو سکتا", eng: "Nothing can happen unless Allah wills it." },
+      { start: 23.45, end: 28.45, urdu: "حضور ﷺ نے فرمایا: اگر تمام دنیا کے انسان مل کر تمہیں کوئی فائدہ پہنچانا چاہیں", eng: "The Prophet ﷺ taught: if all creation gathered to benefit you—" },
+      { start: 28.45, end: 31.35, urdu: "نہیں پہنچا سکتے! اگر اللّٰہ کا اذن نہیں ہے", eng: "—you would receive only what Allah had already decreed for you." },
+      { start: 31.35, end: 34.85, urdu: "نہ نقصان نہ فائدہ — جب تک کہ اللّٰہ کا اذن نہ ہو", eng: "And they could harm you only with what Allah had decreed for you." },
+      { start: 34.85, end: 37.35, urdu: "گویا کہ مسبب الاسباب ہے اصل میں", eng: "Allah alone is the true Originator of all causes." },
+      { start: 37.35, end: 39.60, urdu: "جس کے ہاتھ میں اختیارِ مطلق ہے", eng: "All sovereignty belongs to Allah." },
+      { start: 39.60, end: 41.65, urdu: "یہ اسباب تو ظاہری ہیں", eng: "These means are real; their outcomes are not independent of Allah." },
+      { start: 41.65, end: 46.25, urdu: "ان کے نتائج نکلتے ہیں اگر اللّٰہ چاہے تو نکلیں گے ورنہ نہیں", eng: "Outcomes unfold only when Allah wills; otherwise, they do not." },
+      { start: 46.25, end: 50.83, urdu: "حَسْبِيَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ ۖ عَلَيْهِ تَوَكَّلْتُ", eng: "Sufficient for me is Allah; there is no deity except Him. On Him I have relied, and He is the Lord of the Great Throne." }
     ];
 
     function clamp(v, min = 0, max = 1) {
@@ -2641,12 +2946,61 @@
       if (idx !== lastSceneIdx) {
         if (lastSceneIdx !== -1) playWhoosh();
         lastSceneIdx = idx;
+        setSceneMood(idx);
       }
       scenes.forEach((s, i) => s.classList.toggle('active', i === idx));
     }
 
     const CUTS = [3.35, 8.45, 16.60, 23.45, 34.85, 37.35, 41.65, 46.25];
+    const sceneAccents = [
+      '218, 184, 106', '91, 190, 177', '75, 183, 128',
+      '220, 122, 157', '211, 172, 112', '151, 182, 133',
+      '155, 140, 235', '231, 139, 74', '106, 199, 173'
+    ];
+    const progressSegments = scenes.map(() => {
+      const segment = document.createElement('span');
+      segment.className = 'scene-progress-segment';
+      document.getElementById('scene-progress')?.appendChild(segment);
+      return segment;
+    });
+
+    function setSceneMood(idx) {
+      const accent = sceneAccents[idx] || sceneAccents[0];
+      stageWrapper.style.setProperty('--scene-accent', accent);
+      if (stageAmbient) {
+        stageAmbient.style.background = `radial-gradient(circle at center, rgba(${accent}, 0.34), transparent 70%)`;
+      }
+    }
+
+    function updateSceneProgress(t) {
+      let sceneIdx = CUTS.findIndex((cut) => t < cut);
+      if (sceneIdx < 0) sceneIdx = scenes.length - 1;
+      const start = sceneIdx === 0 ? 0 : CUTS[sceneIdx - 1];
+      const end = sceneIdx < CUTS.length ? CUTS[sceneIdx] : BASE_DURATION;
+      const progress = clamp((t - start) / (end - start)) * 100;
+      progressSegments.forEach((segment, idx) => {
+        const value = idx < sceneIdx ? 100 : idx === sceneIdx ? progress : 0;
+        segment.style.setProperty('--segment-progress', `${value}%`);
+      });
+    }
+
+    function updateOpeningTitle(t) {
+      if (!openingTitle) return;
+      const fadeIn = clamp((t + 0.2) / 0.4);
+      const fadeOut = clamp((2.5 - t) / 0.8);
+      const opacity = Math.min(fadeIn, fadeOut);
+      openingTitle.style.opacity = String(opacity);
+      openingTitle.style.transform = `translate(-50%, ${((1 - opacity) * 12).toFixed(1)}px) scale(${(0.97 + opacity * 0.03).toFixed(3)})`;
+    }
+
     function applyTransition(t) {
+      if (prefersReducedMotion) {
+        scenes.forEach((scene) => {
+          scene.style.filter = '';
+          scene.style.opacity = '';
+        });
+        return;
+      }
       const d = Math.min(...CUTS.map(c => Math.abs(t - c)));
       const k = clamp(1 - d / 0.26);
       scenes.forEach((sc, i) => {
@@ -2674,12 +3028,15 @@
       timeDisplay.textContent = `${formatTime(realT)} / ${formatTime(TOTAL_DURATION)}`;
 
       const t = realT * (BASE_DURATION / TOTAL_DURATION);
+      updateSceneProgress(t);
+      updateOpeningTitle(t);
 
       const sub = subtitles.find(s => t >= s.start && t <= s.end) || subtitles[subtitles.length - 1];
       document.getElementById('sub-urdu').textContent = sub.urdu;
-      document.getElementById('sub-eng').textContent = `"${sub.eng}"`;
+      document.getElementById('sub-eng').textContent = sub.eng;
 
-      const voiceBoost = getAudioEnergy() * 0.04;
+      const voiceBoost = prefersReducedMotion ? 0 : getAudioEnergy() * 0.04;
+      stageWrapper.style.setProperty('--bloom-strength', (prefersReducedMotion ? 0.14 : 0.18 + voiceBoost * 2).toFixed(2));
 
       // Ensure celestial outro is hidden unless in Scene 9 outro
       const celestialOutro = document.getElementById('celestial-outro');
@@ -2688,13 +3045,13 @@
         celestialOutro.style.pointerEvents = 'none';
       }
 
-      // SCENE 1: 0.00 - 3.35s ("Mere siwa kisi aur par tawakkul na karna")
+      // SCENE 1: 0.00 - 3.35s (opening reflection on trusting Allah alone)
       if (t < 3.35) {
         activateScene(0);
         const p = clamp(t / 3.35);
         const rig = document.getElementById('rig-1');
 
-        const txt = "Mere siwa kisi aur par tawakkul na karna";
+        const txt = "Trust Allah alone";
         document.getElementById('cal-txt-1').innerHTML =
           typeText(txt, t / 1.90) + '<span class="caret"></span>';
 
@@ -2722,7 +3079,7 @@
         activateScene(1);
         const rig = document.getElementById('rig-2');
 
-        const sTxt = "Aaj hamara tawakkul: maaddi asbaab-o-wasaail par hai";
+        const sTxt = "Today our reliance rests on material means and resources";
         document.getElementById('earth-type').innerHTML =
           typeText(sTxt, (t - 3.35) / 2.85) + '<span class="caret"></span>';
 
@@ -2755,17 +3112,17 @@
 
         fillSpotifyLine(
           document.getElementById('sp-1'),
-          "Allah Ta'ala Musabbib-ul-Asbaab hai",
+          "Allah is the One who brings every cause to fruition",
           (t - 8.50) / 2.45
         );
         fillSpotifyLine(
           document.getElementById('sp-2'),
-          "Hamara jo imaan hai woh toh yeh hai ke:",
+          "Our faith: no power or strength except through Allah",
           (t - 11.05) / 2.10
         );
         fillSpotifyLine(
           document.getElementById('sp-3'),
-          "La hawla wala quwwata illa billah",
+          "La hawla wa la quwwata illa billah",
           (t - 13.15) / 3.00
         );
         fillSpotifyLine(
@@ -2800,7 +3157,7 @@
         const rig = document.getElementById('rig-5');
 
         document.getElementById('np-type-1').innerHTML =
-          typeText("HUZOOR ﷺ NE FARMAYA", (t - 23.45) / 1.40) + '<span class="caret"></span>';
+          typeText("THE PROPHET ﷺ TAUGHT", (t - 23.45) / 1.40) + '<span class="caret"></span>';
         document.getElementById('np-type-2').innerHTML =
           typeText("NAHI POHANCHA SAKTE!", (t - 28.45) / 1.35);
         document.getElementById('np-type-3').innerHTML =
@@ -2875,19 +3232,20 @@
         }
       }
 
-      // SCENE 8: 41.65 - 46.25s ("Inke nataaij nikalte hain, agar Allah chaahe toh niklenge, warna nahi")
+      // SCENE 8: 41.65 - 46.25s (use means and entrust outcomes to Allah)
       else if (t < 46.25) {
         activateScene(7);
         const p = clamp((t - 41.65) / 4.60);
         const rig = document.getElementById('rig-8');
         rig.style.transform = `scale(${1.02 + p * 0.16 + voiceBoost}) rotateZ(${-2 + p * 4}deg) rotateX(8deg)`;
 
-        const hText = "INKE NATAAIJ NIKALTE HAIN — AGAR ALLAH CHAAHE TOH NIKLENGE!";
+        const hText = "USE THE MEANS. TRUST ALLAH WITH THE OUTCOME.";
         document.getElementById('herald-type').innerHTML =
           typeText(hText, (t - 41.65) / 2.40) + '<span class="caret"></span>';
 
         const burnProg = clamp((t - 43.15) / 3.05);
-        renderFireBurn(burnProg);
+        if (prefersReducedMotion) fCtx.clearRect(0, 0, fireCanvas.width, fireCanvas.height);
+        else renderFireBurn(burnProg);
       }
 
       // SCENE 9: 46.25 - 50.83s (Ambient Vocal Outro — Google Maps Navigation & 3D Road Text)
@@ -2897,7 +3255,7 @@
         const rig = document.getElementById('rig-9');
 
         document.getElementById('gmap-type').innerHTML =
-          typeText("Nobody but Allah suffices me — HasbiyAllah", p / 0.42) + '<span class="caret"></span>';
+          typeText("Allah is sufficient for me — HasbiyAllah", p / 0.42) + '<span class="caret"></span>';
 
         rig.style.transform = `scale(${1.22 - p * 0.16}) rotateX(28deg) rotateZ(${-14 + p * 24}deg)`;
 
@@ -2929,7 +3287,9 @@
     }
 
     function animate() {
-      jitterGrain();
+      animationFrameId = null;
+      if (!isPlaying) return;
+      if (!prefersReducedMotion) jitterGrain();
       if (isPlaying) {
         if (!useSynthClock && !audio.paused) {
           currentTime = audio.currentTime;
@@ -2948,7 +3308,24 @@
         }
         renderFrame(currentTime);
       }
-      requestAnimationFrame(animate);
+      if (isPlaying) animationFrameId = requestAnimationFrame(animate);
+    }
+
+    function startAnimationLoop() {
+      if (animationFrameId === null) animationFrameId = requestAnimationFrame(animate);
+    }
+
+    function stopAnimationLoop() {
+      if (animationFrameId !== null) cancelAnimationFrame(animationFrameId);
+      animationFrameId = null;
+    }
+
+    function setPlaybackState(active) {
+      isPlaying = active;
+      document.body.classList.toggle('is-playing', active);
+      playBtn.setAttribute('aria-pressed', String(active));
+      playBtn.setAttribute('aria-label', active ? 'Pause reflection' : 'Play reflection');
+      playBtn.textContent = active ? 'Pause' : 'Play';
     }
 
     playBtn.addEventListener('click', () => {
@@ -2956,22 +3333,22 @@
       if (!isPlaying) {
         audio.play().then(() => {
           useSynthClock = false;
-          isPlaying = true;
-          playBtn.textContent = '⏸ Pause';
+          setPlaybackState(true);
           audioStatus.textContent = 'Playing MP3 + Foley';
           controls.classList.add('playing');
+          startAnimationLoop();
         }).catch(() => {
           useSynthClock = true;
           synthStart = performance.now() - currentTime * 1000;
-          isPlaying = true;
-          playBtn.textContent = '⏸ Pause';
+          setPlaybackState(true);
           audioStatus.textContent = 'Playing Foley Synth (Drop MP3)';
           controls.classList.add('playing');
+          startAnimationLoop();
         });
       } else {
-        isPlaying = false;
+        setPlaybackState(false);
         audio.pause();
-        playBtn.textContent = '▶ Play Video';
+        stopAnimationLoop();
         controls.classList.remove('playing');
       }
     });
@@ -2983,6 +3360,14 @@
       audio.muted = !audio.muted;
       muteBtn.textContent = audio.muted ? '🔇' : '🔊';
       muteBtn.setAttribute('aria-label', audio.muted ? 'Unmute audio' : 'Mute audio');
+    });
+
+    captionsBtn?.addEventListener('click', () => {
+      const visible = subtitleBar.classList.contains('captions-hidden');
+      subtitleBar.classList.toggle('captions-hidden', !visible);
+      captionsBtn.setAttribute('aria-pressed', String(visible));
+      captionsBtn.setAttribute('aria-label', visible ? 'Hide captions' : 'Show captions');
+      captionsBtn.textContent = visible ? 'CC On' : 'CC Off';
     });
 
     fullscreenBtn?.addEventListener('click', () => {
@@ -3009,7 +3394,9 @@
       { cls: 'ratio-9-16', label: '9:16 Vertical' },
       { cls: 'ratio-16-9', label: '16:9 Wide' }
     ];
-    let rIdx = 0;
+    let rIdx = window.matchMedia('(max-width: 768px) and (orientation: portrait)').matches ? 1 : 2;
+    stageWrapper.className = ratios[rIdx].cls;
+    ratioBtn.textContent = ratios[rIdx].label;
     ratioBtn.addEventListener('click', () => {
       rIdx = (rIdx + 1) % ratios.length;
       stageWrapper.className = ratios[rIdx].cls;
@@ -3032,6 +3419,8 @@
         muteBtn?.click();
       } else if (e.key.toLowerCase() === 'f') {
         fullscreenBtn?.click();
+      } else if (e.key.toLowerCase() === 'c') {
+        captionsBtn?.click();
       } else if (e.code === 'Space') {
         e.preventDefault();
         playBtn.click();
@@ -3052,7 +3441,6 @@
     }
 
     renderFrame(0);
-    requestAnimationFrame(animate);
   </script>
   <script src="tawakkul-upgrade.js"></script>
 </body>

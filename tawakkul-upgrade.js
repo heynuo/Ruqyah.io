@@ -76,8 +76,9 @@
     width: 0;
   }
   #subtitle-bar {
-    border-color: rgba(253,224,71,.35) !important;
+    border-color: rgba(var(--scene-accent),.38) !important;
   }
+  #subtitle-bar.captions-hidden { opacity: 0 !important; }
   #subtitle-bar.pop {
     animation: subpop .38s cubic-bezier(.2,.9,.25,1.2);
   }
@@ -179,24 +180,33 @@
     const e = typeof getAudioEnergy === 'function' ? getAudioEnergy() : 0;
     const T = TOTAL_DURATION || 50.83;
     const t = currentTime || 0;
+    const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
 
     // Handheld camera subtle natural drift on the active scene
     const sc = document.querySelector('.scene.active');
-    if (sc) {
+    if (sc && !reduceMotion && isPlaying) {
       const shakeX = Math.sin(n * .0013) * 2.2 + e * 4.5 * Math.sin(n * .05);
       const shakeY = Math.cos(n * .0011) * 1.8;
       const shakeRot = Math.sin(n * .0009) * .22;
       sc.style.transform = `translate(${shakeX.toFixed(2)}px, ${shakeY.toFixed(2)}px) rotate(${shakeRot.toFixed(3)}deg)`;
+    } else if (sc) {
+      sc.style.transform = '';
     }
 
-    drawDust(e, n);
-    bloom.style.opacity = (.28 + e * .85).toFixed(2);
+    if (reduceMotion) {
+      dctx.clearRect(0, 0, dust.width, dust.height);
+      bloom.style.opacity = '.16';
+      leak.style.opacity = '0';
+    } else {
+      drawDust(e, n);
+      bloom.style.opacity = (.2 + e * .55).toFixed(2);
+    }
 
     // Light leak on scene transitions
     const tt = t * (BASE_DURATION / T);
     const d = Math.min(...CUT.map(c => Math.abs(tt - c)));
-    leak.style.opacity = (cl(1 - d / .22) * .75).toFixed(2);
-    leak.style.backgroundPosition = `${(n * .05) % 200}% 0`;
+    leak.style.opacity = reduceMotion ? '0' : (cl(1 - d / .22) * .48).toFixed(2);
+    if (!reduceMotion) leak.style.backgroundPosition = `${(n * .05) % 200}% 0`;
 
     // Ambient Ambilight Backlight
     const ambientEl = document.getElementById('stage-ambient');
@@ -213,7 +223,7 @@
       else ambBg = tt >= 48.0 ? 'radial-gradient(circle at center, rgba(234, 179, 8, 0.8), rgba(245, 158, 11, 0.45) 50%, transparent 70%)' : 'radial-gradient(circle at center, rgba(37, 99, 235, 0.52), transparent 70%)';
 
       ambientEl.style.background = ambBg;
-      ambientEl.style.transform = `scale(${(1 + e * 0.28).toFixed(3)})`;
+      ambientEl.style.transform = `scale(${(reduceMotion ? 1 : 1 + e * 0.2).toFixed(3)})`;
     }
 
     // Controls Equalizer visualizer
@@ -254,31 +264,36 @@
     if (finished) return;
     finished = true;
     isPlaying = false;
+    document.body.classList.remove('is-playing');
+    playBtn.setAttribute('aria-pressed', 'false');
+    playBtn.setAttribute('aria-label', 'Replay reflection');
+    if (animationFrameId !== null) cancelAnimationFrame(animationFrameId);
+    animationFrameId = null;
     try { audio.pause(); } catch (_) {}
     currentTime = TOTAL_DURATION - 0.05;
     renderFrame(currentTime);
     fade.style.opacity = '1';
-    playBtn.textContent = '↻ Replay';
+    playBtn.textContent = 'Replay';
     audioStatus.textContent = 'Completed (Replay)';
     const controlsEl = document.getElementById('controls');
     if (controlsEl) controlsEl.classList.remove('playing');
   }
 
   animate = function () {
-    jitterGrain();
-    if (isPlaying) {
-      hasStarted = true;
-      if (!useSynthClock && !audio.paused) currentTime = audio.currentTime;
-      else if (useSynthClock) currentTime = (performance.now() - synthStart) / 1000;
+    animationFrameId = null;
+    if (!isPlaying) return;
+    if (!(window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false)) jitterGrain();
+    hasStarted = true;
+    if (!useSynthClock && !audio.paused) currentTime = audio.currentTime;
+    else if (useSynthClock) currentTime = (performance.now() - synthStart) / 1000;
 
-      if (currentTime >= TOTAL_DURATION - 0.04 || (!useSynthClock && audio.ended)) {
-        finishVideo();
-      } else {
-        renderFrame(currentTime);
-      }
+    if (currentTime >= TOTAL_DURATION - 0.04 || (!useSynthClock && audio.ended)) {
+      finishVideo();
+    } else {
+      renderFrame(currentTime);
+      fx();
     }
-    fx();
-    requestAnimationFrame(animate);
+    if (isPlaying) animationFrameId = requestAnimationFrame(animate);
   };
 
   audio.addEventListener('ended', finishVideo);
@@ -305,4 +320,6 @@
       audio.src = 'audio_6af41204e4ea39_02321364.mp3';
     }
   });
+
+  fx();
 })();
