@@ -106,6 +106,14 @@ try {
         $offset = if ($hasBom) { 3 } else { 0 }
         $content = [System.Text.Encoding]::UTF8.GetString($bytes, $offset, $bytes.Length - $offset)
         $pageKey = [System.IO.Path]::GetFileNameWithoutExtension($file.Name)
+
+        # Standalone media pages or pages using the dynamic shared layout
+        $standalonePages = @('Allah.html', 'HadithQudsi.html', 'Tawakkul.html', 'reference-preview.html')
+        if ($file.Name -in $standalonePages -or $content -match 'src="js/shared-layout\.js"') {
+            $unchangedCount++
+            continue
+        }
+
         $pageHeader = Set-PageActiveLink -Template $headerTemplate -PageKey $pageKey
         $pageFooter = Set-PageActiveLink -Template $footerTemplate -PageKey $pageKey
 

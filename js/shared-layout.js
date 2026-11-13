@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Ruqyah Shared Layout Components
  * Source: Stitch Project #13051442395705679722
  * 
@@ -9,7 +9,7 @@
 (function () {
   'use strict';
 
-  // â”€â”€ Detect Active Page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Detect Active Page ──────────────────────────────────────────────────
   const currentPath = window.location.pathname.split('/').pop() || 'index.html';
   const pageMap = {
     'index.html': 'home',
@@ -24,7 +24,7 @@
   };
   const activePage = pageMap[currentPath] || '';
 
-  // â”€â”€ Build Navigation Links â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Build Navigation Links ──────────────────────────────────────────────
   function navLink(path, label, href, isMobile) {
     const isActive = activePage === path;
     const baseClass = isMobile
@@ -50,7 +50,7 @@
     { path: 'contact', label: 'Contact', href: 'contact.html' }
   ];
 
-  // â”€â”€ Header HTML â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Header HTML ─────────────────────────────────────────────────────────
   function buildHeader() {
     const desktopNav = navItems.map(n => navLink(n.path, n.label, n.href, false)).join('\n');
     const mobileNav = navItems.map(n => navLink(n.path, n.label, n.href, true)).join('\n');
@@ -72,7 +72,7 @@
       <button id="navSearchBtn" aria-label="Search documentation and scripture (Ctrl+K)" class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-border-subtle bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container text-xs font-code-mono transition-all focus:outline-none focus:ring-1 focus:ring-primary shadow-xs cursor-pointer" type="button">
         <span class="material-symbols-outlined text-[16px] text-primary">search</span>
         <span class="hidden sm:inline font-ui-interactive text-[12px]">Search</span>
-        <kbd class="hidden md:inline-flex items-center px-1 py-0.2 text-[10px] font-code-mono bg-surface rounded text-on-surface-variant border border-border-subtle">âŒ˜K</kbd>
+        <kbd class="hidden md:inline-flex items-center px-1 py-0.2 text-[10px] font-code-mono bg-surface rounded text-on-surface-variant border border-border-subtle">Ctrl+K</kbd>
       </button>
 
       <!-- Theme Switcher -->
@@ -111,7 +111,7 @@
 </header>`;
   }
 
-  // â”€â”€ Footer HTML â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Footer HTML ─────────────────────────────────────────────────────────
   function buildFooter() {
     return `<footer id="heynuo-footer">
   <div class="footer-main"><div class="footer-content">
@@ -122,7 +122,7 @@
       <section class="footer-column footer-contact"><h2>CONTACT</h2><a href="mailto:zahiruddin44044@gmail.com">zahiruddin44044@gmail.com</a><p>Ruqyah Scholastic Archive</p><p>Independent study &amp; engineering</p></section>
     </nav>
     <aside class="footer-aside">
-      <section class="footer-feed"><h2>Follow the archive</h2><p>New posts are available through RSS. Follow in any feed readerâ€”no email signup or account required.</p><a class="footer-feed-link" href="rss.xml"><span class="material-symbols-outlined" aria-hidden="true">rss_feed</span><span>Follow via RSS</span><span aria-hidden="true">â†’</span></a></section>
+      <section class="footer-feed"><h2>Follow the archive</h2><p>New posts are available through RSS. Follow in any feed reader—no email signup or account required.</p><a class="footer-feed-link" href="rss.xml"><span class="material-symbols-outlined" aria-hidden="true">rss_feed</span><span>Follow via RSS</span><span aria-hidden="true">→</span></a></section>
       <section class="footer-social"><h2>Follow &amp; connect</h2><div class="footer-social-links"><a href="https://github.com/heynuo/Ruqyah.io" target="_blank" rel="noopener noreferrer">GitHub</a><a href="rss.xml">RSS</a><a href="mailto:zahiruddin44044@gmail.com">Email</a></div></section>
       <section class="footer-topics"><h2>Explore topics</h2><div class="footer-topic-list"><a href="index.html#systems-section">Systems</a><a href="index.html#quran-section">Qur'an</a><a href="quran.html">Reader</a><a href="quran-verses.html">Verses</a></div></section>
     </aside>
@@ -131,7 +131,7 @@
 </footer>`;
   }
 
-  // â”€â”€ Theme Switching Logic â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Theme Switching Logic ───────────────────────────────────────────────
   function getCurrentTheme() {
     return document.documentElement.getAttribute('data-theme') || 'light';
   }
@@ -169,7 +169,7 @@
     });
   }
 
-  // â”€â”€ Inject Components â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Inject Components ───────────────────────────────────────────────────
   function injectLayout() {
     // Remove any existing header/footer injected by page-specific code
     var existingHeader = document.getElementById('heynuo-header');
@@ -204,7 +204,7 @@
       }
     }
 
-    // â”€â”€ Wire up Theme Buttons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Wire up Theme Buttons ───────────────────────────────────────────────
     document.querySelectorAll('.heynuo-theme-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
         setTheme(btn.getAttribute('data-theme-value'));
@@ -215,7 +215,7 @@
     var footerYear = document.querySelector('[data-footer-year]');
     if (footerYear) footerYear.textContent = String(new Date().getFullYear());
 
-    // â”€â”€ Wire up Mobile Menu â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Wire up Mobile Menu ─────────────────────────────────────────────────
     var menuBtn = document.getElementById('heynuo-mobile-menu-btn');
     var mobileNav = document.getElementById('heynuo-mobile-nav');
     if (menuBtn && mobileNav) {
@@ -254,11 +254,13 @@
 
       var mobileSearchBtn = document.getElementById('mobileNavSearchBtn');
       if (mobileSearchBtn) {
-        mobileSearchBtn.addEventListener('click', function () { setMobileNavOpen(false); });
+        mobileSearchBtn.addEventListener('click', function () {
+          setMobileNavOpen(false);
+          var navSearch = document.getElementById('navSearchBtn');
+          if (navSearch) navSearch.click();
+        });
       }
     }
-
-    // â”€â”€ Wire up Command Palette Search Triggers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   }
 
   // Expose setTheme globally
@@ -266,7 +268,7 @@
   // Expose updateThemeButtons so script.js can sync button states without re-applying theme
   window.__heynuoUpdateThemeBtns = updateThemeButtons;
 
-  // â”€â”€ Execute â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Execute ─────────────────────────────────────────────────────────────
   var layoutInjected = false;
   function safeInjectLayout() {
     if (layoutInjected) return;
@@ -281,4 +283,3 @@
     document.addEventListener('DOMContentLoaded', safeInjectLayout);
   }
 })();
-

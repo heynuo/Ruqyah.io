@@ -24,6 +24,7 @@
     volumeFill: document.getElementById('volume-bar'),
     status: document.getElementById('player-status'),
     minimize: document.getElementById('minimize-player-btn'),
+    minimizeMobile: document.getElementById('minimize-player-btn-mobile'),
     restore: document.getElementById('restore-audio-player-btn'),
     minimizeIcon: document.getElementById('minimize-icon'),
   };
@@ -214,6 +215,11 @@
       controls.minimize.setAttribute('aria-label', minimized ? 'Restore audio player' : 'Minimize audio player');
       controls.minimize.title = controls.minimize.getAttribute('aria-label');
     }
+    if (controls.minimizeMobile) {
+      controls.minimizeMobile.setAttribute('aria-expanded', String(!minimized));
+      controls.minimizeMobile.setAttribute('aria-label', minimized ? 'Restore audio player' : 'Minimize audio player');
+      controls.minimizeMobile.title = controls.minimizeMobile.getAttribute('aria-label');
+    }
     if (controls.minimizeIcon) {
       controls.minimizeIcon.innerHTML = minimized
         ? '<polyline points="6 9 12 15 18 9"></polyline>'
@@ -267,6 +273,7 @@
   document.getElementById('audio-mute-btn')?.addEventListener('click', toggleMute);
   document.getElementById('speed-toggle-btn')?.addEventListener('click', cycleSpeed);
   controls.minimize?.addEventListener('click', toggleMinimize);
+  controls.minimizeMobile?.addEventListener('click', toggleMinimize);
   controls.restore?.addEventListener('click', () => setMinimized(false));
 
   controls.seek?.addEventListener('pointerdown', event => {

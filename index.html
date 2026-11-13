@@ -307,21 +307,21 @@
 
             <!-- Primary CTAs -->
             <div class="flex flex-wrap items-center gap-3 mb-6 w-full sm:w-auto">
-              <a class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded bg-primary text-on-primary font-ui-interactive text-sm font-semibold hover:bg-primary-container transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              <a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded bg-primary text-on-primary font-ui-interactive text-sm font-semibold hover:bg-primary-container transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                 href="quran-verses.html">
                 <svg class="w-4 h-4 stroke-current" fill="none" stroke-width="1.8" viewBox="0 0 24 24">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                 </svg>
                 <span>Ruqyah &amp; 108 Master Verses</span>
               </a>
-              <a class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded border border-border-strong/40 bg-surface text-on-surface font-ui-interactive text-sm font-semibold hover:bg-surface-container-low transition-all shadow-xs focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              <a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded border border-border-strong/40 bg-surface text-on-surface font-ui-interactive text-sm font-semibold hover:bg-surface-container-low transition-all shadow-xs focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                 href="quran.html">
                 <svg class="w-4 h-4 stroke-current text-primary" fill="none" stroke-width="1.8" viewBox="0 0 24 24">
                   <polygon points="5 3 19 12 5 21 5 3"></polygon>
                 </svg>
                 <span>114 Surahs Recitation</span>
               </a>
-              <a class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded border border-border-subtle bg-surface text-on-surface-variant hover:text-primary hover:bg-surface-container-low font-ui-interactive text-sm font-semibold transition-all shadow-xs"
+              <a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-3 rounded border border-border-subtle bg-surface text-on-surface-variant hover:text-primary hover:bg-surface-container-low font-ui-interactive text-sm font-semibold transition-all shadow-xs"
                 href="about.html#evidence-background">
                 <span>Engineering Lab &rarr;</span>
               </a>
@@ -1700,7 +1700,7 @@
           </div>
         </div>
 
-        <!-- Quick Repeat Button -->
+        <!-- Quick Actions (Repeat & Mobile Minimize) -->
         <div class="flex items-center gap-1">
           <button id="player-repeat-btn" aria-label="Repeat current verse" aria-pressed="false"
             class="w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
@@ -1710,6 +1710,13 @@
               <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
               <polyline points="7 23 3 19 7 15"></polyline>
               <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+            </svg>
+          </button>
+          <button id="minimize-player-btn-mobile" aria-label="Minimize Player" aria-expanded="true"
+            class="lg:hidden w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
+            title="Minimize Player" type="button">
+            <svg class="w-4 h-4 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24">
+              <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
           </button>
         </div>
@@ -2015,6 +2022,7 @@
       const volumeBar = document.getElementById('volume-bar');
       const volumeTrack = document.getElementById('volume-track');
       const minimizePlayerBtn = document.getElementById('minimize-player-btn');
+      const minimizePlayerBtnMobile = document.getElementById('minimize-player-btn-mobile');
       const restorePlayerBtn = document.getElementById('restore-audio-player-btn');
       const minimizeIcon = document.getElementById('minimize-icon');
       const audioPlayerBar = document.getElementById('audio-player-bar');
@@ -2298,6 +2306,10 @@
           minimizePlayerBtn.setAttribute('aria-label', isMin ? 'Minimize Player' : 'Expand Player');
           minimizePlayerBtn.setAttribute('aria-expanded', String(!isMin));
         }
+        if (minimizePlayerBtnMobile) {
+          minimizePlayerBtnMobile.setAttribute('aria-label', isMin ? 'Minimize Player' : 'Expand Player');
+          minimizePlayerBtnMobile.setAttribute('aria-expanded', String(!isMin));
+        }
         if (minimizeIcon) {
           minimizeIcon.innerHTML = isMin
             ? '<polyline points="6 9 12 15 18 9"></polyline>'
@@ -2305,6 +2317,7 @@
         }
       }
       minimizePlayerBtn?.addEventListener('click', toggleMinimize);
+      minimizePlayerBtnMobile?.addEventListener('click', toggleMinimize);
       restorePlayerBtn?.addEventListener('click', toggleMinimize);
 
       // Auto-Next Toggle

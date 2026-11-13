@@ -308,20 +308,54 @@
   .controls {
     position: absolute; bottom: 30px; right: 44px; z-index: 50;
     display: flex; align-items: center; gap: 10px;
-    opacity: 0.38; transition: opacity 0.25s ease;
+    opacity: 0.85; transition: opacity 0.25s ease, transform 0.25s ease;
+    transform-origin: bottom right;
+    transform: scale(calc(max(1, min(2.8, 1 / var(--stage-scale, 1)))));
   }
   #stage:hover .controls,
-  .controls.needs-gesture { opacity: 0.95; }
+  .controls.needs-gesture { opacity: 0.98; }
   .ctrl-btn {
-    background: rgba(15, 22, 20, 0.68); color: #cfd6d2;
-    border: 1px solid rgba(200, 210, 205, 0.24);
-    padding: 7px 16px; border-radius: 999px;
+    background: rgba(15, 22, 20, 0.78); color: #cfd6d2;
+    border: 1px solid rgba(200, 210, 205, 0.35);
+    padding: 8px 18px; border-radius: 999px;
     font-size: 11px; font-weight: 500; letter-spacing: 1.8px;
     cursor: pointer; font-family: 'Poppins', sans-serif;
     transition: color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
   .ctrl-btn:hover { color: #ffd97e; border-color: rgba(255, 215, 120, 0.55); }
   .ctrl-btn.pulse { color: #ffd97e; border-color: rgba(255, 215, 120, 0.65); box-shadow: 0 0 16px rgba(255, 210, 110, 0.25); }
+
+  .back-to-archive {
+    position: fixed;
+    top: calc(clamp(12px, 2.5vh, 22px) + env(safe-area-inset-top, 0px));
+    left: calc(clamp(12px, 2.5vw, 22px) + env(safe-area-inset-left, 0px));
+    z-index: 120;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #ffd97e;
+    background: rgba(5, 15, 12, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 215, 120, 0.35);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .back-to-archive:hover {
+    background: rgba(28, 96, 88, 0.85);
+    color: #fff;
+    border-color: rgba(255, 215, 120, 0.7);
+    transform: translateY(-1px);
+  }
+  body.is-embedded .back-to-archive { display: none !important; }
 
   /* drop highlight */
   #stage.drop-active::after {
@@ -335,6 +369,9 @@
 </style>
 </head>
 <body>
+<a href="index.html" class="back-to-archive" id="backToArchiveBtn" title="Back to Ruqyah Archive" aria-label="Back to Ruqyah Archive">
+  &#8592; Archive
+</a>
 <div id="stage">
 <div id="cam">
   <video id="mediaTrack" playsinline preload="metadata" muted style="display:none">
@@ -1666,6 +1703,12 @@
   function fitStage() {
     const scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
     stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
+    document.documentElement.style.setProperty('--stage-scale', String(scale));
+  }
+  try {
+    if (window.self !== window.top) document.body.classList.add('is-embedded');
+  } catch (_) {
+    document.body.classList.add('is-embedded');
   }
   window.addEventListener('resize', fitStage);
   fitStage();

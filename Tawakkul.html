@@ -127,6 +127,112 @@
       white-space: nowrap;
     }
 
+    .back-to-archive {
+      position: fixed;
+      top: calc(clamp(10px, 2.5vh, 20px) + env(safe-area-inset-top, 0px));
+      left: calc(clamp(10px, 2.5vw, 20px) + env(safe-area-inset-left, 0px));
+      z-index: 10001;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: #93c5fd;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(147, 197, 253, 0.3);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .back-to-archive:hover {
+      background: #1e3a8a;
+      color: #fff;
+      border-color: rgba(147, 197, 253, 0.7);
+      transform: translateY(-1px);
+    }
+
+    body.is-embedded .back-to-archive {
+      display: none !important;
+    }
+
+    @media (max-width: 768px) {
+      #controls {
+        top: 8px;
+        width: calc(100vw - 16px);
+        max-width: 480px;
+        padding: 8px 10px;
+        gap: 6px;
+        flex-wrap: wrap;
+        justify-content: center;
+        border-radius: 16px;
+      }
+      .btn {
+        padding: 6px 10px;
+        font-size: 11px;
+      }
+      #scrubber {
+        flex: 1 1 120px;
+        min-width: 90px;
+        max-width: 100%;
+      }
+      #audio-status {
+        display: none;
+      }
+      .hide-hint {
+        display: none;
+      }
+      #stage-wrapper {
+        width: min(calc(100vw - 16px), calc(100vh - 100px));
+        height: min(calc(100vw - 16px), calc(100vh - 100px));
+      }
+      #stage-wrapper.ratio-16-9 {
+        width: min(calc(100vw - 16px), calc((100vh - 100px) * 16 / 9));
+        height: calc(min(calc(100vw - 16px), calc((100vh - 100px) * 16 / 9)) * 9 / 16);
+      }
+      #stage-wrapper.ratio-9-16 {
+        height: min(calc(100vh - 100px), calc((100vw - 16px) * 16 / 9));
+        width: calc(min(calc(100vh - 100px), calc((100vw - 16px) * 16 / 9)) * 9 / 16);
+      }
+      .gcal-modal {
+        width: min(420px, 92%) !important;
+        right: 4% !important;
+        bottom: 6% !important;
+        padding: 14px 16px !important;
+      }
+      #subtitle-bar {
+        bottom: 10px;
+        padding: 6px 12px;
+      }
+      #sub-urdu {
+        font-size: 14px;
+        line-height: 1.7;
+      }
+      #sub-eng {
+        font-size: 11px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      #controls {
+        top: 4px;
+        padding: 6px 8px;
+        gap: 4px;
+      }
+      .btn {
+        padding: 5px 8px;
+        font-size: 10px;
+      }
+      #time-display {
+        font-size: 10px;
+        min-width: 60px;
+      }
+    }
+
     #drop-banner {
       position: fixed;
       inset: 0;
@@ -1395,6 +1501,9 @@
   </style>
 </head>
 <body>
+  <a href="index.html" class="back-to-archive" id="backToArchiveBtn" title="Back to Ruqyah Archive" aria-label="Back to Ruqyah Archive">
+    &#8592; Archive
+  </a>
 
   <!-- Drag & Drop Audio Banner -->
   <div id="drop-banner">
@@ -1411,7 +1520,7 @@
     <input id="scrubber" type="range" min="0" max="50.45" step="0.02" value="0" />
     <span id="time-display">00:00 / 00:50</span>
     <button id="ratio-btn" class="btn">1:1 Square</button>
-    <span style="font-size:11px;color:#9ca3af;">Press <b>H</b> to hide</span>
+    <span class="hide-hint" style="font-size:11px;color:#9ca3af;">Press <b>H</b> to hide</span>
   </div>
 
   <!-- Audio Element (auto-checks local file + IndexedDB) -->
@@ -2485,6 +2594,19 @@
         playBtn.click();
       }
     });
+
+    try {
+      if (window.self !== window.top) document.body.classList.add('is-embedded');
+    } catch (_) {
+      document.body.classList.add('is-embedded');
+    }
+
+    if (stageWrapper) {
+      stageWrapper.addEventListener('click', (e) => {
+        if (e.target.closest('#controls, button, input, label, a')) return;
+        playBtn.click();
+      });
+    }
 
     renderFrame(0);
     requestAnimationFrame(animate);
