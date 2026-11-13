@@ -37,7 +37,6 @@ Free to use, privacy-focused, accessible, and designed for offline functionality
   - Full content is readable with JavaScript disabled; client-side JS progressively enhances audio streaming and instant filtering.
   - Multi-tier audio fallback: Primary streams with automatic fallback to EveryAyah mirrors.
   - Offline Progressive Web App with [`sw.js`](sw.js) precaching core pages and assets.
-  - Private photo gallery that stores selected images in browser IndexedDB on the current device.
   - Release build stamping via `tools/stamp-build.ps1` ensuring clean cache invalidation.
 
 - **WCAG 2.1.4 Keyboard Accelerators & Command Palette:**
@@ -55,7 +54,6 @@ heynuo.github.io/
 ├── quran.html                   # Complete 114 Surahs audio recitation library and Mushaf PDFs
 ├── quran-verses.html            # Master concordance of 108 Quranic verses (Ruqyah, Protection, Tafsir)
 ├── videos.html                  # Separate page for videos
-├── kufar.html                   # Private, browser-saved photo gallery
 ├── about.html                   # Systems engineering profile, JVM internals, and Islamic methodology
 ├── contact.html                 # Direct privacy-first contact & interactive subject helper
 ├── privacy.html                 # Privacy policy, local storage disclosures, and source citations

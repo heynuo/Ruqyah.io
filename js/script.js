@@ -4,7 +4,7 @@ Ruqyah – Global Scripts (Production Final v3)
 
 // Build stamp injected by tools/stamp-build.ps1 before each release. Declared
 // here so the service-worker registration can reference it without a guard.
-var __HEYNUO_BUILD__ = '2026-11-11-1708';
+var __HEYNUO_BUILD__ = '2026-11-13-0511';
 
 const CONFIG = Object.freeze({
   siteUrl: 'https://heynuo.github.io',
@@ -2148,16 +2148,6 @@ const CommandPalette = {
         icon: '📜',
         tag: 'Page',
         link: 'quran-verses.html'
-      },
-      {
-        id: 'pg-kufar',
-        section: 'ðŸ“„ Pages & Tools',
-        type: 'page',
-        title: 'Kufar Photo Gallery',
-        subtitle: 'A personal photo collection saved in this browser',
-        icon: '🖼️',
-        tag: 'Page',
-        link: 'kufar.html'
       },
       {
         id: 'pg-about',

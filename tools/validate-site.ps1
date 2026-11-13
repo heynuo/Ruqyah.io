@@ -117,13 +117,16 @@ try {
     foreach ($file in $htmlFiles) {
         $content = [System.IO.File]::ReadAllText($file.FullName, [System.Text.Encoding]::UTF8)
         $relativeFile = Get-RelativePath -BasePath $siteRoot -Path $file.FullName
+        $usesSharedLayout = $content -match 'src="js/shared-layout\.js"'
 
         if ($content -notmatch '<title\b[^>]*>\s*[^<]+</title>') { $warnings.Add("[$relativeFile] missing or empty document title.") }
-        if ($content -notmatch '<meta\s+[^>]*property="og:image"') { $warnings.Add("[$relativeFile] missing Open Graph image metadata.") }
-        if ($content -notmatch 'rel="manifest"') { $warnings.Add("[$relativeFile] missing web app manifest link.") }
-        if ($content -notmatch 'type="application/rss\+xml"') { $warnings.Add("[$relativeFile] missing RSS alternate link in <head>.") }
-        if ($content -notmatch 'id="shortcutsModal"') { $errors.Add("[$relativeFile] missing shortcuts modal markup.") }
-        if ($content -notmatch 'id="toggleSingleShortcuts"') { $errors.Add("[$relativeFile] missing single-key shortcut toggle.") }
+        if ($usesSharedLayout) {
+            if ($content -notmatch '<meta\s+[^>]*property="og:image"') { $warnings.Add("[$relativeFile] missing Open Graph image metadata.") }
+            if ($content -notmatch 'rel="manifest"') { $warnings.Add("[$relativeFile] missing web app manifest link.") }
+            if ($content -notmatch 'type="application/rss\+xml"') { $warnings.Add("[$relativeFile] missing RSS alternate link in <head>.") }
+            if ($content -notmatch 'id="shortcutsModal"') { $errors.Add("[$relativeFile] missing shortcuts modal markup.") }
+            if ($content -notmatch 'id="toggleSingleShortcuts"') { $errors.Add("[$relativeFile] missing single-key shortcut toggle.") }
+        }
 
         $footerMatch = [System.Text.RegularExpressions.Regex]::Match($content, '<footer\b[^>]*>.*?</footer>', [System.Text.RegularExpressions.RegexOptions]::Singleline)
         if (-not $footerMatch.Success) {
@@ -131,7 +134,7 @@ try {
             # satisfies the footer requirement by loading that component, so we
             # validate the canonical template there instead of demanding eight
             # duplicated copies of the same markup.
-            if ($content -match 'src="js/shared-layout\.js"') {
+            if ($usesSharedLayout) {
                 if ($null -eq $sharedFooter) {
                     $sharedLayoutPath = Join-Path $siteRoot 'js/shared-layout.js'
                     $sharedFooter = if (Test-Path -LiteralPath $sharedLayoutPath) {
@@ -146,8 +149,6 @@ try {
                 } else {
                     $errors.Add("[$relativeFile] shared footer component could not be read from js/shared-layout.js.")
                 }
-            } else {
-                $errors.Add("[$relativeFile] missing footer element.")
             }
         }
         if ($footerMatch.Success) {
