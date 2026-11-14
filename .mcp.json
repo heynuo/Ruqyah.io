@@ -1,0 +1,52 @@
+{
+  "mcpServers": {
+    "stitch": {
+      "type": "http",
+      "url": "https://stitch.googleapis.com/mcp",
+      "headers": {
+        "X-Goog-Api-Key": "${COPILOT_MCP_STITCH_API_KEY}"
+      },
+      "tools": ["*"]
+    },
+    "icons8mcp": {
+      "type": "local",
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://mcp.icons8.com/mcp/",
+        "--header",
+        "Authorization: Bearer ${COPILOT_MCP_ICONS8_TOKEN}"
+      ],
+      "tools": ["*"]
+    },
+    "chrome-devtools-mcp": {
+      "type": "local",
+      "command": "npx",
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@latest"
+      ],
+      "tools": ["*"]
+    },
+    "github": {
+      "type": "local",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${COPILOT_MCP_GITHUB_TOKEN}"
+      },
+      "tools": ["*"]
+    },
+    "apper": {
+      "type": "http",
+      "url": "https://mcp.apper.io/v1/connect",
+      "tools": [
+        "*"
+      ]
+    }
+  }
+}

@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#03080b">
+<title>Allah — A Tribute | Makane × Koodappirannor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#020609;
+  --gold:#ebd091;
+  --gold-soft:#f9ecc7;
+  --gold-deep:#b88d40;
+  --teal:#79e0d2;
+  --muted:#9baaa4;
+  --line:rgba(235,208,145,.24);
+  --glass:rgba(5,14,15,.76);
+}
+*{box-sizing:border-box}
+html,body{width:100%;height:100%;min-height:100%;margin:0;background:#010405;color:#f8f3e8;overflow:hidden}
+body{font-family:'Poppins',sans-serif;-webkit-font-smoothing:antialiased;user-select:none}
+button,input{font:inherit}
+
+#stage{
+  position:fixed;inset:0;overflow:hidden;isolation:isolate;
+  min-height:100vh;min-height:100dvh;
+  background:
+    radial-gradient(ellipse 75% 60% at 50% 40%,rgba(22,74,64,.46),transparent 72%),
+    radial-gradient(ellipse 60% 55% at 50% 100%,rgba(130,92,34,.22),transparent 68%),
+    linear-gradient(180deg,#020709 0%,#051210 52%,#010404 100%);
+}
+#stage .topline,#stage .hero,#stage .remembrance,#stage .asma-ring,#stage .soundline,#stage .controls,#stage .hint,#stage .credit{
+  transition:opacity .95s ease,transform .95s ease,visibility .95s ease;
+}
+#stage.preplay .topline,#stage.preplay .hero,#stage.preplay .remembrance,#stage.preplay .asma-ring,#stage.preplay .soundline,#stage.preplay .controls,#stage.preplay .hint,#stage.preplay .credit{
+  opacity:0;visibility:hidden;
+}
+
+#stars{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+.arch-scene{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.92}
+.arch-scene svg{width:100%;height:100%;display:block}
+.ambient{
+  position:absolute;inset:-20%;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 42%,rgba(44,118,98,.16),transparent 56%);
+  animation:ambientBreathe 8.5s ease-in-out infinite alternate;
+}
+@keyframes ambientBreathe{to{transform:scale(1.1);opacity:.68}}
+
+.vignette{
+  position:absolute;inset:0;z-index:20;pointer-events:none;
+  background:radial-gradient(ellipse 80% 76% at 50% 45%,transparent 46%,rgba(0,0,0,.44) 100%);
+}
+.grain{
+  position:absolute;inset:-50%;z-index:21;pointer-events:none;opacity:.042;mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+  animation:grainMove .5s steps(3) infinite;
+}
+@keyframes grainMove{0%{transform:translate(0,0)}33%{transform:translate(2%,-1%)}66%{transform:translate(-1%,2%)}100%{transform:translate(0,0)}}
+
+.video-background{
+  position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:#020609;
+}
+.video-background video{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;
+  opacity:0;filter:brightness(.84) saturate(1.02) contrast(1.04);backface-visibility:hidden;
+  transition:opacity 1.25s ease-in-out;will-change:opacity;
+}
+.video-background video.is-active{opacity:.78}
+.video-background:before{
+  content:'';position:absolute;inset:-16%;z-index:1;pointer-events:none;mix-blend-mode:screen;
+  background:
+    radial-gradient(ellipse 42% 56% at 50% 42%,rgba(255,224,166,.19),transparent 72%),
+    radial-gradient(ellipse 28% 48% at 14% 40%,rgba(105,225,203,.14),transparent 74%),
+    radial-gradient(ellipse 30% 50% at 86% 36%,rgba(231,183,105,.13),transparent 76%),
+    conic-gradient(from 244deg at 51% 18%,transparent 0deg,rgba(255,232,191,.055) 24deg,transparent 43deg,rgba(121,224,210,.04) 70deg,transparent 100deg);
+  opacity:.82;animation:videoLightDrift 16s ease-in-out infinite alternate;
+}
+@keyframes videoLightDrift{
+  from{transform:translate3d(-1%,0,0) scale(1);opacity:.66}
+  to{transform:translate3d(1%,1%,0) scale(1.04);opacity:.96}
+}
+.video-background:after{
+  content:'';position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(180deg,rgba(2,7,9,.34),rgba(2,10,9,.12) 46%,rgba(1,4,4,.56));
+}
+
+.topline{
+  position:absolute;z-index:30;top:calc(clamp(18px,3.8vh,40px) + env(safe-area-inset-top,0px));
+  left:calc(clamp(18px,4vw,56px) + env(safe-area-inset-left,0px));
+  right:calc(clamp(18px,4vw,56px) + env(safe-area-inset-right,0px));
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.brand{display:flex;align-items:center;gap:13px;color:#ede0c1}
+.brand-mark{
+  width:30px;height:30px;border:1px solid rgba(235,208,145,.58);transform:rotate(45deg);
+  display:grid;place-items:center;box-shadow:0 0 20px rgba(235,208,145,.15);
+}
+.brand-mark span{width:9px;height:9px;border:1px solid var(--gold);display:block;background:rgba(235,208,145,.18)}
+.brand-copy{font-size:10px;letter-spacing:3.2px;font-weight:600;line-height:1.6}
+.brand-copy small{display:block;color:#8fa19a;font-size:8px;letter-spacing:2.3px;font-weight:400}
+.top-tags{display:flex;align-items:center;gap:10px}
+.track-tag,.asma-pill{
+  border:1px solid rgba(235,208,145,.22);border-radius:99px;padding:8px 15px;
+  color:#c5cfc9;background:rgba(3,12,10,.45);font-size:9px;letter-spacing:2px;
+  white-space:nowrap;backdrop-filter:blur(10px);
+}
+.asma-pill{color:var(--gold-soft);border-color:rgba(235,208,145,.38)}
+
+.asma-ring{
+  position:absolute;z-index:6;top:41%;left:50%;width:clamp(280px,42vw,470px);height:clamp(280px,42vw,470px);
+  transform:translate(-50%,-50%);pointer-events:none;opacity:.42;
+}
+.asma-ring svg{width:100%;height:100%;animation:slowSpin 72s linear infinite}
+@keyframes slowSpin{to{transform:rotate(360deg)}}
+
+.hero{
+  position:absolute;z-index:10;top:41%;left:50%;width:min(92vw,900px);
+  transform:translate(-50%,-50%);text-align:center;display:flex;align-items:center;flex-direction:column;
+}
+.bismillah{
+  font-family:'Amiri',serif;font-size:clamp(18px,2.3vw,26px);color:#dcc492;
+  letter-spacing:1px;margin-bottom:8px;opacity:.92;text-shadow:0 0 18px rgba(235,208,145,.22);
+}
+.eyebrow{
+  font-size:9px;font-weight:500;letter-spacing:5px;color:#b8ab88;
+  text-transform:uppercase;margin-bottom:14px;opacity:.88;
+}
+.calligraphy{
+  font-family:'Amiri','Times New Roman',serif;font-size:clamp(80px,13vw,172px);line-height:1.15;
+  color:#faecd0;font-weight:700;direction:rtl;
+  text-shadow:0 0 18px rgba(250,230,180,.28),0 0 54px rgba(220,174,90,.24),0 6px 38px rgba(0,0,0,.6);
+  animation:calligraphyGlow 4s ease-in-out infinite alternate;
+  transition:transform .15s ease-out;
+}
+@keyframes calligraphyGlow{
+  to{text-shadow:0 0 26px rgba(255,235,190,.46),0 0 78px rgba(225,180,95,.34),0 6px 38px rgba(0,0,0,.6)}
+}
+.hero-rule{
+  height:1px;width:140px;margin:12px auto 16px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);position:relative;
+}
+.hero-rule:after{
+  content:'';position:absolute;width:7px;height:7px;border:1px solid var(--gold);
+  background:#0c1b17;left:50%;top:50%;transform:translate(-50%,-50%) rotate(45deg);
+}
+.hero-title{
+  font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(20px,3vw,32px);
+  font-weight:600;letter-spacing:5px;color:#f5ead3;text-transform:uppercase;
+}
+.hero-sub{
+  font-size:clamp(9px,1.1vw,12px);letter-spacing:2.2px;color:#9eb0a8;margin-top:10px;font-weight:300;
+}
+
+.remembrance{
+  position:absolute;z-index:12;left:50%;top:69.5%;transform:translate(-50%,-46%);
+  width:min(92vw,780px);text-align:center;
+  transition:opacity .55s ease,transform .55s ease;opacity:0;
+}
+.remembrance.visible{opacity:1;transform:translate(-50%,-50%)}
+.dhikr-label{font-size:8px;letter-spacing:3.6px;color:#8ea59b;margin-bottom:6px;text-transform:uppercase}
+.dhikr-ar{
+  font-family:'Amiri',serif;font-weight:700;direction:rtl;
+  font-size:clamp(26px,4vw,40px);line-height:1.38;color:#efe0ba;
+  text-shadow:0 0 22px rgba(235,208,145,.2);
+}
+.dhikr-latin{font-size:9px;letter-spacing:3.2px;color:#cfbda0;margin-top:4px;font-weight:500}
+.dhikr-meaning{
+  font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;
+  font-size:clamp(14px,1.8vw,18px);color:#b4c2ba;margin-top:3px;
+}
+
+.soundline{
+  position:absolute;z-index:12;left:50%;bottom:calc(clamp(104px,15.5vh,142px) + env(safe-area-inset-bottom,0px));
+  transform:translateX(-50%);width:min(480px,66vw);height:42px;opacity:.82;pointer-events:none;
+}
+#visualizer{width:100%;height:100%;display:block}
+
+.controls{
+  position:absolute;z-index:40;left:50%;bottom:calc(clamp(16px,3.8vh,34px) + env(safe-area-inset-bottom,0px));transform:translateX(-50%);
+  width:min(860px,calc(100% - 34px));padding:13px 18px 11px;
+  border:1px solid rgba(235,208,145,.22);border-radius:18px;
+  background:linear-gradient(135deg,rgba(5,18,16,.84),rgba(9,16,14,.74));
+  box-shadow:0 18px 60px rgba(0,0,0,.42),inset 0 1px rgba(255,255,255,.04);
+  backdrop-filter:blur(18px);
+}
+.control-row{display:flex;align-items:center;gap:14px}
+.play-btn,.icon-btn{
+  border:1px solid rgba(235,208,145,.44);background:rgba(235,208,145,.1);color:#f3dea9;
+  display:grid;place-items:center;cursor:pointer;transition:all .2s ease;flex:0 0 auto;
+}
+.play-btn{width:44px;height:44px;border-radius:50%;font-size:15px}
+.icon-btn{width:34px;height:34px;border-radius:50%;font-size:13px;color:#d6c399}
+.icon-btn.active{background:rgba(235,208,145,.26);color:#fff3d1;border-color:var(--gold)}
+.play-btn:hover,.icon-btn:hover{
+  background:rgba(235,208,145,.22);box-shadow:0 0 24px rgba(235,208,145,.16);transform:translateY(-1px);
+}
+.play-btn:focus-visible,.icon-btn:focus-visible,.progress:focus-visible{
+  outline:2px solid var(--teal);outline-offset:3px;
+}
+.track-area{flex:1;min-width:0}
+.track-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px}
+.track-name{
+  font-size:10px;letter-spacing:1.6px;color:#ece3d2;font-weight:500;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.time{font-variant-numeric:tabular-nums;font-size:9px;letter-spacing:1px;color:#98a8a0;white-space:nowrap}
+.progress{
+  width:100%;height:4px;appearance:none;border:0;border-radius:99px;display:block;cursor:pointer;
+  background:linear-gradient(90deg,var(--gold) 0%,var(--gold) 0%,rgba(225,229,215,.2) 0%,rgba(225,229,215,.2) 100%);
+}
+.progress::-webkit-slider-thumb{
+  appearance:none;width:12px;height:12px;border-radius:50%;background:#f7dca0;
+  border:2px solid #1c2822;box-shadow:0 0 12px rgba(247,220,160,.6);
+}
+.progress::-moz-range-thumb{
+  width:10px;height:10px;border-radius:50%;background:#f7dca0;
+  border:2px solid #1c2822;box-shadow:0 0 12px rgba(247,220,160,.6);
+}
+.control-actions{display:flex;align-items:center;gap:8px}
+.volume{width:68px;accent-color:var(--gold);cursor:pointer}
+.hint{
+  position:absolute;z-index:30;bottom:calc(clamp(82px,11.8vh,110px) + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);
+  font-size:8px;letter-spacing:2.1px;color:rgba(168,184,174,.55);white-space:nowrap;
+}
+.credit{
+  position:absolute;z-index:30;right:calc(clamp(18px,4vw,56px) + env(safe-area-inset-right,0px));
+  bottom:calc(clamp(82px,11.8vh,110px) + env(safe-area-inset-bottom,0px));
+  font-size:8px;letter-spacing:2px;color:rgba(145,162,152,.4);pointer-events:none;
+}
+
+.start-gate{
+  position:absolute;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:24px;
+  background:radial-gradient(ellipse at center,rgba(4,16,13,.76),rgba(1,4,4,.92));
+  transition:opacity .85s ease,visibility .85s ease;
+}
+.start-gate.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.gate-emblem{
+  width:76px;height:76px;border:1px solid rgba(235,208,145,.46);transform:rotate(45deg);
+  display:grid;place-items:center;margin-bottom:32px;
+  box-shadow:0 0 52px rgba(225,180,95,.14),inset 0 0 24px rgba(225,180,95,.08);
+}
+.gate-emblem span{transform:rotate(-45deg);font-family:'Amiri',serif;font-size:34px;color:#f4ddaa}
+.gate-bismillah{font-family:'Amiri',serif;font-size:22px;color:#dfc590;margin-bottom:10px}
+.gate-kicker{font-size:9px;letter-spacing:5px;color:#c5b389;margin-bottom:12px}
+.gate-title{
+  font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(32px,5vw,54px);
+  font-weight:600;letter-spacing:4px;color:#f8eed8;text-transform:uppercase;
+}
+.gate-track{font-size:10px;letter-spacing:2.8px;color:#a8b8af;margin-top:14px}
+.gate-note{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;color:#93a49a;font-size:17px;margin-top:8px}
+.start-btn{
+  margin-top:32px;padding:14px 30px;border:1px solid rgba(238,206,138,.7);border-radius:999px;
+  background:linear-gradient(135deg,rgba(98,72,30,.52),rgba(14,38,30,.82));
+  color:#f5dead;font-size:10px;font-weight:600;letter-spacing:3px;cursor:pointer;
+  box-shadow:0 0 36px rgba(228,182,96,.15);transition:transform .22s ease,box-shadow .22s ease;
+}
+.start-btn:hover{transform:translateY(-2px);box-shadow:0 0 48px rgba(228,182,96,.28)}
+.gate-hint{font-size:8px;letter-spacing:2.2px;color:#75867e;margin-top:18px}
+
+@media(max-width:640px){
+  .topline{top:calc(16px + env(safe-area-inset-top,0px));left:calc(16px + env(safe-area-inset-left,0px));right:calc(16px + env(safe-area-inset-right,0px))}
+  .brand-copy{font-size:8px;letter-spacing:2px}
+  .brand-copy small{font-size:7px;letter-spacing:1.4px}
+  .brand-mark{width:24px;height:24px}
+  .asma-pill{display:none}
+  .track-tag{font-size:7px;letter-spacing:1.2px;padding:6px 10px;max-width:52%;overflow:hidden;text-overflow:ellipsis}
+  .hero{top:38%;width:94vw}
+  .bismillah{font-size:16px}
+  .eyebrow{font-size:8px;letter-spacing:3px;margin-bottom:10px}
+  .calligraphy{font-size:clamp(74px,21vw,122px)}
+  .hero-rule{margin:8px auto 12px;width:105px}
+  .hero-title{font-size:17px;letter-spacing:3px}
+  .hero-sub{max-width:290px;line-height:1.65;font-size:9px}
+  .remembrance{top:64%}
+  .dhikr-label{font-size:7px}
+  .dhikr-ar{font-size:28px}
+  .dhikr-latin{font-size:8px;letter-spacing:2px}
+  .dhikr-meaning{font-size:14px}
+  .soundline{bottom:calc(128px + env(safe-area-inset-bottom,0px));width:72vw;height:30px}
+  .controls{bottom:calc(14px + env(safe-area-inset-bottom,0px));width:calc(100% - 22px);padding:10px 12px;border-radius:14px}
+  .control-row{gap:9px}
+  .play-btn{width:38px;height:38px}
+  .track-name{font-size:8px;letter-spacing:1px}
+  .time{font-size:8px}
+  .control-actions{gap:6px}
+  .icon-btn{width:30px;height:30px}
+  .volume,.hint,.credit{display:none}
+}
+.back-to-archive{
+  position:fixed;top:calc(clamp(12px,2.5vh,22px) + env(safe-area-inset-top,0px));
+  left:calc(clamp(12px,2.5vw,22px) + env(safe-area-inset-left,0px));
+  z-index:120;display:inline-flex;align-items:center;gap:6px;
+  padding:6px 14px;border-radius:999px;font-size:11px;font-weight:500;
+  letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-soft);
+  background:rgba(3,12,10,.75);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(235,208,145,.35);text-decoration:none;transition:all .2s ease;
+}
+.back-to-archive:hover{
+  background:rgba(22,74,64,.85);color:#fff;border-color:rgba(235,208,145,.7);transform:translateY(-1px);
+}
+body.is-embedded .back-to-archive{display:none!important}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<a href="index.html" class="back-to-archive" id="backToArchiveBtn" title="Back to Ruqyah Archive" aria-label="Back to Ruqyah Archive">
+  &#8592; Archive
+</a>
+<div id="stage" class="preplay">
+  <div class="ambient"></div>
+  <div class="video-background" aria-hidden="true">
+    <video id="backgroundVideo" playsinline preload="metadata" tabindex="-1"></video>
+  </div>
+
+  <div class="arch-scene" aria-hidden="true">
+    <svg viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="archGlow">
+          <stop offset="0" stop-color="#ebd091" stop-opacity=".14"/>
+          <stop offset="1" stop-color="#ebd091" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="archLine" x1="0" y1="0" x2="1" y2="1">
+          <stop stop-color="#ebd091" stop-opacity=".06"/>
+          <stop offset=".5" stop-color="#ebd091" stop-opacity=".46"/>
+          <stop offset="1" stop-color="#ebd091" stop-opacity=".06"/>
+        </linearGradient>
+        <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+          <stop stop-color="#0d211b" stop-opacity="0"/>
+          <stop offset="1" stop-color="#010404" stop-opacity=".85"/>
+        </linearGradient>
+      </defs>
+      <ellipse cx="640" cy="350" rx="380" ry="315" fill="url(#archGlow)"/>
+      <g fill="none" stroke="url(#archLine)">
+        <path d="M320 720V342C320 185 445 112 640 70C835 112 960 185 960 342V720" stroke-width="2"/>
+        <path d="M342 720V349C342 208 458 139 640 100C822 139 938 208 938 349V720" stroke-width="1" opacity=".62"/>
+        <path d="M368 720V358C368 228 475 164 640 130C805 164 912 228 912 358V720" stroke-width=".8" opacity=".42"/>
+        <path d="M640 0V106M626 120L640 106L654 120L640 134Z" stroke-width="1.2"/>
+        <circle cx="640" cy="162" r="66" opacity=".32"/>
+        <circle cx="640" cy="162" r="54" opacity=".2"/>
+      </g>
+      <g fill="none" stroke="#dcc084" stroke-opacity=".15" stroke-width="1">
+        <path d="M0 584H1280"/><path d="M0 601H1280" opacity=".5"/>
+        <path d="M90 720V555H126V720M1154 720V555H1190V720"/>
+        <path d="M70 555H145M1135 555H1210"/>
+      </g>
+      <g fill="#020806" opacity=".82">
+        <path d="M0 660H1280V720H0Z"/>
+        <path d="M60 660V575L88 548L116 575V660ZM1164 660V575L1192 548L1220 575V660Z"/>
+        <path d="M450 660V624C450 584 485 552 525 552H755C795 552 830 584 830 624V660Z"/>
+      </g>
+      <rect x="0" y="570" width="1280" height="150" fill="url(#floor)"/>
+      <g fill="none" stroke="#dcc084" stroke-opacity=".17" stroke-width="1">
+        <path d="M640 562V720M610 720L640 670L670 720"/>
+        <circle cx="640" cy="636" r="24"/>
+        <circle cx="640" cy="636" r="35" opacity=".5"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="asma-ring" aria-hidden="true">
+    <svg viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="92" fill="none" stroke="rgba(235,208,145,0.16)" stroke-width="0.6" stroke-dasharray="2 4"/>
+      <circle cx="100" cy="100" r="78" fill="none" stroke="rgba(121,224,210,0.12)" stroke-width="0.5"/>
+      <g stroke="rgba(235,208,145,0.22)" stroke-width="0.6" fill="none">
+        <rect x="44" y="44" width="112" height="112"/>
+        <rect x="44" y="44" width="112" height="112" transform="rotate(45 100 100)"/>
+      </g>
+    </svg>
+  </div>
+
+  <canvas id="stars" aria-hidden="true"></canvas>
+
+  <header class="topline">
+    <div class="brand">
+      <div class="brand-mark"><span></span></div>
+      <div class="brand-copy">SUJOOD OF THE HEART<small>A TRIBUTE TO ALLAH</small></div>
+    </div>
+    <div class="top-tags">
+      <div class="asma-pill" id="asmaPill">يَا رَحْمَٰنُ · YA RAHMAN</div>
+      <div class="track-tag">MAKANE × KOODAPPIRANNOR</div>
+    </div>
+  </header>
+
+  <main class="hero">
+    <div class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <div class="eyebrow">IN REMEMBRANCE OF THE ALMIGHTY</div>
+    <div class="calligraphy" id="calligraphy" lang="ar" aria-label="Allah">اللّٰه</div>
+    <div class="hero-rule"></div>
+    <div class="hero-title">All Praise Belongs To Allah</div>
+    <div class="hero-sub">The Most Merciful · Creator of Peace · Light Upon Light</div>
+  </main>
+
+  <section class="remembrance" id="remembrance" aria-live="polite">
+    <div class="dhikr-label" id="dhikrLabel">WORDS OF REMEMBRANCE</div>
+    <div class="dhikr-ar" id="dhikrAr" lang="ar" dir="rtl">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</div>
+    <div class="dhikr-latin" id="dhikrLatin">SUBHANALLAHI WA BIHAMDIHI</div>
+    <div class="dhikr-meaning" id="dhikrMeaning">Glory be to Allah and all praise is due to Him</div>
+  </section>
+
+  <div class="soundline"><canvas id="visualizer"></canvas></div>
+  <div class="hint">SPACE PLAY / PAUSE &nbsp; · &nbsp; ← → SEEK &nbsp; · &nbsp; L LOOP &nbsp; · &nbsp; F FULLSCREEN</div>
+  <div class="credit">MAKANE × KOODAPPIRANNOR</div>
+
+  <div class="controls" id="controls">
+    <div class="control-row">
+      <button class="play-btn" id="playBtn" aria-label="Play audio" title="Play / Pause">▶</button>
+      <div class="track-area">
+        <div class="track-head">
+          <div class="track-name">MAKANE × KOODAPPIRANNOR — TRIBUTE TO ALLAH</div>
+          <div class="time"><span id="currentTime">00:00</span> / <span id="duration">01:21</span></div>
+        </div>
+        <input class="progress" id="progress" type="range" min="0" max="1000" value="0" aria-label="Audio progress">
+      </div>
+      <div class="control-actions">
+        <input class="volume" id="volume" type="range" min="0" max="1" step="0.01" value="0.85" aria-label="Volume">
+        <button class="icon-btn" id="loopBtn" aria-label="Toggle loop" title="Loop Track">∞</button>
+        <button class="icon-btn" id="replayBtn" aria-label="Replay from beginning" title="Replay">↺</button>
+        <button class="icon-btn" id="fullscreenBtn" aria-label="Toggle fullscreen" title="Fullscreen">⛶</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="start-gate" id="startGate">
+    <div class="gate-emblem"><span aria-hidden="true">اللّٰه</span></div>
+    <div class="gate-bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <div class="gate-kicker">A DEVOTIONAL TRIBUTE TO ALLAH</div>
+    <div class="gate-title">A Heart In Remembrance</div>
+    <div class="gate-track">SONG: MAKANE × KOODAPPIRANNOR</div>
+    <div class="gate-note">Verily, in the remembrance of Allah do hearts find rest.</div>
+    <button class="start-btn" id="startBtn">▶ &nbsp; BEGIN LISTENING</button>
+    <div class="gate-hint">USE HEADPHONES FOR THE FULL EXPERIENCE</div>
+  </div>
+
+  <div class="vignette"></div>
+  <div class="grain"></div>
+</div>
+
+<script>
+(() => {
+  'use strict';
+
+  const stage = document.getElementById('stage');
+  // The muxed MP4 is both the background video and the audio player.
+  const backgroundVideo = document.getElementById('backgroundVideo');
+  const audio = backgroundVideo;
+  const startGate = document.getElementById('startGate');
+  const startBtn = document.getElementById('startBtn');
+  const playBtn = document.getElementById('playBtn');
+  const loopBtn = document.getElementById('loopBtn');
+  const replayBtn = document.getElementById('replayBtn');
+  const fullscreenBtn = document.getElementById('fullscreenBtn');
+  const progress = document.getElementById('progress');
+  const volume = document.getElementById('volume');
+  const currentTimeEl = document.getElementById('currentTime');
+  const durationEl = document.getElementById('duration');
+  const remembrance = document.getElementById('remembrance');
+  const dhikrLabel = document.getElementById('dhikrLabel');
+  const dhikrAr = document.getElementById('dhikrAr');
+  const dhikrLatin = document.getElementById('dhikrLatin');
+  const dhikrMeaning = document.getElementById('dhikrMeaning');
+  const asmaPill = document.getElementById('asmaPill');
+  const calligraphy = document.getElementById('calligraphy');
+  const starsCanvas = document.getElementById('stars');
+  const starsCtx = starsCanvas.getContext('2d');
+  const vizCanvas = document.getElementById('visualizer');
+  const vizCtx = vizCanvas.getContext('2d');
+
+  audio.src = 'assets/allah-background-videos/allah-background-combined.mp4';
+  audio.volume = 0.85;
+
+  const remembrances = [
+    {
+      start: 0, end: 14,
+      asma: 'يَا رَحْمَٰنُ · YA RAHMAN',
+      label: 'WORDS OF REMEMBRANCE',
+      ar: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ',
+      latin: 'SUBHANALLAHI WA BIHAMDIHI',
+      meaning: 'Glory be to Allah and all praise is due to Him'
+    },
+    {
+      start: 14, end: 28,
+      asma: 'يَا رَحِيمُ · YA RAHEEM',
+      label: 'GRATITUDE TO THE CREATOR',
+      ar: 'الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ',
+      latin: 'ALHAMDULILLAHI RABBIL ALAMIN',
+      meaning: 'All praise belongs to Allah, Lord of all the worlds'
+    },
+    {
+      start: 28, end: 42,
+      asma: 'يَا نُورُ · YA NOOR',
+      label: 'SURAH AR-RA’D · 13:28',
+      ar: 'أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ',
+      latin: 'ALA BIDHIKRILLAHI TATMA’INNUL QULOOB',
+      meaning: 'Verily, in the remembrance of Allah do hearts find rest'
+    },
+    {
+      start: 42, end: 56,
+      asma: 'يَا سَلَامُ · YA SALAAM',
+      label: 'EXALTATION OF THE MOST HIGH',
+      ar: 'اللَّهُ أَكْبَرُ كَبِيرًا',
+      latin: 'ALLAHU AKBARU KABEERA',
+      meaning: 'Allah is the Greatest in majesty and perfection'
+    },
+    {
+      start: 56, end: 70,
+      asma: 'يَا حَيُّ يَا قَيُّومُ · YA HAYYU YA QAYYUM',
+      label: 'TESTIMONY OF FAITH',
+      ar: 'لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ',
+      latin: 'LA ILAHA ILLALLAHU WAHDAHU LA SHARIKA LAH',
+      meaning: 'There is no deity worthy of worship except Allah alone'
+    },
+    {
+      start: 70, end: 90,
+      asma: 'يَا غَفُورُ · YA GHAFOOR',
+      label: 'ETERNAL TRUST IN ALLAH',
+      ar: 'حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ',
+      latin: 'HASBUNALLAHU WA NI’MAL WAKEEL',
+      meaning: 'Sufficient for us is Allah, and He is the best Disposer of affairs'
+    }
+  ];
+
+  let activeRemembrance = -1;
+  let audioContext = null, analyser = null, sourceNode = null, frequencyData = null;
+  let w = 0, h = 0, dpr = 1, particles = [];
+
+  const formatTime = seconds => {
+    if (!Number.isFinite(seconds) || seconds < 0) return '00:00';
+    const m = Math.floor(seconds / 60), s = Math.floor(seconds % 60);
+    return String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  };
+  const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+  function resizeCanvases(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = window.innerWidth; h = window.innerHeight;
+    starsCanvas.width = Math.round(w * dpr);
+    starsCanvas.height = Math.round(h * dpr);
+    starsCanvas.style.width = w + 'px';
+    starsCanvas.style.height = h + 'px';
+    starsCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const r = vizCanvas.getBoundingClientRect();
+    vizCanvas.width = Math.max(1, Math.round(r.width * dpr));
+    vizCanvas.height = Math.max(1, Math.round(r.height * dpr));
+    vizCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    particles = Array.from({length: Math.min(115, Math.max(52, Math.round(w / 12)))}, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: .45 + Math.random() * 1.4,
+      a: .15 + Math.random() * .52,
+      phase: Math.random() * Math.PI * 2,
+      speed: 4 + Math.random() * 14,
+      drift: (Math.random() - .5) * 8
+    }));
+  }
+
+  function initAudioGraph(){
+    if (audioContext) return;
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    try {
+      audioContext = new AC();
+      analyser = audioContext.createAnalyser();
+      analyser.fftSize = 256;
+      analyser.smoothingTimeConstant = .83;
+      sourceNode = audioContext.createMediaElementSource(audio);
+      sourceNode.connect(analyser);
+      analyser.connect(audioContext.destination);
+      frequencyData = new Uint8Array(analyser.frequencyBinCount);
+    } catch (err) {
+      analyser = null;
+    }
+  }
+
+  async function beginPlayback(){
+    initAudioGraph();
+    try {
+      const audioPlayRequest = audio.play();
+      const audioContextRequest = audioContext && audioContext.state === 'suspended'
+        ? audioContext.resume()
+        : Promise.resolve();
+      await Promise.all([audioPlayRequest, audioContextRequest]);
+      stage.classList.remove('preplay');
+      startGate.classList.add('hidden');
+      playBtn.textContent = 'Ⅱ';
+      playBtn.setAttribute('aria-label', 'Pause audio');
+      remembrance.classList.add('visible');
+    } catch (err) {
+      startBtn.textContent = '▶   TAP TO PLAY';
+    }
+  }
+
+  function togglePlayback(){
+    if (audio.paused) {
+      beginPlayback();
+    } else {
+      audio.pause();
+      playBtn.textContent = '▶';
+      playBtn.setAttribute('aria-label', 'Play audio');
+    }
+  }
+
+  function updateProgress(){
+    const duration = audio.duration || 81.038;
+    const current = audio.currentTime || 0;
+    currentTimeEl.textContent = formatTime(current);
+    durationEl.textContent = formatTime(duration);
+    const pct = duration ? (current / duration) * 100 : 0;
+    progress.value = Math.round(pct * 10);
+    progress.style.background = `linear-gradient(90deg,var(--gold) 0%,var(--gold) ${pct}%,rgba(225,229,215,.2) ${pct}%,rgba(225,229,215,.2) 100%)`;
+  }
+
+  function updateRemembrance(){
+    const t = audio.currentTime || 0;
+    const idx = remembrances.findIndex(s => t >= s.start && t < s.end);
+    if (idx === -1 || idx === activeRemembrance) return;
+    activeRemembrance = idx;
+    remembrance.classList.remove('visible');
+    window.setTimeout(() => {
+      const item = remembrances[idx];
+      dhikrLabel.textContent = item.label;
+      dhikrAr.textContent = item.ar;
+      dhikrLatin.textContent = item.latin;
+      dhikrMeaning.textContent = item.meaning;
+      asmaPill.textContent = item.asma;
+      remembrance.classList.add('visible');
+    }, 220);
+  }
+
+  startBtn.addEventListener('click', beginPlayback);
+  playBtn.addEventListener('click', togglePlayback);
+  loopBtn.addEventListener('click', () => {
+    audio.loop = !audio.loop;
+    loopBtn.classList.toggle('active', audio.loop);
+  });
+  replayBtn.addEventListener('click', () => {
+    audio.currentTime = 0;
+    activeRemembrance = -1;
+    updateRemembrance();
+    beginPlayback();
+  });
+
+  audio.addEventListener('play', () => {
+    backgroundVideo.classList.add('is-active');
+    playBtn.textContent = 'Ⅱ';
+    playBtn.setAttribute('aria-label', 'Pause audio');
+    remembrance.classList.add('visible');
+  });
+  audio.addEventListener('pause', () => {
+    playBtn.textContent = '▶';
+    playBtn.setAttribute('aria-label', 'Play audio');
+  });
+  audio.addEventListener('timeupdate', () => {
+    updateProgress();
+    updateRemembrance();
+  });
+  audio.addEventListener('loadedmetadata', updateProgress);
+  audio.addEventListener('ended', () => {
+    if (audio.loop) return;
+    playBtn.textContent = '▶';
+    playBtn.setAttribute('aria-label', 'Play audio');
+    activeRemembrance = -1;
+    audio.currentTime = 0;
+    backgroundVideo.classList.remove('is-active');
+    updateProgress();
+    remembrance.classList.remove('visible');
+  });
+
+  progress.addEventListener('input', () => {
+    if (audio.duration) audio.currentTime = (Number(progress.value) / 1000) * audio.duration;
+    updateProgress();
+  });
+  volume.addEventListener('input', () => {
+    audio.volume = Number(volume.value);
+  });
+
+  fullscreenBtn.addEventListener('click', async () => {
+    try {
+      if (!document.fullscreenElement) await document.documentElement.requestFullscreen();
+      else await document.exitFullscreen();
+    } catch (e) {}
+  });
+  document.addEventListener('fullscreenchange', () => {
+    fullscreenBtn.textContent = document.fullscreenElement ? '×' : '⛶';
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.target && ['INPUT', 'BUTTON'].includes(e.target.tagName)) return;
+    if (e.code === 'Space') { e.preventDefault(); togglePlayback(); }
+    else if (e.key === 'ArrowRight') { audio.currentTime = clamp((audio.currentTime || 0) + 5, 0, audio.duration || 81.038); }
+    else if (e.key === 'ArrowLeft') { audio.currentTime = clamp((audio.currentTime || 0) - 5, 0, audio.duration || 81.038); }
+    else if (e.key.toLowerCase() === 'l') { loopBtn.click(); }
+    else if (e.key.toLowerCase() === 'f') { fullscreenBtn.click(); }
+  });
+
+  let lastFrame = 0;
+  function draw(now){
+    requestAnimationFrame(draw);
+    const dt = Math.min(.04, (now - lastFrame) / 1000 || .016);
+    lastFrame = now;
+    starsCtx.clearRect(0, 0, w, h);
+    const t = now / 1000;
+
+    let energy = 0;
+    if (analyser && !audio.paused) {
+      analyser.getByteFrequencyData(frequencyData);
+      for (let i = 0; i < 24; i++) energy += frequencyData[i];
+      energy = energy / (24 * 255);
+    }
+    calligraphy.style.transform = `scale(${1 + energy * 0.045})`;
+
+    for (const p of particles) {
+      p.y -= (p.speed + energy * 12) * dt;
+      p.x += Math.sin(t * .35 + p.phase) * p.drift * dt;
+      if (p.y < -5) { p.y = h + 5; p.x = Math.random() * w; }
+      const pulse = .55 + .45 * Math.sin(t * 1.3 + p.phase);
+      starsCtx.beginPath();
+      starsCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      starsCtx.fillStyle = `rgba(${p.phase % 2 > .9 ? '235,208,145' : '121,224,210'},${p.a * pulse})`;
+      starsCtx.fill();
+    }
+
+    const vw = vizCanvas.clientWidth, vh = vizCanvas.clientHeight;
+    vizCtx.clearRect(0, 0, vw, vh);
+    const count = 56, gap = 4, bw = Math.max(1, (vw - gap * (count - 1)) / count);
+    for (let i = 0; i < count; i++) {
+      const f = analyser && !audio.paused
+        ? frequencyData[2 + Math.floor(i * 1.1)] / 255
+        : .08 + .05 * Math.sin(t * 2.2 + i * .27);
+      const center = 1 - Math.abs((i - (count - 1) / 2) / ((count - 1) / 2));
+      const barH = 2 + f * vh * .82 * (.35 + .65 * center);
+      const x = i * (bw + gap), y = (vh - barH) / 2;
+      const alpha = .22 + f * .72;
+      vizCtx.fillStyle = i % 3 === 0 ? `rgba(235,208,145,${alpha})` : `rgba(121,224,210,${alpha * .74})`;
+      vizCtx.shadowBlur = 6;
+      vizCtx.shadowColor = i % 3 === 0 ? 'rgba(235,208,145,.5)' : 'rgba(121,224,210,.4)';
+      vizCtx.fillRect(x, y, bw, barH);
+    }
+    vizCtx.shadowBlur = 0;
+  }
+
+  try {
+    if (window.self !== window.top) document.body.classList.add('is-embedded');
+  } catch (_) {
+    document.body.classList.add('is-embedded');
+  }
+
+  window.addEventListener('resize', resizeCanvases);
+  resizeCanvases();
+  updateProgress();
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>

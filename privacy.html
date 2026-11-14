@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="shell-type" content="web_standard">
+  <meta name="theme-color" content="#0F766E">
+  <meta name="color-scheme" content="light dark">
+  <!-- Build stamp for service-worker cache busting. Maintained by tools/stamp-build.ps1. -->
+  <meta name="heynuo-build" content="2026-11-14-1206">
+
+  <!-- Theme Pre-Hydration: Prevents Flash of Unstyled Content (FOUC) -->
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('heynuo-theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = savedTheme || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else if (theme === 'sepia') {
+          document.documentElement.classList.add('sepia');
+        }
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+  <meta name="robots" content="index, follow">
+
+  <!-- Primary SEO -->
+  <title>Privacy Policy, Storage Transparency &amp; Sources | Ruqyah</title>
+  <meta name="description"
+    content="Ruqyah is 100% tracker-free. Complete architectural disclosure of browser storage, zero-surveillance telemetry, external audio CDNs, and verified Islamic scripture sources.">
+  <meta name="keywords"
+    content="Ruqyah privacy, zero trackers, local storage disclosure, Quran sources, academic citations, MIT license, tracker-free website, client-side storage audit, Uthmani scripture, Sahih Hadith">
+  <meta name="author" content="Zahiruddin (Ruqyah)">
+  <link rel="canonical" href="https://heynuo.github.io/privacy.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Privacy Policy, Storage Transparency &amp; Sources | Ruqyah">
+  <meta property="og:description"
+    content="Ruqyah is 100% tracker-free. Complete architectural disclosure of browser storage, zero-surveillance telemetry, external audio CDNs, and verified Islamic scripture sources.">
+  <meta property="og:image" content="https://heynuo.github.io/assets/banners/og-banner.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="Ruqyah — Scholastic Archive &amp; Systems Laboratory Privacy and Data Sovereignty">
+  <meta name="twitter:image:alt" content="Ruqyah — Scholastic Archive &amp; Systems Laboratory Privacy and Data Sovereignty">
+  <meta property="og:url" content="https://heynuo.github.io/privacy.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ruqyah">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Privacy Policy, Storage Transparency &amp; Sources | Ruqyah">
+  <meta name="twitter:description"
+    content="Ruqyah is 100% tracker-free. Complete architectural disclosure of browser storage, zero-surveillance telemetry, external audio CDNs, and verified Islamic scripture sources.">
+  <meta name="twitter:image" content="https://heynuo.github.io/assets/banners/og-banner.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20rx='20'%20fill='%230F766E'/%3E%3Cpath%20d='M25%2025h50v50H25z'%20fill='none'%20stroke='%239cf2e8'%20stroke-width='4'/%3E%3Ccircle%20cx='50'%20cy='50'%20r='14'%20fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="manifest" href="manifest.json">
+  <link rel="alternate" type="application/rss+xml" title="Ruqyah RSS Feed" href="rss.xml">
+  <link rel="sitemap" type="application/xml" href="sitemap.xml">
+
+  <!-- Typography Preconnect & Font Inclusions (Unified) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+  <!-- Structured Data: Privacy Policy & Scholastic Laboratory -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://heynuo.github.io/#website",
+        "url": "https://heynuo.github.io/",
+        "name": "Ruqyah",
+        "description": "Scholastic Archive & Systems Laboratory.",
+        "publisher": { "@id": "https://heynuo.github.io/#person" },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://heynuo.github.io/#person",
+        "name": "Zahiruddin",
+        "alternateName": "Ruqyah",
+        "url": "https://heynuo.github.io/about.html",
+        "image": "https://heynuo.github.io/assets/banners/og-banner.jpg",
+        "jobTitle": "Systems Engineer & Islamic Researcher"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://heynuo.github.io/privacy.html#webpage",
+        "url": "https://heynuo.github.io/privacy.html",
+        "name": "Privacy Policy, Storage Transparency & Sources",
+        "isPartOf": { "@id": "https://heynuo.github.io/#website" },
+        "about": { "@id": "https://heynuo.github.io/#website" },
+        "inLanguage": "en",
+        "dateModified": "2026-11-14",
+        "description": "Architectural disclosure of browser storage, zero-surveillance telemetry, external audio CDNs, and verified Islamic scripture sources."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://heynuo.github.io/privacy.html#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://heynuo.github.io/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Privacy Policy, Storage Transparency & Sources",
+            "item": "https://heynuo.github.io/privacy.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Shared Design System Tokens (Light / Dark / Sepia) -->
+  <link rel="stylesheet" href="css/shared-layout.css?v=2026-11-14-1206">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="js/tailwind-config.js"></script>
+
+  <style>
+    /* Suppress legacy unstyled script injectors */
+    .article-toolbar,
+    #articleTocBox,
+    .focus-mode-exit-bar {
+      display: none !important;
+    }
+
+    /* Mobile responsive storage table styling */
+    @media (max-width: 640px) {
+      #privacy-storage-table-wrapper {
+        overflow: visible;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      #privacy-storage-table {
+        display: block;
+        width: 100%;
+      }
+
+      #privacy-storage-table thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        clip-path: inset(50%);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      #privacy-storage-table tbody {
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      #privacy-storage-table tbody tr {
+        display: grid;
+        min-width: 0;
+        overflow: hidden;
+        border: 1px solid rgb(var(--color-border-subtle));
+        border-radius: 0.75rem;
+        background: rgb(var(--color-surface));
+      }
+
+      #privacy-storage-table td {
+        display: grid;
+        grid-template-columns: minmax(5.75rem, 36%) minmax(0, 1fr);
+        gap: 0.75rem;
+        min-width: 0;
+        padding: 0.75rem;
+        overflow-wrap: anywhere;
+        border-bottom: 1px solid rgb(var(--color-border-subtle));
+      }
+
+      #privacy-storage-table td::before {
+        content: attr(data-label);
+        color: rgb(var(--color-on-surface));
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.68rem;
+        font-weight: 700;
+        line-height: 1.5;
+        text-transform: uppercase;
+      }
+
+      #privacy-storage-table td:first-child {
+        grid-template-columns: minmax(0, 1fr);
+        background: rgb(var(--color-surface-container-low));
+        font-weight: 600;
+      }
+
+      #privacy-storage-table td:last-child {
+        border-bottom: 0;
+      }
+
+      #privacy-storage-table code {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+    }
+
+    /* Live storage inspector value truncate */
+    .storage-inspector-val {
+      max-width: 24rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    @media (max-width: 640px) {
+      .storage-inspector-val {
+        max-width: 100%;
+        white-space: normal;
+        word-break: break-all;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-bg-canvas font-body-article text-on-surface antialiased min-h-screen flex flex-col pb-32 transition-colors duration-200">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-on-primary focus:rounded-md focus:shadow-lg focus:outline-none">Skip to main content</a>
+
+  <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
+  <!-- Header injected by js/shared-layout.js -->
+
+  <main id="main-content" class="pt-14 w-full flex-1">
+    <div class="flex flex-col w-full">
+      
+      <!-- Subtle Architectural Atmospheric Wash -->
+      <div class="relative w-full overflow-hidden">
+        <div class="absolute -top-40 right-1/4 w-[38rem] h-[38rem] rounded-full bg-gradient-to-br from-primary/10 via-primary-fixed/20 to-transparent blur-3xl pointer-events-none"></div>
+        <div class="absolute top-96 -left-32 w-96 h-96 rounded-full bg-gradient-to-tr from-tertiary/10 via-tertiary-fixed/15 to-transparent blur-2xl pointer-events-none"></div>
+
+        <!-- Editorial Canvas Wrapper -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 md:py-12">
+          
+          <!-- Breadcrumb & Header -->
+          <div class="flex flex-col gap-4 max-w-4xl">
+            <nav aria-label="Breadcrumb" class="flex items-center gap-2 font-code-mono text-caption-meta text-on-surface-variant">
+              <a class="hover:text-primary transition-colors flex items-center gap-1" href="index.html">
+                <span class="material-symbols-outlined text-[16px]">home</span>
+                <span>Home</span>
+              </a>
+              <span class="opacity-40">/</span>
+              <span class="text-primary font-semibold">Privacy, Storage &amp; Sources</span>
+              <span class="opacity-40">•</span>
+              <span class="text-xs uppercase tracking-wider text-tertiary font-semibold hidden sm:inline">PRD-v3 §8.7 • Archival Colophon &amp; Transparency</span>
+            </nav>
+
+            <div class="flex flex-col gap-2 mt-2">
+              <div class="inline-flex items-center gap-2 text-xs font-code-mono uppercase tracking-widest text-primary font-bold">
+                <span class="w-2 h-2 rounded-full bg-primary inline-block"></span>
+                Digital Sanctity &amp; Sovereign Data Protocols
+              </div>
+              <h1 class="font-title-page text-title-page text-on-surface tracking-tight text-balance text-3xl sm:text-4xl lg:text-5xl font-bold">
+                Privacy Policy, Storage Transparency &amp; Sources
+              </h1>
+              <p class="font-body-lead text-body-lead text-on-surface-variant max-w-3xl leading-relaxed mt-1 text-base sm:text-lg">
+                A calm, sovereign, tracker-free digital sanctuary. Complete audit and disclosure of browser storage, network topology, external CDNs, and verified Islamic scripture canons.
+              </p>
+            </div>
+
+            <!-- Meta Strip -->
+            <div class="flex flex-wrap items-center gap-3 pt-2 font-code-mono text-xs text-on-surface-variant">
+              <span class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-[16px] text-primary">schedule</span>
+                <span>Last reviewed: <time datetime="2026-11-14">November 14, 2026</time></span>
+              </span>
+              <span>•</span>
+              <span class="flex items-center gap-1 text-success font-semibold">
+                <span class="material-symbols-outlined text-[16px]">verified_user</span>
+                <span>0% Telemetry</span>
+              </span>
+              <span>•</span>
+              <span class="flex items-center gap-1 text-primary font-semibold">
+                <span class="material-symbols-outlined text-[16px]">laptop_mac</span>
+                <span>100% Client-Side</span>
+              </span>
+              <span>•</span>
+              <span class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-[16px]">code</span>
+                <span>MIT License</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- Key Metrics & Architectural Axioms Bar -->
+          <section aria-label="Privacy Axioms" class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 rounded-xl bg-surface-container shadow-xs">
+            <div class="flex flex-col p-3 rounded-lg bg-surface shadow-2xs">
+              <span class="font-code-mono text-xs uppercase tracking-wider text-on-surface-variant">Telemetry &amp; Trackers</span>
+              <span class="font-heading-section text-2xl text-primary font-bold mt-1">0%</span>
+              <span class="font-caption-meta text-xs text-on-surface-variant mt-0.5">Absolute zero surveillance</span>
+            </div>
+            <div class="flex flex-col p-3 rounded-lg bg-surface shadow-2xs">
+              <span class="font-code-mono text-xs uppercase tracking-wider text-on-surface-variant">Data Sovereignty</span>
+              <span class="font-heading-section text-2xl text-on-surface font-bold mt-1">100% Local</span>
+              <span class="font-caption-meta text-xs text-on-surface-variant mt-0.5">Stored solely in your browser</span>
+            </div>
+            <div class="flex flex-col p-3 rounded-lg bg-surface shadow-2xs">
+              <span class="font-code-mono text-xs uppercase tracking-wider text-on-surface-variant">Network Model</span>
+              <span class="font-heading-section text-2xl text-tertiary font-bold mt-1">Static Edge</span>
+              <span class="font-caption-meta text-xs text-on-surface-variant mt-0.5">Zero tracking backend</span>
+            </div>
+            <div class="flex flex-col p-3 rounded-lg bg-surface shadow-2xs">
+              <span class="font-code-mono text-xs uppercase tracking-wider text-on-surface-variant">Scriptural Canon</span>
+              <span class="font-heading-section text-2xl text-success font-bold mt-1">Verified</span>
+              <span class="font-caption-meta text-xs text-on-surface-variant mt-0.5">King Fahd Complex text</span>
+            </div>
+          </section>
+
+          <!-- Asymmetric Layout: Left Sidebar + Right Content Cards -->
+          <section class="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Left Column: Navigation Anchors & Origin Posture (Sticky on Desktop) -->
+            <aside class="lg:col-span-4 flex flex-col gap-6 lg:sticky lg:top-20">
+              
+              <!-- Quick Jump Anchors Box -->
+              <div class="rounded-xl bg-surface-container-high p-5 sm:p-6 flex flex-col gap-3 shadow-xs border border-border-subtle">
+                <div class="flex items-center justify-between border-b border-border-subtle pb-3">
+                  <span class="font-code-mono text-xs uppercase font-bold text-on-surface tracking-wider flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[16px] text-primary">menu_book</span>
+                    <span>Document Anchors</span>
+                  </span>
+                  <span class="font-code-mono text-[10px] text-on-surface-variant">Jump to §</span>
+                </div>
+                
+                <ul class="flex flex-col gap-1.5 font-ui-interactive text-xs text-on-surface-variant">
+                  <li>
+                    <a class="hover:text-primary transition-colors flex items-center justify-between p-1.5 rounded hover:bg-surface-container" href="#zero-trackers">
+                      <span>1. Zero-Tracker Covenant</span>
+                      <span class="font-code-mono opacity-60">§1.0</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="hover:text-primary transition-colors flex items-center justify-between p-1.5 rounded hover:bg-surface-container" href="#browser-storage">
+                      <span>2. Browser Storage &amp; Live Inspector</span>
+                      <span class="font-code-mono opacity-60">§2.0</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="hover:text-primary transition-colors flex items-center justify-between p-1.5 rounded hover:bg-surface-container" href="#storage-catalog">
+                      <span>• Full Storage Schema Catalog</span>
+                      <span class="font-code-mono opacity-60">§2.1</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="hover:text-primary transition-colors flex items-center justify-between p-1.5 rounded hover:bg-surface-container" href="#external-hosts">
+                      <span>3. External Audio Hosts &amp; CDNs</span>
+                      <span class="font-code-mono opacity-60">§3.0</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="hover:text-primary transition-colors flex items-center justify-between p-1.5 rounded hover:bg-surface-container" href="#scholarly-sources">
+                      <span>4. Scholastic Sources &amp; Sanad</span>
+                      <span class="font-code-mono opacity-60">§4.0</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="hover:text-primary transition-colors flex items-center justify-between p-1.5 rounded hover:bg-surface-container" href="#licensing">
+                      <span>5. License &amp; Non-Commercial Mandate</span>
+                      <span class="font-code-mono opacity-60">§5.0</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="hover:text-primary transition-colors flex items-center justify-between p-1.5 rounded hover:bg-surface-container" href="#user-rights">
+                      <span>6. Regulatory Alignment (GDPR/CCPA)</span>
+                      <span class="font-code-mono opacity-60">§6.0</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="hover:text-primary transition-colors flex items-center justify-between p-1.5 rounded hover:bg-surface-container" href="#faq">
+                      <span>7. Frequently Asked Questions</span>
+                      <span class="font-code-mono opacity-60">§7.0</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Origin Cryptographic Posture Card -->
+              <div class="rounded-xl bg-surface p-5 sm:p-6 shadow-sm border border-border-subtle flex flex-col gap-3">
+                <div class="flex items-center gap-2 text-primary font-code-mono text-xs uppercase font-bold tracking-wider">
+                  <span class="material-symbols-outlined text-[16px]">shield</span>
+                  <span>Origin Security Posture</span>
+                </div>
+                <div class="space-y-2 text-xs">
+                  <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+                    <span class="text-on-surface-variant">HTTPS Protocol</span>
+                    <span class="font-code-mono font-bold text-success">TLS 1.3 / HSTS</span>
+                  </div>
+                  <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+                    <span class="text-on-surface-variant">First-Party Cookies</span>
+                    <span class="font-code-mono font-bold text-primary">0 Set</span>
+                  </div>
+                  <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+                    <span class="text-on-surface-variant">Third-Party Pixels</span>
+                    <span class="font-code-mono font-bold text-success">0 Injected</span>
+                  </div>
+                  <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+                    <span class="text-on-surface-variant">Storage Isolation</span>
+                    <span class="font-code-mono font-bold text-on-surface">Client Sandbox</span>
+                  </div>
+                  <div class="flex items-center justify-between py-1">
+                    <span class="text-on-surface-variant">Offline Capability</span>
+                    <span class="font-code-mono font-bold text-primary">PWA Service Worker</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick Verification Hint -->
+              <div class="p-4 rounded-lg bg-surface-container-low font-body-article text-on-surface-variant text-xs leading-relaxed border border-primary/20">
+                <span class="font-bold text-on-surface font-code-mono uppercase text-[11px] block mb-1 flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[14px] text-primary">terminal</span>
+                  <span>Independent Audit</span>
+                </span>
+                Press <kbd class="px-1.5 py-0.5 rounded bg-surface border border-border-subtle font-code-mono text-[10px]">F12</kbd> in your browser, open the <strong>Network</strong> and <strong>Application</strong> tabs, and verify for yourself: absolute zero tracking calls and 100% local preferences.
+              </div>
+            </aside>
+
+            <!-- Right Column: Deep Disclosure Content Cards -->
+            <div class="lg:col-span-8 flex flex-col gap-8">
+              
+              <!-- Privacy at a glance highlight -->
+              <div class="rounded-xl bg-surface-container-low border border-primary/30 p-5 sm:p-6 shadow-xs flex items-start gap-3.5">
+                <span class="material-symbols-outlined text-primary text-[28px] flex-shrink-0 mt-0.5">verified_user</span>
+                <div class="text-sm leading-relaxed text-on-surface">
+                  <strong class="font-semibold block text-base mb-1">Privacy At A Glance</strong>
+                  Ruqyah has no user accounts, advertising trackers, surveillance pixels, or behavioral analytics. Your recitation bookmarks, search queries, theme choices, and audio player settings remain exclusively on your device. External font and audio providers receive standard TCP/IP request metadata only when you stream recitations or render web typography.
+                </div>
+              </div>
+
+              <!-- Section 1: Zero Third-Party Trackers Commitment -->
+              <div class="rounded-xl bg-surface p-6 sm:p-10 shadow-sm border border-border-subtle flex flex-col scroll-mt-24" id="zero-trackers">
+                <div class="flex items-center justify-between">
+                  <span class="font-code-mono text-xs uppercase tracking-wider text-primary font-bold">Inviolable Covenant</span>
+                  <span class="px-2 py-0.5 rounded bg-surface-container font-code-mono text-[11px] text-on-surface-variant border border-border-subtle">§1.0 Transparency</span>
+                </div>
+                
+                <h2 class="font-heading-section text-2xl sm:text-3xl font-bold text-on-surface mt-2 tracking-tight">
+                  1. Zero Third-Party Trackers Commitment
+                </h2>
+                
+                <div class="font-body-article text-on-surface-variant mt-4 space-y-4 leading-relaxed text-sm sm:text-base">
+                  <p>
+                    In classical Islamic scholarship, the pursuit of sacred knowledge (<em>Talib al-’Ilm</em>) and the contemplative recitation of the Holy Qur'an require tranquility (<em>Sakinah</em>) and mental clarity. Modern web platforms frequently violate this contemplative space with invasive behavioral profiling, ad-tech tracking pixels, automated user categorization, and monetization funnels.
+                  </p>
+                  <blockquote class="my-2 pl-4 py-2 border-l-2 border-primary bg-surface-container-low rounded-r-lg font-body-lead text-on-surface italic text-sm sm:text-base">
+                    “To subject someone reciting the Word of God or studying a sacred Hadith to tracking pixels is a breach of spiritual hospitality and intellectual decency.”
+                  </blockquote>
+                  <p>
+                    Ruqyah operates under an uncompromising <strong>zero-surveillance covenant</strong>:
+                  </p>
+                </div>
+
+                <!-- Contrast Matrix -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                  <div class="p-4 rounded-xl bg-surface-container-low border border-danger/20 flex flex-col">
+                    <div class="flex items-center gap-2 text-danger font-semibold text-sm mb-2">
+                      <span class="material-symbols-outlined text-[18px]">cancel</span>
+                      <span>What Ruqyah NEVER Runs</span>
+                    </div>
+                    <ul class="text-xs space-y-2 text-on-surface-variant pl-2">
+                      <li class="flex items-start gap-2">
+                        <span class="text-danger">•</span>
+                        <span>No Google Analytics, Mixpanel, Amplitude, or telemetry pings</span>
+                      </li>
+                      <li class="flex items-start gap-2">
+                        <span class="text-danger">•</span>
+                        <span>No Meta / Facebook Pixels, TikTok Pixels, or Twitter/X tags</span>
+                      </li>
+                      <li class="flex items-start gap-2">
+                        <span class="text-danger">•</span>
+                        <span>No advertising cookies, conversion beacons, or fingerprinting scripts</span>
+                      </li>
+                      <li class="flex items-start gap-2">
+                        <span class="text-danger">•</span>
+                        <span>No session-recording software (Hotjar, FullStory, Clarity)</span>
+                      </li>
+                      <li class="flex items-start gap-2">
+                        <span class="text-danger">•</span>
+                        <span>No cross-site tracking or recording of your audio listening logs</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="p-4 rounded-xl bg-surface-container-low border border-success/20 flex flex-col">
+                    <div class="flex items-center gap-2 text-success font-semibold text-sm mb-2">
+                      <span class="material-symbols-outlined text-[18px]">check_circle</span>
+                      <span>How Ruqyah Protects You</span>
+                    </div>
+                    <ul class="text-xs space-y-2 text-on-surface-variant pl-2">
+                      <li class="flex items-start gap-2">
+                        <span class="text-success">•</span>
+                        <span>Preferences and bookmarks reside 100% inside your local device sandbox</span>
+                      </li>
+                      <li class="flex items-start gap-2">
+                        <span class="text-success">•</span>
+                        <span>No central user database, login credentials, or harvested passwords</span>
+                      </li>
+                      <li class="flex items-start gap-2">
+                        <span class="text-success">•</span>
+                        <span>Fully functional offline via Service Worker precaching</span>
+                      </li>
+                      <li class="flex items-start gap-2">
+                        <span class="text-success">•</span>
+                        <span>Contact form dispatches directly via your native email client</span>
+                      </li>
+                      <li class="flex items-start gap-2">
+                        <span class="text-success">•</span>
+                        <span>Full source code is publicly verifiable on GitHub under the MIT License</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Section 2: Browser Storage & Live Inspector -->
+              <div class="rounded-xl bg-surface p-6 sm:p-10 shadow-sm border border-border-subtle flex flex-col scroll-mt-24" id="browser-storage">
+                <div class="flex items-center justify-between">
+                  <span class="font-code-mono text-xs uppercase tracking-wider text-primary font-bold">Storage Disclosure</span>
+                  <span class="px-2 py-0.5 rounded bg-surface-container font-code-mono text-[11px] text-on-surface-variant border border-border-subtle">§2.0 Client Memory</span>
+                </div>
+                
+                <h2 class="font-heading-section text-2xl sm:text-3xl font-bold text-on-surface mt-2 tracking-tight">
+                  2. Browser Storage &amp; Live Client-Side Storage Inspector
+                </h2>
+                
+                <div class="font-body-article text-on-surface-variant mt-4 space-y-4 leading-relaxed text-sm sm:text-base">
+                  <p>
+                    To deliver a responsive, personalized experience—such as remembering your night reading theme, resuming a paused Surah recitation, or saving verse bookmarks—Ruqyah uses standard client-side web technologies: <code>localStorage</code>, <code>sessionStorage</code>, <code>IndexedDB</code>, and <code>CacheStorage</code>.
+                  </p>
+                  <p>
+                    These values <strong>never leave your computer</strong> and are not transmitted to any application server. You hold 100% sovereignty over your data.
+                  </p>
+                </div>
+
+                <!-- LIVE STORAGE INSPECTOR WIDGET -->
+                <div class="mt-6 rounded-xl bg-surface-container border border-primary/25 shadow-xs p-5 sm:p-6" id="storage-inspector-widget">
+                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-border-subtle">
+                    <div class="flex items-center gap-2.5">
+                      <span class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+                        <span class="material-symbols-outlined text-[20px]">manage_search</span>
+                      </span>
+                      <div>
+                        <h3 class="font-subheading-card text-base font-bold text-on-surface">Live Browser Storage Inspector</h3>
+                        <p class="text-xs text-on-surface-variant">Real-time scan of all Ruqyah data currently residing in your browser</p>
+                      </div>
+                    </div>
+
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface font-code-mono text-xs text-on-surface shadow-2xs">
+                        <span class="w-2 h-2 rounded-full bg-success inline-block"></span>
+                        <span id="storageKeyCount">Scanning...</span>
+                      </span>
+                      <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface font-code-mono text-xs text-on-surface shadow-2xs" id="storageTotalBytes">
+                        ~0 KB
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Inspector Control Toolbar -->
+                  <div class="flex flex-wrap items-center justify-between gap-2 pt-4 pb-3">
+                    <div class="flex flex-wrap items-center gap-2">
+                      <button type="button" class="btn btn-secondary text-xs py-1.5 px-3 flex items-center gap-1.5 cursor-pointer" id="btnRefreshInspector">
+                        <span class="material-symbols-outlined text-[16px] text-primary">sync</span>
+                        <span>Rescan Storage</span>
+                      </button>
+                      <button type="button" class="btn btn-secondary text-xs py-1.5 px-3 flex items-center gap-1.5 cursor-pointer" id="btnExportData">
+                        <span class="material-symbols-outlined text-[16px] text-primary">download</span>
+                        <span>Export JSON Backup</span>
+                      </button>
+                      <button type="button" class="btn btn-secondary text-xs py-1.5 px-3 flex items-center gap-1.5 cursor-pointer" id="btnCopyAudit">
+                        <span class="material-symbols-outlined text-[16px] text-primary">content_copy</span>
+                        <span>Copy Audit Summary</span>
+                      </button>
+                    </div>
+
+                    <div>
+                      <button type="button" class="px-3 py-1.5 rounded-lg border border-danger/30 text-danger hover:bg-danger/10 text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer" id="btnWipeStorage">
+                        <span class="material-symbols-outlined text-[16px]">delete_forever</span>
+                        <span>Wipe Ruqyah Site Data</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Live Storage Viewer Box -->
+                  <div class="mt-2 rounded-lg bg-surface border border-border-subtle p-3 max-h-56 overflow-y-auto text-xs font-code-mono">
+                    <div id="storageInspectorList" class="space-y-1.5 text-on-surface">
+                      <div class="text-on-surface-variant py-2 text-center font-ui-interactive">Scanning browser storage...</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Comprehensive Storage Catalog -->
+                <div class="mt-10 scroll-mt-24" id="storage-catalog">
+                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                    <div>
+                      <h3 class="font-heading-subsection text-lg font-bold text-on-surface">Comprehensive Storage Schema Catalog</h3>
+                      <p class="text-xs text-on-surface-variant">Specification of every key, storage engine, schema, and lifecycle policy</p>
+                    </div>
+
+                    <!-- Table Search & Filter -->
+                    <div class="flex items-center gap-2">
+                      <div class="relative flex items-center">
+                        <span class="material-symbols-outlined absolute left-2.5 text-[16px] text-on-surface-variant pointer-events-none">search</span>
+                        <input type="text" id="storageSearchInput" placeholder="Filter keys or purpose..." class="h-8 pl-8 pr-3 rounded bg-surface border border-border-subtle text-xs text-on-surface font-ui-interactive focus:outline-none focus:ring-1 focus:ring-primary w-48 sm:w-56" aria-label="Search storage table">
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Category Filter Pills -->
+                  <div class="flex flex-wrap gap-1.5 mb-3" role="group" aria-label="Storage table categories" id="storageCategoryPills">
+                    <button type="button" class="storage-filter-pill px-2.5 py-1 rounded text-xs font-medium bg-primary text-on-primary cursor-pointer transition-colors" data-category="all">All Entries (10)</button>
+                    <button type="button" class="storage-filter-pill px-2.5 py-1 rounded text-xs font-medium bg-surface-container text-on-surface-variant hover:text-on-surface cursor-pointer transition-colors" data-category="aesthetic">Appearance &amp; Reading (4)</button>
+                    <button type="button" class="storage-filter-pill px-2.5 py-1 rounded text-xs font-medium bg-surface-container text-on-surface-variant hover:text-on-surface cursor-pointer transition-colors" data-category="study">Study &amp; Bookmarks (2)</button>
+                    <button type="button" class="storage-filter-pill px-2.5 py-1 rounded text-xs font-medium bg-surface-container text-on-surface-variant hover:text-on-surface cursor-pointer transition-colors" data-category="audio">Audio Engine (2)</button>
+                    <button type="button" class="storage-filter-pill px-2.5 py-1 rounded text-xs font-medium bg-surface-container text-on-surface-variant hover:text-on-surface cursor-pointer transition-colors" data-category="forms">Drafts &amp; Session (2)</button>
+                  </div>
+
+                  <div class="verses-table-wrapper" id="privacy-storage-table-wrapper">
+                    <table class="verses-table verses-table--compact" id="privacy-storage-table">
+                      <caption class="sr-only">Browser storage keys, storage engines, data formats, and duration</caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Key &amp; Engine</th>
+                          <th scope="col">Purpose &amp; Description</th>
+                          <th scope="col">Schema / Data Type</th>
+                          <th scope="col">Duration &amp; Eviction</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr data-category="aesthetic">
+                          <td data-label="Key & Engine">
+                            <code>heynuo-theme</code>
+                            <span class="block text-[10px] text-on-surface-variant font-code-mono mt-0.5">localStorage</span>
+                          </td>
+                          <td data-label="Purpose">Remembers your chosen color theme across all pages</td>
+                          <td data-label="Data type">String (<code>"light"</code>, <code>"sepia"</code>, or <code>"dark"</code>)</td>
+                          <td data-label="Duration">Persistent until browser cache or data is cleared</td>
+                        </tr>
+                        <tr data-category="study">
+                          <td data-label="Key & Engine">
+                            <code>heynuo-bookmarks</code><br>
+                            <code>heynuo_surah_bookmarks</code>
+                            <span class="block text-[10px] text-on-surface-variant font-code-mono mt-0.5">localStorage</span>
+                          </td>
+                          <td data-label="Purpose">Saves bookmarked articles, concordance verses, and favorited Surah numbers for offline recall</td>
+                          <td data-label="Data type">JSON array of URLs, titles, and Surah numbers</td>
+                          <td data-label="Duration">Persistent until manually removed or browser data is cleared</td>
+                        </tr>
+                        <tr data-category="audio">
+                          <td data-label="Key & Engine">
+                            <code>heynuo-audio-*</code><br>
+                            <code>heynuo_player_*</code><br>
+                            <code>qp_*</code>, <code>mv_*</code>
+                            <span class="block text-[10px] text-on-surface-variant font-code-mono mt-0.5">localStorage</span>
+                          </td>
+                          <td data-label="Purpose">Stores playback timestamp, selected reciter ID, audio volume level, playback speed, and player docked position</td>
+                          <td data-label="Data type">Numbers, strings, booleans, and JSON arrays</td>
+                          <td data-label="Duration">Persistent until browser data is cleared</td>
+                        </tr>
+                        <tr data-category="aesthetic">
+                          <td data-label="Key & Engine">
+                            <code>heynuo-font-size</code><br>
+                            <code>heynuo-reading-theme</code><br>
+                            <code>heynuo-reading-font</code>
+                            <span class="block text-[10px] text-on-surface-variant font-code-mono mt-0.5">localStorage</span>
+                          </td>
+                          <td data-label="Purpose">Remembers customized font size (13px–24px), reading comfort mode (sepia/slate), and font choice (sans/serif)</td>
+                          <td data-label="Data type">Strings (e.g. <code>"18px"</code>, <code>"serif"</code>)</td>
+                          <td data-label="Duration">Persistent until browser data is cleared</td>
+                        </tr>
+                        <tr data-category="study">
+                          <td data-label="Key & Engine">
+                            <code>heynuo-search-history</code><br>
+                            <code>activeCategory</code>
+                            <span class="block text-[10px] text-on-surface-variant font-code-mono mt-0.5">localStorage</span>
+                          </td>
+                          <td data-label="Purpose">Stores recent command-palette searches and the selected article taxonomy tab on the index page</td>
+                          <td data-label="Data type">JSON array and string</td>
+                          <td data-label="Duration">Persistent until browser data is cleared</td>
+                        </tr>
+                        <tr data-category="aesthetic">
+                          <td data-label="Key & Engine">
+                            <code>heynuo_shortcuts_enabled</code>
+                            <span class="block text-[10px] text-on-surface-variant font-code-mono mt-0.5">localStorage</span>
+                          </td>
+                          <td data-label="Purpose">Remembers whether single-key keyboard shortcuts (T for theme, Space for audio, Esc to close) are enabled</td>
+                          <td data-label="Data type">String (<code>"true"</code> or <code>"false"</code>)</td>
+                          <td data-label="Duration">Persistent until browser data is cleared</td>
+                        </tr>
+                        <tr data-category="forms">
+                          <td data-label="Key & Engine">
+                            <code>heynuo_contact_draft_v2</code>
+                            <span class="block text-[10px] text-on-surface-variant font-code-mono mt-0.5">localStorage</span>
+                          </td>
+                          <td data-label="Purpose">Preserves contact form input fields locally so you never lose an in-progress inquiry if the browser reloads</td>
+                          <td data-label="Data type">JSON object with name, email, subject, and message</td>
+                          <td data-label="Duration">Until dispatched, manually cleared, or submitted</td>
+                        </tr>
+                        <tr data-category="forms">
+                          <td data-label="Key & Engine">
+                            <code>heynuo-newsletter-subscribed</code>
+                            <span class="block text-[10px] text-on-surface-variant font-code-mono mt-0.5">localStorage</span>
+                          </td>
+                          <td data-label="Purpose">Stores the email address entered into the local subscription form on this device; it is not sent to an external mailing list</td>
+                          <td data-label="Data type">Email address string</td>
+                          <td data-label="Duration">Persistent until browser data is cleared</td>
+                        </tr>
+                        <tr data-category="audio">
+                          <td data-label="Key & Engine">
+                            <code>TawakkulVideoAudioDB</code>
+                            <span class="block text-[10px] text-on-surface-variant font-code-mono mt-0.5">IndexedDB</span>
+                          </td>
+                          <td data-label="Purpose">Stores custom audio file chosen in the Tawakkul contemplative suite for offline ambient playback without server upload</td>
+                          <td data-label="Data type">Binary Blob / ArrayBuffer</td>
+                          <td data-label="Duration">Persistent in browser IndexedDB sandbox until cleared</td>
+                        </tr>
+                        <tr data-category="forms">
+                          <td data-label="Key & Engine">
+                            <code>qp_sleep_end</code><br>
+                            <code>qp_sleep_mode</code><br>
+                            <code>announcement-dismissed</code>
+                            <span class="block text-[10px] text-on-surface-variant font-code-mono mt-0.5">sessionStorage</span>
+                          </td>
+                          <td data-label="Purpose">Maintains Quran player sleep timer countdown and dismissed announcement state for the current tab session</td>
+                          <td data-label="Data type">Numeric timestamp string and booleans</td>
+                          <td data-label="Duration">Temporary; automatically cleared when the tab or window closes</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <p class="text-xs text-on-surface-variant mt-3 leading-relaxed">
+                    <strong>Form &amp; Offline Notes:</strong> The contact form saves an active draft in local memory while you type. When you submit, your operating system's native email client opens with the fields pre-filled; your email provider handles transmission only if you choose to press send. The Progressive Web App Service Worker (<code>sw.js</code>) utilizes <code>CacheStorage</code> to store offline copies of static scripture pages and audio player code, enabling seamless reading even when disconnected from the Internet.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Section 3: External CDNs & Network Hosts -->
+              <div class="rounded-xl bg-surface p-6 sm:p-10 shadow-sm border border-border-subtle flex flex-col scroll-mt-24" id="external-hosts">
+                <div class="flex items-center justify-between">
+                  <span class="font-code-mono text-xs uppercase tracking-wider text-primary font-bold">Network Architecture</span>
+                  <span class="px-2 py-0.5 rounded bg-surface-container font-code-mono text-[11px] text-on-surface-variant border border-border-subtle">§3.0 Third-Party Endpoints</span>
+                </div>
+                
+                <h2 class="font-heading-section text-2xl sm:text-3xl font-bold text-on-surface mt-2 tracking-tight">
+                  3. External Audio Hosts &amp; Network CDNs
+                </h2>
+                
+                <div class="font-body-article text-on-surface-variant mt-4 space-y-4 leading-relaxed text-sm sm:text-base">
+                  <p>
+                    Ruqyah does not run proprietary tracking servers. When you navigate the site or play recitation streams, requests for static stylesheets, web fonts, and audio files are fetched from vetted third-party hosts.
+                  </p>
+                  <p>
+                    Standard TCP/IP communication requires that these external providers receive ordinary network request metadata (your IP address, browser User-Agent header, and the requested file URL):
+                  </p>
+                </div>
+
+                <!-- CDN Grid Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                  <div class="p-4 rounded-xl bg-surface-container-low border border-border-subtle flex flex-col justify-between">
+                    <div>
+                      <div class="flex items-center gap-2 text-primary font-bold text-sm mb-1">
+                        <span class="material-symbols-outlined text-[18px]">graphic_eq</span>
+                        <span>EveryAyah (<code>everyayah.com</code>)</span>
+                      </div>
+                      <p class="text-xs text-on-surface-variant leading-relaxed">
+                        Provides ayah-by-ayah MP3 recitation streams on-demand when you listen to individual verses in the 108 Master Verses Concordance. Requests are direct HTTPS GET queries with no authentication tokens or tracking cookies.
+                      </p>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-border-subtle text-[11px] font-code-mono text-on-surface-variant flex items-center justify-between">
+                      <span>Protocol: HTTPS</span>
+                      <span class="text-success font-semibold">Cookie-free</span>
+                    </div>
+                  </div>
+
+                  <div class="p-4 rounded-xl bg-surface-container-low border border-border-subtle flex flex-col justify-between">
+                    <div>
+                      <div class="flex items-center gap-2 text-primary font-bold text-sm mb-1">
+                        <span class="material-symbols-outlined text-[18px]">album</span>
+                        <span>MP3Quran &amp; QuranicAudio (<code>mp3quran.net</code>)</span>
+                      </div>
+                      <p class="text-xs text-on-surface-variant leading-relaxed">
+                        Delivers high-bitrate full Surah streams for the 114 Surahs recitation engine. Recitations feature esteemed Qaris including Sheikh Mishary Rashid Alafasy, Sheikh Abdul Basit, and Sheikh Mahmoud Khalil Al-Husary.
+                      </p>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-border-subtle text-[11px] font-code-mono text-on-surface-variant flex items-center justify-between">
+                      <span>Protocol: HTTPS</span>
+                      <span class="text-success font-semibold">Streaming Audio</span>
+                    </div>
+                  </div>
+
+                  <div class="p-4 rounded-xl bg-surface-container-low border border-border-subtle flex flex-col justify-between">
+                    <div>
+                      <div class="flex items-center gap-2 text-primary font-bold text-sm mb-1">
+                        <span class="material-symbols-outlined text-[18px]">font_download</span>
+                        <span>Google Fonts (<code>fonts.googleapis.com</code>)</span>
+                      </div>
+                      <p class="text-xs text-on-surface-variant leading-relaxed">
+                        Serves web typography—primarily Inter, Amiri for classical Arabic calligraphy, and JetBrains Mono for code blocks. Requests are accelerated with <code>preconnect</code> non-blocking hints.
+                      </p>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-border-subtle text-[11px] font-code-mono text-on-surface-variant flex items-center justify-between">
+                      <span>Protocol: HTTP/2+</span>
+                      <span class="text-success font-semibold">Cached Edge</span>
+                    </div>
+                  </div>
+
+                  <div class="p-4 rounded-xl bg-surface-container-low border border-border-subtle flex flex-col justify-between">
+                    <div>
+                      <div class="flex items-center gap-2 text-primary font-bold text-sm mb-1">
+                        <span class="material-symbols-outlined text-[18px]">css</span>
+                        <span>Tailwind CSS CDN (<code>cdn.tailwindcss.com</code>)</span>
+                      </div>
+                      <p class="text-xs text-on-surface-variant leading-relaxed">
+                        Provides utility CSS styles and design system variables. Evaluated locally in your browser sandbox without sending user identifiers back to a CDN database.
+                      </p>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-border-subtle text-[11px] font-code-mono text-on-surface-variant flex items-center justify-between">
+                      <span>Protocol: HTTPS</span>
+                      <span class="text-success font-semibold">Static Engine</span>
+                    </div>
+                  </div>
+
+                  <div class="p-4 rounded-xl bg-surface-container-low border border-border-subtle flex flex-col justify-between md:col-span-2">
+                    <div>
+                      <div class="flex items-center gap-2 text-primary font-bold text-sm mb-1">
+                        <span class="material-symbols-outlined text-[18px]">dns</span>
+                        <span>GitHub Pages (<code>heynuo.github.io</code>)</span>
+                      </div>
+                      <p class="text-xs text-on-surface-variant leading-relaxed">
+                        Hosts the static repository files directly from GitHub's global edge network over TLS 1.3 encryption. GitHub may collect aggregate infrastructure telemetry and server logs (such as visitor IP addresses) for DDoS mitigation, legal compliance, and network security pursuant to GitHub's Global Privacy Statement.
+                      </p>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-border-subtle text-[11px] font-code-mono text-on-surface-variant flex items-center justify-between">
+                      <span>Encryption: TLS 1.3 / HSTS</span>
+                      <span class="text-success font-semibold">Global Anycast</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Section 4: Scholarly Sources & Theological Methodology -->
+              <div class="rounded-xl bg-surface p-6 sm:p-10 shadow-sm border border-border-subtle flex flex-col scroll-mt-24" id="scholarly-sources">
+                <div class="flex items-center justify-between">
+                  <span class="font-code-mono text-xs uppercase tracking-wider text-primary font-bold">Theological Rigor</span>
+                  <span class="px-2 py-0.5 rounded bg-surface-container font-code-mono text-[11px] text-on-surface-variant border border-border-subtle">§4.0 Sources &amp; Sanad</span>
+                </div>
+                
+                <h2 class="font-heading-section text-2xl sm:text-3xl font-bold text-on-surface mt-2 tracking-tight">
+                  4. Scholarly Sources &amp; Theological Methodology
+                </h2>
+                
+                <div class="font-body-article text-on-surface-variant mt-4 space-y-4 leading-relaxed text-sm sm:text-base">
+                  <p>
+                    Ruqyah treats the digital preservation and presentation of the Divine Word and the Prophetic Sunnah with the utmost reverential accuracy. Quranic passages and Hadith citations presented on this website are compiled strictly from authentic, universally recognized Islamic reference authorities:
+                  </p>
+                </div>
+
+                <div class="space-y-4 mt-6">
+                  <div class="p-4 rounded-xl bg-surface-container-low border border-border-subtle">
+                    <div class="flex items-center gap-2 font-bold text-on-surface text-sm mb-1">
+                      <span class="material-symbols-outlined text-primary text-[18px]">menu_book</span>
+                      <span>1. Quranic Text &amp; Calligraphic Orthography</span>
+                    </div>
+                    <p class="text-xs text-on-surface-variant leading-relaxed pl-6">
+                      Rendered in the standard <strong>Madinah Uthmani Script</strong> according to the certified printing standards of the <em>King Fahd Glorious Quran Printing Complex</em> (مجمع الملك فهد لطباعة المصحف الشريف) in Al-Madinah Al-Munawwarah. Adheres to the transmission of Hafs from ‘Asim (حفص عن عاصم) by way of the Shatibiyyah.
+                    </p>
+                  </div>
+
+                  <div class="p-4 rounded-xl bg-surface-container-low border border-border-subtle">
+                    <div class="flex items-center gap-2 font-bold text-on-surface text-sm mb-1">
+                      <span class="material-symbols-outlined text-primary text-[18px]">translate</span>
+                      <span>2. English Translation Methodology</span>
+                    </div>
+                    <p class="text-xs text-on-surface-variant leading-relaxed pl-6">
+                      Primarily based on the <strong>Saheeh International</strong> translation, renowned globally for linguistic fidelity, clarity, and adherence to orthodox Sunni theological consensus (<em>Ahl al-Sunnah wa al-Jama’ah</em>).
+                    </p>
+                  </div>
+
+                  <div class="p-4 rounded-xl bg-surface-container-low border border-border-subtle">
+                    <div class="flex items-center gap-2 font-bold text-on-surface text-sm mb-1">
+                      <span class="material-symbols-outlined text-primary text-[18px]">history_edu</span>
+                      <span>3. Hadith Canon &amp; Sanad Verification</span>
+                    </div>
+                    <p class="text-xs text-on-surface-variant leading-relaxed pl-6">
+                      Citations cross-reference the canonical Six Books (<em>al-Kutub al-Sittah</em>), prominently <em>Sahih al-Bukhari</em>, <em>Sahih Muslim</em>, <em>Sunan Abi Dawud</em>, <em>Jami’ at-Tirmidhi</em>, <em>Sunan an-Nasa’i</em>, and <em>Sunan Ibn Majah</em>, as well as the <em>Muwatta</em> of Imam Malik.
+                    </p>
+                  </div>
+
+                  <div class="p-4 rounded-xl bg-surface-container-low border border-border-subtle">
+                    <div class="flex items-center gap-2 font-bold text-on-surface text-sm mb-1">
+                      <span class="material-symbols-outlined text-primary text-[18px]">auto_stories</span>
+                      <span>4. Classical Exegetical Tradition (Tafsir)</span>
+                    </div>
+                    <p class="text-xs text-on-surface-variant leading-relaxed pl-6">
+                      Theological context, verse occasions of revelation (<em>Asbab al-Nuzul</em>), and spiritual commentaries are anchored in classical orthodox Tafsir works, including <em>Tafsir Ibn Kathir</em>, <em>Ma’alim al-Tanzil</em> (Al-Baghawi), and <em>Al-Jami’ li-Ahkam al-Quran</em> (Al-Qurtubi).
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Section 5: License & Open Source Mandate -->
+              <div class="rounded-xl bg-surface p-6 sm:p-10 shadow-sm border border-border-subtle flex flex-col scroll-mt-24" id="licensing">
+                <div class="flex items-center justify-between">
+                  <span class="font-code-mono text-xs uppercase tracking-wider text-primary font-bold">Open Architecture</span>
+                  <span class="px-2 py-0.5 rounded bg-surface-container font-code-mono text-[11px] text-on-surface-variant border border-border-subtle">§5.0 Licensing</span>
+                </div>
+                
+                <h2 class="font-heading-section text-2xl sm:text-3xl font-bold text-on-surface mt-2 tracking-tight">
+                  5. License, Open Source &amp; Non-Commercial Mandate
+                </h2>
+                
+                <div class="font-body-article text-on-surface-variant mt-4 space-y-4 leading-relaxed text-sm sm:text-base">
+                  <p>
+                    The code architecture, layout styles, and interactive scripts powering this website are released under the open-source <a class="text-primary underline underline-offset-2" href="LICENSE">MIT License</a>. You are free to inspect, adapt, and build upon the software.
+                  </p>
+                  <p>
+                    <strong>Intellectual Property of Sacred Scripture:</strong> The Holy Quran belongs to all humanity. Quranic Arabic text conforms to the public standards of the King Fahd Complex. English translations are utilized strictly for non-commercial educational study. Recitation audio recordings remain the property of their respective reciters and publishing foundations (hosted via mirrors from EveryAyah and MP3Quran). Ruqyah is non-monetized, carries no subscription fees, and accepts no advertising sponsors.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Section 6: User Privacy Rights (GDPR / CCPA) -->
+              <div class="rounded-xl bg-surface p-6 sm:p-10 shadow-sm border border-border-subtle flex flex-col scroll-mt-24" id="user-rights">
+                <div class="flex items-center justify-between">
+                  <span class="font-code-mono text-xs uppercase tracking-wider text-primary font-bold">User Sovereignty</span>
+                  <span class="px-2 py-0.5 rounded bg-surface-container font-code-mono text-[11px] text-on-surface-variant border border-border-subtle">§6.0 Compliance</span>
+                </div>
+                
+                <h2 class="font-heading-section text-2xl sm:text-3xl font-bold text-on-surface mt-2 tracking-tight">
+                  6. Your Rights &amp; Regulatory Alignment (GDPR, CCPA &amp; Sovereignty)
+                </h2>
+                
+                <div class="font-body-article text-on-surface-variant mt-4 space-y-4 leading-relaxed text-sm sm:text-base">
+                  <p>
+                    Because Ruqyah does not collect, process, or sell personal data on remote application servers, traditional regulatory requirements (such as GDPR in Europe and CCPA in California) are fulfilled automatically by our architecture:
+                  </p>
+                  <ul class="space-y-2 mt-3 text-sm">
+                    <li class="flex items-start gap-2">
+                      <span class="text-primary font-bold">✓</span>
+                      <div><strong>Right to Access:</strong> View all stored data anytime using our <a class="text-primary underline underline-offset-2" href="#storage-inspector-widget">Live Storage Inspector</a> above.</div>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-primary font-bold">✓</span>
+                      <div><strong>Right to Portability:</strong> Export a JSON backup of your stored preferences and bookmarks at any moment with one click.</div>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-primary font-bold">✓</span>
+                      <div><strong>Right to Erasure:</strong> Wipe all locally stored data instantly using the "Wipe Ruqyah Site Data" button or by clearing your browser's site cookies and local storage.</div>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <span class="text-primary font-bold">✓</span>
+                      <div><strong>Right to Rectification:</strong> Edit your preferences, theme, font size, or bookmarks directly through the website's interface.</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Section 7: Frequently Asked Questions -->
+              <div class="rounded-xl bg-surface p-6 sm:p-10 shadow-sm border border-border-subtle flex flex-col scroll-mt-24" id="faq">
+                <div class="flex items-center justify-between">
+                  <span class="font-code-mono text-xs uppercase tracking-wider text-primary font-bold">Clarifications</span>
+                  <span class="px-2 py-0.5 rounded bg-surface-container font-code-mono text-[11px] text-on-surface-variant border border-border-subtle">§7.0 FAQ</span>
+                </div>
+                
+                <h2 class="font-heading-section text-2xl sm:text-3xl font-bold text-on-surface mt-2 tracking-tight">
+                  7. Frequently Asked Questions
+                </h2>
+
+                <div class="space-y-3 mt-6">
+                  <details class="group rounded-xl bg-surface-container-low border border-border-subtle p-4 cursor-pointer transition-colors">
+                    <summary class="font-semibold text-sm text-on-surface flex items-center justify-between list-none">
+                      <span>Does Ruqyah set any HTTP tracking cookies?</span>
+                      <span class="material-symbols-outlined text-[18px] text-primary transition-transform group-open:rotate-180">expand_more</span>
+                    </summary>
+                    <div class="mt-3 text-xs text-on-surface-variant leading-relaxed border-t border-border-subtle pt-3">
+                      No. Ruqyah does not set any first-party or third-party HTTP cookies. Preferences are stored exclusively using HTML5 <code>localStorage</code> inside your browser sandbox, which is never transmitted automatically in HTTP request headers.
+                    </div>
+                  </details>
+
+                  <details class="group rounded-xl bg-surface-container-low border border-border-subtle p-4 cursor-pointer transition-colors">
+                    <summary class="font-semibold text-sm text-on-surface flex items-center justify-between list-none">
+                      <span>Can Ruqyah see which Surahs I recite or what I search for?</span>
+                      <span class="material-symbols-outlined text-[18px] text-primary transition-transform group-open:rotate-180">expand_more</span>
+                    </summary>
+                    <div class="mt-3 text-xs text-on-surface-variant leading-relaxed border-t border-border-subtle pt-3">
+                      No. Searching, filtering, verse concordances, and audio player progress are executed purely client-side using JavaScript. No logs or analytics pings are dispatched to Ruqyah.
+                    </div>
+                  </details>
+
+                  <details class="group rounded-xl bg-surface-container-low border border-border-subtle p-4 cursor-pointer transition-colors">
+                    <summary class="font-semibold text-sm text-on-surface flex items-center justify-between list-none">
+                      <span>What happens to my message if I submit the contact form?</span>
+                      <span class="material-symbols-outlined text-[18px] text-primary transition-transform group-open:rotate-180">expand_more</span>
+                    </summary>
+                    <div class="mt-3 text-xs text-on-surface-variant leading-relaxed border-t border-border-subtle pt-3">
+                      The contact form does not submit to a remote server database. It drafts your text locally in your browser to prevent accidental data loss, then launches your computer or phone's default email client with a pre-formatted email addressed to the maintainer.
+                    </div>
+                  </details>
+
+                  <details class="group rounded-xl bg-surface-container-low border border-border-subtle p-4 cursor-pointer transition-colors">
+                    <summary class="font-semibold text-sm text-on-surface flex items-center justify-between list-none">
+                      <span>How does Ruqyah work offline?</span>
+                      <span class="material-symbols-outlined text-[18px] text-primary transition-transform group-open:rotate-180">expand_more</span>
+                    </summary>
+                    <div class="mt-3 text-xs text-on-surface-variant leading-relaxed border-t border-border-subtle pt-3">
+                      Ruqyah installs a lightweight Service Worker (<code>sw.js</code>) that caches essential HTML, CSS, JavaScript, and Quranic text files in your browser's <code>CacheStorage</code>. This enables you to study verses and navigate the core site even without an internet connection.
+                    </div>
+                  </details>
+
+                  <details class="group rounded-xl bg-surface-container-low border border-border-subtle p-4 cursor-pointer transition-colors">
+                    <summary class="font-semibold text-sm text-on-surface flex items-center justify-between list-none">
+                      <span>How can I report a typo in an Arabic verse or English translation?</span>
+                      <span class="material-symbols-outlined text-[18px] text-primary transition-transform group-open:rotate-180">expand_more</span>
+                    </summary>
+                    <div class="mt-3 text-xs text-on-surface-variant leading-relaxed border-t border-border-subtle pt-3">
+                      Textual fidelity is our highest priority. If you detect any typographical error, diacritical discrepancy, or translation nuance, please notify us immediately through the <a class="text-primary underline underline-offset-2" href="contact.html">Contact Form</a> or submit a pull request on the <a class="text-primary underline underline-offset-2" href="https://github.com/heynuo/Ruqyah.io" target="_blank" rel="noopener noreferrer">GitHub repository</a>.
+                    </div>
+                  </details>
+                </div>
+              </div>
+
+              <!-- End of Document Action Bar -->
+              <div class="flex flex-wrap gap-3 pt-4">
+                <a href="index.html" class="btn btn-secondary flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                  <span>Back to Home</span>
+                </a>
+                <a href="quran.html" class="btn btn-secondary flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-[18px]">menu_book</span>
+                  <span>Browse 114 Surahs</span>
+                </a>
+                <a href="contact.html" class="btn btn-primary flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-[18px]">mail</span>
+                  <span>Privacy question? Contact Maintainer &rarr;</span>
+                </a>
+              </div>
+
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <!-- Keyboard Shortcuts Modal & Command Palette (WCAG 2.1.4 compliant) -->
+  <div id="searchModal" class="hidden fixed inset-0 z-[90] bg-on-surface/40 backdrop-blur-sm flex items-start justify-center pt-20 px-4" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle" aria-hidden="true">
+    <div class="w-full max-w-xl bg-surface rounded-xl border border-border-strong/30 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div class="flex items-center px-4 border-b border-border-subtle bg-bg-canvas/50">
+        <svg class="w-4 h-4 stroke-current text-primary mr-3" fill="none" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M20 20L16 16"></path></svg>
+        <input id="searchModalInput" type="text" placeholder="Search documentation, articles, surahs..." class="w-full py-3.5 bg-transparent border-0 focus:outline-none focus:ring-0 text-on-surface text-sm font-ui-interactive" autocomplete="off" spellcheck="false">
+        <kbd class="px-2 py-0.5 rounded text-[10px] font-code-mono bg-surface border border-border-subtle text-on-surface-variant">Esc</kbd>
+      </div>
+
+      <div id="searchResultsList" class="p-3 max-h-96 overflow-y-auto space-y-1">
+        <div id="searchModalTitle" class="px-2 py-1 text-[10px] font-code-mono uppercase tracking-wider text-on-surface-variant font-semibold">Suggested Entries</div>
+        <a href="quran-verses.html" class="search-result-item flex items-center justify-between p-2 rounded hover:bg-surface-container transition-colors">
+          <div class="flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded bg-surface-container flex items-center justify-center text-primary text-xs font-code-mono">01</span>
+            <span class="text-xs font-medium text-on-surface">108 Master Verses Concordance</span>
+          </div>
+          <span class="text-[10px] font-code-mono text-on-surface-variant">Corpus</span>
+        </a>
+        <a href="quran.html" class="search-result-item flex items-center justify-between p-2 rounded hover:bg-surface-container transition-colors">
+          <div class="flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded bg-surface-container flex items-center justify-center text-primary text-xs font-code-mono">02</span>
+            <span class="text-xs font-medium text-on-surface">Qur’an Recitation Engine (114 Surahs)</span>
+          </div>
+          <span class="text-[10px] font-code-mono text-on-surface-variant">Audio Engine</span>
+        </a>
+        <a href="about.html" class="search-result-item flex items-center justify-between p-2 rounded hover:bg-surface-container transition-colors">
+          <div class="flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded bg-surface-container flex items-center justify-center text-primary text-xs font-code-mono">03</span>
+            <span class="text-xs font-medium text-on-surface">About Zahiruddin &amp; Ruqyah Editorial Mission</span>
+          </div>
+          <span class="text-[10px] font-code-mono text-on-surface-variant">Editorial</span>
+        </a>
+      </div>
+
+      <div class="px-4 py-2 border-t border-border-subtle bg-bg-canvas/50 flex items-center justify-between text-[11px] font-code-mono text-on-surface-variant">
+        <span>Type to filter • Press Esc to close</span>
+        <span>⌘K / Ctrl+K</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Keyboard Shortcuts Modal (WCAG 2.1.4 compliant) -->
+  <div id="shortcutsModal" class="hidden fixed inset-0 z-[95] bg-on-surface/40 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="shortcutsTitle" aria-hidden="true">
+    <div class="w-full max-w-lg bg-surface rounded-xl border border-border-strong/30 shadow-2xl p-6 relative">
+      <div class="flex items-center justify-between pb-4 mb-4 border-b border-border-subtle">
+        <div class="flex items-center gap-2.5">
+          <div class="w-7 h-7 rounded bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">⌨</div>
+          <h3 id="shortcutsTitle" class="font-subheading-card text-base font-bold text-on-surface">Keyboard Shortcuts</h3>
+        </div>
+        <button id="closeShortcutsBtn" aria-label="Close shortcuts modal" class="w-7 h-7 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors cursor-pointer" type="button">
+          ✕
+        </button>
+      </div>
+
+      <!-- Single-key shortcut toggle for accessibility -->
+      <div class="p-3 mb-4 rounded-lg bg-surface-container-low border border-primary/20 flex items-center justify-between text-xs">
+        <div>
+          <span class="font-semibold text-on-surface block">Single-Key Shortcuts</span>
+          <span class="text-on-surface-variant text-[11px]">Enable letters like T, H, A, C without Ctrl</span>
+        </div>
+        <label class="relative inline-flex items-center cursor-pointer">
+          <input type="checkbox" id="toggleSingleShortcuts" class="sr-only peer" checked>
+          <div class="w-9 h-5 bg-surface-container rounded-full peer peer-checked:bg-primary peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all"></div>
+        </label>
+      </div>
+
+      <div class="space-y-3 max-h-72 overflow-y-auto text-xs font-ui-interactive">
+        <div class="space-y-1.5">
+          <div class="text-[10px] font-code-mono uppercase tracking-wider text-on-surface-variant font-semibold">General Navigation</div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Search &amp; Command Palette</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">Ctrl + K</kbd>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Toggle Light / Sepia / Dark Theme</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">T</kbd>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Open Shortcuts Help</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">?</kbd>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Close Dialogs &amp; Overlays</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">Esc</kbd>
+          </div>
+        </div>
+
+        <div class="space-y-1.5 pt-2">
+          <div class="text-[10px] font-code-mono uppercase tracking-wider text-on-surface-variant font-semibold">Audio &amp; Quran Player</div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Play / Pause Audio</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">Space</kbd>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Previous / Next Ayah</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">← / →</kbd>
+          </div>
+          <div class="flex items-center justify-between py-1 border-b border-border-subtle/50">
+            <span class="text-on-surface">Minimize / Restore Audio Bar</span>
+            <kbd class="px-2 py-0.5 rounded bg-surface-container border border-border-subtle font-code-mono text-[10px]">V</kbd>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Runtime Scripts -->
+  <script src="buttons.js" defer></script>
+  <script src="js/script.js" defer></script>
+  <!-- Shared Layout: Header, Footer, Theme Switcher -->
+  <script src="js/shared-layout.js"></script>
+
+  <!-- Interactive Storage Inspector & Transparency Tools Script -->
+  <script>
+    (function () {
+      'use strict';
+
+      function scanStorage() {
+        var items = [];
+        var totalBytes = 0;
+
+        try {
+          for (var i = 0; i < localStorage.length; i++) {
+            var key = localStorage.key(i);
+            var val = localStorage.getItem(key) || '';
+            var size = (key.length + val.length) * 2;
+            totalBytes += size;
+            items.push({ engine: 'localStorage', key: key, value: val, bytes: size });
+          }
+        } catch (e) {
+          console.warn('localStorage access restricted:', e);
+        }
+
+        try {
+          for (var j = 0; j < sessionStorage.length; j++) {
+            var sKey = sessionStorage.key(j);
+            var sVal = sessionStorage.getItem(sKey) || '';
+            var sSize = (sKey.length + sVal.length) * 2;
+            totalBytes += sSize;
+            items.push({ engine: 'sessionStorage', key: sKey, value: sVal, bytes: sSize });
+          }
+        } catch (e) {
+          console.warn('sessionStorage access restricted:', e);
+        }
+
+        return { items: items, totalBytes: totalBytes };
+      }
+
+      function renderInspector() {
+        var result = scanStorage();
+        var countEl = document.getElementById('storageKeyCount');
+        var bytesEl = document.getElementById('storageTotalBytes');
+        var listEl = document.getElementById('storageInspectorList');
+
+        if (countEl) {
+          countEl.textContent = result.items.length + ' key' + (result.items.length === 1 ? '' : 's') + ' found';
+        }
+        if (bytesEl) {
+          var kb = (result.totalBytes / 1024).toFixed(1);
+          bytesEl.textContent = '~' + kb + ' KB in use';
+        }
+
+        if (!listEl) return;
+        listEl.innerHTML = '';
+
+        if (result.items.length === 0) {
+          listEl.innerHTML = '<div class="py-3 text-center text-on-surface-variant font-ui-interactive">No client-side keys currently stored. Your browser is in pristine state.</div>';
+          return;
+        }
+
+        result.items.forEach(function (item) {
+          var row = document.createElement('div');
+          row.className = 'flex flex-col sm:flex-row sm:items-center justify-between gap-1 py-1.5 border-b border-border-subtle/50 last:border-0';
+
+          var left = document.createElement('div');
+          left.className = 'flex items-center gap-2';
+
+          var badge = document.createElement('span');
+          badge.className = 'px-1.5 py-0.5 rounded text-[10px] ' + (item.engine === 'localStorage' ? 'bg-primary/10 text-primary' : 'bg-secondary/15 text-on-surface-variant');
+          badge.textContent = item.engine === 'localStorage' ? 'local' : 'session';
+
+          var keyName = document.createElement('span');
+          keyName.className = 'font-bold text-on-surface';
+          keyName.textContent = item.key;
+
+          left.appendChild(badge);
+          left.appendChild(keyName);
+
+          var right = document.createElement('div');
+          right.className = 'text-on-surface-variant text-[11px] storage-inspector-val';
+          right.title = item.value;
+          right.textContent = item.value.length > 70 ? item.value.slice(0, 70) + '…' : item.value;
+
+          row.appendChild(left);
+          row.appendChild(right);
+          listEl.appendChild(row);
+        });
+      }
+
+      // Export JSON backup
+      function exportData() {
+        try {
+          var payload = {
+            application: 'Ruqyah.io',
+            exportedAt: new Date().toISOString(),
+            license: 'MIT',
+            origin: window.location.origin,
+            localStorage: {},
+            sessionStorage: {}
+          };
+
+          for (var i = 0; i < localStorage.length; i++) {
+            var k = localStorage.key(i);
+            payload.localStorage[k] = localStorage.getItem(k);
+          }
+          for (var j = 0; j < sessionStorage.length; j++) {
+            var sk = sessionStorage.key(j);
+            payload.sessionStorage[sk] = sessionStorage.getItem(sk);
+          }
+
+          var blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+          var url = URL.createObjectURL(blob);
+          var a = document.createElement('a');
+          a.href = url;
+          a.download = 'ruqyah-data-export-' + (new Date().toISOString().slice(0, 10)) + '.json';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+
+          if (typeof window.showToast === 'function') {
+            window.showToast('Storage data exported as JSON backup', '📥');
+          }
+        } catch (err) {
+          console.error('Export failed:', err);
+        }
+      }
+
+      // Copy audit summary
+      function copyAudit() {
+        var res = scanStorage();
+        var lines = [
+          '=== Ruqyah.io Client Storage Audit ===',
+          'Audited at: ' + new Date().toISOString(),
+          'Origin: ' + window.location.origin,
+          'Total Keys: ' + res.items.length,
+          'Estimated Footprint: ~' + (res.totalBytes / 1024).toFixed(1) + ' KB',
+          ''
+        ];
+
+        res.items.forEach(function (it) {
+          lines.push('[' + it.engine + '] ' + it.key + ' = ' + it.value);
+        });
+
+        var text = lines.join('\n');
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            if (typeof window.showToast === 'function') {
+              window.showToast('Storage audit summary copied to clipboard', '📋');
+            }
+          });
+        }
+      }
+
+      // Wipe all local storage
+      function wipeData() {
+        var confirmed = window.confirm('Are you sure you want to erase all locally stored Ruqyah preferences, bookmarks, and audio settings? This action cannot be undone.');
+        if (!confirmed) return;
+
+        try {
+          localStorage.clear();
+          sessionStorage.clear();
+          if (window.indexedDB && window.indexedDB.deleteDatabase) {
+            window.indexedDB.deleteDatabase('TawakkulVideoAudioDB');
+          }
+          renderInspector();
+          if (typeof window.showToast === 'function') {
+            window.showToast('All local Ruqyah storage has been erased.', '🧹');
+          }
+        } catch (e) {
+          console.error('Wipe failed:', e);
+        }
+      }
+
+      // Storage table search & filter
+      function setupTableFilter() {
+        var input = document.getElementById('storageSearchInput');
+        var pills = document.querySelectorAll('.storage-filter-pill');
+        var rows = document.querySelectorAll('#privacy-storage-table tbody tr');
+        var activeCategory = 'all';
+
+        function applyFilter() {
+          var query = (input ? input.value : '').toLowerCase().trim();
+
+          rows.forEach(function (row) {
+            var cat = row.getAttribute('data-category');
+            var text = row.textContent.toLowerCase();
+            var matchesCategory = (activeCategory === 'all' || cat === activeCategory);
+            var matchesQuery = (!query || text.indexOf(query) !== -1);
+
+            if (matchesCategory && matchesQuery) {
+              row.style.display = '';
+            } else {
+              row.style.display = 'none';
+            }
+          });
+        }
+
+        if (input) {
+          input.addEventListener('input', applyFilter);
+        }
+
+        pills.forEach(function (pill) {
+          pill.addEventListener('click', function () {
+            pills.forEach(function (p) {
+              p.classList.remove('bg-primary', 'text-on-primary');
+              p.classList.add('bg-surface-container', 'text-on-surface-variant');
+            });
+            pill.classList.remove('bg-surface-container', 'text-on-surface-variant');
+            pill.classList.add('bg-primary', 'text-on-primary');
+
+            activeCategory = pill.getAttribute('data-category') || 'all';
+            applyFilter();
+          });
+        });
+      }
+
+      // Wire up buttons
+      window.addEventListener('DOMContentLoaded', function () {
+        renderInspector();
+        setupTableFilter();
+
+        var btnRefresh = document.getElementById('btnRefreshInspector');
+        if (btnRefresh) btnRefresh.addEventListener('click', renderInspector);
+
+        var btnExport = document.getElementById('btnExportData');
+        if (btnExport) btnExport.addEventListener('click', exportData);
+
+        var btnCopy = document.getElementById('btnCopyAudit');
+        if (btnCopy) btnCopy.addEventListener('click', copyAudit);
+
+        var btnWipe = document.getElementById('btnWipeStorage');
+        if (btnWipe) btnWipe.addEventListener('click', wipeData);
+      });
+    })();
+  </script>
+</body>
+
+</html>

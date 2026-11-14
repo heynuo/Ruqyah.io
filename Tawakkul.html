@@ -1,0 +1,3694 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Tawakkul — A Cinematic Reflection | Ruqyah</title>
+  <meta name="description"
+    content="A cinematic, bilingual reflection on tawakkul: taking the means while entrusting outcomes to Allah.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,400;1,700&family=Oswald:wght@700&family=Noto+Nastaliq+Urdu:wght@400;700&family=JetBrains+Mono:wght@500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #090a0d;
+      --cal-bg: #131314;
+      --cal-card-active: #6989f5;
+      --cal-card-done: #3c4973;
+      --cal-modal: #1e1f22;
+      --spotify-bg: #073b66;
+      --spotify-dim: #669bc5;
+      --paper-bg: #eae5db;
+      --paper-ink: #121211;
+      --paper-red: #c92a1d;
+      --g-dark: #1f1f1f;
+      --g-select: #1a56db;
+      --map-green: #d7f3e3;
+      --map-park: #b8e6c9;
+      --map-road: #9bb0c7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      background: #040507;
+      color: #fff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Ambient Ambilight Backlight (pulses with scene & audio) */
+    #stage-ambient {
+      position: fixed;
+      width: min(104vh, 104vw);
+      height: min(104vh, 104vw);
+      border-radius: 50%;
+      filter: blur(108px);
+      opacity: 0.58;
+      pointer-events: none;
+      z-index: 1;
+      background: radial-gradient(circle at center, rgba(59, 130, 246, 0.45), transparent 70%);
+      transition: background 0.8s ease, transform 0.2s ease, opacity 0.5s ease;
+    }
+
+    /* ==========================================
+       TOP CONTROL BAR & DRAG-AND-DROP OVERLAY
+       ========================================== */
+    #controls {
+      position: fixed;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      background: rgba(16, 18, 24, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 7px 14px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    #controls.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, -24px);
+    }
+
+    .btn {
+      background: #222632;
+      color: #f3f4f6;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .btn:hover {
+      background: #30374a;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .btn.primary {
+      background: #3b66f5;
+      border-color: #6989f5;
+      color: #fff;
+    }
+
+    .btn.success {
+      background: #0d9488;
+      border-color: #2dd4bf;
+    }
+
+    /* Animated equalizer visualizer in controls */
+    .control-eq {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 2.5px;
+      height: 14px;
+      padding: 0 4px;
+    }
+
+    .control-eq .eq-bar {
+      width: 2.5px;
+      background: #60a5fa;
+      border-radius: 2px;
+      height: 25%;
+      transition: height 0.1s ease;
+    }
+
+    #controls.playing .control-eq .eq-bar:nth-child(1) {
+      animation: eqBounce 0.55s infinite alternate;
+    }
+
+    #controls.playing .control-eq .eq-bar:nth-child(2) {
+      animation: eqBounce 0.75s 0.15s infinite alternate;
+    }
+
+    #controls.playing .control-eq .eq-bar:nth-child(3) {
+      animation: eqBounce 0.5s 0.3s infinite alternate;
+    }
+
+    #controls.playing .control-eq .eq-bar:nth-child(4) {
+      animation: eqBounce 0.7s 0.2s infinite alternate;
+    }
+
+    @keyframes eqBounce {
+      0% {
+        height: 20%;
+        background: #60a5fa;
+      }
+
+      100% {
+        height: 100%;
+        background: #93c5fd;
+      }
+    }
+
+    #scrubber {
+      width: 140px;
+      accent-color: #6989f5;
+      cursor: pointer;
+    }
+
+    #time-display {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #9ca3af;
+      min-width: 76px;
+      text-align: center;
+    }
+
+    #audio-status {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+      white-space: nowrap;
+    }
+
+    .back-to-archive {
+      position: fixed;
+      top: calc(clamp(10px, 2.5vh, 20px) + env(safe-area-inset-top, 0px));
+      left: calc(clamp(10px, 2.5vw, 20px) + env(safe-area-inset-left, 0px));
+      z-index: 10001;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: #93c5fd;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(147, 197, 253, 0.3);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .back-to-archive:hover {
+      background: #1e3a8a;
+      color: #fff;
+      border-color: rgba(147, 197, 253, 0.7);
+      transform: translateY(-1px);
+    }
+
+    body.is-embedded .back-to-archive {
+      display: none !important;
+    }
+
+    @media (max-width: 768px) {
+      #controls {
+        top: 8px;
+        width: calc(100vw - 16px);
+        max-width: 500px;
+        padding: 8px 10px;
+        gap: 5px;
+        flex-wrap: wrap;
+        justify-content: center;
+        border-radius: 16px;
+      }
+
+      .btn {
+        padding: 5px 9px;
+        font-size: 11px;
+      }
+
+      #scrubber {
+        flex: 1 1 120px;
+        min-width: 90px;
+        max-width: 100%;
+      }
+
+      #audio-status {
+        display: none;
+      }
+
+      .hide-hint {
+        display: none;
+      }
+
+      #stage-wrapper {
+        width: min(calc(100vw - 16px), calc(100vh - 100px));
+        height: min(calc(100vw - 16px), calc(100vh - 100px));
+      }
+
+      #stage-wrapper.ratio-16-9 {
+        width: min(calc(100vw - 16px), calc((100vh - 100px) * 16 / 9));
+        height: calc(min(calc(100vw - 16px), calc((100vh - 100px) * 16 / 9)) * 9 / 16);
+      }
+
+      #stage-wrapper.ratio-9-16 {
+        height: min(calc(100vh - 100px), calc((100vw - 16px) * 16 / 9));
+        width: calc(min(calc(100vh - 100px), calc((100vw - 16px) * 16 / 9)) * 9 / 16);
+      }
+
+      .gcal-modal {
+        width: min(420px, 92%) !important;
+        right: 4% !important;
+        bottom: 6% !important;
+        padding: 14px 16px !important;
+      }
+
+      #subtitle-bar {
+        bottom: 10px;
+        padding: 6px 12px;
+      }
+
+      #sub-urdu {
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      #sub-eng {
+        font-size: 11px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      #controls {
+        top: 4px;
+        padding: 6px 8px;
+        gap: 4px;
+      }
+
+      .btn {
+        padding: 4px 7px;
+        font-size: 10px;
+      }
+
+      #time-display {
+        font-size: 10px;
+        min-width: 58px;
+      }
+
+      .control-eq {
+        display: none;
+      }
+    }
+
+    #drop-banner {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 14px;
+      border: 4px dashed #60a5fa;
+      color: #fff;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    /* ==========================================
+       MAIN STAGE & GLOBAL TEXTURE OVERLAYS
+       ========================================== */
+    #stage-wrapper {
+      position: relative;
+      width: min(88vh, 88vw);
+      height: min(88vh, 88vw);
+      background: var(--bg-dark);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 35px 105px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      perspective: 1150px;
+      transition: width 0.35s ease, height 0.35s ease;
+      z-index: 2;
+    }
+
+    #stage-wrapper.ratio-9-16 {
+      width: calc(88vh * 9 / 16);
+      height: 88vh;
+    }
+
+    #stage-wrapper.ratio-16-9 {
+      width: min(92vw, calc(84vh * 16 / 9));
+      height: calc(min(92vw, calc(84vh * 16 / 9)) * 9 / 16);
+    }
+
+    /* Film Grain + Scanline + Vignette */
+    .texture-grain {
+      position: absolute;
+      inset: -15%;
+      width: 130%;
+      height: 130%;
+      pointer-events: none;
+      z-index: 700;
+      opacity: 0.07;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .texture-vignette {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 701;
+      background:
+        radial-gradient(circle at center, transparent 55%, rgba(0, 0, 0, 0.68) 100%),
+        repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.06) 0px, rgba(0, 0, 0, 0.06) 1px, transparent 1px, transparent 3px);
+    }
+
+    .dof-edges {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 690;
+      backdrop-filter: blur(3px);
+      -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 16%, transparent 84%, black 100%);
+      mask-image: linear-gradient(to bottom, black 0%, transparent 16%, transparent 84%, black 100%);
+    }
+
+    .scene {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-style: preserve-3d;
+      will-change: transform, opacity, filter;
+    }
+
+    .scene.active {
+      opacity: 1;
+    }
+
+    .camera-rig {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    .caret {
+      display: inline-block;
+      width: 2.5px;
+      height: 1.05em;
+      background: currentColor;
+      vertical-align: -0.14em;
+      margin-left: 2px;
+      animation: blink 0.6s infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      49% {
+        opacity: 1;
+      }
+
+      50%,
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .urdu {
+      font-family: 'Amiri', 'Noto Nastaliq Urdu', serif;
+      direction: rtl;
+    }
+
+    /* =====================================================
+       SCENE 1: GOOGLE CALENDAR DARK UI & MODAL (0.00 - 3.35s)
+       ===================================================== */
+    #scene-1 {
+      background: var(--cal-bg);
+    }
+
+    .gcal-shell {
+      width: 112%;
+      height: 112%;
+      background: #131314;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #2d2e30;
+    }
+
+    .gcal-header {
+      height: 56px;
+      border-bottom: 1px solid #2d2e30;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 18px;
+      font-size: 15px;
+      color: #e3e3e3;
+    }
+
+    .gcal-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 17px;
+    }
+
+    .gcal-badge-3 {
+      width: 28px;
+      height: 28px;
+      background: #1a73e8;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 14px;
+      color: #fff;
+    }
+
+    .gcal-pill {
+      border: 1px solid #5f6368;
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .gcal-body {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      position: relative;
+    }
+
+    .gcal-sidebar {
+      border-right: 1px solid #2d2e30;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .gcal-create-btn {
+      background: #1e1f20;
+      border: 1px solid #3c4043;
+      color: #e3e3e3;
+      padding: 10px 16px;
+      border-radius: 14px;
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .gcal-grid {
+      position: relative;
+      padding-left: 56px;
+      background-image: linear-gradient(to bottom, #28292c 1px, transparent 1px);
+      background-size: 100% 90px;
+    }
+
+    .gcal-time-col {
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      font-size: 10px;
+      color: #9aa0a6;
+      text-align: right;
+      padding-right: 8px;
+    }
+
+    .gcal-red-line {
+      position: absolute;
+      left: 48px;
+      right: 0;
+      top: 24%;
+      height: 2.5px;
+      background: #ea4335;
+      z-index: 8;
+      box-shadow: 0 0 14px rgba(234, 67, 53, 0.9);
+      display: flex;
+      align-items: center;
+    }
+
+    .gcal-red-line::before {
+      content: "";
+      position: absolute;
+      left: -6px;
+      top: -5px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ea4335;
+    }
+
+    .gcal-live-badge {
+      position: absolute;
+      right: 18px;
+      top: -12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(234, 67, 53, 0.22);
+      border: 1px solid rgba(234, 67, 53, 0.5);
+      font-size: 9px;
+      font-weight: 700;
+      color: #ea4335;
+      letter-spacing: 0.05em;
+    }
+
+    .gcal-live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ea4335;
+      animation: livePulse 1.2s infinite;
+    }
+
+    @keyframes livePulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.35;
+        transform: scale(0.7);
+      }
+    }
+
+    .gcal-event-block {
+      position: relative;
+      width: 88%;
+      margin-top: 28%;
+      background: var(--cal-card-active);
+      color: #0d1222;
+      border-radius: 16px;
+      padding: 18px 24px;
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.45);
+      transition: all 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+    }
+
+    .gcal-event-block.done {
+      background: var(--cal-card-done);
+      color: #b8c4e0;
+      box-shadow: 0 14px 40px rgba(105, 137, 245, 0.45);
+    }
+
+    .gcal-ev-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 27px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .gcal-ev-block-2 {
+      position: relative;
+      width: 88%;
+      margin-top: 18px;
+      background: var(--cal-card-active);
+      color: #0d1222;
+      border-radius: 16px;
+      padding: 16px 24px;
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.45);
+    }
+
+    .gcal-check-circle {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 2.5px solid currentColor;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.25s ease;
+    }
+
+    .check-svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      stroke-width: 2.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      stroke-dasharray: 24;
+      stroke-dashoffset: 24;
+      transition: stroke-dashoffset 0.35s ease;
+    }
+
+    .gcal-event-block.done .check-svg {
+      stroke-dashoffset: 0;
+    }
+
+    .gcal-ev-time {
+      margin-left: 40px;
+      margin-top: 4px;
+      font-size: 18px;
+      font-weight: 500;
+      opacity: 0.85;
+    }
+
+    /* Floating Event Details Modal */
+    .gcal-modal {
+      position: absolute;
+      right: 7%;
+      bottom: 10%;
+      width: 420px;
+      background: var(--cal-modal);
+      border: 1px solid #3c4043;
+      border-radius: 22px;
+      padding: 20px 24px;
+      box-shadow: 0 30px 75px rgba(0, 0, 0, 0.85);
+      z-index: 25;
+      transform: translateZ(70px);
+      transition: opacity 0.3s ease, transform 0.35s ease;
+    }
+
+    .gcal-modal-top {
+      display: flex;
+      justify-content: flex-end;
+      gap: 16px;
+      color: #9aa0a6;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .gcal-modal-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 11px;
+      font-size: 14px;
+      color: #e3e3e3;
+    }
+
+    .gcal-modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 14px;
+    }
+
+    .gcal-mark-btn {
+      color: #8ab4f8;
+      font-weight: 600;
+      font-size: 13.5px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(138, 180, 248, 0.12);
+      border: 1px solid rgba(138, 180, 248, 0.3);
+    }
+
+    /* =====================================================
+       SCENE 2: 3D EARTH APP & WIN11 ALT+TAB (3.35 - 8.45s)
+       ===================================================== */
+    #scene-2 {
+      background: #06080e;
+    }
+
+    .desktop-wallpaper {
+      width: 110%;
+      height: 110%;
+      background:
+        radial-gradient(circle at 50% 28%, rgba(56, 82, 135, 0.45) 0%, rgba(8, 10, 16, 0.96) 68%),
+        linear-gradient(180deg, #111827 0%, #05070b 100%);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 28px;
+    }
+
+    /* High-tech globe icon with rotating atmospheric ring */
+    .earth-app-bar {
+      background: #18191c;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 18px;
+      padding: 14px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+      z-index: 15;
+    }
+
+    .earth-menu-row {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 16px;
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .earth-globe-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      position: relative;
+      background: radial-gradient(circle at 35% 35%, #60a5fa 0%, #2563eb 55%, #0f172a 100%);
+      box-shadow: inset -5px -5px 12px rgba(0, 0, 0, 0.7), 0 0 18px rgba(59, 130, 246, 0.6);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .earth-globe-icon::before {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1.5px dashed rgba(191, 219, 254, 0.65);
+      animation: orbitSpin 10s linear infinite;
+    }
+
+    @keyframes orbitSpin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .earth-search-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .earth-search-pill {
+      flex: 1;
+      background: #2b2d31;
+      border-radius: 999px;
+      padding: 10px 20px;
+      font-size: 21px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .desktop-icons-grid {
+      position: absolute;
+      left: 16%;
+      right: 16%;
+      bottom: 78px;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+      text-align: center;
+      z-index: 5;
+    }
+
+    .desk-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: #e5e7eb;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+      transition: transform 0.2s ease;
+    }
+
+    .desk-icon:hover {
+      transform: translateY(-3px);
+    }
+
+    .desk-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+    }
+
+    .alttab-overlay {
+      position: absolute;
+      top: 44%;
+      left: 50%;
+      transform: translate(-50%, -50%) translateZ(60px);
+      width: 76%;
+      background: rgba(22, 24, 30, 0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1.5px solid rgba(255, 255, 255, 0.22);
+      border-radius: 22px;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85);
+      z-index: 30;
+      transition: all 0.3s ease;
+    }
+
+    .alttab-card {
+      background: #07090e;
+      border-radius: 14px;
+      padding: 16px;
+      border: 2.5px solid transparent;
+      min-height: 155px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.28s ease;
+    }
+
+    .alttab-card.focused {
+      border-color: #38bdf8;
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.55);
+      transform: scale(1.02);
+    }
+
+    .alttab-card#tab-card-2.focused {
+      border-color: #ef4444;
+      box-shadow: 0 0 35px rgba(239, 68, 68, 0.65);
+    }
+
+    .win11-taskbar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 46px;
+      background: rgba(15, 17, 23, 0.9);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      z-index: 20;
+    }
+
+    .tb-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      background: #3b82f6;
+      position: relative;
+    }
+
+    .tb-icon.active::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 25%;
+      width: 50%;
+      height: 3px;
+      border-radius: 2px;
+      background: #60a5fa;
+    }
+
+    /* =====================================================
+       SCENE 3: SPOTIFY WORD-BY-WORD LYRICS (8.45 - 16.60s)
+       ===================================================== */
+    #scene-3 {
+      background: radial-gradient(ellipse at 30% 20%, #0d5a9e 0%, #073b66 55%, #04233f 100%);
+    }
+
+    .spotify-lyrics-wrap {
+      width: 86%;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      position: relative;
+    }
+
+    .spotify-header-badge {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      margin-bottom: 4px;
+    }
+
+    .sp-line {
+      font-size: clamp(23px, 3.8vw, 37px);
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.025em;
+      color: var(--spotify-dim);
+      position: relative;
+    }
+
+    .sp-line .lit {
+      color: #ffffff;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 40px rgba(96, 165, 250, 0.65);
+      transition: color 0.15s ease, text-shadow 0.15s ease;
+    }
+
+    .sp-line .unlit {
+      color: var(--spotify-dim);
+    }
+
+    .sp-sacred-gold {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef08a 35%, #facc15 70%, #ca8a04 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 18px rgba(250, 204, 21, 0.65));
+      font-family: 'Amiri', 'Noto Nastaliq Urdu', serif;
+    }
+
+    /* =====================================================
+       SCENE 4: INSTAGRAM DARK DM NOTES UI (16.60 - 23.45s)
+       ===================================================== */
+    #scene-4 {
+      background: #000000;
+    }
+
+    .ig-layout {
+      width: 105%;
+      height: 105%;
+      display: grid;
+      grid-template-columns: 68px 1fr;
+      background: #000;
+    }
+
+    .ig-rail {
+      border-right: 1px solid #262626;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 0;
+      gap: 26px;
+      color: #f5f5f5;
+      font-size: 20px;
+    }
+
+    .ig-main {
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .ig-search {
+      background: #262626;
+      border-radius: 12px;
+      padding: 12px 18px;
+      color: #a8a8a8;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ig-notes-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 42px;
+      padding-top: 38px;
+    }
+
+    .ig-note-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 185px;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .ig-bubble {
+      background: #262626;
+      color: #ffffff;
+      border-radius: 22px;
+      padding: 14px 18px;
+      font-size: 16px;
+      font-weight: 800;
+      text-align: center;
+      line-height: 1.25;
+      margin-bottom: -14px;
+      z-index: 5;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 12px 28px rgba(0, 0, 0, 0.75);
+      position: relative;
+      min-width: 155px;
+    }
+
+    .ig-bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 28px;
+      width: 16px;
+      height: 16px;
+      background: #262626;
+      border-radius: 50%;
+    }
+
+    .ig-reaction-bubble {
+      position: absolute;
+      top: -20px;
+      right: 6px;
+      background: rgba(38, 38, 38, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 13px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      animation: reactFloat 2.4s ease-in-out infinite;
+    }
+
+    @keyframes reactFloat {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    .ig-avatar {
+      width: 145px;
+      height: 145px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #262626;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 0 0 3px #000, 0 0 0 5.5px #d62976, 0 0 22px rgba(214, 41, 118, 0.45), 0 12px 30px rgba(0, 0, 0, 0.6) !important;
+    }
+
+    .ig-username {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #a8a8a8;
+    }
+
+    .blur-word {
+      display: inline-block;
+      transition: filter 0.2s ease;
+    }
+
+    .glint-flash {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glint-flash::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(60deg, transparent 40%, rgba(255, 255, 255, 0.6) 50%, transparent 60%);
+      transform: translateX(-100%);
+      animation: glintPass 2.8s infinite;
+    }
+
+    @keyframes glintPass {
+      0% {
+        transform: translateX(-100%);
+      }
+
+      40%,
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    .ig-dm-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .ig-dm-badge {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #f59e0b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: #000;
+      font-size: 20px;
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.45);
+    }
+
+    /* =====================================================
+       SCENE 5: 4-PAGE 3D BROADSHEET NEWSPAPER (23.45 - 34.85s)
+       ===================================================== */
+    #scene-5 {
+      background: #1c1a18;
+    }
+
+    .broadsheet-grid {
+      width: 1320px;
+      height: 920px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 18px;
+      padding: 18px;
+      background: #23201d;
+      box-shadow: 0 50px 120px rgba(0, 0, 0, 0.9);
+    }
+
+    .np-page {
+      background: var(--paper-bg);
+      color: var(--paper-ink);
+      padding: 22px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border: 1px solid #c5bdb0;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Playfair Display', Georgia, serif;
+      box-shadow: inset 0 0 40px rgba(139, 119, 91, 0.18);
+      text-shadow: 0 0 0.6px rgba(18, 18, 17, 0.55);
+      transition: filter 0.3s ease, opacity 0.3s ease;
+    }
+
+    .np-top-banner {
+      border-top: 3px solid var(--paper-ink);
+      border-bottom: 1.5px solid var(--paper-ink);
+      padding: 4px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .np-top-title {
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .np-top-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .np-page-content {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 16px;
+      flex: 1;
+    }
+
+    .np-red-tag {
+      background: var(--paper-red);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 3px 8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: inline-block;
+      width: fit-content;
+    }
+
+    .np-big-head {
+      font-family: 'Oswald', 'Playfair Display', serif;
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1.02;
+      text-transform: uppercase;
+      margin: 4px 0;
+    }
+
+    .np-deck {
+      font-size: 13px;
+      line-height: 1.3;
+      color: #2b2b29;
+      border-bottom: 1px solid #b8b0a2;
+      padding-bottom: 6px;
+    }
+
+    .np-cols-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      font-family: Georgia, serif;
+      font-size: 9.5px;
+      line-height: 1.42;
+      color: #292826;
+      text-align: justify;
+    }
+
+    .np-photo-box {
+      position: relative;
+      background: radial-gradient(ellipse at 50% 36%, #8d867b 0, #3d3934 42%, #12100e 100%) !important;
+      border: 1px solid #8c8273;
+      overflow: hidden;
+      min-height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .np-photo-box::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(0, 0, 0, 0.55) 1.1px, transparent 1.4px);
+      background-size: 3.5px 3.5px;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+
+    .np-royal-seal {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      border: 2px dashed #b45309;
+      background: radial-gradient(circle, #fef3c7 0%, #fde68a 100%);
+      color: #92400e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Amiri', serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.15;
+      box-shadow: 0 4px 10px rgba(180, 83, 9, 0.25);
+      transform: rotate(-12deg);
+      pointer-events: none;
+    }
+
+    .np-wax-seal {
+      position: absolute;
+      bottom: 16px;
+      right: 18px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #ef4444 0%, #b91c1c 65%, #7f1d1d 100%);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      box-shadow: 0 6px 14px rgba(185, 28, 28, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+      transform: rotate(8deg);
+      pointer-events: none;
+    }
+
+    .np-red-quote {
+      border-top: 1.5px solid var(--paper-red);
+      border-bottom: 1.5px solid var(--paper-red);
+      padding: 8px 4px;
+      color: var(--paper-red);
+      text-align: center;
+      font-style: italic;
+      font-size: 16px;
+      font-weight: 700;
+      margin-top: auto;
+    }
+
+    /* Paper fibres and aged folds */
+    .np-page::before,
+    .herald-sheet::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 6;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+      opacity: 0.85;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0.45  0 0 0 0 0.36  0 0 0 0 0.25  0 0 0 0.55 -0.12'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E"),
+        radial-gradient(ellipse at center, transparent 55%, rgba(110, 80, 40, 0.35) 100%);
+    }
+
+    .np-page::after,
+    .herald-sheet::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 7;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, transparent 49.2%, rgba(60, 40, 20, 0.22) 50%, rgba(255, 255, 255, 0.28) 50.5%, transparent 52%),
+        linear-gradient(0deg, transparent 49%, rgba(60, 40, 20, 0.12) 50%, transparent 51.5%);
+    }
+
+    /* =====================================================
+       SCENE 6: SATELLITE TERRAIN MAP (34.85 - 37.35s)
+       ===================================================== */
+    #scene-6 {
+      background: #222b1d;
+    }
+
+    .sat-terrain {
+      width: 130%;
+      height: 130%;
+      position: relative;
+      background: radial-gradient(circle at 30% 40%, #3a4f2d 0%, #24331c 45%, #1b2416 100%);
+      overflow: hidden;
+    }
+
+    .sat-terrain::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.95;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011' numOctaves='6' seed='5'/%3E%3CfeColorMatrix values='0.9 0 0 0 0.05  1.3 0 0 0 0.05  0.6 0 0 0 0.0  0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23t)'/%3E%3C/svg%3E");
+    }
+
+    .sat-radar-sweep {
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      border: 1px solid rgba(234, 179, 8, 0.35);
+      top: 22%;
+      left: 14%;
+      pointer-events: none;
+      background: conic-gradient(from 0deg, transparent 75%, rgba(234, 179, 8, 0.22) 100%);
+      animation: radarSpin 4s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes radarSpin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .sat-fields {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(35deg, rgba(163, 177, 138, 0.14) 2px, transparent 2px),
+        linear-gradient(125deg, rgba(107, 112, 92, 0.18) 2px, transparent 2px);
+      background-size: 75px 75px;
+      z-index: 1;
+    }
+
+    .sat-place-label {
+      position: absolute;
+      left: 28%;
+      top: 24%;
+      font-size: 38px;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.88);
+      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.85);
+      letter-spacing: -0.02em;
+      z-index: 2;
+    }
+
+    .sat-marker {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      z-index: 3;
+    }
+
+    .sat-ribbon-yellow {
+      background: #eab308;
+      color: #09090b;
+      font-family: 'Oswald', sans-serif;
+      font-size: 21px;
+      font-weight: 700;
+      padding: 8px 22px;
+      clip-path: polygon(12px 0, 100% 0, 100% 100%, 12px 100%, 0 50%);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      white-space: nowrap;
+    }
+
+    .sat-ribbon-white {
+      background: #f8fafc;
+      color: #09090b;
+      font-family: 'Oswald', sans-serif;
+      font-size: 21px;
+      font-weight: 700;
+      padding: 8px 22px;
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      white-space: nowrap;
+    }
+
+    .sat-avatar-circle {
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      border: 3.5px solid #eab308;
+      background: #0f172a;
+      color: #fde047;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 20px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.75);
+      z-index: 2;
+      position: relative;
+    }
+
+    /* =====================================================
+       SCENE 7: GOOGLE DARK SEARCH & BLUE SELECT (37.35 - 41.65s)
+       ===================================================== */
+    #scene-7 {
+      background: #1f1f1f;
+    }
+
+    .g-dark-wrap {
+      width: 88%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .g-dark-bar {
+      background: #303134;
+      border-radius: 999px;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 25px;
+      color: #e8eaed;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    .g-icons-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 18px;
+      color: #8ab4f8;
+    }
+
+    .g-suggest-panel {
+      background: #303134;
+      border-radius: 16px;
+      padding: 6px 0;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+      color: #bdc1c6;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .g-suggest-item {
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .g-suggest-item.active {
+      background: #3c4043;
+      color: #fff;
+    }
+
+    .g-moon-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 12px;
+    }
+
+    .g-moon-card {
+      background: #000;
+      border-radius: 16px;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blood-moon-sphere {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 30% 28%, rgba(0, 0, 0, 0.28) 0 5%, transparent 6%),
+        radial-gradient(circle at 62% 55%, rgba(0, 0, 0, 0.25) 0 7%, transparent 8%),
+        radial-gradient(circle at 35% 35%, #f97316, #dc2626 55%, #7f1d1d 90%);
+      box-shadow: 0 0 40px rgba(220, 38, 38, 0.75);
+      animation: moonCoronalPulse 3.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes moonCoronalPulse {
+      0% {
+        filter: drop-shadow(0 0 20px rgba(234, 88, 12, 0.7));
+      }
+
+      100% {
+        filter: drop-shadow(0 0 45px rgba(239, 68, 68, 0.95));
+      }
+    }
+
+    .g-result-snippet {
+      background: #28292c;
+      border-radius: 18px;
+      padding: 20px 24px;
+    }
+
+    .g-res-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: #e8eaed;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .g-highlight-span {
+      padding: 2px 6px;
+      border-radius: 3px;
+      color: #fff;
+      position: relative;
+    }
+
+    /* =====================================================
+       SCENE 8: WOOD DESK NEWSPAPER & CANVAS FIRE (41.65 - 46.25s)
+       ===================================================== */
+    #scene-8 {
+      background-color: #2c1d13;
+      background-image:
+        radial-gradient(ellipse at 50% 40%, rgba(255, 200, 140, 0.14), transparent 60%),
+        repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.35) 0 2px, transparent 2px 120px);
+    }
+
+    .herald-sheet {
+      width: 90%;
+      height: 84%;
+      background: var(--paper-bg);
+      color: var(--paper-ink);
+      padding: 28px 34px;
+      box-shadow: 0 35px 85px rgba(0, 0, 0, 0.85);
+      position: relative;
+      overflow: hidden;
+      font-family: 'Playfair Display', serif;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .herald-top {
+      border-top: 3px solid var(--paper-ink);
+      border-bottom: 2px solid var(--paper-ink);
+      padding: 6px 0;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+    }
+
+    .herald-masthead {
+      text-align: center;
+      font-size: 38px;
+      font-weight: 900;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--paper-ink);
+    }
+
+    .herald-headline {
+      font-size: clamp(24px, 4.2vw, 42px);
+      font-weight: 900;
+      line-height: 1.08;
+      text-transform: uppercase;
+      margin: 14px 0;
+    }
+
+    .herald-eye-photo {
+      flex: 1;
+      background:
+        radial-gradient(circle at 32% 50%, #1c1917 12%, #d6d3d1 26%, #57534e 55%),
+        radial-gradient(circle at 68% 50%, #1c1917 12%, #d6d3d1 26%, #57534e 55%);
+      border: 1px solid #78716c;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #fire-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    /* =====================================================
+       SCENE 9: GOOGLE MAPS NAVIGATION & 3D TEXT (46.25 - 50.83s)
+       ===================================================== */
+    #scene-9 {
+      background: var(--map-green);
+      color: #1e293b;
+    }
+
+    .gmap-world {
+      width: 135%;
+      height: 135%;
+      position: relative;
+      background: var(--map-green);
+    }
+
+    .gmap-world::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .5;
+      background-image: linear-gradient(rgba(30, 60, 50, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(30, 60, 50, 0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .gmap-search-pill {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      background: #ffffff;
+      border-radius: 999px;
+      padding: 14px 24px;
+      font-size: 21px;
+      font-weight: 600;
+      color: #1e293b;
+      box-shadow: 0 14px 36px rgba(15, 23, 42, 0.22), inset 0 -2px 0 rgba(0, 0, 0, 0.04);
+      z-index: 35;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .gmap-nav-chevron {
+      stroke-dasharray: 14 18;
+      animation: navChevronFlow 1.2s linear infinite;
+    }
+
+    @keyframes navChevronFlow {
+      from {
+        stroke-dashoffset: 64;
+      }
+
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .hwy-badge {
+      position: absolute;
+      background: #facc15;
+      color: #1e293b;
+      font-weight: 800;
+      font-size: 13px;
+      padding: 3px 9px;
+      border-radius: 6px;
+      border: 1.5px solid #ca8a04;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .poi-pin {
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 2.5px solid #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 14px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
+    }
+
+    .gmap-avatar-pin {
+      position: absolute;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: #0f172a;
+      border: 4px solid #2563eb;
+      color: #fde047;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 21px;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.5);
+      z-index: 25;
+      transition: left 0.1s linear, top 0.1s linear;
+    }
+
+    .road-3d-text {
+      position: absolute;
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 28px;
+      color: #ffffff;
+      -webkit-text-stroke: 2px #2563eb;
+      text-shadow:
+        0 2px 0 #1d4ed8,
+        0 4px 0 #1e40af,
+        0 8px 16px rgba(0, 0, 0, 0.35);
+      letter-spacing: 0.02em;
+      z-index: 20;
+    }
+
+    /* Grand Celestial Finale Card (48.0s - 50.83s) */
+    .celestial-outro-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, #0a0f1d 0%, #020617 100%);
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      padding: 28px;
+      text-align: center;
+    }
+
+    .celestial-bismillah {
+      font-family: 'Amiri', serif;
+      font-size: 19px;
+      color: #fde047;
+      opacity: 0.9;
+      margin-bottom: 14px;
+      letter-spacing: 0.05em;
+    }
+
+    .celestial-ayah-arabic {
+      font-family: 'Amiri', 'Noto Nastaliq Urdu', serif;
+      font-size: clamp(23px, 4vw, 38px);
+      line-height: 1.85;
+      background: linear-gradient(135deg, #fffbeb 0%, #fef08a 35%, #facc15 70%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 25px rgba(250, 204, 21, 0.55));
+      margin-bottom: 12px;
+    }
+
+    .celestial-ayah-ref {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      color: #93c5fd;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .celestial-ayah-trans {
+      font-size: clamp(12px, 1.9vw, 15px);
+      color: #e2e8f0;
+      max-width: 560px;
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    .celestial-seal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: rgba(250, 204, 21, 0.12);
+      border: 1px solid rgba(250, 204, 21, 0.4);
+      color: #fde047;
+      font-size: 11px;
+      font-weight: 600;
+      margin-top: 16px;
+      box-shadow: 0 4px 15px rgba(250, 204, 21, 0.2);
+    }
+
+    /* =====================================================
+       BOTTOM SUBTITLE BAR & VOICE LEVEL METER
+       ===================================================== */
+    #subtitle-bar {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 800;
+      background: rgba(10, 12, 18, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 8px 18px;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 90%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    #sub-urdu {
+      font-size: 16px;
+      color: #fde047;
+      line-height: 1.9;
+    }
+
+    #sub-eng {
+      font-size: 12px;
+      color: #e2e8f0;
+      font-weight: 500;
+    }
+
+    .glare {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 702;
+      background:
+        radial-gradient(ellipse 42% 34% at 16% 8%, rgba(var(--scene-accent), 0.15), transparent 76%),
+        linear-gradient(115deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0) 34%),
+        radial-gradient(ellipse at 85% 110%, rgba(var(--scene-accent), 0.14), transparent 58%);
+      mix-blend-mode: screen;
+    }
+
+    /* Cinematic polish: scene-tinted light, soft lens drift, and a readable timeline. */
+    #stage-wrapper {
+      --scene-accent: 218, 184, 106;
+      isolation: isolate;
+      border-radius: 20px;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.72),
+        0 0 0 1px rgba(255, 255, 255, 0.12),
+        0 0 72px rgba(var(--scene-accent), 0.2);
+    }
+
+    #stage-ambient {
+      background: radial-gradient(circle at center, rgba(var(--scene-accent), 0.42), transparent 72%);
+    }
+
+    .cinematic-bloom,
+    .cinematic-sweep {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .cinematic-bloom {
+      z-index: 703;
+      opacity: var(--bloom-strength, 0.38);
+      mix-blend-mode: screen;
+      background:
+        radial-gradient(ellipse 48% 46% at 12% 17%, rgba(var(--scene-accent), 0.34), transparent 76%),
+        radial-gradient(ellipse 46% 52% at 92% 84%, rgba(var(--scene-accent), 0.25), transparent 78%),
+        radial-gradient(ellipse 62% 32% at 50% 0%, rgba(255, 246, 214, 0.1), transparent 78%);
+    }
+
+    body.is-playing .cinematic-bloom {
+      animation: bloomDrift 15s ease-in-out infinite alternate;
+    }
+
+    .cinematic-sweep {
+      z-index: 704;
+      inset: -35% auto -35% -55%;
+      width: 38%;
+      opacity: 0;
+      transform: skewX(-24deg);
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(var(--scene-accent), 0.18) 43%,
+        rgba(255, 255, 245, 0.2) 52%,
+        rgba(var(--scene-accent), 0.12) 60%,
+        transparent
+      );
+    }
+
+    body.is-playing .cinematic-sweep {
+      animation: lightSweep 13s cubic-bezier(0.2, 0.7, 0.2, 1) infinite;
+    }
+
+    @keyframes bloomDrift {
+      from {
+        transform: scale(0.96) translate3d(-1%, 1%, 0);
+      }
+
+      to {
+        transform: scale(1.06) translate3d(1%, -1%, 0);
+      }
+    }
+
+    @keyframes lightSweep {
+
+      0%,
+      58% {
+        opacity: 0;
+        transform: translateX(0) skewX(-24deg);
+      }
+
+      63% {
+        opacity: 0.68;
+      }
+
+      78%,
+      100% {
+        opacity: 0;
+        transform: translateX(470%) skewX(-24deg);
+      }
+    }
+
+    .scene.active {
+      animation: sceneReveal 0.68s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+    }
+
+    @keyframes sceneReveal {
+      from {
+        filter: blur(5px);
+      }
+
+      to {
+        filter: blur(0);
+      }
+    }
+
+    #scene-progress {
+      position: absolute;
+      z-index: 790;
+      top: 15px;
+      left: 20px;
+      right: 20px;
+      display: grid;
+      grid-template-columns: repeat(9, minmax(0, 1fr));
+      gap: 5px;
+      pointer-events: none;
+    }
+
+    .scene-progress-segment {
+      height: 3px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.22);
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.28);
+    }
+
+    .scene-progress-segment::after {
+      content: "";
+      display: block;
+      width: var(--segment-progress, 0%);
+      height: 100%;
+      border-radius: inherit;
+      background: rgb(var(--scene-accent));
+      box-shadow: 0 0 10px rgba(var(--scene-accent), 0.8);
+      transition: width 70ms linear;
+    }
+
+    #opening-title {
+      position: absolute;
+      z-index: 780;
+      top: 19%;
+      left: 50%;
+      width: min(82%, 430px);
+      padding: clamp(14px, 2.5vw, 24px) clamp(18px, 3vw, 32px);
+      border: 1px solid rgba(var(--scene-accent), 0.36);
+      border-radius: 18px;
+      color: #f8f5eb;
+      text-align: center;
+      background: linear-gradient(145deg, rgba(7, 13, 16, 0.88), rgba(13, 19, 22, 0.58));
+      box-shadow: 0 18px 52px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      pointer-events: none;
+    }
+
+    .opening-kicker,
+    .opening-footnote {
+      display: block;
+      color: #dbc78f;
+      font: 700 0.58rem/1.4 'JetBrains Mono', monospace;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    #opening-title strong {
+      display: block;
+      margin: 0.2em 0;
+      color: #fff9e8;
+      font: 700 clamp(2rem, 7vw, 3.5rem)/1.05 'Playfair Display', Georgia, serif;
+      letter-spacing: -0.035em;
+    }
+
+    .opening-footnote {
+      color: rgba(241, 238, 226, 0.78);
+      font-size: 0.55rem;
+      letter-spacing: 0.1em;
+    }
+
+    #subtitle-bar {
+      width: max-content;
+      max-width: min(92%, 880px);
+      padding: 10px 18px 12px;
+      border-color: rgba(var(--scene-accent), 0.38);
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(6, 12, 14, 0.92), rgba(14, 19, 23, 0.82));
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.48), 0 0 24px rgba(var(--scene-accent), 0.1);
+      transition: opacity 180ms ease, transform 180ms ease, border-color 350ms ease;
+    }
+
+    #subtitle-bar.captions-hidden {
+      opacity: 0;
+      transform: translate(-50%, 12px);
+      pointer-events: none;
+    }
+
+    .caption-kicker {
+      display: block;
+      margin-bottom: 2px;
+      color: rgba(226, 232, 240, 0.6);
+      font: 700 0.52rem/1.3 'JetBrains Mono', monospace;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    #sub-urdu {
+      color: #f5d989;
+      font-size: clamp(16px, 2.1vw, 21px);
+      line-height: 1.65;
+    }
+
+    #sub-eng {
+      color: #f1f5f9;
+      font-size: clamp(12px, 1.4vw, 15px);
+      line-height: 1.45;
+    }
+
+    #controls {
+      gap: 9px;
+      border-color: rgba(235, 215, 163, 0.24);
+      background: rgba(8, 13, 15, 0.9);
+      box-shadow: 0 14px 48px rgba(0, 0, 0, 0.52), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .btn {
+      min-height: 34px;
+      border-color: rgba(255, 255, 255, 0.16);
+      background: rgba(31, 39, 40, 0.92);
+      transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+    }
+
+    .btn:focus-visible,
+    #scrubber:focus-visible,
+    .back-to-archive:focus-visible {
+      outline: 2px solid #f5d989;
+      outline-offset: 3px;
+    }
+
+    .btn.primary {
+      color: #12130f;
+      border-color: #f1d588;
+      background: linear-gradient(135deg, #f4df9a, #caa95d);
+      box-shadow: 0 5px 18px rgba(202, 169, 93, 0.22);
+    }
+
+    .btn.primary:hover {
+      background: linear-gradient(135deg, #fff0b7, #d8b868);
+    }
+
+    #scrubber {
+      accent-color: #e6c978;
+    }
+
+    .control-eq .eq-bar {
+      background: #e6c978;
+    }
+
+    .back-to-archive {
+      color: #f3dfaa;
+      border-color: rgba(243, 223, 170, 0.32);
+      background: rgba(10, 17, 18, 0.88);
+    }
+
+    @media (max-width: 768px) {
+      .back-to-archive {
+        top: calc(10px + env(safe-area-inset-top, 0px));
+        bottom: auto;
+        left: calc(10px + env(safe-area-inset-left, 0px));
+      }
+
+      #controls {
+        top: auto;
+        bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+        width: calc(100vw - 16px);
+        max-width: 560px;
+      }
+
+      #subtitle-bar {
+        bottom: 14px;
+      }
+    }
+
+    /* Reassert mobile stage sizing after the desktop ratio rules above. */
+    @media (max-width: 768px) {
+      #stage-wrapper {
+        width: min(calc(100vw - 16px), calc(100vh - 200px));
+        height: min(calc(100vw - 16px), calc(100vh - 200px));
+      }
+
+      #stage-wrapper.ratio-9-16 {
+        height: min(calc(100vh - 200px), calc((100vw - 16px) * 16 / 9));
+        width: calc(min(calc(100vh - 200px), calc((100vw - 16px) * 16 / 9)) * 9 / 16);
+      }
+
+      #stage-wrapper.ratio-16-9 {
+        width: min(calc(100vw - 16px), calc((100vh - 200px) * 16 / 9));
+        height: calc(min(calc(100vw - 16px), calc((100vh - 200px) * 16 / 9)) * 9 / 16);
+      }
+
+      #scene-progress {
+        left: 12px;
+        right: 12px;
+        gap: 3px;
+      }
+
+      #opening-title {
+        top: 22%;
+      }
+
+      #subtitle-bar {
+        max-width: calc(100% - 20px);
+        padding: 8px 12px 9px;
+      }
+    }
+
+    @media (max-height: 500px) and (max-width: 900px) {
+
+      #stage-wrapper,
+      #stage-wrapper.ratio-9-16,
+      #stage-wrapper.ratio-16-9 {
+        width: min(calc(100vw - 20px), calc((100vh - 210px) * 16 / 9));
+        height: calc(min(calc(100vw - 20px), calc((100vh - 210px) * 16 / 9)) * 9 / 16);
+      }
+
+      #opening-title {
+        top: 13%;
+        padding: 10px 16px;
+      }
+
+      #opening-title strong {
+        font-size: clamp(1.5rem, 5vh, 2.2rem);
+      }
+
+      #subtitle-bar {
+        bottom: 8px;
+      }
+
+      .back-to-archive {
+        top: 7px;
+        bottom: auto;
+      }
+
+      #controls {
+        top: auto;
+        bottom: 7px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .cinematic-bloom,
+      .cinematic-sweep {
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Ambient Backlight Ambilight -->
+  <div id="stage-ambient"></div>
+
+  <a href="index.html" class="back-to-archive" id="backToArchiveBtn" title="Back to Ruqyah Archive"
+    aria-label="Back to Ruqyah Archive">
+    &#8592; Archive
+  </a>
+
+  <!-- Drag & Drop Audio Banner -->
+  <div id="drop-banner">
+    <div>📥 Drop <code>audio_6af41204e4ea39.02321364.mp3</code> Here</div>
+    <div style="font-size:15px;font-weight:500;color:#93c5fd;">It will be saved inside your browser storage
+      automatically</div>
+  </div>
+
+  <!-- Top Control Bar (Press H to hide) -->
+  <div id="controls">
+    <button id="play-btn" class="btn primary" aria-label="Play or pause reflection" aria-pressed="false">▶ Play</button>
+    <button id="seek-back-btn" class="btn" title="Rewind 5 seconds" aria-label="Rewind 5 seconds">↺ 5s</button>
+    <button id="seek-fwd-btn" class="btn" title="Forward 5 seconds" aria-label="Forward 5 seconds">5s ↻</button>
+    <button id="mute-btn" class="btn" title="Toggle audio mute" aria-label="Mute audio">🔊</button>
+    <button id="captions-btn" class="btn" type="button" aria-label="Hide captions" aria-pressed="true">CC</button>
+    <div class="control-eq" id="control-eq" title="Audio Recitation Equalizer" aria-hidden="true">
+      <span class="eq-bar"></span>
+      <span class="eq-bar"></span>
+      <span class="eq-bar"></span>
+      <span class="eq-bar"></span>
+    </div>
+    <input id="scrubber" type="range" min="0" max="50.83" step="0.02" value="0" aria-label="Timeline position" />
+    <span id="time-display">00:00 / 00:50</span>
+    <button id="ratio-btn" class="btn" aria-label="Switch aspect ratio">16:9 Wide</button>
+    <button id="fullscreen-btn" class="btn" title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶
+      Fullscreen</button>
+    <label class="btn" id="upload-label" for="audio-upload" role="button" tabindex="0">🎵 Audio</label>
+    <input id="audio-upload" type="file" accept="audio/*" style="display:none" />
+    <span id="audio-status">MP3 Ready</span>
+    <span class="hide-hint" style="font-size:11px;color:#9ca3af;">Press <b>H</b> to hide</span>
+  </div>
+
+  <!-- Audio Element (auto-checks local file + IndexedDB) -->
+  <audio id="audio-player" src="audio_6af41204e4ea39.02321364.mp3" preload="auto"></audio>
+
+  <!-- Main Viewport -->
+  <div id="stage-wrapper" class="ratio-16-9" role="region" aria-label="Tawakkul animated reflection">
+    <div class="texture-grain"></div>
+    <div class="texture-vignette"></div>
+    <div class="glare"></div>
+    <div class="dof-edges"></div>
+    <div class="cinematic-bloom" aria-hidden="true"></div>
+    <div class="cinematic-sweep" aria-hidden="true"></div>
+    <div id="scene-progress" aria-hidden="true"></div>
+    <div id="opening-title" aria-hidden="true">
+      <span class="opening-kicker">Ruqyah • Visual reflection</span>
+      <strong>Tawakkul</strong>
+      <span class="opening-footnote">Trust Allah • Take the means • Entrust the outcome</span>
+    </div>
+
+    <!-- =====================================================
+         SCENE 1: GOOGLE CALENDAR DARK UI & MODAL (0.00 - 3.35s)
+         ===================================================== -->
+    <div id="scene-1" class="scene active">
+      <div class="camera-rig" id="rig-1">
+        <div class="gcal-shell">
+          <div class="gcal-header">
+            <span>☰</span>
+            <div class="gcal-logo">
+              <div class="gcal-badge-3">3</div> Calendar
+            </div>
+            <div class="gcal-pill">Today</div>
+            <span>‹ ›</span>
+            <span style="font-weight:600;">Tawakkul Reflection</span>
+          </div>
+          <div class="gcal-body">
+            <div class="gcal-sidebar">
+              <div class="gcal-create-btn">＋ Create ▾</div>
+              <div style="font-size:12px;color:#9aa0a6;">Reflection view</div>
+            </div>
+            <div class="gcal-grid">
+              <div class="gcal-time-col">
+                <span>1 PM</span><span>2 PM</span><span>3 PM</span><span>4 PM</span><span>5 PM</span>
+              </div>
+              <div class="gcal-red-line">
+                <span class="gcal-live-badge"><span class="gcal-live-dot"></span> NOW - REFLECTION</span>
+              </div>
+
+              <div class="gcal-event-block" id="cal-ev-1">
+                <div class="gcal-ev-title">
+                  <div class="gcal-check-circle" id="cal-chk-1">
+                    <svg class="check-svg" viewBox="0 0 24 24">
+                      <path d="M4 12l5 5L20 6"></path>
+                    </svg>
+                  </div>
+                  <span id="cal-txt-1"></span>
+                </div>
+                <div class="gcal-ev-time" id="cal-time-1">2:30 – 3:30pm • Daily Reflection</div>
+              </div>
+
+              <div class="gcal-ev-block-2">
+                <div class="gcal-ev-title">
+                  <div class="gcal-check-circle"></div>
+                  <span>Use the means • Trust Allah with the outcome</span>
+                </div>
+                <div class="gcal-ev-time">5:30 – 6:30pm</div>
+              </div>
+
+              <!-- Floating Dark Event Popover Modal (Frame 00:02) -->
+              <div class="gcal-modal" id="cal-modal">
+                <div class="gcal-modal-top">
+                  <span>✎</span><span>🗑</span><span>⋮</span><span>✕</span>
+                </div>
+                <div class="gcal-modal-row" style="font-size:20px;font-weight:700;">
+                  <span style="width:14px;height:14px;background:#6989f5;border-radius:4px;"></span>
+                  <span>A REFLECTION ON TAWAKKUL</span>
+                </div>
+                <div class="gcal-modal-row">🔥 Today • 3:30 – 4:30pm</div>
+                <div class="gcal-modal-row urdu" style="color:#fde047;">التوكل على الله وحده</div>
+                <div class="gcal-modal-row">Use the means • Entrust the outcome to Allah</div>
+                <div class="gcal-modal-footer">
+                  <div class="gcal-mark-btn">Keep in view</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         SCENE 2: 3D EARTH APP & WIN11 ALT+TAB (3.35 - 8.45s)
+         ===================================================== -->
+    <div id="scene-2" class="scene">
+      <div class="camera-rig" id="rig-2">
+        <div class="desktop-wallpaper">
+          <!-- Top App Menu & Search Pill -->
+          <div class="earth-app-bar">
+            <div class="earth-menu-row">
+              <div class="earth-globe-icon">
+                <div class="earth-orbit-ring"></div>
+                <div class="earth-grid-lines"></div>
+              </div>
+              <span>File</span><span>Edit</span><span>Tampilan</span><span>Tambahkan</span><span>Alat</span><span>Bantuan</span>
+            </div>
+            <div class="earth-search-row">
+              <div class="earth-search-pill">
+                <span>🔍</span>
+                <span id="earth-type"></span>
+              </div>
+              <span style="color:#9ca3af;">↶ ↷ 🌐 📍 📏</span>
+            </div>
+          </div>
+
+          <!-- Alt+Tab Glass Switcher -->
+          <div class="alttab-overlay" id="alttab-modal">
+            <div class="alttab-card" id="tab-card-1">
+              <div style="font-size:11px;color:#9ca3af;">🌍 Google Earth — Material World</div>
+              <div style="font-size:19px;font-weight:800;color:#cbd5e1;">
+                Maaddi Asbaab-o-Wasaail
+              </div>
+              <div style="font-size:12px;color:#64748b;">Worldly Means & Resources</div>
+            </div>
+            <div class="alttab-card focused" id="tab-card-2">
+              <div style="font-size:11px;color:#38bdf8;">🎵 Spiritual Wakeup — Active</div>
+              <div style="font-size:21px;font-weight:900;color:#f87171;">
+                ALLAH KO BHOOL GAYE!
+              </div>
+              <div class="urdu" style="font-size:17px;color:#fde047;">اللّٰہ کو بھول گئے</div>
+            </div>
+          </div>
+
+          <!-- Desktop Shortcuts -->
+          <div class="desktop-icons-grid">
+            <div class="desk-icon">
+              <div class="desk-icon-box" style="background:#1db954;">🎧</div>Spotify
+            </div>
+            <div class="desk-icon">
+              <div class="desk-icon-box" style="background:#001e36;color:#31a8ff;">Ps</div>Photoshop
+            </div>
+            <div class="desk-icon">
+              <div class="desk-icon-box" style="background:#00005b;color:#9999ff;">Ae</div>After Effects
+            </div>
+            <div class="desk-icon">
+              <div class="desk-icon-box" style="background:#ea580c;">🎬</div>VLC Media
+            </div>
+            <div class="desk-icon">
+              <div class="desk-icon-box" style="background:#2563eb;">🌐</div>Chrome
+            </div>
+            <div class="desk-icon">
+              <div class="desk-icon-box" style="background:#1f2937;">🎥</div>OBS Studio
+            </div>
+          </div>
+
+          <!-- Windows 11 Bottom Taskbar -->
+          <div class="win11-taskbar">
+            <div class="tb-icon active"></div>
+            <div class="tb-icon" style="background:#f59e0b;"></div>
+            <div class="tb-icon" style="background:#10b981;"></div>
+            <div class="tb-icon" style="background:#ef4444;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         SCENE 3: SPOTIFY WORD-BY-WORD LYRICS (8.45 - 16.60s)
+         ===================================================== -->
+    <div id="scene-3" class="scene">
+      <div class="camera-rig" id="rig-3">
+        <div class="spotify-lyrics-wrap">
+          <div class="spotify-header-badge">
+            <span>SPOTIFY KARAOKE • TAWAKKUL RECITATION</span>
+            <span style="color:#1db954;">● LIVE AUDIO</span>
+          </div>
+          <div class="sp-line" id="sp-1"></div>
+          <div class="sp-line" id="sp-2"></div>
+          <div class="sp-line" id="sp-3"></div>
+          <div class="sp-line sp-sacred-gold" id="sp-4" style="font-size:26px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         SCENE 4: INSTAGRAM DARK DM NOTES UI (16.60 - 23.45s)
+         ===================================================== -->
+    <div id="scene-4" class="scene">
+      <div class="camera-rig" id="rig-4">
+        <div class="ig-layout">
+          <div class="ig-rail">
+            <span>⌂</span><span>🎬</span><span style="color:#ef4444;">✉
+              5</span><span>🔍</span><span>♡</span><span>＋</span>
+          </div>
+          <div class="ig-main">
+            <div class="ig-search">🔍 Search</div>
+            <div class="ig-notes-row">
+              <div class="ig-note-card">
+                <div class="ig-reaction-bubble">❤️ 99+</div>
+                <div class="ig-bubble">KOI TAAQAT<br />NAHI HAI</div>
+                <div class="ig-avatar"
+                  style="background:#073b66;color:#93c5fd;font-weight:800;font-size:15px;padding:14px;text-align:center;">
+                  Na Khair Ki<br />Na Shar Ki
+                </div>
+                <div class="ig-username">Your note</div>
+              </div>
+
+              <div class="ig-note-card">
+                <div class="ig-reaction-bubble">🔥 52</div>
+                <div class="ig-bubble">
+                  JAB TAK KE<br />
+                  <span class="blur-word glint-flash" id="ig-blur-1" style="color:#fde047;">IZN-E-RABB NA HO</span>
+                </div>
+                <div class="ig-avatar"
+                  style="background:radial-gradient(circle,#334155,#0f172a);font-size:28px;font-weight:900;">
+                  إِذْنِ رَبّ
+                </div>
+                <div class="ig-username">divine_decree</div>
+              </div>
+
+              <div class="ig-note-card">
+                <div class="ig-reaction-bubble">💯 128</div>
+                <div class="ig-bubble">
+                  ALLAH NA CHAAHE TOH<br />
+                  <span class="blur-word glint-flash" id="ig-blur-2" style="color:#f87171;">KUCH NAHI HO SAKTA</span>
+                </div>
+                <div class="ig-avatar"
+                  style="background:radial-gradient(circle,#7f1d1d,#111827);font-size:30px;font-weight:900;">
+                  اللّٰہ
+                </div>
+                <div class="ig-username">al_qadir</div>
+              </div>
+            </div>
+
+            <div class="ig-dm-row">
+              <div class="ig-dm-badge">حَقّ</div>
+              <div>
+                <div style="font-weight:700;font-size:16px;">AL-AQEEDAH REMINDER <span style="color:#38bdf8;">✔</span>
+                </div>
+                <div style="color:#e5e7eb;font-weight:600;font-size:14px;">2 new messages • Now</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         SCENE 5: 4-PAGE 3D BROADSHEET NEWSPAPER (23.45 - 34.85s)
+         ===================================================== -->
+    <div id="scene-5" class="scene">
+      <div class="camera-rig" id="rig-5">
+        <div class="broadsheet-grid">
+          <!-- PAGE 1 -->
+          <div class="np-page" id="np-page-1">
+            <div class="np-royal-seal">مُحَمَّدٌ<br />رَسُولُ اللَّهِ<br />ﷺ</div>
+            <div class="np-top-banner">
+              <span class="np-top-meta">HADITH • IBN ABBAS (RA)</span>
+              <span class="np-top-title">THE TRUST REPORT</span>
+              <span class="np-top-meta">TIRMIDHI 2516</span>
+            </div>
+            <div class="np-page-content">
+              <div class="np-photo-box">
+                <div style="color:#e7e5e4;font-size:26px;font-weight:900;text-align:center;padding:12px;">
+                  حَدِيثُ النَّبِيِّ ﷺ
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <span class="np-red-tag">A PROPHETIC TEACHING</span>
+                <div class="np-big-head" id="np-type-1">THE PROPHET ﷺ TAUGHT</div>
+                <div class="np-deck">If all creation gathered to benefit you—</div>
+                <div class="np-cols-2">
+                  <p>—you would receive only what Allah had already decreed for you.</p>
+                  <p>We take the available means, while knowing that their outcomes are not independent of Allah.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PAGE 2 -->
+          <div class="np-page" id="np-page-2">
+            <div class="np-top-banner">
+              <span class="np-top-meta">SPECIAL REPORT</span>
+              <span class="np-top-title">THE TRUST REPORT</span>
+              <span class="np-top-meta">PAGE 02</span>
+            </div>
+            <div class="np-page-content">
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <span class="np-red-tag">MATCH REPORT</span>
+                <div class="np-big-head" id="np-type-2">NAHI POHANCHA SAKTE!</div>
+                <div class="np-deck">Benefit cannot reach you beyond what Allah has decreed.</div>
+                <div class="np-cols-2">
+                  <p>People and resources may help, but none controls the outcome independently.</p>
+                  <p>Take the means; place your trust in Allah.</p>
+                </div>
+              </div>
+              <div class="np-photo-box" style="background:#292524;">
+                <div style="color:#fde047;font-size:22px;font-weight:800;">لَا إِلَٰهَ إِلَّا اللَّهُ</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PAGE 3 -->
+          <div class="np-page" id="np-page-3">
+            <div class="np-top-banner">
+              <span class="np-top-meta">VERDICT ARCHIVE</span>
+              <span class="np-top-title">THE TRUST REPORT</span>
+              <span class="np-top-meta">PAGE 03</span>
+            </div>
+            <div class="np-page-content">
+              <div class="np-photo-box" style="background:#1e293b;">
+                <div style="color:#fff;font-size:20px;font-weight:800;">نَفْع وَ ضَرَر</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <span class="np-red-tag">ETERNAL LAW</span>
+                <div class="np-big-head" id="np-type-3">NA NUQSAAN, NA FAIDA.</div>
+                <div class="np-deck">The narration continues: harm, too, is bounded by Allah's decree.</div>
+                <div class="np-red-quote">They could harm you only with what Allah had already decreed for you.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PAGE 4 -->
+          <div class="np-page" id="np-page-4">
+            <div class="np-wax-seal">حَقّ</div>
+            <div class="np-top-banner">
+              <span class="np-top-meta">CONCLUSION</span>
+              <span class="np-top-title">THE TRUST REPORT</span>
+              <span class="np-top-meta">PAGE 04</span>
+            </div>
+            <div class="np-page-content">
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <span class="np-red-tag">FINAL DECREE</span>
+                <div class="np-big-head">JAB TAK ALLAH KA IZN NA HO</div>
+                <div class="np-deck">The teaching closes with trust in Allah's decree.</div>
+                <div class="np-red-quote">The pens are lifted; the pages are dry.</div>
+              </div>
+              <div class="np-photo-box" style="background:#18181b;">
+                <div style="color:#f8fafc;font-size:22px;font-weight:900;">تَوَكُّل</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         SCENE 6: SATELLITE TERRAIN MAP (34.85 - 37.35s)
+         ===================================================== -->
+    <div id="scene-6" class="scene">
+      <div class="camera-rig" id="rig-6">
+        <div class="sat-terrain">
+          <div class="sat-fields"></div>
+          <div class="sat-radar-sweep"></div>
+          <svg width="100%" height="100%" viewBox="0 0 800 800" style="position:absolute;inset:0;">
+            <path d="M 380 0 Q 340 280 390 460 T 260 800" fill="none" stroke="#d6d3d1" stroke-width="10"
+              opacity="0.75" />
+            <path d="M 100 320 Q 380 390 720 260" fill="none" stroke="#a8a29e" stroke-width="6" opacity="0.6" />
+          </svg>
+          <div class="sat-place-label">Al-Asbaab</div>
+
+          <div class="sat-marker" style="left:16%;top:38%;">
+            <div class="sat-ribbon-yellow" id="sat-rib-1">MUSABBIB-UL-ASBAAB</div>
+            <div class="sat-avatar-circle">
+              مسبب
+            </div>
+          </div>
+
+          <div class="sat-marker" style="left:26%;top:64%;">
+            <div class="sat-avatar-circle" style="border-color:#fff;">
+              حق
+            </div>
+            <div class="sat-ribbon-white" id="sat-rib-2">ASAL MEIN WOHI HAI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         SCENE 7: GOOGLE DARK SEARCH & BLUE SELECT (37.35 - 41.65s)
+         ===================================================== -->
+    <div id="scene-7" class="scene">
+      <div class="camera-rig" id="rig-7">
+        <div class="g-dark-wrap">
+          <div class="g-dark-bar">
+            <span id="g-dark-type"></span>
+            <div class="g-icons-right">
+              <span>✕</span><span>🎤</span><span>📷</span><span>🔍</span>
+            </div>
+          </div>
+
+          <div class="g-suggest-panel" id="g-suggest-panel">
+            <div class="g-suggest-item active">
+              <span>🔍</span>
+              <span><b>Ikhtiyar-e-Mutlaq</b> in Islamic Theology</span>
+            </div>
+            <div class="g-suggest-item">
+              <span>🔍</span>
+              <span><b>Musabbib-ul-Asbaab</b> meaning in Urdu</span>
+            </div>
+          </div>
+
+          <div class="g-moon-grid">
+            <div class="g-moon-card">
+              <div class="blood-moon-sphere"></div>
+            </div>
+            <div class="g-moon-card">
+              <div class="blood-moon-sphere" style="width:130px;height:130px;"></div>
+            </div>
+          </div>
+
+          <div class="g-result-snippet">
+            <div style="font-size:12px;color:#9aa0a6;margin-bottom:4px;">Al-Haqeeqah • Supreme Authority</div>
+            <div class="g-res-title">
+              Jiske haath mein <span class="g-highlight-span" id="g-blue-sel">Ikhtiyar-e-Mutlaq hai</span>
+            </div>
+            <div style="font-size:16px;color:#bdc1c6;">
+              Means can be used; their outcomes are not independent of Allah's will.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         SCENE 8: WOOD DESK NEWSPAPER & CANVAS FIRE (41.65 - 46.25s)
+         ===================================================== -->
+    <div id="scene-8" class="scene">
+      <div class="camera-rig" id="rig-8">
+        <div class="herald-sheet">
+          <div class="herald-top">
+            <span>VOL. CLXIII • NO. 56,312</span>
+            <span>REFLECTION • TAWAKKUL</span>
+            <span>FIELD NOTES • 01</span>
+          </div>
+          <div class="herald-masthead">THE TRUST REPORT</div>
+          <div class="herald-headline" id="herald-type"></div>
+          <div class="herald-eye-photo">
+            <div
+              style="font-family:'Inter',sans-serif;font-weight:900;font-size:22px;color:#fff;background:rgba(0,0,0,0.65);padding:8px 18px;border-radius:4px;">
+              USE THE MEANS. TRUST ALLAH WITH THE OUTCOME.
+            </div>
+          </div>
+          <canvas id="fire-canvas" width="600" height="500"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         SCENE 9: GOOGLE MAPS NAVIGATION & 3D TEXT (46.25 - 50.83s)
+         ===================================================== -->
+    <div id="scene-9" class="scene">
+      <div class="gmap-search-pill">
+        <span id="gmap-type"></span>
+        <span>🔍 &nbsp; 🗺️</span>
+      </div>
+      <div class="camera-rig" id="rig-9">
+        <div class="gmap-world">
+          <svg width="100%" height="100%" viewBox="0 0 900 900" style="position:absolute;inset:0;">
+            <!-- Parks & Blocks -->
+            <polygon points="80,120 340,90 290,380 60,340" fill="#b8e6c9" />
+            <polygon points="550,450 850,410 820,760 510,720" fill="#b8e6c9" />
+            <!-- Secondary Roads -->
+            <path d="M 0 320 L 900 580" stroke="#ffffff" stroke-width="18" fill="none" />
+            <path d="M 220 0 L 640 900" stroke="#ffffff" stroke-width="18" fill="none" />
+            <!-- Main Blue Route with flow animation -->
+            <path d="M 180 760 L 390 520 A 65 65 0 1 1 480 430 L 760 180" stroke="#60a5fa" stroke-width="22"
+              stroke-linecap="round" fill="none" />
+            <path d="M 180 760 L 390 520 A 65 65 0 1 1 480 430 L 760 180" class="gmap-nav-chevron" stroke="#2563eb"
+              stroke-width="12" stroke-linecap="round" fill="none" />
+          </svg>
+
+          <!-- Highway Shields -->
+          <div class="hwy-badge" style="left:26%;top:64%;">D152</div>
+          <div class="hwy-badge" style="left:45%;top:58%;">D607</div>
+          <div class="hwy-badge" style="left:62%;top:36%;">D606</div>
+
+          <!-- POI Pins -->
+          <div class="poi-pin" style="left:36%;top:34%;background:#ec4899;">★</div>
+          <div class="poi-pin" style="left:58%;top:52%;background:#10b981;">🌲</div>
+          <div class="poi-pin" style="left:68%;top:26%;background:#8b5cf6;">🕌</div>
+
+          <!-- 3D Extruded Road Text -->
+          <div class="road-3d-text" id="road-txt-1" style="left:32%;top:53%;">TAWAKKUL ALA ALLAH</div>
+          <div class="road-3d-text" id="road-txt-2" style="left:52%;top:38%;">HASBIYALLAH</div>
+
+          <!-- Moving Avatar Pin -->
+          <div class="gmap-avatar-pin" id="gmap-pin" style="left:30%;top:65%;">اللّٰہ</div>
+        </div>
+      </div>
+
+      <!-- Celestial Grand Finale Card (48.0s - 50.83s) -->
+      <div id="celestial-outro" class="celestial-outro-overlay">
+        <div class="celestial-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+        <div class="celestial-ayah-arabic urdu">حَسْبِيَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ ۖ عَلَيْهِ تَوَكَّلْتُ ۖ وَهُوَ
+          رَبُّ الْعَرْشِ الْعَظِيمِ</div>
+        <div class="celestial-ayah-ref">At-Tawbah 9:129 • Saheeh International</div>
+        <div class="celestial-ayah-trans">"Sufficient for me is Allah; there is no deity except Him. On Him I have
+          relied, and He is the Lord of the Great Throne."</div>
+        <div class="celestial-seal-badge">
+          <span>★</span>
+          <span>RUQYAH.IO SCHOLASTIC ARCHIVE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Subtitle Bar -->
+    <div id="subtitle-bar" role="region" aria-label="Urdu narration and English translation">
+      <span class="caption-kicker">Urdu narration • English translation</span>
+      <div id="sub-urdu" class="urdu" lang="ur">صرف اللہ ہی پر توکل رکھیں</div>
+      <div id="sub-eng">A reflection: trust Allah alone.</div>
+    </div>
+  </div>
+
+  <script>
+    const audio = document.getElementById('audio-player');
+    const playBtn = document.getElementById('play-btn');
+    const seekBackBtn = document.getElementById('seek-back-btn');
+    const seekFwdBtn = document.getElementById('seek-fwd-btn');
+    const muteBtn = document.getElementById('mute-btn');
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+    const audioUpload = document.getElementById('audio-upload');
+    const uploadLabel = document.getElementById('upload-label');
+    const audioStatus = document.getElementById('audio-status');
+    const scrubber = document.getElementById('scrubber');
+    const timeDisplay = document.getElementById('time-display');
+    const ratioBtn = document.getElementById('ratio-btn');
+    const controls = document.getElementById('controls');
+    const stageWrapper = document.getElementById('stage-wrapper');
+    const dropBanner = document.getElementById('drop-banner');
+    const subtitleBar = document.getElementById('subtitle-bar');
+    const captionsBtn = document.getElementById('captions-btn');
+    const openingTitle = document.getElementById('opening-title');
+    const stageAmbient = document.getElementById('stage-ambient');
+    const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+
+    const BASE_DURATION = 50.83;
+    let TOTAL_DURATION = 50.83;
+
+    let isPlaying = false;
+    let currentTime = 0;
+    let lastSceneIdx = -1;
+    let useSynthClock = false;
+    let synthStart = 0;
+    let lastTypedTick = 0;
+    let animationFrameId = null;
+
+    /* ==========================================================
+       1. INDEXED-DB PERSISTENT AUDIO STORAGE
+       ========================================================== */
+    const DB_NAME = 'TawakkulVideoAudioDB';
+    const STORE_NAME = 'audioFiles';
+
+    function openAudioDB() {
+      return new Promise((resolve, reject) => {
+        const req = indexedDB.open(DB_NAME, 1);
+        req.onupgradeneeded = (e) => {
+          const db = e.target.result;
+          if (!db.objectStoreNames.contains(STORE_NAME)) {
+            db.createObjectStore(STORE_NAME);
+          }
+        };
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    async function saveAudioToDB(blob) {
+      try {
+        const db = await openAudioDB();
+        const tx = db.transaction(STORE_NAME, 'readwrite');
+        tx.objectStore(STORE_NAME).put(blob, 'main_mp3');
+      } catch (e) { }
+    }
+
+    async function loadAudioFromDB() {
+      try {
+        const db = await openAudioDB();
+        return new Promise((resolve) => {
+          const tx = db.transaction(STORE_NAME, 'readonly');
+          const req = tx.objectStore(STORE_NAME).get('main_mp3');
+          req.onsuccess = () => resolve(req.result || null);
+          req.onerror = () => resolve(null);
+        });
+      } catch (e) {
+        return null;
+      }
+    }
+
+    loadAudioFromDB().then((blob) => {
+      if (blob) {
+        audio.src = URL.createObjectURL(blob);
+        uploadLabel.classList.add('success');
+        uploadLabel.textContent = '✔ Audio Embedded';
+        audioStatus.textContent = 'MP3 Loaded (Saved)';
+      }
+    });
+
+    function attachAudioFile(file) {
+      if (!file) return;
+      saveAudioToDB(file);
+      const url = URL.createObjectURL(file);
+      audio.src = url;
+      uploadLabel.classList.add('success');
+      uploadLabel.textContent = '✔ Audio Embedded';
+      audioStatus.textContent = file.name.slice(0, 18);
+      currentTime = 0;
+      audio.currentTime = 0;
+      initWebAudio();
+      audio.play().then(() => {
+        useSynthClock = false;
+        setPlaybackState(true);
+        controls.classList.add('playing');
+        startAnimationLoop();
+      }).catch(() => {
+        useSynthClock = true;
+        synthStart = performance.now();
+        setPlaybackState(true);
+        audioStatus.textContent = 'Audio ready • tap Play if playback is blocked';
+        controls.classList.add('playing');
+        startAnimationLoop();
+      });
+    }
+
+    audio.addEventListener('loadedmetadata', () => {
+      if (isFinite(audio.duration) && audio.duration > 5) {
+        TOTAL_DURATION = audio.duration;
+        scrubber.max = TOTAL_DURATION;
+        renderFrame(Math.min(currentTime, TOTAL_DURATION));
+        audioStatus.textContent = 'MP3 Ready';
+      }
+    });
+    audio.addEventListener('error', () => {
+      audioStatus.textContent = 'MP3 not found — use 🎵 button';
+    });
+
+    audioUpload.addEventListener('change', (e) => attachAudioFile(e.target.files[0]));
+    uploadLabel?.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        audioUpload.click();
+      }
+    });
+
+    window.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropBanner.style.display = 'flex';
+    });
+    window.addEventListener('dragleave', (e) => {
+      if (e.target === dropBanner) dropBanner.style.display = 'none';
+    });
+    window.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropBanner.style.display = 'none';
+      if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+        attachAudioFile(e.dataTransfer.files[0]);
+      }
+    });
+
+    /* ==========================================================
+       2. WEB AUDIO API: VOICE ANALYZER + UI FOLEY
+       ========================================================== */
+    let audioCtx = null;
+    let analyser = null;
+    let freqData = null;
+    let mediaSourceConnected = false;
+
+    function initWebAudio() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContext();
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 128;
+        freqData = new Uint8Array(analyser.frequencyBinCount);
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      if (!mediaSourceConnected && audio.src && !useSynthClock) {
+        try {
+          const src = audioCtx.createMediaElementSource(audio);
+          src.connect(analyser);
+          analyser.connect(audioCtx.destination);
+          mediaSourceConnected = true;
+        } catch (e) { }
+      }
+    }
+
+    function playKeyClick() {
+      if (!audioCtx || !isPlaying) return;
+      const now = audioCtx.currentTime;
+      if (now - lastTypedTick < 0.065) return;
+      lastTypedTick = now;
+
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(850 + Math.random() * 250, now);
+      osc.frequency.exponentialRampToValueAtTime(140, now + 0.025);
+
+      gain.gain.setValueAtTime(0.035, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.025);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(now);
+      osc.stop(now + 0.026);
+    }
+
+    function playWhoosh() {
+      if (!audioCtx || !isPlaying) return;
+      const now = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(140, now);
+      osc.frequency.exponentialRampToValueAtTime(48, now + 0.22);
+
+      gain.gain.setValueAtTime(0.06, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(now);
+      osc.stop(now + 0.23);
+    }
+
+    function getAudioEnergy() {
+      if (!analyser || useSynthClock) return 0;
+      analyser.getByteFrequencyData(freqData);
+      let sum = 0;
+      for (let i = 2; i < 24; i++) sum += freqData[i];
+      return sum / (22 * 255);
+    }
+
+    /* ==========================================================
+       3. TRUE REAL-TIME SUBTITLES (0.00s - 50.83s)
+       ========================================================== */
+    const subtitles = [
+      { start: 0.00, end: 3.35, urdu: "صرف اللہ ہی پر توکل رکھیں", eng: "A reflection: trust Allah alone." },
+      { start: 3.35, end: 6.80, urdu: "آج ہمارا توکل جو ہے وہ مادی اسباب و وسائل پر ہے", eng: "Today, we place our reliance on material means and resources—" },
+      { start: 6.80, end: 8.45, urdu: "اللّٰہ کو بھول گئے!", eng: "—and have forgotten Allah." },
+      { start: 8.45, end: 11.00, urdu: "اللّٰہ تعالیٰ مسبب الاسباب ہے", eng: "Allah is the One who brings every cause to fruition." },
+      { start: 11.00, end: 16.60, urdu: "ہمارا جو ایمان ہے وہ تو یہ ہے کہ لا حول ولا قوۃ الا باللّٰہ", eng: "Our faith is: there is no power or strength except through Allah." },
+      { start: 16.60, end: 20.95, urdu: "کوئی طاقت نہیں ہے نہ خیر کی نہ شر کی جب تک کہ اذنِ رب نہ ہو", eng: "No power for good or harm acts except by the Lord's permission." },
+      { start: 20.95, end: 23.45, urdu: "اللّٰہ نہ چاہے تو کچھ نہیں ہو سکتا", eng: "Nothing can happen unless Allah wills it." },
+      { start: 23.45, end: 28.45, urdu: "حضور ﷺ نے فرمایا: اگر تمام دنیا کے انسان مل کر تمہیں کوئی فائدہ پہنچانا چاہیں", eng: "The Prophet ﷺ taught: if all creation gathered to benefit you—" },
+      { start: 28.45, end: 31.35, urdu: "نہیں پہنچا سکتے! اگر اللّٰہ کا اذن نہیں ہے", eng: "—you would receive only what Allah had already decreed for you." },
+      { start: 31.35, end: 34.85, urdu: "نہ نقصان نہ فائدہ — جب تک کہ اللّٰہ کا اذن نہ ہو", eng: "And they could harm you only with what Allah had decreed for you." },
+      { start: 34.85, end: 37.35, urdu: "گویا کہ مسبب الاسباب ہے اصل میں", eng: "Allah alone is the true Originator of all causes." },
+      { start: 37.35, end: 39.60, urdu: "جس کے ہاتھ میں اختیارِ مطلق ہے", eng: "All sovereignty belongs to Allah." },
+      { start: 39.60, end: 41.65, urdu: "یہ اسباب تو ظاہری ہیں", eng: "These means are real; their outcomes are not independent of Allah." },
+      { start: 41.65, end: 46.25, urdu: "ان کے نتائج نکلتے ہیں اگر اللّٰہ چاہے تو نکلیں گے ورنہ نہیں", eng: "Outcomes unfold only when Allah wills; otherwise, they do not." },
+      { start: 46.25, end: 50.83, urdu: "حَسْبِيَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ ۖ عَلَيْهِ تَوَكَّلْتُ", eng: "Sufficient for me is Allah; there is no deity except Him. On Him I have relied, and He is the Lord of the Great Throne." }
+    ];
+
+    function clamp(v, min = 0, max = 1) {
+      return Math.max(min, Math.min(max, v));
+    }
+
+    function typeText(text, progress) {
+      const p = clamp(progress);
+      const count = Math.floor(p * text.length);
+      if (p > 0.02 && p < 0.98) playKeyClick();
+      return text.slice(0, count);
+    }
+
+    function fillSpotifyLine(el, text, progress) {
+      const p = clamp(progress);
+      const splitIdx = Math.floor(p * text.length);
+      const litPart = text.slice(0, splitIdx);
+      const unlitPart = text.slice(splitIdx);
+      el.innerHTML = `<span class="lit">${litPart}</span><span class="unlit">${unlitPart}</span>`;
+    }
+
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60).toString().padStart(2, '0');
+      const s = Math.floor(sec % 60).toString().padStart(2, '0');
+      return `${m}:${s}`;
+    }
+
+    /* ==========================================================
+       4. PROCEDURAL CANVAS FIRE & SCORCH SHADER (SCENE 8)
+       ========================================================== */
+    const fireCanvas = document.getElementById('fire-canvas');
+    const fCtx = fireCanvas.getContext('2d');
+
+    const hash = (n) => {
+      const x = Math.sin(n * 127.1 + 311.7) * 43758.5453;
+      return x - Math.floor(x);
+    };
+
+    function renderFireBurn(progress) {
+      const w = fireCanvas.width, h = fireCanvas.height;
+      fCtx.clearRect(0, 0, w, h);
+      if (progress <= 0) return;
+      const cx = w * 0.52, cy = h * 0.58;
+      const r = progress * Math.max(w, h) * 0.95;
+      const tt = performance.now() * 0.004;
+      const N = 120;
+      const R = (a) => r * (1 + 0.16 * Math.sin(3 * a + 1.3) + 0.09 * Math.sin(7 * a + 0.4)
+        + 0.05 * Math.sin(13 * a + tt * 0.6) + 0.025 * Math.sin(29 * a + tt * 2));
+      const trace = (k) => {
+        fCtx.beginPath();
+        for (let i = 0; i <= N; i++) {
+          const a = (i / N) * Math.PI * 2, rr = R(a) * k;
+          const x = cx + Math.cos(a) * rr, y = cy + Math.sin(a) * rr;
+          i ? fCtx.lineTo(x, y) : fCtx.moveTo(x, y);
+        }
+        fCtx.closePath();
+      };
+      fCtx.save();
+      trace(1.0); fCtx.lineJoin = 'round';
+      fCtx.strokeStyle = 'rgba(70,35,10,0.35)'; fCtx.lineWidth = 110; fCtx.stroke();
+      fCtx.strokeStyle = 'rgba(40,18,6,0.55)'; fCtx.lineWidth = 55; fCtx.stroke();
+      trace(0.97); fCtx.fillStyle = '#0b0705'; fCtx.fill();
+      trace(1.0);
+      fCtx.shadowColor = 'rgba(255,120,20,0.95)'; fCtx.shadowBlur = 28;
+      fCtx.strokeStyle = 'rgba(200,50,8,0.9)'; fCtx.lineWidth = 16; fCtx.stroke();
+      fCtx.strokeStyle = 'rgba(255,150,30,0.95)'; fCtx.lineWidth = 8; fCtx.stroke();
+      fCtx.shadowBlur = 12;
+      fCtx.strokeStyle = 'rgba(255,238,160,0.98)'; fCtx.lineWidth = 2.5; fCtx.stroke();
+      fCtx.restore();
+
+      // Golden & amber sparks
+      for (let i = 0; i < 90; i++) {
+        const a = hash(i) * Math.PI * 2;
+        const life = (tt * 0.12 + hash(i + 50)) % 1;
+        const rr = R(a) * (0.96 + hash(i + 9) * 0.06);
+        const x = cx + Math.cos(a) * rr + Math.sin(tt + i) * 10 * life;
+        const y = cy + Math.sin(a) * rr - life * (50 + hash(i + 3) * 90);
+        const size = (1 - life) * (1.2 + hash(i + 7) * 2.6);
+        fCtx.fillStyle = `rgba(255,${Math.floor(150 + 90 * (1 - life))},50,${(1 - life) * 0.95})`;
+        fCtx.shadowColor = 'rgba(255,120,20,0.9)'; fCtx.shadowBlur = 8;
+        fCtx.beginPath(); fCtx.arc(x, y, size, 0, 6.283); fCtx.fill();
+      }
+      fCtx.shadowBlur = 0;
+    }
+
+    /* ==========================================================
+       5. MASTER TIMELINE & 1:1 REAL-AUDIO CHOREOGRAPHY
+       ========================================================== */
+    const scenes = Array.from(document.querySelectorAll('.scene'));
+
+    function activateScene(idx) {
+      if (idx !== lastSceneIdx) {
+        if (lastSceneIdx !== -1) playWhoosh();
+        lastSceneIdx = idx;
+        setSceneMood(idx);
+      }
+      scenes.forEach((s, i) => s.classList.toggle('active', i === idx));
+    }
+
+    const CUTS = [3.35, 8.45, 16.60, 23.45, 34.85, 37.35, 41.65, 46.25];
+    const sceneAccents = [
+      '218, 184, 106', '91, 190, 177', '75, 183, 128',
+      '220, 122, 157', '211, 172, 112', '151, 182, 133',
+      '155, 140, 235', '231, 139, 74', '106, 199, 173'
+    ];
+    const progressSegments = scenes.map(() => {
+      const segment = document.createElement('span');
+      segment.className = 'scene-progress-segment';
+      document.getElementById('scene-progress')?.appendChild(segment);
+      return segment;
+    });
+
+    function setSceneMood(idx) {
+      const accent = sceneAccents[idx] || sceneAccents[0];
+      stageWrapper.style.setProperty('--scene-accent', accent);
+      if (stageAmbient) {
+        stageAmbient.style.background = `radial-gradient(circle at center, rgba(${accent}, 0.42), transparent 72%)`;
+      }
+    }
+
+    function updateSceneProgress(t) {
+      let sceneIdx = CUTS.findIndex((cut) => t < cut);
+      if (sceneIdx < 0) sceneIdx = scenes.length - 1;
+      const start = sceneIdx === 0 ? 0 : CUTS[sceneIdx - 1];
+      const end = sceneIdx < CUTS.length ? CUTS[sceneIdx] : BASE_DURATION;
+      const progress = clamp((t - start) / (end - start)) * 100;
+      progressSegments.forEach((segment, idx) => {
+        const value = idx < sceneIdx ? 100 : idx === sceneIdx ? progress : 0;
+        segment.style.setProperty('--segment-progress', `${value}%`);
+      });
+    }
+
+    function updateOpeningTitle(t) {
+      if (!openingTitle) return;
+      const fadeIn = clamp((t + 0.2) / 0.4);
+      const fadeOut = clamp((2.5 - t) / 0.8);
+      const opacity = Math.min(fadeIn, fadeOut);
+      openingTitle.style.opacity = String(opacity);
+      openingTitle.style.transform = `translate(-50%, ${((1 - opacity) * 12).toFixed(1)}px) scale(${(0.97 + opacity * 0.03).toFixed(3)})`;
+    }
+
+    function applyTransition(t) {
+      if (prefersReducedMotion) {
+        scenes.forEach((scene) => {
+          scene.style.filter = '';
+          scene.style.opacity = '';
+        });
+        return;
+      }
+      const d = Math.min(...CUTS.map(c => Math.abs(t - c)));
+      const k = clamp(1 - d / 0.26);
+      scenes.forEach((sc, i) => {
+        if (i === lastSceneIdx && k > 0) {
+          sc.style.filter = `blur(${(k * k * 8).toFixed(2)}px) brightness(${(1 + k * 0.55).toFixed(2)})`;
+          sc.style.opacity = (1 - k * 0.5).toFixed(2);
+        } else {
+          sc.style.filter = '';
+          sc.style.opacity = '';
+        }
+      });
+    }
+
+    const grainEl = document.querySelector('.texture-grain');
+    let lastGrain = 0;
+    function jitterGrain() {
+      const n = performance.now();
+      if (n - lastGrain < 70) return;
+      lastGrain = n;
+      grainEl.style.transform = `translate(${(Math.random() - 0.5) * 70}px, ${(Math.random() - 0.5) * 70}px)`;
+    }
+
+    function renderFrame(realT) {
+      scrubber.value = realT;
+      timeDisplay.textContent = `${formatTime(realT)} / ${formatTime(TOTAL_DURATION)}`;
+
+      const t = realT * (BASE_DURATION / TOTAL_DURATION);
+      updateSceneProgress(t);
+      updateOpeningTitle(t);
+
+      const sub = subtitles.find(s => t >= s.start && t <= s.end) || subtitles[subtitles.length - 1];
+      document.getElementById('sub-urdu').textContent = sub.urdu;
+      document.getElementById('sub-eng').textContent = sub.eng;
+
+      const voiceBoost = prefersReducedMotion ? 0 : getAudioEnergy() * 0.04;
+      stageWrapper.style.setProperty('--bloom-strength', (prefersReducedMotion ? 0.22 : 0.28 + voiceBoost * 2.5).toFixed(2));
+
+      // Ensure celestial outro is hidden unless in Scene 9 outro
+      const celestialOutro = document.getElementById('celestial-outro');
+      if (celestialOutro && t < 48.0) {
+        celestialOutro.style.opacity = '0';
+        celestialOutro.style.pointerEvents = 'none';
+      }
+
+      // SCENE 1: 0.00 - 3.35s (opening reflection on trusting Allah alone)
+      if (t < 3.35) {
+        activateScene(0);
+        const p = clamp(t / 3.35);
+        const rig = document.getElementById('rig-1');
+
+        const txt = "Trust Allah alone";
+        document.getElementById('cal-txt-1').innerHTML =
+          typeText(txt, t / 1.90) + '<span class="caret"></span>';
+
+        const ev1 = document.getElementById('cal-ev-1');
+        const modal = document.getElementById('cal-modal');
+
+        if (t < 1.90) {
+          rig.style.transform = `scale(${1.32 - p * 0.18 + voiceBoost}) translate(-2%, -9%) rotateY(-8deg) rotateX(5deg)`;
+          ev1.classList.remove('done');
+          document.getElementById('cal-txt-1').style.textDecoration = 'none';
+          modal.style.opacity = '0';
+          modal.style.transform = 'translateZ(30px) translateY(30px) scale(0.9)';
+        } else {
+          const p2 = clamp((t - 1.90) / 1.45);
+          rig.style.transform = `scale(${1.18 - p2 * 0.16 + voiceBoost}) translate(0%, 0%) rotateY(${-6 + p2 * 6}deg)`;
+          ev1.classList.add('done');
+          document.getElementById('cal-txt-1').style.textDecoration = 'line-through';
+          modal.style.opacity = '1';
+          modal.style.transform = 'translateZ(75px) translateY(0px) scale(1)';
+        }
+      }
+
+      // SCENE 2: 3.35 - 8.45s ("Aaj hamara tawakkul... maaddi asbaab-o-wasaail par hai... Allah ko bhool gaye")
+      else if (t < 8.45) {
+        activateScene(1);
+        const rig = document.getElementById('rig-2');
+
+        const sTxt = "Today our reliance rests on material means and resources";
+        document.getElementById('earth-type').innerHTML =
+          typeText(sTxt, (t - 3.35) / 2.85) + '<span class="caret"></span>';
+
+        const altModal = document.getElementById('alttab-modal');
+        const card1 = document.getElementById('tab-card-1');
+        const card2 = document.getElementById('tab-card-2');
+
+        if (t < 6.35) {
+          const p1 = clamp((t - 3.35) / 3.00);
+          rig.style.transform = `scale(1.62) translate(${16 - p1 * 38}%, 28%) rotateY(-8deg)`;
+          altModal.style.opacity = '0';
+          card2.classList.remove('alert-shake');
+        } else {
+          const p2 = clamp((t - 6.35) / 2.10);
+          const isAlert = t >= 6.85;
+          rig.style.transform = `scale(${1.12 - p2 * 0.12 + voiceBoost}) translate(0%, 0%) rotateX(${6 - p2 * 6}deg)`;
+          altModal.style.opacity = '1';
+          card1.classList.toggle('focused', !isAlert);
+          card2.classList.toggle('focused', isAlert);
+          card2.classList.toggle('alert-shake', isAlert && t < 7.5);
+        }
+      }
+
+      // SCENE 3: 8.45 - 16.60s ("Allah Ta'ala Musabbib-ul-Asbaab hai... La hawla wala quwwata illa billah")
+      else if (t < 16.60) {
+        activateScene(2);
+        const p = clamp((t - 8.45) / 8.15);
+        const rig = document.getElementById('rig-3');
+        rig.style.transform = `scale(${1.08 + p * 0.08 + voiceBoost}) rotateZ(-3deg) rotateY(8deg) translateY(${(0.5 - p) * 35}px)`;
+
+        fillSpotifyLine(
+          document.getElementById('sp-1'),
+          "Allah is the One who brings every cause to fruition",
+          (t - 8.50) / 2.45
+        );
+        fillSpotifyLine(
+          document.getElementById('sp-2'),
+          "Our faith: no power or strength except through Allah",
+          (t - 11.05) / 2.10
+        );
+        fillSpotifyLine(
+          document.getElementById('sp-3'),
+          "La hawla wa la quwwata illa billah",
+          (t - 13.15) / 3.00
+        );
+        fillSpotifyLine(
+          document.getElementById('sp-4'),
+          "لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ",
+          (t - 13.45) / 2.80
+        );
+      }
+
+      // SCENE 4: 16.60 - 23.45s ("Koi taaqat nahi... jab tak ke izn-e-Rabb na ho... Allah na chaahe toh kuch nahi ho sakta")
+      else if (t < 23.45) {
+        activateScene(3);
+        const rig = document.getElementById('rig-4');
+
+        const blur1 = clamp(1 - (t - 19.05) / 1.15) * 8;
+        const blur2 = clamp(1 - (t - 21.00) / 1.25) * 8;
+        document.getElementById('ig-blur-1').style.filter = `blur(${blur1}px)`;
+        document.getElementById('ig-blur-2').style.filter = `blur(${blur2}px)`;
+
+        if (t < 20.95) {
+          const p1 = clamp((t - 16.60) / 4.35);
+          rig.style.transform = `scale(1.15) translateX(${18 - p1 * 28}%) rotateY(${8 - p1 * 12}deg)`;
+        } else {
+          const p2 = clamp((t - 20.95) / 2.50);
+          rig.style.transform = `scale(${1.25 + p2 * 0.22 + voiceBoost}) translate(-24%, 4%)`;
+        }
+      }
+
+      // SCENE 5: 23.45 - 34.85s (4-Page 3D Broadsheet Newspaper Spread)
+      else if (t < 34.85) {
+        activateScene(4);
+        const rig = document.getElementById('rig-5');
+
+        document.getElementById('np-type-1').innerHTML =
+          typeText("THE PROPHET ﷺ TAUGHT", (t - 23.45) / 1.40) + '<span class="caret"></span>';
+        document.getElementById('np-type-2').innerHTML =
+          typeText("NAHI POHANCHA SAKTE!", (t - 28.45) / 1.35);
+        document.getElementById('np-type-3').innerHTML =
+          typeText("NA NUQSAAN, NA FAIDA.", (t - 31.35) / 1.40);
+
+        const p1 = document.getElementById('np-page-1');
+        const p2 = document.getElementById('np-page-2');
+        const p3 = document.getElementById('np-page-3');
+        const p4 = document.getElementById('np-page-4');
+
+        if (t < 28.45) {
+          const p = clamp((t - 23.45) / 5.00);
+          rig.style.transform = `scale(0.85) rotateX(18deg) rotateY(-14deg) rotateZ(-3deg) translate(${240 - p * 45}px, 165px)`;
+          p1.style.filter = 'none'; p1.style.opacity = '1';
+          p2.style.filter = 'blur(1.5px)'; p2.style.opacity = '0.85';
+          p3.style.filter = 'blur(2px)'; p3.style.opacity = '0.8';
+          p4.style.filter = 'blur(2px)'; p4.style.opacity = '0.8';
+        } else if (t < 31.35) {
+          const p = clamp((t - 28.45) / 2.90);
+          rig.style.transform = `scale(0.85) rotateX(16deg) rotateY(12deg) rotateZ(2deg) translate(${-220 + p * 35}px, 160px)`;
+          p2.style.filter = 'none'; p2.style.opacity = '1';
+          p1.style.filter = 'blur(1.5px)'; p1.style.opacity = '0.85';
+          p3.style.filter = 'blur(2px)'; p3.style.opacity = '0.8';
+          p4.style.filter = 'blur(2px)'; p4.style.opacity = '0.8';
+        } else if (t < 33.00) {
+          const p = clamp((t - 31.35) / 1.65);
+          rig.style.transform = `scale(0.86) rotateX(18deg) rotateY(-10deg) translate(210px, ${-160 + p * 20}px)`;
+          p3.style.filter = 'none'; p3.style.opacity = '1';
+          p1.style.filter = 'blur(2px)'; p1.style.opacity = '0.8';
+          p2.style.filter = 'blur(2px)'; p2.style.opacity = '0.8';
+          p4.style.filter = 'blur(1.5px)'; p4.style.opacity = '0.85';
+        } else {
+          const p = clamp((t - 33.00) / 1.85);
+          rig.style.transform = `scale(${0.68 - p * 0.14}) rotateX(14deg) rotateY(-6deg) translate(0px, 0px)`;
+          p1.style.filter = 'none'; p1.style.opacity = '1';
+          p2.style.filter = 'none'; p2.style.opacity = '1';
+          p3.style.filter = 'none'; p3.style.opacity = '1';
+          p4.style.filter = 'none'; p4.style.opacity = '1';
+        }
+      }
+
+      // SCENE 6: 34.85 - 37.35s ("Goya ke Musabbib-ul-Asbaab hai asal mein")
+      else if (t < 37.35) {
+        activateScene(5);
+        const p = clamp((t - 34.85) / 2.50);
+        const rig = document.getElementById('rig-6');
+        rig.style.transform = `scale(${1.22 - p * 0.15 + voiceBoost}) rotateX(26deg) rotateZ(${-8 + p * 14}deg) translate(${25 - p * 50}px, 0px)`;
+        document.getElementById('sat-rib-1').textContent =
+          typeText("MUSABBIB-UL-ASBAAB", (t - 34.85) / 1.35);
+        document.getElementById('sat-rib-2').textContent =
+          typeText("ASAL MEIN WOHI HAI", (t - 35.95) / 1.10);
+      }
+
+      // SCENE 7: 37.35 - 41.65s ("jiske haath mein Ikhtiyar-e-Mutlaq hai, yeh asbaab toh zaahiri hain")
+      else if (t < 41.65) {
+        activateScene(6);
+        const p = clamp((t - 37.35) / 4.30);
+        const rig = document.getElementById('rig-7');
+        rig.style.transform = `scale(${1.18 - p * 0.12 + voiceBoost}) rotateY(${10 - p * 14}deg) rotateX(6deg)`;
+
+        const selPct = clamp((t - 37.45) / 1.85) * 100;
+        document.getElementById('g-blue-sel').style.background =
+          `linear-gradient(90deg, #1a56db ${selPct}%, transparent ${selPct}%)`;
+
+        const searchProg = t < 39.50 ? 0 : (t - 39.50) / 1.75;
+        document.getElementById('g-dark-type').innerHTML =
+          (searchProg > 0 ? typeText("Yeh asbaab toh zaahiri hain", searchProg) : "Ikhtiyar-e-Mutlaq") + '<span class="caret"></span>';
+
+        const suggestPanel = document.getElementById('g-suggest-panel');
+        if (suggestPanel) {
+          suggestPanel.style.opacity = t < 39.50 ? '1' : '0.15';
+        }
+      }
+
+      // SCENE 8: 41.65 - 46.25s (use means and entrust outcomes to Allah)
+      else if (t < 46.25) {
+        activateScene(7);
+        const p = clamp((t - 41.65) / 4.60);
+        const rig = document.getElementById('rig-8');
+        rig.style.transform = `scale(${1.02 + p * 0.16 + voiceBoost}) rotateZ(${-2 + p * 4}deg) rotateX(8deg)`;
+
+        const hText = "USE THE MEANS. TRUST ALLAH WITH THE OUTCOME.";
+        document.getElementById('herald-type').innerHTML =
+          typeText(hText, (t - 41.65) / 2.40) + '<span class="caret"></span>';
+
+        const burnProg = clamp((t - 43.15) / 3.05);
+        if (prefersReducedMotion) fCtx.clearRect(0, 0, fireCanvas.width, fireCanvas.height);
+        else renderFireBurn(burnProg);
+      }
+
+      // SCENE 9: 46.25 - 50.83s (Ambient Vocal Outro — Google Maps Navigation & 3D Road Text)
+      else {
+        activateScene(8);
+        const p = clamp((t - 46.25) / 4.58);
+        const rig = document.getElementById('rig-9');
+
+        document.getElementById('gmap-type').innerHTML =
+          typeText("Allah is sufficient for me — HasbiyAllah", p / 0.42) + '<span class="caret"></span>';
+
+        rig.style.transform = `scale(${1.22 - p * 0.16}) rotateX(28deg) rotateZ(${-14 + p * 24}deg)`;
+
+        const pin = document.getElementById('gmap-pin');
+        const px = 24 + p * 54, py = 72 - p * 48;
+        pin.style.left = `${px}%`;
+        pin.style.top = `${py}%`;
+
+        [['road-txt-1', 40, 54, 0.18], ['road-txt-2', 58, 39, 0.48]].forEach(([id, cx, cy, thr]) => {
+          const dist = Math.hypot(px - cx, py - cy);
+          document.getElementById(id).style.opacity = p > thr ? clamp((dist - 7) / 9, 0.15, 1) : '0';
+        });
+
+        // 48.0s - 50.83s: Grand Celestial Quranic Outro Card
+        if (celestialOutro) {
+          if (t >= 48.0) {
+            const outroProg = clamp((t - 48.0) / 1.1);
+            celestialOutro.style.opacity = String(outroProg);
+            celestialOutro.style.pointerEvents = outroProg > 0.5 ? 'auto' : 'none';
+            celestialOutro.style.transform = `scale(${0.92 + outroProg * 0.08}) translateY(${(1 - outroProg) * 16}px)`;
+          } else {
+            celestialOutro.style.opacity = '0';
+            celestialOutro.style.pointerEvents = 'none';
+          }
+        }
+      }
+
+      applyTransition(t);
+    }
+
+    function animate() {
+      animationFrameId = null;
+      if (!isPlaying) return;
+      if (!prefersReducedMotion) jitterGrain();
+      if (isPlaying) {
+        if (!useSynthClock && !audio.paused) {
+          currentTime = audio.currentTime;
+        } else if (useSynthClock) {
+          currentTime = (performance.now() - synthStart) / 1000;
+        }
+
+        if (currentTime >= TOTAL_DURATION - 0.05 || (!useSynthClock && audio.ended)) {
+          currentTime = 0;
+          if (!useSynthClock) {
+            audio.currentTime = 0;
+            audio.play();
+          } else {
+            synthStart = performance.now();
+          }
+        }
+        renderFrame(currentTime);
+      }
+      if (isPlaying) animationFrameId = requestAnimationFrame(animate);
+    }
+
+    function startAnimationLoop() {
+      if (animationFrameId === null) animationFrameId = requestAnimationFrame(animate);
+    }
+
+    function stopAnimationLoop() {
+      if (animationFrameId !== null) cancelAnimationFrame(animationFrameId);
+      animationFrameId = null;
+    }
+
+    function setPlaybackState(active) {
+      isPlaying = active;
+      document.body.classList.toggle('is-playing', active);
+      playBtn.setAttribute('aria-pressed', String(active));
+      playBtn.setAttribute('aria-label', active ? 'Pause reflection' : 'Play reflection');
+      playBtn.textContent = active ? 'Pause' : 'Play';
+    }
+
+    playBtn.addEventListener('click', () => {
+      initWebAudio();
+      if (!isPlaying) {
+        audio.play().then(() => {
+          useSynthClock = false;
+          setPlaybackState(true);
+          audioStatus.textContent = 'Playing MP3 + Foley';
+          controls.classList.add('playing');
+          startAnimationLoop();
+        }).catch(() => {
+          useSynthClock = true;
+          synthStart = performance.now() - currentTime * 1000;
+          setPlaybackState(true);
+          audioStatus.textContent = 'Playing Foley Synth (Drop MP3)';
+          controls.classList.add('playing');
+          startAnimationLoop();
+        });
+      } else {
+        setPlaybackState(false);
+        audio.pause();
+        stopAnimationLoop();
+        controls.classList.remove('playing');
+      }
+    });
+
+    seekBackBtn?.addEventListener('click', () => seekBy(-5));
+    seekFwdBtn?.addEventListener('click', () => seekBy(5));
+
+    muteBtn?.addEventListener('click', () => {
+      audio.muted = !audio.muted;
+      muteBtn.textContent = audio.muted ? '🔇' : '🔊';
+      muteBtn.setAttribute('aria-label', audio.muted ? 'Unmute audio' : 'Mute audio');
+    });
+
+    captionsBtn?.addEventListener('click', () => {
+      const visible = subtitleBar.classList.contains('captions-hidden');
+      subtitleBar.classList.toggle('captions-hidden', !visible);
+      captionsBtn.setAttribute('aria-pressed', String(visible));
+      captionsBtn.setAttribute('aria-label', visible ? 'Hide captions' : 'Show captions');
+      captionsBtn.textContent = visible ? 'CC On' : 'CC Off';
+    });
+
+    fullscreenBtn?.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        if (stageWrapper.requestFullscreen) stageWrapper.requestFullscreen();
+        else if (stageWrapper.webkitRequestFullscreen) stageWrapper.webkitRequestFullscreen();
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    });
+
+    scrubber.addEventListener('input', (e) => {
+      currentTime = parseFloat(e.target.value);
+      if (!useSynthClock && audio.readyState >= 1) {
+        audio.currentTime = currentTime;
+      } else {
+        synthStart = performance.now() - currentTime * 1000;
+      }
+      renderFrame(currentTime);
+    });
+
+    const ratios = [
+      { cls: '', label: '1:1 Square' },
+      { cls: 'ratio-9-16', label: '9:16 Vertical' },
+      { cls: 'ratio-16-9', label: '16:9 Wide' }
+    ];
+    let rIdx = window.matchMedia('(max-width: 768px) and (orientation: portrait)').matches ? 1 : 2;
+    stageWrapper.className = ratios[rIdx].cls;
+    ratioBtn.textContent = ratios[rIdx].label;
+    ratioBtn.addEventListener('click', () => {
+      rIdx = (rIdx + 1) % ratios.length;
+      stageWrapper.className = ratios[rIdx].cls;
+      ratioBtn.textContent = ratios[rIdx].label;
+    });
+
+    function seekBy(d) {
+      currentTime = clamp(currentTime + d, 0, TOTAL_DURATION - 0.05);
+      if (!useSynthClock && audio.readyState >= 1) audio.currentTime = currentTime;
+      else synthStart = performance.now() - currentTime * 1000;
+      renderFrame(currentTime);
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'l' || e.key === 'L') seekBy(e.key === 'ArrowRight' ? 2 : 5);
+      else if (e.key === 'ArrowLeft' || e.key === 'j' || e.key === 'J') seekBy(e.key === 'ArrowLeft' ? -2 : -5);
+      else if (e.key.toLowerCase() === 'h') {
+        controls.classList.toggle('hidden');
+      } else if (e.key.toLowerCase() === 'm') {
+        muteBtn?.click();
+      } else if (e.key.toLowerCase() === 'f') {
+        fullscreenBtn?.click();
+      } else if (e.key.toLowerCase() === 'c') {
+        captionsBtn?.click();
+      } else if (e.code === 'Space') {
+        e.preventDefault();
+        playBtn.click();
+      }
+    });
+
+    try {
+      if (window.self !== window.top) document.body.classList.add('is-embedded');
+    } catch (_) {
+      document.body.classList.add('is-embedded');
+    }
+
+    if (stageWrapper) {
+      stageWrapper.addEventListener('click', (e) => {
+        if (e.target.closest('#controls, button, input, label, a, .celestial-outro-overlay')) return;
+        playBtn.click();
+      });
+    }
+
+    renderFrame(0);
+  </script>
+  <script src="tawakkul-upgrade.js"></script>
+</body>
+
+</html>

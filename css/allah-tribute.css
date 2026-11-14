@@ -1,0 +1,50 @@
+/* Warm, readable heading treatment for the dedicated tribute section. */
+#allah-tribute-heading {
+  display: inline-block;
+  max-width: 100%;
+  color: #f8e7b5;
+  letter-spacing: -0.035em;
+  text-shadow:
+    0 0 8px rgba(255, 220, 135, 0.28),
+    0 0 24px rgba(245, 190, 70, 0.18);
+}
+
+#allah-tribute-heading::after {
+  display: block;
+  width: clamp(3.5rem, 22%, 6.5rem);
+  height: 2px;
+  margin-top: 0.5rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f7d98d 0%, rgba(247, 217, 141, 0.3) 72%, transparent 100%);
+  box-shadow: 0 0 10px rgba(245, 190, 70, 0.42);
+  content: "";
+}
+
+#allah-tribute-section header > p:last-child {
+  color: #d1d4ca;
+}
+
+#allah-tribute-heading.is-visible {
+  animation: allah-tribute-title-glow 4.8s ease-in-out infinite;
+}
+
+@keyframes allah-tribute-title-glow {
+  0%,
+  100% {
+    text-shadow:
+      0 0 8px rgba(255, 220, 135, 0.24),
+      0 0 22px rgba(245, 190, 70, 0.16);
+  }
+
+  50% {
+    text-shadow:
+      0 0 12px rgba(255, 220, 135, 0.46),
+      0 0 34px rgba(245, 190, 70, 0.28);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #allah-tribute-heading.is-visible {
+    animation: none;
+  }
+}
