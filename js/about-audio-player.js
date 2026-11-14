@@ -23,11 +23,8 @@
     volume: document.getElementById('volume-track'),
     volumeFill: document.getElementById('volume-bar'),
     status: document.getElementById('player-status'),
-<<<<<<< HEAD
     reciterName: document.getElementById('player-reciter-name'),
     reciterSelect: document.getElementById('player-reciter-select'),
-=======
->>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
     minimize: document.getElementById('minimize-player-btn'),
     minimizeMobile: document.getElementById('minimize-player-btn-mobile'),
     restore: document.getElementById('restore-audio-player-btn'),
@@ -42,7 +39,6 @@
   let lastVolume = 0.75;
   let minimized = false;
   let playRequest = 0;
-<<<<<<< HEAD
   const reciters = Array.isArray(window.RuqyahAudioReciters) ? window.RuqyahAudioReciters : [];
 
   function readSharedPreference(key, fallback) {
@@ -69,8 +65,6 @@
   function getAyahUrl(ayahNumber) {
     return `https://everyayah.com/data/${currentReciter.folder}/002${String(ayahNumber).padStart(3, '0')}.mp3`;
   }
-=======
->>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
 
   function readPreference(key, fallback) {
     try {
@@ -122,10 +116,7 @@
   function updateTrackLabel() {
     if (controls.title) controls.title.textContent = `Al-Baqarah 2:${ayah}`;
     if (controls.badge) controls.badge.textContent = ayah === 255 ? 'Ayat al-Kursi' : `Verse ${ayah}`;
-<<<<<<< HEAD
     if (controls.reciterName && currentReciter) controls.reciterName.textContent = currentReciter.shortName;
-=======
->>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
     const previous = document.getElementById('player-prev-btn');
     const next = document.getElementById('player-next-btn');
     if (previous) previous.title = `Previous verse (002:${ayah === 1 ? 286 : ayah - 1})`;
@@ -163,12 +154,9 @@
     }
     savePreference('volume', volume);
     if (volume > 0) savePreference('last-volume', lastVolume);
-<<<<<<< HEAD
     saveSharedPreference('volume', volume);
     saveSharedPreference('muted', volume === 0);
     if (volume > 0) saveSharedPreference('last-volume', lastVolume);
-=======
->>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
   }
 
   function setSpeed(value) {
@@ -176,10 +164,7 @@
     audio.playbackRate = speed;
     if (controls.speed) controls.speed.textContent = `${speed.toFixed(speed % 1 === 0 ? 1 : 2)}x`;
     savePreference('speed', speed);
-<<<<<<< HEAD
     saveSharedPreference('speed', speed);
-=======
->>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
   }
 
   function play() {
@@ -200,12 +185,8 @@
     ayah = clamp(nextAyah, 1, 286);
     playRequest++;
     audio.pause();
-<<<<<<< HEAD
     audio.src = getAyahUrl(ayah);
     audio.load();
-=======
-    audio.src = `https://everyayah.com/data/Alafasy_128kbps/002${String(ayah).padStart(3, '0')}.mp3`;
->>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
     audio.playbackRate = speed;
     updateTrackLabel();
     updateProgress();
@@ -222,11 +203,7 @@
 
   function togglePlayback() {
     if (audio.paused || !audio.src) {
-<<<<<<< HEAD
       if (!audio.src) audio.src = getAyahUrl(ayah);
-=======
-      if (!audio.src) audio.src = `https://everyayah.com/data/Alafasy_128kbps/002${String(ayah).padStart(3, '0')}.mp3`;
->>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
       play();
     } else {
       playRequest++;
@@ -249,10 +226,7 @@
     repeat = !repeat;
     updateRepeatButton();
     savePreference('repeat', repeat);
-<<<<<<< HEAD
     saveSharedPreference('repeat', repeat);
-=======
->>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
   }
 
   function toggleMute() {
@@ -302,20 +276,12 @@
 
   function setVolumeFromEvent(event) {
     const rect = controls.volume.getBoundingClientRect();
-<<<<<<< HEAD
     if (rect.width <= 0) return;
     setVolume((event.clientX - rect.left) / rect.width);
   }
 
   audio.addEventListener('play', () => { if (!audio.paused) updatePlayState(true); });
   audio.addEventListener('pause', () => { if (audio.paused) updatePlayState(false); });
-=======
-    setVolume((event.clientX - rect.left) / rect.width);
-  }
-
-  audio.addEventListener('play', () => updatePlayState(true));
-  audio.addEventListener('pause', () => updatePlayState(false));
->>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
   audio.addEventListener('timeupdate', updateProgress);
   audio.addEventListener('loadedmetadata', updateProgress);
   audio.addEventListener('waiting', () => setStatus('Loading audio...', false, true));
@@ -346,7 +312,6 @@
   controls.minimizeMobile?.addEventListener('click', toggleMinimize);
   controls.restore?.addEventListener('click', () => setMinimized(false));
 
-<<<<<<< HEAD
   if (controls.reciterSelect && reciters.length) {
     controls.reciterSelect.replaceChildren(...reciters.map(reciter => new Option(reciter.shortName, reciter.id)));
     controls.reciterSelect.value = currentReciter.id;
@@ -361,8 +326,6 @@
     });
   }
 
-=======
->>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
   controls.seek?.addEventListener('pointerdown', event => {
     seekFromEvent(event);
     controls.seek.setPointerCapture?.(event.pointerId);
@@ -397,7 +360,6 @@
     event.preventDefault();
   });
 
-<<<<<<< HEAD
   const savedSpeed = Number(readSharedPreference('speed', readPreference('speed', '1')));
   setSpeed(speedSteps.includes(savedSpeed) ? savedSpeed : 1);
   repeat = readSharedPreference('repeat', readPreference('repeat', 'false')) === 'true';
@@ -406,15 +368,6 @@
   lastVolume = clamp(Number(readSharedPreference('last-volume', readPreference('last-volume', '0.75'))) || 0.75, 0.05, 1);
   const wasMuted = readSharedPreference('muted', 'false') === 'true';
   setVolume(wasMuted ? 0 : savedVolume);
-=======
-  const savedSpeed = Number(readPreference('speed', '1'));
-  setSpeed(speedSteps.includes(savedSpeed) ? savedSpeed : 1);
-  repeat = readPreference('repeat', 'false') === 'true';
-  updateRepeatButton();
-  const savedVolume = clamp(Number(readPreference('volume', '0.75')) || 0, 0, 1);
-  lastVolume = clamp(Number(readPreference('last-volume', '0.75')) || 0.75, 0.05, 1);
-  setVolume(savedVolume);
->>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
   updateTrackLabel();
   updateProgress();
   updatePlayState(false);

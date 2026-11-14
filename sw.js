@@ -31,10 +31,7 @@ const PRECACHE_URLS = [
   'buttons.js',
   'js/shared-layout.js',
   'js/tailwind-config.js',
-<<<<<<< HEAD
   'js/audio-reciter-data.js',
-=======
->>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
   'js/script.js',
   'assets/js/quran-player.js',
   'js/about-audio-player.js',
