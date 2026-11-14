@@ -28,7 +28,11 @@
   function navLink(path, label, href, isMobile) {
     const isActive = activePage === path;
     const baseClass = isMobile
+<<<<<<< HEAD
       ? 'flex items-center gap-space-sm px-space-md py-2.5 rounded-lg font-ui-interactive text-ui-interactive min-h-[44px] transition-colors'
+=======
+      ? 'flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-ui-interactive text-ui-interactive transition-colors'
+>>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
       : 'font-ui-interactive text-caption-meta py-1 px-1 transition-colors';
     const activeClass = isMobile
       ? ' bg-surface-container-low text-primary font-semibold'
@@ -58,7 +62,11 @@
     return `<header id="heynuo-header" class="fixed top-0 left-0 right-0 z-50 h-14 bg-surface shadow-[0_1px_8px_rgba(15,23,42,0.04)]">
   <div class="max-w-7xl mx-auto h-14 px-margin-mobile md:px-margin flex items-center justify-between gap-space-md">
     <div class="flex items-center gap-space-lg">
+<<<<<<< HEAD
       <a aria-label="RQ Ruqyah Home" class="flex items-center gap-space-xs text-primary hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg py-1 px-1.5" href="index.html">
+=======
+      <a aria-label="Ruqyah Home" class="flex items-center gap-space-xs text-primary hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg py-1 px-1.5" href="index.html">
+>>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
         <span class="header-brand-mark flex items-center justify-center w-7 h-7 rounded-lg bg-primary-container text-on-primary-container font-code-mono text-caption-meta font-bold tracking-tight">RQ</span>
         <span class="font-title-page-mobile text-ui-interactive font-bold tracking-tight text-on-surface">Ruqyah</span>
         <span aria-hidden="true" class="material-symbols-outlined text-primary text-[18px] hidden sm:inline-block">history_edu</span>
@@ -88,7 +96,11 @@
         </button>
       </div>
       <!-- Mobile Menu Toggle -->
+<<<<<<< HEAD
       <button aria-label="Open navigation menu" aria-controls="heynuo-mobile-nav" aria-expanded="false" class="lg:hidden w-10 h-10 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors cursor-pointer" id="heynuo-mobile-menu-btn" type="button">
+=======
+      <button aria-label="Open navigation menu" aria-controls="heynuo-mobile-nav" aria-expanded="false" class="lg:hidden w-8 h-8 flex items-center justify-center rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors cursor-pointer" id="heynuo-mobile-menu-btn" type="button">
+>>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
         <span aria-hidden="true" class="material-symbols-outlined text-[22px]">menu</span>
       </button>
     </div>
@@ -96,7 +108,11 @@
   <!-- Mobile Navigation Drawer -->
   <nav id="heynuo-mobile-nav" class="lg:hidden absolute top-14 left-0 right-0 bg-surface shadow-xl border-t border-b border-border-subtle px-4 py-3 z-50" aria-label="Mobile Navigation" aria-hidden="true" inert>
     <div class="mb-3 pt-1">
+<<<<<<< HEAD
       <button id="mobileNavSearchBtn" class="w-full min-h-[44px] flex items-center justify-between px-3 py-2 rounded-lg bg-surface-container-low text-on-surface-variant text-xs font-ui-interactive border border-border-subtle cursor-pointer" type="button">
+=======
+      <button id="mobileNavSearchBtn" class="w-full flex items-center justify-between px-3 py-2 rounded-lg bg-surface-container-low text-on-surface-variant text-xs font-ui-interactive border border-border-subtle cursor-pointer" type="button">
+>>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
         <span class="flex items-center gap-2">
           <span class="material-symbols-outlined text-[18px] text-primary">search</span>
           <span>Search articles &amp; surahs...</span>

@@ -4,6 +4,7 @@
    ========================================================================== */
 
 @layer base {
+<<<<<<< HEAD
   html, body {
     margin: 0;
     padding: 0;
@@ -20,6 +21,10 @@
     -moz-osx-font-smoothing: grayscale;
     -webkit-tap-highlight-color: transparent;
   }
+=======
+  html, body { margin: 0; padding: 0; }
+  body { overscroll-behavior: none; }
+>>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
   main > :first-child { margin-top: 0 !important; }
   main > :last-child { margin-bottom: 0 !important; }
 }
@@ -40,6 +45,7 @@ html {
 }
 
 /* ==========================================================================
+<<<<<<< HEAD
    WCAG 2.2 AA Verified Theme Tokens (RGB Triplet Format) & Safe Area Variables
    ========================================================================== */
 :root {
@@ -49,6 +55,13 @@ html {
   --sal: env(safe-area-inset-left, 0px);
   scroll-padding-top: calc(4.25rem + env(safe-area-inset-top, 0px));
   scroll-padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px));
+=======
+   WCAG 2.2 AA Verified Theme Tokens (RGB Triplet Format)
+   ========================================================================== */
+:root {
+  scroll-padding-top: 4.25rem;
+  scroll-padding-bottom: 6rem;
+>>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
 
   --color-bg-canvas: 250 250 247;            /* #FAFAF7 */
   --color-surface: 255 255 255;              /* #FFFFFF */
@@ -272,6 +285,7 @@ html.sepia, [data-theme="sepia"] {
   transition: none;
 }
 
+<<<<<<< HEAD
 #heynuo-header {
   padding-top: env(safe-area-inset-top, 0px);
   height: calc(3.5rem + env(safe-area-inset-top, 0px)) !important;
@@ -293,6 +307,8 @@ main#main-content {
   top: calc(3.5rem + env(safe-area-inset-top, 0px)) !important;
 }
 
+=======
+>>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
 #heynuo-header .header-brand-mark {
   transition: transform 180ms ease;
 }
@@ -320,7 +336,11 @@ main#main-content {
 /* Huanuo-inspired dark footer, adapted to the archive's links and resources. */
 #heynuo-footer {
   margin-top: 3rem;
+<<<<<<< HEAD
   padding-bottom: calc(6.5rem + env(safe-area-inset-bottom, 0px)) !important;
+=======
+  padding-bottom: 5rem;
+>>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
   background: #1e1e1e;
   color: #f7f7f7;
   font-family: Inter, ui-sans-serif, system-ui, sans-serif;
@@ -328,12 +348,15 @@ main#main-content {
   line-height: 1.45;
 }
 
+<<<<<<< HEAD
 @media (max-width: 768px) {
   #heynuo-footer {
     padding-bottom: calc(9rem + env(safe-area-inset-bottom, 0px)) !important;
   }
 }
 
+=======
+>>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
 /* Keep the audio player's reserved space inside the dark footer instead of
    leaving a canvas-colored strip after it at the end of the page. */
 body:has(> #heynuo-footer) { padding-bottom: 0 !important; }
@@ -447,12 +470,15 @@ body:has(> #heynuo-footer) { padding-bottom: 0 !important; }
    Mobile Navigation Drawer
    ========================================================================== */
 #heynuo-mobile-nav {
+<<<<<<< HEAD
   top: calc(3.5rem + env(safe-area-inset-top, 0px)) !important;
   max-height: calc(100dvh - 3.5rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
   padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px)) !important;
+=======
+>>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
   background-color: rgb(var(--color-surface)) !important;
   border-bottom: 1px solid rgb(var(--color-border-subtle));
   box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.18);
@@ -1074,13 +1100,18 @@ body:has(> #heynuo-footer) { padding-bottom: 0 !important; }
 }
 
 /* ==========================================================================
+<<<<<<< HEAD
    Responsive Audio Player Bar Ergonomics & iOS Safe Area Adaptation
+=======
+   Responsive Audio Player Bar Ergonomics
+>>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
    ========================================================================== */
 #audio-player-bar,
 #dockedQuranPlayer,
 #audioPlayerBar {
   background-color: rgb(var(--color-surface) / 0.96) !important;
   border-top: 1px solid rgb(var(--color-border-subtle)) !important;
+<<<<<<< HEAD
   padding-bottom: calc(0.625rem + env(safe-area-inset-bottom, 0px)) !important;
   padding-left: max(0.75rem, env(safe-area-inset-left, 0px)) !important;
   padding-right: max(0.75rem, env(safe-area-inset-right, 0px)) !important;
@@ -1100,6 +1131,17 @@ body:has(> #heynuo-footer) { padding-bottom: 0 !important; }
     padding-top: 0.45rem !important;
     padding-inline: max(0.75rem, env(safe-area-inset-left, 0px)) !important;
     padding-bottom: calc(0.625rem + env(safe-area-inset-bottom, 0px)) !important;
+=======
+}
+
+#restore-audio-player-btn {
+  bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+@media (max-width: 767px) {
+  #audio-player-bar {
+    padding: 0.45rem 0.75rem !important;
+>>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
   }
   #audio-player-bar #player-verse-badge {
     display: none !important;
@@ -1111,6 +1153,7 @@ body:has(> #heynuo-footer) { padding-bottom: 0 !important; }
   #audio-player-bar #player-next-btn {
     display: none !important;
   }
+<<<<<<< HEAD
   #dockedQuranPlayer .max-w-7xl {
     padding-inline: 0.5rem;
   }
@@ -1260,17 +1303,22 @@ body.is-modal-open {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
+=======
+>>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
 }
 
 /* ==========================================================================
    Scrollbar & Touch Momentum Utilities
    ========================================================================== */
+<<<<<<< HEAD
 pre {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   max-width: 100%;
 }
 
+=======
+>>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -1279,6 +1327,7 @@ pre {
   scrollbar-width: none;
 }
 
+<<<<<<< HEAD
 .overflow-x-auto,
 .overflow-y-auto,
 .custom-scrollbar,
@@ -1291,3 +1340,5 @@ pre {
   -webkit-overflow-scrolling: touch;
 }
 
+=======
+>>>>>>> 530434ac33bd3965cac6dd19bc8b390e009fff1f
