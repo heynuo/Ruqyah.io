@@ -14,6 +14,7 @@
     rel="stylesheet">
   <style>
     :root {
+      --app-viewport-height: 100vh;
       --bg-dark: #090a0d;
       --cal-bg: #131314;
       --cal-card-active: #6989f5;
@@ -31,6 +32,10 @@
       --map-road: #9bb0c7;
     }
 
+    @supports (height: 100dvh) {
+      :root { --app-viewport-height: 100dvh; }
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -43,7 +48,7 @@
       color: #fff;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       width: 100vw;
-      height: 100vh;
+      height: var(--app-viewport-height);
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -258,18 +263,18 @@
       }
 
       #stage-wrapper {
-        width: min(calc(100vw - 16px), calc(100vh - 100px));
-        height: min(calc(100vw - 16px), calc(100vh - 100px));
+        width: min(calc(100vw - 16px), calc(var(--app-viewport-height) - 100px));
+        height: min(calc(100vw - 16px), calc(var(--app-viewport-height) - 100px));
       }
 
       #stage-wrapper.ratio-16-9 {
-        width: min(calc(100vw - 16px), calc((100vh - 100px) * 16 / 9));
-        height: calc(min(calc(100vw - 16px), calc((100vh - 100px) * 16 / 9)) * 9 / 16);
+        width: min(calc(100vw - 16px), calc((var(--app-viewport-height) - 100px) * 16 / 9));
+        height: calc(min(calc(100vw - 16px), calc((var(--app-viewport-height) - 100px) * 16 / 9)) * 9 / 16);
       }
 
       #stage-wrapper.ratio-9-16 {
-        height: min(calc(100vh - 100px), calc((100vw - 16px) * 16 / 9));
-        width: calc(min(calc(100vh - 100px), calc((100vw - 16px) * 16 / 9)) * 9 / 16);
+        height: min(calc(var(--app-viewport-height) - 100px), calc((100vw - 16px) * 16 / 9));
+        width: calc(min(calc(var(--app-viewport-height) - 100px), calc((100vw - 16px) * 16 / 9)) * 9 / 16);
       }
 
       .gcal-modal {
@@ -2225,18 +2230,18 @@
     /* Reassert mobile stage sizing after the desktop ratio rules above. */
     @media (max-width: 768px) {
       #stage-wrapper {
-        width: min(calc(100vw - 16px), calc(100vh - 200px));
-        height: min(calc(100vw - 16px), calc(100vh - 200px));
+        width: min(calc(100vw - 16px), calc(var(--app-viewport-height) - 200px));
+        height: min(calc(100vw - 16px), calc(var(--app-viewport-height) - 200px));
       }
 
       #stage-wrapper.ratio-9-16 {
-        height: min(calc(100vh - 200px), calc((100vw - 16px) * 16 / 9));
-        width: calc(min(calc(100vh - 200px), calc((100vw - 16px) * 16 / 9)) * 9 / 16);
+        height: min(calc(var(--app-viewport-height) - 200px), calc((100vw - 16px) * 16 / 9));
+        width: calc(min(calc(var(--app-viewport-height) - 200px), calc((100vw - 16px) * 16 / 9)) * 9 / 16);
       }
 
       #stage-wrapper.ratio-16-9 {
-        width: min(calc(100vw - 16px), calc((100vh - 200px) * 16 / 9));
-        height: calc(min(calc(100vw - 16px), calc((100vh - 200px) * 16 / 9)) * 9 / 16);
+        width: min(calc(100vw - 16px), calc((var(--app-viewport-height) - 200px) * 16 / 9));
+        height: calc(min(calc(100vw - 16px), calc((var(--app-viewport-height) - 200px) * 16 / 9)) * 9 / 16);
       }
 
       #scene-progress {
@@ -2260,8 +2265,8 @@
       #stage-wrapper,
       #stage-wrapper.ratio-9-16,
       #stage-wrapper.ratio-16-9 {
-        width: min(calc(100vw - 20px), calc((100vh - 210px) * 16 / 9));
-        height: calc(min(calc(100vw - 20px), calc((100vh - 210px) * 16 / 9)) * 9 / 16);
+        width: min(calc(100vw - 20px), calc((var(--app-viewport-height) - 210px) * 16 / 9));
+        height: calc(min(calc(100vw - 20px), calc((var(--app-viewport-height) - 210px) * 16 / 9)) * 9 / 16);
       }
 
       #opening-title {
@@ -2348,7 +2353,7 @@
   </div>
 
   <!-- Audio Element (auto-checks local file + IndexedDB) -->
-  <audio id="audio-player" src="audio_6af41204e4ea39.02321364.mp3" preload="auto"></audio>
+  <audio id="audio-player" src="audio_6af41204e4ea39.02321364.mp3" preload="none"></audio>
 
   <!-- Main Viewport -->
   <div id="stage-wrapper" class="ratio-16-9" role="region" aria-label="Tawakkul animated reflection">

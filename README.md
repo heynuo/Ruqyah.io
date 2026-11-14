@@ -57,7 +57,7 @@ GitHub Pages serves the repository root from `main`. Commit the generated styles
 
 ## Audio players
 
-The home page has a compact recitation player for Ayat al-Kursi and Ta-Ha 20:114. Its reciter list is in `js/audio-reciter-data.js`. `quran.html` contains the full 114-surah reader, and `quran-verses.html` has its own player for verse playback. Recitation streams come from EveryAyah and Al-Islam hosts, so availability depends on those services and the user's connection.
+The home page has a compact recitation player for Ayat al-Kursi and Ta-Ha 20:114. Its deferred controller is `js/home-page.js`; the reciter list in `js/audio-reciter-data.js` is deferred before it. `quran.html` contains the full 114-surah reader, and `quran-verses.html` has its own player for verse playback. Recitation streams come from EveryAyah and Al-Islam hosts, so availability depends on those services and the user's connection.
 
 ## Project map
 
@@ -77,6 +77,7 @@ css/tailwind.input.css     Tailwind CLI entry point
 css/tailwind.generated.css Compiled utility stylesheet
 js/shared-layout.js        Shared navigation, footer, and theme behavior
 js/script.js               Search, shortcuts, and shared interactions
+js/home-page.js            Home page player and interactions
 js/audio-reciter-data.js   Homepage and About page reciter list
 js/quran-page.js           Surah reader controller
 js/about-audio-player.js   About page audio controller

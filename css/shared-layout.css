@@ -15,6 +15,7 @@
     text-size-adjust: 100%;
   }
   body {
+    min-height: 100vh;
     min-height: 100dvh;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -393,6 +394,14 @@ main#main-content {
   #audio-player-bar #player-reciter-select {
     width: 5rem !important;
     max-width: 5rem !important;
+    min-height: 44px !important;
+  }
+
+  #audio-player-bar #player-main-play-btn,
+  #audio-player-bar #player-repeat-btn,
+  #audio-player-bar #minimize-player-btn-mobile {
+    min-width: 44px !important;
+    min-height: 44px !important;
   }
 }
 
@@ -510,6 +519,7 @@ body:has(> #heynuo-footer) { padding-bottom: 0 !important; }
    ========================================================================== */
 #heynuo-mobile-nav {
   top: calc(3.5rem + env(safe-area-inset-top, 0px)) !important;
+  max-height: calc(100vh - 3.5rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
   max-height: calc(100dvh - 3.5rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -1160,7 +1170,8 @@ body:has(> #heynuo-footer) { padding-bottom: 0 !important; }
   #dockedQuranPlayer,
   #audioPlayerBar {
     padding-top: 0.45rem !important;
-    padding-inline: max(0.75rem, env(safe-area-inset-left, 0px)) !important;
+    padding-left: max(0.75rem, env(safe-area-inset-left, 0px)) !important;
+    padding-right: max(0.75rem, env(safe-area-inset-right, 0px)) !important;
     padding-bottom: calc(0.625rem + env(safe-area-inset-bottom, 0px)) !important;
   }
   #audio-player-bar #player-verse-badge {
@@ -1318,6 +1329,7 @@ body.is-modal-open {
 #pdfModal > div,
 #pdfViewerModal > div,
 #articleSettingsModal > div {
+  max-height: calc(100vh - 2rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
   max-height: calc(100dvh - 2rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;

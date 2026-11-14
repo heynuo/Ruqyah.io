@@ -32,6 +32,7 @@ const PRECACHE_URLS = [
   'buttons.js',
   'js/shared-layout.js',
   'js/audio-reciter-data.js',
+  'js/home-page.js',
   'js/script.js',
   'js/about-audio-player.js',
   'js/quran-page.js',
