@@ -315,7 +315,7 @@ body.is-embedded .back-to-archive{display:none!important}
 <div id="stage" class="preplay">
   <div class="ambient"></div>
   <div class="video-background" aria-hidden="true">
-    <video id="backgroundVideo" playsinline preload="metadata" tabindex="-1"></video>
+    <video id="backgroundVideo" playsinline preload="none" tabindex="-1"></video>
   </div>
 
   <div class="arch-scene" aria-hidden="true">
@@ -449,6 +449,7 @@ body.is-embedded .back-to-archive{display:none!important}
   // The muxed MP4 is both the background video and the audio player.
   const backgroundVideo = document.getElementById('backgroundVideo');
   const audio = backgroundVideo;
+  const MEDIA_SOURCE = 'assets/allah-background-videos/allah-background-combined.mp4';
   const startGate = document.getElementById('startGate');
   const startBtn = document.getElementById('startBtn');
   const playBtn = document.getElementById('playBtn');
@@ -471,7 +472,6 @@ body.is-embedded .back-to-archive{display:none!important}
   const vizCanvas = document.getElementById('visualizer');
   const vizCtx = vizCanvas.getContext('2d');
 
-  audio.src = 'assets/allah-background-videos/allah-background-combined.mp4';
   audio.volume = 0.85;
 
   const remembrances = [
@@ -580,6 +580,7 @@ body.is-embedded .back-to-archive{display:none!important}
   }
 
   async function beginPlayback(){
+    if (!audio.src) audio.src = MEDIA_SOURCE;
     initAudioGraph();
     try {
       const audioPlayRequest = audio.play();

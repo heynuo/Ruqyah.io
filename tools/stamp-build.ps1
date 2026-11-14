@@ -61,8 +61,8 @@ $updatedScript = $jsMarker.Replace($scriptText, "var __HEYNUO_BUILD__ = '$Stamp'
 $scriptChanged = $updatedScript -cne $scriptText
 
 # ---------------------------------------------------------------------------
-# 2. Every *.html page — the <meta name="heynuo-build"> tag and shared
-#    stylesheet URL. js/script.js uses the stamp for service worker cache
+# 2. Every *.html page — the <meta name="heynuo-build"> tag and local
+#    stylesheet URLs. js/script.js uses the stamp for service worker cache
 #    versioning; the stylesheet query string also bypasses an old cache on the
 #    first page load after a deploy, before the new worker takes control.
 # ---------------------------------------------------------------------------
@@ -74,10 +74,15 @@ $stylesheetMarker = [System.Text.RegularExpressions.Regex]::new(
     '(<link rel="stylesheet" href="css/shared-layout\.css)(?:\?v=[^"]*)?(">)'
 )
 $stylesheetReplacement = '${1}?v=' + $Stamp + '${2}'
+$tailwindStylesheetMarker = [System.Text.RegularExpressions.Regex]::new(
+    '(<link rel="stylesheet" href="css/tailwind\.generated\.css)(?:\?v=[^"]*)?(">)'
+)
+$tailwindStylesheetReplacement = '${1}?v=' + $Stamp + '${2}'
 
 $htmlChanged = @()
 $htmlMissing = @()
 $stylesheetMissing = @()
+$tailwindStylesheetMissing = @()
 
 foreach ($file in (Get-ChildItem -LiteralPath $rootPath -Filter '*.html' -File)) {
     $html = [System.IO.File]::ReadAllText($file.FullName, [System.Text.Encoding]::UTF8)
@@ -92,6 +97,12 @@ foreach ($file in (Get-ChildItem -LiteralPath $rootPath -Filter '*.html' -File))
         $newHtml = $stylesheetMarker.Replace($newHtml, $stylesheetReplacement, 1)
     } else {
         $stylesheetMissing += $file.Name
+    }
+
+    if ($tailwindStylesheetMarker.IsMatch($newHtml)) {
+        $newHtml = $tailwindStylesheetMarker.Replace($newHtml, $tailwindStylesheetReplacement, 1)
+    } else {
+        $tailwindStylesheetMissing += $file.Name
     }
 
     if ($newHtml -cne $html) {
@@ -138,5 +149,10 @@ if ($stylesheetMissing.Count -gt 0) {
     Write-Warning ('These pages have no shared-layout stylesheet link to version: ' + ($stylesheetMissing -join ', '))
 }
 
+if ($tailwindStylesheetMissing.Count -gt 0) {
+    Write-Host ('These pages have no Tailwind bundle link to version: ' + ($tailwindStylesheetMissing -join ', ')) -ForegroundColor DarkGray
+}
+
 Write-Host "The service worker will register as sw.js?v=$Stamp and retire the previous cache." -ForegroundColor DarkGray
 Write-Host "The shared stylesheet will load as css/shared-layout.css?v=$Stamp to avoid stale CSS on the first load." -ForegroundColor DarkGray
+Write-Host "The compiled Tailwind stylesheet will load as css/tailwind.generated.css?v=$Stamp." -ForegroundColor DarkGray

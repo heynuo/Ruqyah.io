@@ -66,11 +66,15 @@ heynuo.github.io/
 ├── LICENSE                      # MIT Open Source License
 ├── README.md                    # Project documentation
 ├── css/
-│   └── shared-layout.css        # Unified Design System tokens (Light, Sepia, Dark) & components
+│   ├── shared-layout.css        # Unified Design System tokens (Light, Sepia, Dark) & components
+│   ├── tailwind.input.css       # Tailwind CLI entry point
+│   └── tailwind.generated.css   # Minified local utility stylesheet served by every page
+├── package.json                # Reproducible Tailwind CSS build command
+├── tailwind.config.cjs          # Scans HTML/JS and loads site design tokens and plugins
 ├── buttons.js                   # Shared button and UI enhancement utilities
 ├── js/
 │   ├── shared-layout.js         # Unified header, footer, and theme injection engine
-│   ├── tailwind-config.js       # Design system token configuration for Tailwind CSS
+│   ├── tailwind-config.js       # Design system token source for the Tailwind build
 │   ├── script.js                # Command palette, keyboard shortcuts modal, clipboard handlers
 │   ├── quran-player.js          # Persistent bottom audio streaming engine with mirror failover
 │   ├── quran-page.js            # 114 Surahs audio routing and reciter controller
@@ -103,6 +107,13 @@ python -m http.server 8000
 
 # or Node.js npx
 npx serve .
+```
+
+Build the local Tailwind utility stylesheet after changing utility classes:
+
+```bash
+npm install
+npm run build:css
 ```
 
 Validate site integrity, links, and accessibility constraints:

@@ -5,7 +5,7 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
   <!-- Build stamp for service-worker cache busting. Maintained by tools/stamp-build.ps1. -->
-  <meta name="heynuo-build" content="2026-11-14-1206">
+  <meta name="heynuo-build" content="2026-11-14-speed-2">
   <meta content="web_standard" name="shell-type"/>
   <meta name="theme-color" content="#005c55">
   <meta name="color-scheme" content="light dark">
@@ -114,14 +114,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet">
 
   <!-- Shared Design System Tokens (Light / Dark / Sepia) -->
-  <link rel="stylesheet" href="css/shared-layout.css?v=2026-11-14-1206">
+  <link rel="stylesheet" href="css/shared-layout.css?v=2026-11-14-speed-2">
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <script src="js/tailwind-config.js"></script>
+  <link rel="stylesheet" href="css/tailwind.generated.css?v=2026-11-14-speed-2">
 </head>
 
 <body class="bg-bg-canvas font-body-article text-on-surface antialiased min-h-screen flex flex-col pb-32 transition-colors duration-200">
@@ -328,7 +326,7 @@
                     <li class="flex items-start gap-3">
                       <span class="w-5 h-5 rounded-full bg-success/20 text-success flex items-center justify-center flex-shrink-0 mt-0.5 font-bold text-xs">✓</span>
                       <div>
-                        <strong class="text-on-surface font-ui-interactive">No advertising or analytics trackers:</strong> The site does not use ad networks, analytics, or behavioral profiling. It does load Tailwind CSS from cdn.tailwindcss.com and fonts/icons from Google Fonts, and streams recitations from public Quran audio hosts. Those providers receive standard request metadata when their resources are requested; see the <a class="underline underline-offset-2" href="privacy.html">privacy disclosures</a>.
+                        <strong class="text-on-surface font-ui-interactive">No advertising or analytics trackers:</strong> The site does not use ad networks, analytics, or behavioral profiling. It serves its compiled Tailwind stylesheet locally, loads fonts/icons from Google Fonts, and streams recitations from public Quran audio hosts. Those providers receive standard request metadata when their resources are requested; see the <a class="underline underline-offset-2" href="privacy.html">privacy disclosures</a>.
                       </div>
                     </li>
                     <li class="flex items-start gap-3">

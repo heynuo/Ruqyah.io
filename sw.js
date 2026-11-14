@@ -27,10 +27,10 @@ const PRECACHE_URLS = [
   /* Canonical design tokens + chrome isolation. Every page links this file,
      and the header/footer are injected by js/shared-layout.js - both must be
      available offline or the whole shell disappears. */
-  'css/shared-layout.css',
+  `css/shared-layout.css?v=${BUILD_STAMP}`,
+  `css/tailwind.generated.css?v=${BUILD_STAMP}`,
   'buttons.js',
   'js/shared-layout.js',
-  'js/tailwind-config.js',
   'js/audio-reciter-data.js',
   'js/script.js',
   'assets/js/quran-player.js',

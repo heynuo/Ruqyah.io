@@ -2,8 +2,8 @@
  * HeyNuo Shared Layout — Tailwind Configuration
  * Source: Stitch Project #13051442395705679722 Design System
  * 
- * This file provides the unified Tailwind config for all pages.
- * Include it AFTER the Tailwind CDN script tag.
+ * Build-time source for the site's shared Tailwind design tokens.
+ * tailwind.config.cjs loads this file to generate a local static stylesheet.
  */
 tailwind.config = {
   darkMode: "class",

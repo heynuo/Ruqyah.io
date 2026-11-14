@@ -24,101 +24,9 @@ $tailwindAndThemeBlock = @'
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     rel="stylesheet">
 
-  <!-- Tailwind CSS CDN with Robust RGB-Triplet Opacity Token System -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "surface-dim": "rgb(var(--color-surface-dim) / <alpha-value>)",
-            "theme-sepia-text": "#3B2F22",
-            "bg-canvas": "rgb(var(--color-bg-canvas) / <alpha-value>)",
-            "success": "rgb(var(--color-success) / <alpha-value>)",
-            "tertiary": "rgb(var(--color-tertiary) / <alpha-value>)",
-            "surface-variant": "rgb(var(--color-surface-variant) / <alpha-value>)",
-            "on-surface-variant": "rgb(var(--color-on-surface-variant) / <alpha-value>)",
-            "border-strong": "rgb(var(--color-border-strong) / <alpha-value>)",
-            "theme-dark-text": "#E6EDF3",
-            "primary-fixed": "rgb(var(--color-primary-fixed) / <alpha-value>)",
-            "on-secondary-container": "rgb(var(--color-on-secondary-container) / <alpha-value>)",
-            "theme-sepia-border-strong": "#8B7B63",
-            "secondary-fixed-dim": "rgb(var(--color-secondary-fixed-dim) / <alpha-value>)",
-            "on-tertiary-container": "rgb(var(--color-on-tertiary-container) / <alpha-value>)",
-            "on-tertiary-fixed": "rgb(var(--color-on-tertiary-fixed) / <alpha-value>)",
-            "theme-sepia-danger": "#B42318",
-            "surface-container-high": "rgb(var(--color-surface-container-high) / <alpha-value>)",
-            "danger": "rgb(var(--color-danger) / <alpha-value>)",
-            "on-secondary": "#ffffff",
-            "on-primary": "rgb(var(--color-on-primary) / <alpha-value>)",
-            "theme-dark-accent": "#F5C26B",
-            "on-secondary-fixed-variant": "rgb(var(--color-on-secondary-fixed-variant) / <alpha-value>)",
-            "secondary-fixed": "rgb(var(--color-secondary-fixed) / <alpha-value>)",
-            "on-surface": "rgb(var(--color-on-surface) / <alpha-value>)",
-            "surface-container": "rgb(var(--color-surface-container) / <alpha-value>)",
-            "on-primary-fixed-variant": "rgb(var(--color-on-primary-fixed-variant) / <alpha-value>)",
-            "outline-variant": "rgb(var(--color-outline-variant) / <alpha-value>)",
-            "on-error": "#ffffff",
-            "theme-sepia-text-muted": "#6B5A45",
-            "surface-container-highest": "rgb(var(--color-surface-container-highest) / <alpha-value>)",
-            "primary-fixed-dim": "rgb(var(--color-primary-fixed-dim) / <alpha-value>)",
-            "on-primary-fixed": "rgb(var(--color-on-primary-fixed) / <alpha-value>)",
-            "on-tertiary": "#ffffff",
-            "surface-tint": "rgb(var(--color-surface-tint) / <alpha-value>)",
-            "background": "rgb(var(--color-bg-canvas) / <alpha-value>)",
-            "outline": "rgb(var(--color-outline) / <alpha-value>)",
-            "on-background": "rgb(var(--color-on-surface) / <alpha-value>)",
-            "primary": "rgb(var(--color-primary) / <alpha-value>)",
-            "on-secondary-fixed": "rgb(var(--color-on-secondary-fixed) / <alpha-value>)",
-            "theme-dark-bg": "#0B1220",
-            "theme-dark-on-primary": "#04201C",
-            "tertiary-container": "rgb(var(--color-tertiary-container) / <alpha-value>)",
-            "tertiary-fixed": "rgb(var(--color-tertiary-fixed) / <alpha-value>)",
-            "surface": "rgb(var(--color-surface) / <alpha-value>)",
-            "primary-container": "rgb(var(--color-primary-container) / <alpha-value>)",
-            "inverse-primary": "rgb(var(--color-inverse-primary) / <alpha-value>)",
-            "surface-bright": "rgb(var(--color-surface-bright) / <alpha-value>)",
-            "theme-sepia-accent": "#92400E",
-            "inverse-on-surface": "rgb(var(--color-inverse-on-surface) / <alpha-value>)",
-            "error-container": "rgb(var(--color-error-container) / <alpha-value>)",
-            "error": "rgb(var(--color-error) / <alpha-value>)",
-            "theme-sepia-primary": "#0F5F58",
-            "theme-dark-border-strong": "#5B6B80",
-            "inverse-surface": "rgb(var(--color-inverse-surface) / <alpha-value>)",
-            "theme-dark-primary": "#2DD4BF",
-            "theme-sepia-surface": "#FBF5E6",
-            "theme-dark-text-muted": "#9FB0C3",
-            "theme-dark-surface": "#111A2E",
-            "theme-sepia-on-primary": "#FFFFFF",
-            "on-tertiary-fixed-variant": "rgb(var(--color-on-tertiary-fixed-variant) / <alpha-value>)",
-            "theme-sepia-bg": "#F4ECD8",
-            "secondary-container": "rgb(var(--color-secondary-container) / <alpha-value>)",
-            "on-error-container": "rgb(var(--color-on-error-container) / <alpha-value>)",
-            "surface-container-low": "rgb(var(--color-surface-container-low) / <alpha-value>)",
-            "on-primary-container": "rgb(var(--color-on-primary-container) / <alpha-value>)",
-            "secondary": "rgb(var(--color-secondary) / <alpha-value>)",
-            "border-subtle": "rgb(var(--color-border-subtle) / <alpha-value>)",
-            "theme-dark-danger": "#FDA29B",
-            "surface-container-lowest": "rgb(var(--color-surface-container-lowest) / <alpha-value>)",
-            "tertiary-fixed-dim": "rgb(var(--color-tertiary-fixed-dim) / <alpha-value>)"
-          },
-          fontFamily: {
-            "body-article": ["Inter", "sans-serif"],
-            "body-lead": ["Inter", "sans-serif"],
-            "ui-interactive": ["Inter", "sans-serif"],
-            "subheading-card": ["Inter", "sans-serif"],
-            "heading-subsection": ["Inter", "sans-serif"],
-            "caption-meta": ["Inter", "sans-serif"],
-            "title-page": ["Inter", "sans-serif"],
-            "code-mono": ["JetBrains Mono", "monospace"],
-            "heading-section": ["Inter", "sans-serif"],
-            "arabic-sacred": ["Amiri", "serif"]
-          }
-        }
-      }
-    };
-  </script>
+  <!-- Locally compiled design system and Tailwind utilities -->
+  <link rel="stylesheet" href="css/shared-layout.css">
+  <link rel="stylesheet" href="css/tailwind.generated.css">
 
   <style id="heynuo-theme-tokens">
     /* ==========================================================================
@@ -334,8 +242,8 @@ foreach ($file in $htmlFiles) {
         )
     }
 
-    # 2. Inject Tailwind CDN, fonts, and theme tokens if not already present
-    if ($content -notmatch 'id="tailwind-config"') {
+    # 2. Inject local CSS, fonts, and theme tokens if not already present
+    if ($content -notmatch 'href="css/tailwind\.generated\.css') {
         # Insert before </head>
         $content = [System.Text.RegularExpressions.Regex]::Replace(
             $content,

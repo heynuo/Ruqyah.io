@@ -4,3 +4,5 @@ Thumbs.db
 
 .workbuddy-ai/
 .workflow-kit/
+
+node_modules/
