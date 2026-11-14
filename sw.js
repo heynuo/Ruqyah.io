@@ -13,6 +13,7 @@ const CACHE_NAME = `heynuo-cache-${BUILD_STAMP}`;
 const PRECACHE_URLS = [
   './',
   'index.html',
+  'thank-you.html',
   'HadithQudsi.html',
   'audio.mp3',
   'quran.html',

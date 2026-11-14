@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="heynuo-build" content="2026-11-15-gratitude-1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f7faf7">
+  <title>Thank You, Allah — Shukriya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17312d;
+      --muted: #53645f;
+      --accent: #0f766e;
+      --gold: #a66c20;
+      --border: rgb(15 118 110 / 18%);
+      --ambient-teal: rgb(15 118 110 / 10%);
+      --ambient-gold: rgb(166 108 32 / 7%);
+    }
+
+    :root[data-theme="sepia"] {
+      color-scheme: light;
+      --ink: #382c1e;
+      --muted: #655641;
+      --accent: #76511f;
+      --gold: #9a6823;
+      --border: rgb(118 81 31 / 22%);
+      --ambient-teal: rgb(148 109 49 / 9%);
+      --ambient-gold: rgb(188 145 67 / 8%);
+    }
+
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --ink: #eff8f4;
+      --muted: #c0d0ca;
+      --accent: #8de0d2;
+      --gold: #e4bd76;
+      --border: rgb(141 224 210 / 24%);
+      --ambient-teal: rgb(58 155 141 / 15%);
+      --ambient-gold: rgb(228 189 118 / 9%);
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      width: 100%;
+      min-width: 280px;
+      min-height: 100%;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    body {
+      color: var(--ink);
+      font-family: Inter, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    main {
+      position: relative;
+      isolation: isolate;
+      display: grid;
+      min-height: 100vh;
+      min-height: 100dvh;
+      place-items: center;
+      padding: 0.75rem clamp(1rem, 4vw, 3rem);
+    }
+
+    main::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 48% 42% at 50% 48%, var(--ambient-teal), transparent 100%),
+        radial-gradient(ellipse 30% 27% at 50% 45%, var(--ambient-gold), transparent 100%);
+      content: "";
+      pointer-events: none;
+    }
+
+    .gratitude-message {
+      display: grid;
+      width: min(100%, 76rem);
+      align-content: center;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .gratitude-kicker {
+      display: flex;
+      width: min(100%, 36rem);
+      align-items: center;
+      justify-content: center;
+      gap: 0.85rem;
+      margin: 0 0 0.8rem;
+      color: var(--accent);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+
+    .gratitude-kicker::before,
+    .gratitude-kicker::after {
+      width: clamp(1.25rem, 5vw, 3rem);
+      height: 1px;
+      flex: 0 0 auto;
+      background: linear-gradient(90deg, transparent, var(--gold));
+      content: "";
+    }
+
+    .gratitude-kicker::after {
+      transform: scaleX(-1);
+    }
+
+    .video-fill {
+      position: relative;
+      isolation: isolate;
+      color: transparent;
+      background: linear-gradient(110deg, var(--accent) 8%, var(--gold) 52%, var(--accent) 94%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke: 0.012em #55cbbc;
+      animation: gratitude-text-glow 9s linear infinite;
+    }
+
+    .video-fill-canvas {
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 0 0.025em #55cbbc) drop-shadow(0 0 0.09em rgb(85 203 188 / 42%));
+      animation: gratitude-video-glow 9s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes gratitude-text-glow {
+      0% {
+        -webkit-text-stroke-color: #55cbbc;
+      }
+      33% {
+        -webkit-text-stroke-color: #f0bd5f;
+      }
+      66% {
+        -webkit-text-stroke-color: #82baff;
+      }
+      100% {
+        -webkit-text-stroke-color: #55cbbc;
+      }
+    }
+
+    @keyframes gratitude-video-glow {
+      0% {
+        filter: drop-shadow(0 0 0.025em #55cbbc) drop-shadow(0 0 0.09em rgb(85 203 188 / 42%));
+      }
+      33% {
+        filter: drop-shadow(0 0 0.03em #f0bd5f) drop-shadow(0 0 0.1em rgb(240 189 95 / 48%));
+      }
+      66% {
+        filter: drop-shadow(0 0 0.025em #82baff) drop-shadow(0 0 0.095em rgb(130 186 255 / 45%));
+      }
+      100% {
+        filter: drop-shadow(0 0 0.025em #55cbbc) drop-shadow(0 0 0.09em rgb(85 203 188 / 42%));
+      }
+    }
+
+    h1 {
+      width: min(100%, 58rem);
+      margin: 0;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(2.7rem, 6.4vw, 4.8rem);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+      text-wrap: balance;
+    }
+
+    .gratitude-divider {
+      display: flex;
+      width: min(13rem, 42vw);
+      align-items: center;
+      gap: 0.8rem;
+      margin: 1rem 0 0.55rem;
+      color: var(--gold);
+      font-size: 0.82rem;
+    }
+
+    .gratitude-divider::before,
+    .gratitude-divider::after {
+      height: 1px;
+      flex: 1;
+      background: var(--border);
+      content: "";
+    }
+
+    .gratitude-word {
+      margin: 0;
+      color: var(--gold);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.35rem, 3vw, 1.8rem);
+      font-style: italic;
+      letter-spacing: 0.02em;
+      line-height: 1.3;
+    }
+
+    .gratitude-note {
+      width: min(100%, 42rem);
+      margin: 0.55rem 0 0;
+      color: var(--muted);
+      font-size: clamp(0.82rem, 1.8vw, 0.95rem);
+      line-height: 1.55;
+    }
+
+    @media (max-width: 480px) {
+      .gratitude-kicker { font-size: 0.62rem; letter-spacing: 0.19em; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; }
+      .video-fill, .video-fill-canvas { animation: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <main aria-labelledby="gratitude-title">
+    <section class="gratitude-message" aria-label="A message of gratitude">
+      <p class="gratitude-kicker video-fill" data-video-fill>A moment of gratitude</p>
+      <h1 id="gratitude-title" class="video-fill" data-video-fill>Thank You, Allah</h1>
+      <p class="gratitude-divider" aria-hidden="true">✦</p>
+      <p class="gratitude-word">Shukriya</p>
+      <p class="gratitude-note">For every blessing, seen and unseen.</p>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var validThemes = ['light', 'sepia', 'dark'];
+
+      function currentTheme() {
+        try {
+          if (window.parent !== window) {
+            return window.parent.document.documentElement.getAttribute('data-theme') || 'light';
+          }
+          return localStorage.getItem('heynuo-theme') ||
+            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        } catch (error) {
+          return 'light';
+        }
+      }
+
+      function applyTheme() {
+        var theme = currentTheme();
+        document.documentElement.setAttribute('data-theme', validThemes.indexOf(theme) >= 0 ? theme : 'light');
+      }
+
+      applyTheme();
+
+      try {
+        if (window.parent !== window) {
+          new MutationObserver(applyTheme).observe(window.parent.document.documentElement, {
+            attributes: true,
+            attributeFilter: ['data-theme']
+          });
+        }
+      } catch (error) {
+        // The section keeps its light theme if it is embedded cross-origin.
+      }
+
+      var videoSources = [
+        'assets/videos/gratitude/gratitude-01.mp4',
+        'assets/videos/gratitude/gratitude-02.mp4',
+        'assets/videos/gratitude/gratitude-03.mp4',
+        'assets/videos/gratitude/gratitude-04.mp4',
+        'assets/videos/gratitude/gratitude-05.mp4',
+        'assets/videos/gratitude/gratitude-06.mp4',
+        'assets/videos/gratitude/gratitude-07.mp4',
+        'assets/videos/gratitude/gratitude-08.mp4'
+      ];
+      var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var textCanvases = [];
+      var video = document.createElement('video');
+      var currentVideo = 0;
+      var videoAttempts = 0;
+      var frameRequested = false;
+      var frameIsVisible = window.parent === window;
+
+      video.className = 'gratitude-footage';
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.preload = 'none';
+      video.tabIndex = -1;
+      video.setAttribute('aria-hidden', 'true');
+      Object.assign(video.style, {
+        position: 'fixed',
+        width: '1px',
+        height: '1px',
+        overflow: 'hidden',
+        opacity: '0',
+        pointerEvents: 'none'
+      });
+      document.body.appendChild(video);
+
+      function prepareTextCanvas(element) {
+        var text = element.textContent.trim();
+        var canvas = document.createElement('canvas');
+        canvas.className = 'video-fill-canvas';
+        canvas.setAttribute('aria-hidden', 'true');
+        element.appendChild(canvas);
+        textCanvases.push({
+          element: element,
+          canvas: canvas,
+          maskCanvas: document.createElement('canvas'),
+          text: text
+        });
+      }
+
+      function measureSpacedText(context, text, spacing) {
+        return context.measureText(text).width + Math.max(0, text.length - 1) * spacing;
+      }
+
+      function wrapText(context, text, maxWidth, spacing) {
+        var words = text.split(/\s+/);
+        var lines = [];
+        var line = '';
+
+        words.forEach(function (word) {
+          var candidate = line ? line + ' ' + word : word;
+          if (line && measureSpacedText(context, candidate, spacing) > maxWidth) {
+            lines.push(line);
+            line = word;
+          } else {
+            line = candidate;
+          }
+        });
+
+        if (line) lines.push(line);
+        return lines;
+      }
+
+      function drawSpacedText(context, text, centerX, centerY, spacing) {
+        if ('letterSpacing' in context) {
+          context.fillText(text, centerX, centerY);
+          return;
+        }
+
+        var textWidth = measureSpacedText(context, text, spacing);
+        var x = centerX - textWidth / 2;
+
+        for (var index = 0; index < text.length; index++) {
+          var character = text[index];
+          var characterWidth = context.measureText(character).width;
+          context.fillText(character, x + characterWidth / 2, centerY);
+          x += characterWidth + spacing;
+        }
+      }
+
+      function paintVideoText(item) {
+        var bounds = item.element.getBoundingClientRect();
+        if (!bounds.width || !bounds.height || video.readyState < 2 || !video.videoWidth) return;
+
+        var pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+        var width = Math.round(bounds.width * pixelRatio);
+        var height = Math.round(bounds.height * pixelRatio);
+        if (item.canvas.width !== width || item.canvas.height !== height) {
+          item.canvas.width = width;
+          item.canvas.height = height;
+          item.maskCanvas.width = width;
+          item.maskCanvas.height = height;
+        }
+
+        var context = item.canvas.getContext('2d');
+        var maskContext = item.maskCanvas.getContext('2d');
+        if (!context || !maskContext) return;
+        context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+        context.clearRect(0, 0, bounds.width, bounds.height);
+        maskContext.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+        maskContext.clearRect(0, 0, bounds.width, bounds.height);
+
+        var videoRatio = video.videoWidth / video.videoHeight;
+        var canvasRatio = bounds.width / bounds.height;
+        var sourceX = 0;
+        var sourceY = 0;
+        var sourceWidth = video.videoWidth;
+        var sourceHeight = video.videoHeight;
+        if (videoRatio > canvasRatio) {
+          sourceWidth = video.videoHeight * canvasRatio;
+          sourceX = (video.videoWidth - sourceWidth) / 2;
+        } else {
+          sourceHeight = video.videoWidth / canvasRatio;
+          sourceY = (video.videoHeight - sourceHeight) / 2;
+        }
+
+        context.filter = 'saturate(1.22) brightness(1.2) contrast(1.03)';
+        context.drawImage(video, sourceX, sourceY, sourceWidth, sourceHeight, 0, 0, bounds.width, bounds.height);
+        context.filter = 'none';
+        context.globalCompositeOperation = 'source-atop';
+        var glaze = context.createLinearGradient(0, 0, bounds.width, bounds.height);
+        glaze.addColorStop(0, 'rgba(15, 118, 110, 0.12)');
+        glaze.addColorStop(0.5, 'rgba(255, 255, 255, 0.18)');
+        glaze.addColorStop(1, 'rgba(166, 108, 32, 0.14)');
+        context.fillStyle = glaze;
+        context.fillRect(0, 0, bounds.width, bounds.height);
+        context.globalCompositeOperation = 'source-over';
+
+        var styles = window.getComputedStyle(item.element);
+        maskContext.font = styles.font;
+        maskContext.fillStyle = '#fff';
+        maskContext.textAlign = 'center';
+        maskContext.textBaseline = 'middle';
+        if ('fontKerning' in maskContext) maskContext.fontKerning = styles.fontKerning;
+        var text = item.text;
+        if (styles.textTransform === 'uppercase') text = text.toLocaleUpperCase();
+        if (styles.textTransform === 'lowercase') text = text.toLocaleLowerCase();
+        var spacing = parseFloat(styles.letterSpacing) || 0;
+        var fontSize = parseFloat(styles.fontSize) || 16;
+        var lineHeight = parseFloat(styles.lineHeight) || fontSize * 1.2;
+        var lines = wrapText(maskContext, text, bounds.width * 0.98, spacing);
+        if ('letterSpacing' in maskContext) maskContext.letterSpacing = styles.letterSpacing;
+        var firstLineY = (bounds.height - lines.length * lineHeight) / 2 + lineHeight / 2;
+
+        lines.forEach(function (line, index) {
+          drawSpacedText(maskContext, line, bounds.width / 2, firstLineY + index * lineHeight, spacing);
+        });
+
+        context.globalCompositeOperation = 'destination-in';
+        context.drawImage(item.maskCanvas, 0, 0, width, height, 0, 0, bounds.width, bounds.height);
+        context.globalCompositeOperation = 'source-over';
+      }
+
+      function paintAllVideoText() {
+        textCanvases.forEach(paintVideoText);
+      }
+
+      function requestFramePaint() {
+        if (frameRequested || video.paused || video.ended) return;
+        frameRequested = true;
+        if (typeof video.requestVideoFrameCallback === 'function') {
+          video.requestVideoFrameCallback(function () {
+            frameRequested = false;
+            paintAllVideoText();
+            requestFramePaint();
+          });
+        } else {
+          window.requestAnimationFrame(function () {
+            frameRequested = false;
+            paintAllVideoText();
+            requestFramePaint();
+          });
+        }
+      }
+
+      function playNextVideo() {
+        if (prefersReducedMotion.matches || document.visibilityState === 'hidden' || !frameIsVisible || videoAttempts >= videoSources.length) return;
+        video.src = videoSources[currentVideo];
+        currentVideo = (currentVideo + 1) % videoSources.length;
+        videoAttempts++;
+        video.load();
+        var playback = video.play();
+        if (playback && typeof playback.catch === 'function') playback.catch(function () {});
+      }
+
+      function resumeVideo() {
+        if (prefersReducedMotion.matches || document.visibilityState === 'hidden' || !frameIsVisible) return;
+        if (!video.getAttribute('src') || video.ended) {
+          playNextVideo();
+        } else if (video.paused) {
+          var playback = video.play();
+          if (playback && typeof playback.catch === 'function') playback.catch(function () {});
+        }
+      }
+
+      function watchFrameVisibility() {
+        if (window.parent === window) return;
+
+        try {
+          frameIsVisible = false;
+          var frameObserver = new window.parent.IntersectionObserver(function (entries) {
+            frameIsVisible = entries.some(function (entry) { return entry.isIntersecting; });
+            if (frameIsVisible) {
+              resumeVideo();
+            } else {
+              frameRequested = false;
+              video.pause();
+            }
+          }, { threshold: 0.01 });
+          frameObserver.observe(window.frameElement);
+        } catch (error) {
+          frameIsVisible = true;
+        }
+      }
+
+      if (!prefersReducedMotion.matches) {
+        textCanvases = [];
+        document.querySelectorAll('[data-video-fill]').forEach(prepareTextCanvas);
+        video.addEventListener('loadeddata', paintAllVideoText);
+        video.addEventListener('playing', function () {
+          videoAttempts = 0;
+          requestFramePaint();
+        });
+        video.addEventListener('ended', playNextVideo);
+        video.addEventListener('error', playNextVideo);
+        if (typeof ResizeObserver === 'function') {
+          var resizeObserver = new ResizeObserver(paintAllVideoText);
+          textCanvases.forEach(function (item) { resizeObserver.observe(item.element); });
+        } else {
+          window.addEventListener('resize', paintAllVideoText);
+        }
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(paintAllVideoText);
+        watchFrameVisibility();
+        resumeVideo();
+      }
+
+      document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState === 'hidden') {
+          frameRequested = false;
+          video.pause();
+        } else {
+          resumeVideo();
+        }
+      });
+    })();
+  </script>
+</body>
+
+</html>

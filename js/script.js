@@ -4,7 +4,7 @@ Ruqyah – Global Scripts (Production Final v3)
 
 // Build stamp injected by tools/stamp-build.ps1 before each release. Declared
 // here so the service-worker registration can reference it without a guard.
-var __HEYNUO_BUILD__ = '2026-11-15-ios-2';
+var __HEYNUO_BUILD__ = '2026-11-15-gratitude-1';
 
 const CONFIG = Object.freeze({
   siteUrl: 'https://heynuo.github.io',
