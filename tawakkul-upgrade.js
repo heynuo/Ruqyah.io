@@ -317,7 +317,7 @@
   audio.addEventListener('error', () => {
     if (!audio.dataset.retry) {
       audio.dataset.retry = '1';
-      audio.src = 'audio_6af41204e4ea39_02321364.mp3';
+      audio.src = 'audio_6af41204e4ea39.02321364.mp3';
     }
   });
 

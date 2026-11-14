@@ -12,9 +12,7 @@ module.exports = {
   content: [
     './*.html',
     './*.js',
-    './js/**/*.js',
-    './assets/js/**/*.js',
-    './tools/components/**/*.html'
+    './js/**/*.js'
   ],
   darkMode: sharedConfigContext.tailwind.config.darkMode,
   theme: sharedConfigContext.tailwind.config.theme,
