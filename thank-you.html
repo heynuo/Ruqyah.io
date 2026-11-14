@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="heynuo-build" content="2026-11-15-gratitude-1">
+  <meta name="heynuo-build" content="2026-11-15-gratitude-2">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#f7faf7">
   <title>Thank You, Allah — Shukriya</title>
@@ -23,6 +23,8 @@
       --border: rgb(15 118 110 / 18%);
       --ambient-teal: rgb(15 118 110 / 10%);
       --ambient-gold: rgb(166 108 32 / 7%);
+      --leak-warm: rgb(237 173 94 / 21%);
+      --leak-cool: rgb(56 174 190 / 16%);
     }
 
     :root[data-theme="sepia"] {
@@ -34,6 +36,8 @@
       --border: rgb(118 81 31 / 22%);
       --ambient-teal: rgb(148 109 49 / 9%);
       --ambient-gold: rgb(188 145 67 / 8%);
+      --leak-warm: rgb(194 144 73 / 19%);
+      --leak-cool: rgb(116 157 136 / 12%);
     }
 
     :root[data-theme="dark"] {
@@ -45,6 +49,8 @@
       --border: rgb(141 224 210 / 24%);
       --ambient-teal: rgb(58 155 141 / 15%);
       --ambient-gold: rgb(228 189 118 / 9%);
+      --leak-warm: rgb(247 188 104 / 18%);
+      --leak-cool: rgb(87 203 215 / 16%);
     }
 
     * { box-sizing: border-box; }
@@ -84,6 +90,40 @@
         radial-gradient(ellipse 30% 27% at 50% 45%, var(--ambient-gold), transparent 100%);
       content: "";
       pointer-events: none;
+    }
+
+    main::after {
+      position: absolute;
+      z-index: -1;
+      inset: -18% -16%;
+      background:
+        linear-gradient(112deg, transparent 20%, var(--leak-warm) 34%, rgb(255 255 255 / 9%) 43%, transparent 55%, transparent 64%, var(--leak-cool) 78%, transparent 89%),
+        radial-gradient(ellipse 25% 46% at 18% 66%, var(--leak-warm), transparent 100%),
+        radial-gradient(ellipse 24% 44% at 82% 34%, var(--leak-cool), transparent 100%);
+      filter: blur(20px);
+      opacity: 0.58;
+      content: "";
+      pointer-events: none;
+      animation: gratitude-light-leak 18s ease-in-out infinite alternate;
+      will-change: transform, opacity;
+    }
+
+    @keyframes gratitude-light-leak {
+      0% {
+        filter: blur(18px) hue-rotate(-4deg);
+        opacity: 0.42;
+        transform: translate3d(-2%, -1%, 0) rotate(-3deg) scale(1);
+      }
+      50% {
+        filter: blur(24px) hue-rotate(8deg);
+        opacity: 0.72;
+        transform: translate3d(1.5%, 0.5%, 0) rotate(1deg) scale(1.04);
+      }
+      100% {
+        filter: blur(20px) hue-rotate(-2deg);
+        opacity: 0.54;
+        transform: translate3d(-1%, 1.5%, 0) rotate(-2deg) scale(1.02);
+      }
     }
 
     .gratitude-message {
@@ -229,7 +269,7 @@
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; }
-      .video-fill, .video-fill-canvas { animation: none !important; }
+      main::after, .video-fill, .video-fill-canvas { animation: none !important; }
     }
   </style>
 </head>
@@ -404,14 +444,15 @@
           sourceY = (video.videoHeight - sourceHeight) / 2;
         }
 
-        context.filter = 'saturate(1.22) brightness(1.2) contrast(1.03)';
+        context.filter = 'saturate(1.26) brightness(1.28) contrast(1.05)';
         context.drawImage(video, sourceX, sourceY, sourceWidth, sourceHeight, 0, 0, bounds.width, bounds.height);
         context.filter = 'none';
         context.globalCompositeOperation = 'source-atop';
         var glaze = context.createLinearGradient(0, 0, bounds.width, bounds.height);
-        glaze.addColorStop(0, 'rgba(15, 118, 110, 0.12)');
-        glaze.addColorStop(0.5, 'rgba(255, 255, 255, 0.18)');
-        glaze.addColorStop(1, 'rgba(166, 108, 32, 0.14)');
+        var themeStyles = window.getComputedStyle(document.documentElement);
+        glaze.addColorStop(0, themeStyles.getPropertyValue('--leak-warm').trim());
+        glaze.addColorStop(0.5, 'rgba(255, 255, 255, 0.16)');
+        glaze.addColorStop(1, themeStyles.getPropertyValue('--leak-cool').trim());
         context.fillStyle = glaze;
         context.fillRect(0, 0, bounds.width, bounds.height);
         context.globalCompositeOperation = 'source-over';
