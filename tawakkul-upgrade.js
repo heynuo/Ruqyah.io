@@ -6,6 +6,9 @@
 
   const stage = document.getElementById('stage-wrapper');
   if (!stage) return;
+  const state = window.RuqyahTawakkulContext;
+  if (!state) return;
+  const { audio, playBtn, audioStatus, scrubber } = state;
 
   /* ---------- Dynamic CSS Injection ---------- */
   const css = document.createElement('style');
@@ -177,14 +180,14 @@
 
   function fx() {
     const n = performance.now();
-    const e = typeof getAudioEnergy === 'function' ? getAudioEnergy() : 0;
-    const T = TOTAL_DURATION || 50.83;
-    const t = currentTime || 0;
+    const e = state.getAudioEnergy?.() || 0;
+    const T = state.totalDuration || 50.83;
+    const t = state.currentTime || 0;
     const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
 
     // Handheld camera subtle natural drift on the active scene
     const sc = document.querySelector('.scene.active');
-    if (sc && !reduceMotion && isPlaying) {
+    if (sc && !reduceMotion && state.isPlaying) {
       const shakeX = Math.sin(n * .0013) * 2.2 + e * 4.5 * Math.sin(n * .05);
       const shakeY = Math.cos(n * .0011) * 1.8;
       const shakeRot = Math.sin(n * .0009) * .22;
@@ -203,7 +206,7 @@
     }
 
     // Light leak on scene transitions
-    const tt = t * (BASE_DURATION / T);
+    const tt = t * (state.baseDuration / T);
     const d = Math.min(...CUT.map(c => Math.abs(tt - c)));
     leak.style.opacity = reduceMotion ? '0' : (cl(1 - d / .22) * .48).toFixed(2);
     if (!reduceMotion) leak.style.backgroundPosition = `${(n * .05) % 200}% 0`;
@@ -229,7 +232,7 @@
     // Controls Equalizer visualizer
     const controlsEl = document.getElementById('controls');
     if (controlsEl) {
-      controlsEl.classList.toggle('playing', isPlaying);
+      controlsEl.classList.toggle('playing', state.isPlaying);
     }
 
     // Fade in at start and fade out at video end
@@ -263,15 +266,15 @@
   function finishVideo() {
     if (finished) return;
     finished = true;
-    isPlaying = false;
+    state.isPlaying = false;
     document.body.classList.remove('is-playing');
     playBtn.setAttribute('aria-pressed', 'false');
     playBtn.setAttribute('aria-label', 'Replay reflection');
-    if (animationFrameId !== null) cancelAnimationFrame(animationFrameId);
-    animationFrameId = null;
+    if (state.animationFrameId !== null) cancelAnimationFrame(state.animationFrameId);
+    state.animationFrameId = null;
     try { audio.pause(); } catch (_) {}
-    currentTime = TOTAL_DURATION - 0.05;
-    renderFrame(currentTime);
+    state.currentTime = state.totalDuration - 0.05;
+    state.renderFrame(state.currentTime);
     fade.style.opacity = '1';
     playBtn.textContent = 'Replay';
     audioStatus.textContent = 'Completed (Replay)';
@@ -279,33 +282,16 @@
     if (controlsEl) controlsEl.classList.remove('playing');
   }
 
-  animate = function () {
-    animationFrameId = null;
-    if (!isPlaying) return;
-    if (!(window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false)) jitterGrain();
-    hasStarted = true;
-    if (!useSynthClock && !audio.paused) currentTime = audio.currentTime;
-    else if (useSynthClock) currentTime = (performance.now() - synthStart) / 1000;
-
-    if (currentTime >= TOTAL_DURATION - 0.04 || (!useSynthClock && audio.ended)) {
-      finishVideo();
-    } else {
-      renderFrame(currentTime);
-      fx();
-    }
-    if (isPlaying) animationFrameId = requestAnimationFrame(animate);
-  };
-
   audio.addEventListener('ended', finishVideo);
 
   playBtn.addEventListener('click', () => {
     hasStarted = true;
     if (finished) {
       finished = false;
-      currentTime = 0;
+      state.currentTime = 0;
       audio.currentTime = 0;
-      synthStart = performance.now();
-      isPlaying = false;
+      state.synthStart = performance.now();
+      state.isPlaying = false;
     }
   }, true);
 
@@ -321,5 +307,6 @@
     }
   });
 
+  window.RuqyahTawakkulEffects = fx;
   fx();
 })();

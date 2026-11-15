@@ -26,8 +26,6 @@
   <meta name="twitter:title" content="Tawakkul — A Cinematic Reflection | Ruqyah" />
   <meta name="twitter:description" content="A cinematic, bilingual reflection on tawakkul: taking the means while entrusting outcomes to Allah." />
   <meta name="twitter:image" content="https://heynuo.github.io/assets/banners/og-banner.jpg" />
-  <!-- Preload critical audio -->
-  <link rel="preload" href="audio_6af41204e4ea39.02321364.mp3" as="audio" type="audio/mpeg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -2327,6 +2325,71 @@
       }
     }
 
+    body.is-embedded #stage-wrapper,
+    body.is-embedded #stage-wrapper.ratio-9-16,
+    body.is-embedded #stage-wrapper.ratio-16-9 {
+      width: 100vw;
+      height: 100vh;
+      max-width: none;
+      max-height: none;
+      border-radius: 0;
+    }
+
+    body.is-embedded #controls {
+      top: 8px;
+      right: 8px;
+      bottom: auto;
+      left: 8px;
+      width: auto;
+      max-width: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      transform: none;
+    }
+
+    /* The 16:9 homepage iframe can be shorter than the standalone controls.
+       Fill that preview with the stage and keep its controls on one compact row. */
+    @media (max-height: 500px) and (max-width: 900px) {
+      body.is-embedded #controls {
+        top: 8px;
+        right: 8px;
+        bottom: auto;
+        left: 8px;
+        width: auto;
+        max-width: none;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        gap: 3px;
+        padding: 4px;
+        border-radius: 10px;
+        transform: none;
+      }
+
+      body.is-embedded #controls .btn {
+        flex: 0 0 auto;
+        min-height: 36px;
+        padding: 4px 6px;
+        font-size: 10px;
+      }
+
+      body.is-embedded #controls #seek-back-btn,
+      body.is-embedded #controls #seek-fwd-btn,
+      body.is-embedded #controls #time-display,
+      body.is-embedded #controls #ratio-btn,
+      body.is-embedded #controls #fullscreen-btn,
+      body.is-embedded #controls #upload-label,
+      body.is-embedded #controls #audio-status,
+      body.is-embedded #controls .control-eq,
+      body.is-embedded #controls .hide-hint {
+        display: none !important;
+      }
+
+      body.is-embedded #controls #scrubber {
+        flex: 1 1 auto;
+        min-width: 48px;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
 
       *,
@@ -3603,6 +3666,9 @@
           }
         }
         renderFrame(currentTime);
+        if (typeof window.RuqyahTawakkulEffects === 'function') {
+          window.RuqyahTawakkulEffects();
+        }
       }
       if (isPlaying) animationFrameId = requestAnimationFrame(animate);
     }
@@ -3735,6 +3801,28 @@
         playBtn.click();
       });
     }
+
+    window.RuqyahTawakkulContext = {
+      audio,
+      playBtn,
+      audioStatus,
+      scrubber,
+      renderFrame,
+      getAudioEnergy,
+      get baseDuration() { return BASE_DURATION; },
+      get totalDuration() { return TOTAL_DURATION; },
+      set totalDuration(value) { TOTAL_DURATION = value; },
+      get isPlaying() { return isPlaying; },
+      set isPlaying(value) { isPlaying = value; },
+      get currentTime() { return currentTime; },
+      set currentTime(value) { currentTime = value; },
+      get useSynthClock() { return useSynthClock; },
+      set useSynthClock(value) { useSynthClock = value; },
+      get synthStart() { return synthStart; },
+      set synthStart(value) { synthStart = value; },
+      get animationFrameId() { return animationFrameId; },
+      set animationFrameId(value) { animationFrameId = value; }
+    };
 
     renderFrame(0);
     })();
