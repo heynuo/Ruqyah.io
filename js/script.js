@@ -4,7 +4,7 @@ Ruqyah – Global Scripts (Production Final v3)
 
 // Build stamp injected by tools/stamp-build.ps1 before each release. Declared
 // here so the service-worker registration can reference it without a guard.
-var __HEYNUO_BUILD__ = '2026-11-15-gratitude-3';
+var __HEYNUO_BUILD__ = '2026-11-15-search-1';
 
 const CONFIG = Object.freeze({
   siteUrl: 'https://heynuo.github.io',
@@ -1881,8 +1881,12 @@ const CommandPalette = {
   backdrop: null,
   input: null,
   resultsContainer: null,
+  status: null,
+  closeButton: null,
   selectedIndex: 0,
   items: [],
+  previousFocus: null,
+  previousBodyOverflow: '',
 
   init() {
     this.createModal();
@@ -1897,16 +1901,20 @@ const CommandPalette = {
     backdrop.className = 'cmd-palette-backdrop';
     backdrop.setAttribute('role', 'dialog');
     backdrop.setAttribute('aria-modal', 'true');
-    backdrop.setAttribute('aria-label', 'Command Palette and Article Search');
+    backdrop.setAttribute('aria-label', 'Search the Ruqyah archive');
 
     backdrop.innerHTML = `
       <div class="cmd-palette-modal">
         <div class="cmd-palette-input-wrap">
           <span class="cmd-palette-icon" aria-hidden="true">🔍</span>
-          <input type="search" id="cmdPaletteInput" name="cmdQuery" class="cmd-palette-input" placeholder="Search articles, guides, topics... (or press /)" autocomplete="off" aria-label="Search articles, guides and topics">
+          <input type="search" id="cmdPaletteInput" name="cmdQuery" class="cmd-palette-input" placeholder="Search pages, topics, videos, and guides…" autocomplete="off" aria-label="Search the Ruqyah archive" role="combobox" aria-autocomplete="list" aria-controls="cmdPaletteResults" aria-expanded="false">
           <kbd class="cmd-palette-esc-badge">ESC</kbd>
+          <button type="button" class="cmd-palette-close" aria-label="Close search" title="Close search">
+            <span aria-hidden="true">×</span>
+          </button>
         </div>
         <div class="cmd-palette-results" id="cmdPaletteResults" role="listbox"></div>
+        <div class="sr-only" id="cmdPaletteStatus" role="status" aria-live="polite"></div>
         <div class="cmd-palette-footer">
           <div class="cmd-palette-hints">
             <span class="cmd-palette-hint"><kbd>↑</kbd><kbd>↓</kbd> Navigate</span>
@@ -1922,10 +1930,30 @@ const CommandPalette = {
     this.backdrop = backdrop;
     this.input = backdrop.querySelector('#cmdPaletteInput');
     this.resultsContainer = backdrop.querySelector('#cmdPaletteResults');
+    this.status = backdrop.querySelector('#cmdPaletteStatus');
+    this.closeButton = backdrop.querySelector('.cmd-palette-close');
 
     // Close when clicking outside modal
     $.on(backdrop, 'click', (e) => {
       if (e.target === backdrop) this.close();
+    });
+
+    $.on(this.closeButton, 'click', () => this.close());
+
+    $.on(backdrop, 'keydown', (e) => {
+      if (e.key !== 'Tab') return;
+      const focusable = [...backdrop.querySelectorAll('input:not([disabled]), button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])')]
+        .filter(el => el.getClientRects().length > 0);
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     });
 
     // Search input typing
@@ -1946,6 +1974,7 @@ const CommandPalette = {
         this.selectCurrent();
       } else if (e.key === 'Escape') {
         e.preventDefault();
+        e.stopPropagation();
         this.close();
       }
     });
@@ -1957,6 +1986,9 @@ const CommandPalette = {
       if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
         e.preventDefault();
         this.toggle();
+      } else if (e.key === '/' && !e.ctrlKey && !e.metaKey && !e.altKey && !this.isEditableTarget(e.target)) {
+        e.preventDefault();
+        this.open();
       } else if (e.key === 'Escape' && this.isOpen()) {
         e.preventDefault();
         this.close();
@@ -1973,23 +2005,47 @@ const CommandPalette = {
     });
   },
 
+  isEditableTarget(target) {
+    return Boolean(target && (
+      target.isContentEditable ||
+      target.closest?.('input, textarea, select, [role="textbox"]')
+    ));
+  },
+
   isOpen() {
     return this.backdrop?.classList.contains('open');
   },
 
   open() {
     if (!this.backdrop) this.createModal();
+    if (!this.isOpen()) {
+      this.previousFocus = document.activeElement;
+      this.previousBodyOverflow = document.body.style.overflow;
+    }
     this.backdrop.classList.add('open');
     document.body.style.overflow = 'hidden';
+    this.input.setAttribute('aria-expanded', 'true');
     this.input.value = '';
     this.search('');
-    setTimeout(() => this.input.focus(), 50);
+    setTimeout(() => { if (this.isOpen()) this.input.focus(); }, 50);
   },
 
   close() {
-    if (!this.backdrop) return;
+    if (!this.backdrop || !this.isOpen()) return;
     this.backdrop.classList.remove('open');
-    document.body.style.overflow = '';
+    this.input?.setAttribute('aria-expanded', 'false');
+    this.input?.removeAttribute('aria-activedescendant');
+    document.body.style.overflow = this.previousBodyOverflow || '';
+    const previousFocusIsVisible = this.previousFocus?.isConnected &&
+      this.previousFocus !== document.body &&
+      this.previousFocus !== document.documentElement &&
+      this.previousFocus.getClientRects().length > 0;
+    const navSearch = $.get('#navSearchBtn');
+    const focusTarget = previousFocusIsVisible
+      ? this.previousFocus
+      : (navSearch?.getClientRects().length ? navSearch : $.get('#heynuo-mobile-menu-btn'));
+    this.previousFocus = null;
+    if (focusTarget && typeof focusTarget.focus === 'function') focusTarget.focus();
   },
 
   toggle() {
@@ -2137,6 +2193,7 @@ const CommandPalette = {
         subtitle: 'Complete 114 Surahs audio recitation & King Fahd PDFs',
         icon: '📖',
         tag: 'Page',
+        tags: ['quran', 'surah', 'surahs', 'audio', 'recitation', 'mushaf', 'kahf'],
         link: 'quran.html'
       },
       {
@@ -2147,6 +2204,7 @@ const CommandPalette = {
         subtitle: 'Concordance of 108 verses across 62 classical works',
         icon: '📜',
         tag: 'Page',
+        tags: ['quran', 'ruqyah', 'healing', 'protection', 'verses', 'ayah', 'concordance'],
         link: 'quran-verses.html'
       },
       {
@@ -2158,6 +2216,7 @@ const CommandPalette = {
         icon: '👤',
         kbd: 'A',
         tag: 'Page',
+        tags: ['about', 'mission', 'methodology', 'sources', 'scholarship'],
         link: 'about.html'
       },
       {
@@ -2169,7 +2228,74 @@ const CommandPalette = {
         icon: '📬',
         kbd: 'C',
         tag: 'Page',
+        tags: ['contact', 'support', 'faq', 'email'],
         link: 'contact.html'
+      },
+      {
+        id: 'pg-videos',
+        section: 'Pages & Media',
+        type: 'page',
+        title: 'Videos & Media Library',
+        subtitle: 'Watch recitations, devotional videos, and reflections',
+        icon: '▶',
+        tag: 'Media',
+        tags: ['video', 'videos', 'media', 'recitation', 'ruqyah'],
+        link: 'videos.html'
+      },
+      {
+        id: 'pg-hadith-qudsi',
+        section: 'Pages & Media',
+        type: 'page',
+        title: 'Hadith Qudsi: Al-Fatiha',
+        subtitle: 'A visual reading of the divine dialogue in Surah Al-Fatiha',
+        icon: '◉',
+        tag: 'Hadith',
+        tags: ['hadith', 'qudsi', 'fatiha', 'fatihah', 'al-fatiha'],
+        link: 'HadithQudsi.html'
+      },
+      {
+        id: 'pg-allah-tribute',
+        section: 'Pages & Media',
+        type: 'page',
+        title: 'Allah — A Tribute',
+        subtitle: 'Devotional audio-visual tribute and remembrance',
+        icon: '✦',
+        tag: 'Devotional',
+        tags: ['allah', 'tribute', 'remembrance', 'audio', 'devotional'],
+        link: 'Allah.html'
+      },
+      {
+        id: 'pg-tawakkul',
+        section: 'Pages & Media',
+        type: 'page',
+        title: 'Tawakkul Reflection',
+        subtitle: 'A cinematic reflection on reliance upon Allah',
+        icon: '◌',
+        tag: 'Reflection',
+        tags: ['tawakkul', 'trust', 'reliance', 'reflection'],
+        link: 'Tawakkul.html'
+      },
+      {
+        id: 'pg-thank-you',
+        section: 'Pages & Media',
+        type: 'page',
+        title: 'Thank You, Allah',
+        subtitle: 'A moment of gratitude and dhikr',
+        icon: '♡',
+        tag: 'Gratitude',
+        tags: ['gratitude', 'alhamdulillah', 'shukriya', 'dhikr'],
+        link: 'thank-you.html'
+      },
+      {
+        id: 'pg-privacy',
+        section: 'Pages & Tools',
+        type: 'page',
+        title: 'Privacy Policy',
+        subtitle: 'Data handling, offline storage, and privacy practices',
+        icon: '◇',
+        tag: 'Policy',
+        tags: ['privacy', 'data', 'storage', 'policy'],
+        link: 'privacy.html'
       }
     ];
   },
@@ -2189,8 +2315,20 @@ const CommandPalette = {
     }));
   },
 
+  normalizeSearchText(value) {
+    return String(value || '')
+      .normalize('NFKD')
+      .replace(/[\u0300-\u036f\u0610-\u061a\u064b-\u065f\u0670\u06d6-\u06ed]/g, '')
+      .toLowerCase()
+      .replace(/[’‘'`]/g, '')
+      .replace(/&/g, ' and ')
+      .replace(/[^a-z0-9\u0600-\u06ff]+/g, ' ')
+      .trim();
+  },
+
   search(query) {
-    const q = (query || '').toLowerCase().trim();
+    const displayQuery = String(query || '').trim();
+    const q = this.normalizeSearchText(displayQuery);
     const actions = this.getStaticActions();
     const pages = this.getStaticPages();
     const articles = this.getArticleItems();
@@ -2202,23 +2340,34 @@ const CommandPalette = {
         ...articles
       ];
     } else {
-      const matchItem = (item) => {
-        const text = `${item.title} ${item.subtitle || ''} ${item.tag || ''} ${(item.tags || []).join(' ')}`.toLowerCase();
-        return text.includes(q);
-      };
-      const matchedArticles = articles.filter(matchItem);
-      const matchedActions = actions.filter(matchItem);
-      const matchedPages = pages.filter(matchItem);
+      const queryTerms = q.split(/\s+/).filter(Boolean);
+      const catalog = [...actions, ...pages, ...articles];
+      this.items = catalog
+        .map((item, order) => {
+          const title = this.normalizeSearchText(item.title);
+          const metadata = [item.subtitle, item.tag, item.tags, item.keywords, item.aliases]
+            .flatMap(value => Array.isArray(value) ? value : [value])
+            .join(' ');
+          const description = this.normalizeSearchText(metadata);
+          const searchable = `${title} ${description}`;
+          if (!queryTerms.every(term => searchable.includes(term))) return null;
 
-      this.items = [
-        ...matchedActions,
-        ...matchedPages,
-        ...matchedArticles
-      ];
+          const score = queryTerms.reduce((total, term) => {
+            const titleWords = title.split(' ');
+            return total + (titleWords.includes(term) ? 8 : title.includes(term) ? 5 : 0) +
+              (description.includes(term) ? 2 : 0);
+          }, 0) + (title === q ? 12 : title.startsWith(q) ? 6 : 0);
+
+          return { item, order, score };
+        })
+        .filter(Boolean)
+        .sort((a, b) => b.score - a.score || a.order - b.order)
+        .slice(0, 40)
+        .map(result => result.item);
     }
 
     this.selectedIndex = 0;
-    this.renderResults(q);
+    this.renderResults(displayQuery);
   },
 
   saveSearchHistory(query) {
@@ -2242,13 +2391,17 @@ const CommandPalette = {
 
   renderResults(query) {
     if (!this.resultsContainer) return;
+    if (this.status) {
+      const count = this.items.length;
+      this.status.textContent = count === 0 ? 'No search results.' : `${count} search result${count === 1 ? '' : 's'}.`;
+    }
 
     const history = this.getSearchHistory();
     let historyHtml = '';
     if (!query && history.length > 0) {
       historyHtml = `
         <div class="cmd-palette-history-row">
-          <span style="font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase;">Recent:</span>
+          <span class="cmd-palette-history-label">Recent searches</span>
           ${history.map(item => `<button type="button" class="cmd-history-chip" data-query="${escapeHTML(item)}">🕒 ${escapeHTML(item)}</button>`).join('')}
         </div>
       `;
@@ -2259,9 +2412,13 @@ const CommandPalette = {
         ${historyHtml}
         <div class="cmd-palette-empty">
           <p>No results found for "<strong>${escapeHTML(query)}</strong>"</p>
-          <p style="font-size:12.5px; margin-top:4px;">Try searching for Java, OOP, Quran, Theme, or Web Dev</p>
+          <p style="font-size:12.5px; margin-top:4px;">Try one of these searches:</p>
+          <div class="cmd-palette-history-row" role="group" aria-label="Suggested searches">
+            ${['Quran', 'Ruqyah', 'Videos', 'Tawakkul'].map(item => `<button type="button" class="cmd-history-chip" data-query="${escapeHTML(item)}">${escapeHTML(item)}</button>`).join('')}
+          </div>
         </div>
       `;
+      this.input?.removeAttribute('aria-activedescendant');
       this.bindHistoryChips();
       return;
     }
@@ -2283,7 +2440,7 @@ const CommandPalette = {
 
       return `
         ${sectionHtml}
-        <button type="button" class="cmd-palette-item ${isSelected ? 'is-selected' : ''}" data-index="${idx}" role="option" aria-selected="${isSelected}">
+        <button type="button" id="cmdPaletteOption-${idx}" class="cmd-palette-item ${isSelected ? 'is-selected' : ''}" data-index="${idx}" role="option" aria-selected="${isSelected}">
           <div class="cmd-palette-item-left">
             <span class="cmd-palette-item-icon" aria-hidden="true">${item.icon || '✦'}</span>
             <div class="cmd-palette-item-main">
@@ -2300,6 +2457,7 @@ const CommandPalette = {
     }).join('');
 
     this.resultsContainer.innerHTML = `${historyHtml}${itemsHtml}`;
+    this.updateSelection();
     this.bindHistoryChips();
 
     // Click handling on results
@@ -2347,6 +2505,9 @@ const CommandPalette = {
       el.classList.toggle('is-selected', isSel);
       el.setAttribute('aria-selected', isSel);
     });
+    const selected = this.resultsContainer.querySelector('.cmd-palette-item.is-selected');
+    if (selected) this.input?.setAttribute('aria-activedescendant', selected.id);
+    else this.input?.removeAttribute('aria-activedescendant');
   },
 
   scrollToSelected() {

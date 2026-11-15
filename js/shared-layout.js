@@ -69,7 +69,7 @@
     </div>
     <div class="flex items-center gap-2 sm:gap-space-sm">
       <!-- Search Button Trigger -->
-      <button id="navSearchBtn" aria-label="Search documentation and scripture (Ctrl+K)" class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-border-subtle bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container text-xs font-code-mono transition-all focus:outline-none focus:ring-1 focus:ring-primary shadow-xs cursor-pointer" type="button">
+      <button id="navSearchBtn" aria-label="Search the archive (Ctrl+K)" title="Search the archive (Ctrl+K)" class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-border-subtle bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container text-xs font-code-mono transition-all focus:outline-none focus:ring-1 focus:ring-primary shadow-xs cursor-pointer" type="button">
         <span class="material-symbols-outlined text-[16px] text-primary">search</span>
         <span class="hidden sm:inline font-ui-interactive text-[12px]">Search</span>
         <kbd class="hidden md:inline-flex items-center px-1 py-0.2 text-[10px] font-code-mono bg-surface rounded text-on-surface-variant border border-border-subtle">Ctrl+K</kbd>
@@ -96,10 +96,10 @@
   <!-- Mobile Navigation Drawer -->
   <nav id="heynuo-mobile-nav" class="lg:hidden absolute top-14 left-0 right-0 bg-surface shadow-xl border-t border-b border-border-subtle px-4 py-3 z-50" aria-label="Mobile Navigation" aria-hidden="true" inert>
     <div class="mb-3 pt-1">
-      <button id="mobileNavSearchBtn" class="w-full min-h-[44px] flex items-center justify-between px-3 py-2 rounded-lg bg-surface-container-low text-on-surface-variant text-xs font-ui-interactive border border-border-subtle cursor-pointer" type="button">
+      <button id="mobileNavSearchBtn" aria-label="Search the archive (Ctrl+K)" class="w-full min-h-[44px] flex items-center justify-between px-3 py-2 rounded-lg bg-surface-container-low text-on-surface-variant text-xs font-ui-interactive border border-border-subtle cursor-pointer" type="button">
         <span class="flex items-center gap-2">
           <span class="material-symbols-outlined text-[18px] text-primary">search</span>
-          <span>Search articles &amp; surahs...</span>
+          <span>Search the archive...</span>
         </span>
         <kbd class="px-1.5 py-0.5 rounded text-[10px] bg-surface border border-border-subtle font-code-mono">Ctrl+K</kbd>
       </button>
