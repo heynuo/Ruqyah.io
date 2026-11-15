@@ -15,7 +15,7 @@ const PRECACHE_URLS = [
   'index.html',
   'thank-you.html',
   'HadithQudsi.html',
-  'audio.mp3',
+  'assets/audio/audio.mp3',
   'quran.html',
   'quran-verses.html',
   'videos.html',
