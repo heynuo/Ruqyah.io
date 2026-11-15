@@ -38,7 +38,7 @@
   <!-- Ambient Stars & Glow Dust Particles -->
   <canvas id="stars-canvas" aria-hidden="true"></canvas>
 
-  <!-- Living Atmosphere Video Layer (for standalone immersive mode) -->
+  <!-- Merged Gratitude Video Background -->
   <div id="atmosphere-video-layer" aria-hidden="true">
     <video id="atmosphere-video" muted playsinline loop preload="none"></video>
     <div id="atmosphere-scrim"></div>
@@ -106,6 +106,15 @@
         For every blessing, seen and unseen — every breath, every heartbeat, and the mercy that embraces all things.
       </p>
 
+      <!-- Optional gratitude audio -->
+      <div class="gratitude-audio">
+        <button type="button" class="gratitude-audio-toggle" id="gratitude-audio-toggle"
+          aria-label="Enable gratitude audio" aria-pressed="false">
+          <span class="gratitude-audio-icon" id="gratitude-audio-icon" aria-hidden="true">▶</span>
+          <span id="gratitude-audio-label">Listen to this moment</span>
+        </button>
+      </div>
+
       <!-- Interactive "Say Alhamdulillah" Tap Button -->
       <div class="gratitude-action-area">
         <button type="button" class="dhikr-tap-btn" id="sayAlhamdulillahBtn" aria-label="Say Alhamdulillah and offer gratitude">
@@ -134,7 +143,9 @@
         document.body.classList.add('is-embedded');
 
         var syncEmbeddedHeight = function () {
-          var scrollH = Math.ceil(document.body.scrollHeight || document.documentElement.scrollHeight || 0);
+          var content = document.querySelector('main');
+          var contentHeight = content ? content.getBoundingClientRect().height : 0;
+          var scrollH = Math.ceil(Math.max(contentHeight, document.body.offsetHeight || 0));
           if (scrollH > 100) {
             try {
               window.parent.postMessage({
@@ -408,6 +419,50 @@
       var starsAnimationId = null;
       var isVisible = true;
 
+      // Use the merged gratitude clip so its background and soundtrack stay in sync.
+      var atmosphereVideo = document.getElementById('atmosphere-video');
+      var atmosphereVideoEnabled = !!atmosphereVideo && !prefersReducedMotion.matches;
+
+      function startAtmosphereVideo() {
+        if (!atmosphereVideoEnabled || !isVisible || document.visibilityState === 'hidden') return;
+        if (!atmosphereVideo.getAttribute('src')) {
+          atmosphereVideo.src = 'assets/videos/gratitude/gratitude-final.mp4';
+          atmosphereVideo.load();
+        }
+
+        var playRequest = atmosphereVideo.play();
+        if (playRequest && typeof playRequest.catch === 'function') {
+          playRequest.catch(function () {
+            document.body.classList.remove('mode-atmosphere');
+          });
+        }
+      }
+
+      function pauseAtmosphereVideo() {
+        if (atmosphereVideo && !atmosphereVideo.paused) atmosphereVideo.pause();
+        document.body.classList.remove('mode-atmosphere');
+      }
+
+      if (atmosphereVideo) {
+        atmosphereVideo.addEventListener('playing', function () {
+          document.body.classList.add('mode-atmosphere');
+        });
+        atmosphereVideo.addEventListener('error', function () {
+          atmosphereVideoEnabled = false;
+          atmosphereVideo.muted = true;
+          pauseAtmosphereVideo();
+          syncGratitudeAudioToggle();
+        });
+      }
+
+      if (typeof prefersReducedMotion.addEventListener === 'function') {
+        prefersReducedMotion.addEventListener('change', function (event) {
+          atmosphereVideoEnabled = !!atmosphereVideo && !event.matches;
+          if (atmosphereVideoEnabled) startAtmosphereVideo();
+          else pauseAtmosphereVideo();
+        });
+      }
+
       function initStars() {
         if (!starsCanvas || !starsCtx || prefersReducedMotion.matches) return;
         var width = starsCanvas.width = window.innerWidth;
@@ -486,8 +541,13 @@
           if (window.parent && window.parent.IntersectionObserver && window.frameElement) {
             var frameObserver = new window.parent.IntersectionObserver(function (entries) {
               isVisible = entries.some(function (entry) { return entry.isIntersecting; });
-              if (isVisible) startStars();
-              else stopStars();
+              if (isVisible) {
+                startStars();
+                startAtmosphereVideo();
+              } else {
+                stopStars();
+                pauseAtmosphereVideo();
+              }
             }, { threshold: 0.05 });
             frameObserver.observe(window.frameElement);
           }
@@ -499,9 +559,13 @@
       document.addEventListener('visibilitychange', function () {
         if (document.visibilityState === 'hidden') {
           stopStars();
+          pauseAtmosphereVideo();
           if (isAudioActive) stopAmbientDrone();
         } else {
-          if (isVisible) startStars();
+          if (isVisible) {
+            startStars();
+            startAtmosphereVideo();
+          }
           if (isAudioActive) startAmbientDrone();
         }
       });
@@ -522,6 +586,31 @@
 
       var audioBtn = document.getElementById('audioToggleBtn');
       if (audioBtn) audioBtn.addEventListener('click', toggleAudio);
+
+      var gratitudeAudioToggle = document.getElementById('gratitude-audio-toggle');
+      var gratitudeAudioIcon = document.getElementById('gratitude-audio-icon');
+      var gratitudeAudioLabel = document.getElementById('gratitude-audio-label');
+
+      function syncGratitudeAudioToggle() {
+        if (!atmosphereVideo || !gratitudeAudioToggle) return;
+        var audioEnabled = !atmosphereVideo.muted;
+        if (gratitudeAudioIcon) gratitudeAudioIcon.textContent = audioEnabled ? '♫' : '▶';
+        if (gratitudeAudioLabel) gratitudeAudioLabel.textContent = audioEnabled ? 'Mute audio' : 'Listen to this moment';
+        gratitudeAudioToggle.setAttribute('aria-label', audioEnabled ? 'Mute gratitude audio' : 'Enable gratitude audio');
+        gratitudeAudioToggle.setAttribute('aria-pressed', audioEnabled ? 'true' : 'false');
+      }
+
+      if (atmosphereVideo && gratitudeAudioToggle) {
+        gratitudeAudioToggle.addEventListener('click', function () {
+          atmosphereVideo.muted = !atmosphereVideo.muted;
+          if (!atmosphereVideo.muted) {
+            atmosphereVideoEnabled = true;
+            startAtmosphereVideo();
+          }
+          syncGratitudeAudioToggle();
+        });
+        atmosphereVideo.addEventListener('volumechange', syncGratitudeAudioToggle);
+      }
 
       var fullscreenBtn = document.getElementById('fullscreenToggleBtn');
       if (fullscreenBtn) fullscreenBtn.addEventListener('click', toggleFullscreen);
@@ -544,6 +633,7 @@
       // ── 9. Start ─────────────────────────────────────────────
       initStars();
       startStars();
+      startAtmosphereVideo();
 
     })();
   </script>

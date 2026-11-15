@@ -110,11 +110,15 @@ body {
 body.is-embedded {
   background: transparent !important;
   overflow: hidden !important;
-  min-height: 100% !important;
+  min-height: 0 !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
   align-items: center !important;
+}
+
+html.is-embedded {
+  min-height: 0 !important;
 }
 
 body.is-embedded .sanctuary-header {
@@ -154,12 +158,41 @@ body.is-embedded .sanctuary-header {
   transition: opacity 1.2s ease-in-out;
 }
 
+#atmosphere-video-layer::before {
+  position: absolute;
+  z-index: 1;
+  inset: -8%;
+  background:
+    radial-gradient(ellipse 34% 22% at 12% 18%, rgba(255, 224, 161, 0.36), transparent 76%),
+    radial-gradient(ellipse 36% 22% at 90% 24%, rgba(89, 223, 207, 0.34), transparent 76%),
+    radial-gradient(ellipse 42% 26% at 52% 105%, rgba(32, 162, 145, 0.24), transparent 75%);
+  content: "";
+  filter: blur(30px);
+  opacity: 0.76;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  animation: atmosphere-external-light 18s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
 body.mode-atmosphere #atmosphere-video-layer {
   opacity: 1;
 }
 
+@keyframes atmosphere-external-light {
+  0% {
+    opacity: 0.5;
+    transform: translate3d(-0.5%, 0, 0) scale(1);
+  }
+  100% {
+    opacity: 0.82;
+    transform: translate3d(0.5%, -0.4%, 0) scale(1.04);
+  }
+}
+
 #atmosphere-video {
   position: absolute;
+  z-index: 0;
   top: 50%;
   left: 50%;
   min-width: 100%;
@@ -168,13 +201,16 @@ body.mode-atmosphere #atmosphere-video-layer {
   height: auto;
   transform: translate(-50%, -50%);
   object-fit: cover;
-  filter: brightness(0.65) saturate(1.15) contrast(1.05);
+  filter: brightness(0.95) saturate(1.18) contrast(1.04);
 }
 
 #atmosphere-scrim {
   position: absolute;
+  z-index: 2;
   inset: 0;
-  background: radial-gradient(ellipse 75% 65% at 50% 50%, rgba(3, 8, 7, 0.45) 0%, rgba(3, 8, 7, 0.85) 100%);
+  background:
+    linear-gradient(180deg, rgba(3, 8, 7, 0.1) 0%, rgba(3, 8, 7, 0.24) 100%),
+    radial-gradient(ellipse 78% 72% at 50% 48%, rgba(3, 8, 7, 0.14) 0%, rgba(3, 8, 7, 0.46) 100%);
 }
 
 /* Top Standalone Header */
@@ -344,7 +380,7 @@ main {
 }
 
 body.is-embedded main {
-  min-height: 100%;
+  min-height: 0;
   width: 100%;
   max-width: 100%;
   display: flex;
@@ -352,13 +388,12 @@ body.is-embedded main {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  padding: 1.5rem 1.25rem 1.25rem;
+  padding: 0.5rem 1rem;
 }
 
 @media (max-width: 640px) {
   body.is-embedded main {
-    padding-top: 2.85rem !important;
-    padding-bottom: 1.25rem !important;
+    padding: 2.5rem 0.75rem 0.6rem !important;
   }
 }
 
@@ -439,9 +474,9 @@ main::after {
 }
 
 body.is-embedded .gratitude-arabic {
-  font-size: clamp(1.35rem, 3.2vw, 2.1rem);
-  margin-bottom: 0.35rem;
-  line-height: 1.4;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  margin-bottom: 0.1rem;
+  line-height: 1.2;
 }
 
 /* Devotional Kicker */
@@ -473,9 +508,10 @@ body.is-embedded .gratitude-arabic {
 }
 
 body.is-embedded .gratitude-kicker {
-  font-size: 0.68rem;
-  letter-spacing: 0.22em;
-  margin-bottom: 0.35rem;
+  gap: 0.5rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  margin-bottom: 0.1rem;
 }
 
 /* Video-Masked and Gradient Text Elements */
@@ -534,9 +570,9 @@ h1#gratitude-title {
 }
 
 body.is-embedded h1#gratitude-title {
-  font-size: clamp(1.9rem, 4.4vw, 3rem);
-  line-height: 1.15;
-  margin-bottom: 0.35rem;
+  font-size: clamp(1.7rem, 3vw, 2.35rem);
+  line-height: 1.08;
+  margin-bottom: 0.1rem;
 }
 
 /* Sacred Divider */
@@ -575,7 +611,8 @@ body.is-embedded h1#gratitude-title {
 }
 
 body.is-embedded .gratitude-divider {
-  margin: 0.35rem 0;
+  width: min(9rem, 35vw);
+  margin: 0.1rem 0;
 }
 
 /* Sacred Words of Praise */
@@ -597,8 +634,9 @@ body.is-embedded .gratitude-divider {
 }
 
 body.is-embedded .gratitude-word {
-  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
-  margin-bottom: 0.35rem;
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  line-height: 1.15;
+  margin-bottom: 0.1rem;
 }
 
 /* Poetic Note */
@@ -612,9 +650,65 @@ body.is-embedded .gratitude-word {
 }
 
 body.is-embedded .gratitude-note {
-  font-size: clamp(0.8rem, 1.6vw, 0.9rem);
-  line-height: 1.5;
-  margin-top: 0.25rem;
+  width: min(100%, 36rem);
+  font-size: 0.76rem;
+  line-height: 1.3;
+  margin-top: 0.1rem;
+}
+
+/* Optional Gratitude Audio Player */
+.gratitude-audio {
+  display: flex;
+  align-items: center;
+  margin-top: 0.9rem;
+}
+
+.gratitude-audio-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 42px;
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--btn-border);
+  border-radius: 999px;
+  background: var(--btn-bg);
+  color: var(--ink);
+  font-family: Inter, sans-serif;
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.gratitude-audio-toggle:hover {
+  border-color: var(--gold);
+  background: var(--btn-hover);
+  transform: translateY(-1px);
+}
+
+.gratitude-audio-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.gratitude-audio-icon {
+  color: var(--gold);
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+body.is-embedded .gratitude-audio {
+  margin-top: 0.3rem;
+}
+
+body.is-embedded .gratitude-audio-toggle {
+  min-height: 36px;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.7rem;
 }
 
 /* Interactive "Say Alhamdulillah" Action */
@@ -627,7 +721,8 @@ body.is-embedded .gratitude-note {
 }
 
 body.is-embedded .gratitude-action-area {
-  margin-top: 0.85rem;
+  gap: 0.35rem;
+  margin-top: 0.4rem;
 }
 
 .dhikr-tap-btn {
@@ -678,8 +773,8 @@ body.is-embedded .gratitude-action-area {
 }
 
 body.is-embedded .dhikr-tap-btn {
-  padding: 0.5rem 1.1rem;
-  font-size: 0.82rem;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8rem;
 }
 
 /* Floating Sparkle / Heart Particles */
