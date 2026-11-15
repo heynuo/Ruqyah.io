@@ -639,6 +639,18 @@ body.is-embedded .gratitude-word {
   margin-bottom: 0.1rem;
 }
 
+@media (max-width: 360px) {
+  body.is-embedded .gratitude-word {
+    font-size: clamp(0.68rem, 3.75vw, 0.75rem);
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  body.is-embedded .gratitude-word .sep {
+    margin-inline: 0.22rem;
+  }
+}
+
 /* Poetic Note */
 .gratitude-note {
   width: min(100%, 42rem);
