@@ -38,6 +38,13 @@
       "icons": [{ "src": "assets/icons/open-book.png", "sizes": "96x96", "type": "image/png" }]
     },
     {
+      "name": "The End (Al-Akhirah)",
+      "short_name": "The End",
+      "description": "Reflections on the Ultimate Return, Husn al-Khatimah & Surah Al-Fajr",
+      "url": "./end.html",
+      "icons": [{ "src": "assets/icons/rocket.png", "sizes": "96x96", "type": "image/png" }]
+    },
+    {
       "name": "About Ruqyah",
       "short_name": "About",
       "description": "Scholarly mission, author background & technical colophon",

@@ -5,8 +5,17 @@
     <link>https://heynuo.github.io/</link>
     <description>Fast, tracker-free personal knowledge base featuring Java OOP, web development guides, authentic Islamic research, and complete Quran sanctuary.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 28 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 15 Nov 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://heynuo.github.io/rss.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>The End (Al-Akhirah) — Contemplation on the Soul's Ultimate Destination</title>
+      <link>https://heynuo.github.io/end.html</link>
+      <guid isPermaLink="true">https://heynuo.github.io/end.html</guid>
+      <pubDate>Sun, 15 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Reflections on Husn al-Khatimah, the serene soul in Surah Al-Fajr, prophetic supplications, and cinematic visual contemplation.</description>
+      <category>Islamic Research</category>
+    </item>
 
     <item>
       <title>Master Compilation of 108 Quranic Verses (13-Page PDF Publication)</title>

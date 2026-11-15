@@ -2287,6 +2287,28 @@ const CommandPalette = {
         link: 'thank-you.html'
       },
       {
+        id: 'pg-the-end',
+        section: 'Pages & Media',
+        type: 'page',
+        title: 'The End (Al-Akhirah)',
+        subtitle: 'Contemplation on the ultimate return, Husn al-Khatimah & Surah Al-Fajr',
+        icon: '♾',
+        tag: 'Reflection',
+        tags: ['end', 'the end', 'akhirah', 'al-akhirah', 'death', 'return', 'fajr', 'khatimah', 'video'],
+        link: 'end.html'
+      },
+      {
+        id: 'pg-heart-motion',
+        section: 'Pages & Media',
+        type: 'page',
+        title: 'A Heart in Motion',
+        subtitle: 'Standalone animated movie heart reflection',
+        icon: '🎬',
+        tag: 'Animation',
+        tags: ['heart', 'movie heart', 'love', 'animation', 'emoji', 'sparkle'],
+        link: 'animated-heart-emoji.html'
+      },
+      {
         id: 'pg-privacy',
         section: 'Pages & Tools',
         type: 'page',
