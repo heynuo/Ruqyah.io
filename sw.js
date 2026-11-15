@@ -21,6 +21,7 @@ const PRECACHE_URLS = [
   'videos.html',
   'about.html',
   'contact.html',
+  'end.html',
   'privacy.html',
   '404.html',
   'manifest.json',

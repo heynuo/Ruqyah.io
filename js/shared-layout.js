@@ -19,6 +19,7 @@
     'quran-verses.html': 'master-verses',
     'videos.html': 'videos',
     'contact.html': 'contact',
+    'end.html': 'end',
     'privacy.html': 'privacy',
     '404.html': '404'
   };
@@ -47,7 +48,8 @@
     { path: 'master-verses', label: '108 Verses', href: 'quran-verses.html' },
     { path: 'videos', label: 'Videos', href: 'videos.html' },
     { path: 'about', label: 'About', href: 'about.html' },
-    { path: 'contact', label: 'Contact', href: 'contact.html' }
+    { path: 'contact', label: 'Contact', href: 'contact.html' },
+    { path: 'end', label: 'End', href: 'end.html' }
   ];
 
   // ── Header HTML ─────────────────────────────────────────────────────────
@@ -116,7 +118,7 @@
     return `<footer id="heynuo-footer">
   <div class="footer-main"><div class="footer-content">
     <nav class="footer-columns" aria-label="Footer navigation">
-      <section class="footer-column"><h2>EXPLORE</h2><a href="index.html#articles-section">Latest Articles</a><a href="index.html#systems-section">Systems Engineering</a><a href="index.html#quran-section">Qur'an Studies</a><a href="quran.html">Qur'an Reader</a><a href="quran-verses.html">Verse Archive</a><a href="videos.html">Videos</a></section>
+      <section class="footer-column"><h2>EXPLORE</h2><a href="index.html#articles-section">Latest Articles</a><a href="index.html#systems-section">Systems Engineering</a><a href="index.html#quran-section">Qur'an Studies</a><a href="quran.html">Qur'an Reader</a><a href="quran-verses.html">Verse Archive</a><a href="videos.html">Videos</a><a href="end.html">The End</a></section>
       <section class="footer-column"><h2>RESOURCES</h2><a href="about.html">About the Archive</a><a href="rss.xml">RSS Feed</a><a href="manifest.json">Install the App</a><a href="privacy.html">Privacy</a><a href="sitemap.xml">Sitemap</a></section>
       <section class="footer-column"><h2>SUPPORT</h2><a href="contact.html">Contact</a><a href="contact.html#faq-section">Frequently Asked Questions</a><a href="contact.html#contactForm">Report an Issue</a><a href="about.html#accessibility">Accessibility</a></section>
       <section class="footer-column footer-contact"><h2>CONTACT</h2><a href="mailto:zahiruddin44044@gmail.com">zahiruddin44044@gmail.com</a><p>Ruqyah Scholastic Archive</p><p>Independent study &amp; engineering</p></section>
