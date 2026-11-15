@@ -29,37 +29,37 @@
   </script>
 
   <meta name="robots" content="index, follow">
-  <title>The End (Al-Akhirah) — Ruqyah | The Ultimate Return &amp; Conclusion</title>
-  <meta name="description" content="Contemplations on the Ultimate Destination (Al-Akhirah), the beautiful end (Husn al-Khatimah), and final prayers of gratitude in the Noble Qur'an.">
-  <meta name="keywords" content="Al-Akhirah, The End, Final Destination, Surah An-Najm, Surah Al-Fajr, Husn al-Khatimah, Ruqyah, Islamic reflections, Dar us-Salam">
+  <title>End — Animated Heart Emoji | Ruqyah</title>
+  <meta name="description" content="Animated movie heart emoji with film-strip ribbon, glowing aura, sparkling stars, and interactive playback controls.">
+  <meta name="keywords" content="Heart Emoji, Animated Heart, Movie Heart, SVG Heart, CSS Animations, Ruqyah, Interactive Emoji">
   <meta name="author" content="Zahiruddin (Ruqyah)">
   <link rel="canonical" href="https://heynuo.github.io/end.html">
 
   <!-- OpenGraph Metadata -->
-  <meta property="og:title" content="The End (Al-Akhirah) — Ruqyah">
-  <meta property="og:description" content="Contemplations on the Ultimate Destination (Al-Akhirah), the journey's conclusion, and final prayers of gratitude in the Noble Qur'an.">
+  <meta property="og:title" content="End — Animated Heart Emoji">
+  <meta property="og:description" content="Animated movie heart emoji with film-strip ribbon, glowing aura, sparkling stars, and interactive playback controls.">
   <meta property="og:image" content="https://heynuo.github.io/assets/banners/og-banner.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:type" content="image/jpeg">
-  <meta property="og:image:alt" content="Ruqyah — Scholastic Archive &amp; Systems Laboratory">
+  <meta property="og:image:alt" content="Animated Heart Emoji — Ruqyah">
   <meta property="og:url" content="https://heynuo.github.io/end.html">
-  <meta property="og:type" content="article">
+  <meta property="og:type" content="website">
   <meta property="og:site_name" content="Ruqyah">
 
   <!-- Twitter Metadata -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="The End (Al-Akhirah) — Ruqyah">
-  <meta name="twitter:description" content="Contemplations on the Ultimate Destination (Al-Akhirah), the journey's conclusion, and final prayers of gratitude.">
+  <meta name="twitter:title" content="End — Animated Heart Emoji">
+  <meta name="twitter:description" content="Animated movie heart emoji with film-strip ribbon, glowing aura, sparkling stars, and interactive playback controls.">
   <meta name="twitter:image" content="https://heynuo.github.io/assets/banners/og-banner.jpg">
-  <meta name="twitter:image:alt" content="Ruqyah — Scholastic Archive &amp; Systems Laboratory">
+  <meta name="twitter:image:alt" content="Animated Heart Emoji — Ruqyah">
 
   <!-- Icons & Feeds -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20rx='20'%20fill='%230F766E'/%3E%3Cpath%20d='M25%2025h50v50H25z'%20fill='none'%20stroke='%239cf2e8'%20stroke-width='4'/%3E%3Ccircle%20cx='50'%20cy='50'%20r='14'%20fill='%23ffffff'/%3E%3C/svg%3E">
   <link rel="manifest" href="manifest.json">
   <link rel="alternate" type="application/rss+xml" title="Ruqyah RSS Feed" href="rss.xml">
 
-  <!-- Fonts & Material Symbols -->
+  <!-- Typography Preconnect & Font Inclusions -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -68,239 +68,321 @@
   <!-- Shared Design System Tokens (Light / Dark / Sepia) -->
   <link rel="stylesheet" href="css/shared-layout.css?v=2026-11-15-search-1">
   <link rel="stylesheet" href="css/tailwind.generated.css?v=2026-11-15-search-1">
-  <link rel="stylesheet" href="css/quran-light.css?v=2026-11-15-1">
+
+  <style>
+    /* Animated Emoji Showcase & Stage */
+    .heart-stage-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.5rem;
+      background: radial-gradient(circle at center, rgba(255, 115, 138, 0.1) 0%, rgba(0, 92, 85, 0.04) 55%, transparent 75%);
+      transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .dark .heart-stage-card {
+      background: radial-gradient(circle at 50% 45%, rgba(248, 50, 95, 0.16) 0%, rgba(15, 95, 88, 0.08) 55%, transparent 80%);
+    }
+
+    .sepia .heart-stage-card {
+      background: radial-gradient(circle at 50% 45%, rgba(217, 119, 6, 0.12) 0%, rgba(180, 83, 9, 0.05) 55%, transparent 80%);
+    }
+
+    .stage {
+      width: min(100%, 460px);
+      height: 360px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      margin: 0 auto;
+    }
+
+    .glow {
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: #ffe8a8;
+      filter: blur(60px);
+      opacity: .5;
+      pointer-events: none;
+      transition: background 0.3s ease, opacity 0.3s ease;
+    }
+
+    .dark .glow {
+      background: #f87171;
+      opacity: .28;
+      filter: blur(75px);
+    }
+
+    .sepia .glow {
+      background: #fde68a;
+      opacity: .4;
+      filter: blur(65px);
+    }
+
+    .emoji {
+      width: min(60vw, 220px);
+      overflow: visible;
+      position: relative;
+      z-index: 1;
+      animation: heart-bob 2.8s ease-in-out infinite;
+      filter: drop-shadow(0 20px 18px rgba(165, 111, 41, .18));
+      transform-origin: center center;
+    }
+
+    .dark .emoji {
+      filter: drop-shadow(0 20px 22px rgba(0, 0, 0, .6)) drop-shadow(0 0 25px rgba(248, 50, 95, 0.32));
+    }
+
+    .sparkle {
+      position: absolute;
+      color: #e4a649;
+      font-size: 26px;
+      line-height: 1;
+      animation: heart-twinkle 2.2s ease-in-out infinite;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .sparkle.one { top: 48px; left: 48px; }
+    .sparkle.two { top: 78px; right: 46px; font-size: 19px; animation-delay: .7s; color: #f472b6; }
+    .sparkle.three { bottom: 74px; left: 75px; font-size: 18px; animation-delay: 1.3s; color: #38bdf8; }
+
+    .shadow {
+      position: absolute;
+      bottom: 36px;
+      width: 140px;
+      height: 20px;
+      border-radius: 50%;
+      background: #9c78ac;
+      opacity: .16;
+      filter: blur(10px);
+      animation: heart-shadow 2.8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .dark .shadow {
+      background: #000;
+      opacity: .45;
+    }
+
+    .paused .emoji,
+    .paused .sparkle,
+    .paused .shadow {
+      animation-play-state: paused !important;
+    }
+
+    @keyframes heart-bob {
+      0%, 100% { transform: translateY(0) rotate(-3deg); }
+      50% { transform: translateY(-18px) rotate(3deg); }
+    }
+
+    @keyframes heart-twinkle {
+      0%, 100% { transform: scale(.7) rotate(-15deg); opacity: .45; }
+      50% { transform: scale(1.25) rotate(15deg); opacity: 1; }
+    }
+
+    @keyframes heart-shadow {
+      0%, 100% { transform: scale(1); opacity: .16; }
+      50% { transform: scale(.78); opacity: .08; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .emoji, .sparkle, .shadow {
+        animation: none !important;
+      }
+    }
+  </style>
 </head>
 
 <body class="bg-bg-canvas font-body-article text-on-surface antialiased min-h-screen flex flex-col pb-32 transition-colors duration-200">
   <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-on-primary focus:rounded-md focus:shadow-lg focus:outline-none">Skip to main content</a>
 
   <main class="w-full pt-14 bg-background flex-1 pb-24" id="main-content">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-6 pb-12 flex flex-col gap-10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 md:px-8 pt-6 pb-12 flex flex-col gap-10">
 
       <!-- Breadcrumbs -->
       <nav aria-label="Breadcrumbs" class="flex items-center gap-2 font-caption-meta text-xs text-on-surface-variant">
         <a href="index.html" class="hover:text-primary transition-colors">Home</a>
         <span class="text-border-strong/50">/</span>
-        <span class="text-on-surface font-semibold" aria-current="page">The End (Al-Akhirah)</span>
+        <span class="text-on-surface font-semibold" aria-current="page">End • Movie Heart</span>
       </nav>
 
-      <!-- Hero Section: The Ultimate Return -->
-      <section class="relative overflow-hidden rounded-2xl bg-surface-container-lowest border border-border-subtle shadow-md p-6 sm:p-10 lg:p-12">
-        <!-- Ambient Calligraphy Background Watermark -->
-        <div class="absolute -right-8 -top-10 opacity-[0.035] pointer-events-none select-none text-primary font-arabic-sacred text-[220px] leading-none" aria-hidden="true">
-          الآخرة
+      <!-- Main Animated Emoji Stage Card -->
+      <section class="heart-stage-card border border-border-subtle bg-surface shadow-md p-6 sm:p-10 flex flex-col items-center text-center" id="emoji-app">
+        <!-- Eyebrow -->
+        <p class="font-code-mono text-xs font-bold uppercase tracking-widest text-primary mb-2">
+          Lights, camera, love
+        </p>
+
+        <!-- Main Title -->
+        <h1 id="page-title" class="font-title-page text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-on-surface">
+          Movie Heart
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="font-body-lead text-sm sm:text-base text-on-surface-variant mt-2 max-w-md">
+          A little love story, on repeat. Hand-crafted scalable vector art with smooth CSS physics.
+        </p>
+
+        <!-- The Animated Emoji Stage -->
+        <div id="emoji-stage" class="stage" role="img" aria-label="Animated red movie heart with a film-strip ribbon and sparkling stars">
+          <div class="glow" aria-hidden="true"></div>
+          <span class="sparkle one" aria-hidden="true">✦</span>
+          <span class="sparkle two" aria-hidden="true">✧</span>
+          <span class="sparkle three" aria-hidden="true">✦</span>
+
+          <!-- Animated Heart SVG -->
+          <svg class="emoji" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" id="heartSvg">
+            <defs>
+              <linearGradient id="heart-gradient" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FF738A" id="gradStop1" />
+                <stop offset="55%" stop-color="#F8325F" id="gradStop2" />
+                <stop offset="100%" stop-color="#BD174C" id="gradStop3" />
+              </linearGradient>
+              <clipPath id="heart-clip">
+                <path d="M120 216C96 196 21 143 21 84c0-32 23-54 52-54 21 0 37 11 47 28 10-17 26-28 47-28 29 0 52 22 52 54 0 59-75 112-99 132Z" />
+              </clipPath>
+            </defs>
+
+            <!-- Heart Outer Body with Gradient Fill -->
+            <path d="M120 216C96 196 21 143 21 84c0-32 23-54 52-54 21 0 37 11 47 28 10-17 26-28 47-28 29 0 52 22 52 54 0 59-75 112-99 132Z" fill="url(#heart-gradient)" stroke="#AD1448" stroke-width="3" id="heartOutline" />
+
+            <!-- Heart Gloss Highlight -->
+            <path d="M42 77c5-20 18-29 34-29" fill="none" stroke="white" stroke-opacity=".55" stroke-width="8" stroke-linecap="round" />
+
+            <!-- Film Strip Ribbon Band -->
+            <g clip-path="url(#heart-clip)" transform="rotate(-12 120 120)">
+              <rect x="9" y="110" width="224" height="45" rx="3" fill="#2E2441" />
+              <rect x="9" y="117" width="224" height="31" fill="#FFF5E8" />
+              <path d="M52 117v31m45-31v31m45-31v31m45-31v31" stroke="#2E2441" stroke-width="5" />
+              <path d="M20 122h12m33 0h12m33 0h12m33 0h12m33 0h12M20 143h12m33 0h12m33 0h12m33 0h12m33 0h12" stroke="#2E2441" stroke-width="4" />
+            </g>
+
+            <!-- Golden Star Accent -->
+            <path d="m120 78 5 12 13 1-10 8 3 13-11-7-11 7 3-13-10-8 13-1Z" fill="#FFF4C6" />
+          </svg>
+
+          <!-- Ambient Bottom Shadow -->
+          <div class="shadow" aria-hidden="true"></div>
         </div>
 
-        <div class="relative z-10 flex flex-col gap-6 max-w-4xl">
+        <!-- Controls Row -->
+        <div class="flex items-center justify-center gap-3 flex-wrap mt-4">
+          <!-- Play / Pause Animation Toggle -->
+          <button id="animation-toggle" class="flex items-center gap-2 px-5 py-2.5 rounded-full border border-border-strong/40 bg-surface text-on-surface hover:bg-surface-container font-ui-interactive text-sm font-semibold shadow-xs hover:shadow-md transition-all cursor-pointer" type="button" aria-pressed="false">
+            <svg id="toggleIcon" class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+              <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+            </svg>
+            <span id="toggle-label">Pause animation</span>
+          </button>
+
+          <!-- Copy SVG Code Button -->
+          <button id="copySvgBtn" class="flex items-center gap-2 px-4 py-2.5 rounded-full border border-border-subtle bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-ui-interactive text-xs font-medium transition-all cursor-pointer" type="button" aria-label="Copy standalone heart SVG code">
+            <span class="material-symbols-outlined text-[16px]">content_copy</span>
+            <span id="copySvgLabel">Copy SVG</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Color Palette Theme Moods -->
+      <section class="rounded-xl border border-border-subtle bg-surface p-6 shadow-xs flex flex-col gap-4">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div>
+            <h2 class="font-subheading-card text-base font-bold text-on-surface">Color Moods</h2>
+            <p class="font-caption-meta text-xs text-on-surface-variant">Switch the heart gradient palette dynamically.</p>
+          </div>
+          <span class="font-code-mono text-[11px] text-on-surface-variant/80">Interactive SVG Defs</span>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <button type="button" class="mood-btn p-3 rounded-lg border border-primary bg-surface-container-low flex items-center gap-2.5 text-left transition-all cursor-pointer" data-c1="#FF738A" data-c2="#F8325F" data-c3="#BD174C" data-stroke="#AD1448">
+            <span class="w-5 h-5 rounded-full bg-gradient-to-br from-[#FF738A] via-[#F8325F] to-[#BD174C] shrink-0 border border-black/10"></span>
+            <div>
+              <span class="font-ui-interactive text-xs font-semibold text-on-surface block">Movie Red</span>
+              <span class="font-caption-meta text-[10px] text-on-surface-variant">Original</span>
+            </div>
+          </button>
+
+          <button type="button" class="mood-btn p-3 rounded-lg border border-border-subtle hover:border-primary/50 bg-surface flex items-center gap-2.5 text-left transition-all cursor-pointer" data-c1="#2DD4BF" data-c2="#0F766E" data-c3="#042F2E" data-stroke="#0F766E">
+            <span class="w-5 h-5 rounded-full bg-gradient-to-br from-[#2DD4BF] via-[#0F766E] to-[#042F2E] shrink-0 border border-black/10"></span>
+            <div>
+              <span class="font-ui-interactive text-xs font-semibold text-on-surface block">Ruqyah Teal</span>
+              <span class="font-caption-meta text-[10px] text-on-surface-variant">Sanctuary</span>
+            </div>
+          </button>
+
+          <button type="button" class="mood-btn p-3 rounded-lg border border-border-subtle hover:border-primary/50 bg-surface flex items-center gap-2.5 text-left transition-all cursor-pointer" data-c1="#FCD34D" data-c2="#F59E0B" data-c3="#B45309" data-stroke="#92400E">
+            <span class="w-5 h-5 rounded-full bg-gradient-to-br from-[#FCD34D] via-[#F59E0B] to-[#B45309] shrink-0 border border-black/10"></span>
+            <div>
+              <span class="font-ui-interactive text-xs font-semibold text-on-surface block">Golden Hour</span>
+              <span class="font-caption-meta text-[10px] text-on-surface-variant">Amber</span>
+            </div>
+          </button>
+
+          <button type="button" class="mood-btn p-3 rounded-lg border border-border-subtle hover:border-primary/50 bg-surface flex items-center gap-2.5 text-left transition-all cursor-pointer" data-c1="#C084FC" data-c2="#9333EA" data-c3="#581C87" data-stroke="#6B21A8">
+            <span class="w-5 h-5 rounded-full bg-gradient-to-br from-[#C084FC] via-[#9333EA] to-[#581C87] shrink-0 border border-black/10"></span>
+            <div>
+              <span class="font-ui-interactive text-xs font-semibold text-on-surface block">Cosmic Violet</span>
+              <span class="font-caption-meta text-[10px] text-on-surface-variant">Celestial</span>
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <!-- Standalone SVG Implementation Code Snippet -->
+      <section class="rounded-xl border border-border-subtle bg-surface p-6 shadow-xs flex flex-col gap-3">
+        <div class="flex items-center justify-between flex-wrap gap-2">
           <div class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-primary quran-light-icon" aria-hidden="true">all_inclusive</span>
-            <span class="font-code-mono text-caption-meta px-2.5 py-1 rounded-lg bg-primary-container text-on-primary-container font-semibold">
-              AL-AKHIRAH • THE ULTIMATE RETURN
-            </span>
+            <span class="material-symbols-outlined text-primary text-[20px]">code</span>
+            <h2 class="font-subheading-card text-base font-bold text-on-surface">Embed Code (HTML / SVG)</h2>
           </div>
+          <span class="font-code-mono text-[11px] text-on-surface-variant">Zero external runtime dependencies</span>
+        </div>
 
-          <div class="quran-light-title-wrap">
-            <h1 class="font-title-page text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-on-surface quran-light-title">
-              The <span class="quran-light-glow-word">End</span> is but the Beginning
-            </h1>
-            <div class="quran-light-beam" aria-hidden="true"></div>
-          </div>
+        <p class="font-caption-meta text-xs text-on-surface-variant leading-relaxed">
+          Embed this vector artwork directly inside any HTML document or web application. Fully self-contained with embedded gradient stops and clipping paths.
+        </p>
 
-          <p class="font-body-lead text-base sm:text-lg text-on-surface-variant leading-relaxed">
-            Every seeker journeys through a season of striving, every breath measures an appointed decree, and every soul returns unto the One Who initiated it. In Qur'anic wisdom, the “End” is not oblivion—it is the unveiling of truth, the arrival at eternal tranquility, and the ultimate homecoming to Allah.
-          </p>
-
-          <!-- Calligraphic Ayah Card -->
-          <div class="flex flex-col gap-4 rounded-xl bg-surface-container-low p-6 sm:p-8 border border-border-subtle">
-            <div class="flex items-center justify-between text-xs font-code-mono text-primary font-semibold">
-              <span class="flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-[16px]">menu_book</span>
-                <span>SURAH AN-NAJM (53:42)</span>
-              </span>
-              <span class="text-on-surface-variant">JUZ 27</span>
-            </div>
-
-            <p class="font-arabic-sacred text-2xl sm:text-3xl text-right leading-loose text-on-surface py-2" dir="rtl" lang="ar">
-              وَأَنَّ إِلَىٰ رَبِّكَ الْمُنتَهَىٰ
-            </p>
-
-            <p class="font-body-article text-base sm:text-lg text-on-surface-variant italic">
-              “And that to your Lord is the final end and ultimate destination.”
-            </p>
-
-            <div class="pt-3 border-t border-border-subtle/60 flex items-center justify-between gap-4 flex-wrap text-xs text-on-surface-variant">
-              <span>Recitation: Al-Hafiz Mishary Alafasy</span>
-              <span class="font-arabic-sacred text-base text-primary" dir="rtl" lang="ar">إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ</span>
-            </div>
-          </div>
+        <div class="relative rounded-lg bg-surface-container-lowest border border-border-subtle p-4 overflow-x-auto">
+          <pre class="font-code-mono text-xs text-on-surface leading-relaxed"><code>&lt;svg viewBox="0 0 240 240" width="120" height="120" xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;defs&gt;
+    &lt;linearGradient id="heart-gradient" x1="0" y1="0" x2="1" y2="1"&gt;
+      &lt;stop offset="0%" stop-color="#FF738A"/&gt;
+      &lt;stop offset="55%" stop-color="#F8325F"/&gt;
+      &lt;stop offset="100%" stop-color="#BD174C"/&gt;
+    &lt;/linearGradient&gt;
+    &lt;clipPath id="heart-clip"&gt;
+      &lt;path d="M120 216C96 196 21 143 21 84c0-32 23-54 52-54 21 0 37 11 47 28 10-17 26-28 47-28 29 0 52 22 52 54 0 59-75 112-99 132Z"/&gt;
+    &lt;/clipPath&gt;
+  &lt;/defs&gt;
+  &lt;path d="M120 216C96 196 21 143 21 84c0-32 23-54 52-54 21 0 37 11 47 28 10-17 26-28 47-28 29 0 52 22 52 54 0 59-75 112-99 132Z" fill="url(#heart-gradient)" stroke="#AD1448" stroke-width="3"/&gt;
+  &lt;path d="M42 77c5-20 18-29 34-29" fill="none" stroke="white" stroke-opacity=".55" stroke-width="8" stroke-linecap="round"/&gt;
+  &lt;g clip-path="url(#heart-clip)" transform="rotate(-12 120 120)"&gt;
+    &lt;rect x="9" y="110" width="224" height="45" rx="3" fill="#2E2441"/&gt;
+    &lt;rect x="9" y="117" width="224" height="31" fill="#FFF5E8"/&gt;
+    &lt;path d="M52 117v31m45-31v31m45-31v31m45-31v31" stroke="#2E2441" stroke-width="5"/&gt;
+    &lt;path d="M20 122h12m33 0h12m33 0h12m33 0h12m33 0h12M20 143h12m33 0h12m33 0h12m33 0h12m33 0h12" stroke="#2E2441" stroke-width="4"/&gt;
+  &lt;/g&gt;
+  &lt;path d="m120 78 5 12 13 1-10 8 3 13-11-7-11 7 3-13-10-8 13-1Z" fill="#FFF4C6"/&gt;
+&lt;/svg&gt;</code></pre>
         </div>
       </section>
 
-      <!-- Three Pillars of Contemplation -->
-      <section class="grid grid-cols-1 md:grid-cols-3 gap-6" aria-label="Core Pillars of the End">
-        <!-- Card 1: Husn al-Khatimah -->
-        <div class="rounded-xl bg-surface border border-border-subtle p-6 flex flex-col justify-between gap-4 shadow-xs hover:border-primary/50 hover:shadow-md transition-all">
-          <div class="flex flex-col gap-3">
-            <div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center font-bold">
-              <span class="material-symbols-outlined text-[20px]">verified</span>
-            </div>
-            <h2 class="font-subheading-card text-lg font-bold text-on-surface">
-              Husn al-Khātimah
-            </h2>
-            <span class="font-arabic-sacred text-base text-primary -mt-2" dir="rtl" lang="ar">حُسْنُ الخَاتِمَةِ</span>
-            <p class="font-body-article text-sm text-on-surface-variant leading-relaxed">
-              The blessed conclusion. In Islamic tradition, actions are judged by their conclusions (*al-a'mālu bi-khawātīmihā*). Sincerity at the finish line sanctifies the entire journey of life.
-            </p>
-          </div>
-          <div class="pt-3 border-t border-border-subtle/50 text-xs font-code-mono text-primary font-medium">
-            Saheeh al-Bukhari 6493
-          </div>
+      <!-- Quick Archive Links -->
+      <section class="flex flex-col gap-3 pt-4 border-t border-border-subtle" aria-label="Explore other sections">
+        <div class="flex items-center justify-between">
+          <span class="font-subheading-card text-xs font-bold text-on-surface uppercase tracking-wider">Explore Ruqyah Archive</span>
+          <a href="index.html" class="font-code-mono text-xs text-primary hover:underline">← Back to Home</a>
         </div>
-
-        <!-- Card 2: Dār us-Salām -->
-        <div class="rounded-xl bg-surface border border-border-subtle p-6 flex flex-col justify-between gap-4 shadow-xs hover:border-primary/50 hover:shadow-md transition-all">
-          <div class="flex flex-col gap-3">
-            <div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center font-bold">
-              <span class="material-symbols-outlined text-[20px]">shield</span>
-            </div>
-            <h2 class="font-subheading-card text-lg font-bold text-on-surface">
-              Dār us-Salām
-            </h2>
-            <span class="font-arabic-sacred text-base text-primary -mt-2" dir="rtl" lang="ar">دَارُ السَّلَامِ</span>
-            <p class="font-body-article text-sm text-on-surface-variant leading-relaxed">
-              The Abode of Peace. The eternal sanctuary promised by the Most Merciful where weariness dissolves, anxiety ceases, and souls are welcomed with everlasting serenity.
-            </p>
-          </div>
-          <div class="pt-3 border-t border-border-subtle/50 text-xs font-code-mono text-primary font-medium">
-            Surah Yunus 10:25
-          </div>
-        </div>
-
-        <!-- Card 3: The Final Declaration -->
-        <div class="rounded-xl bg-surface border border-border-subtle p-6 flex flex-col justify-between gap-4 shadow-xs hover:border-primary/50 hover:shadow-md transition-all">
-          <div class="flex flex-col gap-3">
-            <div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center font-bold">
-              <span class="material-symbols-outlined text-[20px]">auto_awesome</span>
-            </div>
-            <h2 class="font-subheading-card text-lg font-bold text-on-surface">
-              The Final Supplication
-            </h2>
-            <span class="font-arabic-sacred text-base text-primary -mt-2" dir="rtl" lang="ar">الحَمْدُ لِلَّهِ رَبِّ العَالَمِينَ</span>
-            <p class="font-body-article text-sm text-on-surface-variant leading-relaxed">
-              “And the conclusion of their prayer will be: All praise is due to Allah, Lord of all the worlds.” Gratitude is both the beginning of wisdom and the final word of the faithful.
-            </p>
-          </div>
-          <div class="pt-3 border-t border-border-subtle/50 text-xs font-code-mono text-primary font-medium">
-            Surah Yunus 10:10
-          </div>
-        </div>
-      </section>
-
-      <!-- Sacred Spotlight: The Tranquil Soul (Surah Al-Fajr) -->
-      <section class="rounded-2xl border border-border-subtle bg-surface-container-lowest p-6 sm:p-10 shadow-md">
-        <div class="flex flex-col gap-6">
-          <div class="flex items-center justify-between flex-wrap gap-4 border-b border-border-subtle pb-4">
-            <div>
-              <span class="font-code-mono text-caption-meta text-primary font-semibold">SURAH AL-FAJR (89:27-30)</span>
-              <h2 class="font-heading-section text-2xl sm:text-3xl font-bold text-on-surface tracking-tight mt-1">
-                The Call to the Serene Soul
-              </h2>
-            </div>
-            <button id="copyFajrBtn" type="button" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-ui-interactive transition-colors cursor-pointer" aria-label="Copy Surah Al-Fajr verses">
-              <span class="material-symbols-outlined text-[16px]">content_copy</span>
-              <span id="copyFajrLabel">Copy Verses</span>
-            </button>
-          </div>
-
-          <div class="flex flex-col gap-4 bg-surface-container-low rounded-xl p-6 sm:p-8" id="fajrVerseContent">
-            <p class="font-arabic-sacred text-2xl sm:text-4xl text-right leading-loose text-on-surface" dir="rtl" lang="ar">
-              يَا أَيَّتُهَا النَّفْسُ الْمُطْمَئِنَّةُ ۝ ارْجِعِي إِلَىٰ رَبِّكِ رَاضِيَةً مَّرْضِيَّةً ۝ فَادْخُلِي فِي عِبَادِي ۝ وَادْخُلِي جَنَّتِي ۝
-            </p>
-            <div class="pt-4 border-t border-border-subtle/70 space-y-2">
-              <p class="font-body-article text-base sm:text-lg text-on-surface font-medium leading-relaxed">
-                “O tranquil soul! Return to your Lord, well-pleased and pleasing [to Him], and enter among My righteous servants, and enter My Paradise.”
-              </p>
-              <p class="font-caption-meta text-xs text-on-surface-variant font-mono">
-                Yā ayyatuhan-nafsul-muṭma'innah • Irji'ī ilā Rabbiki rāḍiyatan marḍiyyah • Fadkhulī fī 'ibādī • Wadkhulī jannatī.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Prophetic Supplication for a Blessed End -->
-      <section class="rounded-2xl border border-border-subtle bg-surface p-6 sm:p-10 shadow-xs">
-        <div class="flex flex-col gap-4 max-w-3xl">
-          <div class="flex items-center gap-2 text-primary">
-            <span class="material-symbols-outlined">favorite</span>
-            <span class="font-caption-meta text-xs uppercase font-bold tracking-wider">Prophetic Supplication</span>
-          </div>
-
-          <h2 class="font-heading-section text-xl sm:text-2xl font-bold text-on-surface">
-            Du'ā for a Noble Conclusion
-          </h2>
-
-          <div class="p-5 rounded-xl bg-surface-container-low border border-border-subtle flex flex-col gap-3">
-            <p class="font-arabic-sacred text-xl sm:text-2xl text-right leading-loose text-on-surface" dir="rtl" lang="ar" id="duaTextAr">
-              اللَّهُمَّ اجْعَلْ خَيْرَ عُمْرِي آخِرَهُ ، وَخَيْرَ عَمَلِي خَوَاتِيمَهُ ، وَخَيْرَ أَيَّامِي يَوْمَ أَلْقَاكَ فِيهِ
-            </p>
-            <p class="font-body-article text-sm sm:text-base text-on-surface-variant leading-relaxed" id="duaTextEn">
-              “O Allah, make the best of my life its end, the best of my deeds their conclusion, and the best of my days the Day I meet You.”
-            </p>
-          </div>
-
-          <div class="flex items-center gap-3 pt-2">
-            <button id="copyDuaBtn" type="button" class="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-on-primary hover:bg-primary-container text-xs font-ui-interactive font-medium transition-all shadow-xs cursor-pointer">
-              <span class="material-symbols-outlined text-[16px]">content_copy</span>
-              <span id="copyDuaLabel">Copy Supplication</span>
-            </button>
-            <a href="thank-you.html" class="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-ui-interactive transition-colors">
-              <span class="material-symbols-outlined text-[16px]">volunteer_activism</span>
-              <span>Sanctuary of Gratitude</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Gateway Cards to the Archive -->
-      <section class="flex flex-col gap-4" aria-label="Explore Archive Sections">
-        <h2 class="font-subheading-card text-base font-bold text-on-surface">Continue Exploring Ruqyah Archive</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <a href="quran.html" class="p-4 rounded-xl bg-surface border border-border-subtle hover:border-primary/50 hover:shadow-sm transition-all flex flex-col justify-between">
-            <div>
-              <span class="material-symbols-outlined text-primary text-[22px]">menu_book</span>
-              <h3 class="font-ui-interactive text-sm font-bold text-on-surface mt-2">114 Surahs Directory</h3>
-              <p class="font-caption-meta text-xs text-on-surface-variant mt-1">Explore all chapters with Uthmani text and recitations.</p>
-            </div>
-            <span class="font-code-mono text-[11px] text-primary mt-4 flex items-center gap-1">Open Reader →</span>
-          </a>
-
-          <a href="quran-verses.html" class="p-4 rounded-xl bg-surface border border-border-subtle hover:border-primary/50 hover:shadow-sm transition-all flex flex-col justify-between">
-            <div>
-              <span class="material-symbols-outlined text-primary text-[22px]">auto_stories</span>
-              <h3 class="font-ui-interactive text-sm font-bold text-on-surface mt-2">108 Master Verses</h3>
-              <p class="font-caption-meta text-xs text-on-surface-variant mt-1">Classically verified concordance across 62 tafsir sources.</p>
-            </div>
-            <span class="font-code-mono text-[11px] text-primary mt-4 flex items-center gap-1">View Archive →</span>
-          </a>
-
-          <a href="HadithQudsi.html" class="p-4 rounded-xl bg-surface border border-border-subtle hover:border-primary/50 hover:shadow-sm transition-all flex flex-col justify-between">
-            <div>
-              <span class="material-symbols-outlined text-primary text-[22px]">sound_detection_loud_sound</span>
-              <h3 class="font-ui-interactive text-sm font-bold text-on-surface mt-2">Hadith Qudsi Experience</h3>
-              <p class="font-caption-meta text-xs text-on-surface-variant mt-1">Kinetic typography and ambient celestial soundscape.</p>
-            </div>
-            <span class="font-code-mono text-[11px] text-primary mt-4 flex items-center gap-1">Experience →</span>
-          </a>
-
-          <a href="thank-you.html" class="p-4 rounded-xl bg-surface border border-border-subtle hover:border-primary/50 hover:shadow-sm transition-all flex flex-col justify-between">
-            <div>
-              <span class="material-symbols-outlined text-primary text-[22px]">favorite</span>
-              <h3 class="font-ui-interactive text-sm font-bold text-on-surface mt-2">Thank You, Allah</h3>
-              <p class="font-caption-meta text-xs text-on-surface-variant mt-1">Shukriya sanctuary: gratitude for every breath and heartbeat.</p>
-            </div>
-            <span class="font-code-mono text-[11px] text-primary mt-4 flex items-center gap-1">Enter Sanctuary →</span>
-          </a>
+        <div class="flex flex-wrap items-center gap-2">
+          <a href="quran.html" class="px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-xs text-on-surface transition-colors">Qur'an 114 Surahs</a>
+          <a href="quran-verses.html" class="px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-xs text-on-surface transition-colors">108 Master Verses</a>
+          <a href="videos.html" class="px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-xs text-on-surface transition-colors">Videos</a>
+          <a href="about.html" class="px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-xs text-on-surface transition-colors">About</a>
+          <a href="contact.html" class="px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-xs text-on-surface transition-colors">Contact</a>
+          <a href="thank-you.html" class="px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-xs text-on-surface transition-colors">Thank You, Allah</a>
         </div>
       </section>
 
@@ -356,35 +438,91 @@
     </div>
   </div>
 
-  <!-- Interactive Script for Copy Actions -->
+  <!-- Interactive Logic Script -->
   <script>
     (function () {
-      function setupCopy(buttonId, labelId, textToCopy) {
-        var btn = document.getElementById(buttonId);
-        var label = document.getElementById(labelId);
-        if (!btn || !label) return;
-        var originalText = label.textContent;
+      'use strict';
 
-        btn.addEventListener('click', function () {
-          navigator.clipboard.writeText(textToCopy).then(function () {
-            label.textContent = 'Copied!';
-            setTimeout(function () {
-              label.textContent = originalText;
-            }, 2000);
+      // 1. Play / Pause Animation Toggle
+      var toggleBtn = document.getElementById('animation-toggle');
+      var toggleLabel = document.getElementById('toggle-label');
+      var toggleIcon = document.getElementById('toggleIcon');
+      var app = document.getElementById('emoji-app');
+
+      if (toggleBtn && app) {
+        toggleBtn.addEventListener('click', function () {
+          var isPaused = app.classList.toggle('paused');
+          toggleBtn.setAttribute('aria-pressed', String(isPaused));
+          if (toggleLabel) {
+            toggleLabel.textContent = isPaused ? 'Play animation' : 'Pause animation';
+          }
+          if (toggleIcon) {
+            if (isPaused) {
+              toggleIcon.innerHTML = '<polygon points="5,3 19,12 5,21"></polygon>';
+            } else {
+              toggleIcon.innerHTML = '<rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect>';
+            }
+          }
+        });
+      }
+
+      // 2. Copy SVG Code Button
+      var copySvgBtn = document.getElementById('copySvgBtn');
+      var copySvgLabel = document.getElementById('copySvgLabel');
+      var heartSvg = document.getElementById('heartSvg');
+
+      if (copySvgBtn && heartSvg) {
+        copySvgBtn.addEventListener('click', function () {
+          var svgCode = heartSvg.outerHTML;
+          navigator.clipboard.writeText(svgCode).then(function () {
+            if (copySvgLabel) {
+              copySvgLabel.textContent = 'Copied!';
+              setTimeout(function () {
+                copySvgLabel.textContent = 'Copy SVG';
+              }, 2000);
+            }
           }).catch(function () {
-            label.textContent = 'Copied!';
-            setTimeout(function () {
-              label.textContent = originalText;
-            }, 2000);
+            if (copySvgLabel) {
+              copySvgLabel.textContent = 'Copied!';
+              setTimeout(function () {
+                copySvgLabel.textContent = 'Copy SVG';
+              }, 2000);
+            }
           });
         });
       }
 
-      var fajrText = "يَا أَيَّتُهَا النَّفْسُ الْمُطْمَئِنَّةُ ۝ ارْجِعِي إِلَىٰ رَبِّكِ رَاضِيَةً مَّرْضِيَّةً ۝ فَادْخُلِي فِي عِبَادِي ۝ وَادْخُلِي جَنَّتِي ۝\n\n“O tranquil soul! Return to your Lord, well-pleased and pleasing [to Him], and enter among My righteous servants, and enter My Paradise.” (Surah Al-Fajr 89:27-30)";
-      setupCopy('copyFajrBtn', 'copyFajrLabel', fajrText);
+      // 3. Dynamic Color Mood Switcher
+      var moodButtons = document.querySelectorAll('.mood-btn');
+      var s1 = document.getElementById('gradStop1');
+      var s2 = document.getElementById('gradStop2');
+      var s3 = document.getElementById('gradStop3');
+      var outline = document.getElementById('heartOutline');
 
-      var duaText = "اللَّهُمَّ اجْعَلْ خَيْرَ عُمْرِي آخِرَهُ ، وَخَيْرَ عَمَلِي خَوَاتِيمَهُ ، وَخَيْرَ أَيَّامِي يَوْمَ أَلْقَاكَ فِيهِ\n\n“O Allah, make the best of my life its end, the best of my deeds their conclusion, and the best of my days the Day I meet You.”";
-      setupCopy('copyDuaBtn', 'copyDuaLabel', duaText);
+      moodButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var c1 = btn.getAttribute('data-c1');
+          var c2 = btn.getAttribute('data-c2');
+          var c3 = btn.getAttribute('data-c3');
+          var stroke = btn.getAttribute('data-stroke');
+
+          if (s1 && s2 && s3) {
+            s1.setAttribute('stop-color', c1);
+            s2.setAttribute('stop-color', c2);
+            s3.setAttribute('stop-color', c3);
+          }
+          if (outline && stroke) {
+            outline.setAttribute('stroke', stroke);
+          }
+
+          moodButtons.forEach(function (b) {
+            b.classList.remove('border-primary', 'bg-surface-container-low');
+            b.classList.add('border-border-subtle', 'bg-surface');
+          });
+          btn.classList.remove('border-border-subtle', 'bg-surface');
+          btn.classList.add('border-primary', 'bg-surface-container-low');
+        });
+      });
     })();
   </script>
 
