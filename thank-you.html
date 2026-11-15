@@ -7,18 +7,18 @@
   <meta name="heynuo-build" content="2026-11-15-gratitude-3">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#f7faf7">
-  <title>Thank You, Allah — A Sanctuary of Gratitude | Shukriya</title>
+  <title>Thank You, Allah | Shukriya</title>
   <meta name="description"
-    content="A contemplative, cinematic sanctuary of gratitude and remembrance. Thank You, Allah — for every blessing, seen and unseen.">
+    content="For every blessing, seen and unseen — every breath, every heartbeat, and the mercy that embraces all things.">
   <link rel="canonical" href="https://heynuo.github.io/thank-you.html">
   <link rel="icon" href="assets/icons/icon-192.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
   <link rel="manifest" href="manifest.json">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Thank You, Allah — A Sanctuary of Gratitude | Ruqyah">
+  <meta property="og:title" content="Thank You, Allah | Shukriya">
   <meta property="og:description"
-    content="A moment of reflection, remembrance, and gratitude. For every blessing, seen and unseen.">
+    content="For every blessing, seen and unseen — every breath, every heartbeat, and the mercy that embraces all things.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://heynuo.github.io/thank-you.html">
   <meta property="og:image" content="https://heynuo.github.io/assets/banners/og-banner.jpg">
@@ -332,12 +332,6 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: calc(100vh - 65px);
-      min-height: calc(100dvh - 65px);
-      padding: clamp(1.2rem, 4vh, 3.5rem) clamp(1rem, 4vw, 3rem);
-    }
-
-    body.is-embedded main {
       min-height: 100vh;
       min-height: 100dvh;
       padding: 0.5rem clamp(0.75rem, 3vw, 2rem);
@@ -941,50 +935,6 @@
     <div id="atmosphere-scrim"></div>
   </div>
 
-  <!-- Standalone Top Navigation Bar -->
-  <header class="sanctuary-header" role="banner">
-    <a href="index.html" class="brand-link" title="Return to Ruqyah.io">
-      <div class="brand-icon" aria-hidden="true"><div class="brand-icon-inner"></div></div>
-      <span class="brand-title">Ruqyah.io</span>
-    </a>
-
-    <div class="header-controls">
-      <!-- Scene Indicator -->
-      <button type="button" class="chip-btn" id="sceneIndicatorBtn" title="Current scene atmosphere (Click for next scene)">
-        <span aria-hidden="true">✦</span>
-        <span id="currentSceneName">Dawn of Mercy</span>
-      </button>
-
-      <!-- Atmosphere Toggle -->
-      <button type="button" class="chip-btn" id="atmosphereToggleBtn" title="Toggle between Typography Mask and Living Atmosphere modes">
-        <span id="atmosphereIcon" aria-hidden="true">🌌</span>
-        <span class="label-desktop" id="atmosphereLabel">Atmosphere</span>
-      </button>
-
-      <!-- Ambient Sound Audio Button -->
-      <button type="button" class="chip-btn" id="audioToggleBtn" title="Play or mute soothing sanctuary chimes">
-        <span id="audioIcon" aria-hidden="true">🔔</span>
-        <span class="label-desktop" id="audioLabel">Chimes</span>
-      </button>
-
-      <!-- Theme Switcher Pills -->
-      <button type="button" class="chip-btn" id="themeToggleBtn" title="Cycle Theme (Light / Sepia / Dark)">
-        <span id="themeIcon" aria-hidden="true">☀️</span>
-        <span class="label-desktop" id="themeLabel">Theme</span>
-      </button>
-
-      <!-- Fullscreen Toggle -->
-      <button type="button" class="chip-btn" id="fullscreenToggleBtn" title="Toggle Fullscreen" aria-label="Toggle Fullscreen">
-        <span id="fullscreenIcon" aria-hidden="true">⛶</span>
-      </button>
-    </div>
-  </header>
-
-  <!-- Embedded Expand Action (Visible when in iframe) -->
-  <a href="thank-you.html" target="_top" class="embed-expand-btn" title="Open full gratitude sanctuary in new view">
-    <span>⤢</span> Full Sanctuary
-  </a>
-
   <!-- Main Devotional Sanctuary -->
   <main aria-labelledby="gratitude-title">
     <section class="gratitude-message" aria-label="A message of gratitude">
@@ -1022,44 +972,8 @@
           <span class="dhikr-badge" id="gratitudeCounter">0</span>
         </button>
       </div>
-
-      <!-- Verses of Gratitude Reflection Deck (Standalone view) -->
-      <div class="verse-deck-container" role="region" aria-label="Quranic verses and Hadiths on Gratitude">
-        <div class="verse-deck-header">
-          <p class="verse-deck-title">Words of Gratitude &amp; Remembrance</p>
-          <div class="verse-nav-controls">
-            <button type="button" class="icon-nav-btn" id="prevVerseBtn" aria-label="Previous verse" title="Previous">‹</button>
-            <button type="button" class="icon-nav-btn" id="nextVerseBtn" aria-label="Next verse" title="Next">›</button>
-          </div>
-        </div>
-
-        <div class="verse-content" id="verseContent" aria-live="polite">
-          <div class="verse-ar" id="verseArabic">لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ</div>
-          <p class="verse-en" id="verseEnglish">“If you are grateful, I will surely increase you [in favor].”</p>
-          <span class="verse-ref" id="verseReference">Surah Ibrahim 14:7</span>
-        </div>
-
-        <div class="verse-indicators" id="verseDots" aria-hidden="true">
-          <!-- Dots injected via JavaScript -->
-        </div>
-      </div>
-
-      <!-- 8-Scene Switcher Strip (Standalone view) -->
-      <div class="scene-strip" role="group" aria-label="Gratitude video atmosphere scenes" id="sceneStrip">
-        <!-- Scene pills injected via JavaScript -->
-      </div>
-
-      <!-- Keyboard shortcuts legend (Standalone view) -->
-      <p class="shortcuts-hint" aria-hidden="true">
-        Shortcuts: <kbd>[Space]</kbd> Play/Pause &bull; <kbd>[N]</kbd> Next Scene &bull; <kbd>[V]</kbd> Next Verse &bull; <kbd>[A]</kbd> Say Alhamdulillah &bull; <kbd>[T]</kbd> Theme &bull; <kbd>[F]</kbd> Fullscreen
-      </p>
     </section>
   </main>
-
-  <!-- Toast Blessing Notification -->
-  <div class="gratitude-toast" id="gratitudeToast" role="status" aria-live="polite">
-    May Allah accept your praise and increase your blessings.
-  </div>
 
   <script>
     (function () {
@@ -1736,12 +1650,10 @@
           if (label) label.textContent = 'Mute';
           startAmbientDrone();
           playSacredChime(432, 3.2);
-          showToast('Ambient sanctuary chime enabled ✨');
         } else {
           if (icon) icon.textContent = '🔕';
           if (label) label.textContent = 'Chimes';
           stopAmbientDrone();
-          showToast('Audio muted');
         }
       }
 
@@ -1751,26 +1663,6 @@
         gratitudeCount = parseInt(localStorage.getItem('heynuo-gratitude-count') || '0', 10);
       } catch (e) {
         gratitudeCount = 0;
-      }
-
-      var TOAST_DUAS = [
-        'May Allah accept your praise and increase your blessings.',
-        '“Whoever is grateful, Allah increases them in goodness.”',
-        'SubhanAllah, Alhamdulillah, Allahu Akbar.',
-        'A single Alhamdulillah fills the scale of righteous deeds.',
-        'In every circumstance, Praise be to Allah — الْحَمْدُ لِلَّهِ.',
-        'May peace, tranquility, and barakah dwell in your heart.'
-      ];
-
-      function showToast(message) {
-        var toast = document.getElementById('gratitudeToast');
-        if (!toast) return;
-        toast.textContent = message;
-        toast.classList.add('visible');
-        clearTimeout(toast._timer);
-        toast._timer = setTimeout(function () {
-          toast.classList.remove('visible');
-        }, 3400);
       }
 
       function spawnGratitudeParticle(originX, originY) {
@@ -1822,10 +1714,6 @@
           var freqs = [432, 528, 648, 720];
           playSacredChime(freqs[gratitudeCount % freqs.length], 2.2);
         }
-
-        // Show rotating blessing toast
-        var dua = TOAST_DUAS[gratitudeCount % TOAST_DUAS.length];
-        showToast(dua);
       }
 
       function initDhikrButton() {

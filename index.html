@@ -1725,8 +1725,8 @@
               <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
             </svg>
           </button>
-          <button id="minimize-player-btn-mobile" aria-label="Minimize Player" aria-expanded="true"
-            class="lg:hidden w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
+          <button id="minimize-player-btn-mobile" aria-label="Minimize Player" aria-expanded="true" aria-controls="audio-player-bar"
+            class="xl:hidden w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
             title="Minimize Player" type="button">
             <svg class="w-4 h-4 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24">
               <polyline points="6 9 12 15 18 9"></polyline>
@@ -1738,9 +1738,9 @@
       <!-- Controls & Scrubber (Center) -->
       <div class="flex flex-col items-center w-full md:w-5/12 max-w-xl gap-1">
         <div class="flex items-center gap-3 w-full justify-center">
-          <button id="player-prev-btn" aria-label="Previous Ayah"
+          <button id="player-prev-btn" aria-label="Previous featured recitation"
             class="w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer"
-            title="Previous Ayah" type="button">
+            title="Previous featured recitation" type="button">
             <svg class="w-4 h-4 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24">
               <polygon points="19 20 9 12 19 4 19 20"></polygon>
               <line x1="5" x2="5" y1="19" y2="5"></line>
@@ -1753,9 +1753,9 @@
               <polygon points="5 3 19 12 5 21 5 3"></polygon>
             </svg>
           </button>
-          <button id="player-next-btn" aria-label="Next Ayah"
+          <button id="player-next-btn" aria-label="Next featured recitation"
             class="w-8 h-8 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer"
-            title="Next Ayah" type="button">
+            title="Next featured recitation" type="button">
             <svg class="w-4 h-4 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24">
               <polygon points="5 4 15 12 5 20 5 4"></polygon>
               <line x1="19" x2="19" y1="5" y2="19"></line>
@@ -1778,45 +1778,56 @@
         </div>
       </div>
 
-      <!-- Quick Audio Utilities (Right) -->
-      <div class="hidden lg:flex items-center gap-3">
-        <div class="flex items-center gap-1.5">
-          <!-- Speed Toggle -->
-          <button id="speed-toggle-btn" aria-label="Playback Speed"
-            class="px-2 py-1 rounded bg-surface border border-border-subtle hover:bg-surface-container font-code-mono text-xs font-semibold text-primary transition-colors cursor-pointer"
-            title="Playback Speed" type="button">
-            1.0x
-          </button>
-          <!-- Tafsir Trigger -->
-          <button id="tafsir-kursi-btn" aria-label="Tafsir Drawer"
-            class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface hover:bg-surface-container border border-border-subtle text-on-surface font-code-mono text-xs transition-colors cursor-pointer"
-            title="Toggle Tafsir" type="button">
-            <span>Tafsir</span>
-          </button>
-        </div>
-
-        <!-- Volume Control Slider & Minimize -->
-        <div class="flex items-center gap-2 pl-2 border-l border-border-subtle">
-          <button id="audio-mute-btn" aria-label="Mute audio" aria-pressed="false"
-            class="w-7 h-7 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer"
-            type="button">
-            <svg class="w-4 h-4 stroke-current" fill="none" stroke-width="1.8" viewBox="0 0 24 24">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-            </svg>
-          </button>
-          <div class="w-14 h-1.5 rounded-full bg-surface-container cursor-pointer overflow-hidden" id="volume-track"
-            role="slider" tabindex="0" aria-label="Audio volume" aria-valuemin="0" aria-valuemax="100"
-            aria-valuenow="80" aria-valuetext="80 percent">
-            <div class="h-full bg-primary rounded-full" id="volume-bar" style="width: 80%;"></div>
+      <!-- Audio settings stay in a compact popover on smaller screens. -->
+      <div id="player-audio-settings" class="relative flex w-full md:w-auto justify-center md:justify-end items-center gap-2">
+        <button id="player-settings-toggle" type="button" aria-label="Open audio settings" aria-expanded="false"
+          aria-controls="player-audio-utilities" title="Audio settings"
+          class="xl:hidden w-10 h-10 rounded flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer">
+          <svg class="w-4 h-4 stroke-current" fill="none" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 21v-7m0-4V3m8 18v-9m0-4V3m8 18v-5m0-4V3"></path>
+            <path d="M1 14h6m2-6h6m2 8h6"></path>
+          </svg>
+        </button>
+        <div id="player-audio-utilities" class="player-audio-utilities hidden xl:flex items-center gap-3"
+          role="group" aria-label="Audio playback settings">
+          <div class="flex items-center gap-1.5">
+            <!-- Speed Toggle -->
+            <button id="speed-toggle-btn" aria-label="Playback Speed"
+              class="px-2 py-1 rounded bg-surface border border-border-subtle hover:bg-surface-container font-code-mono text-xs font-semibold text-primary transition-colors cursor-pointer"
+              title="Playback Speed" type="button">
+              1.0x
+            </button>
+            <!-- Tafsir Trigger -->
+            <button id="tafsir-kursi-btn" aria-label="Tafsir Drawer"
+              class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface hover:bg-surface-container border border-border-subtle text-on-surface font-code-mono text-xs transition-colors cursor-pointer"
+              title="Toggle Tafsir" type="button">
+              <span>Tafsir</span>
+            </button>
           </div>
-          <button id="minimize-player-btn" aria-label="Minimize Player" aria-expanded="true"
-            class="w-7 h-7 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer"
-            title="Minimize / Expand Player" type="button">
-            <svg class="w-4 h-4 stroke-current" fill="none" id="minimize-icon" stroke-width="2" viewBox="0 0 24 24">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </button>
+
+          <!-- Volume Control Slider & Minimize -->
+          <div class="flex items-center gap-2 pl-2 border-l border-border-subtle">
+            <button id="audio-mute-btn" aria-label="Mute audio" aria-pressed="false"
+              class="w-7 h-7 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer"
+              type="button">
+              <svg class="w-4 h-4 stroke-current" fill="none" stroke-width="1.8" viewBox="0 0 24 24">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              </svg>
+            </button>
+            <div class="w-14 h-1.5 rounded-full bg-surface-container cursor-pointer overflow-hidden" id="volume-track"
+              role="slider" tabindex="0" aria-label="Audio volume" aria-valuemin="0" aria-valuemax="100"
+              aria-valuenow="80" aria-valuetext="80 percent">
+              <div class="h-full bg-primary rounded-full" id="volume-bar" style="width: 80%;"></div>
+            </div>
+            <button id="minimize-player-btn" aria-label="Minimize Player" aria-expanded="true" aria-controls="audio-player-bar"
+              class="hidden xl:flex w-11 h-11 rounded items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer"
+              title="Minimize / Expand Player" type="button">
+              <svg class="w-4 h-4 stroke-current" fill="none" id="minimize-icon" stroke-width="2" viewBox="0 0 24 24">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>

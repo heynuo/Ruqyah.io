@@ -85,6 +85,36 @@
       const audioPlayerBar = document.getElementById('audio-player-bar');
       const playAyahOfDayBtn = document.getElementById('playAyahOfDayBtn');
       const playerStatus = document.getElementById('player-status');
+      const playerAudioSettings = document.getElementById('player-audio-settings');
+      const playerSettingsToggle = document.getElementById('player-settings-toggle');
+      const playerAudioUtilities = document.getElementById('player-audio-utilities');
+
+      function setPlayerSettingsOpen(open) {
+        if (!playerSettingsToggle || !playerAudioUtilities) return;
+        playerSettingsToggle.setAttribute('aria-expanded', String(open));
+        playerSettingsToggle.setAttribute('aria-label', open ? 'Close audio settings' : 'Open audio settings');
+        playerAudioUtilities.classList.toggle('hidden', !open);
+      }
+
+      playerSettingsToggle?.addEventListener('click', () => {
+        setPlayerSettingsOpen(playerSettingsToggle.getAttribute('aria-expanded') !== 'true');
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape' || playerSettingsToggle?.getAttribute('aria-expanded') !== 'true') return;
+        setPlayerSettingsOpen(false);
+        playerSettingsToggle?.focus();
+      });
+
+      document.addEventListener('pointerdown', (event) => {
+        if (playerSettingsToggle?.getAttribute('aria-expanded') === 'true'
+          && playerAudioSettings && !playerAudioSettings.contains(event.target)) {
+          setPlayerSettingsOpen(false);
+        }
+      });
+
+      const desktopPlayerLayout = window.matchMedia?.('(min-width: 1280px)');
+      desktopPlayerLayout?.addEventListener?.('change', () => setPlayerSettingsOpen(false));
 
       function formatTime(seconds) {
         if (!Number.isFinite(seconds) || seconds < 0) return '00:00';
@@ -415,6 +445,7 @@
       // Minimize Floating Player Bar
       function toggleMinimize() {
         if (!audioPlayerBar) return;
+        setPlayerSettingsOpen(false);
         const isMin = !audioPlayerBar.classList.contains('hidden');
         audioPlayerBar.classList.toggle('hidden', isMin);
         if (restorePlayerBtn) {
