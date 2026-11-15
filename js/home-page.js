@@ -851,4 +851,15 @@
         }
       });
 
+      // 8. Auto-adjust Gratitude Sanctuary iframe height dynamically
+      window.addEventListener('message', (event) => {
+        if (event.data && event.data.type === 'ruqyah-iframe-resize' && event.data.frame === 'thank-you') {
+          const gratitudeIframe = document.querySelector('iframe[src*="thank-you"]');
+          if (gratitudeIframe && typeof event.data.height === 'number') {
+            const nextH = Math.max(320, event.data.height);
+            gratitudeIframe.style.height = nextH + 'px';
+          }
+        }
+      });
+
     })();

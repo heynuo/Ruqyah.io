@@ -72,8 +72,9 @@
   </header>
 
   <!-- Embedded Expand Action (Visible only when in iframe) -->
-  <a href="thank-you.html" target="_top" class="embed-expand-btn" title="Open full gratitude sanctuary in new view">
-    <span>⤢</span> Full Sanctuary
+  <a href="thank-you.html" target="_top" class="embed-expand-btn" title="Open full gratitude sanctuary in new view" aria-label="Open full gratitude sanctuary">
+    <span class="expand-icon" aria-hidden="true">⤢</span>
+    <span class="expand-label">Full Sanctuary</span>
   </a>
 
   <!-- Main Devotional Sanctuary -->
@@ -131,6 +132,31 @@
       if (isEmbedded) {
         document.documentElement.classList.add('is-embedded');
         document.body.classList.add('is-embedded');
+
+        var syncEmbeddedHeight = function () {
+          var scrollH = Math.ceil(document.body.scrollHeight || document.documentElement.scrollHeight || 0);
+          if (scrollH > 100) {
+            try {
+              window.parent.postMessage({
+                type: 'ruqyah-iframe-resize',
+                frame: 'thank-you',
+                height: scrollH
+              }, '*');
+            } catch (e) { }
+          }
+        };
+        window.addEventListener('load', syncEmbeddedHeight);
+        window.addEventListener('resize', syncEmbeddedHeight);
+        if (typeof ResizeObserver !== 'undefined' && document.body) {
+          try {
+            var ro = new ResizeObserver(function () {
+              syncEmbeddedHeight();
+            });
+            ro.observe(document.body);
+          } catch (e) { }
+        }
+        setTimeout(syncEmbeddedHeight, 150);
+        setTimeout(syncEmbeddedHeight, 500);
       } else {
         document.documentElement.classList.add('is-standalone');
         document.body.classList.add('is-standalone');

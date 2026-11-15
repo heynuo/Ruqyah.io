@@ -110,6 +110,11 @@ body {
 body.is-embedded {
   background: transparent !important;
   overflow: hidden !important;
+  min-height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 
 body.is-embedded .sanctuary-header {
@@ -299,6 +304,31 @@ body.is-embedded .embed-expand-btn {
   transform: scale(1.04);
 }
 
+@media (max-width: 640px) {
+  body.is-embedded .embed-expand-btn {
+    top: 0.5rem;
+    right: 0.65rem;
+    padding: 0.28rem 0.5rem;
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 440px) {
+  body.is-embedded .embed-expand-btn .expand-label {
+    display: none;
+  }
+  body.is-embedded .embed-expand-btn {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 0.95rem;
+  }
+}
+
 /* Main Container & Devotional Atmosphere */
 main {
   position: relative;
@@ -314,8 +344,22 @@ main {
 }
 
 body.is-embedded main {
-  min-height: auto;
-  padding: 0.4rem 0.5rem;
+  min-height: 100%;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 1.5rem 1.25rem 1.25rem;
+}
+
+@media (max-width: 640px) {
+  body.is-embedded main {
+    padding-top: 2.85rem !important;
+    padding-bottom: 1.25rem !important;
+  }
 }
 
 /* Radiant Background Light Leaks */
@@ -395,8 +439,9 @@ main::after {
 }
 
 body.is-embedded .gratitude-arabic {
-  font-size: clamp(1.25rem, 3vw, 1.8rem);
-  margin-bottom: 0.2rem;
+  font-size: clamp(1.35rem, 3.2vw, 2.1rem);
+  margin-bottom: 0.35rem;
+  line-height: 1.4;
 }
 
 /* Devotional Kicker */
@@ -428,8 +473,8 @@ body.is-embedded .gratitude-arabic {
 }
 
 body.is-embedded .gratitude-kicker {
-  font-size: 0.64rem;
-  letter-spacing: 0.2em;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
   margin-bottom: 0.35rem;
 }
 
@@ -489,8 +534,9 @@ h1#gratitude-title {
 }
 
 body.is-embedded h1#gratitude-title {
-  font-size: clamp(1.9rem, 4.6vw, 3.2rem);
-  line-height: 1.1;
+  font-size: clamp(1.9rem, 4.4vw, 3rem);
+  line-height: 1.15;
+  margin-bottom: 0.35rem;
 }
 
 /* Sacred Divider */
@@ -529,7 +575,7 @@ body.is-embedded h1#gratitude-title {
 }
 
 body.is-embedded .gratitude-divider {
-  margin: 0.45rem 0 0.3rem;
+  margin: 0.35rem 0;
 }
 
 /* Sacred Words of Praise */
@@ -551,7 +597,8 @@ body.is-embedded .gratitude-divider {
 }
 
 body.is-embedded .gratitude-word {
-  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  margin-bottom: 0.35rem;
 }
 
 /* Poetic Note */
@@ -565,7 +612,8 @@ body.is-embedded .gratitude-word {
 }
 
 body.is-embedded .gratitude-note {
-  font-size: clamp(0.78rem, 1.6vw, 0.88rem);
+  font-size: clamp(0.8rem, 1.6vw, 0.9rem);
+  line-height: 1.5;
   margin-top: 0.25rem;
 }
 
@@ -579,7 +627,7 @@ body.is-embedded .gratitude-note {
 }
 
 body.is-embedded .gratitude-action-area {
-  margin-top: 0.8rem;
+  margin-top: 0.85rem;
 }
 
 .dhikr-tap-btn {
