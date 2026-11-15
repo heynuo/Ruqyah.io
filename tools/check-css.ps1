@@ -53,6 +53,14 @@ function Get-CssBraceIssues {
                 $column += 2
                 continue
             }
+            if ($char -eq '\') {
+                if ($index + 1 -lt $Text.Length) {
+                    if ($next -eq "`n") { $line++; $column = 1 }
+                    else { $column += 2 }
+                    $index += 2
+                    continue
+                }
+            }
             if ($char -eq '"' -or $char -eq "'") {
                 $quote = $char
                 $state = if ($char -eq '"') { 'double' } else { 'single' }

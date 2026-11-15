@@ -29,6 +29,9 @@
     minimizeMobile: document.getElementById('minimize-player-btn-mobile'),
     restore: document.getElementById('restore-audio-player-btn'),
     minimizeIcon: document.getElementById('minimize-icon'),
+    audioSettings: document.getElementById('player-audio-settings'),
+    settingsToggle: document.getElementById('player-settings-toggle'),
+    audioUtilities: document.getElementById('player-audio-utilities'),
   };
 
   const speedSteps = [0.75, 1, 1.25, 1.5, 2];
@@ -39,7 +42,36 @@
   let lastVolume = 0.75;
   let minimized = false;
   let playRequest = 0;
+  let isScrubbing = false;
+  let isDraggingVolume = false;
   const reciters = Array.isArray(window.RuqyahAudioReciters) ? window.RuqyahAudioReciters : [];
+
+  function setPlayerSettingsOpen(open) {
+    if (!controls.settingsToggle || !controls.audioUtilities) return;
+    controls.settingsToggle.setAttribute('aria-expanded', String(open));
+    controls.settingsToggle.setAttribute('aria-label', open ? 'Close audio settings' : 'Open audio settings');
+    controls.audioUtilities.classList.toggle('hidden', !open);
+  }
+
+  controls.settingsToggle?.addEventListener('click', () => {
+    setPlayerSettingsOpen(controls.settingsToggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape' || controls.settingsToggle?.getAttribute('aria-expanded') !== 'true') return;
+    setPlayerSettingsOpen(false);
+    controls.settingsToggle?.focus();
+  });
+
+  document.addEventListener('pointerdown', (event) => {
+    if (controls.settingsToggle?.getAttribute('aria-expanded') === 'true'
+      && controls.audioSettings && !controls.audioSettings.contains(event.target)) {
+      setPlayerSettingsOpen(false);
+    }
+  });
+
+  const desktopPlayerLayout = window.matchMedia?.('(min-width: 1280px)');
+  desktopPlayerLayout?.addEventListener?.('change', () => setPlayerSettingsOpen(false));
 
   function readSharedPreference(key, fallback) {
     try {
@@ -124,6 +156,7 @@
   }
 
   function updateProgress() {
+    if (isScrubbing) return;
     const duration = Number.isFinite(audio.duration) ? audio.duration : 0;
     const current = Number.isFinite(audio.currentTime) ? audio.currentTime : 0;
     const percent = duration > 0 ? clamp((current / duration) * 100, 0, 100) : 0;
@@ -137,7 +170,7 @@
     }
   }
 
-  function setVolume(value) {
+  function setVolume(value, persist = true) {
     volume = clamp(Number(value) || 0, 0, 1);
     audio.volume = volume;
     audio.muted = volume === 0;
@@ -148,21 +181,29 @@
       controls.volume.setAttribute('aria-valuetext', `${Math.round(volume * 100)} percent`);
     }
     if (controls.mute) {
-      controls.mute.setAttribute('aria-pressed', String(volume === 0));
-      controls.mute.setAttribute('aria-label', volume === 0 ? 'Unmute audio' : 'Mute audio');
-      controls.mute.title = volume === 0 ? 'Unmute audio' : 'Mute audio';
+      const isMuted = volume === 0;
+      controls.mute.setAttribute('aria-pressed', String(isMuted));
+      controls.mute.setAttribute('aria-label', isMuted ? 'Unmute audio' : 'Mute audio');
+      controls.mute.title = isMuted ? 'Unmute audio' : 'Mute audio';
+      controls.mute.innerHTML = isMuted
+        ? '<svg class="w-4 h-4 stroke-current" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>'
+        : (volume > 0.5
+          ? '<svg class="w-4 h-4 stroke-current" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>'
+          : '<svg class="w-4 h-4 stroke-current" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>');
     }
-    savePreference('volume', volume);
-    if (volume > 0) savePreference('last-volume', lastVolume);
-    saveSharedPreference('volume', volume);
-    saveSharedPreference('muted', volume === 0);
-    if (volume > 0) saveSharedPreference('last-volume', lastVolume);
+    if (persist) {
+      savePreference('volume', volume);
+      if (volume > 0) savePreference('last-volume', lastVolume);
+      saveSharedPreference('volume', volume);
+      saveSharedPreference('muted', volume === 0);
+      if (volume > 0) saveSharedPreference('last-volume', lastVolume);
+    }
   }
 
   function setSpeed(value) {
     speed = value;
     audio.playbackRate = speed;
-    if (controls.speed) controls.speed.textContent = `${speed.toFixed(speed % 1 === 0 ? 1 : 2)}x`;
+    if (controls.speed) controls.speed.textContent = `${Number(speed.toFixed(2))}x`;
     savePreference('speed', speed);
     saveSharedPreference('speed', speed);
   }
@@ -190,6 +231,7 @@
     audio.playbackRate = speed;
     updateTrackLabel();
     updateProgress();
+    updateMediaSession();
     setStatus('');
     if (autoplay) play();
     else updatePlayState(false);
@@ -266,19 +308,124 @@
     setMinimized(!minimized);
   }
 
-  function seekFromEvent(event) {
-    if (!Number.isFinite(audio.duration) || audio.duration <= 0) return;
-    const rect = controls.seek.getBoundingClientRect();
-    const ratio = clamp((event.clientX - rect.left) / rect.width, 0, 1);
-    audio.currentTime = ratio * audio.duration;
-    updateProgress();
+  function updateMediaSession() {
+    if (!('mediaSession' in navigator)) return;
+    try {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: `Al-Baqarah 2:${ayah}`,
+        artist: currentReciter.name,
+        album: 'Ruqyah.io Recitations',
+        artwork: [
+          { src: 'assets/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+          { src: 'assets/icons/icon-512.png', sizes: '512x512', type: 'image/png' }
+        ]
+      });
+      navigator.mediaSession.setActionHandler('play', () => play());
+      navigator.mediaSession.setActionHandler('pause', () => { playRequest++; audio.pause(); updatePlayState(false); });
+      navigator.mediaSession.setActionHandler('previoustrack', () => stepAyah(-1));
+      navigator.mediaSession.setActionHandler('nexttrack', () => stepAyah(1));
+      navigator.mediaSession.setActionHandler('seekto', (details) => {
+        if (Number.isFinite(audio.duration) && details.seekTime !== undefined) {
+          audio.currentTime = clamp(details.seekTime, 0, audio.duration);
+          updateProgress();
+        }
+      });
+    } catch (_) { }
   }
 
-  function setVolumeFromEvent(event) {
-    const rect = controls.volume.getBoundingClientRect();
-    if (rect.width <= 0) return;
-    setVolume((event.clientX - rect.left) / rect.width);
+  function getSeekRatio(event) {
+    if (!controls.seek) return 0;
+    const rect = controls.seek.getBoundingClientRect();
+    if (rect.width <= 0) return 0;
+    return clamp((event.clientX - rect.left) / rect.width, 0, 1);
   }
+
+  function updateSeekVisual(ratio) {
+    if (!Number.isFinite(audio.duration) || audio.duration <= 0) return;
+    const percent = ratio * 100;
+    const current = ratio * audio.duration;
+    if (controls.currentTime) controls.currentTime.textContent = formatTime(current);
+    if (controls.progress) controls.progress.style.width = `${percent}%`;
+    if (controls.thumb) controls.thumb.style.left = `${percent}%`;
+    if (controls.seek) {
+      controls.seek.setAttribute('aria-valuenow', String(Math.round(percent)));
+      controls.seek.setAttribute('aria-valuetext', `${formatTime(current)} of ${formatTime(audio.duration)}`);
+    }
+  }
+
+  controls.seek?.addEventListener('pointerdown', event => {
+    if (!Number.isFinite(audio.duration) || audio.duration <= 0) return;
+    isScrubbing = true;
+    try { controls.seek.setPointerCapture?.(event.pointerId); } catch (_) { }
+    updateSeekVisual(getSeekRatio(event));
+  });
+
+  controls.seek?.addEventListener('pointermove', event => {
+    if (!isScrubbing || !Number.isFinite(audio.duration) || audio.duration <= 0) return;
+    updateSeekVisual(getSeekRatio(event));
+  });
+
+  function finishSeek(event) {
+    if (!isScrubbing) return;
+    isScrubbing = false;
+    try { controls.seek?.releasePointerCapture?.(event.pointerId); } catch (_) { }
+    if (Number.isFinite(audio.duration) && audio.duration > 0) {
+      const ratio = getSeekRatio(event);
+      audio.currentTime = ratio * audio.duration;
+      updateProgress();
+    }
+  }
+
+  controls.seek?.addEventListener('pointerup', finishSeek);
+  controls.seek?.addEventListener('pointercancel', finishSeek);
+
+  controls.seek?.addEventListener('keydown', event => {
+    if (!Number.isFinite(audio.duration) || audio.duration <= 0) return;
+    if (event.key === 'ArrowLeft') audio.currentTime = Math.max(0, audio.currentTime - 5);
+    else if (event.key === 'ArrowRight') audio.currentTime = Math.min(audio.duration, audio.currentTime + 5);
+    else if (event.key === 'Home') audio.currentTime = 0;
+    else if (event.key === 'End') audio.currentTime = audio.duration;
+    else return;
+    event.preventDefault();
+    updateProgress();
+  });
+
+  function getVolumeRatio(event) {
+    if (!controls.volume) return volume;
+    const rect = controls.volume.getBoundingClientRect();
+    if (rect.width <= 0) return volume;
+    return clamp((event.clientX - rect.left) / rect.width, 0, 1);
+  }
+
+  controls.volume?.addEventListener('pointerdown', event => {
+    isDraggingVolume = true;
+    try { controls.volume.setPointerCapture?.(event.pointerId); } catch (_) { }
+    setVolume(getVolumeRatio(event), false);
+  });
+
+  controls.volume?.addEventListener('pointermove', event => {
+    if (!isDraggingVolume) return;
+    setVolume(getVolumeRatio(event), false);
+  });
+
+  function finishVolume(event) {
+    if (!isDraggingVolume) return;
+    isDraggingVolume = false;
+    try { controls.volume?.releasePointerCapture?.(event.pointerId); } catch (_) { }
+    setVolume(getVolumeRatio(event), true);
+  }
+
+  controls.volume?.addEventListener('pointerup', finishVolume);
+  controls.volume?.addEventListener('pointercancel', finishVolume);
+
+  controls.volume?.addEventListener('keydown', event => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowLeft') setVolume(volume - 0.05);
+    else if (event.key === 'ArrowUp' || event.key === 'ArrowRight') setVolume(volume + 0.05);
+    else if (event.key === 'Home') setVolume(0);
+    else if (event.key === 'End') setVolume(1);
+    else return;
+    event.preventDefault();
+  });
 
   audio.addEventListener('play', () => { if (!audio.paused) updatePlayState(true); });
   audio.addEventListener('pause', () => { if (audio.paused) updatePlayState(false); });
@@ -322,43 +469,10 @@
       currentReciter = nextReciter;
       saveSharedPreference('reciter', currentReciter.id);
       updateTrackLabel();
+      updateMediaSession();
       if (audio.src) loadAyah(ayah, wasPlaying);
     });
   }
-
-  controls.seek?.addEventListener('pointerdown', event => {
-    seekFromEvent(event);
-    controls.seek.setPointerCapture?.(event.pointerId);
-  });
-  controls.seek?.addEventListener('pointermove', event => {
-    if (event.buttons === 1) seekFromEvent(event);
-  });
-  controls.seek?.addEventListener('keydown', event => {
-    if (!Number.isFinite(audio.duration) || audio.duration <= 0) return;
-    if (event.key === 'ArrowLeft') audio.currentTime = Math.max(0, audio.currentTime - 5);
-    else if (event.key === 'ArrowRight') audio.currentTime = Math.min(audio.duration, audio.currentTime + 5);
-    else if (event.key === 'Home') audio.currentTime = 0;
-    else if (event.key === 'End') audio.currentTime = audio.duration;
-    else return;
-    event.preventDefault();
-    updateProgress();
-  });
-
-  controls.volume?.addEventListener('pointerdown', event => {
-    setVolumeFromEvent(event);
-    controls.volume.setPointerCapture?.(event.pointerId);
-  });
-  controls.volume?.addEventListener('pointermove', event => {
-    if (event.buttons === 1) setVolumeFromEvent(event);
-  });
-  controls.volume?.addEventListener('keydown', event => {
-    if (event.key === 'ArrowDown' || event.key === 'ArrowLeft') setVolume(volume - 0.05);
-    else if (event.key === 'ArrowUp' || event.key === 'ArrowRight') setVolume(volume + 0.05);
-    else if (event.key === 'Home') setVolume(0);
-    else if (event.key === 'End') setVolume(1);
-    else return;
-    event.preventDefault();
-  });
 
   const savedSpeed = Number(readSharedPreference('speed', readPreference('speed', '1')));
   setSpeed(speedSteps.includes(savedSpeed) ? savedSpeed : 1);

@@ -1,12 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Tawakkul — A Cinematic Reflection | Ruqyah</title>
   <meta name="description"
     content="A cinematic, bilingual reflection on tawakkul: taking the means while entrusting outcomes to Allah.">
+  <link rel="canonical" href="https://heynuo.github.io/Tawakkul.html" />
+  <meta name="theme-color" content="#040507" />
+  <link rel="icon" href="assets/icons/icon-192.png" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+  <link rel="manifest" href="manifest.json" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Tawakkul — A Cinematic Reflection | Ruqyah" />
+  <meta property="og:description" content="A cinematic, bilingual reflection on tawakkul: taking the means while entrusting outcomes to Allah." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://heynuo.github.io/Tawakkul.html" />
+  <meta property="og:image" content="https://heynuo.github.io/assets/banners/og-banner.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tawakkul — A Cinematic Reflection | Ruqyah" />
+  <meta name="twitter:description" content="A cinematic, bilingual reflection on tawakkul: taking the means while entrusting outcomes to Allah." />
+  <meta name="twitter:image" content="https://heynuo.github.io/assets/banners/og-banner.jpg" />
+  <!-- Preload critical audio -->
+  <link rel="preload" href="audio_6af41204e4ea39.02321364.mp3" as="audio" type="audio/mpeg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -41,6 +62,15 @@
       margin: 0;
       padding: 0;
       user-select: none;
+    }
+
+    /* WCAG 2.5.8: Minimum 44×44px interactive targets on touch devices */
+    @media (pointer: coarse) {
+      button, label[role="button"], .btn, a.back-to-archive {
+        min-height: 44px;
+        min-width: 44px;
+        touch-action: manipulation;
+      }
     }
 
     body {
@@ -2162,6 +2192,10 @@
       line-height: 1.45;
     }
 
+    /* ── Cinematic polish overrides ─────────────────────────
+       These rules refine the baseline UI styles above
+       with the warm gold theme used in this reflection.
+       ───────────────────────────────────────────────────── */
     #controls {
       gap: 9px;
       border-color: rgba(235, 215, 163, 0.24);
@@ -2313,6 +2347,15 @@
 </head>
 
 <body>
+  <noscript>
+    <div style="background:#0a0f1d;color:#f5d989;padding:40px;text-align:center;font-family:Georgia,serif;font-size:18px;min-height:100vh;display:flex;align-items:center;justify-content:center;">
+      <div>
+        <h1 style="font-size:28px;margin-bottom:16px;">Tawakkul — A Cinematic Reflection</h1>
+        <p>This interactive experience requires JavaScript to play. Please enable JavaScript in your browser settings.</p>
+        <p style="margin-top:20px;font-size:14px;color:#93c5fd;"><a href="index.html" style="color:#93c5fd;">← Return to Ruqyah Archive</a></p>
+      </div>
+    </div>
+  </noscript>
   <!-- Ambient Backlight Ambilight -->
   <div id="stage-ambient"></div>
 
@@ -2856,7 +2899,7 @@
     </div>
 
     <!-- Bottom Subtitle Bar -->
-    <div id="subtitle-bar" role="region" aria-label="Urdu narration and English translation">
+    <div id="subtitle-bar" role="region" aria-label="Urdu narration and English translation" aria-live="polite" aria-atomic="true">
       <span class="caption-kicker">Urdu narration • English translation</span>
       <div id="sub-urdu" class="urdu" lang="ur">صرف اللہ ہی پر توکل رکھیں</div>
       <div id="sub-eng">A reflection: trust Allah alone.</div>
@@ -2864,6 +2907,8 @@
   </div>
 
   <script>
+    'use strict';
+    (() => {
     const audio = document.getElementById('audio-player');
     const playBtn = document.getElementById('play-btn');
     const seekBackBtn = document.getElementById('seek-back-btn');
@@ -3692,6 +3737,7 @@
     }
 
     renderFrame(0);
+    })();
   </script>
   <script src="tawakkul-upgrade.js"></script>
 </body>

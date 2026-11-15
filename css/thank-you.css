@@ -1,0 +1,696 @@
+/* ==========================================================================
+   Ruqyah.io — Shukriya / Gratitude Sanctuary Stylesheet (thank-you.css)
+   Lightweight, cacheable, GPU-accelerated styling for Thank You, Allah
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+  --bg: #f8faf8;
+  --surface: rgba(255, 255, 255, 0.76);
+  --surface-card: rgba(255, 255, 255, 0.88);
+  --surface-border: rgba(15, 118, 110, 0.16);
+  --ink: #142824;
+  --ink-secondary: #334a45;
+  --muted: #536761;
+  --accent: #0f766e;
+  --accent-soft: rgba(15, 118, 110, 0.10);
+  --gold: #ad701b;
+  --gold-soft: #f4d38d;
+  --gold-glow: rgba(173, 112, 27, 0.28);
+  --border: rgba(15, 118, 110, 0.18);
+  --ambient-teal: rgba(15, 118, 110, 0.10);
+  --ambient-gold: rgba(173, 112, 27, 0.08);
+  --leak-warm: rgba(237, 173, 94, 0.22);
+  --leak-cool: rgba(56, 174, 190, 0.16);
+  --stroke-color: #0f766e;
+  --shadow-color: rgba(15, 118, 110, 0.35);
+  --btn-bg: rgba(255, 255, 255, 0.82);
+  --btn-border: rgba(15, 118, 110, 0.22);
+  --btn-hover: rgba(15, 118, 110, 0.08);
+}
+
+:root[data-theme="sepia"] {
+  color-scheme: light;
+  --bg: #f6efe2;
+  --surface: rgba(246, 239, 226, 0.78);
+  --surface-card: rgba(249, 244, 233, 0.90);
+  --surface-border: rgba(118, 81, 31, 0.20);
+  --ink: #342617;
+  --ink-secondary: #52422e;
+  --muted: #6a5944;
+  --accent: #78521a;
+  --accent-soft: rgba(120, 82, 26, 0.10);
+  --gold: #9e6922;
+  --gold-soft: #ebc680;
+  --gold-glow: rgba(158, 105, 34, 0.28);
+  --border: rgba(118, 81, 31, 0.22);
+  --ambient-teal: rgba(148, 109, 49, 0.09);
+  --ambient-gold: rgba(188, 145, 67, 0.09);
+  --leak-warm: rgba(194, 144, 73, 0.20);
+  --leak-cool: rgba(116, 157, 136, 0.14);
+  --stroke-color: #9e6922;
+  --shadow-color: rgba(158, 105, 34, 0.32);
+  --btn-bg: rgba(246, 239, 226, 0.86);
+  --btn-border: rgba(118, 81, 31, 0.24);
+  --btn-hover: rgba(120, 82, 26, 0.09);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #030807;
+  --surface: rgba(6, 19, 16, 0.76);
+  --surface-card: rgba(9, 26, 22, 0.88);
+  --surface-border: rgba(141, 224, 210, 0.22);
+  --ink: #f0f9f5;
+  --ink-secondary: #cde2dc;
+  --muted: #9bb7af;
+  --accent: #7be4d5;
+  --accent-soft: rgba(123, 228, 213, 0.12);
+  --gold: #e8c47b;
+  --gold-soft: #faecc7;
+  --gold-glow: rgba(232, 196, 123, 0.35);
+  --border: rgba(141, 224, 210, 0.24);
+  --ambient-teal: rgba(58, 155, 141, 0.16);
+  --ambient-gold: rgba(228, 189, 118, 0.11);
+  --leak-warm: rgba(247, 188, 104, 0.20);
+  --leak-cool: rgba(87, 203, 215, 0.18);
+  --stroke-color: #55cbbc;
+  --shadow-color: rgba(85, 203, 188, 0.42);
+  --btn-bg: rgba(7, 22, 19, 0.78);
+  --btn-border: rgba(141, 224, 210, 0.26);
+  --btn-hover: rgba(123, 228, 213, 0.12);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-width: 280px;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+}
+
+/* Embedded Mode Overrides (inside iframe) */
+body.is-embedded {
+  background: transparent !important;
+  overflow: hidden !important;
+}
+
+body.is-embedded .sanctuary-header {
+  display: none !important;
+}
+
+/* WCAG 2.5.8 Touch Target Compliance */
+@media (pointer: coarse) {
+  button,
+  a.nav-action,
+  .chip-btn,
+  .dhikr-tap-btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Ambient Canvas Layers */
+#stars-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.85;
+  transition: opacity 0.5s ease;
+}
+
+#atmosphere-video-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+
+body.mode-atmosphere #atmosphere-video-layer {
+  opacity: 1;
+}
+
+#atmosphere-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  filter: brightness(0.65) saturate(1.15) contrast(1.05);
+}
+
+#atmosphere-scrim {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 75% 65% at 50% 50%, rgba(3, 8, 7, 0.45) 0%, rgba(3, 8, 7, 0.85) 100%);
+}
+
+/* Top Standalone Header */
+.sanctuary-header {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.85rem clamp(1rem, 4vw, 2.5rem);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.brand-link:hover {
+  opacity: 0.85;
+  transform: translateX(-2px);
+}
+
+.brand-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--gold);
+  transform: rotate(45deg);
+  border-radius: 4px;
+  background: var(--ambient-gold);
+}
+
+.brand-icon-inner {
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  border-radius: 1px;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.chip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.42rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.chip-btn:hover {
+  background: var(--btn-hover);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.chip-btn.active {
+  border-color: var(--gold);
+  background: var(--ambient-gold);
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.chip-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Embedded Expand Action */
+.embed-expand-btn {
+  display: none;
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 30;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+body.is-embedded .embed-expand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.embed-expand-btn:hover {
+  background: var(--btn-hover);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: scale(1.04);
+}
+
+/* Main Container & Devotional Atmosphere */
+main {
+  position: relative;
+  isolation: isolate;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 0.5rem clamp(0.75rem, 3vw, 2rem);
+}
+
+body.is-embedded main {
+  min-height: auto;
+  padding: 0.4rem 0.5rem;
+}
+
+/* Radiant Background Light Leaks */
+main::before {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 45% at 50% 48%, var(--ambient-teal), transparent 100%),
+    radial-gradient(ellipse 35% 30% at 50% 45%, var(--ambient-gold), transparent 100%);
+  content: "";
+  pointer-events: none;
+}
+
+main::after {
+  position: absolute;
+  z-index: -1;
+  inset: -18% -16%;
+  background:
+    linear-gradient(112deg, transparent 20%, var(--leak-warm) 34%, rgba(255, 255, 255, 0.08) 43%, transparent 55%, transparent 64%, var(--leak-cool) 78%, transparent 89%),
+    radial-gradient(ellipse 25% 46% at 18% 66%, var(--leak-warm), transparent 100%),
+    radial-gradient(ellipse 24% 44% at 82% 34%, var(--leak-cool), transparent 100%);
+  filter: blur(24px);
+  opacity: 0.58;
+  content: "";
+  pointer-events: none;
+  animation: gratitude-light-leak 18s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+@keyframes gratitude-light-leak {
+  0% {
+    filter: blur(20px) hue-rotate(-4deg);
+    opacity: 0.44;
+    transform: translate3d(-2%, -1%, 0) rotate(-3deg) scale(1);
+  }
+  50% {
+    filter: blur(28px) hue-rotate(8deg);
+    opacity: 0.72;
+    transform: translate3d(1.5%, 0.5%, 0) rotate(1deg) scale(1.04);
+  }
+  100% {
+    filter: blur(22px) hue-rotate(-2deg);
+    opacity: 0.52;
+    transform: translate3d(-1%, 1.5%, 0) rotate(-2deg) scale(1.02);
+  }
+}
+
+/* Center Sanctuary Altar */
+.gratitude-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(100%, 78rem);
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Arabic Calligraphy Header */
+.gratitude-arabic {
+  font-family: 'Amiri', 'Times New Roman', serif;
+  font-size: clamp(1.6rem, 3.8vw, 2.6rem);
+  line-height: 1.35;
+  font-weight: 700;
+  color: var(--gold);
+  margin: 0 0 0.45rem;
+  letter-spacing: 0.02em;
+  text-shadow: 0 0 16px var(--gold-glow);
+  direction: rtl;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+  user-select: none;
+}
+
+.gratitude-arabic:hover {
+  transform: scale(1.03);
+  text-shadow: 0 0 28px var(--gold-glow);
+}
+
+body.is-embedded .gratitude-arabic {
+  font-size: clamp(1.25rem, 3vw, 1.8rem);
+  margin-bottom: 0.2rem;
+}
+
+/* Devotional Kicker */
+.gratitude-kicker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  margin: 0 0 0.65rem;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.gratitude-kicker::before,
+.gratitude-kicker::after {
+  width: clamp(1.25rem, 5vw, 3rem);
+  height: 1px;
+  flex: 0 0 auto;
+  background: linear-gradient(90deg, transparent, var(--gold));
+  content: "";
+}
+
+.gratitude-kicker::after {
+  transform: scaleX(-1);
+}
+
+body.is-embedded .gratitude-kicker {
+  font-size: 0.64rem;
+  letter-spacing: 0.2em;
+  margin-bottom: 0.35rem;
+}
+
+/* Video-Masked and Gradient Text Elements */
+.video-fill {
+  position: relative;
+  isolation: isolate;
+  color: transparent;
+  background: linear-gradient(110deg, var(--accent) 6%, var(--gold) 50%, var(--accent) 94%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.015em var(--stroke-color);
+  animation: gratitude-text-glow 9s linear infinite;
+}
+
+.video-fill-canvas {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 0.025em var(--stroke-color)) drop-shadow(0 0 0.09em var(--shadow-color));
+  animation: gratitude-video-glow 9s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes gratitude-text-glow {
+  0%, 100% {
+    -webkit-text-stroke-color: var(--stroke-color);
+  }
+  50% {
+    -webkit-text-stroke-color: var(--gold);
+  }
+}
+
+@keyframes gratitude-video-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 0.025em var(--stroke-color)) drop-shadow(0 0 0.09em var(--shadow-color));
+  }
+  50% {
+    filter: drop-shadow(0 0 0.035em var(--gold)) drop-shadow(0 0 0.12em var(--gold-glow));
+  }
+}
+
+/* Main Sacred Title */
+h1#gratitude-title {
+  width: min(100%, 58rem);
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2.5rem, 6.2vw, 4.8rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.06;
+  text-wrap: balance;
+}
+
+body.is-embedded h1#gratitude-title {
+  font-size: clamp(1.9rem, 4.6vw, 3.2rem);
+  line-height: 1.1;
+}
+
+/* Sacred Divider */
+.gratitude-divider {
+  display: flex;
+  width: min(14rem, 44vw);
+  align-items: center;
+  gap: 0.8rem;
+  margin: 0.85rem 0 0.45rem;
+  color: var(--gold);
+  font-size: 0.85rem;
+}
+
+.gratitude-divider::before,
+.gratitude-divider::after {
+  height: 1px;
+  flex: 1;
+  background: var(--border);
+  content: "";
+}
+
+.gratitude-divider .gem {
+  animation: gemPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes gemPulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.15);
+    opacity: 1;
+    filter: drop-shadow(0 0 6px var(--gold));
+  }
+}
+
+body.is-embedded .gratitude-divider {
+  margin: 0.45rem 0 0.3rem;
+}
+
+/* Sacred Words of Praise */
+.gratitude-word {
+  margin: 0;
+  color: var(--gold);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.2rem, 2.6vw, 1.65rem);
+  font-style: italic;
+  letter-spacing: 0.03em;
+  line-height: 1.3;
+}
+
+.gratitude-word .sep {
+  display: inline-block;
+  margin: 0 0.4rem;
+  opacity: 0.5;
+  font-size: 0.8em;
+}
+
+body.is-embedded .gratitude-word {
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+}
+
+/* Poetic Note */
+.gratitude-note {
+  width: min(100%, 42rem);
+  margin: 0.45rem 0 0;
+  color: var(--muted);
+  font-size: clamp(0.85rem, 1.8vw, 0.98rem);
+  line-height: 1.55;
+  text-wrap: balance;
+}
+
+body.is-embedded .gratitude-note {
+  font-size: clamp(0.78rem, 1.6vw, 0.88rem);
+  margin-top: 0.25rem;
+}
+
+/* Interactive "Say Alhamdulillah" Action */
+.gratitude-action-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.6rem;
+}
+
+body.is-embedded .gratitude-action-area {
+  margin-top: 0.8rem;
+}
+
+.dhikr-tap-btn {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--gold);
+  background: linear-gradient(135deg, var(--surface-card), var(--surface));
+  color: var(--ink);
+  font-family: Inter, sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.dhikr-tap-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  border-color: var(--gold-soft);
+  box-shadow: 0 12px 32px var(--gold-glow);
+}
+
+.dhikr-tap-btn:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+.dhikr-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 24px;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: #030807;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+body.is-embedded .dhikr-tap-btn {
+  padding: 0.5rem 1.1rem;
+  font-size: 0.82rem;
+}
+
+/* Floating Sparkle / Heart Particles */
+.spark-particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99;
+  font-size: 1.1rem;
+  user-select: none;
+  animation: floatSpark 1.6s ease-out forwards;
+}
+
+@keyframes floatSpark {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(0.6) rotate(0deg);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translate3d(var(--dx, 20px), -60px, 0) scale(1.15) rotate(15deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--dx2, -30px), -140px, 0) scale(0.7) rotate(35deg);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+  .sanctuary-header {
+    padding: 0.7rem 1rem;
+  }
+  .brand-title {
+    display: none;
+  }
+  .gratitude-kicker {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+  }
+  .header-controls .label-desktop {
+    display: none;
+  }
+}
+
+/* Reduced Motion Mode for Accessibility & Battery Savings */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  #stars-canvas {
+    display: none !important;
+  }
+  main::after,
+  .video-fill,
+  .video-fill-canvas {
+    animation: none !important;
+  }
+}
