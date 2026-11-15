@@ -68,8 +68,8 @@
   <!-- Shared Design System Tokens (Light / Dark / Sepia) -->
   <link rel="stylesheet" href="css/shared-layout.css?v=2026-11-15-search-1">
   <link rel="stylesheet" href="css/tailwind.generated.css?v=2026-11-15-search-1">
-  <link rel="stylesheet" href="css/quran-light.css?v=2026-11-15-1">
-  <link rel="stylesheet" href="css/animated-heart.css">
+  <link rel="stylesheet" href="css/quran-light.css?v=2026-11-15-bg-1">
+  <link rel="stylesheet" href="css/animated-heart.css?v=2026-11-15-bg-1">
 </head>
 
 <body class="bg-bg-canvas font-body-article text-on-surface antialiased min-h-screen flex flex-col pb-32 transition-colors duration-200">
@@ -83,6 +83,16 @@
         <a href="index.html" class="hover:text-primary transition-colors">Home</a>
         <span class="text-border-strong/50">/</span>
         <span class="text-on-surface font-semibold" aria-current="page">The End (Al-Akhirah)</span>
+      </nav>
+
+      <nav aria-label="On this page" class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+        <span class="font-code-mono text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">On this page</span>
+        <div class="flex flex-wrap gap-2">
+          <a href="#end-video" class="inline-flex items-center px-3 py-1.5 rounded-full bg-surface-container-low border border-border-subtle font-ui-interactive text-xs text-on-surface-variant hover:border-primary/50 hover:bg-surface-container hover:text-primary transition-colors">Video reflection</a>
+          <a href="#core-pillars" class="inline-flex items-center px-3 py-1.5 rounded-full bg-surface-container-low border border-border-subtle font-ui-interactive text-xs text-on-surface-variant hover:border-primary/50 hover:bg-surface-container hover:text-primary transition-colors">Key themes</a>
+          <a href="#serene-soul" class="inline-flex items-center px-3 py-1.5 rounded-full bg-surface-container-low border border-border-subtle font-ui-interactive text-xs text-on-surface-variant hover:border-primary/50 hover:bg-surface-container hover:text-primary transition-colors">The serene soul</a>
+          <a href="#noble-conclusion" class="inline-flex items-center px-3 py-1.5 rounded-full bg-surface-container-low border border-border-subtle font-ui-interactive text-xs text-on-surface-variant hover:border-primary/50 hover:bg-surface-container hover:text-primary transition-colors">Supplication</a>
+        </div>
       </nav>
 
       <!-- Hero Section: The Ultimate Return -->
@@ -115,7 +125,7 @@
           <div class="flex flex-col gap-4 rounded-xl bg-surface-container-low p-6 sm:p-8 border border-border-subtle">
             <div class="flex items-center justify-between text-xs font-code-mono text-primary font-semibold">
               <span class="flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-[16px]">menu_book</span>
+                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">menu_book</span>
                 <span>SURAH AN-NAJM (53:42)</span>
               </span>
               <span class="text-on-surface-variant">JUZ 27</span>
@@ -138,62 +148,68 @@
       </section>
 
       <!-- Cinematic Visual Reflection: The End (Al-Akhirah) -->
-      <section aria-labelledby="end-video-title" class="rounded-2xl border border-border-subtle bg-surface-container-lowest overflow-hidden shadow-md">
+      <section id="end-video" aria-labelledby="end-video-title" class="rounded-2xl border border-border-subtle bg-surface-container-lowest overflow-hidden shadow-md">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
-          <div class="lg:col-span-6 p-6 sm:p-8 lg:p-10 flex flex-col justify-center gap-4">
-            <div class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-primary quran-light-icon" aria-hidden="true">play_circle</span>
-              <span class="font-code-mono text-caption-meta text-primary font-semibold">CINEMATIC VISUAL REFLECTION</span>
-            </div>
-            <div class="flex items-center gap-3 flex-wrap sm:flex-nowrap">
-              <h2 class="font-heading-section text-2xl sm:text-3xl font-bold text-on-surface tracking-tight" id="end-video-title">
-                Visualizing the Journey's End
-              </h2>
-              <a href="animated-heart-emoji.html" class="heart-title-link" title="Animated Movie Heart Emoji — View Standalone" aria-label="Animated Movie Heart Emoji">
-                <span class="heart-glow-mini" aria-hidden="true"></span>
-                <span class="heart-sparkle-mini one select-none" aria-hidden="true">✦</span>
-                <span class="heart-sparkle-mini two select-none" aria-hidden="true">✧</span>
-                <svg class="heart-emoji-inline select-none" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <defs>
-                    <linearGradient id="title-heart-grad" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0%" stop-color="#FF738A" />
-                      <stop offset="55%" stop-color="#F8325F" />
-                      <stop offset="100%" stop-color="#BD174C" />
-                    </linearGradient>
-                    <clipPath id="title-heart-clip">
-                      <path d="M120 216C96 196 21 143 21 84c0-32 23-54 52-54 21 0 37 11 47 28 10-17 26-28 47-28 29 0 52 22 52 54 0 59-75 112-99 132Z" />
-                    </clipPath>
-                  </defs>
-                  <path d="M120 216C96 196 21 143 21 84c0-32 23-54 52-54 21 0 37 11 47 28 10-17 26-28 47-28 29 0 52 22 52 54 0 59-75 112-99 132Z" fill="url(#title-heart-grad)" stroke="#AD1448" stroke-width="3" />
-                  <path d="M42 77c5-20 18-29 34-29" fill="none" stroke="white" stroke-opacity=".55" stroke-width="8" stroke-linecap="round" />
-                  <g clip-path="url(#title-heart-clip)" transform="rotate(-12 120 120)">
-                    <rect x="9" y="110" width="224" height="45" rx="3" fill="#2E2441" />
-                    <rect x="9" y="117" width="224" height="31" fill="#FFF5E8" />
-                    <path d="M52 117v31m45-31v31m45-31v31m45-31v31" stroke="#2E2441" stroke-width="5" />
-                    <path d="M20 122h12m33 0h12m33 0h12m33 0h12m33 0h12M20 143h12m33 0h12m33 0h12m33 0h12m33 0h12" stroke="#2E2441" stroke-width="4" />
-                  </g>
-                  <path d="m120 78 5 12 13 1-10 8 3 13-11-7-11 7 3-13-10-8 13-1Z" fill="#FFF4C6" />
-                </svg>
-              </a>
-            </div>
-            <p class="font-body-lead text-sm sm:text-base text-on-surface-variant leading-relaxed">
-              A contemplative visual meditation on the passage of time, the ultimate destination of the soul, and the eternal peace of the Hereafter (*Al-Akhirah*). Designed for quiet contemplation and reflection.
-            </p>
-            <div class="pt-2 flex items-center gap-4 text-xs font-code-mono text-on-surface-variant flex-wrap">
-              <span class="flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-[16px] text-primary">videocam</span>
-                <span>HD 1080p MP4</span>
-              </span>
-              <span>•</span>
-              <span class="flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-[16px] text-primary">high_quality</span>
-                <span>Master Visual Edition</span>
-              </span>
-              <span>•</span>
-              <a href="animated-heart-emoji.html" class="inline-flex items-center gap-1 text-primary hover:underline font-semibold" title="View standalone animated movie heart">
-                <span>Movie Heart</span>
-                <span class="material-symbols-outlined text-[14px]">open_in_new</span>
-              </a>
+          <div class="end-video-copy-panel lg:col-span-6 p-6 sm:p-8 lg:p-10">
+            <video class="end-video-background" autoplay muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1">
+              <source src="assets/videos/ambient-end-loop.mp4" type="video/mp4">
+            </video>
+            <div class="end-video-overlay" aria-hidden="true"></div>
+            <div class="end-video-copy-content flex flex-col justify-center gap-4">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary quran-light-icon" aria-hidden="true">play_circle</span>
+                <span class="font-code-mono text-caption-meta text-primary font-semibold">CINEMATIC VISUAL REFLECTION</span>
+              </div>
+              <div class="flex items-center gap-3 flex-wrap sm:flex-nowrap">
+                <h2 class="font-heading-section text-2xl sm:text-3xl font-bold text-on-surface tracking-tight" id="end-video-title">
+                  Visualizing the Journey's End
+                </h2>
+                <a href="animated-heart-emoji.html" class="heart-title-link" title="Animated Movie Heart Emoji — View Standalone" aria-label="Animated Movie Heart Emoji">
+                  <span class="heart-glow-mini" aria-hidden="true"></span>
+                  <span class="heart-sparkle-mini one select-none" aria-hidden="true">✦</span>
+                  <span class="heart-sparkle-mini two select-none" aria-hidden="true">✧</span>
+                  <svg class="heart-emoji-inline select-none" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="title-heart-grad" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#FF738A" />
+                        <stop offset="55%" stop-color="#F8325F" />
+                        <stop offset="100%" stop-color="#BD174C" />
+                      </linearGradient>
+                      <clipPath id="title-heart-clip">
+                        <path d="M120 216C96 196 21 143 21 84c0-32 23-54 52-54 21 0 37 11 47 28 10-17 26-28 47-28 29 0 52 22 52 54 0 59-75 112-99 132Z" />
+                      </clipPath>
+                    </defs>
+                    <path d="M120 216C96 196 21 143 21 84c0-32 23-54 52-54 21 0 37 11 47 28 10-17 26-28 47-28 29 0 52 22 52 54 0 59-75 112-99 132Z" fill="url(#title-heart-grad)" stroke="#AD1448" stroke-width="3" />
+                    <path d="M42 77c5-20 18-29 34-29" fill="none" stroke="white" stroke-opacity=".55" stroke-width="8" stroke-linecap="round" />
+                    <g clip-path="url(#title-heart-clip)" transform="rotate(-12 120 120)">
+                      <rect x="9" y="110" width="224" height="45" rx="3" fill="#2E2441" />
+                      <rect x="9" y="117" width="224" height="31" fill="#FFF5E8" />
+                      <path d="M52 117v31m45-31v31m45-31v31m45-31v31" stroke="#2E2441" stroke-width="5" />
+                      <path d="M20 122h12m33 0h12m33 0h12m33 0h12m33 0h12M20 143h12m33 0h12m33 0h12m33 0h12m33 0h12" stroke="#2E2441" stroke-width="4" />
+                    </g>
+                    <path d="m120 78 5 12 13 1-10 8 3 13-11-7-11 7 3-13-10-8 13-1Z" fill="#FFF4C6" />
+                  </svg>
+                </a>
+              </div>
+              <p class="font-body-lead text-sm sm:text-base text-on-surface-variant leading-relaxed">
+                A contemplative visual meditation on the passage of time, the ultimate destination of the soul, and the eternal peace of the Hereafter (*Al-Akhirah*). Designed for quiet contemplation and reflection.
+              </p>
+              <div class="pt-2 flex items-center gap-4 text-xs font-code-mono text-on-surface-variant flex-wrap">
+                <span class="flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-[16px] text-primary" aria-hidden="true">videocam</span>
+                  <span>HD 1080p MP4</span>
+                </span>
+                <span>•</span>
+                <span class="flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-[16px] text-primary" aria-hidden="true">high_quality</span>
+                  <span>Master Visual Edition</span>
+                </span>
+                <span>•</span>
+                <a href="animated-heart-emoji.html" class="inline-flex items-center gap-1 text-primary hover:underline font-semibold" title="View standalone animated movie heart">
+                  <span>Movie Heart</span>
+                  <span class="material-symbols-outlined text-[14px]" aria-hidden="true">open_in_new</span>
+                </a>
+              </div>
             </div>
           </div>
           <div class="lg:col-span-6 flex items-center justify-center bg-black p-4 sm:p-6 lg:p-8">
@@ -208,12 +224,12 @@
 
 
       <!-- Three Pillars of Contemplation -->
-      <section class="grid grid-cols-1 md:grid-cols-3 gap-6" aria-label="Core Pillars of the End">
+      <section id="core-pillars" class="grid grid-cols-1 md:grid-cols-3 gap-6" aria-label="Core Pillars of the End">
         <!-- Card 1: Husn al-Khatimah -->
         <div class="rounded-xl bg-surface border border-border-subtle p-6 flex flex-col justify-between gap-4 shadow-xs hover:border-primary/50 hover:shadow-md transition-all">
           <div class="flex flex-col gap-3">
             <div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center font-bold">
-              <span class="material-symbols-outlined text-[20px]">verified</span>
+              <span class="material-symbols-outlined text-[20px]" aria-hidden="true">verified</span>
             </div>
             <h2 class="font-subheading-card text-lg font-bold text-on-surface">
               Husn al-Khātimah
@@ -232,7 +248,7 @@
         <div class="rounded-xl bg-surface border border-border-subtle p-6 flex flex-col justify-between gap-4 shadow-xs hover:border-primary/50 hover:shadow-md transition-all">
           <div class="flex flex-col gap-3">
             <div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center font-bold">
-              <span class="material-symbols-outlined text-[20px]">shield</span>
+              <span class="material-symbols-outlined text-[20px]" aria-hidden="true">shield</span>
             </div>
             <h2 class="font-subheading-card text-lg font-bold text-on-surface">
               Dār us-Salām
@@ -251,7 +267,7 @@
         <div class="rounded-xl bg-surface border border-border-subtle p-6 flex flex-col justify-between gap-4 shadow-xs hover:border-primary/50 hover:shadow-md transition-all">
           <div class="flex flex-col gap-3">
             <div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center font-bold">
-              <span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+              <span class="material-symbols-outlined text-[20px]" aria-hidden="true">auto_awesome</span>
             </div>
             <h2 class="font-subheading-card text-lg font-bold text-on-surface">
               The Final Supplication
@@ -268,7 +284,7 @@
       </section>
 
       <!-- Sacred Spotlight: The Tranquil Soul (Surah Al-Fajr) -->
-      <section class="rounded-2xl border border-border-subtle bg-surface-container-lowest p-6 sm:p-10 shadow-md">
+      <section id="serene-soul" class="rounded-2xl border border-border-subtle bg-surface-container-lowest p-6 sm:p-10 shadow-md">
         <div class="flex flex-col gap-6">
           <div class="flex items-center justify-between flex-wrap gap-4 border-b border-border-subtle pb-4">
             <div>
@@ -278,8 +294,8 @@
               </h2>
             </div>
             <button id="copyFajrBtn" type="button" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-ui-interactive transition-colors cursor-pointer" aria-label="Copy Surah Al-Fajr verses">
-              <span class="material-symbols-outlined text-[16px]">content_copy</span>
-              <span id="copyFajrLabel">Copy Verses</span>
+              <span class="material-symbols-outlined text-[16px]" aria-hidden="true">content_copy</span>
+              <span id="copyFajrLabel" aria-live="polite" aria-atomic="true">Copy Verses</span>
             </button>
           </div>
 
@@ -300,10 +316,10 @@
       </section>
 
       <!-- Prophetic Supplication for a Blessed End -->
-      <section class="rounded-2xl border border-border-subtle bg-surface p-6 sm:p-10 shadow-xs">
+      <section id="noble-conclusion" class="rounded-2xl border border-border-subtle bg-surface p-6 sm:p-10 shadow-xs">
         <div class="flex flex-col gap-4 max-w-3xl">
           <div class="flex items-center gap-2 text-primary">
-            <span class="material-symbols-outlined">favorite</span>
+            <span class="material-symbols-outlined" aria-hidden="true">favorite</span>
             <span class="font-caption-meta text-xs uppercase font-bold tracking-wider">Prophetic Supplication</span>
           </div>
 
@@ -322,11 +338,11 @@
 
           <div class="flex items-center gap-3 pt-2">
             <button id="copyDuaBtn" type="button" class="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-on-primary hover:bg-primary-container text-xs font-ui-interactive font-medium transition-all shadow-xs cursor-pointer">
-              <span class="material-symbols-outlined text-[16px]">content_copy</span>
-              <span id="copyDuaLabel">Copy Supplication</span>
+              <span class="material-symbols-outlined text-[16px]" aria-hidden="true">content_copy</span>
+              <span id="copyDuaLabel" aria-live="polite" aria-atomic="true">Copy Supplication</span>
             </button>
             <a href="thank-you.html" class="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-ui-interactive transition-colors">
-              <span class="material-symbols-outlined text-[16px]">volunteer_activism</span>
+              <span class="material-symbols-outlined text-[16px]" aria-hidden="true">volunteer_activism</span>
               <span>Sanctuary of Gratitude</span>
             </a>
           </div>
@@ -339,7 +355,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <a href="quran.html" class="p-4 rounded-xl bg-surface border border-border-subtle hover:border-primary/50 hover:shadow-sm transition-all flex flex-col justify-between">
             <div>
-              <span class="material-symbols-outlined text-primary text-[22px]">menu_book</span>
+              <span class="material-symbols-outlined text-primary text-[22px]" aria-hidden="true">menu_book</span>
               <h3 class="font-ui-interactive text-sm font-bold text-on-surface mt-2">114 Surahs Directory</h3>
               <p class="font-caption-meta text-xs text-on-surface-variant mt-1">Explore all chapters with Uthmani text and recitations.</p>
             </div>
@@ -348,7 +364,7 @@
 
           <a href="quran-verses.html" class="p-4 rounded-xl bg-surface border border-border-subtle hover:border-primary/50 hover:shadow-sm transition-all flex flex-col justify-between">
             <div>
-              <span class="material-symbols-outlined text-primary text-[22px]">auto_stories</span>
+              <span class="material-symbols-outlined text-primary text-[22px]" aria-hidden="true">auto_stories</span>
               <h3 class="font-ui-interactive text-sm font-bold text-on-surface mt-2">108 Master Verses</h3>
               <p class="font-caption-meta text-xs text-on-surface-variant mt-1">Classically verified concordance across 62 tafsir sources.</p>
             </div>
@@ -357,7 +373,7 @@
 
           <a href="HadithQudsi.html" class="p-4 rounded-xl bg-surface border border-border-subtle hover:border-primary/50 hover:shadow-sm transition-all flex flex-col justify-between">
             <div>
-              <span class="material-symbols-outlined text-primary text-[22px]">sound_detection_loud_sound</span>
+              <span class="material-symbols-outlined text-primary text-[22px]" aria-hidden="true">sound_detection_loud_sound</span>
               <h3 class="font-ui-interactive text-sm font-bold text-on-surface mt-2">Hadith Qudsi Experience</h3>
               <p class="font-caption-meta text-xs text-on-surface-variant mt-1">Kinetic typography and ambient celestial soundscape.</p>
             </div>
@@ -366,7 +382,7 @@
 
           <a href="thank-you.html" class="p-4 rounded-xl bg-surface border border-border-subtle hover:border-primary/50 hover:shadow-sm transition-all flex flex-col justify-between">
             <div>
-              <span class="material-symbols-outlined text-primary text-[22px]">favorite</span>
+              <span class="material-symbols-outlined text-primary text-[22px]" aria-hidden="true">favorite</span>
               <h3 class="font-ui-interactive text-sm font-bold text-on-surface mt-2">Thank You, Allah</h3>
               <p class="font-caption-meta text-xs text-on-surface-variant mt-1">Shukriya sanctuary: gratitude for every breath and heartbeat.</p>
             </div>
@@ -436,18 +452,46 @@
         if (!btn || !label) return;
         var originalText = label.textContent;
 
+        function legacyCopy() {
+          var textarea = document.createElement('textarea');
+          textarea.value = textToCopy;
+          textarea.setAttribute('readonly', '');
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+          var copied = false;
+          try {
+            copied = document.execCommand('copy');
+          } catch (e) {
+            copied = false;
+          }
+          textarea.remove();
+          return copied;
+        }
+
+        function showCopyResult(copied) {
+          label.textContent = copied ? 'Copied!' : 'Copy failed';
+          setTimeout(function () {
+            label.textContent = originalText;
+          }, 2000);
+        }
+
         btn.addEventListener('click', function () {
-          navigator.clipboard.writeText(textToCopy).then(function () {
-            label.textContent = 'Copied!';
-            setTimeout(function () {
-              label.textContent = originalText;
-            }, 2000);
-          }).catch(function () {
-            label.textContent = 'Copied!';
-            setTimeout(function () {
-              label.textContent = originalText;
-            }, 2000);
-          });
+          if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+            try {
+              navigator.clipboard.writeText(textToCopy).then(function () {
+                showCopyResult(true);
+              }, function () {
+                showCopyResult(legacyCopy());
+              });
+              return;
+            } catch (e) {
+              showCopyResult(legacyCopy());
+              return;
+            }
+          }
+          showCopyResult(legacyCopy());
         });
       }
 

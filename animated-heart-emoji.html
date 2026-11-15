@@ -14,6 +14,21 @@
   <link rel="icon" href="assets/icons/icon-192.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
 
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('heynuo-theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = ['light', 'dark', 'sepia'].indexOf(savedTheme) !== -1
+          ? savedTheme
+          : (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+
   <!-- Open Graph -->
   <meta property="og:title" content="Animated Movie Heart Emoji | Ruqyah.io">
   <meta property="og:description"
@@ -29,7 +44,7 @@
     href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet">
 
-  <link rel="stylesheet" href="css/animated-heart.css">
+  <link rel="stylesheet" href="css/animated-heart.css?v=2026-11-15-bg-1">
 
   <style>
     * {
@@ -38,11 +53,49 @@
       padding: 0;
     }
 
+    :root {
+      color-scheme: light;
+      --page-background: radial-gradient(circle at 50% 30%, rgba(255, 241, 242, 0.68) 0%, rgba(241, 237, 255, 0.74) 48%, rgba(248, 250, 252, 0.82) 100%);
+      --page-foreground: #332742;
+      --page-muted: #64748b;
+      --page-surface: rgba(255, 255, 255, 0.78);
+      --page-surface-hover: rgba(255, 255, 255, 0.96);
+      --page-border: rgba(51, 39, 66, 0.12);
+      --page-accent: #6d3c88;
+      --page-accent-border: rgba(139, 92, 246, 0.28);
+    }
+
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --page-background: radial-gradient(circle at 50% 30%, rgba(36, 27, 46, 0.68) 0%, rgba(21, 18, 29, 0.76) 58%, rgba(11, 10, 16, 0.84) 100%);
+      --page-foreground: #f1f0f5;
+      --page-muted: #a7a1b2;
+      --page-surface: rgba(30, 27, 46, 0.84);
+      --page-surface-hover: rgba(48, 41, 69, 0.96);
+      --page-border: rgba(255, 255, 255, 0.13);
+      --page-accent: #d8b4fe;
+      --page-accent-border: rgba(167, 139, 250, 0.34);
+    }
+
+    html[data-theme="sepia"] {
+      --page-background: radial-gradient(circle at 50% 30%, rgba(255, 244, 227, 0.7) 0%, rgba(243, 232, 213, 0.76) 50%, rgba(238, 227, 209, 0.84) 100%);
+      --page-foreground: #3e2d20;
+      --page-muted: #74604e;
+      --page-surface: rgba(255, 250, 240, 0.84);
+      --page-surface-hover: rgba(255, 252, 246, 0.98);
+      --page-border: rgba(62, 45, 32, 0.16);
+      --page-accent: #8b4c63;
+      --page-accent-border: rgba(139, 76, 99, 0.3);
+    }
+
     body {
       min-height: 100vh;
+      min-height: 100dvh;
       font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: radial-gradient(circle at 50% 30%, #e0f2fe 0%, #dbeafe 45%, #eff6ff 100%);
-      color: #332742;
+      position: relative;
+      isolation: isolate;
+      background: transparent;
+      color: var(--page-foreground);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -51,22 +104,31 @@
       transition: background 0.3s ease, color 0.3s ease;
     }
 
-    @media (prefers-color-scheme: dark) {
-      body:not([data-theme="light"]) {
-        background: radial-gradient(circle at 50% 30%, #1e1b2e 0%, #13111c 60%, #0a0910 100%);
-        color: #f1f0f5;
-      }
+    body::before {
+      content: "";
+      position: fixed;
+      z-index: -1;
+      inset: 0;
+      background: var(--page-background);
+      pointer-events: none;
     }
 
-    body[data-theme="dark"] {
-      background: radial-gradient(circle at 50% 30%, #1e1b2e 0%, #13111c 60%, #0a0910 100%);
-      color: #f1f0f5;
+    .heart-page-background-video {
+      position: fixed;
+      z-index: -2;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.58;
+      filter: blur(1.5px) saturate(0.72) brightness(0.82);
+      pointer-events: none;
     }
 
     header.top-nav {
       width: 100%;
       max-width: 900px;
-      padding: 20px 24px;
+      padding: max(16px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) 16px max(24px, env(safe-area-inset-left));
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -78,29 +140,25 @@
       gap: 8px;
       padding: 8px 16px;
       border-radius: 9999px;
-      background: rgba(255, 255, 255, 0.75);
+      background: var(--page-surface);
       backdrop-filter: blur(8px);
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      color: #44345b;
+      border: 1px solid var(--page-border);
+      color: var(--page-foreground);
       font-size: 14px;
       font-weight: 600;
       text-decoration: none;
       transition: transform 0.2s, background 0.2s;
     }
 
-    body[data-theme="dark"] .back-btn {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.12);
-      color: #e2e8f0;
-    }
-
     .back-btn:hover {
       transform: translateX(-2px);
-      background: rgba(255, 255, 255, 0.95);
+      background: var(--page-surface-hover);
     }
 
-    body[data-theme="dark"] .back-btn:hover {
-      background: rgba(255, 255, 255, 0.16);
+    .back-btn:focus-visible,
+    .control-btn:focus-visible {
+      outline: 3px solid var(--page-accent);
+      outline-offset: 3px;
     }
 
     main#emoji-app {
@@ -117,15 +175,11 @@
 
     .eyebrow {
       margin: 0 0 10px;
-      color: #8b5cf6;
+      color: var(--page-accent);
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-    }
-
-    body[data-theme="dark"] .eyebrow {
-      color: #a78bfa;
     }
 
     h1 {
@@ -137,13 +191,9 @@
 
     .subtitle {
       margin: 10px 0 20px;
-      color: #64748b;
+      color: var(--page-muted);
       font-size: 16px;
       max-width: 380px;
-    }
-
-    body[data-theme="dark"] .subtitle {
-      color: #94a3b8;
     }
 
     .control-btn {
@@ -154,24 +204,17 @@
       min-width: 160px;
       padding: 13px 24px;
       margin-top: 18px;
-      border: 1px solid rgba(139, 92, 246, 0.25);
+      border: 1px solid var(--page-accent-border);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.88);
+      background: var(--page-surface);
       backdrop-filter: blur(12px);
       box-shadow: 0 10px 25px rgba(80, 52, 112, 0.1);
-      color: #5b21b6;
+      color: var(--page-accent);
       font-family: inherit;
       font-size: 14px;
       font-weight: 700;
       cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-    }
-
-    body[data-theme="dark"] .control-btn {
-      background: rgba(30, 27, 46, 0.85);
-      border-color: rgba(167, 139, 250, 0.3);
-      color: #c4b5fd;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     }
 
     .control-btn:hover {
@@ -190,16 +233,11 @@
       max-width: 900px;
       padding: 24px;
       font-size: 13px;
-      color: #64748b;
+      color: var(--page-muted);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-top: 1px solid rgba(0, 0, 0, 0.06);
-    }
-
-    body[data-theme="dark"] footer.site-footer {
-      border-color: rgba(255, 255, 255, 0.08);
-      color: #94a3b8;
+      border-top: 1px solid var(--page-border);
     }
 
     footer.site-footer a {
@@ -207,10 +245,64 @@
       text-decoration: underline;
       margin-left: 12px;
     }
+
+    @media (max-width: 520px) {
+      header.top-nav {
+        padding-left: max(12px, env(safe-area-inset-left));
+        padding-right: max(12px, env(safe-area-inset-right));
+      }
+
+      .back-btn {
+        gap: 6px;
+        padding: 8px 12px;
+        font-size: 13px;
+      }
+
+      main#emoji-app {
+        padding: 16px 16px 32px;
+      }
+
+      footer.site-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 18px max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+      }
+
+      footer.site-footer nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      footer.site-footer a {
+        margin-left: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body,
+      .back-btn,
+      .control-btn {
+        transition: none;
+      }
+
+      .heart-page-background-video {
+        display: none;
+      }
+
+      .back-btn:hover,
+      .control-btn:hover {
+        transform: none;
+      }
+    }
   </style>
 </head>
 
 <body>
+  <video class="heart-page-background-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1">
+    <source src="assets/videos/ambient-end-loop.mp4" type="video/mp4">
+  </video>
   <header class="top-nav">
     <a href="end.html" class="back-btn" title="Back to The End section">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -226,9 +318,9 @@
   </header>
 
   <main id="emoji-app" class="heart-app">
-    <p class="eyebrow">Heart </p>
-    <h1 id="page-title"> Heart</h1>
-    <p class="subtitle"> Heart </p>
+    <p class="eyebrow">A little love in motion</p>
+    <h1 id="page-title">A Heart in Motion</h1>
+    <p class="subtitle">A cinematic heart, floating gently with a touch of sparkle.</p>
 
     <div id="emoji-stage" class="heart-stage" role="img"
       aria-label="Animated red movie heart with a film-strip ribbon and sparkling stars">
@@ -266,7 +358,7 @@
       <div class="heart-shadow" aria-hidden="true"></div>
     </div>
 
-    <button id="animation-toggle" class="control-btn" type="button" aria-pressed="false">
+    <button id="animation-toggle" class="control-btn" type="button">
       <span id="btn-icon" aria-hidden="true">
         <!-- Pause Icon -->
         <svg viewBox="0 0 24 24">
@@ -274,7 +366,7 @@
           <rect x="14" y="4" width="4" height="16" rx="1"></rect>
         </svg>
       </span>
-      <span id="toggle-label">Pause animation</span>
+      <span id="toggle-label" aria-live="polite" aria-atomic="true">Pause animation</span>
     </button>
   </main>
 
@@ -293,15 +385,22 @@
       const label = document.getElementById('toggle-label');
       const iconSpan = document.getElementById('btn-icon');
       const app = document.getElementById('emoji-app');
+      const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       const pauseIconSvg = '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg>';
       const playIconSvg = '<svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
 
-      toggle.addEventListener('click', function () {
-        const isPaused = app.classList.toggle('paused');
-        toggle.setAttribute('aria-pressed', String(isPaused));
+      function setPaused(isPaused) {
+        app.classList.toggle('paused', isPaused);
+        app.classList.toggle('motion-enabled', reduceMotion && !isPaused);
         label.textContent = isPaused ? 'Play animation' : 'Pause animation';
         iconSpan.innerHTML = isPaused ? playIconSvg : pauseIconSvg;
+      }
+
+      if (reduceMotion) setPaused(true);
+
+      toggle.addEventListener('click', function () {
+        setPaused(!app.classList.contains('paused'));
       });
     })();
   </script>
