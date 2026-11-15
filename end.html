@@ -69,6 +69,7 @@
   <link rel="stylesheet" href="css/shared-layout.css?v=2026-11-15-search-1">
   <link rel="stylesheet" href="css/tailwind.generated.css?v=2026-11-15-search-1">
   <link rel="stylesheet" href="css/quran-light.css?v=2026-11-15-1">
+  <link rel="stylesheet" href="css/animated-heart.css">
 </head>
 
 <body class="bg-bg-canvas font-body-article text-on-surface antialiased min-h-screen flex flex-col pb-32 transition-colors duration-200">
@@ -160,6 +161,11 @@
                 <span class="material-symbols-outlined text-[16px] text-primary">high_quality</span>
                 <span>Master Visual Edition</span>
               </span>
+              <span>•</span>
+              <a href="animated-heart-emoji.html" class="inline-flex items-center gap-1 text-primary hover:underline font-semibold" title="View standalone animated movie heart">
+                <span>Movie Heart</span>
+                <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+              </a>
             </div>
           </div>
           <div class="lg:col-span-6 flex items-center justify-center bg-black p-4 sm:p-6 lg:p-8">
@@ -167,6 +173,58 @@
               <source src="assets/videos/End.mp4" type="video/mp4">
               Your browser does not support in-page video playback. <a href="assets/videos/End.mp4" class="text-primary underline">Download the video</a> instead.
             </video>
+          </div>
+        </div>
+      </section>
+
+      <!-- Animated Movie Heart Reflection (Lights, camera, love) -->
+      <section aria-labelledby="movie-heart-heading" class="rounded-2xl border border-border-subtle bg-surface-container-lowest overflow-hidden shadow-md p-6 sm:p-10 flex flex-col items-center justify-center relative">
+        <div class="max-w-xl mx-auto flex flex-col items-center text-center">
+          <p class="font-code-mono text-xs font-bold text-primary tracking-widest uppercase mb-1">Lights, camera, love</p>
+          <h2 id="movie-heart-heading" class="font-heading-section text-2xl sm:text-3xl font-bold text-on-surface tracking-tight">Movie Heart</h2>
+          <p class="font-body-lead text-sm sm:text-base text-on-surface-variant mt-1 mb-4">A little love story, on repeat — pure devotion and peace at the journey's completion.</p>
+
+          <div id="end-emoji-app" class="heart-app flex flex-col items-center">
+            <div class="heart-stage" role="img" aria-label="Animated red movie heart with a film-strip ribbon and sparkling stars">
+              <div class="heart-glow" aria-hidden="true"></div>
+              <span class="heart-sparkle one select-none" aria-hidden="true">✦</span>
+              <span class="heart-sparkle two select-none" aria-hidden="true">✧</span>
+              <span class="heart-sparkle three select-none" aria-hidden="true">✦</span>
+
+              <svg class="heart-emoji select-none" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                  <linearGradient id="end-heart-grad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#FF738A" />
+                    <stop offset="55%" stop-color="#F8325F" />
+                    <stop offset="100%" stop-color="#BD174C" />
+                  </linearGradient>
+                  <clipPath id="end-heart-clip">
+                    <path d="M120 216C96 196 21 143 21 84c0-32 23-54 52-54 21 0 37 11 47 28 10-17 26-28 47-28 29 0 52 22 52 54 0 59-75 112-99 132Z" />
+                  </clipPath>
+                </defs>
+                <path d="M120 216C96 196 21 143 21 84c0-32 23-54 52-54 21 0 37 11 47 28 10-17 26-28 47-28 29 0 52 22 52 54 0 59-75 112-99 132Z" fill="url(#end-heart-grad)" stroke="#AD1448" stroke-width="3" />
+                <path d="M42 77c5-20 18-29 34-29" fill="none" stroke="white" stroke-opacity=".55" stroke-width="8" stroke-linecap="round" />
+                <g clip-path="url(#end-heart-clip)" transform="rotate(-12 120 120)">
+                  <rect x="9" y="110" width="224" height="45" rx="3" fill="#2E2441" />
+                  <rect x="9" y="117" width="224" height="31" fill="#FFF5E8" />
+                  <path d="M52 117v31m45-31v31m45-31v31m45-31v31" stroke="#2E2441" stroke-width="5" />
+                  <path d="M20 122h12m33 0h12m33 0h12m33 0h12m33 0h12M20 143h12m33 0h12m33 0h12m33 0h12m33 0h12" stroke="#2E2441" stroke-width="4" />
+                </g>
+                <path d="m120 78 5 12 13 1-10 8 3 13-11-7-11 7 3-13-10-8 13-1Z" fill="#FFF4C6" />
+              </svg>
+              <div class="heart-shadow" aria-hidden="true"></div>
+            </div>
+
+            <div class="flex items-center gap-3 mt-4 flex-wrap justify-center">
+              <button id="end-animation-toggle" class="heart-control border border-border-subtle bg-surface text-on-surface shadow-xs hover:shadow-md transition-all" type="button" aria-pressed="false">
+                <span id="end-toggle-icon" class="material-symbols-outlined text-[18px]">pause</span>
+                <span id="end-toggle-label">Pause animation</span>
+              </button>
+              <a href="animated-heart-emoji.html" class="heart-control border border-border-subtle bg-surface-container-low text-on-surface-variant hover:text-primary transition-all text-xs" title="Open standalone animated heart emoji">
+                <span>Standalone Page</span>
+                <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -420,6 +478,20 @@
 
       var duaText = "اللَّهُمَّ اجْعَلْ خَيْرَ عُمْرِي آخِرَهُ ، وَخَيْرَ عَمَلِي خَوَاتِيمَهُ ، وَخَيْرَ أَيَّامِي يَوْمَ أَلْقَاكَ فِيهِ\n\n“O Allah, make the best of my life its end, the best of my deeds their conclusion, and the best of my days the Day I meet You.”";
       setupCopy('copyDuaBtn', 'copyDuaLabel', duaText);
+
+      // Animated Heart Emoji Animation Play/Pause Toggle
+      var heartToggle = document.getElementById('end-animation-toggle');
+      var heartApp = document.getElementById('end-emoji-app');
+      var heartLabel = document.getElementById('end-toggle-label');
+      var heartIcon = document.getElementById('end-toggle-icon');
+      if (heartToggle && heartApp) {
+        heartToggle.addEventListener('click', function () {
+          var isPaused = heartApp.classList.toggle('paused');
+          heartToggle.setAttribute('aria-pressed', String(isPaused));
+          if (heartLabel) heartLabel.textContent = isPaused ? 'Play animation' : 'Pause animation';
+          if (heartIcon) heartIcon.textContent = isPaused ? 'play_arrow' : 'pause';
+        });
+      }
     })();
   </script>
 

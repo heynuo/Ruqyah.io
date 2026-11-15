@@ -1,0 +1,159 @@
+/* Animated Movie Heart Emoji Component Styles */
+.heart-stage {
+  width: min(100%, 420px);
+  height: 340px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  margin: 0 auto;
+}
+
+.heart-glow {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: #ffe8a8;
+  filter: blur(65px);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+[data-theme="dark"] .heart-glow {
+  background: #f43f5e;
+  opacity: 0.25;
+  filter: blur(75px);
+}
+
+.heart-emoji {
+  width: min(58vw, 220px);
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+  animation: heart-bob 2.8s ease-in-out infinite;
+  filter: drop-shadow(0 20px 18px rgba(165, 111, 41, 0.2));
+}
+
+[data-theme="dark"] .heart-emoji {
+  filter: drop-shadow(0 20px 22px rgba(0, 0, 0, 0.6));
+}
+
+.heart-sparkle {
+  position: absolute;
+  color: #e4a649;
+  font-size: 26px;
+  line-height: 1;
+  animation: heart-twinkle 2.2s ease-in-out infinite;
+  user-select: none;
+  pointer-events: none;
+}
+
+.heart-sparkle.one {
+  top: 48px;
+  left: 42px;
+}
+
+.heart-sparkle.two {
+  top: 76px;
+  right: 40px;
+  font-size: 18px;
+  animation-delay: 0.7s;
+  color: #ae91e5;
+}
+
+.heart-sparkle.three {
+  bottom: 70px;
+  left: 65px;
+  font-size: 17px;
+  animation-delay: 1.3s;
+  color: #ae91e5;
+}
+
+.heart-shadow {
+  position: absolute;
+  bottom: 32px;
+  width: 140px;
+  height: 20px;
+  border-radius: 50%;
+  background: #9c78ac;
+  opacity: 0.16;
+  filter: blur(10px);
+  animation: heart-shadow-pulse 2.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+[data-theme="dark"] .heart-shadow {
+  background: #000;
+  opacity: 0.4;
+}
+
+.heart-control {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.heart-control:hover {
+  transform: translateY(-2px);
+}
+
+.heart-control:focus-visible {
+  outline: 3px solid #f43f5e;
+  outline-offset: 3px;
+}
+
+/* Paused state */
+.heart-app.paused .heart-emoji,
+.heart-app.paused .heart-sparkle,
+.heart-app.paused .heart-shadow {
+  animation-play-state: paused;
+}
+
+@keyframes heart-bob {
+  0%, 100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-18px) rotate(3deg);
+  }
+}
+
+@keyframes heart-twinkle {
+  0%, 100% {
+    transform: scale(0.7) rotate(-15deg);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scale(1.25) rotate(15deg);
+    opacity: 1;
+  }
+}
+
+@keyframes heart-shadow-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.16;
+  }
+  50% {
+    transform: scale(0.78);
+    opacity: 0.08;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heart-emoji,
+  .heart-sparkle,
+  .heart-shadow {
+    animation: none;
+  }
+  .heart-control {
+    transition: none;
+  }
+}

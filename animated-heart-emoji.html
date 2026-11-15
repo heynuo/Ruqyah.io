@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="heynuo-build" content="2026-11-15-heart-1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f7faf7">
+  <title>Animated Movie Heart Emoji | Ruqyah.io</title>
+  <meta name="description" content="Animated movie heart emoji with film strip ribbon, soft glow, and twinkling sparkles.">
+  <link rel="canonical" href="https://heynuo.github.io/animated-heart-emoji.html">
+  <link rel="icon" href="assets/icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Animated Movie Heart Emoji | Ruqyah.io">
+  <meta property="og:description" content="Animated movie heart emoji with film strip ribbon, soft glow, and twinkling sparkles.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://heynuo.github.io/animated-heart-emoji.html">
+  <meta property="og:image" content="https://heynuo.github.io/assets/banners/og-banner.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/animated-heart.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at 50% 30%, #e0f2fe 0%, #dbeafe 45%, #eff6ff 100%);
+      color: #332742;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      overflow-x: hidden;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        background: radial-gradient(circle at 50% 30%, #1e1b2e 0%, #13111c 60%, #0a0910 100%);
+        color: #f1f0f5;
+      }
+    }
+
+    body[data-theme="dark"] {
+      background: radial-gradient(circle at 50% 30%, #1e1b2e 0%, #13111c 60%, #0a0910 100%);
+      color: #f1f0f5;
+    }
+
+    header.top-nav {
+      width: 100%;
+      max-width: 900px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      color: #44345b;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    body[data-theme="dark"] .back-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #e2e8f0;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-2px);
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    body[data-theme="dark"] .back-btn:hover {
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    main#emoji-app {
+      flex: 1;
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 20px 48px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: #8b5cf6;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    body[data-theme="dark"] .eyebrow {
+      color: #a78bfa;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 6vw, 46px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .subtitle {
+      margin: 10px 0 20px;
+      color: #64748b;
+      font-size: 16px;
+      max-width: 380px;
+    }
+
+    body[data-theme="dark"] .subtitle {
+      color: #94a3b8;
+    }
+
+    .control-btn {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      min-width: 160px;
+      padding: 13px 24px;
+      margin-top: 18px;
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 25px rgba(80, 52, 112, 0.1);
+      color: #5b21b6;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+
+    body[data-theme="dark"] .control-btn {
+      background: rgba(30, 27, 46, 0.85);
+      border-color: rgba(167, 139, 250, 0.3);
+      color: #c4b5fd;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .control-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(80, 52, 112, 0.18);
+    }
+
+    .control-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    footer.site-footer {
+      width: 100%;
+      max-width: 900px;
+      padding: 24px;
+      font-size: 13px;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    body[data-theme="dark"] footer.site-footer {
+      border-color: rgba(255, 255, 255, 0.08);
+      color: #94a3b8;
+    }
+
+    footer.site-footer a {
+      color: inherit;
+      text-decoration: underline;
+      margin-left: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="top-nav">
+    <a href="end.html" class="back-btn" title="Back to The End section">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      <span>Back to The End</span>
+    </a>
+    <a href="index.html" class="back-btn" title="Home">
+      <span>Ruqyah.io</span>
+    </a>
+  </header>
+
+  <main id="emoji-app" class="heart-app">
+    <p class="eyebrow">Lights, camera, love</p>
+    <h1 id="page-title">Movie heart</h1>
+    <p class="subtitle">A little love story, on repeat.</p>
+
+    <div id="emoji-stage" class="heart-stage" role="img" aria-label="Animated red movie heart with a film-strip ribbon and sparkling stars">
+      <div class="heart-glow" aria-hidden="true"></div>
+      <span class="heart-sparkle one" aria-hidden="true">✦</span>
+      <span class="heart-sparkle two" aria-hidden="true">✧</span>
+      <span class="heart-sparkle three" aria-hidden="true">✦</span>
+
+      <svg class="heart-emoji" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="heart-gradient" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#FF738A" />
+            <stop offset="55%" stop-color="#F8325F" />
+            <stop offset="100%" stop-color="#BD174C" />
+          </linearGradient>
+          <clipPath id="heart-clip">
+            <path d="M120 216C96 196 21 143 21 84c0-32 23-54 52-54 21 0 37 11 47 28 10-17 26-28 47-28 29 0 52 22 52 54 0 59-75 112-99 132Z" />
+          </clipPath>
+        </defs>
+        <path d="M120 216C96 196 21 143 21 84c0-32 23-54 52-54 21 0 37 11 47 28 10-17 26-28 47-28 29 0 52 22 52 54 0 59-75 112-99 132Z" fill="url(#heart-gradient)" stroke="#AD1448" stroke-width="3" />
+        <path d="M42 77c5-20 18-29 34-29" fill="none" stroke="white" stroke-opacity=".55" stroke-width="8" stroke-linecap="round" />
+        <g clip-path="url(#heart-clip)" transform="rotate(-12 120 120)">
+          <rect x="9" y="110" width="224" height="45" rx="3" fill="#2E2441" />
+          <rect x="9" y="117" width="224" height="31" fill="#FFF5E8" />
+          <path d="M52 117v31m45-31v31m45-31v31m45-31v31" stroke="#2E2441" stroke-width="5" />
+          <path d="M20 122h12m33 0h12m33 0h12m33 0h12m33 0h12M20 143h12m33 0h12m33 0h12m33 0h12m33 0h12" stroke="#2E2441" stroke-width="4" />
+        </g>
+        <path d="m120 78 5 12 13 1-10 8 3 13-11-7-11 7 3-13-10-8 13-1Z" fill="#FFF4C6" />
+      </svg>
+      <div class="heart-shadow" aria-hidden="true"></div>
+    </div>
+
+    <button id="animation-toggle" class="control-btn" type="button" aria-pressed="false">
+      <span id="btn-icon" aria-hidden="true">
+        <!-- Pause Icon -->
+        <svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg>
+      </span>
+      <span id="toggle-label">Pause animation</span>
+    </button>
+  </main>
+
+  <footer class="site-footer">
+    <span>&copy; Ruqyah.io &bull; Standalone Component</span>
+    <nav aria-label="Footer links">
+      <a href="privacy.html">Privacy</a>
+      <a href="rss.xml">RSS</a>
+      <a href="end.html">The End</a>
+    </nav>
+  </footer>
+
+  <script>
+    (function() {
+      const toggle = document.getElementById('animation-toggle');
+      const label = document.getElementById('toggle-label');
+      const iconSpan = document.getElementById('btn-icon');
+      const app = document.getElementById('emoji-app');
+
+      const pauseIconSvg = '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg>';
+      const playIconSvg = '<svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
+
+      toggle.addEventListener('click', function() {
+        const isPaused = app.classList.toggle('paused');
+        toggle.setAttribute('aria-pressed', String(isPaused));
+        label.textContent = isPaused ? 'Play animation' : 'Pause animation';
+        iconSpan.innerHTML = isPaused ? playIconSvg : pauseIconSvg;
+      });
+    })();
+  </script>
+</body>
+
+</html>
