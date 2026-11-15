@@ -115,6 +115,9 @@
   <link rel="stylesheet" href="css/shared-layout.css?v=2026-11-15-search-1">
 
   <link rel="stylesheet" href="css/tailwind.generated.css?v=2026-11-15-search-1">
+
+  <!-- Qur'an is a Light Luminous Glow Stylesheet -->
+  <link rel="stylesheet" href="css/quran-light.css?v=2026-11-15-1">
 </head>
 
 <body class="bg-bg-canvas font-body-article text-on-surface antialiased min-h-screen flex flex-col pb-32 transition-colors duration-200">
@@ -287,13 +290,18 @@
 
       <!-- Qur'an as a Light: Surah An-Nisa 4:174 -->
       <section aria-labelledby="quran-light-title" class="max-w-7xl w-full mx-auto px-4 sm:px-6 md:px-8 pb-space-lg">
-        <div class="grid grid-cols-1 lg:grid-cols-2 overflow-hidden rounded-2xl border border-subtle bg-surface-container-lowest shadow-md">
+        <div class="quran-light-card grid grid-cols-1 lg:grid-cols-2 overflow-hidden rounded-2xl border border-subtle bg-surface-container-lowest shadow-md">
           <div class="flex flex-col justify-center gap-4 p-5 sm:p-8 lg:p-10">
             <div class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-primary" aria-hidden="true">light_mode</span>
+              <span class="material-symbols-outlined text-primary quran-light-icon" aria-hidden="true">light_mode</span>
               <span class="font-caption-meta text-caption-meta text-primary font-semibold">Surah An-Nisa (4:174)</span>
             </div>
-            <h2 class="font-heading-section text-heading-section text-on-surface tracking-tight" id="quran-light-title">The Qur'an is a light from Allah</h2>
+            <div class="quran-light-title-wrap">
+              <h2 class="font-heading-section text-heading-section tracking-tight quran-light-title" id="quran-light-title">
+                The Qur'an is a <span class="quran-light-glow-word">light</span> from Allah
+              </h2>
+              <div class="quran-light-beam" aria-hidden="true"></div>
+            </div>
             <blockquote class="flex flex-col gap-4 rounded-xl bg-surface-container-low p-5 sm:p-6">
               <p class="font-arabic-sacred text-arabic-sacred text-on-surface text-right leading-loose" dir="rtl" lang="ar">
                 يَا أَيُّهَا النَّاسُ قَدْ جَاءَكُم بُرْهَانٌ مِّن رَّبِّكُمْ وَأَنزَلْنَا إِلَيْكُمْ نُورًا مُّبِينًا
