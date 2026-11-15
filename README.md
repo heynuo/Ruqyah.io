@@ -1,93 +1,148 @@
-# Ruqyah
+# Ruqyah (رُقْيَة)
 
-Ruqyah is a static Qur'anic study archive with recitation tools, a searchable collection of 108 verses, media experiences, and engineering notes. It is hosted on GitHub Pages.
+> Authentic Sanctuary for Qur'anic Recitation, Ruqyah Healing Verses, and Classical Tafsir Concordance.
 
-## Live site
+[![Live Site](https://img.shields.io/badge/Live_Site-Ruqyah.io-0f766e?style=for-the-badge&logo=githubpages&logoColor=white)](https://heynuo.github.io/Ruqyah.io/)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](LICENSE)
+[![Status](https://img.shields.io/badge/status-active-success?style=for-the-badge)]()
 
-- [Home](https://heynuo.github.io/)
-- [Qur'an reader](https://heynuo.github.io/quran.html)
-- [108 verse archive](https://heynuo.github.io/quran-verses.html)
-- [Videos and experiences](https://heynuo.github.io/videos.html)
-- [About and sources](https://heynuo.github.io/about.html)
-- [Privacy](https://heynuo.github.io/privacy.html)
-- [Contact](https://heynuo.github.io/contact.html)
+**Live Website**: [https://heynuo.github.io/Ruqyah.io/](https://heynuo.github.io/Ruqyah.io/)
 
-## Features
+---
 
-- Qur'an recitation with surah and ayah navigation, reciter selection, playback controls, and saved preferences.
-- A searchable 108-verse archive with Arabic text, translations, source notes, bookmarks, and downloads.
-- Light, sepia, and dark themes; keyboard shortcuts; responsive navigation; and reduced-motion support.
-- A service worker that caches the site shell and selected local files for offline reading. Streamed audio and video need an internet connection.
-- No analytics or advertising scripts. The site requests fonts from Google Fonts and recitations from external audio hosts.
+## 📖 Overview
 
-## Run locally
+**Ruqyah** is a high-performance, privacy-first Qur'anic study sanctuary and spiritual archive hosted on GitHub Pages. It unites classical Islamic scholarship with modern frontend systems engineering:
 
-Install the CSS build dependencies and generate the local utility stylesheet:
+- **114-Surah Reader**: Complete Qur'anic directory with Uthmani Arabic typography, multiple translation streams, audio reciter selection, and persistent listening state.
+- **108 Master Verses**: Verified concordance across 62 classical tafsir sources with categorized themes (Protection, Healing, Faith, Mercy, Victory).
+- **The End (Al-Akhirah)**: Dedicated contemplations on the Ultimate Destination, Husn al-Khatimah, Surah Al-Fajr, and HD cinematic reflection footage.
+- **Interactive Spiritual Experiences**: Kinetic typography for Hadith Qudsi, the *Thank You, Allah* (Shukriya) atmospheric sanctuary, and the standalone *Heart in Motion* reflection.
+- **Offline & Private**: Built with a service worker for offline shell caching, zero trackers, zero ads, and instant theme switching (Light, Dark, and Sepia).
+
+---
+
+## 🌐 Live Pages Directory
+
+| Page | Description | Direct Link |
+| :--- | :--- | :--- |
+| **Home** | Primary portal & featured recitation | [heynuo.github.io/Ruqyah.io/](https://heynuo.github.io/Ruqyah.io/) |
+| **Qur'an Reader** | Complete 114-Surah reader & reciter player | [heynuo.github.io/Ruqyah.io/quran.html](https://heynuo.github.io/Ruqyah.io/quran.html) |
+| **108 Verses Archive** | Searchable concordance across 62 tafsirs | [heynuo.github.io/Ruqyah.io/quran-verses.html](https://heynuo.github.io/Ruqyah.io/quran-verses.html) |
+| **The End (Al-Akhirah)** | Reflection on the soul's ultimate return | [heynuo.github.io/Ruqyah.io/end.html](https://heynuo.github.io/Ruqyah.io/end.html) |
+| **Thank You, Allah** | Shukriya atmospheric sanctuary & gratitude audio | [heynuo.github.io/Ruqyah.io/thank-you.html](https://heynuo.github.io/Ruqyah.io/thank-you.html) |
+| **Videos & Media** | Curated video reflections & visual recitations | [heynuo.github.io/Ruqyah.io/videos.html](https://heynuo.github.io/Ruqyah.io/videos.html) |
+| **Hadith Qudsi** | Kinetic typography experience | [heynuo.github.io/Ruqyah.io/HadithQudsi.html](https://heynuo.github.io/Ruqyah.io/HadithQudsi.html) |
+| **Allah Tribute** | Sacred names & ambient visual reflection | [heynuo.github.io/Ruqyah.io/Allah.html](https://heynuo.github.io/Ruqyah.io/Allah.html) |
+| **Tawakkul** | Reliance on Allah reflection experience | [heynuo.github.io/Ruqyah.io/Tawakkul.html](https://heynuo.github.io/Ruqyah.io/Tawakkul.html) |
+| **Heart in Motion** | Standalone animated movie heart emoji | [heynuo.github.io/Ruqyah.io/animated-heart-emoji.html](https://heynuo.github.io/Ruqyah.io/animated-heart-emoji.html) |
+| **About & Sources** | Project background, methodology, and citations | [heynuo.github.io/Ruqyah.io/about.html](https://heynuo.github.io/Ruqyah.io/about.html) |
+| **Contact** | Direct correspondence & issue reporting | [heynuo.github.io/Ruqyah.io/contact.html](https://heynuo.github.io/Ruqyah.io/contact.html) |
+| **Privacy Policy** | Data disclosures & storage transparency | [heynuo.github.io/Ruqyah.io/privacy.html](https://heynuo.github.io/Ruqyah.io/privacy.html) |
+
+---
+
+## 🛠️ Project Structure
+
+```text
+├── index.html                   # Home page & Ayat al-Kursi recitation player
+├── quran.html                   # Complete 114-Surah Qur'an reader
+├── quran-verses.html            # Searchable 108 Master Verses archive
+├── end.html                     # The End (Al-Akhirah) visual reflection
+├── thank-you.html               # Shukriya (Sanctuary of Gratitude)
+├── videos.html                  # Curated media library
+├── HadithQudsi.html             # Kinetic typography experience
+├── Allah.html                   # Divine names tribute
+├── Tawakkul.html                # Reliance on the Creator experience
+├── animated-heart-emoji.html    # Standalone animated movie heart
+├── about.html                   # Scholastic methodology & sanad
+├── contact.html                 # Correspondence & feedback
+├── privacy.html                 # Privacy policy & local storage details
+├── 404.html                     # Custom 404 page
+│
+├── css/
+│   ├── shared-layout.css        # Unified design system, shell, & theme tokens
+│   ├── tailwind.generated.css   # Minified Tailwind utility classes
+│   ├── tailwind.input.css       # Tailwind source stylesheet
+│   ├── quran-light.css          # Quran light typography & ambient media styles
+│   ├── animated-heart.css       # Keyframes & styles for the movie heart emoji
+│   ├── thank-you.css            # Atmospheric styles for the gratitude sanctuary
+│   └── allah-tribute.css        # Sacred names tribute animations
+│
+├── js/
+│   ├── shared-layout.js         # Header, footer, and theme injector
+│   ├── script.js                # Search dialog, keyboard shortcuts & site interactions
+│   ├── home-page.js             # Homepage audio player controller
+│   ├── quran-page.js            # Surah reader audio controller & navigation
+│   ├── about-audio-player.js    # About page audio controller
+│   ├── audio-reciter-data.js    # Verified reciters dataset
+│   └── data/
+│       └── master-verses-data.js# 108 Master Verses dataset with tafsir citations
+│
+├── assets/
+│   ├── audio/                   # Master MP3 recitation tracks
+│   ├── videos/                  # HD MP4 media & ambient loops
+│   ├── banners/                 # OG cards & responsive banners
+│   ├── icons/                   # Web app icons & vector assets
+│   └── pdf/                     # Transliteration & master compilation PDFs
+│
+├── tools/
+│   ├── validate-site.ps1        # Comprehensive link, attribute, & layout integrity checker
+│   ├── check-css.ps1            # CSS structure verification script
+│   ├── stamp-build.ps1          # Cache-busting stamp utility
+│   ├── optimize-images.ps1      # Asset optimization utility
+│   └── serve.ps1                # Local development server
+│
+├── manifest.json                # Web App Manifest (PWA support)
+├── sw.js                        # Offline service worker cache controller
+└── package.json                 # Tailwind CLI build scripts
+```
+
+---
+
+## 💻 Local Development
+
+### 1. Build CSS
+Install dependencies and build the Tailwind CSS utilities:
 
 ```bash
 npm ci
 npm run build:css
 ```
 
-Serve the repository root with Python:
+### 2. Start a Local Server
+Run with PowerShell:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\tools\serve.ps1
+```
+
+Or with Python:
 
 ```bash
 python -m http.server 8000
 ```
 
-Then open <http://localhost:8000/>. On Windows, `py -m http.server 8000` can be used instead.
+Open `http://localhost:8000/` in your browser.
 
-Rebuild `css/tailwind.generated.css` after changing Tailwind utility classes in HTML or JavaScript. The generated file is committed and served directly; the deployed site does not run Node.js.
-
-## Before publishing
-
-Update the cache version and local stylesheet URLs:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\tools\stamp-build.ps1
-```
-
-The site integrity checker is available at:
+### 3. Verify Site Integrity
+Run the automated verification suite before committing:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\tools\validate-site.ps1
+powershell -ExecutionPolicy Bypass -File .\tools\check-css.ps1
 ```
 
-GitHub Pages serves the repository root from `main`. Commit the generated stylesheet along with source changes.
+---
 
-## Audio players
+## 📜 Scholastic Citations & Audio Sources
 
-The home page has a compact recitation player for Ayat al-Kursi and Ta-Ha 20:114. Its deferred controller is `js/home-page.js`; the reciter list in `js/audio-reciter-data.js` is deferred before it. `quran.html` contains the full 114-surah reader, and `quran-verses.html` has its own player for verse playback. Recitation streams come from EveryAyah and Al-Islam hosts, so availability depends on those services and the user's connection.
+- **Sacred Scripture**: King Fahd Complex for the Printing of the Holy Qur'an, Tanzil Project, and Saheeh International translation.
+- **Tafsir Concordance**: 62 classical works including Tafsir Ibn Kathir, Al-Tabari, Al-Qurtubi, Al-Baghawi, and Al-Sa'di.
+- **Audio Recitations**: EveryAyah and Al-Islam scholarly archives (featuring Al-Hafiz Mishary Alafasy, Sheikh Abdulbasit Abdulsamad, Sheikh Mahmoud Khalil Al-Husary, and others).
 
-## Project map
+---
 
-```text
-index.html                 Home page and compact recitation player
-quran.html                 114-surah reader
-quran-verses.html          Searchable 108-verse archive
-videos.html                Media library
-about.html                 Project background and sources
-contact.html               Contact form
-privacy.html               Privacy and storage disclosures
-Allah.html                 Standalone tribute experience
-HadithQudsi.html           Standalone kinetic typography experience
-Tawakkul.html              Standalone reflection experience
-css/shared-layout.css      Shared themes, shell, and responsive rules
-css/tailwind.input.css     Tailwind CLI entry point
-css/tailwind.generated.css Compiled utility stylesheet
-js/shared-layout.js        Shared navigation, footer, and theme behavior
-js/script.js               Search, shortcuts, and shared interactions
-js/home-page.js            Home page player and interactions
-js/audio-reciter-data.js   Homepage and About page reciter list
-js/quran-page.js           Surah reader controller
-js/about-audio-player.js   About page audio controller
-js/data/                   Verse archive data
-assets/                    Banners, icons, PDFs, and media
-tools/                     Serving, image, cache, CSS, and site validation utilities
-sw.js                      Offline shell cache and media request handling
-package.json               Local Tailwind build command
-```
+## 📄 License
 
-## Text and audio sources
-
-The archive's page-level notes identify Qur'anic text and translation sources, including the King Fahd Complex, Tanzil, and Saheeh International. Audio recitations are streamed from EveryAyah and Al-Islam. See `privacy.html` for details about browser storage and third-party requests.
+This repository is published under the [MIT License](LICENSE). Dedicated to open Islamic scholarship and timeless spiritual preservation.
