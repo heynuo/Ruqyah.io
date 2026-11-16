@@ -329,7 +329,6 @@
   margin-top: 0.4rem;
 }
 
-.end-bye-bye-action,
 .end-bye-bye-secondary {
   display: inline-flex;
   min-height: 44px;
@@ -350,14 +349,12 @@
   transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
-.end-bye-bye-action:hover,
 .end-bye-bye-secondary:hover {
   transform: translateY(-1px);
   background: rgba(255, 255, 255, 0.26);
   border-color: rgba(255, 255, 255, 0.76);
 }
 
-.end-bye-bye-action:focus-visible,
 .end-bye-bye-secondary:focus-visible {
   outline: 2px solid #fff1c9;
   outline-offset: 3px;
@@ -378,7 +375,6 @@
     display: none;
   }
 
-  .end-bye-bye-action,
   .end-bye-bye-secondary {
     transition: none;
   }
