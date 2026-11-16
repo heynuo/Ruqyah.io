@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070417">
+<meta name="description" content="Ariana Grande - bye (Altare remix) video with glowing synced lyrics.">
+<title>Ariana Grande — bye (Altare remix) | Video &amp; Lyrics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --night: #0b0722;
+    --night-deep: #070417;
+    --ink: #1b1448;
+    --coral: #ff6f61;
+    --coral-glow: rgba(255, 111, 97, 0.5);
+    --butter: #ffe29a;
+    --cream: #fff2de;
+    --cream-muted: rgba(255, 242, 222, 0.72);
+    --glass-bg: rgba(20, 14, 46, 0.75);
+    --glass-border: rgba(255, 242, 222, 0.16);
+    --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #000; overflow: hidden; }
+  body {
+    font-family: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--cream);
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+  }
+  .stage {
+    position: fixed; inset: 0; overflow: hidden;
+    background: #000;
+  }
+
+  /* Video Layer - Primary Audio & Video */
+  #media-video {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    background: #000;
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  /* Moving Lyrics (Upper area of video) */
+  .moving-lyrics-stage {
+    position: absolute;
+    left: 0; right: 0;
+    top: clamp(28px, 9vh, 85px);
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+    padding: 0 clamp(16px, 4vw, 48px);
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .lyrics-motion-wrap {
+    position: relative;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    text-align: center; max-width: min(94vw, 980px);
+  }
+
+  .lyric-prev, .lyric-next {
+    font-size: clamp(14px, 1.8vw, 22px); font-weight: 600;
+    color: rgba(255, 242, 222, 0.55);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 16px rgba(0, 0, 0, 0.85);
+    min-height: 1.3em;
+    transition: opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease;
+  }
+
+  /* Current Active Lyric with Radiant Light Glow */
+  .lyric-current {
+    font-size: clamp(28px, 4.4vw, 60px);
+    font-weight: 800; font-stretch: 85%;
+    line-height: 1.18; letter-spacing: -0.015em;
+    color: #ffffff;
+    text-shadow:
+      0 0 10px rgba(255, 255, 255, 0.95),
+      0 0 24px var(--coral),
+      0 0 55px var(--coral-glow),
+      0 0 95px var(--coral-glow),
+      0 4px 20px rgba(7, 4, 23, 0.98);
+    transform-origin: center center;
+    transition: transform 0.15s ease, text-shadow 0.2s ease;
+  }
+
+  .lyric-text-inner {
+    display: inline-block;
+    will-change: transform, opacity;
+  }
+  .lyric-text-inner.animating {
+    animation: lyricRiseIn 0.36s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  @keyframes lyricRiseIn {
+    0% {
+      opacity: 0;
+      transform: translateY(22px) scale(0.96);
+      filter: blur(5px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+  }
+
+  /* Center Start Play CTA */
+  .big-play-btn {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 82px; height: 82px; border-radius: 50%;
+    background: rgba(255, 242, 222, 0.94);
+    border: none; color: var(--ink);
+    display: grid; place-items: center; cursor: pointer;
+    box-shadow: 0 10px 36px rgba(0, 0, 0, 0.65), 0 0 32px var(--coral-glow);
+    z-index: 20;
+    transition: transform 0.25s var(--ease-out-back), opacity 0.35s ease, background 0.2s ease;
+  }
+  .big-play-btn:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: #ffffff;
+    box-shadow: 0 14px 44px rgba(0, 0, 0, 0.75), 0 0 45px var(--coral);
+  }
+  .big-play-btn svg { width: 36px; height: 36px; fill: currentColor; margin-left: 4px; }
+  body.playing .big-play-btn {
+    opacity: 0; pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+
+  /* Bottom Player Dock */
+  .dock {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 12px clamp(16px, 3.5vw, 44px) calc(env(safe-area-inset-bottom, 0px) + 14px);
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    background: linear-gradient(to top, rgba(7, 4, 23, 0.9) 0%, rgba(7, 4, 23, 0.5) 70%, transparent 100%);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(255, 242, 222, 0.08);
+    z-index: 25;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .dock.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(14px);
+  }
+  .dock-left {
+    display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+  }
+  .dock-center {
+    display: flex; align-items: center; gap: 12px; flex: 1; max-width: 900px;
+  }
+  .dock-right {
+    display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+  }
+
+  .icon-btn {
+    display: grid; place-items: center; border: 0; cursor: pointer; font: inherit;
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--cream); color: var(--ink);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+  }
+  .icon-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+  }
+  .icon-btn:active { transform: scale(0.96); }
+
+  .icon-btn.primary {
+    width: 48px; height: 48px;
+    background: var(--cream);
+  }
+  .icon-btn.primary[data-state="playing"] {
+    background: #fff;
+    box-shadow: 0 0 20px var(--coral-glow), 0 4px 18px rgba(0, 0, 0, 0.4);
+  }
+
+  .icon-btn.quiet {
+    width: 36px; height: 36px; background: transparent; color: var(--cream);
+    box-shadow: none;
+  }
+  .icon-btn.quiet:hover {
+    background: rgba(255, 242, 222, 0.15); transform: none;
+  }
+  .icon-btn.quiet.active {
+    color: var(--coral);
+    background: rgba(255, 111, 97, 0.2);
+  }
+  .icon-btn svg { width: 18px; height: 18px; fill: currentColor; }
+  .icon-btn .i-pause { display: none; }
+  .icon-btn[data-state="playing"] .i-play { display: none; }
+  .icon-btn[data-state="playing"] .i-pause { display: block; }
+
+  /* Scrubber Container & Chapter Markers */
+  .scrubber-container {
+    position: relative; flex: 1; display: flex; align-items: center;
+  }
+  .chapter-track {
+    position: absolute; left: 0; right: 0; top: 50%; height: 6px;
+    transform: translateY(-50%);
+    pointer-events: none; z-index: 3;
+  }
+  .chapter-dot {
+    position: absolute; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 5px; height: 5px; border-radius: 50%;
+    background: rgba(255, 242, 222, 0.5);
+    border: 1px solid var(--ink);
+    pointer-events: auto; cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .chapter-dot:hover {
+    transform: translate(-50%, -50%) scale(1.6);
+    background: #fff;
+  }
+  .chapter-dot.active {
+    background: var(--butter);
+    width: 7px; height: 7px;
+    box-shadow: 0 0 10px var(--coral-glow);
+  }
+  .chapter-dot.is-drop {
+    background: var(--coral);
+    box-shadow: 0 0 8px var(--coral);
+  }
+
+  .scrubber-tooltip {
+    position: absolute; bottom: 32px; left: 0;
+    transform: translateX(-50%);
+    background: var(--ink); color: var(--butter);
+    padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    border: 1px solid var(--glass-border);
+    pointer-events: none; opacity: 0;
+    transition: opacity 0.15s ease;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+  }
+  .scrubber-container:hover .scrubber-tooltip { opacity: 1; }
+
+  .time {
+    font-size: 12px; font-weight: 500; font-family: 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums; white-space: nowrap;
+    color: var(--cream-muted);
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none; appearance: none; width: 100%; height: 26px;
+    background: transparent; cursor: pointer; --p: 0%;
+    position: relative; z-index: 2;
+  }
+  input[type="range"]::-webkit-slider-runnable-track {
+    height: 5px; border-radius: 999px;
+    background: linear-gradient(to right, var(--coral) var(--p), rgba(255, 242, 222, 0.22) var(--p));
+    transition: background 0.05s linear;
+  }
+  input[type="range"]::-moz-range-track {
+    height: 5px; border-radius: 999px; background: rgba(255, 242, 222, 0.22);
+  }
+  input[type="range"]::-moz-range-progress {
+    height: 5px; border-radius: 999px; background: var(--coral);
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 14px; height: 14px; margin-top: -4.5px; border-radius: 50%;
+    background: var(--butter); border: 2px solid var(--ink);
+    box-shadow: 0 0 0 3px rgba(255, 226, 154, 0.35), 0 0 16px rgba(255, 111, 97, 0.9);
+    transition: transform 0.1s ease;
+  }
+  input[type="range"]:hover::-webkit-slider-thumb {
+    transform: scale(1.25);
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--butter); border: 2px solid var(--ink);
+    box-shadow: 0 0 0 3px rgba(255, 226, 154, 0.35), 0 0 16px rgba(255, 111, 97, 0.9);
+  }
+
+  /* Volume slider popover */
+  .volume-wrap {
+    position: relative; display: flex; align-items: center;
+  }
+  .volume-slider-box {
+    position: absolute; bottom: 46px; left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+    padding: 12px 10px; border-radius: 20px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    z-index: 30;
+  }
+  .volume-wrap:hover .volume-slider-box,
+  .volume-wrap:focus-within .volume-slider-box {
+    opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0);
+  }
+  .volume-slider-box input[type="range"] {
+    writing-mode: vertical-lr; direction: rtl;
+    width: 26px; height: 90px;
+  }
+  .volume-percent {
+    font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--butter);
+  }
+
+  /* Accessibility & Media Queries */
+  button:focus-visible, input:focus-visible {
+    outline: 3px solid var(--butter); outline-offset: 3px;
+  }
+  @media (max-width: 768px) {
+    #skip-back, #skip-forward { display: none; }
+  }
+  @media (max-width: 480px) {
+    #fs { display: none; }
+    .volume-wrap { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .big-play-btn, .icon-btn, .lyric-current { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<main class="stage" id="stage">
+  <!-- Unified Video & Audio Element with sound enabled -->
+  <video id="media-video" src="assets/videos/bye-altare-remix.mp4" playsinline preload="auto"></video>
+
+  <!-- Moving Lyrics: Only lyrics appear in the upper of video -->
+  <div class="moving-lyrics-stage" id="moving-lyrics-stage" aria-label="Live Lyrics">
+    <div class="lyrics-motion-wrap" id="lyrics-motion-wrap">
+      <div class="lyric-line lyric-prev" id="lyric-prev"></div>
+      <div class="lyric-line lyric-current" id="lyric-current">
+          <span class="lyric-text-inner" id="lyric-text-inner"></span>
+      </div>
+      <div class="lyric-line lyric-next" id="lyric-next"></div>
+    </div>
+  </div>
+
+  <!-- Center Big Play Button (shown when paused) -->
+  <button class="big-play-btn" id="big-play-btn" type="button" aria-label="Play video with sound">
+    <svg viewBox="0 0 24 24"><path d="M8 5.2v13.6a1 1 0 0 0 1.52.85l11-6.8a1 1 0 0 0 0-1.7l-11-6.8A1 1 0 0 0 8 5.2z"/></svg>
+  </button>
+
+  <!-- Bottom Player Dock -->
+  <div class="dock" id="dock" role="region" aria-label="Player controls">
+    <div class="dock-left">
+      <button class="icon-btn primary" id="play" type="button" data-state="paused" aria-label="Play [Space]">
+        <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.2v13.6a1 1 0 0 0 1.52.85l11-6.8a1 1 0 0 0 0-1.7l-11-6.8A1 1 0 0 0 8 5.2z"/></svg>
+        <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4.5" width="4.2" height="15" rx="1.2"/><rect x="13.8" y="4.5" width="4.2" height="15" rx="1.2"/></svg>
+      </button>
+      <button class="icon-btn quiet" id="skip-back" type="button" title="Rewind 10 seconds [← or J]" aria-label="Rewind 10 seconds">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.22 3.16-1.98 5.12-1.98 3.53 0 6.47 2.29 7.5 5.5l2.47-.78C21.08 11.03 17.15 8 12.5 8z"/></svg>
+      </button>
+      <button class="icon-btn quiet" id="skip-forward" type="button" title="Forward 10 seconds [→ or L]" aria-label="Forward 10 seconds">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.5 8c2.65 0 5.05.99 6.9 2.6L22 7v9h-9l3.62-3.62c-1.39-1.22-3.16-1.98-5.12-1.98-3.53 0-6.47 2.29-7.5 5.5l-2.47-.78C2.92 11.03 6.85 8 11.5 8z"/></svg>
+      </button>
+    </div>
+
+    <div class="dock-center">
+      <span class="time" id="cur-time">0:00</span>
+      <div class="scrubber-container" id="scrubber-container">
+        <div class="chapter-track" id="chapter-track"></div>
+        <div class="scrubber-tooltip" id="scrubber-tip">0:00</div>
+        <input id="seek" type="range" min="0" max="1000" step="1" value="0" aria-label="Seek position" aria-valuemin="0" aria-valuemax="1000" aria-valuenow="0">
+      </div>
+      <span class="time" id="dur-time">3:03</span>
+    </div>
+
+    <div class="dock-right">
+      <div class="volume-wrap">
+        <button class="icon-btn quiet" id="vol-btn" type="button" title="Mute / Unmute [M]" aria-label="Volume">
+          <svg id="vol-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+        </button>
+        <div class="volume-slider-box">
+          <input id="vol-slider" type="range" min="0" max="100" step="1" value="100" aria-label="Volume slider">
+          <span class="volume-percent" id="vol-label">100%</span>
+        </div>
+      </div>
+      <button class="icon-btn quiet" id="loop-btn" type="button" title="Loop video" aria-label="Loop playback">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg>
+      </button>
+      <button class="icon-btn quiet" id="fs" type="button" title="Fullscreen [F]" aria-label="Fullscreen">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5v2H6v3H4zm10-5h5v5h-2V6h-3V4zM4 15h2v3h3v2H4v-5zm13 3v-3h2v5h-5v-2h3z"/></svg>
+      </button>
+    </div>
+  </div>
+</main>
+
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const video = $('media-video');
+  const stage = $('stage');
+  const playBtn = $('play');
+  const bigPlayBtn = $('big-play-btn');
+  const seek = $('seek');
+  const curTimeEl = $('cur-time');
+  const durTimeEl = $('dur-time');
+  const scrubberContainer = $('scrubber-container');
+  const scrubberTip = $('scrubber-tip');
+  const chapterTrack = $('chapter-track');
+  const volBtn = $('vol-btn');
+  const volIcon = $('vol-icon');
+  const volSlider = $('vol-slider');
+  const volLabel = $('vol-label');
+  const skipBackBtn = $('skip-back');
+  const skipFwdBtn = $('skip-forward');
+  const loopBtn = $('loop-btn');
+  const fsBtn = $('fs');
+  const dock = $('dock');
+
+  const lyricPrev = $('lyric-prev');
+  const lyricCurrent = $('lyric-current');
+  const lyricTextInner = $('lyric-text-inner');
+  const lyricNext = $('lyric-next');
+
+  /* Ensure video sound is ON */
+  video.muted = false;
+  video.volume = 1.0;
+
+  const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+  const fmt = s => {
+    s = Math.max(0, s | 0);
+    return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+  };
+
+  /* Chapters dataset */
+  const CHAPTERS = [
+    { t: 0, title: 'Intro (0:00)' },
+    { t: 15.0, title: 'Verse 1: Hostage to tears (0:15)' },
+    { t: 24.0, title: 'Through my fears (0:24)' },
+    { t: 31.0, title: 'Pre-Chorus: Clean my space (0:31)' },
+    { t: 39.0, title: 'Driveway (Boy Bye) (0:39)' },
+    { t: 47.0, title: 'Chorus: Bye Bye Bye (0:47)' },
+    { t: 56.0, title: 'Verse 2: Stronger than I think (0:56)' },
+    { t: 66.0, title: 'Floor / Turn music up (1:06)' },
+    { t: 73.0, title: 'Pre-Chorus 2: Lose me (1:13)' },
+    { t: 83.0, title: 'Driveway: Boy Bye (1:23)' },
+    { t: 91.0, title: 'Chorus 2: Bye Bye Bye (1:31)' },
+    { t: 100.0, title: 'One Time Boy Bye (1:40)', isDrop: true },
+    { t: 107.0, title: 'Bridge: Hook feels too hard (1:47)' },
+    { t: 115.0, title: 'Better than repeat (1:55)' },
+    { t: 127.0, title: 'Outro: It\'s over again (2:07)' },
+    { t: 138.0, title: 'Bye Yeah Boy Bye (2:18)' },
+    { t: 143.0, title: 'Bye Bye Boy Bye (2:23)' },
+    { t: 151.0, title: 'Final One Time (2:31)' },
+    { t: 159.0, title: 'Melodic Wave Outro (2:39)', isDrop: true }
+  ];
+
+  /* Synchronized Lyrics dataset */
+  const LYRICS = [
+    { t: 11.13, text: "Bye-bye" },
+    { t: 12.80, text: "Yeah, boy, bye" },
+    { t: 14.67, text: "It's over, it's over, oh, yeah" },
+    { t: 17.55, text: "This ain't the first time I've been hostage to these tears" },
+    { t: 21.62, text: "I can't believe I'm finally movin' through my fears" },
+    { t: 26.10, text: "At least I know how hard we tried, both you and me" },
+    { t: 30.45, text: "Didn't we? Didn't we?" },
+    { t: 33.91, text: "So I grab my stuff" },
+    { t: 36.17, text: "Courtney just pulled up in the driveway" },
+    { t: 41.11, text: "It's time" },
+    { t: 44.06, text: "Bye-bye" },
+    { t: 46.28, text: "Boy, bye" },
+    { t: 48.59, text: "Bye-bye" },
+    { t: 49.87, text: "It's over, it's over, oh, yeah" },
+    { t: 52.70, text: "Bye-bye" },
+    { t: 54.03, text: "I'm taking what's mine, yeah" },
+    { t: 57.11, text: "Bye-bye" },
+    { t: 58.51, text: "It's over, it's over, oh, yeah" },
+    { t: 61.38, text: "You know, I'm stronger than I think" },
+    { t: 65.50, text: "Usually, I'd join you on the floor, but this dance ain't for me" },
+    { t: 69.95, text: "Boy, just turn the music up" },
+    { t: 71.95, text: "Maybe someday, we'll look back with love" },
+    { t: 74.36, text: "Didn't think you'd lose me" },
+    { t: 76.25, text: "Now it's just too late to choose me" },
+    { t: 78.18, text: "So I grab my stuff" },
+    { t: 79.73, text: "Courtney just pulled up in the driveway" },
+    { t: 84.02, text: "It's time (it's time)" },
+    { t: 87.73, text: "Bye-bye" },
+    { t: 89.78, text: "Boy, bye" },
+    { t: 92.13, text: "Bye-bye" },
+    { t: 93.30, text: "It's over, it's over, oh, yeah" },
+    { t: 96.12, text: "Bye-bye" },
+    { t: 97.73, text: "I'm taking what's mine, yeah (taking what's mine)" },
+    { t: 100.78, text: "Bye-bye" },
+    { t: 101.97, text: "It's over, it's over, oh, yeah" },
+    { t: 105.95, text: "Now, it's certainly bittersweet" },
+    { t: 110.59, text: "This hook feels too hard to sing" },
+    { t: 115.83, text: "But it's better than repeat" },
+    { t: 122.47, text: "Bye-bye" },
+    { t: 124.76, text: "Boy, bye" },
+    { t: 126.95, text: "Bye-bye" },
+    { t: 128.33, text: "It's over, it's over, oh, yeah" },
+    { t: 130.95, text: "Bye-bye" },
+    { t: 132.64, text: "I'm taking what's mine, yeah" },
+    { t: 135.50, text: "Bye-bye" },
+    { t: 137.06, text: "It's over, it's over, oh, yeah" },
+    { t: 139.97, text: "Bye-bye" },
+    { t: 142.01, text: "Boy, bye" },
+    { t: 144.38, text: "Bye-bye" },
+    { t: 145.75, text: "It's over, it's over, oh, yeah" },
+    { t: 148.81, text: "Bye-bye" },
+    { t: 150.14, text: "I'm taking what's mine, yeah (taking what's mine)" },
+    { t: 152.92, text: "Bye-bye" },
+    { t: 154.37, text: "It's over, it's over, oh, yeah" },
+    { t: 157.20, text: "" }
+  ];
+
+  /* Live Lyrics Synchronization */
+  let activeLyricIdx = -2;
+  function updateLyrics(curTime) {
+    if (!LYRICS.length) return;
+    let idx = -1;
+    for (let i = 0; i < LYRICS.length; i++) {
+      if (curTime >= LYRICS[i].t) idx = i;
+      else break;
+    }
+    if (idx !== activeLyricIdx) {
+      activeLyricIdx = idx;
+      if (idx >= 0 && idx < LYRICS.length) {
+        const item = LYRICS[idx];
+        const prevItem = LYRICS[idx - 1];
+        const nextItem = LYRICS[idx + 1];
+
+        lyricPrev.textContent = item.text && prevItem ? prevItem.text : '';
+        lyricNext.textContent = item.text && nextItem ? nextItem.text : '';
+
+        lyricTextInner.textContent = item.text;
+        lyricTextInner.classList.remove('animating');
+        void lyricTextInner.offsetWidth; // Force CSS reflow
+        lyricTextInner.classList.add('animating');
+      } else {
+        lyricPrev.textContent = '';
+        lyricTextInner.textContent = '';
+        lyricNext.textContent = '';
+      }
+    }
+  }
+
+  /* Play / Pause Toggle */
+  async function togglePlay() {
+    if (video.paused) {
+      try {
+        video.muted = false;
+        await video.play();
+      } catch (err) {
+        console.warn('Play interrupted or blocked:', err);
+      }
+    } else {
+      video.pause();
+    }
+  }
+
+  function syncState() {
+    const isPlaying = !video.paused && !video.ended;
+    playBtn.dataset.state = isPlaying ? 'playing' : 'paused';
+    playBtn.setAttribute('aria-label', isPlaying ? 'Pause [Space]' : 'Play [Space]');
+    document.body.classList.toggle('playing', isPlaying);
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.playbackState = isPlaying ? 'playing' : 'paused';
+    }
+  }
+
+  playBtn.addEventListener('click', togglePlay);
+  bigPlayBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    togglePlay();
+  });
+  stage.addEventListener('click', e => {
+    if (e.target.closest('.dock')) return;
+    togglePlay();
+  });
+
+  video.addEventListener('play', syncState);
+  video.addEventListener('pause', syncState);
+  video.addEventListener('ended', () => {
+    syncState();
+    if (!video.loop) document.body.classList.remove('playing');
+  });
+
+  /* Seek Bar & Scrubbing */
+  let dragging = false;
+  seek.addEventListener('input', () => {
+    dragging = true;
+    if (video.duration) {
+      const targetSec = (seek.value / 1000) * video.duration;
+      video.currentTime = targetSec;
+      curTimeEl.textContent = fmt(targetSec);
+      seek.style.setProperty('--p', (seek.value / 10) + '%');
+      updateLyrics(targetSec);
+    }
+  });
+  seek.addEventListener('change', () => { dragging = false; });
+  seek.addEventListener('pointerdown', () => { dragging = true; });
+  seek.addEventListener('pointerup', () => { dragging = false; });
+
+  /* Chapter Markers */
+  function getCurrentChapterIdx(curTime) {
+    let idx = 0;
+    for (let i = 0; i < CHAPTERS.length; i++) {
+      if (curTime >= CHAPTERS[i].t) idx = i; else break;
+    }
+    return idx;
+  }
+
+  function renderChapterMarkers() {
+    const dur = video.duration || 183.47;
+    chapterTrack.innerHTML = '';
+    CHAPTERS.forEach(ch => {
+      const pct = (ch.t / dur) * 100;
+      if (pct < 0 || pct > 100) return;
+      const dot = document.createElement('div');
+      dot.className = 'chapter-dot' + (ch.isDrop ? ' is-drop' : '');
+      dot.style.left = pct.toFixed(2) + '%';
+      dot.title = ch.title;
+      dot.addEventListener('click', e => {
+        e.stopPropagation();
+        video.currentTime = ch.t;
+        if (video.paused) togglePlay();
+      });
+      chapterTrack.appendChild(dot);
+    });
+  }
+
+  scrubberContainer.addEventListener('pointermove', e => {
+    const rect = scrubberContainer.getBoundingClientRect();
+    const ratio = clamp((e.clientX - rect.left) / rect.width);
+    const hoverSec = ratio * (video.duration || 183.47);
+    const chIdx = getCurrentChapterIdx(hoverSec);
+    const ch = CHAPTERS[chIdx];
+    scrubberTip.textContent = fmt(hoverSec) + (ch ? ' • ' + ch.title : '');
+    scrubberTip.style.left = (ratio * 100).toFixed(1) + '%';
+  });
+
+  /* Volume & Mute Handling */
+  let lastVolume = 1;
+  function updateVolume(val) {
+    val = clamp(val, 0, 1);
+    video.volume = val;
+    video.muted = (val === 0);
+    volSlider.value = Math.round(val * 100);
+    volLabel.textContent = Math.round(val * 100) + '%';
+    volSlider.style.setProperty('--p', (val * 100) + '%');
+
+    if (val === 0 || video.muted) {
+      volIcon.innerHTML = '<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>';
+    } else if (val < 0.5) {
+      volIcon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>';
+    } else {
+      volIcon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>';
+    }
+  }
+
+  volSlider.addEventListener('input', () => updateVolume(volSlider.value / 100));
+  volBtn.addEventListener('click', () => {
+    if (video.muted || video.volume === 0) {
+      video.muted = false;
+      updateVolume(lastVolume || 1);
+    } else {
+      lastVolume = video.volume;
+      updateVolume(0);
+    }
+  });
+
+  dock.addEventListener('wheel', e => {
+    e.preventDefault();
+    const delta = e.deltaY < 0 ? 0.05 : -0.05;
+    updateVolume(video.volume + delta);
+  }, { passive: false });
+
+  /* Skip & Loop buttons */
+  skipBackBtn.addEventListener('click', () => {
+    video.currentTime = Math.max(0, video.currentTime - 10);
+  });
+  skipFwdBtn.addEventListener('click', () => {
+    video.currentTime = Math.min(video.duration || 0, video.currentTime + 10);
+  });
+  loopBtn.addEventListener('click', () => {
+    video.loop = !video.loop;
+    loopBtn.classList.toggle('active', video.loop);
+  });
+
+  /* Fullscreen */
+  fsBtn.addEventListener('click', () => {
+    if (document.fullscreenElement) {
+      document.exitFullscreen().catch(() => {});
+    } else if (document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen().catch(() => {});
+    }
+  });
+  document.addEventListener('fullscreenchange', () => {
+    fsBtn.classList.toggle('active', !!document.fullscreenElement);
+  });
+
+  /* Auto-hide dock when playing and idle */
+  let idleTimer = null;
+  function showDock() {
+    dock.classList.remove('hidden');
+    document.body.style.cursor = '';
+    clearTimeout(idleTimer);
+    if (!video.paused && !video.ended) {
+      idleTimer = setTimeout(() => {
+        dock.classList.add('hidden');
+        document.body.style.cursor = 'none';
+      }, 3000);
+    }
+  }
+  window.addEventListener('pointermove', showDock);
+  window.addEventListener('pointerdown', showDock);
+  video.addEventListener('play', showDock);
+  video.addEventListener('pause', () => {
+    clearTimeout(idleTimer);
+    dock.classList.remove('hidden');
+    document.body.style.cursor = '';
+  });
+
+  /* Keyboard Shortcuts */
+  window.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT') return;
+    const key = e.key.toLowerCase();
+    if (e.code === 'Space' || key === 'k') {
+      e.preventDefault();
+      togglePlay();
+    } else if (e.code === 'ArrowLeft') {
+      e.preventDefault();
+      video.currentTime = Math.max(0, video.currentTime - 5);
+    } else if (e.code === 'ArrowRight') {
+      e.preventDefault();
+      video.currentTime = Math.min(video.duration || 0, video.currentTime + 5);
+    } else if (key === 'j') {
+      video.currentTime = Math.max(0, video.currentTime - 10);
+    } else if (key === 'l') {
+      video.currentTime = Math.min(video.duration || 0, video.currentTime + 10);
+    } else if (e.code === 'ArrowUp') {
+      e.preventDefault();
+      updateVolume(video.volume + 0.08);
+    } else if (e.code === 'ArrowDown') {
+      e.preventDefault();
+      updateVolume(video.volume - 0.08);
+    } else if (key === 'm') {
+      volBtn.click();
+    } else if (key === 'f') {
+      fsBtn.click();
+    }
+  });
+
+  /* MediaSession API */
+  if ('mediaSession' in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: 'bye (Altare remix)',
+      artist: 'Ariana Grande',
+      album: 'eternal sunshine'
+    });
+    navigator.mediaSession.setActionHandler('play', togglePlay);
+    navigator.mediaSession.setActionHandler('pause', togglePlay);
+    navigator.mediaSession.setActionHandler('seekbackward', () => {
+      video.currentTime = Math.max(0, video.currentTime - 10);
+    });
+    navigator.mediaSession.setActionHandler('seekforward', () => {
+      video.currentTime = Math.min(video.duration || 0, video.currentTime + 10);
+    });
+    navigator.mediaSession.setActionHandler('seekto', details => {
+      if (details.seekTime) video.currentTime = details.seekTime;
+    });
+  }
+
+  /* Main animation loop */
+  let lastSec = -1;
+  function renderFrame() {
+    const cur = video.currentTime || 0;
+    const dur = video.duration || 183.47;
+    const p = dur ? clamp(cur / dur) : 0;
+
+    if (!dragging && dur) {
+      seek.value = Math.round(p * 1000);
+      seek.style.setProperty('--p', (p * 100).toFixed(2) + '%');
+    }
+
+    const sec = cur | 0;
+    if (sec !== lastSec) {
+      lastSec = sec;
+      curTimeEl.textContent = fmt(cur);
+      durTimeEl.textContent = fmt(dur);
+
+      const curChIdx = getCurrentChapterIdx(cur);
+      document.querySelectorAll('.chapter-dot').forEach((dot, dIdx) => {
+        dot.classList.toggle('active', dIdx === curChIdx);
+      });
+    }
+
+    updateLyrics(cur);
+    requestAnimationFrame(renderFrame);
+  }
+
+  video.addEventListener('loadedmetadata', () => {
+    durTimeEl.textContent = fmt(video.duration || 183.47);
+    renderChapterMarkers();
+    lastSec = -1;
+  });
+  video.addEventListener('timeupdate', () => updateLyrics(video.currentTime));
+  video.addEventListener('seeked', () => updateLyrics(video.currentTime));
+
+  renderChapterMarkers();
+  requestAnimationFrame(renderFrame);
+})();
+</script>
+</body>
+</html>
