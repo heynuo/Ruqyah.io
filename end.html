@@ -68,7 +68,7 @@
   <!-- Shared Design System Tokens (Light / Dark / Sepia) -->
   <link rel="stylesheet" href="css/shared-layout.css?v=2026-11-15-search-1">
   <link rel="stylesheet" href="css/tailwind.generated.css?v=2026-11-15-search-1">
-  <link rel="stylesheet" href="css/quran-light.css?v=2026-11-15-bg-1">
+  <link rel="stylesheet" href="css/quran-light.css?v=2026-11-16-end-bye-bye-1">
   <link rel="stylesheet" href="css/animated-heart.css?v=2026-11-15-bg-1">
 </head>
 
@@ -89,6 +89,7 @@
         <span class="font-code-mono text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">On this page</span>
         <div class="flex flex-wrap gap-2">
           <a href="#end-video" class="inline-flex items-center px-3 py-1.5 rounded-full bg-surface-container-low border border-border-subtle font-ui-interactive text-xs text-on-surface-variant hover:border-primary/50 hover:bg-surface-container hover:text-primary transition-colors">Video reflection</a>
+          <a href="#end-bye-bye" class="inline-flex items-center px-3 py-1.5 rounded-full bg-surface-container-low border border-border-subtle font-ui-interactive text-xs text-on-surface-variant hover:border-primary/50 hover:bg-surface-container hover:text-primary transition-colors">END BYE BYE</a>
           <a href="#core-pillars" class="inline-flex items-center px-3 py-1.5 rounded-full bg-surface-container-low border border-border-subtle font-ui-interactive text-xs text-on-surface-variant hover:border-primary/50 hover:bg-surface-container hover:text-primary transition-colors">Key themes</a>
           <a href="#serene-soul" class="inline-flex items-center px-3 py-1.5 rounded-full bg-surface-container-low border border-border-subtle font-ui-interactive text-xs text-on-surface-variant hover:border-primary/50 hover:bg-surface-container hover:text-primary transition-colors">The serene soul</a>
           <a href="#noble-conclusion" class="inline-flex items-center px-3 py-1.5 rounded-full bg-surface-container-low border border-border-subtle font-ui-interactive text-xs text-on-surface-variant hover:border-primary/50 hover:bg-surface-container hover:text-primary transition-colors">Supplication</a>
@@ -213,10 +214,37 @@
             </div>
           </div>
           <div class="lg:col-span-6 flex items-center justify-center bg-black p-4 sm:p-6 lg:p-8">
-            <video class="w-full aspect-video rounded-xl bg-black object-contain shadow-lg border border-white/10" controls playsinline preload="metadata" aria-label="Visual reflection: The End (Al-Akhirah)">
-              <source src="assets/videos/2026_END.mp4" type="video/mp4">
-              Your browser does not support in-page video playback. <a href="assets/videos/2026_END.mp4" class="text-primary underline">Download the video</a> instead.
+            <video class="w-full aspect-video rounded-xl bg-black object-contain shadow-lg border border-white/10" controls playsinline preload="metadata" aria-label="Enhanced 1080p visual reflection: The End (Al-Akhirah)">
+              <source src="assets/videos/enhanced_1080p.mp4" type="video/mp4">
+              Your browser does not support in-page video playback. <a href="assets/videos/enhanced_1080p.mp4" class="text-primary underline">Download the video</a> instead.
             </video>
+          </div>
+        </div>
+      </section>
+
+      <section id="end-bye-bye" aria-labelledby="end-bye-bye-title" class="end-bye-bye">
+        <video id="end-bye-bye-video" class="end-bye-bye-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
+          <source src="assets/videos/2026_END.mp4" type="video/mp4">
+        </video>
+        <div class="end-bye-bye-scrim" aria-hidden="true"></div>
+
+        <a href="assets/videos/2026_END.mp4" target="_blank" rel="noopener noreferrer" class="end-bye-bye-full-link">
+          <span class="material-symbols-outlined text-sm" aria-hidden="true">open_in_new</span>
+          <span class="end-bye-bye-full-label">Full Video</span>
+        </a>
+
+        <div class="end-bye-bye-content">
+          <p class="end-bye-bye-arabic" dir="rtl" lang="ar">وَأَنَّ إِلَىٰ رَبِّكَ الْمُنتَهَىٰ</p>
+          <span class="end-bye-bye-kicker">A Moment of Reflection</span>
+          <h2 id="end-bye-bye-title" class="end-bye-bye-title">END BYE BYE</h2>
+          <div class="end-bye-bye-divider" aria-hidden="true"><span></span><span>✦</span><span></span></div>
+          <p class="end-bye-bye-copy">A quiet closing reflection on the journey’s end and the return to Allah.</p>
+          <div class="end-bye-bye-actions">
+            <a href="assets/videos/2026_END.mp4" target="_blank" rel="noopener noreferrer" class="end-bye-bye-action">
+              <span class="material-symbols-outlined text-base" aria-hidden="true">play_arrow</span>
+              Watch the Reflection
+            </a>
+            <a href="#noble-conclusion" class="end-bye-bye-secondary">Continue Reading</a>
           </div>
         </div>
       </section>
@@ -442,6 +470,44 @@
       </div>
     </div>
   </div>
+
+  <!-- Play the decorative reflection only when it is near view; honor reduced motion. -->
+  <script>
+    (function () {
+      var video = document.getElementById('end-bye-bye-video');
+      if (!video) return;
+
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var isNearViewport = false;
+
+      function syncPlayback() {
+        if (reduceMotion.matches || !isNearViewport) {
+          video.pause();
+          return;
+        }
+        video.play().catch(function () {});
+      }
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.target === video) {
+              isNearViewport = entry.isIntersecting;
+              syncPlayback();
+            }
+          });
+        }, { rootMargin: '120px' });
+        observer.observe(video);
+      } else {
+        isNearViewport = true;
+        syncPlayback();
+      }
+
+      var motionChanged = function () { syncPlayback(); };
+      if (reduceMotion.addEventListener) reduceMotion.addEventListener('change', motionChanged);
+      else if (reduceMotion.addListener) reduceMotion.addListener(motionChanged);
+    })();
+  </script>
 
   <!-- Interactive Script for Copy Actions -->
   <script>
