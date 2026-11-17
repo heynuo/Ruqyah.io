@@ -284,13 +284,4 @@
   if (!layoutInjected) {
     document.addEventListener('DOMContentLoaded', safeInjectLayout);
   }
-
-  // ── Load Ruqyah AI Companion ──────────────────────────────────────────
-  if (!document.getElementById('ruqyah-ai-script')) {
-    var aiScript = document.createElement('script');
-    aiScript.id = 'ruqyah-ai-script';
-    aiScript.src = 'js/ruqyah-ai.js';
-    aiScript.defer = true;
-    document.body.appendChild(aiScript);
-  }
 })();
