@@ -68,14 +68,14 @@
   <!-- Shared Design System Tokens (Light / Dark / Sepia) -->
   <link rel="stylesheet" href="css/shared-layout.css?v=2026-11-15-search-1">
   <link rel="stylesheet" href="css/tailwind.generated.css?v=2026-11-15-search-1">
-  <link rel="stylesheet" href="css/quran-light.css?v=2026-11-16-end-bye-bye-6">
+  <link rel="stylesheet" href="css/quran-light.css?v=2026-11-17-video-brightness-1">
   <link rel="stylesheet" href="css/animated-heart.css?v=2026-11-15-bg-1">
 </head>
 
 <body class="bg-bg-canvas font-body-article text-on-surface antialiased min-h-screen flex flex-col pb-32 transition-colors duration-200">
   <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-on-primary focus:rounded-md focus:shadow-lg focus:outline-none">Skip to main content</a>
 
-  <main class="w-full pt-14 bg-background flex-1 pb-24" id="main-content">
+  <main class="w-full pt-14 bg-background flex-1 pb-12" id="main-content">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-6 pb-12 flex flex-col gap-10">
 
       <!-- Breadcrumbs -->
@@ -440,6 +440,26 @@
       </section>
 
     </div>
+
+    <section id="final-video" class="end-bye-bye" aria-labelledby="final-video-title">
+      <video id="final-video-background" class="end-bye-bye-video" muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1">
+        <source src="assets/videos/final-video-car.mp4" type="video/mp4">
+      </video>
+      <div class="end-bye-bye-scrim" aria-hidden="true"></div>
+      <div class="end-bye-bye-content">
+        <p class="end-bye-bye-arabic" dir="rtl" lang="ar">الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</p>
+        <span class="end-bye-bye-kicker">A Moment of Gratitude</span>
+        <h2 id="final-video-title" class="end-bye-bye-title">Thank You, Allah</h2>
+        <div class="end-bye-bye-divider" aria-hidden="true"><span></span><span>✦</span><span></span></div>
+        <p class="end-bye-bye-copy">Alhamdulillah · Shukriya · Ash-Shukru Lillah</p>
+        <div class="end-bye-bye-actions">
+          <button id="final-video-audio-toggle" type="button" class="end-bye-bye-secondary font-ui-interactive cursor-pointer" aria-label="Listen to this moment" aria-pressed="false">
+            <span id="final-video-audio-icon" class="material-symbols-outlined" aria-hidden="true">play_arrow</span>
+            <span id="final-video-audio-label">Listen to this moment</span>
+          </button>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- KEYBOARD SHORTCUTS MODAL (WCAG 2.1.4 compliant) -->
@@ -494,14 +514,14 @@
   <!-- Play the decorative reflection only when it is near view; honor reduced motion. -->
   <script>
     (function () {
-      var video = document.getElementById('end-bye-bye-video');
-      if (!video) return;
+      var videos = Array.prototype.slice.call(document.querySelectorAll('.end-bye-bye-video'));
+      if (!videos.length) return;
 
       var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-      var isNearViewport = false;
+      var visibility = new Map(videos.map(function (video) { return [video, false]; }));
 
-      function syncPlayback() {
-        if (reduceMotion.matches || !isNearViewport) {
+      function syncPlayback(video) {
+        if (reduceMotion.matches || !visibility.get(video)) {
           video.pause();
           return;
         }
@@ -511,21 +531,44 @@
       if ('IntersectionObserver' in window) {
         var observer = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
-            if (entry.target === video) {
-              isNearViewport = entry.isIntersecting;
-              syncPlayback();
-            }
+            visibility.set(entry.target, entry.isIntersecting);
+            syncPlayback(entry.target);
           });
         }, { rootMargin: '120px' });
-        observer.observe(video);
+        videos.forEach(function (video) { observer.observe(video); });
       } else {
-        isNearViewport = true;
-        syncPlayback();
+        videos.forEach(function (video) {
+          visibility.set(video, true);
+          syncPlayback(video);
+        });
       }
 
-      var motionChanged = function () { syncPlayback(); };
+      var motionChanged = function () { videos.forEach(syncPlayback); };
       if (reduceMotion.addEventListener) reduceMotion.addEventListener('change', motionChanged);
       else if (reduceMotion.addListener) reduceMotion.addListener(motionChanged);
+
+      window.addEventListener('pageshow', function () {
+        videos.forEach(function (video) {
+          var bounds = video.getBoundingClientRect();
+          visibility.set(video, bounds.bottom > -120 && bounds.top < window.innerHeight + 120);
+          syncPlayback(video);
+        });
+      });
+
+      var finalVideo = document.getElementById('final-video-background');
+      var audioButton = document.getElementById('final-video-audio-toggle');
+      var audioLabel = document.getElementById('final-video-audio-label');
+      var audioIcon = document.getElementById('final-video-audio-icon');
+      if (finalVideo && audioButton && audioLabel && audioIcon) {
+        audioButton.addEventListener('click', function () {
+          finalVideo.muted = !finalVideo.muted;
+          audioButton.setAttribute('aria-pressed', String(!finalVideo.muted));
+          audioButton.setAttribute('aria-label', finalVideo.muted ? 'Listen to this moment' : 'Mute this moment');
+          audioLabel.textContent = finalVideo.muted ? 'Listen to this moment' : 'Mute this moment';
+          audioIcon.textContent = finalVideo.muted ? 'play_arrow' : 'volume_up';
+          if (!finalVideo.muted) finalVideo.play().catch(function () {});
+        });
+      }
     })();
   </script>
 

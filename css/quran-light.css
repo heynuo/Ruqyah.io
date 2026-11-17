@@ -231,8 +231,12 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  filter: brightness(1.12) saturate(1.08) contrast(1.02);
+  filter: brightness(1.32) saturate(1.1) contrast(1.04);
   pointer-events: none;
+}
+
+.final-video-player {
+  filter: brightness(1.12) saturate(1.05) contrast(1.03);
 }
 
 .end-bye-bye-scrim {
@@ -240,8 +244,8 @@
   z-index: 1;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(3, 8, 7, 0.08) 0%, rgba(3, 8, 7, 0.28) 55%, rgba(3, 8, 7, 0.62) 100%),
-    radial-gradient(ellipse 78% 78% at 50% 46%, rgba(3, 8, 7, 0.02) 0%, rgba(3, 8, 7, 0.38) 100%);
+    linear-gradient(180deg, rgba(3, 8, 7, 0.04) 0%, rgba(3, 8, 7, 0.18) 55%, rgba(3, 8, 7, 0.5) 100%),
+    radial-gradient(ellipse 78% 78% at 50% 46%, rgba(3, 8, 7, 0.01) 0%, rgba(3, 8, 7, 0.28) 100%);
   pointer-events: none;
 }
 
