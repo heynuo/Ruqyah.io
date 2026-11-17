@@ -10,6 +10,8 @@
     { label: '✨ Morning & Evening Adhkar', prompt: 'What are the core morning and evening protective remembrances (Adhkar) from the Prophet (pbuh)?' }
   ];
 
+  let conversationHistory = [];
+
   function formatMarkdown(text) {
     if (!text) return '';
     return text
@@ -21,6 +23,16 @@
       .replace(/•\s*(.*?)(?=(\n•|\n\n|$))/gs, '<li class="ml-4 list-disc mb-1">$1</li>')
       .replace(/\n\n+/g, '<br><br>')
       .replace(/\n/g, '<br>');
+  }
+
+  function speakText(text) {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const cleanText = text.replace(/<[^>]*>/g, '').replace(/[*_#•]/g, ' ');
+    const utterance = new SpeechSynthesisUtterance(cleanText);
+    utterance.rate = 0.95;
+    utterance.pitch = 1.0;
+    window.speechSynthesis.speak(utterance);
   }
 
   function initRuqyahAI() {
@@ -58,8 +70,9 @@
       .ruqyah-ai-modal-backdrop {
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(4px);
+        background: rgba(0, 0, 0, 0.65);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
         z-index: 1000;
         display: none;
         align-items: center;
@@ -68,25 +81,29 @@
       }
       .ruqyah-ai-modal-backdrop.is-open {
         display: flex;
+        animation: ruqyahFadeIn 0.2s ease-out;
+      }
+      @keyframes ruqyahFadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
       }
       .ruqyah-ai-card {
         background: var(--bg-surface, #ffffff);
         color: var(--on-surface, #1e293b);
-        border-radius: 18px;
+        border-radius: 20px;
         border: 1px solid rgba(15, 118, 110, 0.25);
-        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
         width: 100%;
-        max-width: 580px;
-        max-height: 85vh;
+        max-width: 600px;
+        max-height: 86vh;
         display: flex;
-        flex-col: column;
         flex-direction: column;
         overflow: hidden;
       }
       .ruqyah-ai-header {
         background: linear-gradient(135deg, #0F766E 0%, #004d47 100%);
         color: #ffffff;
-        padding: 16px 20px;
+        padding: 14px 20px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -98,8 +115,15 @@
         display: flex;
         flex-direction: column;
         gap: 14px;
-        min-height: 220px;
-        max-height: 480px;
+        min-height: 250px;
+        max-height: 500px;
+      }
+      .ruqyah-ai-chat-body::-webkit-scrollbar {
+        width: 6px;
+      }
+      .ruqyah-ai-chat-body::-webkit-scrollbar-thumb {
+        background: rgba(15, 118, 110, 0.2);
+        border-radius: 9999px;
       }
       .ruqyah-ai-bubble-user {
         align-self: flex-end;
@@ -109,18 +133,45 @@
         border-radius: 14px 14px 2px 14px;
         font-size: 13.5px;
         max-width: 85%;
-        line-height: 1.45;
+        line-height: 1.5;
+        box-shadow: 0 2px 8px rgba(15, 118, 110, 0.2);
       }
       .ruqyah-ai-bubble-ai {
         align-self: flex-start;
-        background: rgba(15, 118, 110, 0.08);
+        background: rgba(15, 118, 110, 0.07);
         border: 1px solid rgba(15, 118, 110, 0.15);
         color: inherit;
-        padding: 12px 16px;
+        padding: 14px 16px;
         border-radius: 14px 14px 14px 2px;
         font-size: 13.5px;
-        max-width: 92%;
-        line-height: 1.6;
+        max-width: 95%;
+        line-height: 1.65;
+        position: relative;
+      }
+      .ruqyah-ai-bubble-actions {
+        display: flex;
+        gap: 8px;
+        margin-top: 10px;
+        padding-top: 8px;
+        border-top: 1px dashed rgba(15, 118, 110, 0.15);
+      }
+      .ruqyah-ai-action-btn {
+        background: transparent;
+        border: 1px solid rgba(15, 118, 110, 0.2);
+        color: #0F766E;
+        font-size: 11px;
+        font-weight: 500;
+        border-radius: 6px;
+        padding: 3px 8px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        transition: all 0.15s ease;
+      }
+      .ruqyah-ai-action-btn:hover {
+        background: #0F766E;
+        color: #ffffff;
       }
       .ruqyah-ai-chip {
         display: inline-block;
@@ -139,11 +190,22 @@
         color: #ffffff;
       }
       .ruqyah-ai-input-bar {
-        padding: 14px 16px;
+        padding: 12px 16px;
         border-top: 1px solid rgba(15, 118, 110, 0.15);
         display: flex;
         gap: 10px;
         background: rgba(15, 118, 110, 0.02);
+      }
+      @media (max-width: 640px) {
+        .ruqyah-ai-fab {
+          bottom: 16px;
+          right: 16px;
+          padding: 8px 14px;
+        }
+        .ruqyah-ai-card {
+          max-height: 92vh;
+          border-radius: 16px;
+        }
       }
     `;
     document.head.appendChild(style);
@@ -166,17 +228,23 @@
             <div style="display: flex; align-items: center; gap: 8px;">
               <span style="color: #F5C26B; font-size: 18px;">✦</span>
               <div>
-                <h3 id="ruqyah-ai-modal-title" style="margin: 0; font-size: 15px; font-weight: 700; letter-spacing: -0.01em;">Ruqyah AI Spiritual Companion</h3>
+                <h3 id="ruqyah-ai-modal-title" style="margin: 0; font-size: 14.5px; font-weight: 700; letter-spacing: -0.01em;">Ruqyah AI Spiritual Companion</h3>
                 <div style="font-size: 11px; opacity: 0.85;">Powered by Cloudflare Workers AI · Claude Fable 5.2</div>
               </div>
             </div>
-            <button id="ruqyah-ai-close-btn" style="background: transparent; border: none; color: #fff; cursor: pointer; font-size: 20px; padding: 4px;" aria-label="Close">✕</button>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <button id="ruqyah-ai-clear-btn" title="Start new conversation" 
+                style="background: rgba(255,255,255,0.15); border: none; color: #fff; font-size: 11px; padding: 4px 8px; border-radius: 6px; cursor: pointer;">
+                New
+              </button>
+              <button id="ruqyah-ai-close-btn" style="background: transparent; border: none; color: #fff; cursor: pointer; font-size: 18px; padding: 4px;" aria-label="Close">✕</button>
+            </div>
           </div>
 
           <!-- Body -->
           <div class="ruqyah-ai-chat-body" id="ruqyah-ai-chat">
             <div class="ruqyah-ai-bubble-ai">
-              <strong>Assalamu Alaikum.</strong> Welcome to the Ruqyah Scholastic Companion. How may I assist your spiritual reflections or understanding of healing verses today?
+              <strong>Assalamu Alaikum wa Rahmatullah.</strong> Welcome to the Ruqyah Scholastic Companion. How may I assist your understanding of Qur'anic healing verses, du'as, or reflections today?
             </div>
             
             <div id="ruqyah-ai-chips-wrapper" style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px;">
@@ -203,6 +271,7 @@
     const modal = document.getElementById('ruqyah-ai-modal');
     const openBtn = document.getElementById('ruqyah-ai-open-btn');
     const closeBtn = document.getElementById('ruqyah-ai-close-btn');
+    const clearBtn = document.getElementById('ruqyah-ai-clear-btn');
     const chat = document.getElementById('ruqyah-ai-chat');
     const form = document.getElementById('ruqyah-ai-form');
     const input = document.getElementById('ruqyah-ai-input');
@@ -215,10 +284,26 @@
 
     function closeModal() {
       modal.classList.remove('is-open');
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    }
+
+    function resetConversation() {
+      conversationHistory = [];
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      chat.innerHTML = `
+        <div class="ruqyah-ai-bubble-ai">
+          <strong>Assalamu Alaikum wa Rahmatullah.</strong> Welcome to the Ruqyah Scholastic Companion. How may I assist your understanding of Qur'anic healing verses, du'as, or reflections today?
+        </div>
+        <div id="ruqyah-ai-chips-wrapper" style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px;">
+          ${QUICK_PROMPTS.map(p => `<button class="ruqyah-ai-chip" data-prompt="${p.prompt.replace(/"/g, '&quot;')}">${p.label}</button>`).join('')}
+        </div>
+      `;
+      attachChipListeners();
     }
 
     openBtn.addEventListener('click', openModal);
     closeBtn.addEventListener('click', closeModal);
+    clearBtn.addEventListener('click', resetConversation);
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeModal();
     });
@@ -227,13 +312,15 @@
       if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
     });
 
-    // Chips
-    document.querySelectorAll('.ruqyah-ai-chip').forEach(chip => {
-      chip.addEventListener('click', () => {
-        const p = chip.getAttribute('data-prompt');
-        if (p) submitPrompt(p);
+    function attachChipListeners() {
+      document.querySelectorAll('.ruqyah-ai-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          const p = chip.getAttribute('data-prompt');
+          if (p) submitPrompt(p);
+        });
       });
-    });
+    }
+    attachChipListeners();
 
     async function submitPrompt(promptText) {
       const text = String(promptText || '').trim();
@@ -242,6 +329,9 @@
       input.value = '';
       input.disabled = true;
       sendBtn.disabled = true;
+
+      // Record in conversation history
+      conversationHistory.push({ role: 'user', content: text });
 
       // Append user bubble
       const userBubble = document.createElement('div');
@@ -252,7 +342,7 @@
       // Append AI loading bubble
       const aiBubble = document.createElement('div');
       aiBubble.className = 'ruqyah-ai-bubble-ai';
-      aiBubble.innerHTML = '<span style="opacity: 0.7;">Seeking authentic reflection... ✦</span>';
+      aiBubble.innerHTML = '<span style="opacity: 0.7;">Contemplating authentic reflection... ✦</span>';
       chat.appendChild(aiBubble);
       chat.scrollTop = chat.scrollHeight;
 
@@ -260,11 +350,37 @@
         const res = await fetch(AI_ENDPOINT, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ prompt: text })
+          body: JSON.stringify({ messages: conversationHistory.slice(-8) })
         });
         const data = await res.json();
         if (data.reply) {
+          conversationHistory.push({ role: 'assistant', content: data.reply });
           aiBubble.innerHTML = formatMarkdown(data.reply);
+
+          // Add Copy and Listen action buttons
+          const actions = document.createElement('div');
+          actions.className = 'ruqyah-ai-bubble-actions';
+
+          const copyBtn = document.createElement('button');
+          copyBtn.className = 'ruqyah-ai-action-btn';
+          copyBtn.innerHTML = '📋 Copy';
+          copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(data.reply).then(() => {
+              copyBtn.innerHTML = '✓ Copied';
+              setTimeout(() => { copyBtn.innerHTML = '📋 Copy'; }, 2000);
+            });
+          });
+
+          const listenBtn = document.createElement('button');
+          listenBtn.className = 'ruqyah-ai-action-btn';
+          listenBtn.innerHTML = '🔊 Listen';
+          listenBtn.addEventListener('click', () => {
+            speakText(data.reply);
+          });
+
+          actions.appendChild(copyBtn);
+          actions.appendChild(listenBtn);
+          aiBubble.appendChild(actions);
         } else {
           aiBubble.textContent = data.error || 'Unable to load reflection. Please try again.';
         }
