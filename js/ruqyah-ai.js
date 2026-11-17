@@ -167,7 +167,7 @@
               <span style="color: #F5C26B; font-size: 18px;">✦</span>
               <div>
                 <h3 id="ruqyah-ai-modal-title" style="margin: 0; font-size: 15px; font-weight: 700; letter-spacing: -0.01em;">Ruqyah AI Spiritual Companion</h3>
-                <div style="font-size: 11px; opacity: 0.85;">Powered by Cloudflare Workers AI · Meta LLaMA 3.1</div>
+                <div style="font-size: 11px; opacity: 0.85;">Powered by Cloudflare Workers AI · Claude Haiku 5.5</div>
               </div>
             </div>
             <button id="ruqyah-ai-close-btn" style="background: transparent; border: none; color: #fff; cursor: pointer; font-size: 20px; padding: 4px;" aria-label="Close">✕</button>
