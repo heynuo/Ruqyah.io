@@ -1,0 +1,26 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "R2: Preview media upload",
+      "type": "shell",
+      "command": "npm run r2:upload -- --dry-run",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "R2: Upload heavy media",
+      "type": "shell",
+      "command": "npm run r2:upload",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "R2: Stop tracking uploaded media",
+      "type": "shell",
+      "command": "npm run r2:untrack",
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}

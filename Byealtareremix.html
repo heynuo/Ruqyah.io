@@ -8,6 +8,8 @@
 <title>Ariana Grande — bye (Altare remix) | Video &amp; Lyrics</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev" crossorigin>
+  <link rel="dns-prefetch" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -321,11 +323,13 @@
     .big-play-btn, .icon-btn, .lyric-current { transition: none !important; animation: none !important; }
   }
 </style>
+  <script src="js/r2-config.js"></script>
+  <script src="js/r2-media.js"></script>
 </head>
 <body>
 <main class="stage" id="stage">
   <!-- Unified Video & Audio Element with sound enabled -->
-  <video id="media-video" src="assets/videos/bye-altare-remix.mp4" playsinline preload="auto"></video>
+  <video id="media-video" data-media-src="assets/videos/bye-altare-remix.mp4" playsinline preload="none"></video>
 
   <!-- Moving Lyrics: Only lyrics appear in the upper of video -->
   <div class="moving-lyrics-stage" id="moving-lyrics-stage" aria-label="Live Lyrics">

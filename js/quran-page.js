@@ -1591,7 +1591,7 @@
           </div>
         </div>
         <div class="flex items-center gap-2 shrink-0 w-full sm:w-auto justify-end">
-          <a class="px-3 py-1.5 rounded-lg bg-primary text-white hover:bg-primary-container text-xs font-medium flex items-center gap-1 transition-colors" href="${pdf.downloadUrl}" target="_blank" rel="noopener noreferrer">
+          <a class="px-3 py-1.5 rounded-lg bg-primary text-white hover:bg-primary-container text-xs font-medium flex items-center gap-1 transition-colors" href="${window.r2MediaUrl(pdf.downloadUrl)}" target="_blank" rel="noopener noreferrer">
             <span class="material-symbols-outlined text-[15px]">download</span>
             <span>Download</span>
           </a>

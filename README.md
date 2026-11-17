@@ -133,6 +133,23 @@ powershell -ExecutionPolicy Bypass -File .\tools\validate-site.ps1
 powershell -ExecutionPolicy Bypass -File .\tools\check-css.ps1
 ```
 
+### 4. Store heavy media in Cloudflare R2
+
+Large video, audio, and PDF files can be stored in R2 and served through a Cloudflare custom domain. The media loader keeps local paths working during setup, then uses the R2 domain after a successful upload. Videos and PDFs are only requested as they approach the visible part of the page.
+
+1. In Cloudflare, create an R2 bucket and connect a custom domain such as `media.example.com`. Add a Cache Rule for the media domain so video, audio, and PDF responses are cached. The `r2.dev` URL is intended for development use.
+2. Revoke any Cloudflare API bearer token you pasted into a chat. Then create an R2 API token with **Object Read & Write** access scoped to this bucket. Copy its **Access Key ID** and **Secret Access Key**. The Cloudflare API bearer token is a different credential and must not be used here.
+3. Copy `.env.r2.example` to `.env.r2` and fill in the account ID, bucket name, S3 credentials, and public custom-domain URL. `.env.r2` is ignored by Git.
+4. Preview the upload with `npm run r2:upload -- --dry-run`, then run `npm run r2:upload`. This uploads `assets/videos`, `assets/allah-background-videos`, `assets/audio`, and `assets/pdf` with multipart uploads. On success, it writes the public URL to `js/r2-config.js`.
+5. Commit and deploy the site, then open the video and PDF pages to confirm playback and downloads work from the custom domain.
+6. After checking the deployed URLs, run `npm run r2:untrack` and commit the staged deletions. This removes uploaded media from Git tracking while keeping the local originals. Existing files are still tracked until this step; new files in the heavy-media folders are ignored by Git.
+
+This keeps future commits and GitHub Pages deployments from including the media. Earlier Git commits still contain their historical copies; removing those requires a separate Git history rewrite.
+
+For the Hadith Qudsi visualizer, allow `GET` from `https://heynuo.github.io` in the bucket's CORS policy so the Web Audio analyser can read the cross-origin video. Add your local development origin if you test that page locally.
+
+In VS Code, open **Terminal → Run Task** and choose an `R2:` task to preview, upload, or stop tracking the media. Cloudflare recommends a custom domain for caching; the `r2.dev` URL is rate-limited and intended for non-production traffic. See [R2 S3 credentials](https://developers.cloudflare.com/r2/get-started/s3/), [R2 public buckets](https://developers.cloudflare.com/r2/buckets/public-buckets/), and [R2 caching](https://developers.cloudflare.com/cache/interaction-cloudflare-products/r2/).
+
 ---
 
 ## 📜 Scholastic Citations & Audio Sources

@@ -26,12 +26,16 @@
   <!-- Fonts: Amiri for sacred calligraphy, Inter for UI, Playfair Display for titles -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev" crossorigin>
+  <link rel="dns-prefetch" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev">
   <link
     href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap"
     rel="stylesheet">
 
   <!-- Separated, high-performance, cacheable stylesheet -->
   <link rel="stylesheet" href="css/thank-you.css">
+  <script src="js/r2-config.js"></script>
+  <script src="js/r2-media.js"></script>
 </head>
 
 <body>
@@ -426,7 +430,7 @@
       function startAtmosphereVideo() {
         if (!atmosphereVideoEnabled || !isVisible || document.visibilityState === 'hidden') return;
         if (!atmosphereVideo.getAttribute('src')) {
-          atmosphereVideo.src = 'assets/videos/gratitude/gratitude-final.mp4';
+          atmosphereVideo.src = window.r2MediaUrl('assets/videos/gratitude/gratitude-final.mp4');
           atmosphereVideo.load();
         }
 

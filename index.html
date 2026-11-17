@@ -223,6 +223,8 @@
   <!-- Typography Preconnect & Font Inclusions (Unified) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev" crossorigin>
+  <link rel="dns-prefetch" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev">
   <link
     href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
     rel="stylesheet">
@@ -250,6 +252,8 @@
   <link rel="stylesheet" href="css/tailwind.generated.css?v=2026-11-15-search-1">
   <!-- Deferred before the home-page controller so this data stays off the parser-critical path. -->
   <script src="js/audio-reciter-data.js" defer></script>
+  <script src="js/r2-config.js"></script>
+  <script src="js/r2-media.js"></script>
 </head>
 
 <body
@@ -359,7 +363,7 @@
               <video class="block w-full aspect-video object-contain bg-black" controls playsinline preload="none"
                 aria-label="Recreated video" width="1280" height="720"
                 style="display:block;width:100%;height:auto;aspect-ratio:16 / 9;">
-                <source src="assets/videos/recreated_video_v3.mp4" type="video/mp4">
+                <source data-media-src="assets/videos/recreated_video_v3.mp4" type="video/mp4">
                 Your browser does not support video playback.
               </video>
             </div>
@@ -1181,8 +1185,8 @@
         <article class="rounded-xl border border-border-strong/30 bg-surface shadow-xs overflow-hidden">
           <div class="aspect-video bg-black">
             <video class="w-full h-full" controls playsinline preload="none" aria-labelledby="video-one-title">
-              <source src="assets/videos/video-1.mp4" type="video/mp4">
-              Your browser does not support in-page video playback. <a href="assets/videos/video-1.mp4">Download the
+              <source data-media-src="assets/videos/video-1.mp4" type="video/mp4">
+              Your browser does not support in-page video playback. <a href="assets/videos/video-1.mp4" data-media-href="assets/videos/video-1.mp4">Download the
                 MP4</a> instead.
             </video>
           </div>
@@ -1192,15 +1196,15 @@
               <p class="font-code-mono text-[11px] text-on-surface-variant mt-1">MP4 video</p>
             </div>
             <a class="inline-flex items-center justify-center min-h-10 px-3 rounded border border-border-subtle text-primary text-sm font-semibold hover:bg-surface-container-low transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-              href="assets/videos/video-1.mp4" download>Download</a>
+              href="assets/videos/video-1.mp4" data-media-href="assets/videos/video-1.mp4" download>Download</a>
           </div>
         </article>
 
         <article class="rounded-xl border border-border-strong/30 bg-surface shadow-xs overflow-hidden">
           <div class="aspect-video bg-black">
             <video class="w-full h-full" controls playsinline preload="none" aria-labelledby="video-two-title">
-              <source src="assets/videos/video-2.mp4?v=2026-11-15-video2" type="video/mp4">
-              Your browser does not support in-page video playback. <a href="assets/videos/video-2.mp4?v=2026-11-15-video2">Download the
+              <source data-media-src="assets/videos/video-2.mp4?v=2026-11-15-video2" type="video/mp4">
+              Your browser does not support in-page video playback. <a href="assets/videos/video-2.mp4?v=2026-11-15-video2" data-media-href="assets/videos/video-2.mp4?v=2026-11-15-video2">Download the
                 MP4</a> instead.
             </video>
           </div>
@@ -1210,16 +1214,16 @@
               <p class="font-code-mono text-[11px] text-on-surface-variant mt-1">MP4 video</p>
             </div>
             <a class="inline-flex items-center justify-center min-h-10 px-3 rounded border border-border-subtle text-primary text-sm font-semibold hover:bg-surface-container-low transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-              href="assets/videos/video-2.mp4?v=2026-11-15-video2" download>Download</a>
+              href="assets/videos/video-2.mp4?v=2026-11-15-video2" data-media-href="assets/videos/video-2.mp4?v=2026-11-15-video2" download>Download</a>
           </div>
         </article>
 
         <article class="rounded-xl border border-border-strong/30 bg-surface shadow-xs overflow-hidden">
           <div class="aspect-video bg-black">
             <video class="w-full h-full" controls playsinline preload="none" aria-labelledby="video-three-title">
-              <source src="assets/videos/video-3.mp4?v=2026-11-14-video3" type="video/mp4">
-              Your browser does not support in-page video playback. <a
-                href="assets/videos/video-3.mp4?v=2026-11-14-video3">Download the MP4</a> instead.
+              <source data-media-src="assets/videos/video-3.mp4?v=2026-11-14-video3" type="video/mp4">
+              Your browser does not support in-page video playback. <a href="assets/videos/video-3.mp4?v=2026-11-14-video3"
+                data-media-href="assets/videos/video-3.mp4?v=2026-11-14-video3">Download the MP4</a> instead.
             </video>
           </div>
           <div class="p-4 sm:p-5 flex items-center justify-between gap-4">
@@ -1228,16 +1232,16 @@
               <p class="font-code-mono text-[11px] text-on-surface-variant mt-1">MP4 video</p>
             </div>
             <a class="inline-flex items-center justify-center min-h-10 px-3 rounded border border-border-subtle text-primary text-sm font-semibold hover:bg-surface-container-low transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-              href="assets/videos/video-3.mp4?v=2026-11-14-video3" download>Download</a>
+              href="assets/videos/video-3.mp4?v=2026-11-14-video3" data-media-href="assets/videos/video-3.mp4?v=2026-11-14-video3" download>Download</a>
           </div>
         </article>
 
         <article class="rounded-xl border border-border-strong/30 bg-surface shadow-xs overflow-hidden">
           <div class="aspect-video bg-black">
             <video class="w-full h-full" controls playsinline preload="none" aria-labelledby="video-four-title">
-              <source src="assets/videos/video-4.mp4?v=2026-11-04-video4" type="video/mp4">
-              Your browser does not support in-page video playback. <a
-                href="assets/videos/video-4.mp4?v=2026-11-04-video4">Download the MP4</a> instead.
+              <source data-media-src="assets/videos/video-4.mp4?v=2026-11-04-video4" type="video/mp4">
+              Your browser does not support in-page video playback. <a href="assets/videos/video-4.mp4?v=2026-11-04-video4"
+                data-media-href="assets/videos/video-4.mp4?v=2026-11-04-video4">Download the MP4</a> instead.
             </video>
           </div>
           <div class="p-4 sm:p-5 flex items-center justify-between gap-4">
@@ -1246,7 +1250,7 @@
               <p class="font-code-mono text-[11px] text-on-surface-variant mt-1">MP4 video</p>
             </div>
             <a class="inline-flex items-center justify-center min-h-10 px-3 rounded border border-border-subtle text-primary text-sm font-semibold hover:bg-surface-container-low transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-              href="assets/videos/video-4.mp4?v=2026-11-04-video4" download>Download</a>
+              href="assets/videos/video-4.mp4?v=2026-11-04-video4" data-media-href="assets/videos/video-4.mp4?v=2026-11-04-video4" download>Download</a>
           </div>
         </article>
 
@@ -1254,8 +1258,8 @@
           class="rounded-xl border border-border-strong/30 bg-surface shadow-xs overflow-hidden lg:col-span-2 lg:w-1/2 lg:justify-self-center">
           <div class="aspect-video bg-black">
             <video class="w-full h-full" controls playsinline preload="none" aria-labelledby="video-five-title">
-              <source src="assets/videos/video-5-final.mp4" type="video/mp4">
-              Your browser does not support in-page video playback. <a href="assets/videos/video-5-final.mp4">Download
+              <source data-media-src="assets/videos/video-5-final.mp4" type="video/mp4">
+              Your browser does not support in-page video playback. <a href="assets/videos/video-5-final.mp4" data-media-href="assets/videos/video-5-final.mp4">Download
                 the MP4</a> instead.
             </video>
           </div>
@@ -1265,7 +1269,7 @@
               <p class="font-code-mono text-[11px] text-on-surface-variant mt-1">MP4 video</p>
             </div>
             <a class="inline-flex items-center justify-center min-h-10 px-3 rounded border border-border-subtle text-primary text-sm font-semibold hover:bg-surface-container-low transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-              href="assets/videos/video-5-final.mp4" download>Download</a>
+              href="assets/videos/video-5-final.mp4" data-media-href="assets/videos/video-5-final.mp4" download>Download</a>
           </div>
         </article>
       </div>

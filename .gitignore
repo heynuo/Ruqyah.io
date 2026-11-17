@@ -6,3 +6,13 @@ Thumbs.db
 .workflow-kit/
 
 node_modules/
+
+# Heavy media is uploaded to Cloudflare R2 instead of being added to GitHub.
+# Existing tracked files stay tracked until `npm run r2:untrack` is run.
+assets/videos/
+assets/allah-background-videos/
+assets/audio/
+assets/pdf/
+
+# Local R2 credentials. Never commit this file.
+.env.r2

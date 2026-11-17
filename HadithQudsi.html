@@ -7,6 +7,8 @@
 <title>Hadith Qudsi — Al-Fatiha, Do Hisse</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev" crossorigin>
+  <link rel="dns-prefetch" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -368,6 +370,8 @@
     border: 3px dashed rgba(255, 215, 120, 0.7); pointer-events: none;
   }
 </style>
+  <script src="js/r2-config.js"></script>
+  <script src="js/r2-media.js"></script>
 </head>
 <body>
 <a href="index.html" class="back-to-archive" id="backToArchiveBtn" title="Back to Ruqyah Archive" aria-label="Back to Ruqyah Archive">
@@ -375,9 +379,9 @@
 </a>
 <div id="stage">
 <div id="cam">
-  <video id="mediaTrack" playsinline preload="metadata" muted style="display:none">
-    <source src="assets/videos/reference-preview.mp4" type="video/mp4">
-    <source src="assets/audio/audio.mp3" type="audio/mpeg">
+  <video id="mediaTrack" playsinline preload="none" muted crossorigin="anonymous" style="display:none" data-media-eager>
+    <source data-media-src="assets/videos/reference-preview.mp4" type="video/mp4">
+    <source data-media-src="assets/audio/audio.mp3" type="audio/mpeg">
   </video>
 
   <div class="bg-base"></div>

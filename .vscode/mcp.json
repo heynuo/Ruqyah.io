@@ -17,9 +17,22 @@
             "id": "github-token",
             "description": "Enter your GitHub Personal Access Token",
             "password": true
+        },
+        {
+            "type": "promptString",
+            "id": "cloudflare-token",
+            "description": "Enter your Cloudflare API Token",
+            "password": true
         }
     ],
     "servers": {
+        "cloudflare-api": {
+            "type": "http",
+            "url": "https://mcp.cloudflare.com/mcp",
+            "headers": {
+                "Authorization": "Bearer ${input:cloudflare-token}"
+            }
+        },
         "stitch": {
             "type": "http",
             "url": "https://stitch.googleapis.com/mcp",

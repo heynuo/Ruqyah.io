@@ -40,6 +40,8 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev" crossorigin>
+  <link rel="dns-prefetch" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev">
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet">
@@ -297,11 +299,13 @@
       }
     }
   </style>
+  <script src="js/r2-config.js"></script>
+  <script src="js/r2-media.js"></script>
 </head>
 
 <body>
   <video class="heart-page-background-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1">
-    <source src="assets/videos/ambient-end-loop.mp4" type="video/mp4">
+    <source data-media-src="assets/videos/ambient-end-loop.mp4" type="video/mp4">
   </video>
   <header class="top-nav">
     <a href="end.html" class="back-btn" title="Back to The End section">
