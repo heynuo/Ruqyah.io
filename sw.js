@@ -41,6 +41,7 @@ const PRECACHE_URLS = [
   'js/shared-layout.js',
   'js/r2-config.js',
   'js/r2-media.js',
+  'js/ruqyah-ai.js',
   'js/audio-reciter-data.js',
   'js/home-page.js',
   'js/script.js',
