@@ -339,7 +339,9 @@ body.is-embedded .back-to-archive{display:none!important}
 <div id="stage" class="preplay">
   <div class="ambient"></div>
   <div class="video-background" aria-hidden="true">
-    <video id="backgroundVideo" playsinline preload="none" tabindex="-1"></video>
+    <video id="backgroundVideo" playsinline preload="metadata" tabindex="-1">
+      <source src="assets/allah-background-videos/allah-background-combined.mp4" data-media-src="assets/allah-background-videos/allah-background-combined.mp4" type="video/mp4">
+    </video>
   </div>
 
   <div class="arch-scene" aria-hidden="true">
@@ -585,8 +587,15 @@ body.is-embedded .back-to-archive{display:none!important}
     }));
   }
 
+  function canAnalyse() {
+    const src = audio.currentSrc || audio.src;
+    if (!src || src.startsWith('blob:')) return true;
+    if (location.protocol === 'file:') return false;
+    try { return new URL(src, location.href).origin === location.origin; } catch (e) { return false; }
+  }
+
   function initAudioGraph(){
-    if (audioContext) return;
+    if (audioContext || !canAnalyse()) return;
     const AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return;
     try {
@@ -604,7 +613,9 @@ body.is-embedded .back-to-archive{display:none!important}
   }
 
   async function beginPlayback(){
-    if (!audio.src) audio.src = MEDIA_SOURCE;
+    if (!audio.src && !audio.currentSrc) {
+      audio.src = 'assets/allah-background-videos/allah-background-combined.mp4';
+    }
     initAudioGraph();
     try {
       const audioPlayRequest = audio.play();
