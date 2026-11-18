@@ -168,6 +168,19 @@ High-performance S3-compatible multi-region backup and storage across 4 regions:
    npm run e2:sync:london -- --list
    ```
 
+### 6. Globally Distributed Storage with Tigris Data
+
+Globally distributed S3-compatible object storage with low-latency edge caching and zero egress fees:
+
+1. In [Tigris Console](https://console.tigris.dev/), create a bucket (e.g. `ruqyah-media`) and generate an Access Key (`tid_...` and `tsec_...`).
+2. Copy `.env.tigris.example` to `.env.tigris` and enter your credentials. `.env.tigris` is ignored by Git.
+3. Sync commands:
+   ```powershell
+   npm run tigris:sync -- --dry-run    # Preview media sync
+   npm run tigris:sync                 # Upload heavy media to Tigris
+   npm run tigris:sync -- --list       # List files in Tigris bucket
+   ```
+
 ---
 
 ## 📜 Scholastic Citations & Audio Sources

@@ -70,6 +70,27 @@
       "command": "npm run e2:sync:all",
       "group": "build",
       "problemMatcher": []
+    },
+    {
+      "label": "Tigris: Preview media sync",
+      "type": "shell",
+      "command": "npm run tigris:sync -- --dry-run",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Tigris: Sync media files",
+      "type": "shell",
+      "command": "npm run tigris:sync",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Tigris: List bucket files",
+      "type": "shell",
+      "command": "npm run tigris:sync -- --list",
+      "group": "build",
+      "problemMatcher": []
     }
   ]
 }
