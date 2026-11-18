@@ -195,6 +195,30 @@ Global real-time image, video, and audio optimization with global CDN caching:
    npm run imagekit:switch:8             # Switch site CDN to Account 8
    ```
 
+### 7. Global Multi-Region Edge Storage with DBByte
+
+Developer object storage with integrated global edge CDN caching across 4 multi-region accounts:
+
+- **Account 1**: `ruqyah-media` (`us-west-1` — US West)
+- **Account 2**: `ruqyah-social` (`ap-southeast-1` — Asia Pacific / Singapore)
+- **Account 3**: `mo-vlogs` (`eu-west-1` — Europe / Ireland)
+- **Account 4**: `ruqyah-op` (`us-east-1` — US East / N. Virginia)
+
+1. Copy `.env.dbbyte.example` to `.env.dbbyte` and add your API keys. `.env.dbbyte` is protected by `.gitignore`.
+2. Management & sync commands:
+   ```powershell
+   npm run dbbyte:list:all           # List files across all 4 accounts
+   npm run dbbyte:sync               # Upload to Account 1 (ruqyah-media)
+   npm run dbbyte:sync:2             # Upload to Account 2 (ruqyah-social)
+   npm run dbbyte:sync:3             # Upload to Account 3 (mo-vlogs)
+   npm run dbbyte:sync:4             # Upload to Account 4 (ruqyah-op)
+   npm run dbbyte:sync:all           # Multi-region sync across all accounts (smart-skips existing)
+   npm run dbbyte:switch             # Switch live website to Account 1 CDN
+   npm run dbbyte:switch:2           # Switch live website to Account 2 CDN
+   npm run dbbyte:switch:3           # Switch live website to Account 3 CDN
+   npm run dbbyte:switch:4           # Switch live website to Account 4 CDN
+   ```
+
 ---
 
 ## 📜 Scholastic Citations & Audio Sources

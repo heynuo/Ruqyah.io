@@ -133,19 +133,24 @@ async function syncAccount(cfg, files, { dryRun = false, listOnly = false } = {}
     });
   }
 
+  const listRes = await fetch(`https://api.dbbyte.com/storage/${cfg.bucket}/list`, {
+    headers: { 'Authorization': `Bearer ${cfg.apiKey}` }
+  });
+  if (!listRes.ok) throw new Error(`List failed: ${await listRes.text()}`);
+  const listData = await listRes.json();
+  const existingFiles = listData.files || [];
+
   if (listOnly) {
-    const listRes = await fetch(`https://api.dbbyte.com/storage/${cfg.bucket}/list`, {
-      headers: { 'Authorization': `Bearer ${cfg.apiKey}` }
-    });
-    if (!listRes.ok) throw new Error(`List failed: ${await listRes.text()}`);
-    const data = await listRes.json();
-    console.log(`Files in ${cfg.bucket} (${data.files ? data.files.length : 0} items):`);
-    (data.files || []).forEach(f => console.log(`  - ${f.name} (${formatMiB(f.size)})`));
+    console.log(`Files in ${cfg.bucket} (${existingFiles.length} items):`);
+    existingFiles.forEach(f => console.log(`  - ${f.name} (${formatMiB(f.size)})`));
     return;
   }
 
+  const existingMap = new Map();
+  existingFiles.forEach(f => existingMap.set(f.name, f.size));
+
   const totalSize = files.reduce((sum, f) => sum + f.size, 0);
-  console.log(`Prepared ${files.length} media file(s) for upload (${formatMiB(totalSize)} total).`);
+  console.log(`Prepared ${files.length} media file(s) for sync (${formatMiB(totalSize)} total).`);
 
   if (dryRun) {
     console.log('Dry run complete. No files were uploaded.');
@@ -153,8 +158,15 @@ async function syncAccount(cfg, files, { dryRun = false, listOnly = false } = {}
   }
 
   let uploaded = 0;
+  let skipped = 0;
   for (const file of files) {
-    console.log(`[${uploaded + 1}/${files.length}] Uploading to ${cfg.bucket}: ${file.key} (${formatMiB(file.size)})...`);
+    if (existingMap.has(file.name) && existingMap.get(file.name) === file.size) {
+      skipped++;
+      console.log(`  ⏭ Skip (already synced): ${file.key} (${formatMiB(file.size)})`);
+      continue;
+    }
+
+    console.log(`[${uploaded + 1}/${files.length - skipped}] Uploading to ${cfg.bucket}: ${file.key} (${formatMiB(file.size)})...`);
     const fileBlob = new Blob([await readFile(file.absolutePath)], { type: file.mimeType });
     const form = new FormData();
     form.append('file', fileBlob, file.name);
@@ -174,7 +186,7 @@ async function syncAccount(cfg, files, { dryRun = false, listOnly = false } = {}
     }
   }
 
-  console.log(`\n🎉 ${cfg.label} Sync Complete! (${uploaded}/${files.length} uploaded)`);
+  console.log(`\n🎉 ${cfg.label} Sync Complete! (${uploaded} uploaded, ${skipped} skipped)`);
 }
 
 async function main() {
