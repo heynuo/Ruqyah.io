@@ -150,6 +150,24 @@ For the Hadith Qudsi visualizer, allow `GET` from `https://heynuo.github.io` in 
 
 In VS Code, open **Terminal → Run Task** and choose an `R2:` task to preview, upload, or stop tracking the media. Cloudflare recommends a custom domain for caching; the `r2.dev` URL is rate-limited and intended for non-production traffic. See [R2 S3 credentials](https://developers.cloudflare.com/r2/get-started/s3/), [R2 public buckets](https://developers.cloudflare.com/r2/buckets/public-buckets/), and [R2 caching](https://developers.cloudflare.com/cache/interaction-cloudflare-products/r2/).
 
+### 5. Multi-Region Storage with IDrive e2
+
+High-performance S3-compatible multi-region backup and storage across 4 regions:
+
+1. Copy `.env.e2.example` to `.env.e2` and add your access keys and bucket names for each region. `.env.e2` is ignored by Git.
+2. Run sync commands:
+   ```powershell
+   npm run e2:sync              # Singapore 2 (ap-southeast-2)
+   npm run e2:sync:milan        # Milan (eu-south-1)
+   npm run e2:sync:frankfurt    # Frankfurt (eu-central-2)
+   npm run e2:sync:london       # London 2 (eu-west-3)
+   npm run e2:sync:all          # Sync to all 4 regions simultaneously
+   ```
+3. Verify bucket contents:
+   ```powershell
+   npm run e2:sync:london -- --list
+   ```
+
 ---
 
 ## 📜 Scholastic Citations & Audio Sources
