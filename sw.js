@@ -39,6 +39,7 @@ const PRECACHE_URLS = [
   'css/allah-tribute.css',
   'buttons.js',
   'js/shared-layout.js',
+  'js/ruqyah-ai.js',
   'js/r2-config.js',
   'js/r2-media.js',
   'js/audio-reciter-data.js',
