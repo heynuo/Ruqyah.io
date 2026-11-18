@@ -12,7 +12,10 @@
     "e2:sync:london": "node tools/e2-sync.mjs --london",
     "e2:sync:all": "node tools/e2-sync.mjs --all",
     "imagekit:sync": "node tools/imagekit-sync.mjs",
-    "imagekit:switch": "node tools/imagekit-sync.mjs --switch-site"
+    "imagekit:sync:2": "node tools/imagekit-sync.mjs --account=2",
+    "imagekit:sync:all": "node tools/imagekit-sync.mjs --all",
+    "imagekit:switch": "node tools/imagekit-sync.mjs --switch-site",
+    "imagekit:switch:2": "node tools/imagekit-sync.mjs --account=2 --switch-site"
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.1170.0",

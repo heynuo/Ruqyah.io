@@ -176,9 +176,12 @@ Global real-time image, video, and audio optimization with global CDN caching:
 2. Copy `.env.imagekit.example` to `.env.imagekit` and add your keys. `.env.imagekit` is ignored by Git.
 3. Sync commands:
    ```powershell
-   npm run imagekit:sync -- --dry-run    # Preview media sync
-   npm run imagekit:sync                 # Upload heavy media to ImageKit
-   npm run imagekit:sync -- --list       # List files in ImageKit media library
+   npm run imagekit:sync                 # Upload to Account 1 (fjx6vpmqa)
+   npm run imagekit:sync:2               # Upload to Account 2 (6vyidckdo)
+   npm run imagekit:sync:all             # Sync to both ImageKit accounts
+   npm run imagekit:switch               # Switch site CDN to Account 1
+   npm run imagekit:switch:2             # Switch site CDN to Account 2
+   npm run imagekit:sync:2 -- --list     # List files in Account 2
    ```
 
 ---

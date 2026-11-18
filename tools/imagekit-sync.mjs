@@ -26,24 +26,32 @@ function parseEnv(text) {
   return values;
 }
 
-async function loadConfig() {
+async function loadRawEnv() {
   const envPath = path.join(ROOT, '.env.imagekit');
-  let env;
   try {
-    env = parseEnv(await readFile(envPath, 'utf8'));
+    return parseEnv(await readFile(envPath, 'utf8'));
   } catch {
     throw new Error('Missing .env.imagekit. Copy .env.imagekit.example to .env.imagekit and fill in your ImageKit API keys.');
   }
+}
 
-  const privateKey = (env.IMAGEKIT_PRIVATE_KEY || '').trim();
-  const urlEndpoint = (env.IMAGEKIT_URL_ENDPOINT || '').trim();
+function resolveAccountConfig(env, accountId = 1) {
+  const isSecond = accountId === 2 || accountId === '2';
+  const prefix = isSecond ? 'IMAGEKIT_2_' : 'IMAGEKIT_';
+  const label = isSecond ? 'Account 2 (6vyidckdo)' : 'Account 1 (fjx6vpmqa)';
+
+  const privateKey = (env[`${prefix}PRIVATE_KEY`] || '').trim();
+  const publicKey = (env[`${prefix}PUBLIC_KEY`] || '').trim();
+  const urlEndpoint = (env[`${prefix}URL_ENDPOINT`] || (isSecond ? 'https://ik.imagekit.io/6vyidckdo' : 'https://ik.imagekit.io/fjx6vpmqa')).trim();
 
   if (!privateKey) {
-    throw new Error('Missing IMAGEKIT_PRIVATE_KEY in .env.imagekit.');
+    throw new Error(`Missing ${prefix}PRIVATE_KEY in .env.imagekit.`);
   }
 
   return {
-    publicKey: (env.IMAGEKIT_PUBLIC_KEY || '').trim(),
+    accountId: isSecond ? 2 : 1,
+    label,
+    publicKey,
     privateKey,
     urlEndpoint: urlEndpoint.replace(/\/+$/, ''),
     authHeader: 'Basic ' + Buffer.from(privateKey + ':').toString('base64')
@@ -100,7 +108,11 @@ async function writePublicConfig(urlEndpoint) {
 }
 
 async function listFiles(config) {
-  console.log(`Listing files from ImageKit (${config.urlEndpoint || 'Media Library'})...`);
+  console.log(`\n========================================`);
+  console.log(`Listing files for ${config.label}`);
+  console.log(`Endpoint: ${config.urlEndpoint}`);
+  console.log(`========================================`);
+
   const foldersToInspect = ['/', '/assets/videos', '/assets/allah-background-videos', '/assets/audio', '/assets/pdf'];
   let totalFound = 0;
 
@@ -153,45 +165,17 @@ async function uploadFile(config, file) {
   return await res.json();
 }
 
-async function main() {
-  const args = process.argv.slice(2);
-  const dryRun = args.includes('--dry-run');
-  const listOnly = args.includes('--list');
-  const switchSite = args.includes('--switch-site');
-  const customPaths = args.filter(a => !a.startsWith('--'));
-
-  const config = await loadConfig();
-
-  if (switchSite) {
-    if (!config.urlEndpoint) throw new Error('Missing IMAGEKIT_URL_ENDPOINT in .env.imagekit.');
-    await writePublicConfig(config.urlEndpoint);
-    console.log(`✅ Updated js/r2-config.js to use ImageKit CDN: ${config.urlEndpoint}`);
-    return;
-  }
-
-  if (listOnly) {
-    await listFiles(config);
-    return;
-  }
-
-  const pathsToScan = customPaths.length ? customPaths : DEFAULT_MEDIA_PATHS;
-  const files = await collectFiles(pathsToScan);
-
-  if (!files.length) {
-    console.log('No supported media files found to sync.');
-    return;
-  }
+async function syncAccount(config, files, { dryRun }) {
+  console.log(`\n========================================`);
+  console.log(`ImageKit Target: ${config.label}`);
+  console.log(`CDN Endpoint:   ${config.urlEndpoint}`);
+  console.log(`========================================`);
 
   const totalBytes = files.reduce((sum, f) => sum + f.size, 0);
-  console.log(`ImageKit Sync: ${files.length} media file(s), ${formatMiB(totalBytes)} total.`);
-  if (config.urlEndpoint) {
-    console.log(`CDN URL Endpoint: ${config.urlEndpoint}`);
-  }
+  console.log(`Syncing: ${files.length} media file(s), ${formatMiB(totalBytes)} total.`);
 
   if (dryRun) {
-    console.log('\n--- Preview (Dry Run) ---');
-    files.forEach(f => console.log(`  ${f.key} (${formatMiB(f.size)}) -> Folder: ${f.folder}`));
-    console.log('\nDry run complete. No files were uploaded.');
+    console.log(`(Dry run mode for ${config.label}: no files uploaded)`);
     return;
   }
 
@@ -213,9 +197,60 @@ async function main() {
   }
 
   if (failed > 0) {
-    console.log(`\n⚠️ ImageKit Sync finished with issues: ${completed} uploaded, ${failed} failed.`);
+    console.log(`⚠️ Finished ${config.label} with issues: ${completed} uploaded, ${failed} failed.`);
   } else {
-    console.log(`\n🎉 ImageKit Sync Complete! (${completed}/${files.length} uploaded)`);
+    console.log(`🎉 ${config.label} Sync Complete! (${completed}/${files.length} uploaded)`);
+  }
+}
+
+async function main() {
+  const args = process.argv.slice(2);
+  const dryRun = args.includes('--dry-run');
+  const listOnly = args.includes('--list');
+  const switchSite = args.includes('--switch-site');
+
+  let accountNum = 1;
+  let syncAll = false;
+
+  if (args.includes('--account=2') || args.includes('--2') || args.includes('--account2')) {
+    accountNum = 2;
+  } else if (args.includes('--all') || args.includes('--target=all')) {
+    syncAll = true;
+  }
+
+  const customPaths = args.filter(a => !a.startsWith('--'));
+  const env = await loadRawEnv();
+
+  if (switchSite) {
+    const cfg = resolveAccountConfig(env, accountNum);
+    await writePublicConfig(cfg.urlEndpoint);
+    console.log(`✅ Updated js/r2-config.js to use ImageKit ${cfg.label}: ${cfg.urlEndpoint}`);
+    return;
+  }
+
+  if (listOnly) {
+    if (syncAll) {
+      await listFiles(resolveAccountConfig(env, 1));
+      await listFiles(resolveAccountConfig(env, 2));
+    } else {
+      await listFiles(resolveAccountConfig(env, accountNum));
+    }
+    return;
+  }
+
+  const pathsToScan = customPaths.length ? customPaths : DEFAULT_MEDIA_PATHS;
+  const files = await collectFiles(pathsToScan);
+
+  if (!files.length) {
+    console.log('No supported media files found to sync.');
+    return;
+  }
+
+  if (syncAll) {
+    await syncAccount(resolveAccountConfig(env, 1), files, { dryRun });
+    await syncAccount(resolveAccountConfig(env, 2), files, { dryRun });
+  } else {
+    await syncAccount(resolveAccountConfig(env, accountNum), files, { dryRun });
   }
 }
 

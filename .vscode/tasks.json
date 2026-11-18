@@ -91,6 +91,20 @@
       "command": "npm run imagekit:sync -- --list",
       "group": "build",
       "problemMatcher": []
+    },
+    {
+      "label": "ImageKit: Sync Account 2 (6vyidckdo)",
+      "type": "shell",
+      "command": "npm run imagekit:sync:2",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "ImageKit: Sync All Accounts",
+      "type": "shell",
+      "command": "npm run imagekit:sync:all",
+      "group": "build",
+      "problemMatcher": []
     }
   ]
 }
