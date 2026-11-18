@@ -12,14 +12,31 @@
   // ── Normalize GitHub Pages Subpath Trailing Slash ───────────────────────
   // Prevents relative links (such as index.html) from resolving to root domain
   if (window.location.hostname.endsWith('github.io')) {
-    var pathSegments = window.location.pathname.split('/');
-    if (pathSegments.length === 2 && pathSegments[1] && !pathSegments[1].includes('.')) {
-      window.history.replaceState(null, '', '/' + pathSegments[1] + '/' + window.location.search + window.location.hash);
+    var pathSegments = window.location.pathname.split('/').filter(Boolean);
+    if (pathSegments.length === 1 && pathSegments[0].toLowerCase() === 'ruqyah.io') {
+      window.history.replaceState(null, '', '/' + pathSegments[0] + '/' + window.location.search + window.location.hash);
     }
   }
 
+  // ── Determine Base Path for GitHub Pages ───────────────────────────────
+  function getRepoBasePath() {
+    if (window.location.hostname.endsWith('github.io')) {
+      const parts = window.location.pathname.split('/').filter(Boolean);
+      if (parts.length > 0 && parts[0].toLowerCase() === 'ruqyah.io') {
+        return '/' + parts[0] + '/';
+      }
+    }
+    return './';
+  }
+  const basePath = getRepoBasePath();
+
   // ── Detect Active Page ──────────────────────────────────────────────────
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  const cleanPath = window.location.pathname.replace(/\/+$/, '');
+  let currentFile = cleanPath.split('/').pop() || 'index.html';
+  if (currentFile.toLowerCase() === 'ruqyah.io' || !currentFile) {
+    currentFile = 'index.html';
+  }
+
   const pageMap = {
     'index.html': 'home',
     '': 'home',
@@ -32,44 +49,47 @@
     'privacy.html': 'privacy',
     '404.html': '404'
   };
-  const activePage = pageMap[currentPath] || '';
+  const activePage = pageMap[currentFile] || 'home';
 
   // ── Build Navigation Links ──────────────────────────────────────────────
-  function navLink(path, label, href, isMobile) {
-    const isActive = activePage === path;
-    const baseClass = isMobile
-      ? 'flex items-center gap-space-sm px-space-md py-2.5 rounded-lg font-ui-interactive text-ui-interactive min-h-[44px] transition-colors'
-      : 'font-ui-interactive text-caption-meta py-1 px-1 transition-colors';
-    const activeClass = isMobile
-      ? ' bg-surface-container-low text-primary font-semibold'
-      : ' text-primary font-semibold border-b-2 border-primary';
-    const inactiveClass = isMobile
-      ? ' text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low'
-      : ' text-on-surface-variant hover:text-on-surface';
-
-    const current = isActive ? ' aria-current="page"' : '';
-    return `<a class="${baseClass}${isActive ? activeClass : inactiveClass}" href="${href}" data-path="${path}"${current}>${label}</a>`;
-  }
-
   const navItems = [
-    { path: 'home', label: 'Home', href: 'index.html' },
-    { path: 'quran', label: "Qur'an", href: 'quran.html' },
-    { path: 'master-verses', label: '108 Verses', href: 'quran-verses.html' },
-    { path: 'videos', label: 'Videos', href: 'videos.html' },
-    { path: 'about', label: 'About', href: 'about.html' },
-    { path: 'contact', label: 'Contact', href: 'contact.html' },
-    { path: 'end', label: 'End', href: 'end.html' }
+    { path: 'home', label: 'Home', file: 'index.html' },
+    { path: 'quran', label: "Qur'an", file: 'quran.html' },
+    { path: 'master-verses', label: '108 Verses', file: 'quran-verses.html' },
+    { path: 'videos', label: 'Videos', file: 'videos.html' },
+    { path: 'about', label: 'About', file: 'about.html' },
+    { path: 'contact', label: 'Contact', file: 'contact.html' },
+    { path: 'end', label: 'End', file: 'end.html' }
   ];
+
+  function navLink(item, isMobile) {
+    const isActive = activePage === item.path;
+    const href = basePath + item.file;
+    const currentAttr = isActive ? ' aria-current="page"' : '';
+
+    if (isMobile) {
+      const activeClass = isActive
+        ? ' bg-primary/10 text-primary font-semibold'
+        : ' text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low';
+      return `<a class="flex items-center gap-space-sm px-space-md py-2.5 rounded-lg font-ui-interactive text-ui-interactive min-h-[44px] transition-colors${activeClass}" href="${href}" data-path="${item.path}"${currentAttr}>${item.label}</a>`;
+    }
+
+    const activeClass = isActive
+      ? ' text-primary font-semibold bg-primary/10 shadow-2xs'
+      : ' text-on-surface-variant hover:text-on-surface hover:bg-primary/5';
+    return `<a class="nav-item-btn font-ui-interactive text-caption-meta px-3 py-1.5 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-primary/40${activeClass}" href="${href}" data-path="${item.path}"${currentAttr}>${item.label}</a>`;
+  }
 
   // ── Header HTML ─────────────────────────────────────────────────────────
   function buildHeader() {
-    const desktopNav = navItems.map(n => navLink(n.path, n.label, n.href, false)).join('\n');
-    const mobileNav = navItems.map(n => navLink(n.path, n.label, n.href, true)).join('\n');
+    const desktopNav = navItems.map(n => navLink(n, false)).join('\n');
+    const mobileNav = navItems.map(n => navLink(n, true)).join('\n');
+    const brandHref = basePath + 'index.html';
 
     return `<header id="heynuo-header" class="fixed top-0 left-0 right-0 z-50 h-14 bg-surface shadow-[0_1px_8px_rgba(15,23,42,0.04)]">
   <div class="max-w-7xl mx-auto h-14 px-margin-mobile md:px-margin flex items-center justify-between gap-space-md">
     <div class="flex items-center gap-space-lg">
-      <a aria-label="RQ Ruqyah Home" class="header-brand-link flex items-center gap-space-xs text-primary hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg py-1 px-1.5" href="index.html">
+      <a aria-label="RQ Ruqyah Home" class="header-brand-link flex items-center gap-space-xs text-primary hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg py-1 px-1.5" href="${brandHref}">
         <span class="header-brand-mark flex items-center justify-center w-7 h-7 rounded-lg bg-primary-container text-on-primary-container font-code-mono text-caption-meta font-bold tracking-tight">RQ</span>
         <span class="font-title-page-mobile text-ui-interactive font-bold tracking-tight text-on-surface">Ruqyah</span>
         <span aria-hidden="true" class="material-symbols-outlined text-primary text-[18px] hidden sm:inline-block">history_edu</span>
@@ -214,6 +234,16 @@
         document.body.insertAdjacentHTML('beforeend', buildFooter());
       }
     }
+
+    // ── Wire up Navigation Clicks ──────────────────────────────────────────
+    document.querySelectorAll('#heynuo-header a[data-path], #heynuo-mobile-nav a[data-path]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        if (link.getAttribute('data-path') === activePage) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    });
 
     // ── Wire up Brand Logo Click ───────────────────────────────────────────
     var brandLink = document.querySelector('.header-brand-link');
