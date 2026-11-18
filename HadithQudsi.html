@@ -1072,12 +1072,10 @@
   </a>
   <div id="stage">
     <div id="cam">
-      <video id="mediaTrack" playsinline preload="none" muted crossorigin="anonymous" style="display:none"
-        data-media-eager>
-        <video id="mediaTrack" playsinline preload="none" muted style="display:none" data-media-eager>
-          <source data-media-src="assets/videos/reference-preview.mp4" type="video/mp4">
-          <source data-media-src="assets/audio/audio.mp3" type="audio/mpeg">
-        </video>
+      <video id="mediaTrack" playsinline preload="metadata" muted style="display:none" data-media-eager>
+        <source src="assets/videos/reference-preview.mp4" data-media-src="assets/videos/reference-preview.mp4" type="video/mp4">
+        <source src="assets/audio/audio.mp3" data-media-src="assets/audio/audio.mp3" type="audio/mpeg">
+      </video>
 
         <div class="bg-base"></div>
         <canvas id="rays"></canvas>
