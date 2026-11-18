@@ -19,4 +19,5 @@ assets/pdf/
 .env.b2
 .env.e2
 .env.imagekit
+.env.dbbyte
 .env*.local

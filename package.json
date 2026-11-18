@@ -27,7 +27,11 @@
     "imagekit:switch:5": "node tools/imagekit-sync.mjs --account=5 --switch-site",
     "imagekit:switch:6": "node tools/imagekit-sync.mjs --account=6 --switch-site",
     "imagekit:switch:7": "node tools/imagekit-sync.mjs --account=7 --switch-site",
-    "imagekit:switch:8": "node tools/imagekit-sync.mjs --account=8 --switch-site"
+    "imagekit:switch:8": "node tools/imagekit-sync.mjs --account=8 --switch-site",
+    "dbbyte:sync": "node tools/dbbyte-sync.mjs",
+    "dbbyte:sync:dry": "node tools/dbbyte-sync.mjs --dry-run",
+    "dbbyte:list": "node tools/dbbyte-sync.mjs --list",
+    "dbbyte:switch": "node tools/dbbyte-sync.mjs --switch-site"
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.1170.0",
