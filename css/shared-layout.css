@@ -624,6 +624,10 @@ body:has(> #heynuo-footer) { padding-bottom: 0 !important; }
    Pre-Footer RGB Color-Changing Stripe Divider (1024x25)
    ========================================================================== */
 .rgb-stripe-wrapper {
+  --rgb-flow-speed: 4s;
+  --rgb-glow-opacity: 0.65;
+  --rgb-stripe-height: 22px;
+  --rgb-stripe-radius: 9999px;
   position: relative;
   width: 100%;
   max-width: 1024px;
@@ -639,8 +643,8 @@ body:has(> #heynuo-footer) { padding-bottom: 0 !important; }
   position: absolute;
   left: 1.5rem;
   right: 1.5rem;
-  height: 22px;
-  border-radius: 9999px;
+  height: var(--rgb-stripe-height, 22px);
+  border-radius: var(--rgb-stripe-radius, 9999px);
   background: linear-gradient(
     90deg,
     #FF0055 0%,
@@ -654,18 +658,19 @@ body:has(> #heynuo-footer) { padding-bottom: 0 !important; }
     #FF0055 100%
   );
   background-size: 200% 100%;
-  animation: rgbFlowAnimation 4s linear infinite;
+  animation: rgbFlowAnimation var(--rgb-flow-speed, 4s) linear infinite;
   filter: blur(18px);
-  opacity: 0.65;
+  opacity: var(--rgb-glow-opacity, 0.65);
   pointer-events: none;
   z-index: 1;
+  transition: opacity 0.3s ease, filter 0.3s ease;
 }
 
 .rgb-stripe-bar {
   position: relative;
   width: 100%;
-  height: 22px;
-  border-radius: 9999px;
+  height: var(--rgb-stripe-height, 22px);
+  border-radius: var(--rgb-stripe-radius, 9999px);
   background: linear-gradient(
     90deg,
     #FF0055 0%,
@@ -679,7 +684,7 @@ body:has(> #heynuo-footer) { padding-bottom: 0 !important; }
     #FF0055 100%
   );
   background-size: 200% 100%;
-  animation: rgbFlowAnimation 4s linear infinite;
+  animation: rgbFlowAnimation var(--rgb-flow-speed, 4s) linear infinite;
   box-shadow:
     0 6px 20px -2px rgba(0, 0, 0, 0.5),
     inset 0 1.5px 1.5px rgba(255, 255, 255, 0.7),
@@ -688,6 +693,7 @@ body:has(> #heynuo-footer) { padding-bottom: 0 !important; }
   overflow: hidden;
   z-index: 2;
   box-sizing: border-box;
+  transition: height 0.25s ease, border-radius 0.25s ease;
 }
 
 .rgb-stripe-bar::before {
@@ -702,10 +708,11 @@ body:has(> #heynuo-footer) { padding-bottom: 0 !important; }
     rgba(255, 255, 255, 0.55) 0%,
     rgba(255, 255, 255, 0.08) 100%
   );
-  border-radius: 9999px 9999px 0 0;
+  border-radius: var(--rgb-stripe-radius, 9999px) var(--rgb-stripe-radius, 9999px) 0 0;
   pointer-events: none;
 }
 
+/* Keyframes: Standard Flow */
 @keyframes rgbFlowAnimation {
   0% {
     background-position: 0% 50%;
@@ -715,10 +722,100 @@ body:has(> #heynuo-footer) { padding-bottom: 0 !important; }
   }
 }
 
+/* Mode: Neon Pulse (Laser Comet) */
+.rgb-stripe-bar.mode-comet,
+.rgb-stripe-glow.mode-comet,
+.rgb-stripe-wrapper.mode-pulse .rgb-stripe-bar,
+.rgb-stripe-wrapper.mode-pulse .rgb-stripe-glow {
+  animation: rgbCometAnimation var(--rgb-flow-speed, 6s) ease-in-out infinite alternate !important;
+}
+
+@keyframes rgbCometAnimation {
+  0% {
+    background-position: 0% 50%;
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.35) saturate(1.4);
+  }
+  100% {
+    background-position: 200% 50%;
+    filter: brightness(1);
+  }
+}
+
+/* Mode: Hue Breathe */
+.rgb-stripe-bar.mode-breathe,
+.rgb-stripe-glow.mode-breathe,
+.rgb-stripe-wrapper.mode-breathe .rgb-stripe-bar,
+.rgb-stripe-wrapper.mode-breathe .rgb-stripe-glow {
+  animation: rgbBreatheAnimation var(--rgb-flow-speed, 6s) ease-in-out infinite alternate !important;
+  background-size: 100% 100% !important;
+}
+
+@keyframes rgbBreatheAnimation {
+  0% { filter: hue-rotate(0deg) saturate(1.2); }
+  50% { filter: hue-rotate(180deg) saturate(1.5); }
+  100% { filter: hue-rotate(360deg) saturate(1.2); }
+}
+
+/* Modifiers: Corner Radius */
+.rgb-stripe-wrapper.stripe-sharp,
+.rgb-stripe-bar.radius-sharp,
+.rgb-stripe-glow.radius-sharp {
+  --rgb-stripe-radius: 3px !important;
+  border-radius: 3px !important;
+}
+.rgb-stripe-bar.radius-sharp::before {
+  border-radius: 3px 3px 0 0 !important;
+}
+
+.rgb-stripe-wrapper.stripe-smooth,
+.rgb-stripe-bar.radius-smooth,
+.rgb-stripe-glow.radius-smooth {
+  --rgb-stripe-radius: 8px !important;
+  border-radius: 8px !important;
+}
+.rgb-stripe-bar.radius-smooth::before {
+  border-radius: 8px 8px 0 0 !important;
+}
+
+/* Modifiers: Heights */
+.rgb-stripe-wrapper.stripe-slim,
+.rgb-stripe-bar.height-slim,
+.rgb-stripe-glow.height-slim {
+  --rgb-stripe-height: 16px !important;
+  height: 16px !important;
+}
+
+.rgb-stripe-wrapper.stripe-bold,
+.rgb-stripe-bar.height-bold,
+.rgb-stripe-glow.height-bold {
+  --rgb-stripe-height: 28px !important;
+  height: 28px !important;
+}
+
+/* Modifiers: Glow Bloom Intensity */
+.rgb-stripe-wrapper.glow-100,
+.rgb-stripe-glow.glow-100 {
+  --rgb-glow-opacity: 1 !important;
+  opacity: 1 !important;
+  filter: blur(20px) !important;
+}
+
+/* Modifiers: Speed */
+.rgb-stripe-wrapper.speed-6s,
+.rgb-stripe-bar.speed-6s,
+.rgb-stripe-glow.speed-6s {
+  --rgb-flow-speed: 6s !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .rgb-stripe-bar,
-  .rgb-stripe-glow {
-    animation-duration: 16s;
+  .rgb-stripe-glow,
+  .rgb-stripe-bar.mode-comet,
+  .rgb-stripe-glow.mode-comet {
+    animation-duration: 16s !important;
   }
 }
 

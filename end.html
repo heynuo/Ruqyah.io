@@ -68,7 +68,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet">
 
   <!-- Shared Design System Tokens (Light / Dark / Sepia) -->
-  <link rel="stylesheet" href="css/shared-layout.css?v=2026-11-15-search-1">
+  <link rel="stylesheet" href="css/shared-layout.css?v=2026-11-18-rgb-1">
   <link rel="stylesheet" href="css/tailwind.generated.css?v=2026-11-15-search-1">
   <link rel="stylesheet" href="css/quran-light.css?v=2026-11-17-video-brightness-1">
   <link rel="stylesheet" href="css/animated-heart.css?v=2026-11-15-bg-1">
@@ -445,6 +445,12 @@
 
     </div>
 
+    <!-- Upper RGB Color-Changing Stripe Divider (Neon Pulse · Sharp 3px · Slim 16px) -->
+    <div class="rgb-stripe-wrapper stripe-slim stripe-sharp glow-100 speed-6s mode-pulse my-6" role="separator" aria-label="Decorative RGB Stripe Divider - Upper">
+      <div class="rgb-stripe-glow mode-comet radius-sharp height-slim glow-100 speed-6s" aria-hidden="true"></div>
+      <div class="rgb-stripe-bar mode-comet radius-sharp height-slim speed-6s"></div>
+    </div>
+
     <section id="final-video" class="end-bye-bye" aria-labelledby="final-video-title">
       <video id="final-video-background" class="end-bye-bye-video" muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1">
         <source data-media-src="assets/videos/final-video-car.mp4" type="video/mp4">
@@ -464,6 +470,12 @@
         </div>
       </div>
     </section>
+
+    <!-- Lower RGB Color-Changing Stripe Divider (Neon Pulse · Sharp 3px · Slim 16px) -->
+    <div class="rgb-stripe-wrapper stripe-slim stripe-sharp glow-100 speed-6s mode-pulse mt-6 mb-2" role="separator" aria-label="Decorative RGB Stripe Divider - Lower">
+      <div class="rgb-stripe-glow mode-comet radius-sharp height-slim glow-100 speed-6s" aria-hidden="true"></div>
+      <div class="rgb-stripe-bar mode-comet radius-sharp height-slim speed-6s"></div>
+    </div>
   </main>
 
   <!-- KEYBOARD SHORTCUTS MODAL (WCAG 2.1.4 compliant) -->
