@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Rainbow</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cpath%20d='M10%2080A40%2040%200%200%201%2090%2080'fill='none'stroke='%23ff3b30'stroke-width='12'/%3E%3Cpath%20d='M20%2080A30%2030%200%200%201%2080%2080'fill='none'stroke='%23ffcc00'stroke-width='10'/%3E%3Cpath%20d='M30%2080A20%2020%200%200%201%2070%2080'fill='none'stroke='%2300c7be'stroke-width='8'/%3E%3C/svg%3E">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 50% 100%, #d8ecf8 0%, #b3daf0 40%, #87beea 75%, #6aafe3 100%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      font-family: system-ui, -apple-system, sans-serif;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* Full-screen atmosphere container with strictly contained overflow */
+    .atmosphere {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Ambient atmospheric glow */
+    .sky-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 18% 22%, rgba(255, 255, 240, 0.6) 0%, rgba(255, 245, 215, 0.28) 35%, transparent 70%);
+      mix-blend-mode: soft-light;
+    }
+
+    /* Sunburst light rays */
+    .sun-shafts {
+      position: absolute;
+      top: -20%;
+      left: -10%;
+      width: 140%;
+      height: 140%;
+      background: repeating-conic-gradient(
+        from 45deg at 10% 15%,
+        rgba(255, 255, 255, 0.08) 0deg 8deg,
+        transparent 8deg 24deg
+      );
+      filter: blur(12px);
+      animation: driftRays 35s ease-in-out infinite alternate;
+    }
+
+    @keyframes driftRays {
+      0% { transform: rotate(0deg) scale(1); }
+      100% { transform: rotate(4deg) scale(1.05); }
+    }
+
+    /* Sparkles */
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.9);
+      animation: twinkle 4s ease-in-out infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0; transform: scale(0.3); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* Stage containing the rainbow */
+    .rainbow-stage {
+      position: relative;
+      width: 100%;
+      max-width: 1300px;
+      height: 85vh;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    .rainbow-svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      filter: drop-shadow(0 0 28px rgba(255, 255, 255, 0.45));
+    }
+
+    /* Soft breathing radiance for rainbow bands */
+    .rainbow-arc-group {
+      transform-origin: 600px 720px;
+      animation: rainbowBreathe 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes rainbowBreathe {
+      0% {
+        opacity: 0.88;
+        filter: drop-shadow(0 0 20px rgba(255, 235, 170, 0.35));
+      }
+      100% {
+        opacity: 0.98;
+        filter: drop-shadow(0 0 38px rgba(255, 245, 200, 0.6));
+      }
+    }
+
+    /* Primary rainbow individual bands */
+    .arc {
+      fill: none;
+      stroke-linecap: round;
+      opacity: 0.82;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Subtle secondary rainbow (double rainbow effect with inverted order) */
+    .secondary-rainbow {
+      opacity: 0.28;
+      filter: blur(2.5px);
+    }
+
+    /* Clouds at the rainbow base */
+    .cloud-cluster {
+      position: absolute;
+      bottom: -15px;
+      pointer-events: none;
+      filter: drop-shadow(0 8px 16px rgba(100, 150, 180, 0.25));
+    }
+
+    .cloud-cluster.left {
+      left: 3%;
+      animation: floatCloudLeft 9s ease-in-out infinite alternate;
+    }
+
+    .cloud-cluster.right {
+      right: 3%;
+      animation: floatCloudRight 11s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatCloudLeft {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-8px) scale(1.03); }
+    }
+
+    @keyframes floatCloudRight {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-10px) scale(1.04); }
+    }
+
+    /* Minimalist back link (discreet top-left) */
+    .back-nav {
+      position: fixed;
+      top: 18px;
+      left: 18px;
+      z-index: 50;
+      color: rgba(255, 255, 255, 0.85);
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: all 0.2s ease;
+    }
+
+    .back-nav:hover {
+      background: rgba(255, 255, 255, 0.35);
+      color: #ffffff;
+      transform: translateX(-2px);
+    }
+
+    @media (max-width: 640px) {
+      .rainbow-stage {
+        height: 70vh;
+      }
+      .cloud-cluster svg {
+        transform: scale(0.75);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Minimal back navigation -->
+  <a href="index.html" class="back-nav" aria-label="Return to archive">← Archive</a>
+
+  <!-- Contained Atmospheric Sky Layers -->
+  <div class="atmosphere" aria-hidden="true">
+    <div class="sky-glow"></div>
+    <div class="sun-shafts"></div>
+    <!-- Ambient Shimmer Sparkles -->
+    <div class="sparkle" style="top: 25%; left: 30%; animation-delay: 0.5s;"></div>
+    <div class="sparkle" style="top: 18%; left: 52%; animation-delay: 1.8s;"></div>
+    <div class="sparkle" style="top: 28%; right: 28%; animation-delay: 2.7s;"></div>
+    <div class="sparkle" style="top: 42%; left: 22%; animation-delay: 1.2s;"></div>
+    <div class="sparkle" style="top: 38%; right: 20%; animation-delay: 3.1s;"></div>
+  </div>
+
+  <!-- The Rainbow -->
+  <main class="rainbow-stage" role="img" aria-label="A radiant, vibrant rainbow arching gracefully across the sky">
+    <svg class="rainbow-svg" viewBox="0 0 1200 740" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Soft blur filter for realistic spectral dispersion -->
+        <filter id="spectral-blur" x="-10%" y="-10%" width="120%" height="120%">
+          <feGaussianBlur stdDeviation="3.2" result="blur" />
+          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+
+        <!-- Secondary outer rainbow filter -->
+        <filter id="secondary-blur" x="-10%" y="-10%" width="120%" height="120%">
+          <feGaussianBlur stdDeviation="5" />
+        </filter>
+
+        <!-- Linear gradient for soft cloud mist -->
+        <linearGradient id="cloud-white" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.96" />
+          <stop offset="100%" stop-color="#e8f4fc" stop-opacity="0.82" />
+        </linearGradient>
+      </defs>
+
+      <!-- SECONDARY RAINBOW (Outer subtle reflection: reversed spectrum order) -->
+      <g class="secondary-rainbow" filter="url(#secondary-blur)">
+        <path d="M 50 720 A 550 550 0 0 1 1150 720" class="arc" stroke="#9933ff" stroke-width="12" />
+        <path d="M 62 720 A 538 538 0 0 1 1138 720" class="arc" stroke="#3366ff" stroke-width="12" />
+        <path d="M 74 720 A 526 526 0 0 1 1126 720" class="arc" stroke="#00ccff" stroke-width="12" />
+        <path d="M 86 720 A 514 514 0 0 1 1114 720" class="arc" stroke="#33cc33" stroke-width="12" />
+        <path d="M 98 720 A 502 502 0 0 1 1102 720" class="arc" stroke="#ffcc00" stroke-width="12" />
+        <path d="M 110 720 A 490 490 0 0 1 1090 720" class="arc" stroke="#ff6600" stroke-width="12" />
+        <path d="M 122 720 A 478 478 0 0 1 1078 720" class="arc" stroke="#ff1a40" stroke-width="12" />
+      </g>
+
+      <!-- PRIMARY RAINBOW (Vibrant, high clarity, realistic dispersion) -->
+      <g class="rainbow-arc-group" filter="url(#spectral-blur)">
+        <!-- Red Band (~700nm) -->
+        <path d="M 140 720 A 460 460 0 0 1 1060 720" class="arc" stroke="#FF1E44" stroke-width="22" opacity="0.92" />
+        
+        <!-- Orange Band (~600nm) -->
+        <path d="M 160 720 A 440 440 0 0 1 1040 720" class="arc" stroke="#FF7A00" stroke-width="22" opacity="0.94" />
+        
+        <!-- Yellow Band (~580nm) -->
+        <path d="M 180 720 A 420 420 0 0 1 1020 720" class="arc" stroke="#FFD000" stroke-width="22" opacity="0.95" />
+        
+        <!-- Green Band (~530nm) -->
+        <path d="M 200 720 A 400 400 0 0 1 1000 720" class="arc" stroke="#10D050" stroke-width="22" opacity="0.93" />
+        
+        <!-- Cyan / Sky Blue Band (~490nm) -->
+        <path d="M 220 720 A 380 380 0 0 1 980 720" class="arc" stroke="#00C8F8" stroke-width="22" opacity="0.93" />
+        
+        <!-- Royal Blue Band (~450nm) -->
+        <path d="M 240 720 A 360 360 0 0 1 960 720" class="arc" stroke="#2563EB" stroke-width="22" opacity="0.92" />
+        
+        <!-- Indigo / Violet Band (~400nm) -->
+        <path d="M 260 720 A 340 340 0 0 1 940 720" class="arc" stroke="#7C3AED" stroke-width="22" opacity="0.90" />
+      </g>
+    </svg>
+
+    <!-- Fluffy Base Clouds - Left Anchor -->
+    <div class="cloud-cluster left" aria-hidden="true">
+      <svg width="280" height="130" viewBox="0 0 280 130" fill="url(#cloud-white)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40 120 C20 120 5 105 5 85 C5 68 18 55 35 52 C38 30 58 12 85 12 C108 12 128 25 136 45 C146 38 160 34 175 34 C205 34 230 55 233 84 C250 86 265 100 265 118 C265 120 264 120 260 120 Z" />
+        <ellipse cx="140" cy="95" rx="90" ry="32" fill="#ffffff" opacity="0.9" />
+      </svg>
+    </div>
+
+    <!-- Fluffy Base Clouds - Right Anchor -->
+    <div class="cloud-cluster right" aria-hidden="true">
+      <svg width="280" height="130" viewBox="0 0 280 130" fill="url(#cloud-white)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M240 120 C260 120 275 105 275 85 C275 68 262 55 245 52 C242 30 222 12 195 12 C172 12 152 25 144 45 C134 38 120 34 105 34 C75 34 50 55 47 84 C30 86 15 100 15 118 C15 120 16 120 20 120 Z" />
+        <ellipse cx="140" cy="95" rx="90" ry="32" fill="#ffffff" opacity="0.9" />
+      </svg>
+    </div>
+  </main>
+
+</body>
+</html>
