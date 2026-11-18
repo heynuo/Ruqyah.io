@@ -15,6 +15,8 @@
     var pathSegments = window.location.pathname.split('/').filter(Boolean);
     if (pathSegments.length === 1 && pathSegments[0].toLowerCase() === 'ruqyah.io') {
       window.history.replaceState(null, '', '/' + pathSegments[0] + '/' + window.location.search + window.location.hash);
+    } else if (window.location.pathname.endsWith('/index.html')) {
+      window.history.replaceState(null, '', window.location.pathname.replace(/\/index\.html$/, '/') + window.location.search + window.location.hash);
     }
   }
 
@@ -29,6 +31,8 @@
     return './';
   }
   const basePath = getRepoBasePath();
+  const isLocalFile = window.location.protocol === 'file:';
+  const homeFile = isLocalFile ? 'index.html' : '';
 
   // ── Detect Active Page ──────────────────────────────────────────────────
   const cleanPath = window.location.pathname.replace(/\/+$/, '');
@@ -53,7 +57,7 @@
 
   // ── Build Navigation Links ──────────────────────────────────────────────
   const navItems = [
-    { path: 'home', label: 'Home', file: 'index.html' },
+    { path: 'home', label: 'Home', file: homeFile },
     { path: 'quran', label: "Qur'an", file: 'quran.html' },
     { path: 'master-verses', label: '108 Verses', file: 'quran-verses.html' },
     { path: 'videos', label: 'Videos', file: 'videos.html' },
@@ -84,7 +88,7 @@
   function buildHeader() {
     const desktopNav = navItems.map(n => navLink(n, false)).join('\n');
     const mobileNav = navItems.map(n => navLink(n, true)).join('\n');
-    const brandHref = basePath + 'index.html';
+    const brandHref = basePath + homeFile;
 
     return `<header id="heynuo-header" class="fixed top-0 left-0 right-0 z-50 h-14 bg-surface shadow-[0_1px_8px_rgba(15,23,42,0.04)]">
   <div class="max-w-7xl mx-auto h-14 px-margin-mobile md:px-margin flex items-center justify-between gap-space-md">
@@ -241,6 +245,9 @@
         if (link.getAttribute('data-path') === activePage) {
           e.preventDefault();
           window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else if (link.getAttribute('data-path') === 'home' && window.location.hostname.endsWith('github.io')) {
+          e.preventDefault();
+          window.location.assign(basePath);
         }
       });
     });
@@ -252,8 +259,24 @@
         if (activePage === 'home') {
           e.preventDefault();
           window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else if (window.location.hostname.endsWith('github.io')) {
+          e.preventDefault();
+          window.location.assign(basePath);
         }
       });
+    }
+
+    // ── Intercept any clicks to index.html on GitHub Pages ─────────────────
+    if (window.location.hostname.endsWith('github.io')) {
+      document.addEventListener('click', function (e) {
+        var link = e.target && e.target.closest ? e.target.closest('a') : null;
+        if (!link) return;
+        var rawHref = link.getAttribute('href');
+        if (rawHref === 'index.html' || rawHref === './index.html' || rawHref === basePath + 'index.html') {
+          e.preventDefault();
+          window.location.assign(basePath);
+        }
+      }, true);
     }
 
     // ── Wire up Theme Buttons ───────────────────────────────────────────────
