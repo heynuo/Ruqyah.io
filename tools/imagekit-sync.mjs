@@ -36,20 +36,26 @@ async function loadRawEnv() {
 }
 
 function resolveAccountConfig(env, accountId = 1) {
-  const isSecond = accountId === 2 || accountId === '2';
-  const prefix = isSecond ? 'IMAGEKIT_2_' : 'IMAGEKIT_';
-  const label = isSecond ? 'Account 2 (6vyidckdo)' : 'Account 1 (fjx6vpmqa)';
+  const num = parseInt(accountId, 10) || 1;
+  const defaults = {
+    1: { prefix: 'IMAGEKIT_', endpoint: 'https://ik.imagekit.io/fjx6vpmqa', id: 'fjx6vpmqa' },
+    2: { prefix: 'IMAGEKIT_2_', endpoint: 'https://ik.imagekit.io/6vyidckdo', id: '6vyidckdo' },
+    3: { prefix: 'IMAGEKIT_3_', endpoint: 'https://ik.imagekit.io/wwj3gmj12', id: 'wwj3gmj12' }
+  };
+  const meta = defaults[num] || { prefix: `IMAGEKIT_${num}_`, endpoint: '', id: `Account ${num}` };
+  const label = `Account ${num} (${meta.id})`;
+  const prefix = meta.prefix;
 
   const privateKey = (env[`${prefix}PRIVATE_KEY`] || '').trim();
   const publicKey = (env[`${prefix}PUBLIC_KEY`] || '').trim();
-  const urlEndpoint = (env[`${prefix}URL_ENDPOINT`] || (isSecond ? 'https://ik.imagekit.io/6vyidckdo' : 'https://ik.imagekit.io/fjx6vpmqa')).trim();
+  const urlEndpoint = (env[`${prefix}URL_ENDPOINT`] || meta.endpoint).trim();
 
   if (!privateKey) {
     throw new Error(`Missing ${prefix}PRIVATE_KEY in .env.imagekit.`);
   }
 
   return {
-    accountId: isSecond ? 2 : 1,
+    accountId: num,
     label,
     publicKey,
     privateKey,
@@ -212,7 +218,9 @@ async function main() {
   let accountNum = 1;
   let syncAll = false;
 
-  if (args.includes('--account=2') || args.includes('--2') || args.includes('--account2')) {
+  if (args.includes('--account=3') || args.includes('--3') || args.includes('--account3')) {
+    accountNum = 3;
+  } else if (args.includes('--account=2') || args.includes('--2') || args.includes('--account2')) {
     accountNum = 2;
   } else if (args.includes('--all') || args.includes('--target=all')) {
     syncAll = true;
@@ -230,8 +238,13 @@ async function main() {
 
   if (listOnly) {
     if (syncAll) {
-      await listFiles(resolveAccountConfig(env, 1));
-      await listFiles(resolveAccountConfig(env, 2));
+      for (const a of [1, 2, 3]) {
+        try {
+          await listFiles(resolveAccountConfig(env, a));
+        } catch (e) {
+          console.warn(`Could not list Account ${a}: ${e.message}`);
+        }
+      }
     } else {
       await listFiles(resolveAccountConfig(env, accountNum));
     }
@@ -247,8 +260,13 @@ async function main() {
   }
 
   if (syncAll) {
-    await syncAccount(resolveAccountConfig(env, 1), files, { dryRun });
-    await syncAccount(resolveAccountConfig(env, 2), files, { dryRun });
+    for (const a of [1, 2, 3]) {
+      try {
+        await syncAccount(resolveAccountConfig(env, a), files, { dryRun });
+      } catch (e) {
+        console.error(`Failed to sync Account ${a}: ${e.message}`);
+      }
+    }
   } else {
     await syncAccount(resolveAccountConfig(env, accountNum), files, { dryRun });
   }

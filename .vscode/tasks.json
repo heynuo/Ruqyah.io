@@ -100,6 +100,13 @@
       "problemMatcher": []
     },
     {
+      "label": "ImageKit: Sync Account 3 (wwj3gmj12)",
+      "type": "shell",
+      "command": "npm run imagekit:sync:3",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
       "label": "ImageKit: Sync All Accounts",
       "type": "shell",
       "command": "npm run imagekit:sync:all",
