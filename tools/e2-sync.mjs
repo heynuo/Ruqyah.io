@@ -44,6 +44,12 @@ const REGION_DEFAULTS = {
     label: 'Frankfurt (eu-central-2)',
     defaultEndpoint: 'https://s3.eu-central-2.idrivee2.com',
     defaultRegion: 'eu-central-2'
+  },
+  london: {
+    prefix: 'E2_LONDON_',
+    label: 'London 2 (eu-west-3)',
+    defaultEndpoint: 'https://s3.eu-west-3.idrivee2.com',
+    defaultRegion: 'eu-west-3'
   }
 };
 
@@ -213,7 +219,9 @@ async function main() {
   const listOnly = args.includes('--list');
 
   let target = 'singapore';
-  if (args.includes('--frankfurt') || args.includes('--target=frankfurt') || args.includes('--region=frankfurt')) {
+  if (args.includes('--london') || args.includes('--target=london') || args.includes('--region=london')) {
+    target = 'london';
+  } else if (args.includes('--frankfurt') || args.includes('--target=frankfurt') || args.includes('--region=frankfurt')) {
     target = 'frankfurt';
   } else if (args.includes('--milan') || args.includes('--target=milan') || args.includes('--region=milan')) {
     target = 'milan';
@@ -235,7 +243,7 @@ async function main() {
   }
 
   if (target === 'all') {
-    const targets = ['singapore', 'milan', 'frankfurt'].map(k => resolveTargetConfig(env, k));
+    const targets = ['singapore', 'milan', 'frankfurt', 'london'].map(k => resolveTargetConfig(env, k));
     for (const cfg of targets) {
       await syncTarget(cfg, files, { dryRun, listOnly });
     }
