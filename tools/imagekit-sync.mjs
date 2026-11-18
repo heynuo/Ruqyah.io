@@ -41,7 +41,11 @@ function resolveAccountConfig(env, accountId = 1) {
     1: { prefix: 'IMAGEKIT_', endpoint: 'https://ik.imagekit.io/fjx6vpmqa', id: 'fjx6vpmqa' },
     2: { prefix: 'IMAGEKIT_2_', endpoint: 'https://ik.imagekit.io/6vyidckdo', id: '6vyidckdo' },
     3: { prefix: 'IMAGEKIT_3_', endpoint: 'https://ik.imagekit.io/wwj3gmj12', id: 'wwj3gmj12' },
-    4: { prefix: 'IMAGEKIT_4_', endpoint: 'https://ik.imagekit.io/ofapqtlnv', id: 'ofapqtlnv' }
+    4: { prefix: 'IMAGEKIT_4_', endpoint: 'https://ik.imagekit.io/ofapqtlnv', id: 'ofapqtlnv' },
+    5: { prefix: 'IMAGEKIT_5_', endpoint: 'https://ik.imagekit.io/dzq4rl4uto', id: 'dzq4rl4uto' },
+    6: { prefix: 'IMAGEKIT_6_', endpoint: 'https://ik.imagekit.io/yykzeurhf', id: 'yykzeurhf' },
+    7: { prefix: 'IMAGEKIT_7_', endpoint: 'https://ik.imagekit.io/pg7oyq2kd', id: 'pg7oyq2kd' },
+    8: { prefix: 'IMAGEKIT_8_', endpoint: 'https://ik.imagekit.io/bs7xykshf', id: 'bs7xykshf' }
   };
   const meta = defaults[num] || { prefix: `IMAGEKIT_${num}_`, endpoint: '', id: `Account ${num}` };
   const label = `Account ${num} (${meta.id})`;
@@ -219,13 +223,13 @@ async function main() {
   let accountNum = 1;
   let syncAll = false;
 
-  if (args.includes('--account=4') || args.includes('--4') || args.includes('--account4')) {
-    accountNum = 4;
-  } else if (args.includes('--account=3') || args.includes('--3') || args.includes('--account3')) {
-    accountNum = 3;
-  } else if (args.includes('--account=2') || args.includes('--2') || args.includes('--account2')) {
-    accountNum = 2;
-  } else if (args.includes('--all') || args.includes('--target=all')) {
+  for (let i = 1; i <= 8; i++) {
+    if (args.includes(`--account=${i}`) || args.includes(`--${i}`) || args.includes(`--account${i}`)) {
+      accountNum = i;
+      break;
+    }
+  }
+  if (args.includes('--all') || args.includes('--target=all')) {
     syncAll = true;
   }
 
@@ -241,7 +245,7 @@ async function main() {
 
   if (listOnly) {
     if (syncAll) {
-      for (const a of [1, 2, 3, 4]) {
+      for (let a = 1; a <= 8; a++) {
         try {
           await listFiles(resolveAccountConfig(env, a));
         } catch (e) {
@@ -263,7 +267,7 @@ async function main() {
   }
 
   if (syncAll) {
-    for (const a of [1, 2, 3, 4]) {
+    for (let a = 1; a <= 8; a++) {
       try {
         await syncAccount(resolveAccountConfig(env, a), files, { dryRun });
       } catch (e) {

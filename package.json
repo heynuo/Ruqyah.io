@@ -15,11 +15,19 @@
     "imagekit:sync:2": "node tools/imagekit-sync.mjs --account=2",
     "imagekit:sync:3": "node tools/imagekit-sync.mjs --account=3",
     "imagekit:sync:4": "node tools/imagekit-sync.mjs --account=4",
+    "imagekit:sync:5": "node tools/imagekit-sync.mjs --account=5",
+    "imagekit:sync:6": "node tools/imagekit-sync.mjs --account=6",
+    "imagekit:sync:7": "node tools/imagekit-sync.mjs --account=7",
+    "imagekit:sync:8": "node tools/imagekit-sync.mjs --account=8",
     "imagekit:sync:all": "node tools/imagekit-sync.mjs --all",
     "imagekit:switch": "node tools/imagekit-sync.mjs --switch-site",
     "imagekit:switch:2": "node tools/imagekit-sync.mjs --account=2 --switch-site",
     "imagekit:switch:3": "node tools/imagekit-sync.mjs --account=3 --switch-site",
-    "imagekit:switch:4": "node tools/imagekit-sync.mjs --account=4 --switch-site"
+    "imagekit:switch:4": "node tools/imagekit-sync.mjs --account=4 --switch-site",
+    "imagekit:switch:5": "node tools/imagekit-sync.mjs --account=5 --switch-site",
+    "imagekit:switch:6": "node tools/imagekit-sync.mjs --account=6 --switch-site",
+    "imagekit:switch:7": "node tools/imagekit-sync.mjs --account=7 --switch-site",
+    "imagekit:switch:8": "node tools/imagekit-sync.mjs --account=8 --switch-site"
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.1170.0",

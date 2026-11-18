@@ -180,12 +180,19 @@ Global real-time image, video, and audio optimization with global CDN caching:
    npm run imagekit:sync:2               # Upload to Account 2 (6vyidckdo)
    npm run imagekit:sync:3               # Upload to Account 3 (wwj3gmj12)
    npm run imagekit:sync:4               # Upload to Account 4 (ofapqtlnv)
+   npm run imagekit:sync:5               # Upload to Account 5 (dzq4rl4uto)
+   npm run imagekit:sync:6               # Upload to Account 6 (yykzeurhf)
+   npm run imagekit:sync:7               # Upload to Account 7 (pg7oyq2kd)
+   npm run imagekit:sync:8               # Upload to Account 8 (bs7xykshf)
    npm run imagekit:sync:all             # Sync to all ImageKit accounts
    npm run imagekit:switch               # Switch site CDN to Account 1
    npm run imagekit:switch:2             # Switch site CDN to Account 2
    npm run imagekit:switch:3             # Switch site CDN to Account 3
    npm run imagekit:switch:4             # Switch site CDN to Account 4
-   npm run imagekit:sync:4 -- --list     # List files in Account 4
+   npm run imagekit:switch:5             # Switch site CDN to Account 5
+   npm run imagekit:switch:6             # Switch site CDN to Account 6
+   npm run imagekit:switch:7             # Switch site CDN to Account 7
+   npm run imagekit:switch:8             # Switch site CDN to Account 8
    ```
 
 ---
