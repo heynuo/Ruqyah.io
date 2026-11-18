@@ -14,5 +14,7 @@ assets/allah-background-videos/
 assets/audio/
 assets/pdf/
 
-# Local R2 credentials. Never commit this file.
+# Local storage credentials. Never commit these files.
 .env.r2
+.env.b2
+.env*.local
