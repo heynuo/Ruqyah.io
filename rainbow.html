@@ -3,8 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Rainbow</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Cpath%20d='M10%2080A40%2040%200%200%201%2090%2080'fill='none'stroke='%23ff3b30'stroke-width='12'/%3E%3Cpath%20d='M20%2080A30%2030%200%200%201%2080%2080'fill='none'stroke='%23ffcc00'stroke-width='10'/%3E%3Cpath%20d='M30%2080A20%2020%200%200%201%2070%2080'fill='none'stroke='%2300c7be'stroke-width='8'/%3E%3C/svg%3E">
+  <title>Color Scale Spectrum — Ruqyah</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20rx='20'%20fill='%230b0f14'/%3E%3Crect%20x='15'%20y='40'%20width='70'%20height='20'%20rx='10'%20fill='url(%23g)'/%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='1'%20y2='0'%3E%3Cstop%20offset='0%25'%20stop-color='%23ff0055'/%3E%3Cstop%20offset='35%25'%20stop-color='%23ffbb00'/%3E%3Cstop%20offset='70%25'%20stop-color='%2300ffcc'/%3E%3Cstop%20offset='100%25'%20stop-color='%237700ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -12,278 +15,807 @@
       padding: 0;
     }
 
+    :root {
+      --current-hue: 0deg;
+      --active-color: #ff0055;
+    }
+
     html, body {
       width: 100%;
       height: 100%;
-      overflow: hidden;
-      background: radial-gradient(ellipse at 50% 100%, #d8ecf8 0%, #b3daf0 40%, #87beea 75%, #6aafe3 100%);
+      overflow-x: hidden;
+      overflow-y: auto;
+      background: #06090e;
+      color: #f1f5f9;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
       display: flex;
-      align-items: flex-end;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      font-family: system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      min-height: 100dvh;
       user-select: none;
       -webkit-user-select: none;
     }
 
-    /* Full-screen atmosphere container with strictly contained overflow */
-    .atmosphere {
-      position: absolute;
+    /* Ambient dynamic glow reflecting the active color */
+    .ambient-glow {
+      position: fixed;
       inset: 0;
-      overflow: hidden;
       pointer-events: none;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 0, 100, 0.12) 0%, rgba(0, 200, 255, 0.05) 45%, transparent 75%);
+      transition: background 0.3s ease;
+      z-index: 0;
+    }
+
+    /* Subtle technical grid background */
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-size: 40px 40px;
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
       z-index: 1;
     }
 
-    /* Ambient atmospheric glow */
-    .sky-glow {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 18% 22%, rgba(255, 255, 240, 0.6) 0%, rgba(255, 245, 215, 0.28) 35%, transparent 70%);
-      mix-blend-mode: soft-light;
-    }
-
-    /* Sunburst light rays */
-    .sun-shafts {
-      position: absolute;
-      top: -20%;
-      left: -10%;
-      width: 140%;
-      height: 140%;
-      background: repeating-conic-gradient(
-        from 45deg at 10% 15%,
-        rgba(255, 255, 255, 0.08) 0deg 8deg,
-        transparent 8deg 24deg
-      );
-      filter: blur(12px);
-      animation: driftRays 35s ease-in-out infinite alternate;
-    }
-
-    @keyframes driftRays {
-      0% { transform: rotate(0deg) scale(1); }
-      100% { transform: rotate(4deg) scale(1.05); }
-    }
-
-    /* Sparkles */
-    .sparkle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: #ffffff;
-      box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.9);
-      animation: twinkle 4s ease-in-out infinite;
-    }
-
-    @keyframes twinkle {
-      0%, 100% { opacity: 0; transform: scale(0.3); }
-      50% { opacity: 1; transform: scale(1.2); }
-    }
-
-    /* Stage containing the rainbow */
-    .rainbow-stage {
-      position: relative;
-      width: 100%;
-      max-width: 1300px;
-      height: 85vh;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      z-index: 2;
-    }
-
-    .rainbow-svg {
-      width: 100%;
-      height: 100%;
-      overflow: visible;
-      filter: drop-shadow(0 0 28px rgba(255, 255, 255, 0.45));
-    }
-
-    /* Soft breathing radiance for rainbow bands */
-    .rainbow-arc-group {
-      transform-origin: 600px 720px;
-      animation: rainbowBreathe 8s ease-in-out infinite alternate;
-    }
-
-    @keyframes rainbowBreathe {
-      0% {
-        opacity: 0.88;
-        filter: drop-shadow(0 0 20px rgba(255, 235, 170, 0.35));
-      }
-      100% {
-        opacity: 0.98;
-        filter: drop-shadow(0 0 38px rgba(255, 245, 200, 0.6));
-      }
-    }
-
-    /* Primary rainbow individual bands */
-    .arc {
-      fill: none;
-      stroke-linecap: round;
-      opacity: 0.82;
-      transition: opacity 0.3s ease;
-    }
-
-    /* Subtle secondary rainbow (double rainbow effect with inverted order) */
-    .secondary-rainbow {
-      opacity: 0.28;
-      filter: blur(2.5px);
-    }
-
-    /* Clouds at the rainbow base */
-    .cloud-cluster {
-      position: absolute;
-      bottom: -15px;
-      pointer-events: none;
-      filter: drop-shadow(0 8px 16px rgba(100, 150, 180, 0.25));
-    }
-
-    .cloud-cluster.left {
-      left: 3%;
-      animation: floatCloudLeft 9s ease-in-out infinite alternate;
-    }
-
-    .cloud-cluster.right {
-      right: 3%;
-      animation: floatCloudRight 11s ease-in-out infinite alternate;
-    }
-
-    @keyframes floatCloudLeft {
-      0% { transform: translateY(0) scale(1); }
-      100% { transform: translateY(-8px) scale(1.03); }
-    }
-
-    @keyframes floatCloudRight {
-      0% { transform: translateY(0) scale(1); }
-      100% { transform: translateY(-10px) scale(1.04); }
-    }
-
-    /* Minimalist back link (discreet top-left) */
+    /* Minimalist back navigation link */
     .back-nav {
       position: fixed;
-      top: 18px;
-      left: 18px;
+      top: 20px;
+      left: 20px;
       z-index: 50;
-      color: rgba(255, 255, 255, 0.85);
-      background: rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      padding: 6px 14px;
+      color: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 7px 16px;
       border-radius: 9999px;
-      font-size: 12px;
+      font-size: 12.5px;
       font-weight: 500;
       text-decoration: none;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.02em;
       transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .back-nav:hover {
-      background: rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.18);
       color: #ffffff;
       transform: translateX(-2px);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Main Container */
+    .scale-card {
+      position: relative;
+      z-index: 10;
+      width: calc(100% - 40px);
+      max-width: 980px;
+      padding: 40px 36px;
+      background: rgba(13, 20, 29, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    /* Header & HUD Readout */
+    .scale-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 24px;
+    }
+
+    .scale-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .scale-kicker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #94a3b8;
+    }
+
+    .scale-title {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .live-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--active-color);
+      box-shadow: 0 0 14px var(--active-color);
+      display: inline-block;
+      animation: dotPulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.3); opacity: 1; }
+    }
+
+    /* Live Telemetry Display Cards */
+    .scale-telemetry {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .telemetry-chip {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 8px 14px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 90px;
+    }
+
+    .telemetry-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px;
+      color: #64748b;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .telemetry-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: 0.04em;
+    }
+
+    /* ==========================================================================
+       THE COLOR CHANGING STRIPE SCALE
+       ========================================================================== */
+    .scale-wrapper {
+      position: relative;
+      width: 100%;
+      padding: 24px 0 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      cursor: crosshair;
+    }
+
+    /* Primary Color Changing Stripe */
+    .scale-stripe {
+      position: relative;
+      width: 100%;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(
+        90deg,
+        #FF0055 0%,
+        #FF5500 14%,
+        #FFAA00 28%,
+        #22DD55 42%,
+        #00D4FF 56%,
+        #3B82F6 70%,
+        #8B5CF6 84%,
+        #EC4899 94%,
+        #FF0055 100%
+      );
+      background-size: 300% 100%;
+      box-shadow: 0 12px 36px -8px rgba(0, 0, 0, 0.6), inset 0 2px 2px rgba(255, 255, 255, 0.4), inset 0 -2px 2px rgba(0, 0, 0, 0.3);
+      animation: stripeFlow 7s linear infinite, stripeHueShift 14s ease-in-out infinite alternate;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+    }
+
+    /* Animated continuous flow */
+    @keyframes stripeFlow {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 300% 50%;
+      }
+    }
+
+    /* Shifting hue over time */
+    @keyframes stripeHueShift {
+      0% {
+        filter: hue-rotate(0deg) saturate(1.15) brightness(1.05);
+      }
+      50% {
+        filter: hue-rotate(180deg) saturate(1.3) brightness(1.12);
+      }
+      100% {
+        filter: hue-rotate(360deg) saturate(1.15) brightness(1.05);
+      }
+    }
+
+    /* High-gloss prism glass reflection overlay */
+    .scale-stripe::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.45) 0%,
+        rgba(255, 255, 255, 0.12) 40%,
+        rgba(0, 0, 0, 0.05) 60%,
+        rgba(0, 0, 0, 0.3) 100%
+      );
+      pointer-events: none;
+    }
+
+    /* Laser Scanning Needle / Cursor */
+    .scale-cursor {
+      position: absolute;
+      top: -10px;
+      bottom: -10px;
+      left: 50%;
+      width: 3px;
+      background: #ffffff;
+      border-radius: 9999px;
+      box-shadow: 0 0 16px 3px #ffffff, 0 0 30px 8px var(--active-color);
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 5;
+      transition: left 0.04s ease-out;
+    }
+
+    .scale-cursor::before,
+    .scale-cursor::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+    }
+
+    .scale-cursor::before {
+      top: -10px;
+      border-top: 8px solid #ffffff;
+      filter: drop-shadow(0 0 6px var(--active-color));
+    }
+
+    .scale-cursor::after {
+      bottom: -10px;
+      border-bottom: 8px solid #ffffff;
+      filter: drop-shadow(0 0 6px var(--active-color));
+    }
+
+    /* Scale Ticks Ruler (Major, Medium & Micro Markings) */
+    .scale-ruler {
+      position: relative;
+      width: 100%;
+      height: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: 4px;
+    }
+
+    .scale-tick-track {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 14px;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .tick {
+      width: 1px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .tick.medium {
+      height: 10px;
+      background: rgba(255, 255, 255, 0.45);
+    }
+
+    .tick.major {
+      height: 14px;
+      width: 1.5px;
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
+    }
+
+    /* Scale Number Labels */
+    .scale-labels {
+      position: absolute;
+      top: 18px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      color: #94a3b8;
+      letter-spacing: 0.05em;
+    }
+
+    /* Underglow Beam Mirroring the Stripe */
+    .stripe-glow {
+      position: absolute;
+      left: 4%;
+      right: 4%;
+      bottom: -15px;
+      height: 30px;
+      background: linear-gradient(
+        90deg,
+        #FF0055, #FFAA00, #22DD55, #00D4FF, #3B82F6, #8B5CF6, #FF0055
+      );
+      background-size: 300% 100%;
+      animation: stripeFlow 7s linear infinite, stripeHueShift 14s ease-in-out infinite alternate;
+      filter: blur(28px);
+      opacity: 0.65;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Interactive Controls Toolbar */
+    .scale-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .ctrl-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+      padding: 7px 15px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ctrl-btn:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.28);
+      transform: translateY(-1px);
+    }
+
+    .ctrl-btn.active {
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      border-color: var(--active-color);
+      box-shadow: 0 0 14px -3px var(--active-color);
+    }
+
+    /* Speed Slider */
+    .speed-slider-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #94a3b8;
+    }
+
+    .speed-slider {
+      -webkit-appearance: none;
+      width: 100px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 9999px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .speed-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--active-color);
+      box-shadow: 0 0 8px var(--active-color);
+      cursor: pointer;
+      border: 2px solid #ffffff;
+    }
+
+    footer.site-footer {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 980px;
+      padding: 16px 20px 24px;
+      margin-top: 16px;
+      font-size: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    footer.site-footer a {
+      color: #94a3b8;
+      text-decoration: none;
+      margin-left: 14px;
+      transition: color 0.2s ease;
+    }
+
+    footer.site-footer a:hover {
+      color: #ffffff;
+      text-decoration: underline;
     }
 
     @media (max-width: 640px) {
-      .rainbow-stage {
-        height: 70vh;
+      .scale-card {
+        padding: 26px 20px;
+        width: calc(100% - 24px);
+        border-radius: 20px;
       }
-      .cloud-cluster svg {
-        transform: scale(0.75);
+      .scale-stripe {
+        height: 40px;
+      }
+      .scale-title {
+        font-size: 19px;
+      }
+      .telemetry-chip {
+        min-width: 75px;
+        padding: 6px 10px;
+      }
+      .telemetry-value {
+        font-size: 12px;
+      }
+      .scale-labels {
+        font-size: 9px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Minimal back navigation -->
+  <!-- Minimalist Back Navigation -->
   <a href="index.html" class="back-nav" aria-label="Return to archive">← Archive</a>
 
-  <!-- Contained Atmospheric Sky Layers -->
-  <div class="atmosphere" aria-hidden="true">
-    <div class="sky-glow"></div>
-    <div class="sun-shafts"></div>
-    <!-- Ambient Shimmer Sparkles -->
-    <div class="sparkle" style="top: 25%; left: 30%; animation-delay: 0.5s;"></div>
-    <div class="sparkle" style="top: 18%; left: 52%; animation-delay: 1.8s;"></div>
-    <div class="sparkle" style="top: 28%; right: 28%; animation-delay: 2.7s;"></div>
-    <div class="sparkle" style="top: 42%; left: 22%; animation-delay: 1.2s;"></div>
-    <div class="sparkle" style="top: 38%; right: 20%; animation-delay: 3.1s;"></div>
-  </div>
+  <!-- Dynamic Ambient Backlighting -->
+  <div id="ambientGlow" class="ambient-glow" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
 
-  <!-- The Rainbow -->
-  <main class="rainbow-stage" role="img" aria-label="A radiant, vibrant rainbow arching gracefully across the sky">
-    <svg class="rainbow-svg" viewBox="0 0 1200 740" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <!-- Soft blur filter for realistic spectral dispersion -->
-        <filter id="spectral-blur" x="-10%" y="-10%" width="120%" height="120%">
-          <feGaussianBlur stdDeviation="3.2" result="blur" />
-          <feComposite in="SourceGraphic" in2="blur" operator="over" />
-        </filter>
+  <!-- Main Scale Card Container -->
+  <main class="scale-card" role="region" aria-label="Chromatic Color Changing Stripe Scale">
+    <!-- Header with Telemetry Readout -->
+    <header class="scale-header">
+      <div class="scale-title-wrap">
+        <span class="scale-kicker">Wavelength Spectrometry • Optical Scale</span>
+        <h1 class="scale-title">
+          <span id="liveDot" class="live-dot" aria-hidden="true"></span>
+          <span>Color Changing Stripe</span>
+        </h1>
+      </div>
 
-        <!-- Secondary outer rainbow filter -->
-        <filter id="secondary-blur" x="-10%" y="-10%" width="120%" height="120%">
-          <feGaussianBlur stdDeviation="5" />
-        </filter>
+      <!-- Telemetry Readouts -->
+      <div class="scale-telemetry">
+        <div class="telemetry-chip">
+          <span class="telemetry-label">HEX</span>
+          <span id="readoutHex" class="telemetry-value">#FF0055</span>
+        </div>
+        <div class="telemetry-chip">
+          <span class="telemetry-label">WAVELENGTH</span>
+          <span id="readoutWavelength" class="telemetry-value">685 nm</span>
+        </div>
+        <div class="telemetry-chip">
+          <span class="telemetry-label">FREQUENCY</span>
+          <span id="readoutFreq" class="telemetry-value">438 THz</span>
+        </div>
+        <div class="telemetry-chip">
+          <span class="telemetry-label">SCALE %</span>
+          <span id="readoutPercent" class="telemetry-value">50.0%</span>
+        </div>
+      </div>
+    </header>
 
-        <!-- Linear gradient for soft cloud mist -->
-        <linearGradient id="cloud-white" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.96" />
-          <stop offset="100%" stop-color="#e8f4fc" stop-opacity="0.82" />
-        </linearGradient>
-      </defs>
+    <!-- The Color Changing Stripe & Scale -->
+    <div id="scaleWrapper" class="scale-wrapper" title="Drag or hover to calibrate scale">
+      <!-- Glow Reflector Under Stripe -->
+      <div id="stripeGlow" class="stripe-glow" aria-hidden="true"></div>
 
-      <!-- SECONDARY RAINBOW (Outer subtle reflection: reversed spectrum order) -->
-      <g class="secondary-rainbow" filter="url(#secondary-blur)">
-        <path d="M 50 720 A 550 550 0 0 1 1150 720" class="arc" stroke="#9933ff" stroke-width="12" />
-        <path d="M 62 720 A 538 538 0 0 1 1138 720" class="arc" stroke="#3366ff" stroke-width="12" />
-        <path d="M 74 720 A 526 526 0 0 1 1126 720" class="arc" stroke="#00ccff" stroke-width="12" />
-        <path d="M 86 720 A 514 514 0 0 1 1114 720" class="arc" stroke="#33cc33" stroke-width="12" />
-        <path d="M 98 720 A 502 502 0 0 1 1102 720" class="arc" stroke="#ffcc00" stroke-width="12" />
-        <path d="M 110 720 A 490 490 0 0 1 1090 720" class="arc" stroke="#ff6600" stroke-width="12" />
-        <path d="M 122 720 A 478 478 0 0 1 1078 720" class="arc" stroke="#ff1a40" stroke-width="12" />
-      </g>
+      <!-- The Flowing Animated Color Stripe -->
+      <div id="scaleStripe" class="scale-stripe"></div>
 
-      <!-- PRIMARY RAINBOW (Vibrant, high clarity, realistic dispersion) -->
-      <g class="rainbow-arc-group" filter="url(#spectral-blur)">
-        <!-- Red Band (~700nm) -->
-        <path d="M 140 720 A 460 460 0 0 1 1060 720" class="arc" stroke="#FF1E44" stroke-width="22" opacity="0.92" />
-        
-        <!-- Orange Band (~600nm) -->
-        <path d="M 160 720 A 440 440 0 0 1 1040 720" class="arc" stroke="#FF7A00" stroke-width="22" opacity="0.94" />
-        
-        <!-- Yellow Band (~580nm) -->
-        <path d="M 180 720 A 420 420 0 0 1 1020 720" class="arc" stroke="#FFD000" stroke-width="22" opacity="0.95" />
-        
-        <!-- Green Band (~530nm) -->
-        <path d="M 200 720 A 400 400 0 0 1 1000 720" class="arc" stroke="#10D050" stroke-width="22" opacity="0.93" />
-        
-        <!-- Cyan / Sky Blue Band (~490nm) -->
-        <path d="M 220 720 A 380 380 0 0 1 980 720" class="arc" stroke="#00C8F8" stroke-width="22" opacity="0.93" />
-        
-        <!-- Royal Blue Band (~450nm) -->
-        <path d="M 240 720 A 360 360 0 0 1 960 720" class="arc" stroke="#2563EB" stroke-width="22" opacity="0.92" />
-        
-        <!-- Indigo / Violet Band (~400nm) -->
-        <path d="M 260 720 A 340 340 0 0 1 940 720" class="arc" stroke="#7C3AED" stroke-width="22" opacity="0.90" />
-      </g>
-    </svg>
+      <!-- Laser Scanner Cursor / Needle -->
+      <div id="scaleCursor" class="scale-cursor" aria-hidden="true"></div>
 
-    <!-- Fluffy Base Clouds - Left Anchor -->
-    <div class="cloud-cluster left" aria-hidden="true">
-      <svg width="280" height="130" viewBox="0 0 280 130" fill="url(#cloud-white)" xmlns="http://www.w3.org/2000/svg">
-        <path d="M40 120 C20 120 5 105 5 85 C5 68 18 55 35 52 C38 30 58 12 85 12 C108 12 128 25 136 45 C146 38 160 34 175 34 C205 34 230 55 233 84 C250 86 265 100 265 118 C265 120 264 120 260 120 Z" />
-        <ellipse cx="140" cy="95" rx="90" ry="32" fill="#ffffff" opacity="0.9" />
-      </svg>
+      <!-- Precision Scale Ruler (Graduated Ticks) -->
+      <div class="scale-ruler" aria-hidden="true">
+        <div id="tickTrack" class="scale-tick-track"></div>
+        <div class="scale-labels">
+          <span>380nm</span>
+          <span>440nm</span>
+          <span>500nm</span>
+          <span>560nm</span>
+          <span>620nm</span>
+          <span>680nm</span>
+          <span>750nm</span>
+        </div>
+      </div>
     </div>
 
-    <!-- Fluffy Base Clouds - Right Anchor -->
-    <div class="cloud-cluster right" aria-hidden="true">
-      <svg width="280" height="130" viewBox="0 0 280 130" fill="url(#cloud-white)" xmlns="http://www.w3.org/2000/svg">
-        <path d="M240 120 C260 120 275 105 275 85 C275 68 262 55 245 52 C242 30 222 12 195 12 C172 12 152 25 144 45 C134 38 120 34 105 34 C75 34 50 55 47 84 C30 86 15 100 15 118 C15 120 16 120 20 120 Z" />
-        <ellipse cx="140" cy="95" rx="90" ry="32" fill="#ffffff" opacity="0.9" />
-      </svg>
+    <!-- Interactive Mode & Velocity Toolbar -->
+    <div class="scale-controls">
+      <div class="control-group">
+        <button id="btnAutoScan" type="button" class="ctrl-btn active" aria-pressed="true">
+          <span>⚡ Auto-Scan</span>
+        </button>
+        <button id="btnLaserLock" type="button" class="ctrl-btn" aria-pressed="false">
+          <span>🎯 Center Lock</span>
+        </button>
+        <button id="btnHueShift" type="button" class="ctrl-btn active" aria-pressed="true">
+          <span>🌈 Hue Shift</span>
+        </button>
+      </div>
+
+      <div class="speed-slider-wrap">
+        <span>FLOW SPEED</span>
+        <input id="speedRange" type="range" class="speed-slider" min="1" max="15" value="7" aria-label="Adjust stripe animation flow speed" />
+      </div>
     </div>
   </main>
 
+  <!-- Site Footer for Standards & Navigation -->
+  <footer class="site-footer">
+    <span>&copy; Ruqyah &bull; Chromatic Scale</span>
+    <nav aria-label="Footer links">
+      <a href="privacy.html">Privacy</a>
+      <a href="rss.xml">RSS</a>
+      <a href="end.html">The End</a>
+    </nav>
+  </footer>
+
+  <!-- Interactive Scale Engine -->
+  <script>
+    (function () {
+      'use strict';
+
+      // ── DOM References ───────────────────────────────────────────────────
+      const scaleWrapper = document.getElementById('scaleWrapper');
+      const scaleStripe = document.getElementById('scaleStripe');
+      const stripeGlow = document.getElementById('stripeGlow');
+      const scaleCursor = document.getElementById('scaleCursor');
+      const tickTrack = document.getElementById('tickTrack');
+      const ambientGlow = document.getElementById('ambientGlow');
+      const liveDot = document.getElementById('liveDot');
+
+      // Readouts
+      const readoutHex = document.getElementById('readoutHex');
+      const readoutWavelength = document.getElementById('readoutWavelength');
+      const readoutFreq = document.getElementById('readoutFreq');
+      const readoutPercent = document.getElementById('readoutPercent');
+
+      // Controls
+      const btnAutoScan = document.getElementById('btnAutoScan');
+      const btnLaserLock = document.getElementById('btnLaserLock');
+      const btnHueShift = document.getElementById('btnHueShift');
+      const speedRange = document.getElementById('speedRange');
+
+      // ── Generate Ruler Ticks ─────────────────────────────────────────────
+      const totalTicks = 81;
+      let tickHtml = '';
+      for (let i = 0; i < totalTicks; i++) {
+        if (i % 10 === 0) {
+          tickHtml += '<div class="tick major"></div>';
+        } else if (i % 5 === 0) {
+          tickHtml += '<div class="tick medium"></div>';
+        } else {
+          tickHtml += '<div class="tick"></div>';
+        }
+      }
+      tickTrack.innerHTML = tickHtml;
+
+      // ── Runtime State ────────────────────────────────────────────────────
+      let isAutoScanning = true;
+      let isDragging = false;
+      let currentProgress = 0.5; // 0 to 1 along scale
+      let scanSpeed = 0.0035;
+      let scanDirection = 1;
+
+      // ── Color Spectrum Map Function ──────────────────────────────────────
+      // Converts progress (0 to 1) into wavelength (380nm to 750nm) and RGB/Hex
+      function wavelengthToRgb(wavelength) {
+        let r = 0, g = 0, b = 0;
+
+        if (wavelength >= 380 && wavelength < 440) {
+          r = -(wavelength - 440) / (440 - 380);
+          g = 0;
+          b = 1;
+        } else if (wavelength >= 440 && wavelength < 490) {
+          r = 0;
+          g = (wavelength - 440) / (490 - 440);
+          b = 1;
+        } else if (wavelength >= 490 && wavelength < 510) {
+          r = 0;
+          g = 1;
+          b = -(wavelength - 510) / (510 - 490);
+        } else if (wavelength >= 510 && wavelength < 580) {
+          r = (wavelength - 510) / (580 - 510);
+          g = 1;
+          b = 0;
+        } else if (wavelength >= 580 && wavelength < 645) {
+          r = 1;
+          g = -(wavelength - 645) / (645 - 580);
+          b = 0;
+        } else if (wavelength >= 645 && wavelength <= 750) {
+          r = 1;
+          g = 0;
+          b = 0;
+        }
+
+        // Intensity fall-off at limits of vision
+        let factor = 1;
+        if (wavelength >= 380 && wavelength < 420) {
+          factor = 0.3 + 0.7 * (wavelength - 380) / (420 - 380);
+        } else if (wavelength >= 700 && wavelength <= 750) {
+          factor = 0.3 + 0.7 * (750 - wavelength) / (750 - 700);
+        }
+
+        const red = Math.round(r * factor * 255);
+        const green = Math.round(g * factor * 255);
+        const blue = Math.round(b * factor * 255);
+
+        const hex = '#' + [red, green, blue].map(x => x.toString(16).padStart(2, '0')).join('').toUpperCase();
+        return { red, green, blue, hex };
+      }
+
+      function updateScale(progress) {
+        currentProgress = Math.max(0, Math.min(1, progress));
+
+        // Position Cursor
+        const percent = (currentProgress * 100).toFixed(1);
+        scaleCursor.style.left = `${percent}%`;
+
+        // Calculate Physics Wavelength (380nm to 750nm)
+        const wavelength = Math.round(380 + currentProgress * (750 - 380));
+        const color = wavelengthToRgb(wavelength);
+
+        // Approximate Optical Frequency: f = c / lambda (speed of light 3e8 m/s)
+        const frequencyTHz = Math.round(299792 / wavelength);
+
+        // Update Readouts
+        readoutHex.textContent = color.hex;
+        readoutWavelength.textContent = `${wavelength} nm`;
+        readoutFreq.textContent = `${frequencyTHz} THz`;
+        readoutPercent.textContent = `${percent}%`;
+
+        // Update CSS Variables & Ambient Reflections
+        document.documentElement.style.setProperty('--active-color', color.hex);
+        ambientGlow.style.background = `radial-gradient(circle at 50% 50%, rgba(${color.red}, ${color.green}, ${color.blue}, 0.16) 0%, rgba(${color.red}, ${color.green}, ${color.blue}, 0.05) 50%, transparent 75%)`;
+      }
+
+      // ── Animation Loop for Auto-Scan ─────────────────────────────────────
+      function loop() {
+        if (isAutoScanning && !isDragging) {
+          currentProgress += scanSpeed * scanDirection;
+          if (currentProgress >= 1) {
+            currentProgress = 1;
+            scanDirection = -1;
+          } else if (currentProgress <= 0) {
+            currentProgress = 0;
+            scanDirection = 1;
+          }
+          updateScale(currentProgress);
+        }
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+
+      // ── Pointer & Drag Interactions ──────────────────────────────────────
+      function handlePointerPosition(e) {
+        const rect = scaleWrapper.getBoundingClientRect();
+        const clientX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+        const relativeX = clientX - rect.left;
+        const progress = relativeX / rect.width;
+        updateScale(progress);
+      }
+
+      scaleWrapper.addEventListener('pointerdown', (e) => {
+        isDragging = true;
+        handlePointerPosition(e);
+        scaleWrapper.setPointerCapture(e.pointerId);
+      });
+
+      scaleWrapper.addEventListener('pointermove', (e) => {
+        if (isDragging) {
+          handlePointerPosition(e);
+        }
+      });
+
+      scaleWrapper.addEventListener('pointerup', (e) => {
+        isDragging = false;
+        try { scaleWrapper.releasePointerCapture(e.pointerId); } catch (_) {}
+      });
+
+      scaleWrapper.addEventListener('pointercancel', () => {
+        isDragging = false;
+      });
+
+      // ── Control Toolbar Buttons ──────────────────────────────────────────
+      btnAutoScan.addEventListener('click', () => {
+        isAutoScanning = !isAutoScanning;
+        btnAutoScan.classList.toggle('active', isAutoScanning);
+        btnAutoScan.setAttribute('aria-pressed', String(isAutoScanning));
+      });
+
+      btnLaserLock.addEventListener('click', () => {
+        isAutoScanning = false;
+        btnAutoScan.classList.remove('active');
+        btnAutoScan.setAttribute('aria-pressed', 'false');
+        updateScale(0.5);
+      });
+
+      let hueShiftActive = true;
+      btnHueShift.addEventListener('click', () => {
+        hueShiftActive = !hueShiftActive;
+        btnHueShift.classList.toggle('active', hueShiftActive);
+        btnHueShift.setAttribute('aria-pressed', String(hueShiftActive));
+        scaleStripe.style.animation = hueShiftActive
+          ? `stripeFlow ${16 - speedRange.value}s linear infinite, stripeHueShift 14s ease-in-out infinite alternate`
+          : `stripeFlow ${16 - speedRange.value}s linear infinite`;
+        stripeGlow.style.animation = scaleStripe.style.animation;
+      });
+
+      speedRange.addEventListener('input', (e) => {
+        const val = parseInt(e.target.value, 10);
+        scanSpeed = 0.0008 * val;
+        const flowDuration = Math.max(2, 17 - val);
+        scaleStripe.style.animationDuration = `${flowDuration}s, 14s`;
+        stripeGlow.style.animationDuration = `${flowDuration}s, 14s`;
+      });
+
+      // Initial Call
+      updateScale(0.5);
+    })();
+  </script>
 </body>
 </html>
