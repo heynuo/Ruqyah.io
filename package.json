@@ -14,10 +14,12 @@
     "imagekit:sync": "node tools/imagekit-sync.mjs",
     "imagekit:sync:2": "node tools/imagekit-sync.mjs --account=2",
     "imagekit:sync:3": "node tools/imagekit-sync.mjs --account=3",
+    "imagekit:sync:4": "node tools/imagekit-sync.mjs --account=4",
     "imagekit:sync:all": "node tools/imagekit-sync.mjs --all",
     "imagekit:switch": "node tools/imagekit-sync.mjs --switch-site",
     "imagekit:switch:2": "node tools/imagekit-sync.mjs --account=2 --switch-site",
-    "imagekit:switch:3": "node tools/imagekit-sync.mjs --account=3 --switch-site"
+    "imagekit:switch:3": "node tools/imagekit-sync.mjs --account=3 --switch-site",
+    "imagekit:switch:4": "node tools/imagekit-sync.mjs --account=4 --switch-site"
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.1170.0",

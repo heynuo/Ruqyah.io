@@ -107,6 +107,13 @@
       "problemMatcher": []
     },
     {
+      "label": "ImageKit: Sync Account 4 (ofapqtlnv)",
+      "type": "shell",
+      "command": "npm run imagekit:sync:4",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
       "label": "ImageKit: Sync All Accounts",
       "type": "shell",
       "command": "npm run imagekit:sync:all",

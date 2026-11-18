@@ -40,7 +40,8 @@ function resolveAccountConfig(env, accountId = 1) {
   const defaults = {
     1: { prefix: 'IMAGEKIT_', endpoint: 'https://ik.imagekit.io/fjx6vpmqa', id: 'fjx6vpmqa' },
     2: { prefix: 'IMAGEKIT_2_', endpoint: 'https://ik.imagekit.io/6vyidckdo', id: '6vyidckdo' },
-    3: { prefix: 'IMAGEKIT_3_', endpoint: 'https://ik.imagekit.io/wwj3gmj12', id: 'wwj3gmj12' }
+    3: { prefix: 'IMAGEKIT_3_', endpoint: 'https://ik.imagekit.io/wwj3gmj12', id: 'wwj3gmj12' },
+    4: { prefix: 'IMAGEKIT_4_', endpoint: 'https://ik.imagekit.io/ofapqtlnv', id: 'ofapqtlnv' }
   };
   const meta = defaults[num] || { prefix: `IMAGEKIT_${num}_`, endpoint: '', id: `Account ${num}` };
   const label = `Account ${num} (${meta.id})`;
@@ -218,7 +219,9 @@ async function main() {
   let accountNum = 1;
   let syncAll = false;
 
-  if (args.includes('--account=3') || args.includes('--3') || args.includes('--account3')) {
+  if (args.includes('--account=4') || args.includes('--4') || args.includes('--account4')) {
+    accountNum = 4;
+  } else if (args.includes('--account=3') || args.includes('--3') || args.includes('--account3')) {
     accountNum = 3;
   } else if (args.includes('--account=2') || args.includes('--2') || args.includes('--account2')) {
     accountNum = 2;
@@ -238,7 +241,7 @@ async function main() {
 
   if (listOnly) {
     if (syncAll) {
-      for (const a of [1, 2, 3]) {
+      for (const a of [1, 2, 3, 4]) {
         try {
           await listFiles(resolveAccountConfig(env, a));
         } catch (e) {
@@ -260,7 +263,7 @@ async function main() {
   }
 
   if (syncAll) {
-    for (const a of [1, 2, 3]) {
+    for (const a of [1, 2, 3, 4]) {
       try {
         await syncAccount(resolveAccountConfig(env, a), files, { dryRun });
       } catch (e) {
