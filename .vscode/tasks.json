@@ -42,6 +42,20 @@
       "command": "npm run e2:sync -- --list",
       "group": "build",
       "problemMatcher": []
+    },
+    {
+      "label": "IDrive e2: Sync Milan (eu-south-1)",
+      "type": "shell",
+      "command": "npm run e2:sync:milan",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "IDrive e2: Sync All Regions",
+      "type": "shell",
+      "command": "npm run e2:sync:all",
+      "group": "build",
+      "problemMatcher": []
     }
   ]
 }

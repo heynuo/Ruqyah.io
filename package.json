@@ -6,7 +6,9 @@
     "r2:upload": "node tools/r2-upload.mjs",
     "r2:untrack": "node tools/r2-untrack.mjs",
     "b2:sync": "node tools/b2-sync.mjs",
-    "e2:sync": "node tools/e2-sync.mjs"
+    "e2:sync": "node tools/e2-sync.mjs",
+    "e2:sync:milan": "node tools/e2-sync.mjs --milan",
+    "e2:sync:all": "node tools/e2-sync.mjs --all"
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.1170.0",
