@@ -29,9 +29,20 @@
     "imagekit:switch:7": "node tools/imagekit-sync.mjs --account=7 --switch-site",
     "imagekit:switch:8": "node tools/imagekit-sync.mjs --account=8 --switch-site",
     "dbbyte:sync": "node tools/dbbyte-sync.mjs",
+    "dbbyte:sync:2": "node tools/dbbyte-sync.mjs --account=2",
+    "dbbyte:sync:3": "node tools/dbbyte-sync.mjs --account=3",
+    "dbbyte:sync:4": "node tools/dbbyte-sync.mjs --account=4",
+    "dbbyte:sync:all": "node tools/dbbyte-sync.mjs --all",
     "dbbyte:sync:dry": "node tools/dbbyte-sync.mjs --dry-run",
     "dbbyte:list": "node tools/dbbyte-sync.mjs --list",
-    "dbbyte:switch": "node tools/dbbyte-sync.mjs --switch-site"
+    "dbbyte:list:2": "node tools/dbbyte-sync.mjs --account=2 --list",
+    "dbbyte:list:3": "node tools/dbbyte-sync.mjs --account=3 --list",
+    "dbbyte:list:4": "node tools/dbbyte-sync.mjs --account=4 --list",
+    "dbbyte:list:all": "node tools/dbbyte-sync.mjs --list --all",
+    "dbbyte:switch": "node tools/dbbyte-sync.mjs --switch-site",
+    "dbbyte:switch:2": "node tools/dbbyte-sync.mjs --account=2 --switch-site",
+    "dbbyte:switch:3": "node tools/dbbyte-sync.mjs --account=3 --switch-site",
+    "dbbyte:switch:4": "node tools/dbbyte-sync.mjs --account=4 --switch-site"
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.1170.0",

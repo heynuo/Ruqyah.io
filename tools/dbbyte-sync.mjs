@@ -31,24 +31,27 @@ function parseEnv(text) {
   return values;
 }
 
-async function loadConfig() {
+async function loadRawEnv() {
   const envPath = path.join(ROOT, '.env.dbbyte');
-  let env = {};
   try {
-    env = parseEnv(await readFile(envPath, 'utf8'));
+    return parseEnv(await readFile(envPath, 'utf8'));
   } catch {
-    throw new Error('Missing .env.dbbyte file. Please create it with DBBYTE_API_KEY.');
+    throw new Error('Missing .env.dbbyte file. Copy .env.dbbyte.example to .env.dbbyte and add your keys.');
+  }
+}
+
+function getAccountConfig(env, accountNum = 1) {
+  const prefix = accountNum === 1 ? 'DBBYTE_' : `DBBYTE_${accountNum}_`;
+  const apiKey = (env[`${prefix}API_KEY`] || (accountNum === 1 ? env.DBBYTE_SECRET_ACCESS_KEY : '') || '').trim();
+  const bucket = (env[`${prefix}BUCKET`] || '').trim();
+  const region = (env[`${prefix}REGION`] || 'us-east-1').trim();
+  const cdnUrl = (env[`${prefix}PUBLIC_BASE_URL`] || '').trim().replace(/\/+$/, '');
+
+  if (!apiKey || !bucket) {
+    throw new Error(`Missing ${prefix}API_KEY or ${prefix}BUCKET in .env.dbbyte`);
   }
 
-  const apiKey = (env.DBBYTE_API_KEY || env.DBBYTE_SECRET_ACCESS_KEY || '').trim();
-  if (!apiKey) {
-    throw new Error('Missing DBBYTE_API_KEY in .env.dbbyte (format: dbk_...)');
-  }
-
-  const bucket = (env.DBBYTE_BUCKET || 'ruqyah-media').trim();
-  const cdnUrl = (env.DBBYTE_PUBLIC_BASE_URL || '').trim().replace(/\/+$/, '');
-
-  return { apiKey, bucket, cdnUrl };
+  return { accountNum, apiKey, bucket, region, cdnUrl, label: `Account ${accountNum} [${bucket}]` };
 }
 
 async function collectFiles() {
@@ -97,32 +100,22 @@ async function writePublicConfig(publicBaseUrl) {
   await writeFile(configPath, contents, 'utf8');
 }
 
-async function main() {
-  const args = process.argv.slice(2);
-  const dryRun = args.includes('--dry-run');
-  const listOnly = args.includes('--list');
-  const switchSite = args.includes('--switch-site');
+async function syncAccount(cfg, files, { dryRun = false, listOnly = false } = {}) {
+  console.log(`\n========================================`);
+  console.log(`Connecting to ${cfg.label} (${cfg.region})...`);
+  console.log(`========================================`);
 
-  const { apiKey, bucket, cdnUrl } = await loadConfig();
-
-  if (switchSite) {
-    await writePublicConfig(cdnUrl);
-    console.log(`✅ Pointed website media to DBByte CDN URL: ${cdnUrl}`);
-    return;
-  }
-
-  console.log(`Connecting to DBByte API for bucket: "${bucket}"...`);
-  const bucketRes = await fetch(`https://api.dbbyte.com/buckets/${bucket}`, {
-    headers: { 'Authorization': `Bearer ${apiKey}` }
+  const bucketRes = await fetch(`https://api.dbbyte.com/buckets/${cfg.bucket}`, {
+    headers: { 'Authorization': `Bearer ${cfg.apiKey}` }
   });
 
   if (!bucketRes.ok) {
     const errText = await bucketRes.text();
-    throw new Error(`Failed to access bucket "${bucket}" (${bucketRes.status}): ${errText}`);
+    throw new Error(`Failed to access bucket "${cfg.bucket}" (${bucketRes.status}): ${errText}`);
   }
 
   const { bucket: bucketInfo } = await bucketRes.json();
-  console.log(`Bucket found: ${bucketInfo.name} (${bucketInfo.region})`);
+  console.log(`Bucket verified: ${bucketInfo.name}`);
   console.log(`  - Visibility: ${bucketInfo.isPublic ? 'Public' : 'Private'}`);
   console.log(`  - CDN Enabled: ${bucketInfo.cdn}`);
   console.log(`  - Files currently in bucket: ${bucketInfo.fileCount}`);
@@ -130,10 +123,10 @@ async function main() {
   // Auto-enable public and CDN if not enabled
   if (!bucketInfo.isPublic || !bucketInfo.cdn) {
     console.log('Ensuring bucket is set to Public with CDN enabled...');
-    await fetch(`https://api.dbbyte.com/buckets/${bucket}`, {
+    await fetch(`https://api.dbbyte.com/buckets/${cfg.bucket}`, {
       method: 'PATCH',
       headers: {
-        'Authorization': `Bearer ${apiKey}`,
+        'Authorization': `Bearer ${cfg.apiKey}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ isPublic: true, cdn: true })
@@ -141,19 +134,18 @@ async function main() {
   }
 
   if (listOnly) {
-    const listRes = await fetch(`https://api.dbbyte.com/storage/${bucket}/list`, {
-      headers: { 'Authorization': `Bearer ${apiKey}` }
+    const listRes = await fetch(`https://api.dbbyte.com/storage/${cfg.bucket}/list`, {
+      headers: { 'Authorization': `Bearer ${cfg.apiKey}` }
     });
     if (!listRes.ok) throw new Error(`List failed: ${await listRes.text()}`);
     const data = await listRes.json();
-    console.log(`Files in ${bucket}:`);
-    data.files.forEach(f => console.log(`  - ${f.name} (${formatMiB(f.size)})`));
+    console.log(`Files in ${cfg.bucket} (${data.files ? data.files.length : 0} items):`);
+    (data.files || []).forEach(f => console.log(`  - ${f.name} (${formatMiB(f.size)})`));
     return;
   }
 
-  const files = await collectFiles();
   const totalSize = files.reduce((sum, f) => sum + f.size, 0);
-  console.log(`\nPrepared ${files.length} media file(s) for upload (${formatMiB(totalSize)} total).`);
+  console.log(`Prepared ${files.length} media file(s) for upload (${formatMiB(totalSize)} total).`);
 
   if (dryRun) {
     console.log('Dry run complete. No files were uploaded.');
@@ -162,14 +154,14 @@ async function main() {
 
   let uploaded = 0;
   for (const file of files) {
-    console.log(`[${uploaded + 1}/${files.length}] Uploading: ${file.key} (${formatMiB(file.size)})...`);
+    console.log(`[${uploaded + 1}/${files.length}] Uploading to ${cfg.bucket}: ${file.key} (${formatMiB(file.size)})...`);
     const fileBlob = new Blob([await readFile(file.absolutePath)], { type: file.mimeType });
     const form = new FormData();
     form.append('file', fileBlob, file.name);
 
-    const uploadRes = await fetch(`https://api.dbbyte.com/storage/${bucket}/upload?overwrite=true`, {
+    const uploadRes = await fetch(`https://api.dbbyte.com/storage/${cfg.bucket}/upload?overwrite=true`, {
       method: 'POST',
-      headers: { 'Authorization': `Bearer ${apiKey}` },
+      headers: { 'Authorization': `Bearer ${cfg.apiKey}` },
       body: form
     });
 
@@ -182,10 +174,59 @@ async function main() {
     }
   }
 
-  console.log(`\n🎉 DBByte Sync Complete! (${uploaded}/${files.length} uploaded)`);
-  if (cdnUrl) {
-    await writePublicConfig(cdnUrl);
-    console.log(`✅ Pointed site to DBByte CDN URL: ${cdnUrl}`);
+  console.log(`\n🎉 ${cfg.label} Sync Complete! (${uploaded}/${files.length} uploaded)`);
+}
+
+async function main() {
+  const args = process.argv.slice(2);
+  const dryRun = args.includes('--dry-run');
+  const listOnly = args.includes('--list');
+  const switchSite = args.includes('--switch-site');
+  const syncAll = args.includes('--all');
+
+  const accArg = args.find(a => a.startsWith('--account='));
+  const targetAccount = accArg ? parseInt(accArg.split('=')[1], 10) : 1;
+
+  const env = await loadRawEnv();
+
+  if (switchSite) {
+    const cfg = getAccountConfig(env, targetAccount);
+    await writePublicConfig(cfg.cdnUrl);
+    console.log(`✅ Pointed website media to DBByte ${cfg.label} CDN: ${cfg.cdnUrl}`);
+    return;
+  }
+
+  if (listOnly) {
+    if (syncAll) {
+      for (const a of [1, 2, 3, 4]) {
+        try {
+          const cfg = getAccountConfig(env, a);
+          await syncAccount(cfg, [], { listOnly: true });
+        } catch (e) {
+          console.warn(`Account ${a} skipped: ${e.message}`);
+        }
+      }
+    } else {
+      const cfg = getAccountConfig(env, targetAccount);
+      await syncAccount(cfg, [], { listOnly: true });
+    }
+    return;
+  }
+
+  const files = await collectFiles();
+
+  if (syncAll) {
+    for (const a of [1, 2, 3, 4]) {
+      try {
+        const cfg = getAccountConfig(env, a);
+        await syncAccount(cfg, files, { dryRun });
+      } catch (e) {
+        console.error(`Account ${a} sync error: ${e.message}`);
+      }
+    }
+  } else {
+    const cfg = getAccountConfig(env, targetAccount);
+    await syncAccount(cfg, files, { dryRun });
   }
 }
 
