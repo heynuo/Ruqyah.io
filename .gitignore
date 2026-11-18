@@ -18,4 +18,5 @@ assets/pdf/
 .env.r2
 .env.b2
 .env.e2
+.env.imagekit
 .env*.local

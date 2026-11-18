@@ -70,6 +70,27 @@
       "command": "npm run e2:sync:all",
       "group": "build",
       "problemMatcher": []
+    },
+    {
+      "label": "ImageKit: Preview media sync",
+      "type": "shell",
+      "command": "npm run imagekit:sync -- --dry-run",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "ImageKit: Sync media files",
+      "type": "shell",
+      "command": "npm run imagekit:sync",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "ImageKit: List files",
+      "type": "shell",
+      "command": "npm run imagekit:sync -- --list",
+      "group": "build",
+      "problemMatcher": []
     }
   ]
 }

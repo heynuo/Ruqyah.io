@@ -168,6 +168,19 @@ High-performance S3-compatible multi-region backup and storage across 4 regions:
    npm run e2:sync:london -- --list
    ```
 
+### 6. Media CDN Delivery & Optimization with ImageKit.io
+
+Global real-time image, video, and audio optimization with global CDN caching:
+
+1. In [ImageKit Developer Options](https://imagekit.io/dashboard/developer/api-keys), copy your **Private Key**, **Public Key**, and **URL-endpoint**.
+2. Copy `.env.imagekit.example` to `.env.imagekit` and add your keys. `.env.imagekit` is ignored by Git.
+3. Sync commands:
+   ```powershell
+   npm run imagekit:sync -- --dry-run    # Preview media sync
+   npm run imagekit:sync                 # Upload heavy media to ImageKit
+   npm run imagekit:sync -- --list       # List files in ImageKit media library
+   ```
+
 ---
 
 ## 📜 Scholastic Citations & Audio Sources
