@@ -9,6 +9,15 @@
 (function () {
   'use strict';
 
+  // ── Normalize GitHub Pages Subpath Trailing Slash ───────────────────────
+  // Prevents relative links (such as index.html) from resolving to root domain
+  if (window.location.hostname.endsWith('github.io')) {
+    var pathSegments = window.location.pathname.split('/');
+    if (pathSegments.length === 2 && pathSegments[1] && !pathSegments[1].includes('.')) {
+      window.history.replaceState(null, '', '/' + pathSegments[1] + '/' + window.location.search + window.location.hash);
+    }
+  }
+
   // ── Detect Active Page ──────────────────────────────────────────────────
   const currentPath = window.location.pathname.split('/').pop() || 'index.html';
   const pageMap = {
@@ -60,7 +69,7 @@
     return `<header id="heynuo-header" class="fixed top-0 left-0 right-0 z-50 h-14 bg-surface shadow-[0_1px_8px_rgba(15,23,42,0.04)]">
   <div class="max-w-7xl mx-auto h-14 px-margin-mobile md:px-margin flex items-center justify-between gap-space-md">
     <div class="flex items-center gap-space-lg">
-      <a aria-label="RQ Ruqyah Home" class="flex items-center gap-space-xs text-primary hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg py-1 px-1.5" href="index.html">
+      <a aria-label="RQ Ruqyah Home" class="header-brand-link flex items-center gap-space-xs text-primary hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg py-1 px-1.5" href="index.html">
         <span class="header-brand-mark flex items-center justify-center w-7 h-7 rounded-lg bg-primary-container text-on-primary-container font-code-mono text-caption-meta font-bold tracking-tight">RQ</span>
         <span class="font-title-page-mobile text-ui-interactive font-bold tracking-tight text-on-surface">Ruqyah</span>
         <span aria-hidden="true" class="material-symbols-outlined text-primary text-[18px] hidden sm:inline-block">history_edu</span>
@@ -204,6 +213,17 @@
       } else {
         document.body.insertAdjacentHTML('beforeend', buildFooter());
       }
+    }
+
+    // ── Wire up Brand Logo Click ───────────────────────────────────────────
+    var brandLink = document.querySelector('.header-brand-link');
+    if (brandLink) {
+      brandLink.addEventListener('click', function (e) {
+        if (activePage === 'home') {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
     }
 
     // ── Wire up Theme Buttons ───────────────────────────────────────────────
