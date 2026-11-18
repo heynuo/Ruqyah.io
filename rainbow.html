@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Color Scale Spectrum — Ruqyah</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20rx='20'%20fill='%230b0f14'/%3E%3Crect%20x='15'%20y='40'%20width='70'%20height='20'%20rx='10'%20fill='url(%23g)'/%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='1'%20y2='0'%3E%3Cstop%20offset='0%25'%20stop-color='%23ff0055'/%3E%3Cstop%20offset='35%25'%20stop-color='%23ffbb00'/%3E%3Cstop%20offset='70%25'%20stop-color='%2300ffcc'/%3E%3Cstop%20offset='100%25'%20stop-color='%237700ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E">
+  <title>Color-Changing Measuring Scale (Ruler) — Ruqyah</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20x='5'%20y='30'%20width='90'%20height='40'%20rx='6'%20fill='%23ff1e44'/%3E%3Cline%20x1='20'%20y1='30'%20x2='20'%20y2='45'%20stroke='%23000'%20stroke-width='3'/%3E%3Cline%20x1='35'%20y1='30'%20x2='35'%20y2='42'%20stroke='%23000'%20stroke-width='2'/%3E%3Cline%20x1='50'%20y1='30'%20x2='50'%20y2='48'%20stroke='%23000'%20stroke-width='3'/%3E%3Cline%20x1='65'%20y1='30'%20x2='65'%20y2='42'%20stroke='%23000'%20stroke-width='2'/%3E%3Cline%20x1='80'%20y1='30'%20x2='80'%20y2='45'%20stroke='%23000'%20stroke-width='3'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -15,68 +15,39 @@
       padding: 0;
     }
 
-    :root {
-      --current-hue: 0deg;
-      --active-color: #ff0055;
-    }
-
     html, body {
       width: 100%;
-      height: 100%;
-      overflow-x: hidden;
-      overflow-y: auto;
-      background: #06090e;
-      color: #f1f5f9;
+      min-height: 100%;
+      background: #f8fafc;
+      color: #0f172a;
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      min-height: 100dvh;
+      justify-content: flex-start;
+      padding: 40px 16px 20px;
+      overflow-x: hidden;
       user-select: none;
       -webkit-user-select: none;
     }
 
-    /* Ambient dynamic glow reflecting the active color */
-    .ambient-glow {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background: radial-gradient(circle at 50% 50%, rgba(255, 0, 100, 0.12) 0%, rgba(0, 200, 255, 0.05) 45%, transparent 75%);
-      transition: background 0.3s ease;
-      z-index: 0;
-    }
-
-    /* Subtle technical grid background */
-    .bg-grid {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-size: 40px 40px;
-      background-image:
-        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      z-index: 1;
-    }
-
-    /* Minimalist back navigation link */
+    /* Minimalist back navigation */
     .back-nav {
       position: fixed;
-      top: 20px;
-      left: 20px;
+      top: 18px;
+      left: 18px;
       z-index: 50;
-      color: rgba(255, 255, 255, 0.8);
-      background: rgba(255, 255, 255, 0.06);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 7px 16px;
+      color: #334155;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 7px 15px;
       border-radius: 9999px;
       font-size: 12.5px;
-      font-weight: 500;
+      font-weight: 600;
       text-decoration: none;
-      letter-spacing: 0.02em;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
       transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
@@ -84,391 +55,280 @@
     }
 
     .back-nav:hover {
-      background: rgba(255, 255, 255, 0.18);
-      color: #ffffff;
+      background: #ffffff;
+      color: #0f172a;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
       transform: translateX(-2px);
-      border-color: rgba(255, 255, 255, 0.3);
     }
 
-    /* Main Container */
-    .scale-card {
-      position: relative;
-      z-index: 10;
-      width: calc(100% - 40px);
-      max-width: 980px;
-      padding: 40px 36px;
-      background: rgba(13, 20, 29, 0.75);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 24px;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    /* Main Showcase Stage */
+    .showcase-stage {
+      width: 100%;
+      max-width: 1060px;
       display: flex;
       flex-direction: column;
-      gap: 32px;
-    }
-
-    /* Header & HUD Readout */
-    .scale-header {
-      display: flex;
       align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding-bottom: 24px;
+      gap: 36px;
+      margin-top: 20px;
     }
 
-    .scale-title-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+    .showcase-intro {
+      text-align: center;
+      max-width: 640px;
     }
 
-    .scale-kicker {
+    .showcase-kicker {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: #94a3b8;
-    }
-
-    .scale-title {
-      font-size: 24px;
       font-weight: 700;
-      letter-spacing: -0.02em;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .live-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--active-color);
-      box-shadow: 0 0 14px var(--active-color);
-      display: inline-block;
-      animation: dotPulse 1.5s ease-in-out infinite;
-    }
-
-    @keyframes dotPulse {
-      0%, 100% { transform: scale(1); opacity: 0.8; }
-      50% { transform: scale(1.3); opacity: 1; }
-    }
-
-    /* Live Telemetry Display Cards */
-    .scale-telemetry {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .telemetry-chip {
-      background: rgba(0, 0, 0, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 8px 14px;
-      border-radius: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      min-width: 90px;
-    }
-
-    .telemetry-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9.5px;
-      color: #64748b;
-      letter-spacing: 0.1em;
       text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #0F766E;
+      margin-bottom: 6px;
+      display: inline-block;
     }
 
-    .telemetry-value {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13.5px;
-      font-weight: 600;
-      color: #ffffff;
-      letter-spacing: 0.04em;
+    .showcase-title {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    .showcase-desc {
+      font-size: 14.5px;
+      color: #64748b;
+      line-height: 1.55;
     }
 
     /* ==========================================================================
-       THE COLOR CHANGING STRIPE SCALE
+       THE COLOR-CHANGING MEASURING RULER (STANDALONE / BEFORE-FOOTER COMPONENT)
        ========================================================================== */
-    .scale-wrapper {
-      position: relative;
+    .ruler-divider-wrap {
       width: 100%;
-      padding: 24px 0 10px;
+      max-width: 1000px;
+      margin: 10px auto;
+      padding: 20px 0;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      cursor: crosshair;
-    }
-
-    /* Primary Color Changing Stripe */
-    .scale-stripe {
+      align-items: center;
+      justify-content: center;
       position: relative;
-      width: 100%;
-      height: 48px;
-      border-radius: 14px;
-      background: linear-gradient(
-        90deg,
-        #FF0055 0%,
-        #FF5500 14%,
-        #FFAA00 28%,
-        #22DD55 42%,
-        #00D4FF 56%,
-        #3B82F6 70%,
-        #8B5CF6 84%,
-        #EC4899 94%,
-        #FF0055 100%
-      );
-      background-size: 300% 100%;
-      box-shadow: 0 12px 36px -8px rgba(0, 0, 0, 0.6), inset 0 2px 2px rgba(255, 255, 255, 0.4), inset 0 -2px 2px rgba(0, 0, 0, 0.3);
-      animation: stripeFlow 7s linear infinite, stripeHueShift 14s ease-in-out infinite alternate;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      overflow: hidden;
     }
 
-    /* Animated continuous flow */
-    @keyframes stripeFlow {
+    /* Ruler Container with 3D Drop Shadow */
+    .ruler-svg-container {
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.22)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+      transition: transform 0.25s ease, filter 0.25s ease;
+      cursor: pointer;
+    }
+
+    .ruler-svg-container:hover {
+      transform: translateY(-2px);
+      filter: drop-shadow(0 20px 34px rgba(0, 0, 0, 0.28)) drop-shadow(0 6px 12px rgba(0, 0, 0, 0.18));
+    }
+
+    /* SVG typography */
+    .ruler-text {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-weight: 700;
+      fill: #111111;
+      user-select: none;
+    }
+
+    .ruler-label {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .ruler-cm {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .ruler-inch {
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       COLOR-CHANGING ANIMATION
+       Cycles smoothly through all vibrant spectrum hues (red -> orange ->
+       yellow -> green -> cyan -> blue -> violet -> magenta -> red)
+       ========================================================================== */
+    .ruler-body-color {
+      animation: rulerHueShift 10s linear infinite;
+    }
+
+    .ruler-body-color.paused {
+      animation-play-state: paused;
+    }
+
+    @keyframes rulerHueShift {
       0% {
-        background-position: 0% 50%;
+        filter: hue-rotate(0deg);
       }
       100% {
-        background-position: 300% 50%;
+        filter: hue-rotate(360deg);
       }
     }
 
-    /* Shifting hue over time */
-    @keyframes stripeHueShift {
+    /* Flowing rainbow wave alternative animation */
+    .ruler-body-color.rainbow-wave {
+      animation: rulerRainbowFlow 8s linear infinite;
+    }
+
+    @keyframes rulerRainbowFlow {
       0% {
-        filter: hue-rotate(0deg) saturate(1.15) brightness(1.05);
+        filter: hue-rotate(0deg) saturate(1.2);
       }
       50% {
-        filter: hue-rotate(180deg) saturate(1.3) brightness(1.12);
+        filter: hue-rotate(180deg) saturate(1.4);
       }
       100% {
-        filter: hue-rotate(360deg) saturate(1.15) brightness(1.05);
+        filter: hue-rotate(360deg) saturate(1.2);
       }
-    }
-
-    /* High-gloss prism glass reflection overlay */
-    .scale-stripe::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.45) 0%,
-        rgba(255, 255, 255, 0.12) 40%,
-        rgba(0, 0, 0, 0.05) 60%,
-        rgba(0, 0, 0, 0.3) 100%
-      );
-      pointer-events: none;
-    }
-
-    /* Laser Scanning Needle / Cursor */
-    .scale-cursor {
-      position: absolute;
-      top: -10px;
-      bottom: -10px;
-      left: 50%;
-      width: 3px;
-      background: #ffffff;
-      border-radius: 9999px;
-      box-shadow: 0 0 16px 3px #ffffff, 0 0 30px 8px var(--active-color);
-      transform: translateX(-50%);
-      pointer-events: none;
-      z-index: 5;
-      transition: left 0.04s ease-out;
-    }
-
-    .scale-cursor::before,
-    .scale-cursor::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-    }
-
-    .scale-cursor::before {
-      top: -10px;
-      border-top: 8px solid #ffffff;
-      filter: drop-shadow(0 0 6px var(--active-color));
-    }
-
-    .scale-cursor::after {
-      bottom: -10px;
-      border-bottom: 8px solid #ffffff;
-      filter: drop-shadow(0 0 6px var(--active-color));
-    }
-
-    /* Scale Ticks Ruler (Major, Medium & Micro Markings) */
-    .scale-ruler {
-      position: relative;
-      width: 100%;
-      height: 28px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-top: 4px;
-    }
-
-    .scale-tick-track {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 14px;
-      display: flex;
-      justify-content: space-between;
-      pointer-events: none;
-    }
-
-    .tick {
-      width: 1px;
-      height: 6px;
-      background: rgba(255, 255, 255, 0.22);
-    }
-
-    .tick.medium {
-      height: 10px;
-      background: rgba(255, 255, 255, 0.45);
-    }
-
-    .tick.major {
-      height: 14px;
-      width: 1.5px;
-      background: rgba(255, 255, 255, 0.8);
-      box-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
-    }
-
-    /* Scale Number Labels */
-    .scale-labels {
-      position: absolute;
-      top: 18px;
-      left: 0;
-      right: 0;
-      display: flex;
-      justify-content: space-between;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10.5px;
-      color: #94a3b8;
-      letter-spacing: 0.05em;
-    }
-
-    /* Underglow Beam Mirroring the Stripe */
-    .stripe-glow {
-      position: absolute;
-      left: 4%;
-      right: 4%;
-      bottom: -15px;
-      height: 30px;
-      background: linear-gradient(
-        90deg,
-        #FF0055, #FFAA00, #22DD55, #00D4FF, #3B82F6, #8B5CF6, #FF0055
-      );
-      background-size: 300% 100%;
-      animation: stripeFlow 7s linear infinite, stripeHueShift 14s ease-in-out infinite alternate;
-      filter: blur(28px);
-      opacity: 0.65;
-      pointer-events: none;
-      z-index: -1;
     }
 
     /* Interactive Controls Toolbar */
-    .scale-controls {
+    .controls-panel {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       flex-wrap: wrap;
-      gap: 16px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .control-group {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
+      gap: 12px;
+      padding: 16px 20px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      width: 100%;
+      max-width: 680px;
     }
 
     .ctrl-btn {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: #cbd5e1;
-      padding: 7px 15px;
+      padding: 8px 16px;
       border-radius: 10px;
-      font-size: 12px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: #334155;
       font-family: 'JetBrains Mono', monospace;
-      font-weight: 500;
+      font-size: 12.5px;
+      font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      transition: all 0.2s ease;
     }
 
     .ctrl-btn:hover {
-      background: rgba(255, 255, 255, 0.14);
-      color: #ffffff;
-      border-color: rgba(255, 255, 255, 0.28);
+      background: #f1f5f9;
+      color: #0f172a;
+      border-color: #94a3b8;
       transform: translateY(-1px);
     }
 
     .ctrl-btn.active {
-      background: rgba(255, 255, 255, 0.2);
+      background: #0F766E;
       color: #ffffff;
-      border-color: var(--active-color);
-      box-shadow: 0 0 14px -3px var(--active-color);
+      border-color: #0F766E;
+      box-shadow: 0 4px 12px rgba(15, 118, 110, 0.3);
     }
 
-    /* Speed Slider */
-    .speed-slider-wrap {
+    .speed-wrap {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
-      color: #94a3b8;
+      font-weight: 600;
+      color: #64748b;
     }
 
     .speed-slider {
-      -webkit-appearance: none;
-      width: 100px;
+      width: 90px;
       height: 6px;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 9999px;
-      outline: none;
+      accent-color: #0F766E;
       cursor: pointer;
     }
 
-    .speed-slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--active-color);
-      box-shadow: 0 0 8px var(--active-color);
-      cursor: pointer;
-      border: 2px solid #ffffff;
+    /* Copyable Code Snippet Card */
+    .snippet-card {
+      width: 100%;
+      max-width: 820px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 24px 28px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
 
+    .snippet-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .snippet-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .copy-btn {
+      padding: 7px 16px;
+      border-radius: 8px;
+      background: #0F766E;
+      color: #ffffff;
+      border: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+
+    .copy-btn:hover {
+      background: #0d655e;
+      transform: translateY(-1px);
+    }
+
+    .code-box {
+      background: #0b1118;
+      color: #f1f5f9;
+      padding: 16px 18px;
+      border-radius: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12.5px;
+      line-height: 1.6;
+      overflow-x: auto;
+      border: 1px solid #1e293b;
+      max-height: 220px;
+    }
+
+    /* Site Footer Standards */
     footer.site-footer {
-      position: relative;
-      z-index: 10;
       width: 100%;
       max-width: 980px;
-      padding: 16px 20px 24px;
-      margin-top: 16px;
-      font-size: 12px;
+      padding: 28px 16px 16px;
+      margin-top: 32px;
+      font-size: 12.5px;
       font-family: 'JetBrains Mono', monospace;
       color: #64748b;
       display: flex;
@@ -476,41 +336,30 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 12px;
+      border-top: 1px solid #e2e8f0;
     }
 
     footer.site-footer a {
-      color: #94a3b8;
+      color: #475569;
       text-decoration: none;
       margin-left: 14px;
       transition: color 0.2s ease;
     }
 
     footer.site-footer a:hover {
-      color: #ffffff;
+      color: #0F766E;
       text-decoration: underline;
     }
 
     @media (max-width: 640px) {
-      .scale-card {
-        padding: 26px 20px;
-        width: calc(100% - 24px);
-        border-radius: 20px;
+      .showcase-title {
+        font-size: 22px;
       }
-      .scale-stripe {
-        height: 40px;
+      .controls-panel {
+        padding: 12px 14px;
       }
-      .scale-title {
-        font-size: 19px;
-      }
-      .telemetry-chip {
-        min-width: 75px;
-        padding: 6px 10px;
-      }
-      .telemetry-value {
-        font-size: 12px;
-      }
-      .scale-labels {
-        font-size: 9px;
+      .snippet-card {
+        padding: 18px 16px;
       }
     }
   </style>
@@ -520,93 +369,353 @@
   <!-- Minimalist Back Navigation -->
   <a href="index.html" class="back-nav" aria-label="Return to archive">← Archive</a>
 
-  <!-- Dynamic Ambient Backlighting -->
-  <div id="ambientGlow" class="ambient-glow" aria-hidden="true"></div>
-  <div class="bg-grid" aria-hidden="true"></div>
-
-  <!-- Main Scale Card Container -->
-  <main class="scale-card" role="region" aria-label="Chromatic Color Changing Stripe Scale">
-    <!-- Header with Telemetry Readout -->
-    <header class="scale-header">
-      <div class="scale-title-wrap">
-        <span class="scale-kicker">Wavelength Spectrometry • Optical Scale</span>
-        <h1 class="scale-title">
-          <span id="liveDot" class="live-dot" aria-hidden="true"></span>
-          <span>Color Changing Stripe</span>
-        </h1>
-      </div>
-
-      <!-- Telemetry Readouts -->
-      <div class="scale-telemetry">
-        <div class="telemetry-chip">
-          <span class="telemetry-label">HEX</span>
-          <span id="readoutHex" class="telemetry-value">#FF0055</span>
-        </div>
-        <div class="telemetry-chip">
-          <span class="telemetry-label">WAVELENGTH</span>
-          <span id="readoutWavelength" class="telemetry-value">685 nm</span>
-        </div>
-        <div class="telemetry-chip">
-          <span class="telemetry-label">FREQUENCY</span>
-          <span id="readoutFreq" class="telemetry-value">438 THz</span>
-        </div>
-        <div class="telemetry-chip">
-          <span class="telemetry-label">SCALE %</span>
-          <span id="readoutPercent" class="telemetry-value">50.0%</span>
-        </div>
-      </div>
+  <div class="showcase-stage">
+    <!-- Intro Header -->
+    <header class="showcase-intro">
+      <span class="showcase-kicker">Realistic Acrylic Scale • Color-Changing Stripe</span>
+      <h1 class="showcase-title">Color Changing Measuring Ruler</h1>
+      <p class="showcase-desc">
+        A photo-realistic translucent acrylic measuring scale with metric (15 cm / mm) and imperial (8 units) graduation ticks, 3D gloss reflection, and smooth continuous spectrum color transitions.
+      </p>
     </header>
 
-    <!-- The Color Changing Stripe & Scale -->
-    <div id="scaleWrapper" class="scale-wrapper" title="Drag or hover to calibrate scale">
-      <!-- Glow Reflector Under Stripe -->
-      <div id="stripeGlow" class="stripe-glow" aria-hidden="true"></div>
+    <!-- THE COLOR CHANGING RULER COMPONENT -->
+    <div class="ruler-divider-wrap" id="rulerPreviewContainer">
+      <svg id="colorRulerSvg" class="ruler-svg-container" viewBox="0 0 1000 110" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A color-changing 15 cm measuring scale ruler with millimeter and imperial tick marks">
+        <defs>
+          <!-- 3D Translucent Acrylic Base Gradient -->
+          <linearGradient id="rulerAcrylicGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#b80018" />
+            <stop offset="12%" stop-color="#e60024" />
+            <stop offset="28%" stop-color="#ff2040" />
+            <stop offset="50%" stop-color="#ff3b56" />
+            <stop offset="78%" stop-color="#e60024" />
+            <stop offset="100%" stop-color="#990012" />
+          </linearGradient>
 
-      <!-- The Flowing Animated Color Stripe -->
-      <div id="scaleStripe" class="scale-stripe"></div>
+          <!-- Specular Highlight Gloss Streak -->
+          <linearGradient id="rulerGlossStreak" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.75" />
+            <stop offset="45%" stop-color="#ffffff" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.02" />
+          </linearGradient>
 
-      <!-- Laser Scanner Cursor / Needle -->
-      <div id="scaleCursor" class="scale-cursor" aria-hidden="true"></div>
+          <!-- Lower Subtle Bevel Highlight -->
+          <linearGradient id="rulerLowerBevel" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#000000" stop-opacity="0.18" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.28" />
+          </linearGradient>
+        </defs>
 
-      <!-- Precision Scale Ruler (Graduated Ticks) -->
-      <div class="scale-ruler" aria-hidden="true">
-        <div id="tickTrack" class="scale-tick-track"></div>
-        <div class="scale-labels">
-          <span>380nm</span>
-          <span>440nm</span>
-          <span>500nm</span>
-          <span>560nm</span>
-          <span>620nm</span>
-          <span>680nm</span>
-          <span>750nm</span>
+        <!-- COLOR CHANGING RULER BODY -->
+        <g id="rulerBodyColorGroup" class="ruler-body-color">
+          <!-- Main Acrylic Slab -->
+          <rect x="10" y="8" width="980" height="94" rx="7" ry="7" fill="url(#rulerAcrylicGrad)" stroke="#880010" stroke-width="1.2" />
+
+          <!-- High-Gloss Upper Reflection Bar -->
+          <rect x="12" y="10" width="976" height="30" rx="5" ry="5" fill="url(#rulerGlossStreak)" />
+
+          <!-- Center Specular Highlight Line -->
+          <line x1="15" y1="52" x2="985" y2="52" stroke="#ffffff" stroke-opacity="0.32" stroke-width="2" />
+
+          <!-- Bottom Bevel Edge Reflection -->
+          <rect x="12" y="94" width="976" height="6" rx="2" ry="2" fill="url(#rulerLowerBevel)" />
+        </g>
+
+        <!-- ENGRAVED MEASUREMENT SCALE TICKS (Non-hue shifted black ink) -->
+        <g id="rulerTicksGroup" class="ruler-ticks">
+          <!-- Top Metric Scale (15 cm & 150 mm) -->
+          <text x="24" y="32" class="ruler-text ruler-label" text-anchor="middle">mm</text>
+<line x1="42.0" y1="8" x2="42.0" y2="31" stroke="#1a1a1a" stroke-width="1.6" />
+<line x1="48.1" y1="8" x2="48.1" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="54.1" y1="8" x2="54.1" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="60.2" y1="8" x2="60.2" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="66.3" y1="8" x2="66.3" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="72.3" y1="8" x2="72.3" y2="24" stroke="#222222" stroke-width="1.2" />
+<line x1="78.4" y1="8" x2="78.4" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="84.5" y1="8" x2="84.5" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="90.5" y1="8" x2="90.5" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="96.6" y1="8" x2="96.6" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="102.7" y1="8" x2="102.7" y2="31" stroke="#1a1a1a" stroke-width="1.6" />
+<text x="102.7" y="34" class="ruler-text ruler-cm" text-anchor="middle">1</text>
+<line x1="108.7" y1="8" x2="108.7" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="114.8" y1="8" x2="114.8" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="120.9" y1="8" x2="120.9" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="126.9" y1="8" x2="126.9" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="133.0" y1="8" x2="133.0" y2="24" stroke="#222222" stroke-width="1.2" />
+<line x1="139.1" y1="8" x2="139.1" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="145.1" y1="8" x2="145.1" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="151.2" y1="8" x2="151.2" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="157.3" y1="8" x2="157.3" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="163.3" y1="8" x2="163.3" y2="31" stroke="#1a1a1a" stroke-width="1.6" />
+<text x="163.3" y="34" class="ruler-text ruler-cm" text-anchor="middle">2</text>
+<line x1="169.4" y1="8" x2="169.4" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="175.5" y1="8" x2="175.5" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="181.5" y1="8" x2="181.5" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="187.6" y1="8" x2="187.6" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="193.7" y1="8" x2="193.7" y2="24" stroke="#222222" stroke-width="1.2" />
+<line x1="199.7" y1="8" x2="199.7" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="205.8" y1="8" x2="205.8" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="211.9" y1="8" x2="211.9" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="217.9" y1="8" x2="217.9" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="224.0" y1="8" x2="224.0" y2="31" stroke="#1a1a1a" stroke-width="1.6" />
+<text x="224.0" y="34" class="ruler-text ruler-cm" text-anchor="middle">3</text>
+<line x1="230.1" y1="8" x2="230.1" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="236.1" y1="8" x2="236.1" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="242.2" y1="8" x2="242.2" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="248.3" y1="8" x2="248.3" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="254.3" y1="8" x2="254.3" y2="24" stroke="#222222" stroke-width="1.2" />
+<line x1="260.4" y1="8" x2="260.4" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="266.5" y1="8" x2="266.5" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="272.5" y1="8" x2="272.5" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="278.6" y1="8" x2="278.6" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="284.7" y1="8" x2="284.7" y2="31" stroke="#1a1a1a" stroke-width="1.6" />
+<text x="284.7" y="34" class="ruler-text ruler-cm" text-anchor="middle">4</text>
+<line x1="290.7" y1="8" x2="290.7" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="296.8" y1="8" x2="296.8" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="302.9" y1="8" x2="302.9" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="308.9" y1="8" x2="308.9" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="315.0" y1="8" x2="315.0" y2="24" stroke="#222222" stroke-width="1.2" />
+<line x1="321.1" y1="8" x2="321.1" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="327.1" y1="8" x2="327.1" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="333.2" y1="8" x2="333.2" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="339.3" y1="8" x2="339.3" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="345.3" y1="8" x2="345.3" y2="31" stroke="#1a1a1a" stroke-width="1.6" />
+<text x="345.3" y="34" class="ruler-text ruler-cm" text-anchor="middle">5</text>
+<line x1="351.4" y1="8" x2="351.4" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="357.5" y1="8" x2="357.5" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="363.5" y1="8" x2="363.5" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="369.6" y1="8" x2="369.6" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="375.7" y1="8" x2="375.7" y2="24" stroke="#222222" stroke-width="1.2" />
+<line x1="381.7" y1="8" x2="381.7" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="387.8" y1="8" x2="387.8" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="393.9" y1="8" x2="393.9" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="399.9" y1="8" x2="399.9" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="406.0" y1="8" x2="406.0" y2="31" stroke="#1a1a1a" stroke-width="1.6" />
+<text x="406.0" y="34" class="ruler-text ruler-cm" text-anchor="middle">6</text>
+<line x1="412.1" y1="8" x2="412.1" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="418.1" y1="8" x2="418.1" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="424.2" y1="8" x2="424.2" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="430.3" y1="8" x2="430.3" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="436.3" y1="8" x2="436.3" y2="24" stroke="#222222" stroke-width="1.2" />
+<line x1="442.4" y1="8" x2="442.4" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="448.5" y1="8" x2="448.5" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="454.5" y1="8" x2="454.5" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="460.6" y1="8" x2="460.6" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="466.7" y1="8" x2="466.7" y2="31" stroke="#1a1a1a" stroke-width="1.6" />
+<text x="466.7" y="34" class="ruler-text ruler-cm" text-anchor="middle">7</text>
+<line x1="472.7" y1="8" x2="472.7" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="478.8" y1="8" x2="478.8" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="484.9" y1="8" x2="484.9" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="490.9" y1="8" x2="490.9" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="497.0" y1="8" x2="497.0" y2="24" stroke="#222222" stroke-width="1.2" />
+<line x1="503.1" y1="8" x2="503.1" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="509.1" y1="8" x2="509.1" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="515.2" y1="8" x2="515.2" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="521.3" y1="8" x2="521.3" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="527.3" y1="8" x2="527.3" y2="31" stroke="#1a1a1a" stroke-width="1.6" />
+<text x="527.3" y="34" class="ruler-text ruler-cm" text-anchor="middle">8</text>
+<line x1="533.4" y1="8" x2="533.4" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="539.5" y1="8" x2="539.5" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="545.5" y1="8" x2="545.5" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="551.6" y1="8" x2="551.6" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="557.7" y1="8" x2="557.7" y2="24" stroke="#222222" stroke-width="1.2" />
+<line x1="563.7" y1="8" x2="563.7" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="569.8" y1="8" x2="569.8" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="575.9" y1="8" x2="575.9" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="581.9" y1="8" x2="581.9" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="588.0" y1="8" x2="588.0" y2="31" stroke="#1a1a1a" stroke-width="1.6" />
+<text x="588.0" y="34" class="ruler-text ruler-cm" text-anchor="middle">9</text>
+<line x1="594.1" y1="8" x2="594.1" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="600.1" y1="8" x2="600.1" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="606.2" y1="8" x2="606.2" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="612.3" y1="8" x2="612.3" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="618.3" y1="8" x2="618.3" y2="24" stroke="#222222" stroke-width="1.2" />
+<line x1="624.4" y1="8" x2="624.4" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="630.5" y1="8" x2="630.5" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="636.5" y1="8" x2="636.5" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="642.6" y1="8" x2="642.6" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="648.7" y1="8" x2="648.7" y2="31" stroke="#1a1a1a" stroke-width="1.6" />
+<text x="648.7" y="34" class="ruler-text ruler-cm" text-anchor="middle">10</text>
+<line x1="654.7" y1="8" x2="654.7" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="660.8" y1="8" x2="660.8" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="666.9" y1="8" x2="666.9" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="672.9" y1="8" x2="672.9" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="679.0" y1="8" x2="679.0" y2="24" stroke="#222222" stroke-width="1.2" />
+<line x1="685.1" y1="8" x2="685.1" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="691.1" y1="8" x2="691.1" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="697.2" y1="8" x2="697.2" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="703.3" y1="8" x2="703.3" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="709.3" y1="8" x2="709.3" y2="31" stroke="#1a1a1a" stroke-width="1.6" />
+<text x="709.3" y="34" class="ruler-text ruler-cm" text-anchor="middle">11</text>
+<line x1="715.4" y1="8" x2="715.4" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="721.5" y1="8" x2="721.5" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="727.5" y1="8" x2="727.5" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="733.6" y1="8" x2="733.6" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="739.7" y1="8" x2="739.7" y2="24" stroke="#222222" stroke-width="1.2" />
+<line x1="745.7" y1="8" x2="745.7" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="751.8" y1="8" x2="751.8" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="757.9" y1="8" x2="757.9" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="763.9" y1="8" x2="763.9" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="770.0" y1="8" x2="770.0" y2="31" stroke="#1a1a1a" stroke-width="1.6" />
+<text x="770.0" y="34" class="ruler-text ruler-cm" text-anchor="middle">12</text>
+<line x1="776.1" y1="8" x2="776.1" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="782.1" y1="8" x2="782.1" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="788.2" y1="8" x2="788.2" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="794.3" y1="8" x2="794.3" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="800.3" y1="8" x2="800.3" y2="24" stroke="#222222" stroke-width="1.2" />
+<line x1="806.4" y1="8" x2="806.4" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="812.5" y1="8" x2="812.5" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="818.5" y1="8" x2="818.5" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="824.6" y1="8" x2="824.6" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="830.7" y1="8" x2="830.7" y2="31" stroke="#1a1a1a" stroke-width="1.6" />
+<text x="830.7" y="34" class="ruler-text ruler-cm" text-anchor="middle">13</text>
+<line x1="836.7" y1="8" x2="836.7" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="842.8" y1="8" x2="842.8" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="848.9" y1="8" x2="848.9" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="854.9" y1="8" x2="854.9" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="861.0" y1="8" x2="861.0" y2="24" stroke="#222222" stroke-width="1.2" />
+<line x1="867.1" y1="8" x2="867.1" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="873.1" y1="8" x2="873.1" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="879.2" y1="8" x2="879.2" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="885.3" y1="8" x2="885.3" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="891.3" y1="8" x2="891.3" y2="31" stroke="#1a1a1a" stroke-width="1.6" />
+<text x="891.3" y="34" class="ruler-text ruler-cm" text-anchor="middle">14</text>
+<line x1="897.4" y1="8" x2="897.4" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="903.5" y1="8" x2="903.5" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="909.5" y1="8" x2="909.5" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="915.6" y1="8" x2="915.6" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="921.7" y1="8" x2="921.7" y2="24" stroke="#222222" stroke-width="1.2" />
+<line x1="927.7" y1="8" x2="927.7" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="933.8" y1="8" x2="933.8" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="939.9" y1="8" x2="939.9" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="945.9" y1="8" x2="945.9" y2="18" stroke="#333333" stroke-width="0.9" />
+<line x1="952.0" y1="8" x2="952.0" y2="31" stroke="#1a1a1a" stroke-width="1.6" />
+<text x="952.0" y="34" class="ruler-text ruler-cm" text-anchor="middle">15</text>
+
+
+          <!-- Bottom Imperial Units Scale (8 Major Units) -->
+          <line x1="42.0" y1="102" x2="42.0" y2="78" stroke="#1a1a1a" stroke-width="1.6" />
+<line x1="56.2" y1="102" x2="56.2" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="70.4" y1="102" x2="70.4" y2="89" stroke="#282828" stroke-width="1.0" />
+<line x1="84.7" y1="102" x2="84.7" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="98.9" y1="102" x2="98.9" y2="85" stroke="#222222" stroke-width="1.2" />
+<line x1="113.1" y1="102" x2="113.1" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="127.3" y1="102" x2="127.3" y2="89" stroke="#282828" stroke-width="1.0" />
+<line x1="141.5" y1="102" x2="141.5" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="155.8" y1="102" x2="155.8" y2="78" stroke="#1a1a1a" stroke-width="1.6" />
+<text x="155.8" y="72" class="ruler-text ruler-inch" text-anchor="middle">1</text>
+<line x1="170.0" y1="102" x2="170.0" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="184.2" y1="102" x2="184.2" y2="89" stroke="#282828" stroke-width="1.0" />
+<line x1="198.4" y1="102" x2="198.4" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="212.6" y1="102" x2="212.6" y2="85" stroke="#222222" stroke-width="1.2" />
+<line x1="226.8" y1="102" x2="226.8" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="241.1" y1="102" x2="241.1" y2="89" stroke="#282828" stroke-width="1.0" />
+<line x1="255.3" y1="102" x2="255.3" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="269.5" y1="102" x2="269.5" y2="78" stroke="#1a1a1a" stroke-width="1.6" />
+<text x="269.5" y="72" class="ruler-text ruler-inch" text-anchor="middle">2</text>
+<line x1="283.7" y1="102" x2="283.7" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="297.9" y1="102" x2="297.9" y2="89" stroke="#282828" stroke-width="1.0" />
+<line x1="312.2" y1="102" x2="312.2" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="326.4" y1="102" x2="326.4" y2="85" stroke="#222222" stroke-width="1.2" />
+<line x1="340.6" y1="102" x2="340.6" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="354.8" y1="102" x2="354.8" y2="89" stroke="#282828" stroke-width="1.0" />
+<line x1="369.0" y1="102" x2="369.0" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="383.3" y1="102" x2="383.3" y2="78" stroke="#1a1a1a" stroke-width="1.6" />
+<text x="383.3" y="72" class="ruler-text ruler-inch" text-anchor="middle">3</text>
+<line x1="397.5" y1="102" x2="397.5" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="411.7" y1="102" x2="411.7" y2="89" stroke="#282828" stroke-width="1.0" />
+<line x1="425.9" y1="102" x2="425.9" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="440.1" y1="102" x2="440.1" y2="85" stroke="#222222" stroke-width="1.2" />
+<line x1="454.3" y1="102" x2="454.3" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="468.6" y1="102" x2="468.6" y2="89" stroke="#282828" stroke-width="1.0" />
+<line x1="482.8" y1="102" x2="482.8" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="497.0" y1="102" x2="497.0" y2="78" stroke="#1a1a1a" stroke-width="1.6" />
+<text x="497.0" y="72" class="ruler-text ruler-inch" text-anchor="middle">4</text>
+<line x1="511.2" y1="102" x2="511.2" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="525.4" y1="102" x2="525.4" y2="89" stroke="#282828" stroke-width="1.0" />
+<line x1="539.7" y1="102" x2="539.7" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="553.9" y1="102" x2="553.9" y2="85" stroke="#222222" stroke-width="1.2" />
+<line x1="568.1" y1="102" x2="568.1" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="582.3" y1="102" x2="582.3" y2="89" stroke="#282828" stroke-width="1.0" />
+<line x1="596.5" y1="102" x2="596.5" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="610.8" y1="102" x2="610.8" y2="78" stroke="#1a1a1a" stroke-width="1.6" />
+<text x="610.8" y="72" class="ruler-text ruler-inch" text-anchor="middle">5</text>
+<line x1="625.0" y1="102" x2="625.0" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="639.2" y1="102" x2="639.2" y2="89" stroke="#282828" stroke-width="1.0" />
+<line x1="653.4" y1="102" x2="653.4" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="667.6" y1="102" x2="667.6" y2="85" stroke="#222222" stroke-width="1.2" />
+<line x1="681.8" y1="102" x2="681.8" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="696.1" y1="102" x2="696.1" y2="89" stroke="#282828" stroke-width="1.0" />
+<line x1="710.3" y1="102" x2="710.3" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="724.5" y1="102" x2="724.5" y2="78" stroke="#1a1a1a" stroke-width="1.6" />
+<text x="724.5" y="72" class="ruler-text ruler-inch" text-anchor="middle">6</text>
+<line x1="738.7" y1="102" x2="738.7" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="752.9" y1="102" x2="752.9" y2="89" stroke="#282828" stroke-width="1.0" />
+<line x1="767.2" y1="102" x2="767.2" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="781.4" y1="102" x2="781.4" y2="85" stroke="#222222" stroke-width="1.2" />
+<line x1="795.6" y1="102" x2="795.6" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="809.8" y1="102" x2="809.8" y2="89" stroke="#282828" stroke-width="1.0" />
+<line x1="824.0" y1="102" x2="824.0" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="838.3" y1="102" x2="838.3" y2="78" stroke="#1a1a1a" stroke-width="1.6" />
+<text x="838.3" y="72" class="ruler-text ruler-inch" text-anchor="middle">7</text>
+<line x1="852.5" y1="102" x2="852.5" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="866.7" y1="102" x2="866.7" y2="89" stroke="#282828" stroke-width="1.0" />
+<line x1="880.9" y1="102" x2="880.9" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="895.1" y1="102" x2="895.1" y2="85" stroke="#222222" stroke-width="1.2" />
+<line x1="909.3" y1="102" x2="909.3" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="923.6" y1="102" x2="923.6" y2="89" stroke="#282828" stroke-width="1.0" />
+<line x1="937.8" y1="102" x2="937.8" y2="94" stroke="#333333" stroke-width="0.85" />
+<line x1="952.0" y1="102" x2="952.0" y2="78" stroke="#1a1a1a" stroke-width="1.6" />
+<text x="952.0" y="72" class="ruler-text ruler-inch" text-anchor="middle">8</text>
+
+        </g>
+      </svg>
+    </div>
+
+    <!-- Controls Toolbar -->
+    <div class="controls-panel">
+      <button id="btnToggleAnim" type="button" class="ctrl-btn active" aria-pressed="true">
+        <span id="btnToggleIcon">⏸</span>
+        <span id="btnToggleLabel">Pause Animation</span>
+      </button>
+
+      <button id="btnMode" type="button" class="ctrl-btn">
+        <span>🔄 Mode: Smooth Hue</span>
+      </button>
+
+      <div class="speed-wrap">
+        <span>SPEED</span>
+        <input id="rulerSpeedRange" type="range" class="speed-slider" min="3" max="25" value="10" aria-label="Adjust color changing speed" />
+      </div>
+    </div>
+
+    <!-- Ready-to-Paste Code for Adding Before Footer -->
+    <section class="snippet-card">
+      <div class="snippet-header">
+        <div class="snippet-title">
+          <span>📋 Add This Ruler Before Your Footer</span>
         </div>
-      </div>
-    </div>
-
-    <!-- Interactive Mode & Velocity Toolbar -->
-    <div class="scale-controls">
-      <div class="control-group">
-        <button id="btnAutoScan" type="button" class="ctrl-btn active" aria-pressed="true">
-          <span>⚡ Auto-Scan</span>
-        </button>
-        <button id="btnLaserLock" type="button" class="ctrl-btn" aria-pressed="false">
-          <span>🎯 Center Lock</span>
-        </button>
-        <button id="btnHueShift" type="button" class="ctrl-btn active" aria-pressed="true">
-          <span>🌈 Hue Shift</span>
+        <button id="btnCopySnippet" type="button" class="copy-btn">
+          <span>Copy Embed Code</span>
         </button>
       </div>
+      <p style="font-size: 13px; color: #64748b; margin-top: -4px;">
+        To add this color-changing scale to any page, paste the following snippet directly before <code>&lt;footer id="heynuo-footer"&gt;</code>:
+      </p>
+      <pre class="code-box"><code id="embedSnippetCode">&lt;!-- Color-Changing Measuring Scale Divider (Before Footer) --&gt;
+&lt;div class="ruler-divider-wrap" style="width:100%;max-width:1000px;margin:2.5rem auto 1.5rem;padding:0 1rem;display:flex;justify-content:center;"&gt;
+  &lt;svg class="ruler-svg-container" viewBox="0 0 1000 110" style="width:100%;max-width:1000px;height:auto;filter:drop-shadow(0 12px 24px rgba(0,0,0,0.22));" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Color-changing measuring scale"&gt;
+    &lt;!-- Pre-compiled scalable ruler with animated color-shifting acrylic --&gt;
+    &lt;use href="rainbow.html#colorRulerSvg" /&gt;
+  &lt;/svg&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+  </div>
 
-      <div class="speed-slider-wrap">
-        <span>FLOW SPEED</span>
-        <input id="speedRange" type="range" class="speed-slider" min="1" max="15" value="7" aria-label="Adjust stripe animation flow speed" />
-      </div>
-    </div>
-  </main>
-
-  <!-- Site Footer for Standards & Navigation -->
+  <!-- Standard Footer for Site Validation & Consistency -->
   <footer class="site-footer">
-    <span>&copy; Ruqyah &bull; Chromatic Scale</span>
+    <span>&copy; Ruqyah &bull; Standalone Color-Changing Ruler Component</span>
     <nav aria-label="Footer links">
       <a href="privacy.html">Privacy</a>
       <a href="rss.xml">RSS</a>
@@ -614,207 +723,57 @@
     </nav>
   </footer>
 
-  <!-- Interactive Scale Engine -->
   <script>
     (function () {
       'use strict';
 
-      // ── DOM References ───────────────────────────────────────────────────
-      const scaleWrapper = document.getElementById('scaleWrapper');
-      const scaleStripe = document.getElementById('scaleStripe');
-      const stripeGlow = document.getElementById('stripeGlow');
-      const scaleCursor = document.getElementById('scaleCursor');
-      const tickTrack = document.getElementById('tickTrack');
-      const ambientGlow = document.getElementById('ambientGlow');
-      const liveDot = document.getElementById('liveDot');
+      const rulerGroup = document.getElementById('rulerBodyColorGroup');
+      const btnToggle = document.getElementById('btnToggleAnim');
+      const btnToggleIcon = document.getElementById('btnToggleIcon');
+      const btnToggleLabel = document.getElementById('btnToggleLabel');
+      const btnMode = document.getElementById('btnMode');
+      const speedRange = document.getElementById('rulerSpeedRange');
+      const btnCopy = document.getElementById('btnCopySnippet');
+      const snippetEl = document.getElementById('embedSnippetCode');
 
-      // Readouts
-      const readoutHex = document.getElementById('readoutHex');
-      const readoutWavelength = document.getElementById('readoutWavelength');
-      const readoutFreq = document.getElementById('readoutFreq');
-      const readoutPercent = document.getElementById('readoutPercent');
+      let isPaused = false;
+      let isRainbowWave = false;
 
-      // Controls
-      const btnAutoScan = document.getElementById('btnAutoScan');
-      const btnLaserLock = document.getElementById('btnLaserLock');
-      const btnHueShift = document.getElementById('btnHueShift');
-      const speedRange = document.getElementById('speedRange');
-
-      // ── Generate Ruler Ticks ─────────────────────────────────────────────
-      const totalTicks = 81;
-      let tickHtml = '';
-      for (let i = 0; i < totalTicks; i++) {
-        if (i % 10 === 0) {
-          tickHtml += '<div class="tick major"></div>';
-        } else if (i % 5 === 0) {
-          tickHtml += '<div class="tick medium"></div>';
-        } else {
-          tickHtml += '<div class="tick"></div>';
-        }
-      }
-      tickTrack.innerHTML = tickHtml;
-
-      // ── Runtime State ────────────────────────────────────────────────────
-      let isAutoScanning = true;
-      let isDragging = false;
-      let currentProgress = 0.5; // 0 to 1 along scale
-      let scanSpeed = 0.0035;
-      let scanDirection = 1;
-
-      // ── Color Spectrum Map Function ──────────────────────────────────────
-      // Converts progress (0 to 1) into wavelength (380nm to 750nm) and RGB/Hex
-      function wavelengthToRgb(wavelength) {
-        let r = 0, g = 0, b = 0;
-
-        if (wavelength >= 380 && wavelength < 440) {
-          r = -(wavelength - 440) / (440 - 380);
-          g = 0;
-          b = 1;
-        } else if (wavelength >= 440 && wavelength < 490) {
-          r = 0;
-          g = (wavelength - 440) / (490 - 440);
-          b = 1;
-        } else if (wavelength >= 490 && wavelength < 510) {
-          r = 0;
-          g = 1;
-          b = -(wavelength - 510) / (510 - 490);
-        } else if (wavelength >= 510 && wavelength < 580) {
-          r = (wavelength - 510) / (580 - 510);
-          g = 1;
-          b = 0;
-        } else if (wavelength >= 580 && wavelength < 645) {
-          r = 1;
-          g = -(wavelength - 645) / (645 - 580);
-          b = 0;
-        } else if (wavelength >= 645 && wavelength <= 750) {
-          r = 1;
-          g = 0;
-          b = 0;
-        }
-
-        // Intensity fall-off at limits of vision
-        let factor = 1;
-        if (wavelength >= 380 && wavelength < 420) {
-          factor = 0.3 + 0.7 * (wavelength - 380) / (420 - 380);
-        } else if (wavelength >= 700 && wavelength <= 750) {
-          factor = 0.3 + 0.7 * (750 - wavelength) / (750 - 700);
-        }
-
-        const red = Math.round(r * factor * 255);
-        const green = Math.round(g * factor * 255);
-        const blue = Math.round(b * factor * 255);
-
-        const hex = '#' + [red, green, blue].map(x => x.toString(16).padStart(2, '0')).join('').toUpperCase();
-        return { red, green, blue, hex };
-      }
-
-      function updateScale(progress) {
-        currentProgress = Math.max(0, Math.min(1, progress));
-
-        // Position Cursor
-        const percent = (currentProgress * 100).toFixed(1);
-        scaleCursor.style.left = `${percent}%`;
-
-        // Calculate Physics Wavelength (380nm to 750nm)
-        const wavelength = Math.round(380 + currentProgress * (750 - 380));
-        const color = wavelengthToRgb(wavelength);
-
-        // Approximate Optical Frequency: f = c / lambda (speed of light 3e8 m/s)
-        const frequencyTHz = Math.round(299792 / wavelength);
-
-        // Update Readouts
-        readoutHex.textContent = color.hex;
-        readoutWavelength.textContent = `${wavelength} nm`;
-        readoutFreq.textContent = `${frequencyTHz} THz`;
-        readoutPercent.textContent = `${percent}%`;
-
-        // Update CSS Variables & Ambient Reflections
-        document.documentElement.style.setProperty('--active-color', color.hex);
-        ambientGlow.style.background = `radial-gradient(circle at 50% 50%, rgba(${color.red}, ${color.green}, ${color.blue}, 0.16) 0%, rgba(${color.red}, ${color.green}, ${color.blue}, 0.05) 50%, transparent 75%)`;
-      }
-
-      // ── Animation Loop for Auto-Scan ─────────────────────────────────────
-      function loop() {
-        if (isAutoScanning && !isDragging) {
-          currentProgress += scanSpeed * scanDirection;
-          if (currentProgress >= 1) {
-            currentProgress = 1;
-            scanDirection = -1;
-          } else if (currentProgress <= 0) {
-            currentProgress = 0;
-            scanDirection = 1;
-          }
-          updateScale(currentProgress);
-        }
-        requestAnimationFrame(loop);
-      }
-      requestAnimationFrame(loop);
-
-      // ── Pointer & Drag Interactions ──────────────────────────────────────
-      function handlePointerPosition(e) {
-        const rect = scaleWrapper.getBoundingClientRect();
-        const clientX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
-        const relativeX = clientX - rect.left;
-        const progress = relativeX / rect.width;
-        updateScale(progress);
-      }
-
-      scaleWrapper.addEventListener('pointerdown', (e) => {
-        isDragging = true;
-        handlePointerPosition(e);
-        scaleWrapper.setPointerCapture(e.pointerId);
+      // Toggle Pause/Play
+      btnToggle.addEventListener('click', () => {
+        isPaused = !isPaused;
+        rulerGroup.classList.toggle('paused', isPaused);
+        btnToggle.classList.toggle('active', !isPaused);
+        btnToggle.setAttribute('aria-pressed', String(!isPaused));
+        btnToggleIcon.textContent = isPaused ? '▶' : '⏸';
+        btnToggleLabel.textContent = isPaused ? 'Resume Animation' : 'Pause Animation';
       });
 
-      scaleWrapper.addEventListener('pointermove', (e) => {
-        if (isDragging) {
-          handlePointerPosition(e);
-        }
+      // Switch Animation Mode
+      btnMode.addEventListener('click', () => {
+        isRainbowWave = !isRainbowWave;
+        rulerGroup.classList.toggle('rainbow-wave', isRainbowWave);
+        btnMode.innerHTML = isRainbowWave ? '<span>✨ Mode: Rainbow Wave</span>' : '<span>🔄 Mode: Smooth Hue</span>';
       });
 
-      scaleWrapper.addEventListener('pointerup', (e) => {
-        isDragging = false;
-        try { scaleWrapper.releasePointerCapture(e.pointerId); } catch (_) {}
-      });
-
-      scaleWrapper.addEventListener('pointercancel', () => {
-        isDragging = false;
-      });
-
-      // ── Control Toolbar Buttons ──────────────────────────────────────────
-      btnAutoScan.addEventListener('click', () => {
-        isAutoScanning = !isAutoScanning;
-        btnAutoScan.classList.toggle('active', isAutoScanning);
-        btnAutoScan.setAttribute('aria-pressed', String(isAutoScanning));
-      });
-
-      btnLaserLock.addEventListener('click', () => {
-        isAutoScanning = false;
-        btnAutoScan.classList.remove('active');
-        btnAutoScan.setAttribute('aria-pressed', 'false');
-        updateScale(0.5);
-      });
-
-      let hueShiftActive = true;
-      btnHueShift.addEventListener('click', () => {
-        hueShiftActive = !hueShiftActive;
-        btnHueShift.classList.toggle('active', hueShiftActive);
-        btnHueShift.setAttribute('aria-pressed', String(hueShiftActive));
-        scaleStripe.style.animation = hueShiftActive
-          ? `stripeFlow ${16 - speedRange.value}s linear infinite, stripeHueShift 14s ease-in-out infinite alternate`
-          : `stripeFlow ${16 - speedRange.value}s linear infinite`;
-        stripeGlow.style.animation = scaleStripe.style.animation;
-      });
-
+      // Adjust Speed
       speedRange.addEventListener('input', (e) => {
         const val = parseInt(e.target.value, 10);
-        scanSpeed = 0.0008 * val;
-        const flowDuration = Math.max(2, 17 - val);
-        scaleStripe.style.animationDuration = `${flowDuration}s, 14s`;
-        stripeGlow.style.animationDuration = `${flowDuration}s, 14s`;
+        rulerGroup.style.animationDuration = `${val}s`;
       });
 
-      // Initial Call
-      updateScale(0.5);
+      // Copy Code Snippet
+      btnCopy.addEventListener('click', () => {
+        const code = snippetEl.textContent;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(code).then(() => {
+            btnCopy.innerHTML = '<span>✓ Copied!</span>';
+            setTimeout(() => {
+              btnCopy.innerHTML = '<span>Copy Embed Code</span>';
+            }, 2000);
+          }).catch(() => {});
+        }
+      });
     })();
   </script>
 </body>

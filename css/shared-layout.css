@@ -1546,3 +1546,46 @@ pre {
   -webkit-overflow-scrolling: touch;
 }
 
+/* ==========================================================================
+   Color-Changing Measuring Ruler Scale Divider (Pre-Footer Component)
+   ========================================================================== */
+.ruler-divider-wrap {
+  width: 100%;
+  max-width: 1000px;
+  margin: 3rem auto 1.5rem;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.ruler-svg-container {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.22)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.ruler-svg-container:hover {
+  transform: translateY(-2px);
+  filter: drop-shadow(0 20px 34px rgba(0, 0, 0, 0.28)) drop-shadow(0 6px 12px rgba(0, 0, 0, 0.18));
+}
+
+.ruler-body-color {
+  animation: rulerHueShift 10s linear infinite;
+}
+
+@keyframes rulerHueShift {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+
