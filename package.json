@@ -5,7 +5,8 @@
     "build:css": "tailwindcss --config tailwind.config.cjs --input css/tailwind.input.css --output css/tailwind.generated.css --minify",
     "r2:upload": "node tools/r2-upload.mjs",
     "r2:untrack": "node tools/r2-untrack.mjs",
-    "b2:sync": "node tools/b2-sync.mjs"
+    "b2:sync": "node tools/b2-sync.mjs",
+    "e2:sync": "node tools/e2-sync.mjs"
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.1170.0",

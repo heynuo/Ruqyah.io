@@ -21,6 +21,27 @@
       "command": "npm run r2:untrack",
       "group": "build",
       "problemMatcher": []
+    },
+    {
+      "label": "IDrive e2: Preview media sync",
+      "type": "shell",
+      "command": "npm run e2:sync -- --dry-run",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "IDrive e2: Sync media files",
+      "type": "shell",
+      "command": "npm run e2:sync",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "IDrive e2: List bucket files",
+      "type": "shell",
+      "command": "npm run e2:sync -- --list",
+      "group": "build",
+      "problemMatcher": []
     }
   ]
 }
