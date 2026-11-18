@@ -11,7 +11,8 @@
     "e2:sync:frankfurt": "node tools/e2-sync.mjs --frankfurt",
     "e2:sync:london": "node tools/e2-sync.mjs --london",
     "e2:sync:all": "node tools/e2-sync.mjs --all",
-    "imagekit:sync": "node tools/imagekit-sync.mjs"
+    "imagekit:sync": "node tools/imagekit-sync.mjs",
+    "imagekit:switch": "node tools/imagekit-sync.mjs --switch-site"
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.1170.0",

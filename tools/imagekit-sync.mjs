@@ -1,4 +1,4 @@
-import { readFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import { lstat, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -88,6 +88,17 @@ function formatMiB(bytes) {
   return (bytes / (1024 * 1024)).toFixed(1) + ' MiB';
 }
 
+async function writePublicConfig(urlEndpoint) {
+  if (!urlEndpoint) return;
+  const configPath = path.join(ROOT, 'js', 'r2-config.js');
+  const contents = [
+    '// Media delivery CDN endpoint (ImageKit / R2)',
+    `window.RUQYAH_R2_PUBLIC_URL = ${JSON.stringify(urlEndpoint)};`,
+    ''
+  ].join('\n');
+  await writeFile(configPath, contents, 'utf8');
+}
+
 async function listFiles(config) {
   console.log(`Listing files from ImageKit (${config.urlEndpoint || 'Media Library'})...`);
   const foldersToInspect = ['/', '/assets/videos', '/assets/allah-background-videos', '/assets/audio', '/assets/pdf'];
@@ -146,9 +157,17 @@ async function main() {
   const args = process.argv.slice(2);
   const dryRun = args.includes('--dry-run');
   const listOnly = args.includes('--list');
+  const switchSite = args.includes('--switch-site');
   const customPaths = args.filter(a => !a.startsWith('--'));
 
   const config = await loadConfig();
+
+  if (switchSite) {
+    if (!config.urlEndpoint) throw new Error('Missing IMAGEKIT_URL_ENDPOINT in .env.imagekit.');
+    await writePublicConfig(config.urlEndpoint);
+    console.log(`✅ Updated js/r2-config.js to use ImageKit CDN: ${config.urlEndpoint}`);
+    return;
+  }
 
   if (listOnly) {
     await listFiles(config);
