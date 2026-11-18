@@ -90,18 +90,32 @@ function formatMiB(bytes) {
 
 async function listFiles(config) {
   console.log(`Listing files from ImageKit (${config.urlEndpoint || 'Media Library'})...`);
-  const res = await fetch('https://api.imagekit.io/v1/files?limit=50', {
-    headers: { Authorization: config.authHeader }
-  });
+  const foldersToInspect = ['/', '/assets/videos', '/assets/allah-background-videos', '/assets/audio', '/assets/pdf'];
+  let totalFound = 0;
 
-  if (!res.ok) {
-    const errText = await res.text();
-    throw new Error(`Failed to list ImageKit files (${res.status}): ${errText}`);
+  for (const folder of foldersToInspect) {
+    try {
+      const res = await fetch(`https://api.imagekit.io/v1/files?path=${encodeURIComponent(folder)}&limit=100`, {
+        headers: { Authorization: config.authHeader }
+      });
+      if (res.ok) {
+        const files = await res.json();
+        if (files.length > 0) {
+          console.log(`\nFolder: ${folder} (${files.length} file(s)):`);
+          files.forEach(f => {
+            totalFound++;
+            console.log(`  ${f.filePath || f.name} (${formatMiB(f.size || 0)}) -> ${f.url}`);
+          });
+        }
+      }
+    } catch {
+      // ignore
+    }
   }
 
-  const files = await res.json();
-  console.log(`Found ${files.length} file(s) in ImageKit:`);
-  files.forEach(f => console.log(`  ${f.filePath || f.name} (${formatMiB(f.size || 0)}) -> ${f.url}`));
+  if (totalFound === 0) {
+    console.log('No files found in ImageKit media library.');
+  }
 }
 
 async function uploadFile(config, file) {
