@@ -4,10 +4,10 @@ Ruqyah – Global Scripts (Production Final v3)
 
 // Build stamp injected by tools/stamp-build.ps1 before each release. Declared
 // here so the service-worker registration can reference it without a guard.
-var __HEYNUO_BUILD__ = '2026-11-15-search-1';
+var __HEYNUO_BUILD__ = '2026-11-18-audit-3';
 
 const CONFIG = Object.freeze({
-  siteUrl: 'https://heynuo.github.io',
+  siteUrl: 'https://heynuo.github.io/Ruqyah.io',
   searchDebounceMs: 300,
   smoothScrollBehavior: 'smooth',
   mobileMenuBreakpoint: 768,
@@ -1056,7 +1056,7 @@ function initContactForm() {
 
     const recipient = 'zahiruddin44044@gmail.com';
     const emailSubject = subject || `Website Message from ${name}`;
-    const formattedBody = `Name: ${name}\nEmail: ${email}\nSubject: ${emailSubject}\n\nMessage:\n${message}\n\n---\nSent via Ruqyah (heynuo.github.io)`;
+    const formattedBody = `Name: ${name}\nEmail: ${email}\nSubject: ${emailSubject}\n\nMessage:\n${message}\n\n---\nSent via Ruqyah (heynuo.github.io/Ruqyah.io)`;
     const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(formattedBody)}`;
 
     // Trigger user mail client directly

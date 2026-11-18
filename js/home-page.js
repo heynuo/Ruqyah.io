@@ -128,11 +128,32 @@
       const playerSettingsToggle = document.getElementById('player-settings-toggle');
       const playerAudioUtilities = document.getElementById('player-audio-utilities');
 
+      /* Publish the docked player's real height so floating overlays (the AI
+         companion) can sit above it instead of covering the reciter/volume
+         controls. The compact mobile bar is much taller than the desktop one. */
+      function syncAudioBarOffset() {
+        if (!audioPlayerBar || !document.body) return;
+        const hidden = audioPlayerBar.classList.contains('hidden');
+        const height = hidden ? 0 : Math.ceil(audioPlayerBar.getBoundingClientRect().height || 0);
+        document.body.classList.toggle('has-audio-player', !hidden);
+        document.body.style.setProperty('--audio-player-height', height + 'px');
+      }
+
+      if (audioPlayerBar) {
+        syncAudioBarOffset();
+        if (typeof ResizeObserver === 'function') {
+          new ResizeObserver(syncAudioBarOffset).observe(audioPlayerBar);
+        } else {
+          window.addEventListener('resize', syncAudioBarOffset);
+        }
+      }
+
       function setPlayerSettingsOpen(open) {
         if (!playerSettingsToggle || !playerAudioUtilities) return;
         playerSettingsToggle.setAttribute('aria-expanded', String(open));
         playerSettingsToggle.setAttribute('aria-label', open ? 'Close audio settings' : 'Open audio settings');
         playerAudioUtilities.classList.toggle('hidden', !open);
+        document.body.classList.toggle('audio-settings-open', open);
       }
 
       playerSettingsToggle?.addEventListener('click', () => {
@@ -344,7 +365,6 @@
         if (playerPlayIcon) playerPlayIcon.innerHTML = isPlaying ? pauseSvg : playSvg;
         if (flagshipPlayIcon) flagshipPlayIcon.innerHTML = isPlaying && currentTrack.verse === TRACK_KURSI.verse ? pauseSvg : playSvg;
         if (flagshipPlayLabel) flagshipPlayLabel.textContent = isPlaying && currentTrack.verse === TRACK_KURSI.verse ? 'Pause' : `Play (${currentReciter.shortName})`;
-        flagshipPlayBtn?.setAttribute('aria-label', `${isPlaying && currentTrack.verse === TRACK_KURSI.verse ? 'Pause' : 'Play'} recitation by ${currentReciter.name}`);
         if (playerMainPlayBtn) {
           playerMainPlayBtn.setAttribute('aria-label', isPlaying ? 'Pause recitation' : 'Play recitation');
           playerMainPlayBtn.setAttribute('aria-pressed', String(isPlaying));
@@ -671,6 +691,7 @@
             ? '<polyline points="6 9 12 15 18 9"></polyline>'
             : '<polyline points="18 15 12 9 6 15"></polyline>';
         }
+        syncAudioBarOffset();
       }
       minimizePlayerBtn?.addEventListener('click', toggleMinimize);
       minimizePlayerBtnMobile?.addEventListener('click', toggleMinimize);

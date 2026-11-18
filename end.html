@@ -7,7 +7,7 @@
   <meta name="shell-type" content="web_standard">
   <meta name="theme-color" content="#0F766E">
   <meta name="color-scheme" content="light dark">
-  <meta name="heynuo-build" content="2026-11-15-search-1">
+  <meta name="heynuo-build" content="2026-11-18-audit-3">
 
   <!-- Theme Pre-Hydration: Prevents Flash of Unstyled Content (FOUC) -->
   <script>
@@ -33,17 +33,17 @@
   <meta name="description" content="Contemplations on the Ultimate Destination (Al-Akhirah), the beautiful end (Husn al-Khatimah), and final prayers of gratitude in the Noble Qur'an.">
   <meta name="keywords" content="Al-Akhirah, The End, Final Destination, Surah An-Najm, Surah Al-Fajr, Husn al-Khatimah, Ruqyah, Islamic reflections, Dar us-Salam">
   <meta name="author" content="Zahiruddin (Ruqyah)">
-  <link rel="canonical" href="https://heynuo.github.io/end.html">
+  <link rel="canonical" href="https://heynuo.github.io/Ruqyah.io/end.html">
 
   <!-- OpenGraph Metadata -->
   <meta property="og:title" content="The End (Al-Akhirah) — Ruqyah">
   <meta property="og:description" content="Contemplations on the Ultimate Destination (Al-Akhirah), the journey's conclusion, and final prayers of gratitude in the Noble Qur'an.">
-  <meta property="og:image" content="https://heynuo.github.io/assets/banners/og-banner.jpg">
+  <meta property="og:image" content="https://heynuo.github.io/Ruqyah.io/assets/banners/og-banner.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:alt" content="Ruqyah — Scholastic Archive &amp; Systems Laboratory">
-  <meta property="og:url" content="https://heynuo.github.io/end.html">
+  <meta property="og:url" content="https://heynuo.github.io/Ruqyah.io/end.html">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Ruqyah">
 
@@ -51,7 +51,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="The End (Al-Akhirah) — Ruqyah">
   <meta name="twitter:description" content="Contemplations on the Ultimate Destination (Al-Akhirah), the journey's conclusion, and final prayers of gratitude.">
-  <meta name="twitter:image" content="https://heynuo.github.io/assets/banners/og-banner.jpg">
+  <meta name="twitter:image" content="https://heynuo.github.io/Ruqyah.io/assets/banners/og-banner.jpg">
   <meta name="twitter:image:alt" content="Ruqyah — Scholastic Archive &amp; Systems Laboratory">
 
   <!-- Icons & Feeds -->
@@ -68,8 +68,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet">
 
   <!-- Shared Design System Tokens (Light / Dark / Sepia) -->
-  <link rel="stylesheet" href="css/shared-layout.css?v=2026-11-18-rgb-1">
-  <link rel="stylesheet" href="css/tailwind.generated.css?v=2026-11-15-search-1">
+  <link rel="stylesheet" href="css/shared-layout.css?v=2026-11-18-audit-3">
+  <link rel="stylesheet" href="css/tailwind.generated.css?v=2026-11-18-audit-3">
   <link rel="stylesheet" href="css/quran-light.css?v=2026-11-17-video-brightness-1">
   <link rel="stylesheet" href="css/animated-heart.css?v=2026-11-15-bg-1">
   <script src="js/r2-config.js"></script>
@@ -317,7 +317,7 @@
                 The Call to the Serene Soul
               </h2>
             </div>
-            <button id="copyFajrBtn" type="button" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-ui-interactive transition-colors cursor-pointer" aria-label="Copy Surah Al-Fajr verses">
+            <button id="copyFajrBtn" type="button" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-ui-interactive transition-colors cursor-pointer" title="Copy Surah Al-Fajr verses">
               <span class="material-symbols-outlined text-[16px]" aria-hidden="true">content_copy</span>
               <span id="copyFajrLabel" aria-live="polite" aria-atomic="true">Copy Verses</span>
             </button>
@@ -484,7 +484,7 @@
       <div class="flex items-center justify-between pb-4 mb-4 border-b border-border-subtle">
         <div class="flex items-center gap-2.5">
           <div class="w-7 h-7 rounded bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">⌨</div>
-          <h3 id="shortcutsTitle" class="font-subheading-card text-base font-bold text-on-surface">Keyboard Shortcuts</h3>
+          <h2 id="shortcutsTitle" class="font-subheading-card text-base font-bold text-on-surface">Keyboard Shortcuts</h2>
         </div>
         <button id="closeShortcutsBtn" aria-label="Close shortcuts modal" class="w-7 h-7 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors cursor-pointer" type="button">
           ✕
@@ -498,7 +498,7 @@
           <span class="text-on-surface-variant text-[11px]">Enable letters like T, H, A, C without Ctrl</span>
         </div>
         <label class="relative inline-flex items-center cursor-pointer">
-          <input type="checkbox" id="toggleSingleShortcuts" class="sr-only peer" checked>
+          <input type="checkbox" id="toggleSingleShortcuts" class="sr-only peer" checked aria-label="Enable single-key shortcuts">
           <div class="w-9 h-5 bg-surface-container rounded-full peer peer-checked:bg-primary peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all"></div>
         </label>
       </div>

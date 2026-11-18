@@ -42,6 +42,13 @@ function Test-LocalReference {
         if (-not [System.Uri]::TryCreate($referenceText, [System.UriKind]::Absolute, [ref]$uri)) { return }
         if ($uri.Host -notin @('heynuo.github.io', 'www.heynuo.github.io')) { return }
         $relativeReference = $uri.AbsolutePath
+        # This project is published as a GitHub Pages project site under
+        # /Ruqyah.io/, so map that public prefix back to the repository root
+        # before checking the referenced file on disk.
+        if ($relativeReference -eq '/Ruqyah.io' -or $relativeReference.StartsWith('/Ruqyah.io/')) {
+            $relativeReference = $relativeReference.Substring('/Ruqyah.io'.Length)
+            if ([string]::IsNullOrWhiteSpace($relativeReference)) { $relativeReference = '/' }
+        }
     } elseif ($referenceText -match '^[a-z][a-z0-9+.-]*:') {
         return
     }

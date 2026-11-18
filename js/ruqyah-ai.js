@@ -120,10 +120,20 @@
         50% { transform: scale(1.2) rotate(15deg); opacity: 1; }
       }
 
-      /* Offset FAB when audio player is active */
+      /* Float above the *real* height of the docked audio player so the
+         reciter, repeat and volume controls stay reachable. The compact
+         mobile bar is taller than the desktop one. */
+      body.has-audio-player .ruqyah-ai-fab,
+      body:has(#audio-player-bar:not(.hidden)) .ruqyah-ai-fab,
+      body:has(#audioPlayerBar:not(.hidden)) .ruqyah-ai-fab,
       body.has-active-audio .ruqyah-ai-fab,
       body.audio-bar-active .ruqyah-ai-fab {
-        bottom: calc(90px + env(safe-area-inset-bottom, 0px));
+        bottom: calc(var(--audio-player-height, 96px) + 16px + env(safe-area-inset-bottom, 0px));
+      }
+
+      /* The Qur'an reader's docked player is taller than the compact bars. */
+      body:has(#dockedQuranPlayer) .ruqyah-ai-fab {
+        bottom: calc(128px + env(safe-area-inset-bottom, 0px));
       }
 
       @media (max-width: 640px) {
@@ -133,10 +143,22 @@
           padding: 10px 14px;
           font-size: 12.5px;
         }
+        body.has-audio-player .ruqyah-ai-fab,
+        body:has(#audio-player-bar:not(.hidden)) .ruqyah-ai-fab,
+        body:has(#audioPlayerBar:not(.hidden)) .ruqyah-ai-fab,
         body.has-active-audio .ruqyah-ai-fab,
         body.audio-bar-active .ruqyah-ai-fab {
-          bottom: calc(105px + env(safe-area-inset-bottom, 0px));
+          bottom: calc(var(--audio-player-height, 162px) + 12px + env(safe-area-inset-bottom, 0px));
         }
+        body:has(#dockedQuranPlayer) .ruqyah-ai-fab {
+          bottom: calc(188px + env(safe-area-inset-bottom, 0px));
+        }
+      }
+
+      /* The audio settings popover covers the same corner on small screens. */
+      body.audio-settings-open .ruqyah-ai-fab {
+        opacity: 0;
+        pointer-events: none;
       }
 
       /* Modal Backdrop */
@@ -473,7 +495,7 @@
     container.id = 'ruqyah-ai-container';
     container.innerHTML = `
       <!-- Floating Action Button -->
-      <button id="ruqyah-ai-open-btn" class="ruqyah-ai-fab" type="button" aria-haspopup="dialog" aria-expanded="false" aria-label="Open Ruqyah AI Companion">
+      <button id="ruqyah-ai-open-btn" class="ruqyah-ai-fab" type="button" aria-haspopup="dialog" aria-expanded="false" aria-label="Ask Ruqyah AI companion">
         <span class="ruqyah-ai-fab-sparkle" aria-hidden="true">✦</span>
         <span>Ask Ruqyah AI</span>
       </button>
@@ -486,7 +508,7 @@
             <div class="ruqyah-ai-header-info">
               <span style="font-size: 18px; color: #F5C26B;" aria-hidden="true">✦</span>
               <div>
-                <h3 id="ruqyah-ai-title" style="margin: 0; font-size: 14.5px; font-weight: 700; letter-spacing: -0.01em;">Ruqyah Scholastic Companion</h3>
+                <h2 id="ruqyah-ai-title" style="margin: 0; font-size: 14.5px; font-weight: 700; letter-spacing: -0.01em;">Ruqyah Scholastic Companion</h2>
                 <span class="ruqyah-ai-header-badge">Claude Fable 5.2 • AI Gateway</span>
               </div>
             </div>

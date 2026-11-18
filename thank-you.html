@@ -4,13 +4,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="heynuo-build" content="2026-11-15-search-1">
+  <meta name="heynuo-build" content="2026-11-18-audit-3">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#f7faf7">
   <title>Thank You, Allah | Shukriya</title>
   <meta name="description"
     content="For every blessing, seen and unseen — every breath, every heartbeat, and the mercy that embraces all things.">
-  <link rel="canonical" href="https://heynuo.github.io/thank-you.html">
+  <link rel="canonical" href="https://heynuo.github.io/Ruqyah.io/thank-you.html">
+  <meta name="robots" content="index, follow">
   <link rel="icon" href="assets/icons/icon-192.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
   <link rel="manifest" href="manifest.json">
@@ -20,8 +21,15 @@
   <meta property="og:description"
     content="For every blessing, seen and unseen — every breath, every heartbeat, and the mercy that embraces all things.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://heynuo.github.io/thank-you.html">
-  <meta property="og:image" content="https://heynuo.github.io/assets/banners/og-banner.jpg">
+  <meta property="og:url" content="https://heynuo.github.io/Ruqyah.io/thank-you.html">
+  <meta property="og:image" content="https://heynuo.github.io/Ruqyah.io/assets/banners/og-banner.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Thank You, Allah | Shukriya">
+  <meta name="twitter:description"
+    content="For every blessing, seen and unseen — every breath, every heartbeat, and the mercy that embraces all things.">
+  <meta name="twitter:image" content="https://heynuo.github.io/Ruqyah.io/assets/banners/og-banner.jpg">
 
   <!-- Fonts: Amiri for sacred calligraphy, Inter for UI, Playfair Display for titles -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,7 +71,7 @@
       </button>
 
       <!-- Theme Switcher -->
-      <button type="button" class="chip-btn" id="themeToggleBtn" title="Cycle Theme (Light / Sepia / Dark)" aria-label="Cycle theme">
+      <button type="button" class="chip-btn" id="themeToggleBtn" title="Cycle Theme (Light / Sepia / Dark)">
         <span id="themeIcon" aria-hidden="true">☀️</span>
         <span class="label-desktop" id="themeLabel">Theme</span>
       </button>
@@ -112,8 +120,7 @@
 
       <!-- Optional gratitude audio -->
       <div class="gratitude-audio">
-        <button type="button" class="gratitude-audio-toggle" id="gratitude-audio-toggle"
-          aria-label="Enable gratitude audio" aria-pressed="false">
+        <button type="button" class="gratitude-audio-toggle" id="gratitude-audio-toggle" aria-pressed="false">
           <span class="gratitude-audio-icon" id="gratitude-audio-icon" aria-hidden="true">▶</span>
           <span id="gratitude-audio-label">Listen to this moment</span>
         </button>
@@ -121,7 +128,7 @@
 
       <!-- Interactive "Say Alhamdulillah" Tap Button -->
       <div class="gratitude-action-area">
-        <button type="button" class="dhikr-tap-btn" id="sayAlhamdulillahBtn" aria-label="Say Alhamdulillah and offer gratitude">
+        <button type="button" class="dhikr-tap-btn" id="sayAlhamdulillahBtn">
           <span aria-hidden="true">🤍</span>
           <span>Say Alhamdulillah</span>
           <span class="dhikr-badge" id="gratitudeCounter">0</span>
@@ -217,7 +224,10 @@
           else themeIcon.textContent = '☀️';
         }
         if (themeLabel) {
-          themeLabel.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
+          var themeName = theme.charAt(0).toUpperCase() + theme.slice(1);
+          themeLabel.textContent = themeName;
+          var themeToggle = document.getElementById('themeToggleBtn');
+          if (themeToggle) themeToggle.setAttribute('aria-label', 'Theme: ' + themeName + '. Change theme');
         }
       }
 
@@ -600,7 +610,6 @@
         var audioEnabled = !atmosphereVideo.muted;
         if (gratitudeAudioIcon) gratitudeAudioIcon.textContent = audioEnabled ? '♫' : '▶';
         if (gratitudeAudioLabel) gratitudeAudioLabel.textContent = audioEnabled ? 'Mute audio' : 'Listen to this moment';
-        gratitudeAudioToggle.setAttribute('aria-label', audioEnabled ? 'Mute gratitude audio' : 'Enable gratitude audio');
         gratitudeAudioToggle.setAttribute('aria-pressed', audioEnabled ? 'true' : 'false');
       }
 

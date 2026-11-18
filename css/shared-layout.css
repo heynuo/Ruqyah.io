@@ -401,8 +401,8 @@ main#main-content {
   }
 
   #audio-player-bar #player-reciter-select {
-    width: 5rem !important;
-    max-width: 5rem !important;
+    width: 6.5rem !important;
+    max-width: 6.5rem !important;
     min-height: 44px !important;
   }
 
@@ -448,7 +448,7 @@ main#main-content {
     position: absolute;
     right: 0;
     bottom: calc(100% + 0.5rem);
-    z-index: 60;
+    z-index: 90;
     display: flex !important;
     width: min(18rem, calc(100vw - 1.5rem));
     flex-direction: column;
@@ -1533,9 +1533,12 @@ body:has(> #heynuo-footer) { padding-bottom: 0 !important; }
   touch-action: pan-y;
 }
 
+/* Keep the restore control on the opposite side from the AI companion's
+   floating button so minimizing the player never hides it. */
 #restore-audio-player-btn {
   bottom: calc(0.85rem + env(safe-area-inset-bottom, 0px)) !important;
-  right: max(1rem, env(safe-area-inset-right, 0px)) !important;
+  left: max(1rem, env(safe-area-inset-left, 0px)) !important;
+  right: auto !important;
   min-height: 44px;
 }
 
@@ -1785,6 +1788,38 @@ pre {
   100% {
     filter: hue-rotate(360deg);
   }
+}
+
+/* ==========================================================================
+   Theme-Safe Utility Corrections
+   ========================================================================== */
+
+/* The parchment quote box keeps its warm tint in light/sepia modes; in dark
+   mode it must become a dark surface so its light text stays readable. */
+html.dark .bg-theme-sepia-surface\/50,
+[data-theme="dark"] .bg-theme-sepia-surface\/50 {
+  background-color: rgb(var(--color-surface-container-low) / 0.65);
+}
+
+/* White text on the light peachy tertiary fill fails WCAG in dark mode.
+   Use the fixed-variant foreground there while keeping white in light themes. */
+html.dark .text-on-tertiary,
+[data-theme="dark"] .text-on-tertiary {
+  color: rgb(var(--color-on-tertiary-fixed));
+}
+
+/* The citation pill blends a light peach fill over the dark quote box.
+   In dark mode its label needs the lighter fixed tone to stay readable. */
+html.dark .bg-tertiary-fixed\/30.text-tertiary,
+[data-theme="dark"] .bg-tertiary-fixed\/30.text-tertiary {
+  color: rgb(var(--color-tertiary-fixed));
+}
+
+/* Primary buttons that lighten their fill on hover need the lighter
+   on-primary-container foreground so the label never goes dark-on-dark. */
+html.dark .bg-primary.hover\:bg-primary-container:hover,
+[data-theme="dark"] .bg-primary.hover\:bg-primary-container:hover {
+  color: rgb(var(--color-on-primary-container));
 }
 
 

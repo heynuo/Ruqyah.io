@@ -4,12 +4,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="heynuo-build" content="2026-11-15-search-1">
+  <meta name="heynuo-build" content="2026-11-18-audit-3">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Tawakkul — A Cinematic Reflection | Ruqyah</title>
   <meta name="description"
     content="A cinematic, bilingual reflection on tawakkul: taking the means while entrusting outcomes to Allah.">
-  <link rel="canonical" href="https://heynuo.github.io/Tawakkul.html" />
+  <link rel="canonical" href="https://heynuo.github.io/Ruqyah.io/Tawakkul.html" />
+  <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#040507" />
   <link rel="icon" href="assets/icons/icon-192.png" type="image/png" />
   <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
@@ -18,15 +19,15 @@
   <meta property="og:title" content="Tawakkul — A Cinematic Reflection | Ruqyah" />
   <meta property="og:description" content="A cinematic, bilingual reflection on tawakkul: taking the means while entrusting outcomes to Allah." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://heynuo.github.io/Tawakkul.html" />
-  <meta property="og:image" content="https://heynuo.github.io/assets/banners/og-banner.jpg" />
+  <meta property="og:url" content="https://heynuo.github.io/Ruqyah.io/Tawakkul.html" />
+  <meta property="og:image" content="https://heynuo.github.io/Ruqyah.io/assets/banners/og-banner.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Tawakkul — A Cinematic Reflection | Ruqyah" />
   <meta name="twitter:description" content="A cinematic, bilingual reflection on tawakkul: taking the means while entrusting outcomes to Allah." />
-  <meta name="twitter:image" content="https://heynuo.github.io/assets/banners/og-banner.jpg" />
+  <meta name="twitter:image" content="https://heynuo.github.io/Ruqyah.io/assets/banners/og-banner.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev" crossorigin>
@@ -63,6 +64,18 @@
       margin: 0;
       padding: 0;
       user-select: none;
+    }
+
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
     }
 
     /* WCAG 2.5.8: Minimum 44×44px interactive targets on touch devices */
@@ -231,7 +244,8 @@
 
     .back-to-archive {
       position: fixed;
-      top: calc(clamp(10px, 2.5vh, 20px) + env(safe-area-inset-top, 0px));
+      /* Clear the control bar so the two touch targets never overlap. */
+      top: calc(96px + env(safe-area-inset-top, 0px));
       left: calc(clamp(10px, 2.5vw, 20px) + env(safe-area-inset-left, 0px));
       z-index: 10001;
       display: inline-flex;
@@ -2229,6 +2243,11 @@
       background: linear-gradient(135deg, #fff0b7, #d8b868);
     }
 
+    #captions-btn[aria-pressed="true"] {
+      color: #f1d588;
+      border-color: rgba(241, 213, 136, 0.55);
+    }
+
     #scrubber {
       accent-color: #e6c978;
     }
@@ -2415,10 +2434,11 @@
 </head>
 
 <body>
+  <h1 class="sr-only">Tawakkul - A Cinematic Reflection</h1>
   <noscript>
     <div style="background:#0a0f1d;color:#f5d989;padding:40px;text-align:center;font-family:Georgia,serif;font-size:18px;min-height:100vh;display:flex;align-items:center;justify-content:center;">
       <div>
-        <h1 style="font-size:28px;margin-bottom:16px;">Tawakkul — A Cinematic Reflection</h1>
+        <p style="font-size:28px;font-weight:700;margin-bottom:16px;">Tawakkul - A Cinematic Reflection</p>
         <p>This interactive experience requires JavaScript to play. Please enable JavaScript in your browser settings.</p>
         <p style="margin-top:20px;font-size:14px;color:#93c5fd;"><a href="index.html" style="color:#93c5fd;">← Return to Ruqyah Archive</a></p>
       </div>
@@ -2441,11 +2461,11 @@
 
   <!-- Top Control Bar (Press H to hide) -->
   <div id="controls">
-    <button id="play-btn" class="btn primary" aria-label="Play or pause reflection" aria-pressed="false">▶ Play</button>
-    <button id="seek-back-btn" class="btn" title="Rewind 5 seconds" aria-label="Rewind 5 seconds">↺ 5s</button>
-    <button id="seek-fwd-btn" class="btn" title="Forward 5 seconds" aria-label="Forward 5 seconds">5s ↻</button>
-    <button id="mute-btn" class="btn" title="Toggle audio mute" aria-label="Mute audio">🔊</button>
-    <button id="captions-btn" class="btn" type="button" aria-label="Hide captions" aria-pressed="true">CC</button>
+    <button type="button" id="play-btn" class="btn primary" aria-label="Play or pause reflection" aria-pressed="false">▶ Play</button>
+    <button type="button" id="seek-back-btn" class="btn" title="Rewind 5 seconds" aria-label="Rewind 5s"><span aria-hidden="true">↺</span> 5s</button>
+    <button type="button" id="seek-fwd-btn" class="btn" title="Forward 5 seconds" aria-label="Forward 5s">5s <span aria-hidden="true">↻</span></button>
+    <button type="button" id="mute-btn" class="btn" title="Toggle audio mute" aria-label="Mute audio">🔊</button>
+    <button id="captions-btn" class="btn" type="button" aria-label="Captions (CC)" aria-pressed="true">CC</button>
     <div class="control-eq" id="control-eq" title="Audio Recitation Equalizer" aria-hidden="true">
       <span class="eq-bar"></span>
       <span class="eq-bar"></span>
@@ -2454,8 +2474,8 @@
     </div>
     <input id="scrubber" type="range" min="0" max="50.83" step="0.02" value="0" aria-label="Timeline position" />
     <span id="time-display">00:00 / 00:50</span>
-    <button id="ratio-btn" class="btn" aria-label="Switch aspect ratio">16:9 Wide</button>
-    <button id="fullscreen-btn" class="btn" title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶
+    <button type="button" id="ratio-btn" class="btn" title="Switch aspect ratio">16:9 Wide</button>
+    <button type="button" id="fullscreen-btn" class="btn" title="Toggle fullscreen" aria-label="Toggle fullscreen"><span aria-hidden="true">⛶</span>
       Fullscreen</button>
     <label class="btn" id="upload-label" for="audio-upload" role="button" tabindex="0">🎵 Audio</label>
     <input id="audio-upload" type="file" accept="audio/*" style="display:none" />
@@ -2467,7 +2487,7 @@
   <audio id="audio-player" data-media-src="assets/audio/audio_6af41204e4ea39.02321364.mp3" preload="none" data-media-eager></audio>
 
   <!-- Main Viewport -->
-  <div id="stage-wrapper" class="ratio-16-9" role="region" aria-label="Tawakkul animated reflection">
+  <div id="stage-wrapper" class="ratio-16-9" role="main" aria-label="Tawakkul animated reflection">
     <div class="texture-grain"></div>
     <div class="texture-vignette"></div>
     <div class="glare"></div>
@@ -3733,8 +3753,6 @@
       const visible = subtitleBar.classList.contains('captions-hidden');
       subtitleBar.classList.toggle('captions-hidden', !visible);
       captionsBtn.setAttribute('aria-pressed', String(visible));
-      captionsBtn.setAttribute('aria-label', visible ? 'Hide captions' : 'Show captions');
-      captionsBtn.textContent = visible ? 'CC On' : 'CC Off';
     });
 
     fullscreenBtn?.addEventListener('click', () => {

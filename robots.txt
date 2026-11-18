@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://heynuo.github.io/sitemap.xml
+Sitemap: https://heynuo.github.io/Ruqyah.io/sitemap.xml
