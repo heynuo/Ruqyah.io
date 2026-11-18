@@ -8,6 +8,7 @@
     "b2:sync": "node tools/b2-sync.mjs",
     "e2:sync": "node tools/e2-sync.mjs",
     "e2:sync:milan": "node tools/e2-sync.mjs --milan",
+    "e2:sync:frankfurt": "node tools/e2-sync.mjs --frankfurt",
     "e2:sync:all": "node tools/e2-sync.mjs --all"
   },
   "devDependencies": {

@@ -26,6 +26,27 @@ const MIME_TYPES = {
   '.webm': 'video/webm'
 };
 
+const REGION_DEFAULTS = {
+  singapore: {
+    prefix: 'E2_',
+    label: 'Singapore 2 (ap-southeast-2)',
+    defaultEndpoint: 'https://s3.ap-southeast-2.idrivee2.com',
+    defaultRegion: 'ap-southeast-2'
+  },
+  milan: {
+    prefix: 'E2_MILAN_',
+    label: 'Milan (eu-south-1)',
+    defaultEndpoint: 'https://s3.eu-south-1.idrivee2.com',
+    defaultRegion: 'eu-south-1'
+  },
+  frankfurt: {
+    prefix: 'E2_FRANKFURT_',
+    label: 'Frankfurt (eu-central-2)',
+    defaultEndpoint: 'https://s3.eu-central-2.idrivee2.com',
+    defaultRegion: 'eu-central-2'
+  }
+};
+
 function parseEnv(text) {
   const values = {};
   for (const line of text.split(/\r?\n/)) {
@@ -45,31 +66,31 @@ async function loadRawEnv() {
   }
 }
 
-function resolveTargetConfig(env, target) {
-  const isMilan = target === 'milan';
-  const prefix = isMilan ? 'E2_MILAN_' : 'E2_';
-  const label = isMilan ? 'Milan (eu-south-1)' : 'Singapore 2 (ap-southeast-2)';
+function resolveTargetConfig(env, targetKey) {
+  const meta = REGION_DEFAULTS[targetKey];
+  if (!meta) throw new Error(`Unknown target region: ${targetKey}`);
 
-  let endpoint = (env[`${prefix}ENDPOINT`] || (isMilan ? 'https://s3.eu-south-1.idrivee2.com' : env.E2_ENDPOINT || '')).trim();
+  const p = meta.prefix;
+  let endpoint = (env[`${p}ENDPOINT`] || meta.defaultEndpoint).trim();
   if (endpoint && !/^https?:\/\//i.test(endpoint)) {
     endpoint = `https://${endpoint}`;
   }
 
-  const region = (env[`${prefix}REGION`] || (isMilan ? 'eu-south-1' : env.E2_REGION || 'ap-southeast-2')).trim();
-  const bucket = (env[`${prefix}BUCKET`] || '').trim();
-  const accessKeyId = (env[`${prefix}ACCESS_KEY_ID`] || env.E2_ACCESS_KEY_ID || '').trim();
-  const secretAccessKey = (env[`${prefix}SECRET_ACCESS_KEY`] || env.E2_SECRET_ACCESS_KEY || '').trim();
+  const region = (env[`${p}REGION`] || meta.defaultRegion).trim();
+  const bucket = (env[`${p}BUCKET`] || '').trim();
+  const accessKeyId = (env[`${p}ACCESS_KEY_ID`] || env.E2_ACCESS_KEY_ID || '').trim();
+  const secretAccessKey = (env[`${p}SECRET_ACCESS_KEY`] || env.E2_SECRET_ACCESS_KEY || '').trim();
 
   if (!bucket) {
     throw new Error(
-      `Missing bucket for ${label}. Set ${prefix}BUCKET in .env.e2 (e.g. ${isMilan ? 'E2_MILAN_BUCKET=ruqyah-media-milan' : 'E2_BUCKET=ruqyah-media'}).`
+      `Missing bucket for ${meta.label}. Set ${p}BUCKET in .env.e2.`
     );
   }
   if (!accessKeyId || !secretAccessKey) {
-    throw new Error(`Missing access keys for ${label} in .env.e2.`);
+    throw new Error(`Missing access keys for ${meta.label} in .env.e2.`);
   }
 
-  return { label, target: isMilan ? 'milan' : 'singapore', endpoint, region, bucket, accessKeyId, secretAccessKey };
+  return { label: meta.label, target: targetKey, endpoint, region, bucket, accessKeyId, secretAccessKey };
 }
 
 async function collectFiles(inputPaths) {
@@ -191,9 +212,10 @@ async function main() {
   const dryRun = args.includes('--dry-run');
   const listOnly = args.includes('--list');
 
-  // Parse target: --milan, --singapore, --all, --target=milan, etc.
   let target = 'singapore';
-  if (args.includes('--milan') || args.includes('--target=milan') || args.includes('--region=milan')) {
+  if (args.includes('--frankfurt') || args.includes('--target=frankfurt') || args.includes('--region=frankfurt')) {
+    target = 'frankfurt';
+  } else if (args.includes('--milan') || args.includes('--target=milan') || args.includes('--region=milan')) {
     target = 'milan';
   } else if (args.includes('--all') || args.includes('--target=all')) {
     target = 'all';
@@ -213,7 +235,7 @@ async function main() {
   }
 
   if (target === 'all') {
-    const targets = [resolveTargetConfig(env, 'singapore'), resolveTargetConfig(env, 'milan')];
+    const targets = ['singapore', 'milan', 'frankfurt'].map(k => resolveTargetConfig(env, k));
     for (const cfg of targets) {
       await syncTarget(cfg, files, { dryRun, listOnly });
     }

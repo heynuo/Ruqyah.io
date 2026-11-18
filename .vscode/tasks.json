@@ -51,6 +51,13 @@
       "problemMatcher": []
     },
     {
+      "label": "IDrive e2: Sync Frankfurt (eu-central-2)",
+      "type": "shell",
+      "command": "npm run e2:sync:frankfurt",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
       "label": "IDrive e2: Sync All Regions",
       "type": "shell",
       "command": "npm run e2:sync:all",
