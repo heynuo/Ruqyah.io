@@ -256,12 +256,11 @@
     var brandLink = document.querySelector('.header-brand-link');
     if (brandLink) {
       brandLink.addEventListener('click', function (e) {
+        e.preventDefault();
         if (activePage === 'home') {
-          e.preventDefault();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else if (window.location.hostname.endsWith('github.io')) {
-          e.preventDefault();
-          window.location.assign(basePath);
+          window.location.reload();
+        } else {
+          window.location.assign(brandHref);
         }
       });
     }
