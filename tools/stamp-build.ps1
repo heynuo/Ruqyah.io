@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [string]$Root = '',
 
@@ -78,6 +78,10 @@ $tailwindStylesheetMarker = [System.Text.RegularExpressions.Regex]::new(
     '(<link rel="stylesheet" href="css/tailwind\.generated\.css)(?:\?v=[^"]*)?(">)'
 )
 $tailwindStylesheetReplacement = '${1}?v=' + $Stamp + '${2}'
+$sharedLayoutScriptMarker = [System.Text.RegularExpressions.Regex]::new(
+    '(<script src="js/shared-layout\.js)(?:\?v=[^"]*)?("></script>)'
+)
+$sharedLayoutScriptReplacement = '${1}?v=' + $Stamp + '${2}'
 
 $htmlChanged = @()
 $htmlMissing = @()
@@ -103,6 +107,10 @@ foreach ($file in (Get-ChildItem -LiteralPath $rootPath -Filter '*.html' -File))
         $newHtml = $tailwindStylesheetMarker.Replace($newHtml, $tailwindStylesheetReplacement, 1)
     } else {
         $tailwindStylesheetMissing += $file.Name
+    }
+
+    if ($sharedLayoutScriptMarker.IsMatch($newHtml)) {
+        $newHtml = $sharedLayoutScriptMarker.Replace($newHtml, $sharedLayoutScriptReplacement, 1)
     }
 
     if ($newHtml -cne $html) {
