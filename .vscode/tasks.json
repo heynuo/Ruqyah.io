@@ -114,6 +114,34 @@
       "problemMatcher": []
     },
     {
+      "label": "ImageKit: Sync Account 5 (dzq4rl4uto)",
+      "type": "shell",
+      "command": "npm run imagekit:sync:5",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "ImageKit: Sync Account 6 (yykzeurhf)",
+      "type": "shell",
+      "command": "npm run imagekit:sync:6",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "ImageKit: Sync Account 7 (pg7oyq2kd)",
+      "type": "shell",
+      "command": "npm run imagekit:sync:7",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "ImageKit: Sync Account 8 (bs7xykshf)",
+      "type": "shell",
+      "command": "npm run imagekit:sync:8",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
       "label": "ImageKit: Sync All Accounts",
       "type": "shell",
       "command": "npm run imagekit:sync:all",
