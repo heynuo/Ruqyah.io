@@ -1,5 +1,4 @@
 import { readFile, writeFile, lstat, readdir } from 'node:fs/promises';
-import { createReadStream } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -11,9 +10,16 @@ const MEDIA_PATHS = [
   'assets/pdf'
 ];
 
-const SUPPORTED_EXTENSIONS = new Set([
-  '.m4a', '.m4v', '.mov', '.mp3', '.mp4', '.pdf', '.wav', '.webm'
-]);
+const MIME_TYPES = {
+  '.m4a': 'audio/mp4',
+  '.m4v': 'video/mp4',
+  '.mov': 'video/quicktime',
+  '.mp3': 'audio/mpeg',
+  '.mp4': 'video/mp4',
+  '.pdf': 'application/pdf',
+  '.wav': 'audio/wav',
+  '.webm': 'video/webm'
+};
 
 function parseEnv(text) {
   const values = {};
@@ -60,12 +66,13 @@ async function collectFiles() {
     }
     if (!info.isFile()) return;
     const ext = path.extname(abs).toLowerCase();
-    if (SUPPORTED_EXTENSIONS.has(ext)) {
+    if (MIME_TYPES[ext]) {
       found.push({
         absolutePath: abs,
         key: rel.split(path.sep).join('/'),
-        name: path.basename(abs),
-        size: info.size
+        name: rel.split(path.sep).join('/'),
+        size: info.size,
+        mimeType: MIME_TYPES[ext]
       });
     }
   }
@@ -116,9 +123,22 @@ async function main() {
 
   const { bucket: bucketInfo } = await bucketRes.json();
   console.log(`Bucket found: ${bucketInfo.name} (${bucketInfo.region})`);
-  console.log(`  - Visibility: ${bucketInfo.isPublic ? 'Public' : 'Private (must be set to Public for website CDN access)'}`);
+  console.log(`  - Visibility: ${bucketInfo.isPublic ? 'Public' : 'Private'}`);
   console.log(`  - CDN Enabled: ${bucketInfo.cdn}`);
   console.log(`  - Files currently in bucket: ${bucketInfo.fileCount}`);
+
+  // Auto-enable public and CDN if not enabled
+  if (!bucketInfo.isPublic || !bucketInfo.cdn) {
+    console.log('Ensuring bucket is set to Public with CDN enabled...');
+    await fetch(`https://api.dbbyte.com/buckets/${bucket}`, {
+      method: 'PATCH',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ isPublic: true, cdn: true })
+    });
+  }
 
   if (listOnly) {
     const listRes = await fetch(`https://api.dbbyte.com/storage/${bucket}/list`, {
@@ -126,7 +146,8 @@ async function main() {
     });
     if (!listRes.ok) throw new Error(`List failed: ${await listRes.text()}`);
     const data = await listRes.json();
-    console.log(`Files in ${bucket}:`, data);
+    console.log(`Files in ${bucket}:`);
+    data.files.forEach(f => console.log(`  - ${f.name} (${formatMiB(f.size)})`));
     return;
   }
 
@@ -141,7 +162,8 @@ async function main() {
 
   let uploaded = 0;
   for (const file of files) {
-    const fileBlob = new Blob([await readFile(file.absolutePath)]);
+    console.log(`[${uploaded + 1}/${files.length}] Uploading: ${file.key} (${formatMiB(file.size)})...`);
+    const fileBlob = new Blob([await readFile(file.absolutePath)], { type: file.mimeType });
     const form = new FormData();
     form.append('file', fileBlob, file.name);
 
@@ -153,10 +175,10 @@ async function main() {
 
     if (uploadRes.ok) {
       uploaded++;
-      console.log(`[${uploaded}/${files.length}] Uploaded to DBByte: ${file.name} (${formatMiB(file.size)})`);
+      console.log(`  ✓ Success: ${file.key}`);
     } else {
       const err = await uploadRes.text();
-      console.error(`Failed ${file.name}: ${err}`);
+      console.error(`  ✗ Failed ${file.key}: ${err}`);
     }
   }
 
