@@ -7,7 +7,7 @@
   <meta name="shell-type" content="web_standard">
   <meta name="theme-color" content="#0F766E">
   <meta name="color-scheme" content="light dark">
-  <meta name="heynuo-build" content="2026-11-18-1643">
+  <meta name="heynuo-build" content="2026-11-19-responsive-1">
 
   <!-- Theme Pre-Hydration: Prevents Flash of Unstyled Content (FOUC) -->
   <script>
@@ -64,16 +64,56 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev" crossorigin>
   <link rel="dns-prefetch" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev">
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
   <!-- Shared Design System Tokens (Light / Dark / Sepia) -->
-  <link rel="stylesheet" href="css/shared-layout.css?v=2026-11-18-1643">
-  <link rel="stylesheet" href="css/tailwind.generated.css?v=2026-11-18-1643">
-  <link rel="stylesheet" href="css/quran-light.css?v=2026-11-17-video-brightness-1">
+  <link rel="stylesheet" href="css/shared-layout.css?v=2026-11-19-responsive-1">
+  <link rel="stylesheet" href="css/tailwind.generated.css?v=2026-11-19-responsive-1">
+  <link rel="stylesheet" href="css/quran-light.css?v=2026-11-19-responsive-1">
   <link rel="stylesheet" href="css/animated-heart.css?v=2026-11-15-bg-1">
-  <script src="js/r2-config.js"></script>
-  <script src="js/r2-media.js"></script>
+  <style>
+    #final-video {
+      min-height: clamp(280px, 26vw, 340px);
+    }
+
+    #final-video .end-bye-bye-video-pair {
+      display: block;
+      inset: 0;
+      width: 100%;
+      max-width: none;
+      aspect-ratio: auto;
+      transform: none;
+      background: #030807;
+      border-radius: 0;
+    }
+
+    #final-video .end-bye-bye-video-pair .end-bye-bye-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      object-fit: cover;
+      filter: brightness(1.32) saturate(1.1) contrast(1.04);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 250ms ease;
+    }
+
+    #final-video .end-bye-bye-video-pair .end-bye-bye-video.is-active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #final-video .end-bye-bye-video-pair .end-bye-bye-video {
+        transition: none;
+      }
+    }
+  </style>
+  <script defer src="js/r2-config.js"></script>
+  <script defer src="js/r2-media.js?v=2026-11-19-responsive-1"></script>
 </head>
 
 <body class="bg-bg-canvas font-body-article text-on-surface antialiased min-h-screen flex flex-col pb-32 transition-colors duration-200">
@@ -157,6 +197,8 @@
       <section id="end-video" aria-labelledby="end-video-title" class="rounded-2xl border border-border-subtle bg-surface-container-lowest overflow-hidden shadow-md">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
           <div class="end-video-copy-panel lg:col-span-6 p-6 sm:p-8 lg:p-10">
+            <!-- Autoplay is intentional: decorative, muted, looping ambient background, hidden from AT -->
+            <!-- [html-validate-disable-next no-autoplay] -->
             <video class="end-video-background" autoplay muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1">
               <source data-media-src="assets/videos/ambient-end-loop.mp4" type="video/mp4">
             </video>
@@ -452,9 +494,14 @@
     </div>
 
     <section id="final-video" class="end-bye-bye" aria-labelledby="final-video-title">
-      <video id="final-video-background" class="end-bye-bye-video" muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1">
-        <source data-media-src="assets/videos/final-video-car.mp4" type="video/mp4">
-      </video>
+      <div class="end-bye-bye-video-pair" aria-hidden="true">
+        <video id="final-video-background" class="end-bye-bye-video" muted playsinline preload="none" tabindex="-1">
+          <source data-media-src="assets/videos/final-video-car.mp4" type="video/mp4">
+        </video>
+        <video id="final-video-background-secondary" class="end-bye-bye-video" muted playsinline preload="none" tabindex="-1">
+          <source data-media-src="assets/videos/end-second-loop.mp4" type="video/mp4">
+        </video>
+      </div>
       <div class="end-bye-bye-scrim" aria-hidden="true"></div>
       <div class="end-bye-bye-content">
         <p class="end-bye-bye-arabic" dir="rtl" lang="ar">الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</p>
@@ -479,7 +526,7 @@
   </main>
 
   <!-- KEYBOARD SHORTCUTS MODAL (WCAG 2.1.4 compliant) -->
-  <div id="shortcutsModal" class="hidden fixed inset-0 z-[95] bg-on-surface/40 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="shortcutsTitle" aria-hidden="true">
+  <div id="shortcutsModal" class="hidden fixed inset-0 z-[95] bg-on-surface/40 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="shortcutsTitle" aria-hidden="true" inert>
     <div class="w-full max-w-lg bg-surface rounded-xl border border-border-strong/30 shadow-2xl p-6 relative">
       <div class="flex items-center justify-between pb-4 mb-4 border-b border-border-subtle">
         <div class="flex items-center gap-2.5">
@@ -499,7 +546,7 @@
         </div>
         <label class="relative inline-flex items-center cursor-pointer">
           <input type="checkbox" id="toggleSingleShortcuts" class="sr-only peer" checked aria-label="Enable single-key shortcuts">
-          <div class="w-9 h-5 bg-surface-container rounded-full peer peer-checked:bg-primary peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all"></div>
+          <span class="w-9 h-5 bg-surface-container rounded-full peer peer-checked:bg-primary peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all"></span>
         </label>
       </div>
 
@@ -533,10 +580,105 @@
       var videos = Array.prototype.slice.call(document.querySelectorAll('.end-bye-bye-video'));
       if (!videos.length) return;
 
+      var finalVideos = [
+        document.getElementById('final-video-background'),
+        document.getElementById('final-video-background-secondary')
+      ].filter(Boolean);
       var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
       var visibility = new Map(videos.map(function (video) { return [video, false]; }));
+      var audioButton = document.getElementById('final-video-audio-toggle');
+      var audioLabel = document.getElementById('final-video-audio-label');
+      var audioIcon = document.getElementById('final-video-audio-icon');
+      var audioEnabled = false;
+      var sequenceIndex = 0;
+      var sequenceTimer = null;
+      var sequenceActive = false;
+
+      function updateAudioButton() {
+        if (!audioButton || !audioLabel || !audioIcon) return;
+        audioButton.setAttribute('aria-pressed', String(audioEnabled));
+        audioButton.setAttribute('aria-label', audioEnabled ? 'Mute this moment' : 'Listen to this moment');
+        audioLabel.textContent = audioEnabled ? 'Mute this moment' : 'Listen to this moment';
+        audioIcon.textContent = audioEnabled ? 'volume_up' : 'play_arrow';
+      }
+
+      function muteFinalVideos() {
+        finalVideos.forEach(function (video) { video.muted = true; });
+      }
+
+      function playFinalVideo(index) {
+        sequenceIndex = index;
+        finalVideos.forEach(function (video, videoIndex) {
+          var isActive = videoIndex === index;
+          video.classList.toggle('is-active', isActive);
+          if (!isActive) {
+            video.pause();
+            video.muted = true;
+          }
+        });
+
+        var activeVideo = finalVideos[index];
+        activeVideo.muted = !audioEnabled;
+        try {
+          activeVideo.currentTime = 0;
+        } catch (error) {
+          // The media can still be waiting for metadata; it starts at zero by default.
+        }
+
+        var playback = activeVideo.play();
+        if (playback && typeof playback.catch === 'function') {
+          playback.catch(function () {
+            if (!sequenceActive || finalVideos[sequenceIndex] !== activeVideo) return;
+            if (activeVideo.readyState === 0) {
+              activeVideo.addEventListener('canplay', function () {
+                if (sequenceActive && finalVideos[sequenceIndex] === activeVideo) {
+                  playFinalVideo(sequenceIndex);
+                }
+              }, { once: true });
+              return;
+            }
+            if (audioEnabled) {
+              audioEnabled = false;
+              muteFinalVideos();
+              updateAudioButton();
+            }
+          });
+        }
+      }
+
+      function shouldPlayFinalVideos() {
+        return !reduceMotion.matches && finalVideos.some(function (video) {
+          return visibility.get(video);
+        });
+      }
+
+      function stopFinalSequence() {
+        if (sequenceTimer) window.clearTimeout(sequenceTimer);
+        sequenceTimer = null;
+        sequenceActive = false;
+        finalVideos.forEach(function (video) {
+          video.pause();
+          video.muted = true;
+          video.classList.remove('is-active');
+        });
+      }
+
+      function syncFinalSequence() {
+        if (!shouldPlayFinalVideos()) {
+          stopFinalSequence();
+          return;
+        }
+        if (!sequenceActive) {
+          sequenceActive = true;
+          playFinalVideo(sequenceIndex);
+        }
+      }
 
       function syncPlayback(video) {
+        if (finalVideos.indexOf(video) !== -1) {
+          syncFinalSequence();
+          return;
+        }
         if (reduceMotion.matches || !visibility.get(video)) {
           video.pause();
           return;
@@ -571,18 +713,40 @@
         });
       });
 
-      var finalVideo = document.getElementById('final-video-background');
-      var audioButton = document.getElementById('final-video-audio-toggle');
-      var audioLabel = document.getElementById('final-video-audio-label');
-      var audioIcon = document.getElementById('final-video-audio-icon');
-      if (finalVideo && audioButton && audioLabel && audioIcon) {
+      if (finalVideos.length === 2 && audioButton && audioLabel && audioIcon) {
+        finalVideos.forEach(function (video, index) {
+          video.muted = true;
+          video.addEventListener('ended', function () {
+            if (!sequenceActive || index !== sequenceIndex) return;
+
+            video.muted = true;
+            video.classList.remove('is-active');
+            sequenceTimer = window.setTimeout(function () {
+              sequenceTimer = null;
+              if (!shouldPlayFinalVideos()) {
+                sequenceActive = false;
+                return;
+              }
+              playFinalVideo((sequenceIndex + 1) % finalVideos.length);
+            }, 4000);
+          });
+        });
+
         audioButton.addEventListener('click', function () {
-          finalVideo.muted = !finalVideo.muted;
-          audioButton.setAttribute('aria-pressed', String(!finalVideo.muted));
-          audioButton.setAttribute('aria-label', finalVideo.muted ? 'Listen to this moment' : 'Mute this moment');
-          audioLabel.textContent = finalVideo.muted ? 'Listen to this moment' : 'Mute this moment';
-          audioIcon.textContent = finalVideo.muted ? 'play_arrow' : 'volume_up';
-          if (!finalVideo.muted) finalVideo.play().catch(function () {});
+          if (audioEnabled) {
+            audioEnabled = false;
+            muteFinalVideos();
+            updateAudioButton();
+            return;
+          }
+
+          audioEnabled = true;
+          sequenceIndex = 0;
+          if (sequenceTimer) window.clearTimeout(sequenceTimer);
+          sequenceTimer = null;
+          sequenceActive = true;
+          updateAudioButton();
+          playFinalVideo(sequenceIndex);
         });
       }
     })();
@@ -651,6 +815,6 @@
   <script src="buttons.js" defer></script>
   <script src="js/script.js" defer></script>
   <!-- Shared Layout: Injects Header, Footer, Theme Switcher -->
-  <script src="js/shared-layout.js?v=2026-11-18-1643"></script>
+  <script defer src="js/shared-layout.js?v=2026-11-19-responsive-1"></script>
 </body>
 </html>

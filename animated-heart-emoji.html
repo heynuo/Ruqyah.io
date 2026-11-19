@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="heynuo-build" content="2026-11-18-1643">
+  <meta name="heynuo-build" content="2026-11-19-responsive-1">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#f7faf7">
   <title>Animated Movie Heart Emoji | Ruqyah.io</title>
@@ -54,7 +54,7 @@
   <link rel="dns-prefetch" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev">
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet">
+    rel="stylesheet" media="print" onload="this.media='all'">
 
   <link rel="stylesheet" href="css/animated-heart.css?v=2026-11-15-bg-1">
 
@@ -312,11 +312,13 @@
       }
     }
   </style>
-  <script src="js/r2-config.js"></script>
-  <script src="js/r2-media.js"></script>
+  <script defer src="js/r2-config.js"></script>
+  <script defer src="js/r2-media.js?v=2026-11-19-responsive-1"></script>
 </head>
 
 <body>
+  <!-- Autoplay is intentional: decorative, muted, looping ambient background, hidden from AT -->
+  <!-- [html-validate-disable-next no-autoplay] -->
   <video class="heart-page-background-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1">
     <source data-media-src="assets/videos/ambient-end-loop.mp4" type="video/mp4">
   </video>

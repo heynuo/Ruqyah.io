@@ -235,10 +235,6 @@
   pointer-events: none;
 }
 
-.final-video-player {
-  filter: brightness(1.12) saturate(1.05) contrast(1.03);
-}
-
 .end-bye-bye-scrim {
   position: absolute;
   z-index: 1;

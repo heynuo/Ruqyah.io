@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#0F766E">
   <meta name="color-scheme" content="light dark">
   <!-- Build stamp for service-worker cache busting. Maintained by tools/stamp-build.ps1. -->
-  <meta name="heynuo-build" content="2026-11-18-1643">
+  <meta name="heynuo-build" content="2026-11-19-responsive-1">
 
   <!-- Theme Pre-Hydration: Prevents Flash of Unstyled Content (FOUC) -->
   <script>
@@ -70,8 +70,8 @@
   <!-- Typography Preconnect & Font Inclusions (Unified) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
   <!-- Structured Data: Privacy Policy & Scholastic Laboratory -->
   <script type="application/ld+json">
@@ -130,9 +130,9 @@
   </script>
 
   <!-- Shared Design System Tokens (Light / Dark / Sepia) -->
-  <link rel="stylesheet" href="css/shared-layout.css?v=2026-11-18-1643">
+  <link rel="stylesheet" href="css/shared-layout.css?v=2026-11-19-responsive-1">
 
-  <link rel="stylesheet" href="css/tailwind.generated.css?v=2026-11-18-1643">
+  <link rel="stylesheet" href="css/tailwind.generated.css?v=2026-11-19-responsive-1">
 
   <style>
     /* Suppress legacy unstyled script injectors */
@@ -245,7 +245,7 @@
 
   <main id="main-content" class="pt-14 w-full flex-1">
     <div class="flex flex-col w-full">
-      
+
       <!-- Subtle Architectural Atmospheric Wash -->
       <div class="relative w-full overflow-hidden">
         <div class="absolute -top-40 right-1/4 w-[38rem] h-[38rem] rounded-full bg-gradient-to-br from-primary/10 via-primary-fixed/20 to-transparent blur-3xl pointer-events-none"></div>
@@ -253,7 +253,7 @@
 
         <!-- Editorial Canvas Wrapper -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-8 md:py-12">
-          
+
           <!-- Breadcrumb & Header -->
           <div class="flex flex-col gap-4 max-w-4xl">
             <nav aria-label="Breadcrumb" class="flex items-center gap-2 font-code-mono text-caption-meta text-on-surface-variant">
@@ -330,10 +330,10 @@
 
           <!-- Asymmetric Layout: Left Sidebar + Right Content Cards -->
           <section class="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
+
             <!-- Left Column: Navigation Anchors & Origin Posture (Sticky on Desktop) -->
             <aside class="lg:col-span-4 flex flex-col gap-6 lg:sticky lg:top-20">
-              
+
               <!-- Quick Jump Anchors Box -->
               <div class="rounded-xl bg-surface-container-high p-5 sm:p-6 flex flex-col gap-3 shadow-xs border border-border-subtle">
                 <div class="flex items-center justify-between border-b border-border-subtle pb-3">
@@ -343,7 +343,7 @@
                   </span>
                   <span class="font-code-mono text-[10px] text-on-surface-variant">Jump to §</span>
                 </div>
-                
+
                 <ul class="flex flex-col gap-1.5 font-ui-interactive text-xs text-on-surface-variant">
                   <li>
                     <a class="hover:text-primary transition-colors flex items-center justify-between p-1.5 rounded hover:bg-surface-container" href="#zero-trackers">
@@ -438,7 +438,7 @@
 
             <!-- Right Column: Deep Disclosure Content Cards -->
             <div class="lg:col-span-8 flex flex-col gap-8">
-              
+
               <!-- Privacy at a glance highlight -->
               <div class="rounded-xl bg-surface-container-low border border-primary/30 p-5 sm:p-6 shadow-xs flex items-start gap-3.5">
                 <span class="material-symbols-outlined text-primary text-[28px] flex-shrink-0 mt-0.5">verified_user</span>
@@ -454,11 +454,11 @@
                   <span class="font-code-mono text-xs uppercase tracking-wider text-primary font-bold">Inviolable Covenant</span>
                   <span class="px-2 py-0.5 rounded bg-surface-container font-code-mono text-[11px] text-on-surface-variant border border-border-subtle">§1.0 Transparency</span>
                 </div>
-                
+
                 <h2 class="font-heading-section text-2xl sm:text-3xl font-bold text-on-surface mt-2 tracking-tight">
                   1. Zero Third-Party Trackers Commitment
                 </h2>
-                
+
                 <div class="font-body-article text-on-surface-variant mt-4 space-y-4 leading-relaxed text-sm sm:text-base">
                   <p>
                     In classical Islamic scholarship, the pursuit of sacred knowledge (<em>Talib al-’Ilm</em>) and the contemplative recitation of the Holy Qur'an require tranquility (<em>Sakinah</em>) and mental clarity. Modern web platforms frequently violate this contemplative space with invasive behavioral profiling, ad-tech tracking pixels, automated user categorization, and monetization funnels.
@@ -539,11 +539,11 @@
                   <span class="font-code-mono text-xs uppercase tracking-wider text-primary font-bold">Storage Disclosure</span>
                   <span class="px-2 py-0.5 rounded bg-surface-container font-code-mono text-[11px] text-on-surface-variant border border-border-subtle">§2.0 Client Memory</span>
                 </div>
-                
+
                 <h2 class="font-heading-section text-2xl sm:text-3xl font-bold text-on-surface mt-2 tracking-tight">
                   2. Browser Storage &amp; Live Client-Side Storage Inspector
                 </h2>
-                
+
                 <div class="font-body-article text-on-surface-variant mt-4 space-y-4 leading-relaxed text-sm sm:text-base">
                   <p>
                     To deliver a responsive, personalized experience—such as remembering your night reading theme, resuming a paused Surah recitation, or saving verse bookmarks—Ruqyah uses standard client-side web technologies: <code>localStorage</code>, <code>sessionStorage</code>, <code>IndexedDB</code>, and <code>CacheStorage</code>.
@@ -762,11 +762,11 @@
                   <span class="font-code-mono text-xs uppercase tracking-wider text-primary font-bold">Network Architecture</span>
                   <span class="px-2 py-0.5 rounded bg-surface-container font-code-mono text-[11px] text-on-surface-variant border border-border-subtle">§3.0 Third-Party Endpoints</span>
                 </div>
-                
+
                 <h2 class="font-heading-section text-2xl sm:text-3xl font-bold text-on-surface mt-2 tracking-tight">
                   3. External Audio Hosts &amp; Network CDNs
                 </h2>
-                
+
                 <div class="font-body-article text-on-surface-variant mt-4 space-y-4 leading-relaxed text-sm sm:text-base">
                   <p>
                     Ruqyah does not run proprietary tracking servers. When you navigate the site or play recitation streams, requests for static stylesheets, web fonts, and audio files are fetched from vetted third-party hosts.
@@ -869,11 +869,11 @@
                   <span class="font-code-mono text-xs uppercase tracking-wider text-primary font-bold">Theological Rigor</span>
                   <span class="px-2 py-0.5 rounded bg-surface-container font-code-mono text-[11px] text-on-surface-variant border border-border-subtle">§4.0 Sources &amp; Sanad</span>
                 </div>
-                
+
                 <h2 class="font-heading-section text-2xl sm:text-3xl font-bold text-on-surface mt-2 tracking-tight">
                   4. Scholarly Sources &amp; Theological Methodology
                 </h2>
-                
+
                 <div class="font-body-article text-on-surface-variant mt-4 space-y-4 leading-relaxed text-sm sm:text-base">
                   <p>
                     Ruqyah treats the digital preservation and presentation of the Divine Word and the Prophetic Sunnah with the utmost reverential accuracy. Quranic passages and Hadith citations presented on this website are compiled strictly from authentic, universally recognized Islamic reference authorities:
@@ -929,11 +929,11 @@
                   <span class="font-code-mono text-xs uppercase tracking-wider text-primary font-bold">Open Architecture</span>
                   <span class="px-2 py-0.5 rounded bg-surface-container font-code-mono text-[11px] text-on-surface-variant border border-border-subtle">§5.0 Licensing</span>
                 </div>
-                
+
                 <h2 class="font-heading-section text-2xl sm:text-3xl font-bold text-on-surface mt-2 tracking-tight">
                   5. License, Open Source &amp; Non-Commercial Mandate
                 </h2>
-                
+
                 <div class="font-body-article text-on-surface-variant mt-4 space-y-4 leading-relaxed text-sm sm:text-base">
                   <p>
                     The code architecture, layout styles, and interactive scripts powering this website are released under the open-source <a class="text-primary underline underline-offset-2" href="LICENSE">MIT License</a>. You are free to inspect, adapt, and build upon the software.
@@ -950,11 +950,11 @@
                   <span class="font-code-mono text-xs uppercase tracking-wider text-primary font-bold">User Sovereignty</span>
                   <span class="px-2 py-0.5 rounded bg-surface-container font-code-mono text-[11px] text-on-surface-variant border border-border-subtle">§6.0 Compliance</span>
                 </div>
-                
+
                 <h2 class="font-heading-section text-2xl sm:text-3xl font-bold text-on-surface mt-2 tracking-tight">
                   6. Your Rights &amp; Regulatory Alignment (GDPR, CCPA &amp; Sovereignty)
                 </h2>
-                
+
                 <div class="font-body-article text-on-surface-variant mt-4 space-y-4 leading-relaxed text-sm sm:text-base">
                   <p>
                     Because Ruqyah does not collect, process, or sell personal data on remote application servers, traditional regulatory requirements (such as GDPR in Europe and CCPA in California) are fulfilled automatically by our architecture:
@@ -986,7 +986,7 @@
                   <span class="font-code-mono text-xs uppercase tracking-wider text-primary font-bold">Clarifications</span>
                   <span class="px-2 py-0.5 rounded bg-surface-container font-code-mono text-[11px] text-on-surface-variant border border-border-subtle">§7.0 FAQ</span>
                 </div>
-                
+
                 <h2 class="font-heading-section text-2xl sm:text-3xl font-bold text-on-surface mt-2 tracking-tight">
                   7. Frequently Asked Questions
                 </h2>
@@ -1071,7 +1071,7 @@
   <div id="toastContainer" class="toast-container" aria-live="polite"></div>
 
   <!-- Keyboard Shortcuts Modal & Command Palette (WCAG 2.1.4 compliant) -->
-  <div id="searchModal" class="hidden fixed inset-0 z-[90] bg-on-surface/40 backdrop-blur-sm flex items-start justify-center pt-20 px-4" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle" aria-hidden="true">
+  <div id="searchModal" class="hidden fixed inset-0 z-[90] bg-on-surface/40 backdrop-blur-sm flex items-start justify-center pt-20 px-4" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle" aria-hidden="true" inert>
     <div class="w-full max-w-xl bg-surface rounded-xl border border-border-strong/30 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
       <div class="flex items-center px-4 border-b border-border-subtle bg-bg-canvas/50">
         <svg class="w-4 h-4 stroke-current text-primary mr-3" fill="none" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M20 20L16 16"></path></svg>
@@ -1112,7 +1112,7 @@
   </div>
 
   <!-- Keyboard Shortcuts Modal (WCAG 2.1.4 compliant) -->
-  <div id="shortcutsModal" class="hidden fixed inset-0 z-[95] bg-on-surface/40 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="shortcutsTitle" aria-hidden="true">
+  <div id="shortcutsModal" class="hidden fixed inset-0 z-[95] bg-on-surface/40 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="shortcutsTitle" aria-hidden="true" inert>
     <div class="w-full max-w-lg bg-surface rounded-xl border border-border-strong/30 shadow-2xl p-6 relative">
       <div class="flex items-center justify-between pb-4 mb-4 border-b border-border-subtle">
         <div class="flex items-center gap-2.5">
@@ -1132,7 +1132,7 @@
         </div>
         <label class="relative inline-flex items-center cursor-pointer">
           <input type="checkbox" id="toggleSingleShortcuts" class="sr-only peer" checked aria-label="Enable single-key shortcuts">
-          <div class="w-9 h-5 bg-surface-container rounded-full peer peer-checked:bg-primary peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all"></div>
+          <span class="w-9 h-5 bg-surface-container rounded-full peer peer-checked:bg-primary peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all"></span>
         </label>
       </div>
 
@@ -1180,7 +1180,7 @@
   <script src="buttons.js" defer></script>
   <script src="js/script.js" defer></script>
   <!-- Shared Layout: Header, Footer, Theme Switcher -->
-  <script src="js/shared-layout.js?v=2026-11-18-1643"></script>
+  <script defer src="js/shared-layout.js?v=2026-11-19-responsive-1"></script>
 
   <!-- Interactive Storage Inspector & Transparency Tools Script -->
   <script>

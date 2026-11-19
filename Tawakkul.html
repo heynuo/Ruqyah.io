@@ -2,39 +2,39 @@
 <html lang="en" dir="ltr">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="heynuo-build" content="2026-11-18-1643">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="heynuo-build" content="2026-11-19-responsive-1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Tawakkul — A Cinematic Reflection | Ruqyah</title>
   <meta name="description"
     content="A cinematic, bilingual reflection on tawakkul: taking the means while entrusting outcomes to Allah.">
-  <link rel="canonical" href="https://heynuo.github.io/Ruqyah.io/Tawakkul.html" />
-  <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#040507" />
-  <link rel="icon" href="assets/icons/icon-192.png" type="image/png" />
-  <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
-  <link rel="manifest" href="manifest.json" />
+  <link rel="canonical" href="https://heynuo.github.io/Ruqyah.io/Tawakkul.html">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#040507">
+  <link rel="icon" href="assets/icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <link rel="manifest" href="manifest.json">
   <!-- Open Graph -->
-  <meta property="og:title" content="Tawakkul — A Cinematic Reflection | Ruqyah" />
-  <meta property="og:description" content="A cinematic, bilingual reflection on tawakkul: taking the means while entrusting outcomes to Allah." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://heynuo.github.io/Ruqyah.io/Tawakkul.html" />
-  <meta property="og:image" content="https://heynuo.github.io/Ruqyah.io/assets/banners/og-banner.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
+  <meta property="og:title" content="Tawakkul — A Cinematic Reflection | Ruqyah">
+  <meta property="og:description" content="A cinematic, bilingual reflection on tawakkul: taking the means while entrusting outcomes to Allah.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://heynuo.github.io/Ruqyah.io/Tawakkul.html">
+  <meta property="og:image" content="https://heynuo.github.io/Ruqyah.io/assets/banners/og-banner.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Tawakkul — A Cinematic Reflection | Ruqyah" />
-  <meta name="twitter:description" content="A cinematic, bilingual reflection on tawakkul: taking the means while entrusting outcomes to Allah." />
-  <meta name="twitter:image" content="https://heynuo.github.io/Ruqyah.io/assets/banners/og-banner.jpg" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tawakkul — A Cinematic Reflection | Ruqyah">
+  <meta name="twitter:description" content="A cinematic, bilingual reflection on tawakkul: taking the means while entrusting outcomes to Allah.">
+  <meta name="twitter:image" content="https://heynuo.github.io/Ruqyah.io/assets/banners/og-banner.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev" crossorigin>
   <link rel="dns-prefetch" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev">
   <link
     href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,400;1,700&family=Oswald:wght@700&family=Noto+Nastaliq+Urdu:wght@400;700&family=JetBrains+Mono:wght@500;700&display=swap"
-    rel="stylesheet">
+    rel="stylesheet" media="print" onload="this.media='all'">
   <style>
     :root {
       --app-viewport-height: 100vh;
@@ -2429,8 +2429,8 @@
       }
     }
   </style>
-  <script src="js/r2-config.js"></script>
-  <script src="js/r2-media.js"></script>
+  <script defer src="js/r2-config.js"></script>
+  <script defer src="js/r2-media.js?v=2026-11-19-responsive-1"></script>
 </head>
 
 <body>
@@ -2472,13 +2472,13 @@
       <span class="eq-bar"></span>
       <span class="eq-bar"></span>
     </div>
-    <input id="scrubber" type="range" min="0" max="50.83" step="0.02" value="0" aria-label="Timeline position" />
+    <input id="scrubber" type="range" min="0" max="50.83" step="0.02" value="0" aria-label="Timeline position">
     <span id="time-display">00:00 / 00:50</span>
     <button type="button" id="ratio-btn" class="btn" title="Switch aspect ratio">16:9 Wide</button>
     <button type="button" id="fullscreen-btn" class="btn" title="Toggle fullscreen" aria-label="Toggle fullscreen"><span aria-hidden="true">⛶</span>
       Fullscreen</button>
-    <label class="btn" id="upload-label" for="audio-upload" role="button" tabindex="0">🎵 Audio</label>
-    <input id="audio-upload" type="file" accept="audio/*" style="display:none" />
+    <button type="button" class="btn" id="upload-label">🎵 Audio</button>
+    <input id="audio-upload" type="file" accept="audio/*" style="display:none">
     <span id="audio-status">MP3 Ready</span>
     <span class="hide-hint" style="font-size:11px;color:#9ca3af;">Press <b>H</b> to hide</span>
   </div>
@@ -2487,7 +2487,7 @@
   <audio id="audio-player" data-media-src="assets/audio/audio_6af41204e4ea39.02321364.mp3" preload="none" data-media-eager></audio>
 
   <!-- Main Viewport -->
-  <div id="stage-wrapper" class="ratio-16-9" role="main" aria-label="Tawakkul animated reflection">
+  <main id="stage-wrapper" class="ratio-16-9" aria-label="Tawakkul animated reflection">
     <div class="texture-grain"></div>
     <div class="texture-vignette"></div>
     <div class="glare"></div>
@@ -2602,7 +2602,7 @@
               <div style="font-size:19px;font-weight:800;color:#cbd5e1;">
                 Maaddi Asbaab-o-Wasaail
               </div>
-              <div style="font-size:12px;color:#64748b;">Worldly Means & Resources</div>
+              <div style="font-size:12px;color:#64748b;">Worldly Means &amp; Resources</div>
             </div>
             <div class="alttab-card focused" id="tab-card-2">
               <div style="font-size:11px;color:#38bdf8;">🎵 Spiritual Wakeup — Active</div>
@@ -2679,10 +2679,10 @@
             <div class="ig-notes-row">
               <div class="ig-note-card">
                 <div class="ig-reaction-bubble">❤️ 99+</div>
-                <div class="ig-bubble">KOI TAAQAT<br />NAHI HAI</div>
+                <div class="ig-bubble">KOI TAAQAT<br>NAHI HAI</div>
                 <div class="ig-avatar"
                   style="background:#073b66;color:#93c5fd;font-weight:800;font-size:15px;padding:14px;text-align:center;">
-                  Na Khair Ki<br />Na Shar Ki
+                  Na Khair Ki<br>Na Shar Ki
                 </div>
                 <div class="ig-username">Your note</div>
               </div>
@@ -2690,7 +2690,7 @@
               <div class="ig-note-card">
                 <div class="ig-reaction-bubble">🔥 52</div>
                 <div class="ig-bubble">
-                  JAB TAK KE<br />
+                  JAB TAK KE<br>
                   <span class="blur-word glint-flash" id="ig-blur-1" style="color:#fde047;">IZN-E-RABB NA HO</span>
                 </div>
                 <div class="ig-avatar"
@@ -2703,7 +2703,7 @@
               <div class="ig-note-card">
                 <div class="ig-reaction-bubble">💯 128</div>
                 <div class="ig-bubble">
-                  ALLAH NA CHAAHE TOH<br />
+                  ALLAH NA CHAAHE TOH<br>
                   <span class="blur-word glint-flash" id="ig-blur-2" style="color:#f87171;">KUCH NAHI HO SAKTA</span>
                 </div>
                 <div class="ig-avatar"
@@ -2735,7 +2735,7 @@
         <div class="broadsheet-grid">
           <!-- PAGE 1 -->
           <div class="np-page" id="np-page-1">
-            <div class="np-royal-seal">مُحَمَّدٌ<br />رَسُولُ اللَّهِ<br />ﷺ</div>
+            <div class="np-royal-seal">مُحَمَّدٌ<br>رَسُولُ اللَّهِ<br>ﷺ</div>
             <div class="np-top-banner">
               <span class="np-top-meta">HADITH • IBN ABBAS (RA)</span>
               <span class="np-top-title">THE TRUST REPORT</span>
@@ -2987,12 +2987,12 @@
     </div>
 
     <!-- Bottom Subtitle Bar -->
-    <div id="subtitle-bar" role="region" aria-label="Urdu narration and English translation" aria-live="polite" aria-atomic="true">
+    <section id="subtitle-bar" aria-label="Urdu narration and English translation" aria-live="polite" aria-atomic="true">
       <span class="caption-kicker">Urdu narration • English translation</span>
       <div id="sub-urdu" class="urdu" lang="ur">صرف اللہ ہی پر توکل رکھیں</div>
       <div id="sub-eng">A reflection: trust Allah alone.</div>
-    </div>
-  </div>
+    </section>
+  </main>
 
   <script>
     'use strict';
@@ -3119,12 +3119,7 @@
     });
 
     audioUpload.addEventListener('change', (e) => attachAudioFile(e.target.files[0]));
-    uploadLabel?.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        audioUpload.click();
-      }
-    });
+    uploadLabel?.addEventListener('click', () => audioUpload.click());
 
     window.addEventListener('dragover', (e) => {
       e.preventDefault();

@@ -1,4 +1,4 @@
-﻿[CmdletBinding()]
+[CmdletBinding()]
 param(
     [string]$Root = '',
 
@@ -78,10 +78,18 @@ $tailwindStylesheetMarker = [System.Text.RegularExpressions.Regex]::new(
     '(<link rel="stylesheet" href="css/tailwind\.generated\.css)(?:\?v=[^"]*)?(">)'
 )
 $tailwindStylesheetReplacement = '${1}?v=' + $Stamp + '${2}'
+$quranLightStylesheetMarker = [System.Text.RegularExpressions.Regex]::new(
+    '(<link rel="stylesheet" href="css/quran-light\.css)(?:\?v=[^"]*)?(">)'
+)
+$quranLightStylesheetReplacement = '${1}?v=' + $Stamp + '${2}'
 $sharedLayoutScriptMarker = [System.Text.RegularExpressions.Regex]::new(
-    '(<script src="js/shared-layout\.js)(?:\?v=[^"]*)?("></script>)'
+    '(<script (?:defer )?src="js/shared-layout\.js)(?:\?v=[^"]*)?("></script>)'
 )
 $sharedLayoutScriptReplacement = '${1}?v=' + $Stamp + '${2}'
+$r2MediaScriptMarker = [System.Text.RegularExpressions.Regex]::new(
+    '(<script (?:defer )?src="js/r2-media\.js)(?:\?v=[^"]*)?("></script>)'
+)
+$r2MediaScriptReplacement = '${1}?v=' + $Stamp + '${2}'
 
 $htmlChanged = @()
 $htmlMissing = @()
@@ -109,8 +117,16 @@ foreach ($file in (Get-ChildItem -LiteralPath $rootPath -Filter '*.html' -File))
         $tailwindStylesheetMissing += $file.Name
     }
 
+    if ($quranLightStylesheetMarker.IsMatch($newHtml)) {
+        $newHtml = $quranLightStylesheetMarker.Replace($newHtml, $quranLightStylesheetReplacement, 1)
+    }
+
     if ($sharedLayoutScriptMarker.IsMatch($newHtml)) {
         $newHtml = $sharedLayoutScriptMarker.Replace($newHtml, $sharedLayoutScriptReplacement, 1)
+    }
+
+    if ($r2MediaScriptMarker.IsMatch($newHtml)) {
+        $newHtml = $r2MediaScriptMarker.Replace($newHtml, $r2MediaScriptReplacement, 1)
     }
 
     if ($newHtml -cne $html) {
@@ -164,3 +180,4 @@ if ($tailwindStylesheetMissing.Count -gt 0) {
 Write-Host "The service worker will register as sw.js?v=$Stamp and retire the previous cache." -ForegroundColor DarkGray
 Write-Host "The shared stylesheet will load as css/shared-layout.css?v=$Stamp to avoid stale CSS on the first load." -ForegroundColor DarkGray
 Write-Host "The compiled Tailwind stylesheet will load as css/tailwind.generated.css?v=$Stamp." -ForegroundColor DarkGray
+Write-Host "The Qur'an light stylesheet will load as css/quran-light.css?v=$Stamp." -ForegroundColor DarkGray

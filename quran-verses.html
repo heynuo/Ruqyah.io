@@ -7,7 +7,7 @@
   <meta name="shell-type" content="web_standard">
   <meta name="theme-color" content="#005c55">
   <meta name="color-scheme" content="light dark">
-  <meta name="heynuo-build" content="2026-11-18-1643">
+  <meta name="heynuo-build" content="2026-11-19-responsive-1">
 
   <!-- Theme Pre-Hydration: Prevents Flash of Unstyled Content (FOUC) -->
   <script>
@@ -71,13 +71,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev" crossorigin>
   <link rel="dns-prefetch" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev">
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
   <!-- Shared Design System Tokens (Light / Dark / Sepia) -->
-  <link rel="stylesheet" href="css/shared-layout.css?v=2026-11-18-1643">
+  <link rel="stylesheet" href="css/shared-layout.css?v=2026-11-19-responsive-1">
 
-  <link rel="stylesheet" href="css/tailwind.generated.css?v=2026-11-18-1643">
+  <link rel="stylesheet" href="css/tailwind.generated.css?v=2026-11-19-responsive-1">
 
   <style>
     .is-playing-card {
@@ -113,8 +113,8 @@
       background: transparent;
     }
   </style>
-  <script src="js/r2-config.js"></script>
-  <script src="js/r2-media.js"></script>
+  <script defer src="js/r2-config.js"></script>
+  <script defer src="js/r2-media.js?v=2026-11-19-responsive-1"></script>
 </head>
 
 <body class="bg-bg-canvas font-body-article text-on-surface antialiased min-h-screen flex flex-col pb-32 transition-colors duration-200">
@@ -763,7 +763,7 @@
   </aside>
 
   <!-- KEYBOARD SHORTCUTS & SEARCH MODALS (REQUIRED BY VALIDATOR) -->
-  <div id="searchModal" class="hidden fixed inset-0 z-[90] bg-on-surface/40 backdrop-blur-sm flex items-start justify-center pt-20 px-4" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle" hidden>
+  <div id="searchModal" class="hidden fixed inset-0 z-[90] bg-on-surface/40 backdrop-blur-sm flex items-start justify-center pt-20 px-4" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle" hidden inert aria-hidden="true">
     <div class="w-full max-w-xl bg-surface rounded-xl border border-border-strong/30 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
       <div class="flex items-center px-4 border-b border-border-subtle bg-bg-canvas/50">
         <svg class="w-4 h-4 stroke-current text-primary mr-3" fill="none" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M20 20L16 16"></path></svg>
@@ -803,7 +803,7 @@
     </div>
   </div>
 
-  <div id="shortcutsModal" class="hidden fixed inset-0 z-[95] bg-on-surface/40 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="shortcutsTitle" hidden>
+  <div id="shortcutsModal" class="hidden fixed inset-0 z-[95] bg-on-surface/40 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="shortcutsTitle" hidden inert aria-hidden="true">
     <div class="w-full max-w-lg bg-surface rounded-xl border border-border-strong/30 shadow-2xl p-6 relative">
       <div class="flex items-center justify-between pb-4 mb-4 border-b border-border-subtle">
         <div class="flex items-center gap-2.5">
@@ -859,7 +859,7 @@
   </div>
 
   <!-- Shared Layout: Inject the navigation before the heavier verse data and rendering scripts. -->
-  <script src="js/shared-layout.js?v=2026-11-18-1643"></script>
+  <script defer src="js/shared-layout.js?v=2026-11-19-responsive-1"></script>
 
   <!-- LOAD DATA & CLIENT INTERACTIVITY SCRIPT -->
   <script src="js/data/master-verses-data.js"></script>
@@ -1210,7 +1210,7 @@
         const idLabel = isBonus ? v.id : ('#' + String(v.id).padStart(3, '0') + ' / 108');
         const surahDisplay = 'Surah ' + v.surahName + ' (' + v.verseRange + ') • ' + (v.surahTranslation || '');
         const crossRefBadge = v.crossReferenced ? (
-          '<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-amber-500/10 text-amber-700 dark:text-amber-300 font-mono text-[11px] font-bold">' +
+          '<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-amber-500/10 text-amber-800 dark:text-amber-300 font-mono text-[11px] font-bold">' +
             '<span class="material-symbols-outlined text-[14px]">star</span>' +
             '<span>' + v.crossReferenced + ' Cross-Referenced</span>' +
           '</span>'
@@ -2027,23 +2027,34 @@
       const shortcutsModal = document.getElementById('shortcutsModal');
       const searchModal = document.getElementById('searchModal');
 
+      // Keep the three modal-visibility mechanisms in sync with the shared
+      // conventions in js/script.js: the .hidden class/attribute, the .active
+      // class, and aria-hidden/inert. The shared handler owns open/close via
+      // the '?' and Escape hotkeys; these helpers must not desync it.
+      function setShortcutsModalVisible(show) {
+        if (!shortcutsModal) return;
+        shortcutsModal.classList.toggle('hidden', !show);
+        shortcutsModal.classList.toggle('active', show);
+        shortcutsModal.hidden = !show;
+        shortcutsModal.setAttribute('aria-hidden', String(!show));
+        if (show) shortcutsModal.removeAttribute('inert');
+        else shortcutsModal.setAttribute('inert', '');
+      }
+
       function hideAllModals() {
         togglePdfModal(false);
         if (searchModal) {
           searchModal.classList.add('hidden');
+          searchModal.classList.remove('active');
           searchModal.hidden = true;
+          searchModal.setAttribute('aria-hidden', 'true');
+          searchModal.setAttribute('inert', '');
         }
-        if (shortcutsModal) {
-          shortcutsModal.classList.add('hidden');
-          shortcutsModal.hidden = true;
-        }
+        setShortcutsModalVisible(false);
       }
 
       closeShortcutsBtn?.addEventListener('click', () => {
-        if (shortcutsModal) {
-          shortcutsModal.classList.add('hidden');
-          shortcutsModal.hidden = true;
-        }
+        setShortcutsModalVisible(false);
       });
 
       window.addEventListener('keydown', (e) => {
@@ -2064,8 +2075,8 @@
 
         if (e.key === '?') {
           if (shortcutsModal) {
-            const isHidden = shortcutsModal.classList.toggle('hidden');
-            shortcutsModal.hidden = isHidden;
+            const isVisible = shortcutsModal.getAttribute('aria-hidden') === 'false';
+            setShortcutsModalVisible(!isVisible);
           }
           return;
         }

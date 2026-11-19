@@ -33,6 +33,11 @@
   const basePath = getRepoBasePath();
   const isLocalFile = window.location.protocol === 'file:';
   const homeFile = isLocalFile ? 'index.html' : '';
+  const brandHref = basePath + homeFile;
+
+  // ── Platform-Aware Search Shortcut Hint ────────────────────────────────
+  const isApplePlatform = /Mac|iPhone|iPad|iPod/i.test(navigator.platform || navigator.userAgent || '');
+  const searchShortcutLabel = isApplePlatform ? '⌘K' : 'Ctrl+K';
 
   // ── Detect Active Page ──────────────────────────────────────────────────
   const cleanPath = window.location.pathname.replace(/\/+$/, '');
@@ -79,7 +84,7 @@
     }
 
     const activeClass = isActive
-      ? ' text-primary font-semibold bg-primary/10 shadow-2xs'
+      ? ' text-primary font-semibold bg-primary/10'
       : ' text-on-surface-variant hover:text-on-surface hover:bg-primary/5';
     return `<a class="nav-item-btn font-ui-interactive text-caption-meta px-3 py-1.5 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-primary/40${activeClass}" href="${href}" data-path="${item.path}"${currentAttr}>${item.label}</a>`;
   }
@@ -88,7 +93,6 @@
   function buildHeader() {
     const desktopNav = navItems.map(n => navLink(n, false)).join('\n');
     const mobileNav = navItems.map(n => navLink(n, true)).join('\n');
-    const brandHref = basePath + homeFile;
 
     return `<header id="heynuo-header" class="fixed top-0 left-0 right-0 z-50 h-14 bg-surface shadow-[0_1px_8px_rgba(15,23,42,0.04)]">
   <div class="max-w-7xl mx-auto h-14 px-margin-mobile md:px-margin flex items-center justify-between gap-space-md">
@@ -104,22 +108,24 @@
     </div>
     <div class="flex items-center gap-2 sm:gap-space-sm">
       <!-- Search Button Trigger -->
-      <button id="navSearchBtn" title="Search the archive (Ctrl+K)" class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-border-subtle bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container text-xs font-code-mono transition-all focus:outline-none focus:ring-1 focus:ring-primary shadow-xs cursor-pointer" type="button">
-        <span aria-hidden="true" class="material-symbols-outlined text-[16px] text-primary">search</span>
-        <span class="hidden sm:inline font-ui-interactive text-[12px]">Search</span>
-        <kbd class="hidden md:inline-flex items-center px-1 py-0.2 text-[10px] font-code-mono bg-surface rounded text-on-surface-variant border border-border-subtle">Ctrl+K</kbd>
+      <button id="navSearchBtn" type="button" title="Search the archive (${searchShortcutLabel})"
+        aria-label="Search the archive" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K"
+        class="header-search-trigger flex items-center rounded-lg border border-border-subtle bg-surface-container-low text-on-surface-variant cursor-pointer">
+        <span aria-hidden="true" class="material-symbols-outlined text-[17px] text-primary">search</span>
+        <span class="header-search-label hidden sm:inline font-ui-interactive">Search</span>
+        <kbd class="header-search-kbd hidden md:inline-flex items-center font-code-mono">${searchShortcutLabel}</kbd>
       </button>
 
       <!-- Theme Switcher -->
-      <div aria-label="Theme Switcher" class="flex items-center bg-surface-container-low rounded-lg p-0.5" role="group" id="heynuo-theme-switcher">
-        <button aria-label="Light theme" class="heynuo-theme-btn w-7 h-7 flex items-center justify-center rounded-lg transition-colors cursor-pointer" data-theme-value="light" type="button">
-          <span aria-hidden="true" class="material-symbols-outlined text-[16px]">light_mode</span>
+      <div aria-label="Color theme" class="header-theme-switch flex items-center" role="group" id="heynuo-theme-switcher">
+        <button aria-label="Light theme" title="Light theme" aria-pressed="false" class="heynuo-theme-btn" data-theme-value="light" type="button">
+          <span aria-hidden="true" class="material-symbols-outlined text-[17px]">light_mode</span>
         </button>
-        <button aria-label="Sepia theme" class="heynuo-theme-btn w-7 h-7 flex items-center justify-center rounded-lg transition-colors cursor-pointer" data-theme-value="sepia" type="button">
-          <span aria-hidden="true" class="material-symbols-outlined text-[16px]">auto_stories</span>
+        <button aria-label="Sepia theme" title="Sepia theme" aria-pressed="false" class="heynuo-theme-btn" data-theme-value="sepia" type="button">
+          <span aria-hidden="true" class="material-symbols-outlined text-[17px]">auto_stories</span>
         </button>
-        <button aria-label="Dark theme" class="heynuo-theme-btn w-7 h-7 flex items-center justify-center rounded-lg transition-colors cursor-pointer" data-theme-value="dark" type="button">
-          <span aria-hidden="true" class="material-symbols-outlined text-[16px]">dark_mode</span>
+        <button aria-label="Dark theme" title="Dark theme" aria-pressed="false" class="heynuo-theme-btn" data-theme-value="dark" type="button">
+          <span aria-hidden="true" class="material-symbols-outlined text-[17px]">dark_mode</span>
         </button>
       </div>
       <!-- Mobile Menu Toggle -->
@@ -131,12 +137,12 @@
   <!-- Mobile Navigation Drawer -->
   <nav id="heynuo-mobile-nav" class="lg:hidden absolute top-14 left-0 right-0 bg-surface shadow-xl border-t border-b border-border-subtle px-4 py-3 z-50" aria-label="Mobile Navigation" aria-hidden="true" inert>
     <div class="mb-3 pt-1">
-      <button id="mobileNavSearchBtn" class="w-full min-h-[44px] flex items-center justify-between px-3 py-2 rounded-lg bg-surface-container-low text-on-surface-variant text-xs font-ui-interactive border border-border-subtle cursor-pointer" type="button">
+      <button id="mobileNavSearchBtn" aria-label="Search the archive" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K" title="Search the archive (${searchShortcutLabel})" class="w-full min-h-[44px] flex items-center justify-between px-3 py-2 rounded-lg bg-surface-container-low text-on-surface-variant text-xs font-ui-interactive border border-border-subtle cursor-pointer" type="button">
         <span class="flex items-center gap-2">
           <span aria-hidden="true" class="material-symbols-outlined text-[18px] text-primary">search</span>
           <span>Search the archive...</span>
         </span>
-        <kbd class="px-1.5 py-0.5 rounded text-[10px] bg-surface border border-border-subtle font-code-mono">Ctrl+K</kbd>
+        <kbd class="px-1.5 py-0.5 rounded text-[10px] bg-surface border border-border-subtle font-code-mono">${searchShortcutLabel}</kbd>
       </button>
     </div>
     <div class="flex flex-col gap-1">
@@ -192,15 +198,7 @@
   function updateThemeButtons() {
     const current = getCurrentTheme();
     document.querySelectorAll('.heynuo-theme-btn').forEach(function (btn) {
-      const val = btn.getAttribute('data-theme-value');
-      btn.setAttribute('aria-pressed', String(val === current));
-      if (val === current) {
-        btn.classList.add('text-primary', 'bg-surface');
-        btn.classList.remove('text-on-surface-variant', 'hover:text-on-surface', 'hover:bg-surface');
-      } else {
-        btn.classList.remove('text-primary', 'bg-surface');
-        btn.classList.add('text-on-surface-variant', 'hover:text-on-surface', 'hover:bg-surface');
-      }
+      btn.setAttribute('aria-pressed', String(btn.getAttribute('data-theme-value') === current));
     });
   }
 
@@ -358,11 +356,18 @@
   }
 
   // ── Load Ruqyah AI Companion (Claude Fable 5.2) ──────────────────────────
-  if (!document.getElementById('ruqyah-ai-script')) {
+  function loadRuqyahAI() {
+    if (document.getElementById('ruqyah-ai-script')) return;
     var aiScript = document.createElement('script');
     aiScript.id = 'ruqyah-ai-script';
     aiScript.src = 'js/ruqyah-ai.js';
     aiScript.defer = true;
     document.body.appendChild(aiScript);
+  }
+
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(loadRuqyahAI, { timeout: 1800 });
+  } else {
+    window.setTimeout(loadRuqyahAI, 900);
   }
 })();

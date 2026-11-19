@@ -1,9 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="heynuo-build" content="2026-11-18-1643">
+<meta name="heynuo-build" content="2026-11-19-responsive-1">
 <meta name="theme-color" content="#03080b">
 <title>Allah — A Tribute | Makane × Koodappirannor</title>
 <meta name="description" content="An immersive cinematic tribute to Allah — the Most Merciful, Creator of Peace, Light Upon Light — with remembrance, recitation, and a sacred visual atmosphere.">
@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev" crossorigin>
   <link rel="dns-prefetch" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <style>
 :root{
   --bg:#020609;
@@ -329,8 +329,8 @@ body.is-embedded .back-to-archive{display:none!important}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
 </style>
-  <script src="js/r2-config.js"></script>
-  <script src="js/r2-media.js"></script>
+  <script defer src="js/r2-config.js"></script>
+  <script defer src="js/r2-media.js?v=2026-11-19-responsive-1"></script>
 </head>
 <body>
 <a href="index.html" class="back-to-archive" id="backToArchiveBtn" title="Back to Ruqyah Archive" aria-label="Back to Ruqyah Archive">
@@ -416,7 +416,7 @@ body.is-embedded .back-to-archive{display:none!important}
   <main class="hero">
     <div class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
     <div class="eyebrow">IN REMEMBRANCE OF THE ALMIGHTY</div>
-    <div class="calligraphy" id="calligraphy" lang="ar" aria-label="Allah">اللّٰه</div>
+    <div class="calligraphy" id="calligraphy" lang="ar" role="img" aria-label="Allah">اللّٰه</div>
     <div class="hero-rule"></div>
     <h1 class="hero-title">All Praise Belongs To Allah</h1>
     <div class="hero-sub">The Most Merciful · Creator of Peace · Light Upon Light</div>
@@ -475,7 +475,6 @@ body.is-embedded .back-to-archive{display:none!important}
   // The muxed MP4 is both the background video and the audio player.
   const backgroundVideo = document.getElementById('backgroundVideo');
   const audio = backgroundVideo;
-  const MEDIA_SOURCE = window.r2MediaUrl('assets/allah-background-videos/allah-background-combined.mp4');
   const startGate = document.getElementById('startGate');
   const startBtn = document.getElementById('startBtn');
   const playBtn = document.getElementById('playBtn');
@@ -614,7 +613,10 @@ body.is-embedded .back-to-archive{display:none!important}
 
   async function beginPlayback(){
     if (!audio.src && !audio.currentSrc) {
-      audio.src = 'assets/allah-background-videos/allah-background-combined.mp4';
+      const localMediaPath = 'assets/allah-background-videos/allah-background-combined.mp4';
+      /* Resolve through the same R2 public URL the <source data-media-src> uses;
+         the heavy media is not committed to Git, so the bare local path 404s in production. */
+      audio.src = (typeof window.r2MediaUrl === 'function') ? window.r2MediaUrl(localMediaPath) : localMediaPath;
     }
     initAudioGraph();
     try {

@@ -7,7 +7,7 @@
   <meta content="web_standard" name="shell-type">
   <meta name="theme-color" content="#005c55">
   <meta name="color-scheme" content="light dark">
-  <meta name="heynuo-build" content="2026-11-18-1643">
+  <meta name="heynuo-build" content="2026-11-19-responsive-1">
 
   <!-- Theme Pre-Hydration: Prevents Flash of Unstyled Content (FOUC) -->
   <script>
@@ -110,18 +110,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev" crossorigin>
   <link rel="dns-prefetch" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev">
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
   <!-- Shared Design System Tokens (Light / Dark / Sepia) -->
-  <link rel="stylesheet" href="css/shared-layout.css?v=2026-11-18-1643">
+  <link rel="stylesheet" href="css/shared-layout.css?v=2026-11-19-responsive-1">
 
-  <link rel="stylesheet" href="css/tailwind.generated.css?v=2026-11-18-1643">
+  <link rel="stylesheet" href="css/tailwind.generated.css?v=2026-11-19-responsive-1">
 
   <!-- Qur'an is a Light Luminous Glow Stylesheet -->
   <link rel="stylesheet" href="css/quran-light.css?v=2026-11-15-1">
-  <script src="js/r2-config.js"></script>
-  <script src="js/r2-media.js"></script>
+  <script defer src="js/r2-config.js"></script>
+  <script defer src="js/r2-media.js?v=2026-11-19-responsive-1"></script>
 </head>
 
 <body class="bg-bg-canvas font-body-article text-on-surface antialiased min-h-screen flex flex-col pb-32 transition-colors duration-200">
@@ -133,7 +133,7 @@
       <!-- Interactive Sub-Header Navigation & Reading Controls Bar -->
       <section class="sticky top-14 z-30 w-full bg-surface-container-lowest/95 backdrop-blur shadow-sm border-b border-subtle">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-2 flex flex-col xl:flex-row items-stretch xl:items-center justify-between gap-space-sm">
-          
+
           <!-- Main Category Tabs -->
           <nav aria-label="Qur'an Functional Modes" class="flex items-center gap-1 overflow-x-auto no-scrollbar font-ui-interactive text-ui-interactive py-1" id="mode-tabs">
             <button class="mode-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary-container text-on-primary-container font-semibold whitespace-nowrap shadow-sm cursor-pointer transition-all" data-mode="directory" type="button">
@@ -398,7 +398,7 @@
               Reset Filters &amp; Search
             </button>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="1" data-type="Makki" data-rev="5" data-juz="1" data-name="al-fātihah" data-meaning="the opening" data-arabic="سُورَةُ الفَاتِحَةِ" tabindex="0" role="button" aria-label="Surah 1 Al-Fātihah">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="1" data-type="Makki" data-rev="5" data-juz="1" data-name="al-fātihah" data-meaning="the opening" data-arabic="سُورَةُ الفَاتِحَةِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#005c55] text-white font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -409,7 +409,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Fātihah
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Opening</span>
                 </div>
@@ -430,7 +430,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="2" data-type="Madani" data-rev="87" data-juz="1" data-name="al-baqarah" data-meaning="the cow" data-arabic="سُورَةُ البَقَرَةِ" tabindex="0" role="button" aria-label="Surah 2 Al-Baqarah">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="2" data-type="Madani" data-rev="87" data-juz="1" data-name="al-baqarah" data-meaning="the cow" data-arabic="سُورَةُ البَقَرَةِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -441,7 +441,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Baqarah
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Cow</span>
                 </div>
@@ -462,7 +462,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="3" data-type="Madani" data-rev="89" data-juz="3" data-name="āli 'imrān" data-meaning="family of imran" data-arabic="سُورَةُ آلِ عِمْرَانَ" tabindex="0" role="button" aria-label="Surah 3 Āli 'Imrān">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="3" data-type="Madani" data-rev="89" data-juz="3" data-name="āli 'imrān" data-meaning="family of imran" data-arabic="سُورَةُ آلِ عِمْرَانَ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -473,7 +473,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Āli 'Imrān
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">Family of Imran</span>
                 </div>
@@ -494,7 +494,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="4" data-type="Madani" data-rev="92" data-juz="4" data-name="an-nisā'" data-meaning="the women" data-arabic="سُورَةُ النِّسَاءِ" tabindex="0" role="button" aria-label="Surah 4 An-Nisā'">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="4" data-type="Madani" data-rev="92" data-juz="4" data-name="an-nisā'" data-meaning="the women" data-arabic="سُورَةُ النِّسَاءِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -505,7 +505,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       An-Nisā'
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Women</span>
                 </div>
@@ -526,7 +526,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="5" data-type="Madani" data-rev="112" data-juz="6" data-name="al-mā'idah" data-meaning="the table spread" data-arabic="سُورَةُ المَائِدَةِ" tabindex="0" role="button" aria-label="Surah 5 Al-Mā'idah">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="5" data-type="Madani" data-rev="112" data-juz="6" data-name="al-mā'idah" data-meaning="the table spread" data-arabic="سُورَةُ المَائِدَةِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -537,7 +537,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Mā'idah
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Table Spread</span>
                 </div>
@@ -558,7 +558,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="6" data-type="Makki" data-rev="55" data-juz="7" data-name="al-an'ām" data-meaning="the cattle" data-arabic="سُورَةُ الأَنْعَامِ" tabindex="0" role="button" aria-label="Surah 6 Al-An'ām">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="6" data-type="Makki" data-rev="55" data-juz="7" data-name="al-an'ām" data-meaning="the cattle" data-arabic="سُورَةُ الأَنْعَامِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -569,7 +569,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-An'ām
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Cattle</span>
                 </div>
@@ -590,7 +590,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="7" data-type="Makki" data-rev="39" data-juz="8" data-name="al-a'rāf" data-meaning="the heights" data-arabic="سُورَةُ الأَعْرَافِ" tabindex="0" role="button" aria-label="Surah 7 Al-A'rāf">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="7" data-type="Makki" data-rev="39" data-juz="8" data-name="al-a'rāf" data-meaning="the heights" data-arabic="سُورَةُ الأَعْرَافِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -601,7 +601,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-A'rāf
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Heights</span>
                 </div>
@@ -622,7 +622,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="8" data-type="Madani" data-rev="88" data-juz="9" data-name="al-anfāl" data-meaning="the spoils of war" data-arabic="سُورَةُ الأَنْفَالِ" tabindex="0" role="button" aria-label="Surah 8 Al-Anfāl">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="8" data-type="Madani" data-rev="88" data-juz="9" data-name="al-anfāl" data-meaning="the spoils of war" data-arabic="سُورَةُ الأَنْفَالِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -633,7 +633,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Anfāl
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Spoils of War</span>
                 </div>
@@ -654,7 +654,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="9" data-type="Madani" data-rev="113" data-juz="10" data-name="at-tawbah" data-meaning="the repentance" data-arabic="سُورَةُ التَّوْبَةِ" tabindex="0" role="button" aria-label="Surah 9 At-Tawbah">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="9" data-type="Madani" data-rev="113" data-juz="10" data-name="at-tawbah" data-meaning="the repentance" data-arabic="سُورَةُ التَّوْبَةِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -665,7 +665,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       At-Tawbah
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Repentance</span>
                 </div>
@@ -686,7 +686,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="10" data-type="Makki" data-rev="51" data-juz="11" data-name="yūnus" data-meaning="jonah" data-arabic="سُورَةُ يُونُسَ" tabindex="0" role="button" aria-label="Surah 10 Yūnus">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="10" data-type="Makki" data-rev="51" data-juz="11" data-name="yūnus" data-meaning="jonah" data-arabic="سُورَةُ يُونُسَ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -697,7 +697,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Yūnus
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">Jonah</span>
                 </div>
@@ -718,7 +718,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="11" data-type="Makki" data-rev="52" data-juz="11" data-name="hūd" data-meaning="hud" data-arabic="سُورَةُ هُودٍ" tabindex="0" role="button" aria-label="Surah 11 Hūd">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="11" data-type="Makki" data-rev="52" data-juz="11" data-name="hūd" data-meaning="hud" data-arabic="سُورَةُ هُودٍ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -729,7 +729,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Hūd
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">Hud</span>
                 </div>
@@ -750,7 +750,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="12" data-type="Makki" data-rev="53" data-juz="12" data-name="yūsuf" data-meaning="joseph" data-arabic="سُورَةُ يُوسُفَ" tabindex="0" role="button" aria-label="Surah 12 Yūsuf">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="12" data-type="Makki" data-rev="53" data-juz="12" data-name="yūsuf" data-meaning="joseph" data-arabic="سُورَةُ يُوسُفَ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -761,7 +761,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Yūsuf
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">Joseph</span>
                 </div>
@@ -782,7 +782,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="13" data-type="Madani" data-rev="96" data-juz="13" data-name="ar-ra'd" data-meaning="the thunder" data-arabic="سُورَةُ الرَّعْدِ" tabindex="0" role="button" aria-label="Surah 13 Ar-Ra'd">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="13" data-type="Madani" data-rev="96" data-juz="13" data-name="ar-ra'd" data-meaning="the thunder" data-arabic="سُورَةُ الرَّعْدِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -793,7 +793,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Ar-Ra'd
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Thunder</span>
                 </div>
@@ -814,7 +814,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="14" data-type="Makki" data-rev="72" data-juz="13" data-name="ibrāhīm" data-meaning="abraham" data-arabic="سُورَةُ إِبْرَاهِيمَ" tabindex="0" role="button" aria-label="Surah 14 Ibrāhīm">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="14" data-type="Makki" data-rev="72" data-juz="13" data-name="ibrāhīm" data-meaning="abraham" data-arabic="سُورَةُ إِبْرَاهِيمَ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -825,7 +825,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Ibrāhīm
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">Abraham</span>
                 </div>
@@ -846,7 +846,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="15" data-type="Makki" data-rev="54" data-juz="14" data-name="al-hijr" data-meaning="the rocky tract" data-arabic="سُورَةُ الحِجْرِ" tabindex="0" role="button" aria-label="Surah 15 Al-Hijr">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="15" data-type="Makki" data-rev="54" data-juz="14" data-name="al-hijr" data-meaning="the rocky tract" data-arabic="سُورَةُ الحِجْرِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -857,7 +857,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Hijr
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Rocky Tract</span>
                 </div>
@@ -878,7 +878,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="16" data-type="Makki" data-rev="70" data-juz="14" data-name="an-nahl" data-meaning="the bee" data-arabic="سُورَةُ النَّحْلِ" tabindex="0" role="button" aria-label="Surah 16 An-Nahl">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="16" data-type="Makki" data-rev="70" data-juz="14" data-name="an-nahl" data-meaning="the bee" data-arabic="سُورَةُ النَّحْلِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -889,7 +889,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       An-Nahl
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Bee</span>
                 </div>
@@ -910,7 +910,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="17" data-type="Makki" data-rev="50" data-juz="15" data-name="al-isrā'" data-meaning="the night journey" data-arabic="سُورَةُ الإِسْرَاءِ" tabindex="0" role="button" aria-label="Surah 17 Al-Isrā'">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="17" data-type="Makki" data-rev="50" data-juz="15" data-name="al-isrā'" data-meaning="the night journey" data-arabic="سُورَةُ الإِسْرَاءِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -921,7 +921,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Isrā'
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Night Journey</span>
                 </div>
@@ -942,7 +942,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="18" data-type="Makki" data-rev="69" data-juz="15" data-name="al-kahf" data-meaning="the cave" data-arabic="سُورَةُ الكَهْفِ" tabindex="0" role="button" aria-label="Surah 18 Al-Kahf">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="18" data-type="Makki" data-rev="69" data-juz="15" data-name="al-kahf" data-meaning="the cave" data-arabic="سُورَةُ الكَهْفِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -974,7 +974,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="19" data-type="Makki" data-rev="44" data-juz="16" data-name="maryam" data-meaning="mary" data-arabic="سُورَةُ مَرْيَمَ" tabindex="0" role="button" aria-label="Surah 19 Maryam">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="19" data-type="Makki" data-rev="44" data-juz="16" data-name="maryam" data-meaning="mary" data-arabic="سُورَةُ مَرْيَمَ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -985,7 +985,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Maryam
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">Mary</span>
                 </div>
@@ -1006,7 +1006,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="20" data-type="Makki" data-rev="45" data-juz="16" data-name="tā-hā" data-meaning="ta-ha" data-arabic="سُورَةُ طه" tabindex="0" role="button" aria-label="Surah 20 Tā-Hā">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="20" data-type="Makki" data-rev="45" data-juz="16" data-name="tā-hā" data-meaning="ta-ha" data-arabic="سُورَةُ طه" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1017,7 +1017,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Tā-Hā
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">Ta-Ha</span>
                 </div>
@@ -1038,7 +1038,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="21" data-type="Makki" data-rev="73" data-juz="17" data-name="al-anbiyā'" data-meaning="the prophets" data-arabic="سُورَةُ الأَنْبِيَاءِ" tabindex="0" role="button" aria-label="Surah 21 Al-Anbiyā'">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="21" data-type="Makki" data-rev="73" data-juz="17" data-name="al-anbiyā'" data-meaning="the prophets" data-arabic="سُورَةُ الأَنْبِيَاءِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1049,7 +1049,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Anbiyā'
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Prophets</span>
                 </div>
@@ -1070,7 +1070,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="22" data-type="Madani" data-rev="103" data-juz="17" data-name="al-hajj" data-meaning="the pilgrimage" data-arabic="سُورَةُ الحَجِّ" tabindex="0" role="button" aria-label="Surah 22 Al-Hajj">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="22" data-type="Madani" data-rev="103" data-juz="17" data-name="al-hajj" data-meaning="the pilgrimage" data-arabic="سُورَةُ الحَجِّ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1081,7 +1081,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Hajj
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Pilgrimage</span>
                 </div>
@@ -1102,7 +1102,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="23" data-type="Makki" data-rev="74" data-juz="18" data-name="al-mu'minūn" data-meaning="the believers" data-arabic="سُورَةُ المُؤْمِنُونَ" tabindex="0" role="button" aria-label="Surah 23 Al-Mu'minūn">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="23" data-type="Makki" data-rev="74" data-juz="18" data-name="al-mu'minūn" data-meaning="the believers" data-arabic="سُورَةُ المُؤْمِنُونَ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1113,7 +1113,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Mu'minūn
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Believers</span>
                 </div>
@@ -1134,7 +1134,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="24" data-type="Madani" data-rev="102" data-juz="18" data-name="an-nūr" data-meaning="the light" data-arabic="سُورَةُ النُّورِ" tabindex="0" role="button" aria-label="Surah 24 An-Nūr">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="24" data-type="Madani" data-rev="102" data-juz="18" data-name="an-nūr" data-meaning="the light" data-arabic="سُورَةُ النُّورِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1145,7 +1145,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       An-Nūr
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Light</span>
                 </div>
@@ -1166,7 +1166,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="25" data-type="Makki" data-rev="42" data-juz="18" data-name="al-furqān" data-meaning="the criterion" data-arabic="سُورَةُ الفُرْقَانِ" tabindex="0" role="button" aria-label="Surah 25 Al-Furqān">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="25" data-type="Makki" data-rev="42" data-juz="18" data-name="al-furqān" data-meaning="the criterion" data-arabic="سُورَةُ الفُرْقَانِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1177,7 +1177,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Furqān
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Criterion</span>
                 </div>
@@ -1198,7 +1198,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="26" data-type="Makki" data-rev="47" data-juz="19" data-name="ash-shu'arā'" data-meaning="the poets" data-arabic="سُورَةُ الشُّعَرَاءِ" tabindex="0" role="button" aria-label="Surah 26 Ash-Shu'arā'">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="26" data-type="Makki" data-rev="47" data-juz="19" data-name="ash-shu'arā'" data-meaning="the poets" data-arabic="سُورَةُ الشُّعَرَاءِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1209,7 +1209,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Ash-Shu'arā'
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Poets</span>
                 </div>
@@ -1230,7 +1230,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="27" data-type="Makki" data-rev="48" data-juz="19" data-name="an-naml" data-meaning="the ant" data-arabic="سُورَةُ النَّمْلِ" tabindex="0" role="button" aria-label="Surah 27 An-Naml">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="27" data-type="Makki" data-rev="48" data-juz="19" data-name="an-naml" data-meaning="the ant" data-arabic="سُورَةُ النَّمْلِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1241,7 +1241,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       An-Naml
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Ant</span>
                 </div>
@@ -1262,7 +1262,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="28" data-type="Makki" data-rev="49" data-juz="20" data-name="al-qasas" data-meaning="the stories" data-arabic="سُورَةُ القَصَصِ" tabindex="0" role="button" aria-label="Surah 28 Al-Qasas">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="28" data-type="Makki" data-rev="49" data-juz="20" data-name="al-qasas" data-meaning="the stories" data-arabic="سُورَةُ القَصَصِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1273,7 +1273,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Qasas
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Stories</span>
                 </div>
@@ -1294,7 +1294,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="29" data-type="Makki" data-rev="85" data-juz="20" data-name="al-'ankabūt" data-meaning="the spider" data-arabic="سُورَةُ العَنْكَبُوتِ" tabindex="0" role="button" aria-label="Surah 29 Al-'Ankabūt">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="29" data-type="Makki" data-rev="85" data-juz="20" data-name="al-'ankabūt" data-meaning="the spider" data-arabic="سُورَةُ العَنْكَبُوتِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1305,7 +1305,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-'Ankabūt
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Spider</span>
                 </div>
@@ -1326,7 +1326,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="30" data-type="Makki" data-rev="84" data-juz="21" data-name="ar-rūm" data-meaning="the romans" data-arabic="سُورَةُ الرُّومِ" tabindex="0" role="button" aria-label="Surah 30 Ar-Rūm">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="30" data-type="Makki" data-rev="84" data-juz="21" data-name="ar-rūm" data-meaning="the romans" data-arabic="سُورَةُ الرُّومِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1337,7 +1337,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Ar-Rūm
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Romans</span>
                 </div>
@@ -1358,7 +1358,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="31" data-type="Makki" data-rev="57" data-juz="21" data-name="luqmān" data-meaning="luqman" data-arabic="سُورَةُ لُقْمَانَ" tabindex="0" role="button" aria-label="Surah 31 Luqmān">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="31" data-type="Makki" data-rev="57" data-juz="21" data-name="luqmān" data-meaning="luqman" data-arabic="سُورَةُ لُقْمَانَ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1369,7 +1369,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Luqmān
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">Luqman</span>
                 </div>
@@ -1390,7 +1390,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="32" data-type="Makki" data-rev="75" data-juz="21" data-name="as-sajdah" data-meaning="the prostration" data-arabic="سُورَةُ السَّجْدَةِ" tabindex="0" role="button" aria-label="Surah 32 As-Sajdah">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="32" data-type="Makki" data-rev="75" data-juz="21" data-name="as-sajdah" data-meaning="the prostration" data-arabic="سُورَةُ السَّجْدَةِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1401,7 +1401,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       As-Sajdah
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Prostration</span>
                 </div>
@@ -1422,7 +1422,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="33" data-type="Madani" data-rev="90" data-juz="21" data-name="al-ahzāb" data-meaning="the combined forces" data-arabic="سُورَةُ الأَحْزَابِ" tabindex="0" role="button" aria-label="Surah 33 Al-Ahzāb">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="33" data-type="Madani" data-rev="90" data-juz="21" data-name="al-ahzāb" data-meaning="the combined forces" data-arabic="سُورَةُ الأَحْزَابِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1433,7 +1433,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Ahzāb
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Combined Forces</span>
                 </div>
@@ -1454,7 +1454,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="34" data-type="Makki" data-rev="58" data-juz="22" data-name="saba'" data-meaning="sheba" data-arabic="سُورَةُ سَبَإٍ" tabindex="0" role="button" aria-label="Surah 34 Saba'">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="34" data-type="Makki" data-rev="58" data-juz="22" data-name="saba'" data-meaning="sheba" data-arabic="سُورَةُ سَبَإٍ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1465,7 +1465,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Saba'
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">Sheba</span>
                 </div>
@@ -1486,7 +1486,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="35" data-type="Makki" data-rev="43" data-juz="22" data-name="fātir" data-meaning="originator" data-arabic="سُورَةُ فَاطِرٍ" tabindex="0" role="button" aria-label="Surah 35 Fātir">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="35" data-type="Makki" data-rev="43" data-juz="22" data-name="fātir" data-meaning="originator" data-arabic="سُورَةُ فَاطِرٍ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1497,7 +1497,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Fātir
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">Originator</span>
                 </div>
@@ -1518,7 +1518,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="36" data-type="Makki" data-rev="41" data-juz="22" data-name="yā-sīn" data-meaning="ya-sin (heart of qur'an)" data-arabic="سُورَةُ يس" tabindex="0" role="button" aria-label="Surah 36 Yā-Sīn">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="36" data-type="Makki" data-rev="41" data-juz="22" data-name="yā-sīn" data-meaning="ya-sin (heart of qur'an)" data-arabic="سُورَةُ يس" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1529,7 +1529,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Yā-Sīn
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">Ya-Sin (Heart of Qur'an)</span>
                 </div>
@@ -1550,7 +1550,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="37" data-type="Makki" data-rev="56" data-juz="23" data-name="as-sāffāt" data-meaning="those who set the ranks" data-arabic="سُورَةُ الصَّافَّاتِ" tabindex="0" role="button" aria-label="Surah 37 As-Sāffāt">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="37" data-type="Makki" data-rev="56" data-juz="23" data-name="as-sāffāt" data-meaning="those who set the ranks" data-arabic="سُورَةُ الصَّافَّاتِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1561,7 +1561,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       As-Sāffāt
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">Those Who Set The Ranks</span>
                 </div>
@@ -1582,7 +1582,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="38" data-type="Makki" data-rev="38" data-juz="23" data-name="sād" data-meaning="the letter sad" data-arabic="سُورَةُ ص" tabindex="0" role="button" aria-label="Surah 38 Sād">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="38" data-type="Makki" data-rev="38" data-juz="23" data-name="sād" data-meaning="the letter sad" data-arabic="سُورَةُ ص" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1593,7 +1593,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Sād
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Letter Sad</span>
                 </div>
@@ -1614,7 +1614,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="39" data-type="Makki" data-rev="59" data-juz="23" data-name="az-zumar" data-meaning="the troops" data-arabic="سُورَةُ الزُّمَرِ" tabindex="0" role="button" aria-label="Surah 39 Az-Zumar">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="39" data-type="Makki" data-rev="59" data-juz="23" data-name="az-zumar" data-meaning="the troops" data-arabic="سُورَةُ الزُّمَرِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1625,7 +1625,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Az-Zumar
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Troops</span>
                 </div>
@@ -1646,7 +1646,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="40" data-type="Makki" data-rev="60" data-juz="24" data-name="ghāfir" data-meaning="the forgiver" data-arabic="سُورَةُ غَافِرٍ" tabindex="0" role="button" aria-label="Surah 40 Ghāfir">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="40" data-type="Makki" data-rev="60" data-juz="24" data-name="ghāfir" data-meaning="the forgiver" data-arabic="سُورَةُ غَافِرٍ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1657,7 +1657,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Ghāfir
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Forgiver</span>
                 </div>
@@ -1678,7 +1678,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="41" data-type="Makki" data-rev="61" data-juz="24" data-name="fussilat" data-meaning="explained in detail" data-arabic="سُورَةُ فُصِّلَتْ" tabindex="0" role="button" aria-label="Surah 41 Fussilat">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="41" data-type="Makki" data-rev="61" data-juz="24" data-name="fussilat" data-meaning="explained in detail" data-arabic="سُورَةُ فُصِّلَتْ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1689,7 +1689,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Fussilat
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">Explained In Detail</span>
                 </div>
@@ -1710,7 +1710,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="42" data-type="Makki" data-rev="62" data-juz="25" data-name="ash-shūrā" data-meaning="the consultation" data-arabic="سُورَةُ الشُّورَىٰ" tabindex="0" role="button" aria-label="Surah 42 Ash-Shūrā">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="42" data-type="Makki" data-rev="62" data-juz="25" data-name="ash-shūrā" data-meaning="the consultation" data-arabic="سُورَةُ الشُّورَىٰ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1721,7 +1721,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Ash-Shūrā
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Consultation</span>
                 </div>
@@ -1742,7 +1742,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="43" data-type="Makki" data-rev="63" data-juz="25" data-name="az-zukhruf" data-meaning="the gold adornments" data-arabic="سُورَةُ الزُّخْرُفِ" tabindex="0" role="button" aria-label="Surah 43 Az-Zukhruf">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="43" data-type="Makki" data-rev="63" data-juz="25" data-name="az-zukhruf" data-meaning="the gold adornments" data-arabic="سُورَةُ الزُّخْرُفِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1753,7 +1753,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Az-Zukhruf
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Gold Adornments</span>
                 </div>
@@ -1774,7 +1774,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="44" data-type="Makki" data-rev="64" data-juz="25" data-name="ad-dukhān" data-meaning="the smoke" data-arabic="سُورَةُ الدُّخَانِ" tabindex="0" role="button" aria-label="Surah 44 Ad-Dukhān">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="44" data-type="Makki" data-rev="64" data-juz="25" data-name="ad-dukhān" data-meaning="the smoke" data-arabic="سُورَةُ الدُّخَانِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1785,7 +1785,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Ad-Dukhān
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Smoke</span>
                 </div>
@@ -1806,7 +1806,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="45" data-type="Makki" data-rev="65" data-juz="25" data-name="al-jāthiyah" data-meaning="the crouching" data-arabic="سُورَةُ الجَاثِيَةِ" tabindex="0" role="button" aria-label="Surah 45 Al-Jāthiyah">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="45" data-type="Makki" data-rev="65" data-juz="25" data-name="al-jāthiyah" data-meaning="the crouching" data-arabic="سُورَةُ الجَاثِيَةِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1817,7 +1817,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Jāthiyah
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Crouching</span>
                 </div>
@@ -1838,7 +1838,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="46" data-type="Makki" data-rev="66" data-juz="26" data-name="al-ahqāf" data-meaning="the wind-curved dunes" data-arabic="سُورَةُ الأَحْقَافِ" tabindex="0" role="button" aria-label="Surah 46 Al-Ahqāf">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="46" data-type="Makki" data-rev="66" data-juz="26" data-name="al-ahqāf" data-meaning="the wind-curved dunes" data-arabic="سُورَةُ الأَحْقَافِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1849,7 +1849,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Ahqāf
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Wind-Curved Dunes</span>
                 </div>
@@ -1870,7 +1870,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="47" data-type="Madani" data-rev="95" data-juz="26" data-name="muhammad" data-meaning="muhammad" data-arabic="سُورَةُ مُحَمَّدٍ" tabindex="0" role="button" aria-label="Surah 47 Muhammad">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="47" data-type="Madani" data-rev="95" data-juz="26" data-name="muhammad" data-meaning="muhammad" data-arabic="سُورَةُ مُحَمَّدٍ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1881,7 +1881,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Muhammad
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">Muhammad</span>
                 </div>
@@ -1902,7 +1902,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="48" data-type="Madani" data-rev="111" data-juz="26" data-name="al-fath" data-meaning="the victory" data-arabic="سُورَةُ الفَتْحِ" tabindex="0" role="button" aria-label="Surah 48 Al-Fath">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="48" data-type="Madani" data-rev="111" data-juz="26" data-name="al-fath" data-meaning="the victory" data-arabic="سُورَةُ الفَتْحِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1913,7 +1913,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Fath
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Victory</span>
                 </div>
@@ -1934,7 +1934,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="49" data-type="Madani" data-rev="106" data-juz="26" data-name="al-hujurāt" data-meaning="the rooms" data-arabic="سُورَةُ الحُجُرَاتِ" tabindex="0" role="button" aria-label="Surah 49 Al-Hujurāt">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="49" data-type="Madani" data-rev="106" data-juz="26" data-name="al-hujurāt" data-meaning="the rooms" data-arabic="سُورَةُ الحُجُرَاتِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1945,7 +1945,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Hujurāt
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Rooms</span>
                 </div>
@@ -1966,7 +1966,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="50" data-type="Makki" data-rev="34" data-juz="26" data-name="qāf" data-meaning="the letter qaf" data-arabic="سُورَةُ ق" tabindex="0" role="button" aria-label="Surah 50 Qāf">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="50" data-type="Makki" data-rev="34" data-juz="26" data-name="qāf" data-meaning="the letter qaf" data-arabic="سُورَةُ ق" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -1977,7 +1977,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Qāf
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Letter Qaf</span>
                 </div>
@@ -1998,7 +1998,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="51" data-type="Makki" data-rev="67" data-juz="26" data-name="adh-dhāriyāt" data-meaning="the winnowing winds" data-arabic="سُورَةُ الذَّارِيَاتِ" tabindex="0" role="button" aria-label="Surah 51 Adh-Dhāriyāt">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="51" data-type="Makki" data-rev="67" data-juz="26" data-name="adh-dhāriyāt" data-meaning="the winnowing winds" data-arabic="سُورَةُ الذَّارِيَاتِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2009,7 +2009,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Adh-Dhāriyāt
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Winnowing Winds</span>
                 </div>
@@ -2030,7 +2030,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="52" data-type="Makki" data-rev="76" data-juz="27" data-name="at-tūr" data-meaning="the mount" data-arabic="سُورَةُ الطُّورِ" tabindex="0" role="button" aria-label="Surah 52 At-Tūr">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="52" data-type="Makki" data-rev="76" data-juz="27" data-name="at-tūr" data-meaning="the mount" data-arabic="سُورَةُ الطُّورِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2041,7 +2041,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       At-Tūr
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Mount</span>
                 </div>
@@ -2062,7 +2062,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="53" data-type="Makki" data-rev="23" data-juz="27" data-name="an-najm" data-meaning="the star" data-arabic="سُورَةُ النَّجْمِ" tabindex="0" role="button" aria-label="Surah 53 An-Najm">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="53" data-type="Makki" data-rev="23" data-juz="27" data-name="an-najm" data-meaning="the star" data-arabic="سُورَةُ النَّجْمِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2073,7 +2073,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       An-Najm
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Star</span>
                 </div>
@@ -2094,7 +2094,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="54" data-type="Makki" data-rev="37" data-juz="27" data-name="al-qamar" data-meaning="the moon" data-arabic="سُورَةُ القَمَرِ" tabindex="0" role="button" aria-label="Surah 54 Al-Qamar">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="54" data-type="Makki" data-rev="37" data-juz="27" data-name="al-qamar" data-meaning="the moon" data-arabic="سُورَةُ القَمَرِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2105,7 +2105,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Qamar
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Moon</span>
                 </div>
@@ -2126,7 +2126,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="55" data-type="Madani" data-rev="97" data-juz="27" data-name="ar-rahmān" data-meaning="the beneficent" data-arabic="سُورَةُ الرَّحْمَٰنِ" tabindex="0" role="button" aria-label="Surah 55 Ar-Rahmān">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="55" data-type="Madani" data-rev="97" data-juz="27" data-name="ar-rahmān" data-meaning="the beneficent" data-arabic="سُورَةُ الرَّحْمَٰنِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2137,7 +2137,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Ar-Rahmān
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Beneficent</span>
                 </div>
@@ -2158,7 +2158,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="56" data-type="Makki" data-rev="46" data-juz="27" data-name="al-wāqi'ah" data-meaning="the inevitable" data-arabic="سُورَةُ الوَاقِعَةِ" tabindex="0" role="button" aria-label="Surah 56 Al-Wāqi'ah">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="56" data-type="Makki" data-rev="46" data-juz="27" data-name="al-wāqi'ah" data-meaning="the inevitable" data-arabic="سُورَةُ الوَاقِعَةِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2169,7 +2169,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Wāqi'ah
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Inevitable</span>
                 </div>
@@ -2190,7 +2190,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="57" data-type="Madani" data-rev="94" data-juz="27" data-name="al-hadīd" data-meaning="the iron" data-arabic="سُورَةُ الحَدِيدِ" tabindex="0" role="button" aria-label="Surah 57 Al-Hadīd">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="57" data-type="Madani" data-rev="94" data-juz="27" data-name="al-hadīd" data-meaning="the iron" data-arabic="سُورَةُ الحَدِيدِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2201,7 +2201,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Hadīd
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Iron</span>
                 </div>
@@ -2222,7 +2222,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="58" data-type="Madani" data-rev="105" data-juz="28" data-name="al-mujādilah" data-meaning="the pleading woman" data-arabic="سُورَةُ المُجَادَلَةِ" tabindex="0" role="button" aria-label="Surah 58 Al-Mujādilah">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="58" data-type="Madani" data-rev="105" data-juz="28" data-name="al-mujādilah" data-meaning="the pleading woman" data-arabic="سُورَةُ المُجَادَلَةِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2233,7 +2233,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Mujādilah
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Pleading Woman</span>
                 </div>
@@ -2254,7 +2254,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="59" data-type="Madani" data-rev="101" data-juz="28" data-name="al-hashr" data-meaning="the exile" data-arabic="سُورَةُ الحَشْرِ" tabindex="0" role="button" aria-label="Surah 59 Al-Hashr">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="59" data-type="Madani" data-rev="101" data-juz="28" data-name="al-hashr" data-meaning="the exile" data-arabic="سُورَةُ الحَشْرِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2265,7 +2265,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Hashr
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Exile</span>
                 </div>
@@ -2286,7 +2286,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="60" data-type="Madani" data-rev="91" data-juz="28" data-name="al-mumtahanah" data-meaning="she that is to be examined" data-arabic="سُورَةُ المُمْتَحَنَةِ" tabindex="0" role="button" aria-label="Surah 60 Al-Mumtahanah">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="60" data-type="Madani" data-rev="91" data-juz="28" data-name="al-mumtahanah" data-meaning="she that is to be examined" data-arabic="سُورَةُ المُمْتَحَنَةِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2297,7 +2297,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Mumtahanah
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">She That Is To Be Examined</span>
                 </div>
@@ -2318,7 +2318,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="61" data-type="Madani" data-rev="109" data-juz="28" data-name="as-saff" data-meaning="the ranks" data-arabic="سُورَةُ الصَّفِّ" tabindex="0" role="button" aria-label="Surah 61 As-Saff">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="61" data-type="Madani" data-rev="109" data-juz="28" data-name="as-saff" data-meaning="the ranks" data-arabic="سُورَةُ الصَّفِّ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2329,7 +2329,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       As-Saff
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Ranks</span>
                 </div>
@@ -2350,7 +2350,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="62" data-type="Madani" data-rev="110" data-juz="28" data-name="al-jumu'ah" data-meaning="the congregation, friday" data-arabic="سُورَةُ الجُمُعَةِ" tabindex="0" role="button" aria-label="Surah 62 Al-Jumu'ah">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="62" data-type="Madani" data-rev="110" data-juz="28" data-name="al-jumu'ah" data-meaning="the congregation, friday" data-arabic="سُورَةُ الجُمُعَةِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2361,7 +2361,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Jumu'ah
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Congregation, Friday</span>
                 </div>
@@ -2382,7 +2382,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="63" data-type="Madani" data-rev="104" data-juz="28" data-name="al-munāfiqūn" data-meaning="the hypocrites" data-arabic="سُورَةُ المُنَافِقُونَ" tabindex="0" role="button" aria-label="Surah 63 Al-Munāfiqūn">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="63" data-type="Madani" data-rev="104" data-juz="28" data-name="al-munāfiqūn" data-meaning="the hypocrites" data-arabic="سُورَةُ المُنَافِقُونَ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2393,7 +2393,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Munāfiqūn
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Hypocrites</span>
                 </div>
@@ -2414,7 +2414,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="64" data-type="Madani" data-rev="108" data-juz="28" data-name="at-taghābun" data-meaning="the mutual disillusion" data-arabic="سُورَةُ التَّغَابُنِ" tabindex="0" role="button" aria-label="Surah 64 At-Taghābun">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="64" data-type="Madani" data-rev="108" data-juz="28" data-name="at-taghābun" data-meaning="the mutual disillusion" data-arabic="سُورَةُ التَّغَابُنِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2425,7 +2425,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       At-Taghābun
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Mutual Disillusion</span>
                 </div>
@@ -2446,7 +2446,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="65" data-type="Madani" data-rev="99" data-juz="28" data-name="at-talāq" data-meaning="the divorce" data-arabic="سُورَةُ الطَّلَاقِ" tabindex="0" role="button" aria-label="Surah 65 At-Talāq">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="65" data-type="Madani" data-rev="99" data-juz="28" data-name="at-talāq" data-meaning="the divorce" data-arabic="سُورَةُ الطَّلَاقِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2457,7 +2457,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       At-Talāq
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Divorce</span>
                 </div>
@@ -2478,7 +2478,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="66" data-type="Madani" data-rev="107" data-juz="28" data-name="at-tahrīm" data-meaning="the prohibition" data-arabic="سُورَةُ التَّحْرِيمِ" tabindex="0" role="button" aria-label="Surah 66 At-Tahrīm">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="66" data-type="Madani" data-rev="107" data-juz="28" data-name="at-tahrīm" data-meaning="the prohibition" data-arabic="سُورَةُ التَّحْرِيمِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2489,7 +2489,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       At-Tahrīm
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Prohibition</span>
                 </div>
@@ -2510,7 +2510,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="67" data-type="Makki" data-rev="77" data-juz="29" data-name="al-mulk" data-meaning="the sovereignty" data-arabic="سُورَةُ المُلْكِ" tabindex="0" role="button" aria-label="Surah 67 Al-Mulk">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="67" data-type="Makki" data-rev="77" data-juz="29" data-name="al-mulk" data-meaning="the sovereignty" data-arabic="سُورَةُ المُلْكِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2542,7 +2542,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="68" data-type="Makki" data-rev="2" data-juz="29" data-name="al-qalam" data-meaning="the pen" data-arabic="سُورَةُ القَلَمِ" tabindex="0" role="button" aria-label="Surah 68 Al-Qalam">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="68" data-type="Makki" data-rev="2" data-juz="29" data-name="al-qalam" data-meaning="the pen" data-arabic="سُورَةُ القَلَمِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2553,7 +2553,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Qalam
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Pen</span>
                 </div>
@@ -2574,7 +2574,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="69" data-type="Makki" data-rev="78" data-juz="29" data-name="al-hāqqah" data-meaning="the inevitable reality" data-arabic="سُورَةُ الحَاقَّةِ" tabindex="0" role="button" aria-label="Surah 69 Al-Hāqqah">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="69" data-type="Makki" data-rev="78" data-juz="29" data-name="al-hāqqah" data-meaning="the inevitable reality" data-arabic="سُورَةُ الحَاقَّةِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2585,7 +2585,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Hāqqah
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Inevitable Reality</span>
                 </div>
@@ -2606,7 +2606,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="70" data-type="Makki" data-rev="79" data-juz="29" data-name="al-ma'ārij" data-meaning="the ascending stairways" data-arabic="سُورَةُ المَعَارِجِ" tabindex="0" role="button" aria-label="Surah 70 Al-Ma'ārij">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="70" data-type="Makki" data-rev="79" data-juz="29" data-name="al-ma'ārij" data-meaning="the ascending stairways" data-arabic="سُورَةُ المَعَارِجِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2617,7 +2617,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Ma'ārij
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Ascending Stairways</span>
                 </div>
@@ -2638,7 +2638,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="71" data-type="Makki" data-rev="71" data-juz="29" data-name="nūh" data-meaning="noah" data-arabic="سُورَةُ نُوحٍ" tabindex="0" role="button" aria-label="Surah 71 Nūh">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="71" data-type="Makki" data-rev="71" data-juz="29" data-name="nūh" data-meaning="noah" data-arabic="سُورَةُ نُوحٍ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2649,7 +2649,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Nūh
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">Noah</span>
                 </div>
@@ -2670,7 +2670,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="72" data-type="Makki" data-rev="40" data-juz="29" data-name="al-jinn" data-meaning="the jinn" data-arabic="سُورَةُ الجِنِّ" tabindex="0" role="button" aria-label="Surah 72 Al-Jinn">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="72" data-type="Makki" data-rev="40" data-juz="29" data-name="al-jinn" data-meaning="the jinn" data-arabic="سُورَةُ الجِنِّ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2681,7 +2681,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Jinn
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Jinn</span>
                 </div>
@@ -2702,7 +2702,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="73" data-type="Makki" data-rev="3" data-juz="29" data-name="al-muzzammil" data-meaning="the enshrouded one" data-arabic="سُورَةُ المُزَّمِّلِ" tabindex="0" role="button" aria-label="Surah 73 Al-Muzzammil">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="73" data-type="Makki" data-rev="3" data-juz="29" data-name="al-muzzammil" data-meaning="the enshrouded one" data-arabic="سُورَةُ المُزَّمِّلِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2713,7 +2713,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Muzzammil
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Enshrouded One</span>
                 </div>
@@ -2734,7 +2734,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="74" data-type="Makki" data-rev="4" data-juz="29" data-name="al-muddaththir" data-meaning="the cloaked one" data-arabic="سُورَةُ المُدَّثِّرِ" tabindex="0" role="button" aria-label="Surah 74 Al-Muddaththir">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="74" data-type="Makki" data-rev="4" data-juz="29" data-name="al-muddaththir" data-meaning="the cloaked one" data-arabic="سُورَةُ المُدَّثِّرِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2745,7 +2745,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Muddaththir
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Cloaked One</span>
                 </div>
@@ -2766,7 +2766,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="75" data-type="Makki" data-rev="31" data-juz="29" data-name="al-qiyāmah" data-meaning="the resurrection" data-arabic="سُورَةُ القِيَامَةِ" tabindex="0" role="button" aria-label="Surah 75 Al-Qiyāmah">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="75" data-type="Makki" data-rev="31" data-juz="29" data-name="al-qiyāmah" data-meaning="the resurrection" data-arabic="سُورَةُ القِيَامَةِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2777,7 +2777,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Qiyāmah
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Resurrection</span>
                 </div>
@@ -2798,7 +2798,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="76" data-type="Madani" data-rev="98" data-juz="29" data-name="al-insān" data-meaning="the human" data-arabic="سُورَةُ الإِنْسَانِ" tabindex="0" role="button" aria-label="Surah 76 Al-Insān">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="76" data-type="Madani" data-rev="98" data-juz="29" data-name="al-insān" data-meaning="the human" data-arabic="سُورَةُ الإِنْسَانِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2809,7 +2809,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Insān
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Human</span>
                 </div>
@@ -2830,7 +2830,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="77" data-type="Makki" data-rev="33" data-juz="29" data-name="al-mursalāt" data-meaning="the emissaries" data-arabic="سُورَةُ المُرْسَلَاتِ" tabindex="0" role="button" aria-label="Surah 77 Al-Mursalāt">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="77" data-type="Makki" data-rev="33" data-juz="29" data-name="al-mursalāt" data-meaning="the emissaries" data-arabic="سُورَةُ المُرْسَلَاتِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2841,7 +2841,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Mursalāt
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Emissaries</span>
                 </div>
@@ -2862,7 +2862,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="78" data-type="Makki" data-rev="80" data-juz="30" data-name="an-naba'" data-meaning="the tidings" data-arabic="سُورَةُ النَّبَإِ" tabindex="0" role="button" aria-label="Surah 78 An-Naba'">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="78" data-type="Makki" data-rev="80" data-juz="30" data-name="an-naba'" data-meaning="the tidings" data-arabic="سُورَةُ النَّبَإِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2873,7 +2873,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       An-Naba'
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Tidings</span>
                 </div>
@@ -2894,7 +2894,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="79" data-type="Makki" data-rev="81" data-juz="30" data-name="an-nāzi'āt" data-meaning="those who drag forth" data-arabic="سُورَةُ النَّازِعَاتِ" tabindex="0" role="button" aria-label="Surah 79 An-Nāzi'āt">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="79" data-type="Makki" data-rev="81" data-juz="30" data-name="an-nāzi'āt" data-meaning="those who drag forth" data-arabic="سُورَةُ النَّازِعَاتِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2905,7 +2905,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       An-Nāzi'āt
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">Those Who Drag Forth</span>
                 </div>
@@ -2926,7 +2926,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="80" data-type="Makki" data-rev="24" data-juz="30" data-name="'abasa" data-meaning="he frowned" data-arabic="سُورَةُ عَبَسَ" tabindex="0" role="button" aria-label="Surah 80 'Abasa">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="80" data-type="Makki" data-rev="24" data-juz="30" data-name="'abasa" data-meaning="he frowned" data-arabic="سُورَةُ عَبَسَ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2937,7 +2937,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       'Abasa
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">He Frowned</span>
                 </div>
@@ -2958,7 +2958,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="81" data-type="Makki" data-rev="7" data-juz="30" data-name="at-takwīr" data-meaning="the overthrowing" data-arabic="سُورَةُ التَّكْوِيرِ" tabindex="0" role="button" aria-label="Surah 81 At-Takwīr">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="81" data-type="Makki" data-rev="7" data-juz="30" data-name="at-takwīr" data-meaning="the overthrowing" data-arabic="سُورَةُ التَّكْوِيرِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -2969,7 +2969,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       At-Takwīr
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Overthrowing</span>
                 </div>
@@ -2990,7 +2990,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="82" data-type="Makki" data-rev="82" data-juz="30" data-name="al-infitār" data-meaning="the cleaving" data-arabic="سُورَةُ الانفِطَارِ" tabindex="0" role="button" aria-label="Surah 82 Al-Infitār">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="82" data-type="Makki" data-rev="82" data-juz="30" data-name="al-infitār" data-meaning="the cleaving" data-arabic="سُورَةُ الانفِطَارِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3001,7 +3001,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Infitār
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Cleaving</span>
                 </div>
@@ -3022,7 +3022,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="83" data-type="Makki" data-rev="86" data-juz="30" data-name="al-mutaffifīn" data-meaning="those who deal in fraud" data-arabic="سُورَةُ المُطَفِّفِينَ" tabindex="0" role="button" aria-label="Surah 83 Al-Mutaffifīn">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="83" data-type="Makki" data-rev="86" data-juz="30" data-name="al-mutaffifīn" data-meaning="those who deal in fraud" data-arabic="سُورَةُ المُطَفِّفِينَ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3033,7 +3033,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Mutaffifīn
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">Those Who Deal In Fraud</span>
                 </div>
@@ -3054,7 +3054,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="84" data-type="Makki" data-rev="83" data-juz="30" data-name="al-inshiqāq" data-meaning="the splitting asunder" data-arabic="سُورَةُ الانشِقَاقِ" tabindex="0" role="button" aria-label="Surah 84 Al-Inshiqāq">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="84" data-type="Makki" data-rev="83" data-juz="30" data-name="al-inshiqāq" data-meaning="the splitting asunder" data-arabic="سُورَةُ الانشِقَاقِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3065,7 +3065,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Inshiqāq
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Splitting Asunder</span>
                 </div>
@@ -3086,7 +3086,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="85" data-type="Makki" data-rev="27" data-juz="30" data-name="al-burūj" data-meaning="the great stars" data-arabic="سُورَةُ البُرُوجِ" tabindex="0" role="button" aria-label="Surah 85 Al-Burūj">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="85" data-type="Makki" data-rev="27" data-juz="30" data-name="al-burūj" data-meaning="the great stars" data-arabic="سُورَةُ البُرُوجِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3097,7 +3097,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Burūj
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Great Stars</span>
                 </div>
@@ -3118,7 +3118,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="86" data-type="Makki" data-rev="36" data-juz="30" data-name="at-tāriq" data-meaning="the nightcomer" data-arabic="سُورَةُ الطَّارِقِ" tabindex="0" role="button" aria-label="Surah 86 At-Tāriq">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="86" data-type="Makki" data-rev="36" data-juz="30" data-name="at-tāriq" data-meaning="the nightcomer" data-arabic="سُورَةُ الطَّارِقِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3129,7 +3129,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       At-Tāriq
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Nightcomer</span>
                 </div>
@@ -3150,7 +3150,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="87" data-type="Makki" data-rev="8" data-juz="30" data-name="al-a'lā" data-meaning="the most high" data-arabic="سُورَةُ الأَعْلَىٰ" tabindex="0" role="button" aria-label="Surah 87 Al-A'lā">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="87" data-type="Makki" data-rev="8" data-juz="30" data-name="al-a'lā" data-meaning="the most high" data-arabic="سُورَةُ الأَعْلَىٰ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3161,7 +3161,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-A'lā
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Most High</span>
                 </div>
@@ -3182,7 +3182,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="88" data-type="Makki" data-rev="68" data-juz="30" data-name="al-ghāshiyah" data-meaning="the overwhelming" data-arabic="سُورَةُ الغَاشِيَةِ" tabindex="0" role="button" aria-label="Surah 88 Al-Ghāshiyah">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="88" data-type="Makki" data-rev="68" data-juz="30" data-name="al-ghāshiyah" data-meaning="the overwhelming" data-arabic="سُورَةُ الغَاشِيَةِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3193,7 +3193,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Ghāshiyah
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Overwhelming</span>
                 </div>
@@ -3214,7 +3214,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="89" data-type="Makki" data-rev="10" data-juz="30" data-name="al-fajr" data-meaning="the dawn" data-arabic="سُورَةُ الفَجْرِ" tabindex="0" role="button" aria-label="Surah 89 Al-Fajr">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="89" data-type="Makki" data-rev="10" data-juz="30" data-name="al-fajr" data-meaning="the dawn" data-arabic="سُورَةُ الفَجْرِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3225,7 +3225,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Fajr
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Dawn</span>
                 </div>
@@ -3246,7 +3246,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="90" data-type="Makki" data-rev="35" data-juz="30" data-name="al-balad" data-meaning="the city" data-arabic="سُورَةُ البَلَدِ" tabindex="0" role="button" aria-label="Surah 90 Al-Balad">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="90" data-type="Makki" data-rev="35" data-juz="30" data-name="al-balad" data-meaning="the city" data-arabic="سُورَةُ البَلَدِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3257,7 +3257,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Balad
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The City</span>
                 </div>
@@ -3278,7 +3278,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="91" data-type="Makki" data-rev="26" data-juz="30" data-name="ash-shams" data-meaning="the sun" data-arabic="سُورَةُ الشَّمْسِ" tabindex="0" role="button" aria-label="Surah 91 Ash-Shams">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="91" data-type="Makki" data-rev="26" data-juz="30" data-name="ash-shams" data-meaning="the sun" data-arabic="سُورَةُ الشَّمْسِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3289,7 +3289,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Ash-Shams
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Sun</span>
                 </div>
@@ -3310,7 +3310,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="92" data-type="Makki" data-rev="9" data-juz="30" data-name="al-layl" data-meaning="the night" data-arabic="سُورَةُ اللَّيْلِ" tabindex="0" role="button" aria-label="Surah 92 Al-Layl">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="92" data-type="Makki" data-rev="9" data-juz="30" data-name="al-layl" data-meaning="the night" data-arabic="سُورَةُ اللَّيْلِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3321,7 +3321,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Layl
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Night</span>
                 </div>
@@ -3342,7 +3342,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="93" data-type="Makki" data-rev="11" data-juz="30" data-name="ad-duhā" data-meaning="the morning hours" data-arabic="سُورَةُ الضُّحَىٰ" tabindex="0" role="button" aria-label="Surah 93 Ad-Duhā">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="93" data-type="Makki" data-rev="11" data-juz="30" data-name="ad-duhā" data-meaning="the morning hours" data-arabic="سُورَةُ الضُّحَىٰ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3353,7 +3353,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Ad-Duhā
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Morning Hours</span>
                 </div>
@@ -3374,7 +3374,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="94" data-type="Makki" data-rev="12" data-juz="30" data-name="ash-sharh" data-meaning="the relief" data-arabic="سُورَةُ الشَّرْحِ" tabindex="0" role="button" aria-label="Surah 94 Ash-Sharh">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="94" data-type="Makki" data-rev="12" data-juz="30" data-name="ash-sharh" data-meaning="the relief" data-arabic="سُورَةُ الشَّرْحِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3385,7 +3385,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Ash-Sharh
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Relief</span>
                 </div>
@@ -3406,7 +3406,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="95" data-type="Makki" data-rev="28" data-juz="30" data-name="at-tīn" data-meaning="the fig" data-arabic="سُورَةُ التِّينِ" tabindex="0" role="button" aria-label="Surah 95 At-Tīn">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="95" data-type="Makki" data-rev="28" data-juz="30" data-name="at-tīn" data-meaning="the fig" data-arabic="سُورَةُ التِّينِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3417,7 +3417,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       At-Tīn
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Fig</span>
                 </div>
@@ -3438,7 +3438,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="96" data-type="Makki" data-rev="1" data-juz="30" data-name="al-'alaq" data-meaning="the clot" data-arabic="سُورَةُ العَلَقِ" tabindex="0" role="button" aria-label="Surah 96 Al-'Alaq">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="96" data-type="Makki" data-rev="1" data-juz="30" data-name="al-'alaq" data-meaning="the clot" data-arabic="سُورَةُ العَلَقِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3449,7 +3449,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-'Alaq
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Clot</span>
                 </div>
@@ -3470,7 +3470,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="97" data-type="Makki" data-rev="25" data-juz="30" data-name="al-qadr" data-meaning="the night of decree" data-arabic="سُورَةُ القَدْرِ" tabindex="0" role="button" aria-label="Surah 97 Al-Qadr">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="97" data-type="Makki" data-rev="25" data-juz="30" data-name="al-qadr" data-meaning="the night of decree" data-arabic="سُورَةُ القَدْرِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3481,7 +3481,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Qadr
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Night of Decree</span>
                 </div>
@@ -3502,7 +3502,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="98" data-type="Madani" data-rev="100" data-juz="30" data-name="al-bayyinah" data-meaning="the clear proof" data-arabic="سُورَةُ البَيِّنَةِ" tabindex="0" role="button" aria-label="Surah 98 Al-Bayyinah">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="98" data-type="Madani" data-rev="100" data-juz="30" data-name="al-bayyinah" data-meaning="the clear proof" data-arabic="سُورَةُ البَيِّنَةِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3513,7 +3513,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Bayyinah
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Clear Proof</span>
                 </div>
@@ -3534,7 +3534,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="99" data-type="Madani" data-rev="93" data-juz="30" data-name="az-zalzalah" data-meaning="the earthquake" data-arabic="سُورَةُ الزَّلْزَلَةِ" tabindex="0" role="button" aria-label="Surah 99 Az-Zalzalah">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="99" data-type="Madani" data-rev="93" data-juz="30" data-name="az-zalzalah" data-meaning="the earthquake" data-arabic="سُورَةُ الزَّلْزَلَةِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3545,7 +3545,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Az-Zalzalah
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Earthquake</span>
                 </div>
@@ -3566,7 +3566,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="100" data-type="Makki" data-rev="14" data-juz="30" data-name="al-'ādiyāt" data-meaning="the courser" data-arabic="سُورَةُ العَادِيَاتِ" tabindex="0" role="button" aria-label="Surah 100 Al-'Ādiyāt">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="100" data-type="Makki" data-rev="14" data-juz="30" data-name="al-'ādiyāt" data-meaning="the courser" data-arabic="سُورَةُ العَادِيَاتِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3577,7 +3577,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-'Ādiyāt
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Courser</span>
                 </div>
@@ -3598,7 +3598,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="101" data-type="Makki" data-rev="30" data-juz="30" data-name="al-qāri'ah" data-meaning="the calamity" data-arabic="سُورَةُ القَارِعَةِ" tabindex="0" role="button" aria-label="Surah 101 Al-Qāri'ah">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="101" data-type="Makki" data-rev="30" data-juz="30" data-name="al-qāri'ah" data-meaning="the calamity" data-arabic="سُورَةُ القَارِعَةِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3609,7 +3609,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Qāri'ah
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Calamity</span>
                 </div>
@@ -3630,7 +3630,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="102" data-type="Makki" data-rev="16" data-juz="30" data-name="at-takāthur" data-meaning="competition in increase" data-arabic="سُورَةُ التَّكَاثُرِ" tabindex="0" role="button" aria-label="Surah 102 At-Takāthur">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="102" data-type="Makki" data-rev="16" data-juz="30" data-name="at-takāthur" data-meaning="competition in increase" data-arabic="سُورَةُ التَّكَاثُرِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3641,7 +3641,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       At-Takāthur
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">Competition in Increase</span>
                 </div>
@@ -3662,7 +3662,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="103" data-type="Makki" data-rev="13" data-juz="30" data-name="al-'asr" data-meaning="the declining day" data-arabic="سُورَةُ العَصْرِ" tabindex="0" role="button" aria-label="Surah 103 Al-'Asr">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="103" data-type="Makki" data-rev="13" data-juz="30" data-name="al-'asr" data-meaning="the declining day" data-arabic="سُورَةُ العَصْرِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3673,7 +3673,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-'Asr
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Declining Day</span>
                 </div>
@@ -3694,7 +3694,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="104" data-type="Makki" data-rev="32" data-juz="30" data-name="al-humazah" data-meaning="the slanderer" data-arabic="سُورَةُ الهُمَزَةِ" tabindex="0" role="button" aria-label="Surah 104 Al-Humazah">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="104" data-type="Makki" data-rev="32" data-juz="30" data-name="al-humazah" data-meaning="the slanderer" data-arabic="سُورَةُ الهُمَزَةِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3705,7 +3705,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Humazah
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Slanderer</span>
                 </div>
@@ -3726,7 +3726,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="105" data-type="Makki" data-rev="19" data-juz="30" data-name="al-fīl" data-meaning="the elephant" data-arabic="سُورَةُ الفِيلِ" tabindex="0" role="button" aria-label="Surah 105 Al-Fīl">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="105" data-type="Makki" data-rev="19" data-juz="30" data-name="al-fīl" data-meaning="the elephant" data-arabic="سُورَةُ الفِيلِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3737,7 +3737,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Fīl
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Elephant</span>
                 </div>
@@ -3758,7 +3758,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="106" data-type="Makki" data-rev="29" data-juz="30" data-name="quraysh" data-meaning="quraysh" data-arabic="سُورَةُ قُرَيْشٍ" tabindex="0" role="button" aria-label="Surah 106 Quraysh">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="106" data-type="Makki" data-rev="29" data-juz="30" data-name="quraysh" data-meaning="quraysh" data-arabic="سُورَةُ قُرَيْشٍ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3769,7 +3769,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Quraysh
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">Quraysh</span>
                 </div>
@@ -3790,7 +3790,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="107" data-type="Makki" data-rev="17" data-juz="30" data-name="al-mā'ūn" data-meaning="small kindnesses" data-arabic="سُورَةُ المَاعُونِ" tabindex="0" role="button" aria-label="Surah 107 Al-Mā'ūn">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="107" data-type="Makki" data-rev="17" data-juz="30" data-name="al-mā'ūn" data-meaning="small kindnesses" data-arabic="سُورَةُ المَاعُونِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3801,7 +3801,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Mā'ūn
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">Small Kindnesses</span>
                 </div>
@@ -3822,7 +3822,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="108" data-type="Makki" data-rev="15" data-juz="30" data-name="al-kawthar" data-meaning="abundance" data-arabic="سُورَةُ الكَوْثَرِ" tabindex="0" role="button" aria-label="Surah 108 Al-Kawthar">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="108" data-type="Makki" data-rev="15" data-juz="30" data-name="al-kawthar" data-meaning="abundance" data-arabic="سُورَةُ الكَوْثَرِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3833,7 +3833,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Kawthar
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">Abundance</span>
                 </div>
@@ -3854,7 +3854,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="109" data-type="Makki" data-rev="18" data-juz="30" data-name="al-kāfirūn" data-meaning="the disbelievers" data-arabic="سُورَةُ الكَافِرُونَ" tabindex="0" role="button" aria-label="Surah 109 Al-Kāfirūn">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="109" data-type="Makki" data-rev="18" data-juz="30" data-name="al-kāfirūn" data-meaning="the disbelievers" data-arabic="سُورَةُ الكَافِرُونَ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3865,7 +3865,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Kāfirūn
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Disbelievers</span>
                 </div>
@@ -3886,7 +3886,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="110" data-type="Madani" data-rev="114" data-juz="30" data-name="an-nasr" data-meaning="the divine support" data-arabic="سُورَةُ النَّصْرِ" tabindex="0" role="button" aria-label="Surah 110 An-Nasr">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="110" data-type="Madani" data-rev="114" data-juz="30" data-name="an-nasr" data-meaning="the divine support" data-arabic="سُورَةُ النَّصْرِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3897,7 +3897,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       An-Nasr
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Divine Support</span>
                 </div>
@@ -3918,7 +3918,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="111" data-type="Makki" data-rev="6" data-juz="30" data-name="al-masad" data-meaning="the palm fibre" data-arabic="سُورَةُ المَسَدِ" tabindex="0" role="button" aria-label="Surah 111 Al-Masad">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="111" data-type="Makki" data-rev="6" data-juz="30" data-name="al-masad" data-meaning="the palm fibre" data-arabic="سُورَةُ المَسَدِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3929,7 +3929,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Masad
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Palm Fibre</span>
                 </div>
@@ -3950,7 +3950,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="112" data-type="Makki" data-rev="22" data-juz="30" data-name="al-ikhlās" data-meaning="the sincerity" data-arabic="سُورَةُ الإِخْلَاصِ" tabindex="0" role="button" aria-label="Surah 112 Al-Ikhlās">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="112" data-type="Makki" data-rev="22" data-juz="30" data-name="al-ikhlās" data-meaning="the sincerity" data-arabic="سُورَةُ الإِخْلَاصِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3982,7 +3982,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="113" data-type="Makki" data-rev="20" data-juz="30" data-name="al-falaq" data-meaning="the daybreak" data-arabic="سُورَةُ الفَلَقِ" tabindex="0" role="button" aria-label="Surah 113 Al-Falaq">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="113" data-type="Makki" data-rev="20" data-juz="30" data-name="al-falaq" data-meaning="the daybreak" data-arabic="سُورَةُ الفَلَقِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -3993,7 +3993,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       Al-Falaq
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">The Daybreak</span>
                 </div>
@@ -4014,7 +4014,7 @@
               </button>
             </div>
           </div>
-          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="114" data-type="Makki" data-rev="21" data-juz="30" data-name="an-nās" data-meaning="mankind" data-arabic="سُورَةُ النَّاسِ" tabindex="0" role="button" aria-label="Surah 114 An-Nās">
+          <div class="surah-card group p-3.5 rounded-xl bg-surface border border-border-subtle shadow-sm hover:border-primary/50 hover:shadow-md transition-all flex flex-col justify-between cursor-pointer" data-id="114" data-type="Makki" data-rev="21" data-juz="30" data-name="an-nās" data-meaning="mankind" data-arabic="سُورَةُ النَّاسِ" role="group">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="flex items-start gap-2.5">
                 <span class="w-[34px] h-[34px] rounded-lg bg-[#e6f4f1] text-[#0f766e] dark:bg-primary/20 dark:text-primary font-mono text-[12px] font-bold tracking-wider flex items-center justify-center shrink-0 surah-num-badge">
@@ -4025,7 +4025,7 @@
                     <h3 class="text-[14px] leading-tight font-bold text-on-surface group-hover:text-primary transition-colors">
                       An-Nās
                     </h3>
-                    
+
                   </div>
                   <span class="text-[11px] text-on-surface-variant mt-0.5">Mankind</span>
                 </div>
@@ -4198,7 +4198,7 @@
   </div>
 
   <!-- Floating Docked Recitation Player -->
-  <div id="dockedQuranPlayer" aria-label="Qur'an recitation player" aria-busy="false" class="fixed bottom-0 left-0 right-0 z-40 bg-surface/95 dark:bg-[#111A2E]/95 backdrop-blur-md border-t border-subtle shadow-lg transition-transform duration-300 transform translate-y-0">
+  <section id="dockedQuranPlayer" aria-label="Qur'an recitation player" aria-busy="false" class="fixed bottom-0 left-0 right-0 z-40 bg-surface/95 dark:bg-[#111A2E]/95 backdrop-blur-md border-t border-subtle shadow-lg transition-transform duration-300 transform translate-y-0">
     <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-col sm:flex-row items-center justify-between gap-3">
       <!-- Track Metadata -->
       <div class="flex items-center gap-3 w-full sm:w-auto shrink-0 justify-between sm:justify-start">
@@ -4269,12 +4269,12 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <div id="toastContainer" class="fixed bottom-20 right-4 z-50 flex flex-col gap-2 pointer-events-none" aria-live="polite"></div>
 
 <!-- Keyboard Shortcuts Modal & Command Palette (WCAG 2.1.4 compliant) -->
-  <div id="searchModal" class="hidden fixed inset-0 z-[90] bg-on-surface/40 backdrop-blur-sm flex items-start justify-center pt-20 px-4" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle" aria-hidden="true">
+  <div id="searchModal" class="hidden fixed inset-0 z-[90] bg-on-surface/40 backdrop-blur-sm flex items-start justify-center pt-20 px-4" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle" aria-hidden="true" inert>
     <div class="w-full max-w-xl bg-surface rounded-xl border border-border-strong/30 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
       <div class="flex items-center px-4 border-b border-border-subtle bg-bg-canvas/50">
         <svg class="w-4 h-4 stroke-current text-primary mr-3" fill="none" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M20 20L16 16"></path></svg>
@@ -4315,7 +4315,7 @@
   </div>
 
   <!-- Keyboard Shortcuts Modal (WCAG 2.1.4 compliant) -->
-  <div id="shortcutsModal" class="hidden fixed inset-0 z-[95] bg-on-surface/40 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="shortcutsTitle" aria-hidden="true">
+  <div id="shortcutsModal" class="hidden fixed inset-0 z-[95] bg-on-surface/40 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="shortcutsTitle" aria-hidden="true" inert>
     <div class="w-full max-w-lg bg-surface rounded-xl border border-border-strong/30 shadow-2xl p-6 relative">
       <div class="flex items-center justify-between pb-4 mb-4 border-b border-border-subtle">
         <div class="flex items-center gap-2.5">
@@ -4335,7 +4335,7 @@
         </div>
         <label class="relative inline-flex items-center cursor-pointer">
           <input type="checkbox" id="toggleSingleShortcuts" class="sr-only peer" checked aria-label="Enable single-key shortcuts">
-          <div class="w-9 h-5 bg-surface-container rounded-full peer peer-checked:bg-primary peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all"></div>
+          <span class="w-9 h-5 bg-surface-container rounded-full peer peer-checked:bg-primary peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all"></span>
         </label>
       </div>
 
@@ -4382,6 +4382,6 @@
   <script src="js/script.js" defer></script>
   <script src="js/quran-page.js" defer></script>
   <!-- Shared Layout: Header, Footer, Theme Switcher -->
-  <script src="js/shared-layout.js?v=2026-11-18-1643"></script>
+  <script defer src="js/shared-layout.js?v=2026-11-19-responsive-1"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="heynuo-build" content="2026-11-18-1643">
+  <meta name="heynuo-build" content="2026-11-19-responsive-1">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#f7faf7">
   <title>Thank You, Allah | Shukriya</title>
@@ -38,12 +38,12 @@
   <link rel="dns-prefetch" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev">
   <link
     href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap"
-    rel="stylesheet">
+    rel="stylesheet" media="print" onload="this.media='all'">
 
   <!-- Separated, high-performance, cacheable stylesheet -->
   <link rel="stylesheet" href="css/thank-you.css">
-  <script src="js/r2-config.js"></script>
-  <script src="js/r2-media.js"></script>
+  <script defer src="js/r2-config.js"></script>
+  <script defer src="js/r2-media.js?v=2026-11-19-responsive-1"></script>
 </head>
 
 <body>
@@ -57,7 +57,7 @@
   </div>
 
   <!-- Top Standalone Header (Auto-hidden when embedded in iframe) -->
-  <header class="sanctuary-header" role="banner">
+  <header class="sanctuary-header">
     <a href="index.html" class="brand-link" title="Return to Ruqyah.io Homepage">
       <span class="brand-icon" aria-hidden="true"><span class="brand-icon-inner"></span></span>
       <span class="brand-title">Ruqyah.io</span>
@@ -93,7 +93,7 @@
   <main aria-labelledby="gratitude-title">
     <section class="gratitude-message" aria-label="A message of gratitude">
       <!-- Sacred Arabic Calligraphy -->
-      <div class="gratitude-arabic" dir="rtl" lang="ar" aria-label="Al-Hamdu Lillahi Rabbi l-Alameen — All Praise is due to Allah, Lord of all the worlds">
+      <div class="gratitude-arabic" dir="rtl" lang="ar" role="img" aria-label="Al-Hamdu Lillahi Rabbi l-Alameen — All Praise is due to Allah, Lord of all the worlds">
         الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ
       </div>
 
@@ -646,7 +646,13 @@
       // ── 9. Start ─────────────────────────────────────────────
       initStars();
       startStars();
-      startAtmosphereVideo();
+      /* r2-media.js is deferred, so it runs before DOMContentLoaded; deferring
+         the initial play attempt guarantees window.r2MediaUrl exists. */
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', startAtmosphereVideo, { once: true });
+      } else {
+        startAtmosphereVideo();
+      }
 
     })();
   </script>

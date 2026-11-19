@@ -1,9 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="heynuo-build" content="2026-11-18-1643">
+<meta name="heynuo-build" content="2026-11-19-responsive-1">
 <meta name="theme-color" content="#070417">
 <meta name="description" content="Ariana Grande — bye (Altare remix) with a full-screen music video, glowing synced lyrics, and immersive playback controls.">
 <title>Ariana Grande — bye (Altare remix) | Video &amp; Lyrics</title>
@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev" crossorigin>
   <link rel="dns-prefetch" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <style>
   :root {
     --night: #0b0722;
@@ -342,8 +342,8 @@
     .big-play-btn, .icon-btn, .lyric-current { transition: none !important; animation: none !important; }
   }
 </style>
-  <script src="js/r2-config.js"></script>
-  <script src="js/r2-media.js"></script>
+  <script defer src="js/r2-config.js"></script>
+  <script defer src="js/r2-media.js?v=2026-11-19-responsive-1"></script>
 </head>
 <body>
 <h1 class="sr-only">Ariana Grande — bye (Altare remix) — video and synced lyrics</h1>
@@ -352,7 +352,7 @@
   <video id="media-video" data-media-src="assets/videos/bye-altare-remix.mp4" playsinline preload="none"></video>
 
   <!-- Moving Lyrics: Only lyrics appear in the upper of video -->
-  <div class="moving-lyrics-stage" id="moving-lyrics-stage" role="region" aria-label="Live Lyrics">
+  <section class="moving-lyrics-stage" id="moving-lyrics-stage" aria-label="Live Lyrics">
     <div class="lyrics-motion-wrap" id="lyrics-motion-wrap">
       <div class="lyric-line lyric-prev" id="lyric-prev"></div>
       <div class="lyric-line lyric-current" id="lyric-current">
@@ -360,7 +360,7 @@
       </div>
       <div class="lyric-line lyric-next" id="lyric-next"></div>
     </div>
-  </div>
+  </section>
 
   <!-- Center Big Play Button (shown when paused) -->
   <button class="big-play-btn" id="big-play-btn" type="button" aria-label="Play video with sound">
@@ -368,7 +368,7 @@
   </button>
 
   <!-- Bottom Player Dock -->
-  <div class="dock" id="dock" role="region" aria-label="Player controls">
+  <section class="dock" id="dock" aria-label="Player controls">
     <div class="dock-left">
       <button class="icon-btn primary" id="play" type="button" data-state="paused" aria-label="Play [Space]">
         <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.2v13.6a1 1 0 0 0 1.52.85l11-6.8a1 1 0 0 0 0-1.7l-11-6.8A1 1 0 0 0 8 5.2z"/></svg>
@@ -409,7 +409,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5v2H6v3H4zm10-5h5v5h-2V6h-3V4zM4 15h2v3h3v2H4v-5zm13 3v-3h2v5h-5v-2h3z"/></svg>
       </button>
     </div>
-  </div>
+  </section>
 </main>
 
 <script>

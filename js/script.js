@@ -4,7 +4,7 @@ Ruqyah – Global Scripts (Production Final v3)
 
 // Build stamp injected by tools/stamp-build.ps1 before each release. Declared
 // here so the service-worker registration can reference it without a guard.
-var __HEYNUO_BUILD__ = '2026-11-18-1643';
+var __HEYNUO_BUILD__ = '2026-11-19-responsive-1';
 
 const CONFIG = Object.freeze({
   siteUrl: 'https://heynuo.github.io/Ruqyah.io',
@@ -2131,13 +2131,20 @@ const CommandPalette = {
         tag: 'Shortcuts',
         run: () => {
           const btn = $.get('#shortcutHelpBtn');
-          if (btn) btn.click();
-          else {
-            const modal = $.get('#shortcutsModal');
-            if (modal) {
-              modal.classList.add('active');
-              modal.setAttribute('aria-hidden', 'false');
-            }
+          if (btn) {
+            btn.click();
+            return;
+          }
+          // No page ships #shortcutHelpBtn, so this fallback is the live path.
+          // Mirror openModal() in initShortcutsModal: an inert modal would be
+          // visible but completely non-interactive.
+          const modal = $.get('#shortcutsModal');
+          if (modal) {
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+            modal.removeAttribute('inert');
+            const closeBtn = modal.querySelector('#shortcutsClose, #closeShortcutsBtn');
+            if (closeBtn) closeBtn.focus();
           }
         }
       },
@@ -2964,6 +2971,7 @@ function initShortcutsModal() {
     backdrop.className = 'shortcuts-modal-backdrop';
     backdrop.id = 'shortcutsModal';
     backdrop.setAttribute('aria-hidden', 'true');
+    backdrop.setAttribute('inert', '');
     backdrop.setAttribute('role', 'dialog');
     backdrop.setAttribute('aria-modal', 'true');
     backdrop.setAttribute('aria-labelledby', 'shortcutsTitle');
@@ -2990,18 +2998,26 @@ function initShortcutsModal() {
     document.body.appendChild(backdrop);
   }
 
+  // Guarantee the closed state removes content from the tab order even if
+  // a page's static markup predates the inert attribute.
+  if (!backdrop.hasAttribute('inert')) backdrop.setAttribute('inert', '');
+
   const openBtns = $.getAll('#shortcutHelpBtn, #headerShortcutsBtn, .shortcut-help-btn');
-  const closeBtn = $.get('#shortcutsClose', backdrop);
+  // The static markup in pages ships its close button as #closeShortcutsBtn;
+  // the dynamically created fallback uses #shortcutsClose. Wire both.
+  const closeBtn = $.get('#shortcutsClose', backdrop) || $.get('#closeShortcutsBtn', backdrop);
 
   function openModal() {
     backdrop.classList.add('active');
     backdrop.setAttribute('aria-hidden', 'false');
+    backdrop.removeAttribute('inert');
     closeBtn?.focus();
   }
 
   function closeModal() {
     backdrop.classList.remove('active');
     backdrop.setAttribute('aria-hidden', 'true');
+    backdrop.setAttribute('inert', '');
   }
 
   openBtns.forEach(btn => $.on(btn, 'click', openModal));

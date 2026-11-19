@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="heynuo-build" content="2026-11-18-1643">
+  <meta name="heynuo-build" content="2026-11-19-responsive-1">
   <title>Hadith Qudsi — Al-Fatiha, Do Hisse</title>
   <meta name="description"
     content="A cinematic retelling of Hadith Qudsi (Sahih Muslim 395): Al-Fatiha in two parts — Allah's share and the servant's share — with recitation and visuals.">
@@ -34,7 +34,7 @@
   <link rel="dns-prefetch" href="https://pub-d881766908374a05ad89716ad70518eb.r2.dev">
   <link
     href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,600;1,700&display=swap"
-    rel="stylesheet">
+    rel="stylesheet" media="print" onload="this.media='all'">
   <style>
     * {
       margin: 0;
@@ -86,6 +86,10 @@
       pointer-events: none;
       z-index: 30;
       background: radial-gradient(ellipse 78% 74% at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.38) 100%);
+    }
+
+    .svg-filter-defs {
+      position: absolute;
     }
 
     .grain {
@@ -1065,8 +1069,8 @@
       pointer-events: none;
     }
   </style>
-  <script src="js/r2-config.js"></script>
-  <script src="js/r2-media.js"></script>
+  <script defer src="js/r2-config.js"></script>
+  <script defer src="js/r2-media.js?v=2026-11-19-responsive-1"></script>
 </head>
 
 <body>
@@ -1074,7 +1078,7 @@
     aria-label="Back to Ruqyah Archive">
     &#8592; Archive
   </a>
-  <div id="stage">
+  <main id="stage">
     <div id="cam">
       <video id="mediaTrack" playsinline preload="metadata" muted style="display:none" data-media-eager>
         <source src="assets/videos/reference-preview.mp4" data-media-src="assets/videos/reference-preview.mp4" type="video/mp4">
@@ -1187,18 +1191,18 @@
 
     <div class="lens"></div>
     <div class="grain"></div>
-    <svg width="0" height="0" style="position:absolute">
+    <svg width="0" height="0" class="svg-filter-defs" aria-hidden="true" focusable="false">
       <filter id="mb" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
         <feGaussianBlur id="mbBlur" stdDeviation="0 0" />
       </filter>
     </svg>
 
     <div class="controls needs-gesture" id="ctrlBar">
-      <button class="ctrl-btn pulse" id="soundBtn" title="Play with Audio">SOUND ON</button>
-      <button class="ctrl-btn" id="replay">REPLAY</button>
-      <button class="ctrl-btn" id="fsBtn">FULLSCREEN</button>
+      <button class="ctrl-btn pulse" id="soundBtn" title="Play with Audio" type="button">SOUND ON</button>
+      <button class="ctrl-btn" id="replay" type="button">REPLAY</button>
+      <button class="ctrl-btn" id="fsBtn" type="button">FULLSCREEN</button>
     </div>
-  </div>
+  </main>
 
   <script>
     (function proFX() {
@@ -2438,7 +2442,16 @@
 
       const stage = document.getElementById('stage');
       function fitStage() {
-        const scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
+        const visualViewport = window.visualViewport;
+        const viewportWidth = Math.min(
+          document.documentElement.clientWidth || window.innerWidth,
+          visualViewport ? visualViewport.width : window.innerWidth
+        );
+        const viewportHeight = Math.min(
+          document.documentElement.clientHeight || window.innerHeight,
+          visualViewport ? visualViewport.height : window.innerHeight
+        );
+        const scale = Math.min(viewportWidth / 1280, viewportHeight / 720);
         stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
         document.documentElement.style.setProperty('--stage-scale', String(scale));
       }
@@ -2447,7 +2460,9 @@
       } catch (_) {
         document.body.classList.add('is-embedded');
       }
-      window.addEventListener('resize', fitStage);
+      window.addEventListener('resize', fitStage, { passive: true });
+      window.addEventListener('orientationchange', fitStage, { passive: true });
+      if (window.visualViewport) window.visualViewport.addEventListener('resize', fitStage, { passive: true });
       fitStage();
 
       (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => {

@@ -29,6 +29,11 @@
       hasSource = true;
     }
 
+    if (media.dataset.lazySrc) {
+      media.src = media.dataset.lazySrc;
+      hasSource = true;
+    }
+
     media.querySelectorAll('source[data-media-src]').forEach((source) => {
       source.src = resolveMediaUrl(source.dataset.mediaSrc);
       hasSource = true;
@@ -39,20 +44,72 @@
     if (hasSource && typeof media.load === 'function') media.load();
   }
 
+  function observeNearViewport(mediaElements) {
+    const pending = new Set(mediaElements);
+    const margin = 300;
+    const requestFrame = window.requestAnimationFrame
+      ? window.requestAnimationFrame.bind(window)
+      : (callback) => window.setTimeout(callback, 16);
+    let frameId = 0;
+
+    function checkVisibleMedia() {
+      if (frameId) return;
+      frameId = requestFrame(() => {
+        frameId = 0;
+        const viewportBottom = window.innerHeight + margin;
+
+        pending.forEach((media) => {
+          const bounds = media.getBoundingClientRect();
+          if (bounds.bottom < -margin || bounds.top > viewportBottom) return;
+          loadMedia(media);
+          pending.delete(media);
+        });
+
+        if (!pending.size) {
+          window.removeEventListener('scroll', checkVisibleMedia);
+          window.removeEventListener('resize', checkVisibleMedia);
+        }
+      });
+    }
+
+    window.addEventListener('scroll', checkVisibleMedia, { passive: true });
+    window.addEventListener('resize', checkVisibleMedia, { passive: true });
+    checkVisibleMedia();
+  }
+
   function initializeMedia() {
     populateDownloadLinks();
 
     const mediaElements = Array.from(document.querySelectorAll('video, audio, iframe')).filter((media) =>
-      media.hasAttribute('data-media-src') || media.querySelector('source[data-media-src]')
+      media.hasAttribute('data-media-src') || media.hasAttribute('data-lazy-src') ||
+      media.querySelector('source[data-media-src]')
     );
-    const eagerMedia = mediaElements.filter((media) => media.hasAttribute('data-media-eager'));
+
+    const onDemandMedia = mediaElements.filter((media) => media.hasAttribute('data-media-on-demand'));
+    onDemandMedia.forEach((media) => {
+      const trigger = media.parentElement?.querySelector('[data-media-play]');
+      if (!trigger) {
+        loadMedia(media);
+        return;
+      }
+
+      trigger.addEventListener('click', () => {
+        loadMedia(media);
+        trigger.remove();
+        const playback = media.play?.();
+        if (playback && typeof playback.catch === 'function') playback.catch(() => {});
+      }, { once: true });
+    });
+
+    const regularMedia = mediaElements.filter((media) => !media.hasAttribute('data-media-on-demand'));
+    const eagerMedia = regularMedia.filter((media) => media.hasAttribute('data-media-eager'));
     eagerMedia.forEach(loadMedia);
 
-    const lazyMedia = mediaElements.filter((media) => !media.hasAttribute('data-media-eager'));
+    const lazyMedia = regularMedia.filter((media) => !media.hasAttribute('data-media-eager'));
     if (!lazyMedia.length) return;
 
     if (!('IntersectionObserver' in window)) {
-      lazyMedia.forEach(loadMedia);
+      observeNearViewport(lazyMedia);
       return;
     }
 
@@ -62,9 +119,18 @@
         loadMedia(entry.target);
         currentObserver.unobserve(entry.target);
       });
-    }, { rootMargin: '400px 0px' });
+    }, { rootMargin: '300px 0px' });
 
     lazyMedia.forEach((media) => observer.observe(media));
+
+    // Safety net for environments that expose IntersectionObserver but never
+    // deliver callbacks (headless renderers, some embedded WebViews, print).
+    // A short delay after launch, anything still unloaded that is already
+    // in/near the viewport loads through the scroll-based path instead.
+    window.setTimeout(() => {
+      const pending = lazyMedia.filter((media) => media.dataset.mediaLoaded !== 'true');
+      if (pending.length) observeNearViewport(pending);
+    }, 2500);
   }
 
   if (document.readyState === 'loading') {

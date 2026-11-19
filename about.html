@@ -2,11 +2,11 @@
 <html class="scroll-smooth" lang="en" data-theme="light">
 
 <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
   <!-- Build stamp for service-worker cache busting. Maintained by tools/stamp-build.ps1. -->
-  <meta name="heynuo-build" content="2026-11-18-1643">
-  <meta content="web_standard" name="shell-type"/>
+  <meta name="heynuo-build" content="2026-11-19-responsive-1">
+  <meta content="web_standard" name="shell-type">
   <meta name="theme-color" content="#005c55">
   <meta name="color-scheme" content="light dark">
 
@@ -113,13 +113,13 @@
   <!-- Typography Preconnect & Font Inclusions (Unified) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
   <!-- Shared Design System Tokens (Light / Dark / Sepia) -->
-  <link rel="stylesheet" href="css/shared-layout.css?v=2026-11-18-1643">
+  <link rel="stylesheet" href="css/shared-layout.css?v=2026-11-19-responsive-1">
 
-  <link rel="stylesheet" href="css/tailwind.generated.css?v=2026-11-18-1643">
+  <link rel="stylesheet" href="css/tailwind.generated.css?v=2026-11-19-responsive-1">
 </head>
 
 <body class="bg-bg-canvas font-body-article text-on-surface antialiased min-h-screen flex flex-col pb-32 transition-colors duration-200">
@@ -187,11 +187,11 @@
           <!-- Asymmetric Editorial Grid: Author & Two Pillars of Knowledge -->
           <section class="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <!-- Left: Author Profile Card with Ambient Graphic -->
-            <aside class="lg:col-span-5 flex flex-col gap-6">
+            <aside class="lg:col-span-5 flex flex-col gap-6" aria-label="About the author">
               <div class="rounded-xl bg-surface p-6 sm:p-8 shadow-sm border border-border-subtle relative overflow-hidden">
                 <!-- Archival Abstract Monogram Plate -->
                 <div class="w-full h-48 rounded-lg bg-surface-container-low overflow-hidden relative flex items-center justify-center p-4">
-                  <img class="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-700 hover:scale-105" alt="Austere classical geometric stone masonry and quiet university library archives in warm ivory and deep spruce teal tones" src="assets/banners/about-sanad.jpg"/>
+                  <img class="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-700 hover:scale-105" alt="Austere classical geometric stone masonry and quiet university library archives in warm ivory and deep spruce teal tones" src="assets/banners/about-sanad.jpg" loading="lazy" decoding="async">
                   <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
                   <!-- Floating Octagram Seal Badge -->
                   <div class="relative z-10 flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface/90 backdrop-blur-sm border border-border-subtle shadow-xs text-primary">
@@ -834,7 +834,7 @@
   <!-- 12. EDITORIAL FOOTER & RSS SYNDICATE -->
 
   <!-- Keyboard Shortcuts Modal & Command Palette (WCAG 2.1.4 compliant) -->
-  <div id="searchModal" class="hidden fixed inset-0 z-[90] bg-on-surface/40 backdrop-blur-sm flex items-start justify-center pt-20 px-4" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle" aria-hidden="true">
+  <div id="searchModal" class="hidden fixed inset-0 z-[90] bg-on-surface/40 backdrop-blur-sm flex items-start justify-center pt-20 px-4" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle" aria-hidden="true" inert>
     <div class="w-full max-w-xl bg-surface rounded-xl border border-border-strong/30 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
       <div class="flex items-center px-4 border-b border-border-subtle bg-bg-canvas/50">
         <svg class="w-4 h-4 stroke-current text-primary mr-3" fill="none" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M20 20L16 16"></path></svg>
@@ -875,7 +875,7 @@
   </div>
 
   <!-- Keyboard Shortcuts Modal (WCAG 2.1.4 compliant) -->
-  <div id="shortcutsModal" class="hidden fixed inset-0 z-[95] bg-on-surface/40 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="shortcutsTitle" aria-hidden="true">
+  <div id="shortcutsModal" class="hidden fixed inset-0 z-[95] bg-on-surface/40 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="shortcutsTitle" aria-hidden="true" inert>
     <div class="w-full max-w-lg bg-surface rounded-xl border border-border-strong/30 shadow-2xl p-6 relative">
       <div class="flex items-center justify-between pb-4 mb-4 border-b border-border-subtle">
         <div class="flex items-center gap-2.5">
@@ -895,7 +895,7 @@
         </div>
         <label class="relative inline-flex items-center cursor-pointer">
           <input type="checkbox" id="toggleSingleShortcuts" class="sr-only peer" checked aria-label="Enable single-key shortcuts">
-          <div class="w-9 h-5 bg-surface-container rounded-full peer peer-checked:bg-primary peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all"></div>
+          <span class="w-9 h-5 bg-surface-container rounded-full peer peer-checked:bg-primary peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all"></span>
         </label>
       </div>
 
@@ -1028,6 +1028,6 @@
   <script src="buttons.js" defer></script>
   <script src="js/script.js" defer></script>
   <!-- Shared Layout: Header, Footer, Theme Switcher -->
-  <script src="js/shared-layout.js?v=2026-11-18-1643"></script>
+  <script defer src="js/shared-layout.js?v=2026-11-19-responsive-1"></script>
 </body>
 </html>
