@@ -256,7 +256,7 @@
       brandLink.addEventListener('click', function (e) {
         e.preventDefault();
         if (activePage === 'home') {
-          window.location.reload();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
           window.location.assign(brandHref);
         }

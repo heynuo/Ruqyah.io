@@ -39,6 +39,25 @@
       hasSource = true;
     });
 
+    if (baseUrl && (media.tagName === 'VIDEO' || media.tagName === 'AUDIO')) {
+      media.addEventListener('error', function onMediaError() {
+        let fallbackApplied = false;
+        if (media.dataset.mediaSrc && media.src !== media.dataset.mediaSrc) {
+          media.src = media.dataset.mediaSrc;
+          fallbackApplied = true;
+        }
+        media.querySelectorAll('source[data-media-src]').forEach((source) => {
+          if (source.dataset.mediaSrc && source.src !== source.dataset.mediaSrc) {
+            source.src = source.dataset.mediaSrc;
+            fallbackApplied = true;
+          }
+        });
+        if (fallbackApplied && typeof media.load === 'function') {
+          media.load();
+        }
+      }, { once: true });
+    }
+
     populateDownloadLinks(media);
     media.dataset.mediaLoaded = 'true';
     if (hasSource && typeof media.load === 'function') media.load();
