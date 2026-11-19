@@ -85,27 +85,10 @@
       media.querySelector('source[data-media-src]')
     );
 
-    const onDemandMedia = mediaElements.filter((media) => media.hasAttribute('data-media-on-demand'));
-    onDemandMedia.forEach((media) => {
-      const trigger = media.parentElement?.querySelector('[data-media-play]');
-      if (!trigger) {
-        loadMedia(media);
-        return;
-      }
-
-      trigger.addEventListener('click', () => {
-        loadMedia(media);
-        trigger.remove();
-        const playback = media.play?.();
-        if (playback && typeof playback.catch === 'function') playback.catch(() => {});
-      }, { once: true });
-    });
-
-    const regularMedia = mediaElements.filter((media) => !media.hasAttribute('data-media-on-demand'));
-    const eagerMedia = regularMedia.filter((media) => media.hasAttribute('data-media-eager'));
+    const eagerMedia = mediaElements.filter((media) => media.hasAttribute('data-media-eager'));
     eagerMedia.forEach(loadMedia);
 
-    const lazyMedia = regularMedia.filter((media) => !media.hasAttribute('data-media-eager'));
+    const lazyMedia = mediaElements.filter((media) => !media.hasAttribute('data-media-eager'));
     if (!lazyMedia.length) return;
 
     if (!('IntersectionObserver' in window)) {
