@@ -35,6 +35,7 @@ const PRECACHE_URLS = [
      available offline or the whole shell disappears. */
   `css/shared-layout.css?v=${BUILD_STAMP}`,
   `css/tailwind.generated.css?v=${BUILD_STAMP}`,
+  'assets/fonts/material-symbols-outlined.woff2',
   'css/quran-light.css',
   'css/animated-heart.css',
   'css/thank-you.css',

@@ -3,6 +3,20 @@
    Source: Stitch Project #13051442395705679722
    ========================================================================== */
 
+/* Material Symbols (self-hosted, axis-pinned instance).
+   Loading the icon font from Google Fonts made the whole UI depend on a
+   third-party request: when that request failed or was blocked, the ligature
+   names were painted as text ("history_edu", "light_mode", ...) inside the
+   fixed-width icon boxes. Keeping it same-origin also lets the service worker
+   cache it for offline use. */
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  font-weight: 300;
+  font-display: block;
+  src: url('../assets/fonts/material-symbols-outlined.woff2') format('woff2');
+}
+
 @layer base {
   html, body {
     margin: 0;
@@ -45,6 +59,15 @@ html {
   white-space: nowrap;
   line-height: 1;
   font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-transform: none;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
   font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 20;
 }
 
